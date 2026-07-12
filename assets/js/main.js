@@ -557,8 +557,9 @@
   burger.addEventListener('click', () => toggleMenu());
   document.querySelectorAll('[data-menu-close]').forEach((link) => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
       const target = link.getAttribute('href');
+      if (!target.startsWith('#')) return; // cross-page link — navigate normally
+      e.preventDefault();
       toggleMenu(false);
       setTimeout(() => {
         if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1.4 });
