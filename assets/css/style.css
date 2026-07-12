@@ -979,6 +979,79 @@ main { position: relative; }
   opacity: 0.6; margin-left: 0.5rem;
 }
 
+/* marks in rotation — auto-scrolling logo wall */
+.marks { padding: clamp(3rem, 8vh, 6rem) 0; overflow: hidden; }
+.marks__label { padding: 0 var(--pad); margin-bottom: 2rem; }
+.marks__track { gap: clamp(0.9rem, 1.6vw, 1.6rem); padding-right: clamp(0.9rem, 1.6vw, 1.6rem); }
+.lcard {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(240px, 24vw, 360px);
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1.2rem;
+  text-align: center;
+  white-space: normal;
+  letter-spacing: 0;
+}
+.lcard__mono {
+  font-family: var(--font-display); font-stretch: 112%; font-weight: 900;
+  font-size: clamp(6rem, 9vw, 9.5rem); line-height: 0.8;
+}
+.lcard__mono i { font-style: normal; }
+.lcard__cap {
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  line-height: 1.5;
+}
+.lcard__meta {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  line-height: 1.7; opacity: 0.75;
+}
+.lcard__meta small { font-size: 0.55rem; letter-spacing: 0.22em; opacity: 0.7; }
+.lcard__meta--left { position: absolute; left: 1.4rem; bottom: 1.3rem; text-align: left; }
+
+/* card 1 — G. deep red on cream */
+.lcard--g { background: #e9e5db; color: #8f1d14; }
+.lcard--g .lcard__mono i { color: #8f1d14; }
+.lcard--g .lcard__meta { color: #8f1d14; }
+
+/* card 2 — n. soft black on ivory */
+.lcard--n { background: #f6f4ee; color: #17181a; }
+.lcard__mono--soft { font-weight: 850; text-transform: lowercase; letter-spacing: -0.04em; }
+
+/* card 3 — TS serif duo on black */
+.lcard--ts { background: #0b0b0c; color: #f2efe9; }
+.lcard__duo {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(6.5rem, 9.5vw, 10rem); line-height: 0.8;
+  letter-spacing: -0.06em;
+}
+.lcard__duo em { font-style: italic; margin-left: -0.22em; opacity: 0.92; }
+.lcard__band {
+  position: absolute; top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-body); font-weight: 500;
+  font-size: 0.66rem; letter-spacing: 0.3em;
+  padding: 0.45rem 0;
+  background: #0b0b0c;
+}
+
+/* card 4 — silver towers on charcoal */
+.lcard--au { background: #101114; color: #e9e6df; }
+.lcard__bldg { width: 46%; }
+
+/* card 5 — K› emerald on deep green */
+.lcard--k { background: #0c1210; color: var(--accent); }
+.lcard__mono--k i { color: var(--bone); font-size: 0.7em; vertical-align: 0.12em; }
+.lcard--k .lcard__meta { color: rgba(237, 234, 226, 0.75); }
+
+@media (max-width: 640px) { .lcard { width: 72vw; } }
+
 /* what we shape — tiles */
 .shape { padding: clamp(5rem, 14vh, 10rem) var(--pad); }
 .shape__grid {
