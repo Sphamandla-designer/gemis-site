@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEMIS® — Software Development Studio</title>
+  <meta name="description" content="GEMIS is a software development studio crafting web platforms, mobile apps, cloud infrastructure and AI systems for ambitious teams." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">G</span><span class="pl-char">E</span><span class="pl-char">M</span><span class="pl-char">I</span><span class="pl-char">S</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Compiling experience</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+
+  <!-- ═══════════════ NOISE GRAIN ═══════════════ -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="#top" class="header__logo" data-magnetic>GEMIS<sup>®</sup></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Start a project</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Work</span></a></li>
+        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Services</span></a></li>
+        <li><a href="#studio" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero" data-section-theme="dark">
+      <canvas class="hero__gl" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero__content">
+        <p class="hero__eyebrow"><span class="hero__dot"></span>Software development studio</p>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__word" data-split>WE&nbsp;ENGINEER</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>DIGITAL</span></span>
+          <span class="hero__line"><span class="hero__word" data-split>EXCELLENCE<span class="hero__accent">.</span></span></span>
+        </h1>
+        <div class="hero__meta">
+          <p class="hero__blurb">Full-stack product engineering —<br />from first commit to global scale.</p>
+          <div class="hero__scroll" id="scrollHint">
+            <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
+            <span>Scroll</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="1">
+          <div class="ticker__track">
+            <span>Web Platforms</span><i>✦</i><span>Mobile Apps</span><i>✦</i><span>Cloud &amp; DevOps</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Product Design</span><i>✦</i>
+            <span>Web Platforms</span><i>✦</i><span>Mobile Apps</span><i>✦</i><span>Cloud &amp; DevOps</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Product Design</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MANIFESTO ═══════════════ -->
+    <section class="manifesto" id="studio" data-section-theme="light">
+      <div class="manifesto__inner">
+        <p class="manifesto__label">The studio</p>
+        <p class="manifesto__text" id="manifestoText">GEMIS is a team of engineers and designers who turn complex problems into elegant software. We architect, build and ship digital products that feel effortless — and scale without fear.</p>
+        <div class="manifesto__cols">
+          <div class="manifesto__col reveal">
+            <h3>Precision first</h3>
+            <p>Every system we ship is typed, tested and observable. Craftsmanship is not a luxury — it is how software survives contact with the real world.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Speed with intent</h3>
+            <p>We move in tight iterations, deploying from day one. Momentum is a feature: our clients see working software in weeks, not quarters.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Partners, not vendors</h3>
+            <p>We embed with your team, share our playbooks and leave you stronger — with codebases your own engineers love to inherit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ BIG MARQUEE ═══════════════ -->
+    <section class="marquee-block" data-section-theme="light" aria-hidden="true">
+      <div class="ticker ticker--giant" data-ticker data-speed="1.4">
+        <div class="ticker__track">
+          <span class="outline">Design</span><span>Build</span><span class="outline">Ship</span><span>Scale</span>
+          <span class="outline">Design</span><span>Build</span><span class="outline">Ship</span><span>Scale</span>
+        </div>
+      </div>
+      <div class="ticker ticker--giant ticker--reverse" data-ticker data-speed="-1.4">
+        <div class="ticker__track">
+          <span>React</span><span class="outline">Go</span><span>Kubernetes</span><span class="outline">Swift</span>
+          <span>React</span><span class="outline">Go</span><span>Kubernetes</span><span class="outline">Swift</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ WORK ═══════════════ -->
+    <section class="work" id="work" data-section-theme="dark">
+      <header class="work__head">
+        <h2 class="section-title" data-split-lines>Selected work</h2>
+        <span class="work__count">(4)</span>
+      </header>
+
+      <div class="work__grid">
+        <article class="card" data-cursor="View" data-visual="chrome">
+          <div class="card__media"><canvas class="card__canvas" aria-hidden="true"></canvas></div>
+          <div class="card__info">
+            <h3 class="card__title">Lumina Pay</h3>
+            <p class="card__tags">Fintech · Web platform · React / Go</p>
+          </div>
+          <span class="card__year">2025</span>
+        </article>
+
+        <article class="card" data-cursor="View" data-visual="neural">
+          <div class="card__media"><canvas class="card__canvas" aria-hidden="true"></canvas></div>
+          <div class="card__info">
+            <h3 class="card__title">Nexora AI</h3>
+            <p class="card__tags">Machine learning · Analytics · Python</p>
+          </div>
+          <span class="card__year">2025</span>
+        </article>
+
+        <article class="card" data-cursor="View" data-visual="silk">
+          <div class="card__media"><canvas class="card__canvas" aria-hidden="true"></canvas></div>
+          <div class="card__info">
+            <h3 class="card__title">Aurum Commerce</h3>
+            <p class="card__tags">Headless e-commerce · Next.js · Node</p>
+          </div>
+          <span class="card__year">2024</span>
+        </article>
+
+        <article class="card" data-cursor="View" data-visual="grid">
+          <div class="card__media"><canvas class="card__canvas" aria-hidden="true"></canvas></div>
+          <div class="card__info">
+            <h3 class="card__title">Vertex Cloud</h3>
+            <p class="card__tags">DevOps platform · Kubernetes · Rust</p>
+          </div>
+          <span class="card__year">2024</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SERVICES ═══════════════ -->
+    <section class="services" id="services" data-section-theme="dark">
+      <header class="services__head">
+        <h2 class="section-title" data-split-lines>What we do</h2>
+      </header>
+      <ul class="services__list">
+        <li class="service" data-cursor="—">
+          <div class="service__row">
+            <span class="service__num">01</span>
+            <h3 class="service__name">Web platforms</h3>
+            <span class="service__arrow">↗</span>
+          </div>
+          <div class="service__body"><p>Design systems, dashboards, SaaS products and marketing sites — engineered with React, Next.js and edge infrastructure for instant loads anywhere on earth.</p></div>
+        </li>
+        <li class="service" data-cursor="—">
+          <div class="service__row">
+            <span class="service__num">02</span>
+            <h3 class="service__name">Mobile engineering</h3>
+            <span class="service__arrow">↗</span>
+          </div>
+          <div class="service__body"><p>Native iOS &amp; Android and cross-platform Flutter apps with offline-first data layers, buttery 120fps interfaces and CI pipelines that ship weekly.</p></div>
+        </li>
+        <li class="service" data-cursor="—">
+          <div class="service__row">
+            <span class="service__num">03</span>
+            <h3 class="service__name">Cloud &amp; DevOps</h3>
+            <span class="service__arrow">↗</span>
+          </div>
+          <div class="service__body"><p>Kubernetes, Terraform and serverless architectures with observability baked in — infrastructure that scales to millions and pages no one at 3am.</p></div>
+        </li>
+        <li class="service" data-cursor="—">
+          <div class="service__row">
+            <span class="service__num">04</span>
+            <h3 class="service__name">AI &amp; data systems</h3>
+            <span class="service__arrow">↗</span>
+          </div>
+          <div class="service__body"><p>LLM-powered products, retrieval pipelines, and analytics platforms — pragmatic machine learning that ships to production, not to slide decks.</p></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ═══════════════ STATS ═══════════════ -->
+    <section class="stats" data-section-theme="light">
+      <div class="stats__grid">
+        <div class="stat"><span class="stat__num" data-count="120" data-suffix="+">0</span><span class="stat__label">Products shipped</span></div>
+        <div class="stat"><span class="stat__num" data-count="14">0</span><span class="stat__label">Countries served</span></div>
+        <div class="stat"><span class="stat__num" data-count="8" data-suffix=" yrs">0</span><span class="stat__label">Building software</span></div>
+        <div class="stat"><span class="stat__num" data-count="99.9" data-suffix="%">0</span><span class="stat__label">Uptime, fleet-wide</span></div>
+      </div>
+      <div class="stats__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="0.8">
+          <div class="ticker__track ticker__track--mono">
+            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
+            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
+    <footer class="footer" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">Have an idea?</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>LET'S&nbsp;BUILD</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>IT&nbsp;TOGETHER</span></span>
+        </h2>
+        <div class="footer__actions">
+          <a href="mailto:hello@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
+            <span>hello@gemis.tech</span>
+          </a>
+          <div class="badge" id="badge" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><path id="circlePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
+              <text><textPath href="#circlePath">GEMIS® · SOFTWARE STUDIO · EST. 2018 · </textPath></text>
+            </svg>
+            <span class="badge__arrow">↓</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__cols">
+          <div>
+            <h4>Studio</h4>
+            <a href="#work">Work</a><a href="#services">Services</a><a href="#studio">About</a>
+          </div>
+          <div>
+            <h4>Social</h4>
+            <a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X / Twitter</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:hello@gemis.tech">hello@gemis.tech</a>
+            <span>Remote-first, worldwide</span>
+          </div>
+        </div>
+        <div class="footer__legal">
+          <span>© 2026 GEMIS. All rights reserved.</span>
+          <span>Made with precision &amp; caffeine.</span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
+  <script type="module" src="assets/js/hero3d.js"></script>
+  <script src="assets/js/cards.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
