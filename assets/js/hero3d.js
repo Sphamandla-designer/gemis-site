@@ -33,7 +33,12 @@ if (canvas && !reduced) {
   const rim = new THREE.DirectionalLight(0x17e685, 2.2);
   rim.position.set(-6, -3, -4);
   scene.add(rim);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+  const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+  scene.add(ambient);
+
+  // colour states: mirror chrome in the hero → satin charcoal-silver over text
+  const chromeColor = new THREE.Color(0xd8d8d8);
+  const charcoalColor = new THREE.Color(0xa7adb4);
 
   // pointer parallax (lerped)
   const target = { x: 0, y: 0 };
@@ -62,11 +67,16 @@ if (canvas && !reduced) {
   window.addEventListener('resize', layout);
 
   const clock = new THREE.Clock();
+  // visibility via rect polling — ScrollTrigger's pin reparents the stage,
+  // which permanently confuses IntersectionObserver
   let inView = true;
-  new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; }, { threshold: 0 })
-    .observe(canvas);
+  let tick = 0;
 
   renderer.setAnimationLoop(() => {
+    if (++tick % 12 === 0) {
+      const r = canvas.getBoundingClientRect();
+      inView = r.bottom > -80 && r.top < window.innerHeight + 80;
+    }
     if (!inView) return;
     const t = clock.getElapsedTime();
     eased.x += (target.x - eased.x) * 0.045;
@@ -84,6 +94,15 @@ if (canvas && !reduced) {
     knot.position.x = base.x + pMan * (base.compact ? 0 : 0.65);
     knot.position.y = base.y - pMan * (base.compact ? 0.35 : 0.5) + Math.sin(t * 0.8) * 0.05;
     knot.scale.setScalar(base.s * (1 - pMan * 0.22));
+
+    // morph chrome → satin charcoal-silver while travelling over the light section
+    mat.color.copy(chromeColor).lerp(charcoalColor, pMan);
+    mat.metalness = 1 - pMan * 0.55;
+    mat.roughness = 0.08 + pMan * 0.38;
+    mat.envMapIntensity = 1 - pMan * 0.45;
+    rim.intensity = 2.2 * (1 - pMan);
+    key.intensity = 1.4 + pMan * 0.7;
+    ambient.intensity = 0.25 + pMan * 0.45;
 
     renderer.render(scene, camera);
   });

@@ -53,9 +53,9 @@
     <div class="menu__inner">
       <ul class="menu__list">
         <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Work</span></a></li>
-        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Services</span></a></li>
-        <li><a href="#studio" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Studio</span></a></li>
+        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
+        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="#brand" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
         <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
       </ul>
       <div class="menu__foot">
@@ -234,7 +234,7 @@
         <p class="services__statement">Four disciplines, one team — full-cycle from first sketch to global scale.</p>
       </header>
       <ul class="services__list">
-        <li class="service" data-cursor="—">
+        <li class="service" data-cursor="—" data-preview="web">
           <div class="service__row">
             <span class="service__num">01</span>
             <h3 class="service__name">Web platforms</h3>
@@ -242,7 +242,7 @@
           </div>
           <div class="service__body"><p>Design systems, dashboards, SaaS products and marketing sites — engineered with React, Next.js and edge infrastructure for instant loads anywhere on earth.</p></div>
         </li>
-        <li class="service" data-cursor="—">
+        <li class="service" data-cursor="—" data-preview="mobile">
           <div class="service__row">
             <span class="service__num">02</span>
             <h3 class="service__name">Mobile engineering</h3>
@@ -250,7 +250,7 @@
           </div>
           <div class="service__body"><p>Native iOS &amp; Android and cross-platform Flutter apps with offline-first data layers, buttery 120fps interfaces and CI pipelines that ship weekly.</p></div>
         </li>
-        <li class="service" data-cursor="—">
+        <li class="service" data-cursor="—" data-preview="cloud">
           <div class="service__row">
             <span class="service__num">03</span>
             <h3 class="service__name">Cloud &amp; DevOps</h3>
@@ -258,7 +258,7 @@
           </div>
           <div class="service__body"><p>Kubernetes, Terraform and serverless architectures with observability baked in — infrastructure that scales to millions and pages no one at 3am.</p></div>
         </li>
-        <li class="service" data-cursor="—">
+        <li class="service" data-cursor="—" data-preview="ai">
           <div class="service__row">
             <span class="service__num">04</span>
             <h3 class="service__name">AI &amp; data systems</h3>
@@ -267,6 +267,52 @@
           <div class="service__body"><p>LLM-powered products, retrieval pipelines, and analytics platforms — pragmatic machine learning that ships to production, not to slide decks.</p></div>
         </li>
       </ul>
+
+      <!-- floating auto-scrolling mockup preview (desktop hover) -->
+      <div class="svc-preview" id="svcPreview" aria-hidden="true">
+        <div class="svc-strip" data-strip="web">
+          <div class="svc-loop">
+            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
+            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
+            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
+          </div>
+        </div>
+        <div class="svc-strip" data-strip="mobile">
+          <div class="svc-loop">
+            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
+            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
+            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
+          </div>
+        </div>
+        <div class="svc-strip" data-strip="cloud">
+          <div class="svc-loop">
+            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
+          </div>
+        </div>
+        <div class="svc-strip" data-strip="ai">
+          <div class="svc-loop">
+            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
+            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
+            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ═══════════════ STATS ═══════════════ -->
@@ -288,6 +334,117 @@
             <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ BRAND STUDIO — ROTATING SHOT RING ═══════════════ -->
+    <section class="lab" id="brand" data-section-theme="light">
+      <div class="lab__pin">
+        <div class="lab__bg" aria-hidden="true">
+          <span class="lab__bg-word lab__bg-word--a">CODE&nbsp;IN</span>
+          <span class="lab__bg-word lab__bg-word--b">MOTION</span>
+        </div>
+
+        <div class="lab__ring" id="labRing" aria-label="Brand studio explorations">
+
+          <figure class="shot">
+            <div class="mk mk--dark">
+              <div class="mk__bar"><i></i><i></i><i></i><em>gemis · analytics</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__side"><b></b><b></b><b></b><b></b></div>
+                <div class="mk__main">
+                  <div class="mk__kpis"><span>4.2M</span><span>99.9%</span><span>+38%</span></div>
+                  <div class="mk__chart"><u style="height:34%"></u><u style="height:58%"></u><u style="height:42%"></u><u style="height:76%"></u><u style="height:51%"></u><u style="height:88%"></u><u style="height:64%"></u><u style="height:95%"></u></div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Nexora · telemetry board</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--code">
+              <div class="mk__bar"><i></i><i></i><i></i><em>payments.ts</em></div>
+              <div class="mk__code">
+                <s style="width:42%"></s><s class="c2" style="width:66%"></s><s class="c3" style="width:38%"></s>
+                <s style="width:74%"></s><s class="c2" style="width:52%"></s><s style="width:30%"></s>
+                <s class="c3" style="width:80%"></s><s style="width:46%"></s><s class="c2" style="width:62%"></s>
+              </div>
+            </div>
+            <figcaption>Lumina · core ledger</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--light">
+              <div class="mk__phone">
+                <div class="mk__notch"></div>
+                <div class="mk__card mk__card--hero">Lumina</div>
+                <div class="mk__card"></div>
+                <div class="mk__card mk__card--half"></div>
+                <div class="mk__fab">→</div>
+              </div>
+            </div>
+            <figcaption>Lumina · mobile wallet</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--term">
+              <div class="mk__bar"><i></i><i></i><i></i><em>vertex — deploy</em></div>
+              <div class="mk__term">
+                <p><b>$</b> vertex ship --prod</p>
+                <p class="ok">✓ build 12s</p>
+                <p class="ok">✓ tests 214 passed</p>
+                <p class="ok">✓ rollout 6 regions</p>
+                <p><b>$</b> <span class="cursor"></span></p>
+              </div>
+            </div>
+            <figcaption>Vertex · zero-touch deploys</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--shop">
+              <div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__product"></div>
+                <div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add — $1,290</div></div>
+              </div>
+            </div>
+            <figcaption>Aurum · flagship PDP</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--chat">
+              <div class="mk__bar"><i></i><i></i><i></i><em>nexora copilot</em></div>
+              <div class="mk__chat">
+                <div class="bub user">Forecast Q3 churn</div>
+                <div class="bub ai">Churn trends down 2.1% — three cohorts drive it…</div>
+                <div class="mk__input">Ask Nexora…</div>
+              </div>
+            </div>
+            <figcaption>Nexora · copilot</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--ds">
+              <div class="mk__bar"><i></i><i></i><i></i><em>gemis tokens</em></div>
+              <div class="mk__swatches"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s6"></i></div>
+              <div class="mk__type"><span>Aa</span><em>Archivo / Grotesk</em></div>
+            </div>
+            <figcaption>GEMIS · design system</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--land">
+              <span class="mk__landword">SHIP<br>BOLD.</span>
+              <div class="mk__landbar"><span></span><b>Start →</b></div>
+            </div>
+            <figcaption>Concept · launch hero</figcaption>
+          </figure>
+
+        </div>
+
+        <p class="lab__center" id="labCenter">Exploring ideas through daily practice.</p>
+        <p class="lab__note">Concepts, prototypes and interface experiments —<br>shared openly from the GEMIS lab.</p>
+        <a class="link-arrow lab__link" href="#contact" data-magnetic>Visit the brand studio <span>→</span></a>
       </div>
     </section>
 

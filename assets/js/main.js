@@ -374,6 +374,110 @@
     });
   });
 
+  /* ───────── brand studio: rotating shot ring → flat grid ───────── */
+  const labRing = document.getElementById('labRing');
+  if (labRing && !reduced) {
+    const mmLab = gsap.matchMedia();
+    mmLab.add('(min-width: 821px)', () => {
+      const shots = gsap.utils.toArray('.shot', labRing);
+      const N = shots.length;
+      const lab = document.querySelector('.lab');
+      const center = document.getElementById('labCenter');
+      const bgA = document.querySelector('.lab__bg-word--a');
+      const bgB = document.querySelector('.lab__bg-word--b');
+      const smooth = (v) => v * v * (3 - 2 * v);
+
+      function place(p) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const w = shots[0].offsetWidth;
+        const h = shots[0].offsetHeight;
+        // phase 1: ring spins; phase 2: settle into a 2×4 grid
+        const q = smooth(gsap.utils.clamp(0, 1, (p - 0.66) / 0.3));
+        const spin = p * Math.PI * 1.35;
+        const RX = Math.min(vw * 0.42, 860);
+        const gapX = Math.min(vw * 0.012, 18);
+        const gapY = 44;
+        const gw = Math.min(w, (vw * 0.92 - 3 * gapX) / 4);
+        const gs = gw / w;
+
+        shots.forEach((shot, i) => {
+          const a = (i / N) * Math.PI * 2 + spin;
+          const depth = Math.cos(a);              // 1 = front, -1 = behind
+          const ringX = Math.sin(a) * RX;
+          const ringY = (1 - depth) * -vh * 0.055;
+          const ringS = 0.58 + 0.42 * (depth + 1) / 2;
+          const ringR = -Math.sin(a) * 26;        // deg, band curvature
+          const ringO = depth < -0.25 ? 0 : gsap.utils.clamp(0, 1, (depth + 0.25) * 2.4);
+
+          const col = i % 4;
+          const row = Math.floor(i / 4);
+          const gridX = (col - 1.5) * (gw + gapX);
+          const gridY = (row - 0.5) * (h * gs + gapY);
+
+          gsap.set(shot, {
+            x: ringX * (1 - q) + gridX * q - w / 2,
+            y: ringY * (1 - q) + gridY * q - h / 2,
+            scale: ringS * (1 - q) + gs * q,
+            rotationY: ringR * (1 - q),
+            opacity: ringO * (1 - q) + q,
+            zIndex: 100 + Math.round(depth * 50 * (1 - q)),
+            transformPerspective: 1200,
+          });
+        });
+
+        gsap.set(bgA, { xPercent: -p * 16 });
+        gsap.set(bgB, { xPercent: p * 16 });
+        const cFade = gsap.utils.clamp(0, 1, (p - 0.18) / 0.14) * (1 - gsap.utils.clamp(0, 1, (p - 0.52) / 0.14));
+        gsap.set(center, { opacity: cFade });
+        lab.classList.toggle('is-flat', q > 0.85);
+      }
+
+      place(0);
+      const st = ScrollTrigger.create({
+        trigger: '.lab',
+        start: 'top top',
+        end: '+=260%',
+        scrub: 0.6,
+        pin: '.lab__pin',
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => place(self.progress),
+        onRefresh: (self) => place(self.progress),
+      });
+      return () => st.kill();
+    });
+  } else if (labRing && reduced) {
+    document.querySelector('.lab').classList.add('is-flat');
+  }
+
+  /* ───────── services hover preview (auto-scrolling mockups) ───────── */
+  const svcPreview = document.getElementById('svcPreview');
+  if (svcPreview && finePointer && !reduced) {
+    const strips = svcPreview.querySelectorAll('.svc-strip');
+    const moveX = gsap.quickTo(svcPreview, 'x', { duration: 0.5, ease: 'power3.out' });
+    const moveY = gsap.quickTo(svcPreview, 'y', { duration: 0.5, ease: 'power3.out' });
+    let shown = false;
+    document.querySelectorAll('.service[data-preview]').forEach((service) => {
+      service.addEventListener('mouseenter', () => {
+        strips.forEach((s) => s.classList.toggle('is-active', s.dataset.strip === service.dataset.preview));
+        shown = true;
+        gsap.killTweensOf(svcPreview, 'opacity,visibility,scale');
+        gsap.to(svcPreview, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'power3.out' });
+      });
+      service.addEventListener('mouseleave', () => {
+        shown = false;
+        gsap.to(svcPreview, { autoAlpha: 0, scale: 0.92, duration: 0.3, ease: 'power2.in' });
+      });
+      service.addEventListener('mousemove', (e) => {
+        if (!shown) return;
+        moveX(e.clientX + 28);
+        moveY(e.clientY - 200);
+      });
+    });
+    gsap.set(svcPreview, { autoAlpha: 0, scale: 0.92, transformOrigin: 'left center' });
+  }
+
   /* ───────── stat counters ───────── */
   document.querySelectorAll('.stat__num').forEach((el) => {
     const end = parseFloat(el.dataset.count);
