@@ -3,39 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sphamandla Xaba® — Product Designer &amp; AI Experience Designer</title>
-  <meta name="description" content="Sphamandla Xaba is a Product Designer based in Gauteng, South Africa — designing enterprise SaaS, AI-powered experiences and premium digital products. I don't design screens. I design understanding." />
-  <meta property="og:title" content="Sphamandla Xaba® — Product Designer & AI Experience Designer" />
-  <meta property="og:description" content="Designing intelligent products, enterprise software and premium digital experiences that solve real business problems." />
-  <meta property="og:type" content="website" />
+  <title>GEMIS® — Software Development Studio</title>
+  <meta name="description" content="GEMIS is a software development studio crafting web platforms, mobile apps, cloud infrastructure and AI systems for ambitious teams." />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/portfolio.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
+<body data-theme="dark">
 
   <!-- ═══════════════ PRELOADER ═══════════════ -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <p class="loader__meta"><span>Portfolio</span><span>©2026</span></p>
-      <h1 class="loader__name" id="loaderName">
-        <span class="ln-mask"><span class="ln-char">S</span><span class="ln-char">P</span><span class="ln-char">H</span><span class="ln-char">A</span><span class="ln-char">M</span><span class="ln-char">A</span><span class="ln-char">N</span><span class="ln-char">D</span><span class="ln-char">L</span><span class="ln-char">A</span></span>
-      </h1>
-      <p class="loader__roles" id="loaderRoles">
-        <span data-loader-role>Product Designer</span>
-        <span data-loader-role>AI Experience Designer</span>
-        <span data-loader-role>Interaction Designer</span>
-      </p>
-      <div class="loader__foot">
-        <span class="loader__hint">Loading the experience</span>
-        <span class="loader__count" id="loaderCount">000</span>
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">G</span><span class="pl-char">E</span><span class="pl-char">M</span><span class="pl-char">I</span><span class="pl-char">S</span><span class="pl-char pl-char--reg">®</span>
       </div>
-      <div class="loader__bar"><span id="loaderBar"></span></div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Compiling experience</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
     </div>
-    <div class="loader__panel loader__panel--a"></div>
-    <div class="loader__panel loader__panel--b"></div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
   </div>
 
   <!-- ═══════════════ CURSOR ═══════════════ -->
@@ -44,19 +33,15 @@
     <div class="cursor__dot" id="cursorDot"></div>
   </div>
 
-  <!-- ═══════════════ FILM GRAIN ═══════════════ -->
+  <!-- ═══════════════ NOISE GRAIN ═══════════════ -->
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ═══════════════ HEADER ═══════════════ -->
   <header class="header" id="header">
-    <a href="#top" class="header__logo" data-magnetic>SX<sup>®</sup></a>
-    <div class="header__center" aria-hidden="true">
-      <span class="header__loc">Gauteng, ZA</span>
-      <span class="header__time" id="clock">00:00:00 SAST</span>
-    </div>
+    <a href="#top" class="header__logo" data-magnetic>GEMIS<sup>®</sup></a>
     <div class="header__right">
-      <a href="#contact" class="header__cta" data-magnetic><span>Let's talk</span></a>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" data-magnetic>
+      <a href="#contact" class="header__cta" data-magnetic>Start a project</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
         <span></span><span></span>
       </button>
     </div>
@@ -68,18 +53,17 @@
     <div class="menu__inner">
       <ul class="menu__list">
         <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="#manifesto" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Philosophy</span></a></li>
-        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Work</span></a></li>
-        <li><a href="#expertise" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Expertise</span></a></li>
-        <li><a href="#brands" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Studios</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
+        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
+        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
       </ul>
       <div class="menu__foot">
-        <a href="mailto:training@gemis.tech" class="menu__mail">training@gemis.tech</a>
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
         <div class="menu__socials">
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
-          <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
         </div>
       </div>
     </div>
@@ -87,400 +71,422 @@
 
   <main id="top">
 
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero" data-header-theme="dark">
-      <div class="hero__media" aria-hidden="true">
-        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
-          <source src="assets/video/hero-gem.mp4" type="video/mp4" />
-          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_204917_ee14f045-8dca-45bd-b2d4-e3b9ffeb5d72.mp4" type="video/mp4" />
-        </video>
-        <div class="hero__shade"></div>
-        <canvas class="hero__gl" id="heroCanvas"></canvas>
-      </div>
+    <!-- ═══════════════ TRAVELLING 3D STAGE ═══════════════ -->
+    <div class="gl-stage" id="glStage" aria-hidden="true">
+      <canvas class="hero__gl" id="heroCanvas"></canvas>
+    </div>
 
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero" data-section-theme="dark">
       <div class="hero__content">
-        <p class="hero__eyebrow"><span class="hero__dot"></span><span data-split-lines>Product Designer — Gauteng, South Africa</span></p>
-        <h1 class="hero__title" aria-label="Sphamandla Xaba">
-          <span class="hero__line"><span class="hero__word" data-split-chars>SPHAMANDLA</span></span>
-          <span class="hero__line hero__line--outline"><span class="hero__word" data-split-chars>XABA</span></span>
+        <p class="hero__eyebrow"><span class="hero__dot"></span>Software development studio</p>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__word" data-split>WE&nbsp;ENGINEER</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>DIGITAL</span></span>
+          <span class="hero__line"><span class="hero__word" data-split>EXCELLENCE<span class="hero__accent">.</span></span></span>
         </h1>
         <div class="hero__meta">
-          <p class="hero__blurb">Designing enterprise SaaS, AI-powered experiences<br />and premium digital products people trust.</p>
-          <div class="hero__status"><i></i>Available for select projects — 2026</div>
+          <p class="hero__blurb">Full-stack product engineering —<br />from first commit to global scale.</p>
+          <div class="hero__scroll" id="scrollHint">
+            <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
+            <span>Scroll</span>
+          </div>
         </div>
       </div>
-
-      <div class="hero__bottom">
-        <div class="hero__scroll" id="scrollHint" aria-hidden="true">
-          <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
-          <span>Scroll to explore</span>
-        </div>
-        <div class="hero__ticker" aria-hidden="true">
-          <div class="ticker" data-ticker data-speed="1">
-            <div class="ticker__track">
-              <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
-              <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
-            </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="1">
+          <div class="ticker__track">
+            <span>Web Platforms</span><i>✦</i><span>Mobile Apps</span><i>✦</i><span>Cloud &amp; DevOps</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Product Design</span><i>✦</i>
+            <span>Web Platforms</span><i>✦</i><span>Mobile Apps</span><i>✦</i><span>Cloud &amp; DevOps</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Product Design</span><i>✦</i>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════ MANIFESTO ═══════════════ -->
-    <section class="manifesto" id="manifesto" data-header-theme="light">
+    <section class="manifesto" id="studio" data-section-theme="light">
       <div class="manifesto__inner">
-        <p class="eyebrow-label reveal">( The philosophy )</p>
-        <p class="manifesto__text" id="manifestoText">I don't design screens — I design understanding. Every product begins with people, business goals and systems, long before a single interface exists. The interface is the outcome. The thinking is the product.</p>
+        <p class="manifesto__label">The studio</p>
+        <p class="manifesto__text" id="manifestoText">GEMIS is a team of engineers and designers who turn complex problems into elegant software. We architect, build and ship digital products that feel effortless — and scale without fear.</p>
         <div class="manifesto__cols">
           <div class="manifesto__col reveal">
-            <span class="manifesto__num">01</span>
-            <h3>Thinking before designing</h3>
-            <p>What problem are we solving, for whom, and why does it exist? Products fail long before pixels fail — so the questions come before the canvas.</p>
+            <h3>Precision first</h3>
+            <p>Every system we ship is typed, tested and observable. Craftsmanship is not a luxury — it is how software survives contact with the real world.</p>
           </div>
           <div class="manifesto__col reveal">
-            <span class="manifesto__num">02</span>
-            <h3>Product over screens</h3>
-            <p>Beautiful interfaces don't automatically make successful products. My role is not to make software look modern — it's to make software work naturally.</p>
+            <h3>Speed with intent</h3>
+            <p>We move in tight iterations, deploying from day one. Momentum is a feature: our clients see working software in weeks, not quarters.</p>
           </div>
           <div class="manifesto__col reveal">
-            <span class="manifesto__num">03</span>
-            <h3>AI accelerates execution</h3>
-            <p>AI can generate screens in seconds. It cannot define problems, simplify complexity, or earn trust. I combine AI speed with human-led product thinking.</p>
+            <h3>Partners, not vendors</h3>
+            <p>We embed with your team, share our playbooks and leave you stronger — with codebases your own engineers love to inherit.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ GIANT MARQUEE ═══════════════ -->
-    <section class="marquee-block" data-header-theme="light" aria-hidden="true">
+    <!-- ═══════════════ BIG MARQUEE ═══════════════ -->
+    <section class="marquee-block" data-section-theme="light" aria-hidden="true">
       <div class="ticker ticker--giant" data-ticker data-speed="1.4">
         <div class="ticker__track">
-          <span class="outline">Research</span><span>Define</span><span class="outline">Design</span><span>Deliver</span>
-          <span class="outline">Research</span><span>Define</span><span class="outline">Design</span><span>Deliver</span>
+          <span class="outline">Design</span><span>Build</span><span class="outline">Ship</span><span>Scale</span>
+          <span class="outline">Design</span><span>Build</span><span class="outline">Ship</span><span>Scale</span>
         </div>
       </div>
       <div class="ticker ticker--giant ticker--reverse" data-ticker data-speed="-1.4">
         <div class="ticker__track">
-          <span>Clarity</span><span class="outline">Trust</span><span>Efficiency</span><span class="outline">Motion</span>
-          <span>Clarity</span><span class="outline">Trust</span><span>Efficiency</span><span class="outline">Motion</span>
+          <span>React</span><span class="outline">Go</span><span>Kubernetes</span><span class="outline">Swift</span>
+          <span>React</span><span class="outline">Go</span><span>Kubernetes</span><span class="outline">Swift</span>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ SELECTED WORK — HORIZONTAL ═══════════════ -->
-    <section class="work" id="work" data-header-theme="dark">
+    <!-- ═══════════════ WORK — HORIZONTAL GALLERY ═══════════════ -->
+    <section class="work" id="work" data-section-theme="light">
       <div class="work__viewport">
         <div class="work__track" id="workTrack">
 
           <div class="work__panel work__panel--intro">
-            <p class="eyebrow-label eyebrow-label--light">( Selected work )</p>
             <h2 class="work__title">
-              <span class="line-mask"><span class="line-inner">Products designed</span></span>
-              <span class="line-mask"><span class="line-inner">to be understood.</span></span>
+              <span class="line-mask"><span class="line-inner">Selected work</span></span>
+              <span class="line-mask"><span class="line-inner">&amp; explorations</span></span>
             </h2>
-            <p class="work__statement">Enterprise platforms, field operations tools and AI concepts — designed end-to-end, from research to shipped interface.</p>
+            <p class="work__statement">Products we've designed, engineered and shipped for ambitious teams around the world.</p>
+            <a class="link-arrow" href="#contact" data-magnetic>View all projects <span>→</span></a>
             <span class="work__hint">( Keep scrolling )</span>
           </div>
 
-          <article class="work__panel wcard" data-cursor="Open case">
-            <a class="wcard__link" href="managem.html" aria-label="ManaGem case study">
-              <div class="wcard__media">
-                <img class="wcard__img" src="assets/img/work/managem-dash.jpg" alt="ManaGem enterprise platform dashboard" loading="lazy" />
-                <span class="wcard__year">2026</span>
-              </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">01</span>
-                <div>
-                  <h3 class="wcard__name">ManaGem</h3>
-                  <p class="wcard__desc">Enterprise SaaS for business operations — end-to-end UX, dashboard redesign, information architecture and a full design system.</p>
-                  <span class="wcard__tags">Enterprise UX · Design System · Product Strategy</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <article class="work__panel wcard" data-cursor="Open case">
-            <a class="wcard__link" href="wastemart.html" aria-label="WasteMart customer portal case study">
-              <div class="wcard__media">
-                <img class="wcard__img" src="assets/img/work/wm-customer.jpg" alt="WasteMart customer portal" loading="lazy" />
-                <span class="wcard__year">2026</span>
-              </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">02</span>
-                <div>
-                  <h3 class="wcard__name">WasteMart Portal</h3>
-                  <p class="wcard__desc">Self-service portal for bookings, invoices and live collection tracking — trust-building UX for cautious first-time digital users.</p>
-                  <span class="wcard__tags">Service Design · UX Flows · Trust UX</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <article class="work__panel wcard" data-cursor="Open case">
-            <a class="wcard__link" href="wastemart.html" aria-label="WasteMart driver app case study">
-              <div class="wcard__media">
-                <img class="wcard__img" src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver mobile app" loading="lazy" />
-                <span class="wcard__year">2026</span>
-              </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">03</span>
-                <div>
-                  <h3 class="wcard__name">WasteMart Driver</h3>
-                  <p class="wcard__desc">Mobile-first field verification guiding drivers through routes, pickups and proof-of-service — resilient under weak connectivity.</p>
-                  <span class="wcard__tags">Mobile UX · Field Ops · Offline-first</span>
-                </div>
-              </div>
-            </a>
-          </article>
-
-          <article class="work__panel wcard" data-cursor="Concept">
-            <div class="wcard__link">
-              <div class="wcard__media wcard__media--mock">
-                <div class="phone" aria-hidden="true">
-                  <div class="phone__notch"></div>
-                  <div class="phone__head"><b>NeuraCalm</b><span>AI financial coach</span></div>
-                  <div class="phone__bub phone__bub--ai">Salary landed. Want me to move R1,500 to your emergency fund before it disappears?</div>
-                  <div class="phone__bub phone__bub--user">Yes — and how am I doing this month?</div>
-                  <div class="phone__bub phone__bub--ai">Spending is 12% below June. Two weeks of runway gained. Keep going. <i>Why this advice?</i></div>
-                  <div class="phone__input">Ask NeuraCalm…</div>
-                </div>
-                <span class="wcard__year">Concept</span>
-              </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">04</span>
-                <div>
-                  <h3 class="wcard__name">NeuraCalm</h3>
-                  <p class="wcard__desc">AI-powered financial coaching concept — conversational AI, behavioural design and transparency patterns that make advice trustworthy.</p>
-                  <span class="wcard__tags">AI UX · Conversational Design · Fintech</span>
-                </div>
-              </div>
+          <article class="work__panel wcard card" data-cursor="Explore">
+            <div class="wcard__media">
+              <img class="card__canvas" src="assets/img/work/managem-dash.jpg" alt="ManaGem management system dashboard" loading="lazy" />
+              <span class="wcard__year">2026</span>
+            </div>
+            <div class="wcard__info">
+              <h3 class="wcard__name">ManaGem</h3>
+              <p class="wcard__desc">All-in-one management system — sales, stock, payroll, projects and multi-company accounting.</p>
+              <a class="link-arrow link-arrow--sm" href="managem.html">See the platform <span>→</span></a>
             </div>
           </article>
 
-          <article class="work__panel wcard" data-cursor="Visit site">
-            <a class="wcard__link" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener" aria-label="SmartStart learning platform">
-              <div class="wcard__media">
-                <img class="wcard__img" src="assets/img/work/smartstart-v2.jpg" alt="SmartStart learning portal" loading="lazy" />
-                <span class="wcard__year">2025</span>
-              </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">05</span>
-                <div>
-                  <h3 class="wcard__name">SmartStart Learning</h3>
-                  <p class="wcard__desc">Learning environment for a national early-learning practitioner network — designed for low-bandwidth, multilingual South Africa.</p>
-                  <span class="wcard__tags">EdTech · Data-conscious · Multilingual</span>
-                </div>
-              </div>
-            </a>
+          <article class="work__panel wcard card" data-cursor="Explore">
+            <div class="wcard__media">
+              <img class="card__canvas" src="assets/img/work/wm-customer.jpg" alt="WasteMart customer portal overview screen" loading="lazy" />
+              <span class="wcard__year">2026</span>
+            </div>
+            <div class="wcard__info">
+              <h3 class="wcard__name">WasteMart Customer Portal</h3>
+              <p class="wcard__desc">Self-service portal for bookings, invoices, documents and live collection tracking.</p>
+              <a class="link-arrow link-arrow--sm" href="wastemart.html">Read the story <span>→</span></a>
+            </div>
           </article>
 
-          <div class="work__panel work__panel--outro">
-            <p class="work__bigline">Every project starts with the same question — <em>what do people need to understand?</em></p>
-            <a class="link-arrow" href="#contact" data-magnetic>Start a project <span>→</span></a>
+          <article class="work__panel wcard card" data-cursor="Explore">
+            <div class="wcard__media">
+              <img class="card__canvas" src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver mobile app" loading="lazy" />
+              <span class="wcard__year">2026</span>
+            </div>
+            <div class="wcard__info">
+              <h3 class="wcard__name">WasteMart Driver</h3>
+              <p class="wcard__desc">Mobile companion guiding drivers through daily routes, pickups and proof-of-service.</p>
+              <a class="link-arrow link-arrow--sm" href="wastemart.html">Read the story <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="work__panel wcard card" data-cursor="Explore">
+            <div class="wcard__media">
+              <img class="card__canvas" src="assets/img/work/smartstart-v2.jpg" alt="SmartStart learning portal dashboard" loading="lazy" />
+              <span class="wcard__year">2025</span>
+            </div>
+            <div class="wcard__info">
+              <h3 class="wcard__name">SmartStart Learning</h3>
+              <p class="wcard__desc">Custom Moodle learning environment for SmartStart's national early-learning practitioner network.</p>
+              <a class="link-arrow link-arrow--sm" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener">Visit platform <span>→</span></a>
+            </div>
+          </article>
+
+          <div class="work__panel work__panel--statement">
+            <p class="work__bigline">Discover our complete collection of digital experiences, platforms and tools.</p>
+            <a class="link-arrow" href="#contact" data-magnetic>View all projects <span>→</span></a>
+          </div>
+
+          <div class="work__panel work__panel--sintro" id="sintro">
+            <p class="sintro__label">Our services — what we do</p>
+            <div class="sintro__words" aria-hidden="false">
+              <span class="sintro__word"><span class="line-mask"><span class="line-inner">A.I.</span></span></span>
+              <span class="sintro__word"><span class="line-mask"><span class="line-inner">Web</span></span></span>
+              <span class="sintro__word"><span class="line-mask"><span class="line-inner">Mobile</span></span></span>
+              <span class="sintro__word"><span class="line-mask"><span class="line-inner">Cloud</span></span></span>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ EXPERTISE ═══════════════ -->
-    <section class="expertise" id="expertise" data-header-theme="light">
-      <header class="expertise__head">
-        <p class="eyebrow-label">( Expertise )</p>
-        <p class="expertise__statement">Five disciplines, one throughline — turning complex systems into experiences people trust.</p>
+    <!-- ═══════════════ SERVICES ═══════════════ -->
+    <section class="services" id="services" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( What we do )</p>
+        <p class="services__statement">Four disciplines, one team — full-cycle from first sketch to global scale.</p>
       </header>
-      <ul class="expertise__list">
-        <li class="xp" data-cursor="—">
-          <div class="xp__row">
-            <span class="xp__num">01</span>
-            <h3 class="xp__name">Product Design</h3>
-            <span class="xp__arrow">↗</span>
+      <ul class="services__list">
+        <li class="service" data-cursor="—" data-preview="web">
+          <div class="service__row">
+            <span class="service__num">01</span>
+            <h3 class="service__name">Web platforms</h3>
+            <span class="service__arrow">↗</span>
           </div>
-          <div class="xp__body"><p>Product strategy, information architecture, user flows, journey mapping, wireframing, prototyping and UX validation — the full arc from problem to product.</p></div>
+          <div class="service__body"><p>Design systems, dashboards, SaaS products and marketing sites — engineered with React, Next.js and edge infrastructure for instant loads anywhere on earth.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
-          <div class="xp__row">
-            <span class="xp__num">02</span>
-            <h3 class="xp__name">AI Experience Design</h3>
-            <span class="xp__arrow">↗</span>
+        <li class="service" data-cursor="—" data-preview="mobile">
+          <div class="service__row">
+            <span class="service__num">02</span>
+            <h3 class="service__name">Mobile engineering</h3>
+            <span class="service__arrow">↗</span>
           </div>
-          <div class="xp__body"><p>Conversational interfaces, AI-assisted workflows, human-in-the-loop interactions and transparency patterns — AI people actually understand and trust.</p></div>
+          <div class="service__body"><p>Native iOS &amp; Android and cross-platform Flutter apps with offline-first data layers, buttery 120fps interfaces and CI pipelines that ship weekly.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
-          <div class="xp__row">
-            <span class="xp__num">03</span>
-            <h3 class="xp__name">Interaction &amp; Motion</h3>
-            <span class="xp__arrow">↗</span>
+        <li class="service" data-cursor="—" data-preview="cloud">
+          <div class="service__row">
+            <span class="service__num">03</span>
+            <h3 class="service__name">Cloud &amp; DevOps</h3>
+            <span class="service__arrow">↗</span>
           </div>
-          <div class="xp__body"><p>Micro-interactions, scroll storytelling, state transitions and cinematic motion with GSAP, Three.js and Lenis — movement that explains, never decorates.</p></div>
+          <div class="service__body"><p>Kubernetes, Terraform and serverless architectures with observability baked in — infrastructure that scales to millions and pages no one at 3am.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
-          <div class="xp__row">
-            <span class="xp__num">04</span>
-            <h3 class="xp__name">Design Systems</h3>
-            <span class="xp__arrow">↗</span>
+        <li class="service" data-cursor="—" data-preview="ai">
+          <div class="service__row">
+            <span class="service__num">04</span>
+            <h3 class="service__name">AI &amp; data systems</h3>
+            <span class="service__arrow">↗</span>
           </div>
-          <div class="xp__body"><p>Components, tokens, accessibility and documentation — scalable systems that keep large enterprise products consistent as they grow.</p></div>
-        </li>
-        <li class="xp" data-cursor="—">
-          <div class="xp__row">
-            <span class="xp__num">05</span>
-            <h3 class="xp__name">Enterprise SaaS</h3>
-            <span class="xp__arrow">↗</span>
-          </div>
-          <div class="xp__body"><p>Operations, HR, asset management, field services and business intelligence — software for internal teams who live in it eight hours a day.</p></div>
+          <div class="service__body"><p>LLM-powered products, retrieval pipelines, and analytics platforms — pragmatic machine learning that ships to production, not to slide decks.</p></div>
         </li>
       </ul>
-    </section>
 
-    <!-- ═══════════════ PRINCIPLES — STACKED CARDS ═══════════════ -->
-    <section class="principles" id="principles" data-header-theme="dark">
-      <header class="principles__head">
-        <p class="eyebrow-label eyebrow-label--light">( Five principles )</p>
-        <h2 class="principles__title">
-          <span class="line-mask"><span class="line-inner">Every project,</span></span>
-          <span class="line-mask"><span class="line-inner">the same compass.</span></span>
-        </h2>
-      </header>
-      <div class="principles__stack" id="principleStack">
-        <div class="pcard" data-i="1">
-          <span class="pcard__num">01</span>
-          <h3 class="pcard__name">Clarity</h3>
-          <p class="pcard__text">Complex systems should feel simple. Users should never wonder what happens next.</p>
+      <!-- floating auto-scrolling mockup preview (desktop hover) -->
+      <div class="svc-preview" id="svcPreview" aria-hidden="true">
+        <div class="svc-strip" data-strip="web">
+          <div class="svc-loop">
+            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
+            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
+            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
+          </div>
         </div>
-        <div class="pcard" data-i="2">
-          <span class="pcard__num">02</span>
-          <h3 class="pcard__name">Trust</h3>
-          <p class="pcard__text">Every interaction should build confidence — especially in finance, enterprise operations and AI.</p>
+        <div class="svc-strip" data-strip="mobile">
+          <div class="svc-loop">
+            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
+            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
+            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
+          </div>
         </div>
-        <div class="pcard" data-i="3">
-          <span class="pcard__num">03</span>
-          <h3 class="pcard__name">Efficiency</h3>
-          <p class="pcard__text">Every unnecessary click costs time. Every unnecessary decision creates friction. Good UX removes both.</p>
+        <div class="svc-strip" data-strip="cloud">
+          <div class="svc-loop">
+            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
+            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
+          </div>
         </div>
-        <div class="pcard" data-i="4">
-          <span class="pcard__num">04</span>
-          <h3 class="pcard__name">Business alignment</h3>
-          <p class="pcard__text">Every interface should move a measurable outcome — adoption, retention, efficiency, conversion, satisfaction.</p>
-        </div>
-        <div class="pcard" data-i="5">
-          <span class="pcard__num">05</span>
-          <h3 class="pcard__name">Delight through motion</h3>
-          <p class="pcard__text">Motion should explain, guide, reinforce hierarchy and communicate state — never exist purely for decoration.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ SOUTH AFRICA FIRST ═══════════════ -->
-    <section class="safirst" id="safirst" data-header-theme="light">
-      <header class="safirst__head">
-        <p class="eyebrow-label">( Designed for South Africa )</p>
-        <p class="safirst__statement">Most products are designed for New York or Berlin first. I design for Gauteng first — five realities shape every decision.</p>
-      </header>
-      <div class="safirst__grid">
-        <div class="sa reveal"><span class="sa__num">01</span><h3>WhatsApp first</h3><p>For millions of South Africans WhatsApp is not a support channel — it is the primary digital platform. Products should meet people there.</p></div>
-        <div class="sa reveal"><span class="sa__num">02</span><h3>Multilingual by default</h3><p>Language should improve usability, not become a barrier — considered from the first wireframe, never as an afterthought.</p></div>
-        <div class="sa reveal"><span class="sa__num">03</span><h3>Data-conscious</h3><p>Heavy pages have real financial cost. Performance isn't technical optimisation — it's accessibility.</p></div>
-        <div class="sa reveal"><span class="sa__num">04</span><h3>Connectivity-aware</h3><p>Users move between strong and weak networks all day. Products should stay resilient when the signal doesn't.</p></div>
-        <div class="sa reveal"><span class="sa__num">05</span><h3>Trust as a feature</h3><p>Many users are still cautious online. Transparency and thoughtful UX turn hesitation into adoption.</p></div>
-        <div class="sa sa--cta reveal">
-          <p>Building for this market?</p>
-          <a class="link-arrow" href="#contact" data-magnetic>Let's talk <span>→</span></a>
-        </div>
-      </div>
-      <div class="safirst__ticker" aria-hidden="true">
-        <div class="ticker" data-ticker data-speed="0.8">
-          <div class="ticker__track ticker__track--mono">
-            <span>Figma</span><span>GSAP</span><span>Three.js</span><span>React</span><span>Next.js</span><span>Tailwind</span><span>Lenis</span><span>Framer Motion</span><span>Claude Code</span><span>React Three Fiber</span><span>FigJam</span><span>Cursor</span>
-            <span>Figma</span><span>GSAP</span><span>Three.js</span><span>React</span><span>Next.js</span><span>Tailwind</span><span>Lenis</span><span>Framer Motion</span><span>Claude Code</span><span>React Three Fiber</span><span>FigJam</span><span>Cursor</span>
+        <div class="svc-strip" data-strip="ai">
+          <div class="svc-loop">
+            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
+            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
+          </div>
+          <div class="svc-loop" aria-hidden="true">
+            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
+            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ STUDIOS / BRANDS ═══════════════ -->
-    <section class="brands" id="brands" data-header-theme="dark">
-      <header class="brands__head">
-        <p class="eyebrow-label eyebrow-label--light">( Studios I run )</p>
-        <h2 class="brands__title">
-          <span class="line-mask"><span class="line-inner">Two studios,</span></span>
-          <span class="line-mask"><span class="line-inner">one obsession.</span></span>
-        </h2>
+    <!-- ═══════════════ STATS ═══════════════ -->
+    <section class="stats" data-section-theme="light">
+      <header class="stats__head">
+        <p class="eyebrow-label">( Proof in production )</p>
+        <p class="stats__statement">Numbers from systems running live around the world.</p>
       </header>
-      <div class="brands__grid">
-        <article class="brand-card" data-cursor="NeuraUX" data-tilt>
-          <div class="brand-card__glow brand-card__glow--a" aria-hidden="true"></div>
-          <span class="brand-card__tag">Design studio</span>
-          <h3 class="brand-card__name">Neura<em>UX</em></h3>
-          <p class="brand-card__desc">A product design studio for AI-powered digital experiences — helping organisations design intelligent products people understand, trust and enjoy using.</p>
-          <ul class="brand-card__list">
-            <li>AI UX</li><li>Product Strategy</li><li>Design Systems</li><li>Conversational Experiences</li>
-          </ul>
-        </article>
-        <article class="brand-card" data-cursor="AX-Channels" data-tilt>
-          <div class="brand-card__glow brand-card__glow--b" aria-hidden="true"></div>
-          <span class="brand-card__tag">Digital studio</span>
-          <h3 class="brand-card__name">AX-<em>Channels</em></h3>
-          <p class="brand-card__desc">A digital studio helping South African SMEs establish professional online presences through high-quality websites and digital experiences.</p>
-          <ul class="brand-card__list">
-            <li>Websites</li><li>Brand Presence</li><li>SME Digital</li><li>E-commerce</li>
-          </ul>
-        </article>
+      <div class="stats__grid">
+        <div class="stat"><span class="stat__num" data-count="120" data-suffix="+">0</span><span class="stat__label">Products shipped</span></div>
+        <div class="stat"><span class="stat__num" data-count="14">0</span><span class="stat__label">Countries served</span></div>
+        <div class="stat"><span class="stat__num" data-count="8" data-suffix=" yrs">0</span><span class="stat__label">Building software</span></div>
+        <div class="stat"><span class="stat__num" data-count="99.9" data-suffix="%">0</span><span class="stat__label">Uptime, fleet-wide</span></div>
+      </div>
+      <div class="stats__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="0.8">
+          <div class="ticker__track ticker__track--mono">
+            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
+            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════ FOOTER / CONTACT ═══════════════ -->
-    <footer class="footer" id="contact" data-header-theme="dark">
-      <div class="footer__media" aria-hidden="true">
-        <video class="footer__video" id="footerVideo" muted loop playsinline preload="none" poster="assets/img/flow-poster.jpg">
-          <source src="assets/video/flow.mp4" type="video/mp4" />
-          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_205022_58f89b74-c25d-4fe8-933d-60fb2b897095.mp4" type="video/mp4" />
-        </video>
-        <div class="footer__shade"></div>
+    <!-- ═══════════════ BRAND STUDIO — ROTATING SHOT RING ═══════════════ -->
+    <section class="lab" id="brand" data-section-theme="light">
+      <div class="lab__pin">
+        <div class="lab__bg" aria-hidden="true">
+          <span class="lab__bg-word lab__bg-word--a">CODE&nbsp;IN</span>
+          <span class="lab__bg-word lab__bg-word--b">MOTION</span>
+        </div>
+
+        <div class="lab__ring" id="labRing" aria-label="Brand studio explorations">
+
+          <figure class="shot">
+            <div class="mk mk--dark">
+              <div class="mk__bar"><i></i><i></i><i></i><em>gemis · analytics</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__side"><b></b><b></b><b></b><b></b></div>
+                <div class="mk__main">
+                  <div class="mk__kpis"><span>4.2M</span><span>99.9%</span><span>+38%</span></div>
+                  <div class="mk__chart"><u style="height:34%"></u><u style="height:58%"></u><u style="height:42%"></u><u style="height:76%"></u><u style="height:51%"></u><u style="height:88%"></u><u style="height:64%"></u><u style="height:95%"></u></div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Nexora · telemetry board</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--code">
+              <div class="mk__bar"><i></i><i></i><i></i><em>payments.ts</em></div>
+              <div class="mk__code">
+                <s style="width:42%"></s><s class="c2" style="width:66%"></s><s class="c3" style="width:38%"></s>
+                <s style="width:74%"></s><s class="c2" style="width:52%"></s><s style="width:30%"></s>
+                <s class="c3" style="width:80%"></s><s style="width:46%"></s><s class="c2" style="width:62%"></s>
+              </div>
+            </div>
+            <figcaption>Lumina · core ledger</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--light">
+              <div class="mk__phone">
+                <div class="mk__notch"></div>
+                <div class="mk__card mk__card--hero">Lumina</div>
+                <div class="mk__card"></div>
+                <div class="mk__card mk__card--half"></div>
+                <div class="mk__fab">→</div>
+              </div>
+            </div>
+            <figcaption>Lumina · mobile wallet</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--term">
+              <div class="mk__bar"><i></i><i></i><i></i><em>vertex — deploy</em></div>
+              <div class="mk__term">
+                <p><b>$</b> vertex ship --prod</p>
+                <p class="ok">✓ build 12s</p>
+                <p class="ok">✓ tests 214 passed</p>
+                <p class="ok">✓ rollout 6 regions</p>
+                <p><b>$</b> <span class="cursor"></span></p>
+              </div>
+            </div>
+            <figcaption>Vertex · zero-touch deploys</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--shop">
+              <div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__product"></div>
+                <div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add — $1,290</div></div>
+              </div>
+            </div>
+            <figcaption>Aurum · flagship PDP</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--chat">
+              <div class="mk__bar"><i></i><i></i><i></i><em>nexora copilot</em></div>
+              <div class="mk__chat">
+                <div class="bub user">Forecast Q3 churn</div>
+                <div class="bub ai">Churn trends down 2.1% — three cohorts drive it…</div>
+                <div class="mk__input">Ask Nexora…</div>
+              </div>
+            </div>
+            <figcaption>Nexora · copilot</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--ds">
+              <div class="mk__bar"><i></i><i></i><i></i><em>gemis tokens</em></div>
+              <div class="mk__swatches"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s6"></i></div>
+              <div class="mk__type"><span>Aa</span><em>Archivo / Grotesk</em></div>
+            </div>
+            <figcaption>GEMIS · design system</figcaption>
+          </figure>
+
+          <figure class="shot">
+            <div class="mk mk--land">
+              <span class="mk__landword">SHIP<br>BOLD.</span>
+              <div class="mk__landbar"><span></span><b>Start →</b></div>
+            </div>
+            <figcaption>Concept · launch hero</figcaption>
+          </figure>
+
+        </div>
+
+        <p class="lab__center" id="labCenter">Exploring ideas through daily practice.</p>
+        <p class="lab__note">Concepts, prototypes and interface experiments —<br>shared openly from the GEMIS lab.</p>
+        <a class="link-arrow lab__link" href="brand-studio.html" data-magnetic>Visit the brand studio <span>→</span></a>
       </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
+    <footer class="footer" id="contact" data-section-theme="dark">
       <div class="footer__cta">
-        <p class="footer__pre">Have a product worth understanding?</p>
+        <p class="footer__pre">Have an idea?</p>
         <h2 class="footer__title">
-          <span class="hero__line"><span data-split-chars>LET'S&nbsp;DESIGN</span></span>
-          <span class="hero__line hero__line--outline"><span data-split-chars>UNDERSTANDING</span></span>
+          <span class="hero__line"><span data-split>LET'S&nbsp;BUILD</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>IT&nbsp;TOGETHER</span></span>
         </h2>
         <div class="footer__actions">
-          <a href="mailto:training@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
-            <span>training@gemis.tech</span>
+          <a href="mailto:hello@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
+            <span>hello@gemis.tech</span>
           </a>
           <div class="badge" id="badge" aria-hidden="true">
             <svg viewBox="0 0 120 120">
               <defs><path id="circlePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
-              <text><textPath href="#circlePath">SPHAMANDLA XABA · PRODUCT DESIGNER · GAUTENG ZA · </textPath></text>
+              <text><textPath href="#circlePath">GEMIS® · SOFTWARE STUDIO · EST. 2018 · </textPath></text>
             </svg>
-            <span class="badge__arrow">↑</span>
+            <span class="badge__arrow">↓</span>
           </div>
         </div>
       </div>
       <div class="footer__base">
         <div class="footer__cols">
           <div>
-            <h4>Explore</h4>
-            <a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#principles">Principles</a><a href="brand-studio.html">Brand Studio</a>
+            <h4>Studio</h4>
+            <a href="#work">Work</a><a href="#services">Services</a><a href="brand-studio.html">Brand Studio</a>
           </div>
           <div>
             <h4>Social</h4>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
-            <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
+            <a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">X / Twitter</a>
           </div>
           <div>
             <h4>Contact</h4>
-            <a href="mailto:training@gemis.tech">training@gemis.tech</a>
-            <span>Gauteng, South Africa</span>
+            <a href="mailto:hello@gemis.tech">hello@gemis.tech</a>
+            <span>Remote-first, worldwide</span>
           </div>
         </div>
         <div class="footer__legal">
-          <span>© 2026 Sphamandla Xaba. All rights reserved.</span>
-          <span>I design understanding — and when people understand, businesses grow.</span>
+          <span>© 2026 GEMIS. All rights reserved.</span>
+          <span>Made with precision &amp; caffeine.</span>
         </div>
       </div>
-      <div class="footer__wordmark" aria-hidden="true"><span>XABA®</span></div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
     </footer>
 
   </main>
@@ -489,7 +495,8 @@
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
-  <script type="module" src="assets/js/portfolio3d.js"></script>
-  <script src="assets/js/portfolio.js" defer></script>
+  <script type="module" src="assets/js/hero3d.js"></script>
+  <script src="assets/js/cards.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
