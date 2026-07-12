@@ -163,30 +163,58 @@
     if (lenis) lenis.start();
   }
 
-  /* ───────── theme morphing per section ───────── */
-  document.querySelectorAll('[data-section-theme]').forEach((sec) => {
-    ScrollTrigger.create({
-      trigger: sec,
-      start: 'top 55%',
-      end: 'bottom 55%',
-      onToggle: (self) => {
-        if (self.isActive) document.body.dataset.theme = sec.dataset.sectionTheme;
-      },
-    });
-  });
+  /* ───────── theme morphing per section (position-based, jump-safe) ───────── */
+  const themedSections = Array.from(document.querySelectorAll('[data-section-theme]'));
+  function applyTheme() {
+    const probe = window.innerHeight * 0.55;
+    let theme = null;
+    for (const sec of themedSections) {
+      const r = sec.getBoundingClientRect();
+      if (r.top <= probe && r.bottom > probe) { theme = sec.dataset.sectionTheme; break; }
+    }
+    if (theme && document.body.dataset.theme !== theme) document.body.dataset.theme = theme;
+  }
+  window.addEventListener('scroll', applyTheme, { passive: true });
+  window.addEventListener('resize', applyTheme);
+  applyTheme();
 
-  /* ───────── hero scroll: parallax + 3D handoff ───────── */
+  /* ───────── travelling 3D stage: rides with the viewport through
+     the hero + manifesto, then stops at the end of section two ───────── */
   if (!reduced) {
+    ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      endTrigger: '#studio',
+      end: 'bottom bottom',
+      pin: '#glStage',
+      pinSpacing: false,
+      anticipatePin: 1,
+    });
+    ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      endTrigger: '#studio',
+      end: 'bottom bottom',
+      scrub: true,
+      onUpdate: (self) => { window.__glP = self.progress; },
+    });
+    // hero copy parallax-fade as the knot travels on
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {
-        window.__heroScroll = self.progress;
         gsap.set('.hero__content', { yPercent: self.progress * 18, opacity: 1 - self.progress * 0.9 });
       },
     });
+    // small screens: fade the knot out while the manifesto reads
+    if (window.matchMedia('(max-width: 820px)').matches) {
+      gsap.to('#glStage', {
+        opacity: 0, ease: 'none',
+        scrollTrigger: { trigger: '#studio', start: 'top 65%', end: 'top 25%', scrub: true },
+      });
+    }
   }
 
   /* ───────── manifesto word-by-word reveal ───────── */
@@ -229,20 +257,105 @@
     }),
   });
 
-  /* ───────── work cards entrance + parallax ───────── */
-  document.querySelectorAll('.card').forEach((card) => {
-    gsap.from(card, {
-      y: 80, opacity: 0, duration: 1.1, ease: 'power3.out',
-      scrollTrigger: { trigger: card, start: 'top 88%' },
+  /* ───────── work: pinned horizontal gallery ───────── */
+  const workTrack = document.getElementById('workTrack');
+  if (workTrack && !reduced) {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 821px)', () => {
+      const dist = () => workTrack.scrollWidth - window.innerWidth;
+
+      // per-panel reveal timelines, played once as each panel scrolls into view
+      const reveals = [];
+      document.querySelectorAll('.wcard').forEach((card) => {
+        const tl = gsap.timeline({ paused: true })
+          .from(card.querySelector('.wcard__tagline'), { yPercent: 130, duration: 0.9, ease: 'power4.out' }, 0)
+          .from(card.querySelector('.wcard__info'), { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out' }, 0.12);
+        reveals.push({ el: card, tl, at: 0.82, played: false });
+      });
+      const stmt = document.querySelector('.work__panel--statement');
+      reveals.push({
+        el: stmt, at: 0.78, played: false,
+        tl: gsap.timeline({ paused: true })
+          .from(stmt.children, { y: 60, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1 }),
+      });
+
+      // finale — "what we do" words sweep in, scrubbed over the last stretch
+      const sintro = document.getElementById('sintro');
+      gsap.set('.sintro__words .line-inner', { y: 0, yPercent: 110 });
+      const finale = gsap.timeline({ paused: true })
+        .fromTo('.sintro__label', { opacity: 0, x: 90 }, { opacity: 1, x: 0, duration: 0.35, ease: 'none' }, 0)
+        .to('.sintro__words .line-inner', { yPercent: 0, stagger: 0.16, duration: 0.65, ease: 'power2.out' }, 0.1)
+        .fromTo('.sintro__word', { x: 220 }, { x: 0, stagger: 0.12, duration: 0.7, ease: 'power2.out' }, 0.1);
+
+      const horiz = gsap.to(workTrack, {
+        x: () => -dist(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.work',
+          start: 'top top',
+          end: () => '+=' + dist(),
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const travelled = self.progress * dist();
+            const vw = window.innerWidth;
+            // play-once panel reveals
+            for (const r of reveals) {
+              if (!r.played && travelled + vw * r.at >= r.el.offsetLeft) {
+                r.played = true;
+                r.tl.play();
+              }
+            }
+            // continuous canvas drift
+            document.querySelectorAll('.wcard').forEach((card) => {
+              const centerDelta = (card.offsetLeft + card.offsetWidth / 2 - travelled - vw / 2) / vw;
+              gsap.set(card.querySelector('.card__canvas'), {
+                xPercent: gsap.utils.clamp(-5, 5, centerDelta * 6),
+              });
+            });
+            // scrubbed finale over the approach of the last panel
+            const startX = sintro.offsetLeft - vw * 0.9;
+            const f = gsap.utils.clamp(0, 1, (travelled - startX) / (dist() - startX));
+            finale.progress(f);
+          },
+        },
+      });
+
+      // intro panel titles rise when the section arrives
+      gsap.set('.work__panel--intro .line-inner', { y: 0, yPercent: 110 });
+      gsap.to('.work__panel--intro .line-inner', {
+        yPercent: 0, duration: 1.1, ease: 'power4.out', stagger: 0.12,
+        scrollTrigger: { trigger: '.work', start: 'top 60%' },
+      });
+
+      return () => { reveals.forEach((r) => r.tl.kill()); finale.kill(); horiz.kill(); };
     });
-    if (!reduced) {
-      gsap.fromTo(card.querySelector('.card__media'),
-        { yPercent: 6 }, {
-          yPercent: -6, ease: 'none',
-          scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },
+
+    mm.add('(max-width: 820px)', () => {
+      // vertical fallback: simple reveals, no pinning
+      gsap.set('.work__panel--intro .line-inner', { y: 0, yPercent: 110 });
+      gsap.to('.work__panel--intro .line-inner', {
+        yPercent: 0, duration: 1, ease: 'power4.out', stagger: 0.12,
+        scrollTrigger: { trigger: '.work', start: 'top 75%' },
+      });
+      document.querySelectorAll('.wcard').forEach((card) => {
+        gsap.from(card, {
+          y: 60, opacity: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 88%' },
         });
-    }
-  });
+      });
+      gsap.set('.sintro__words .line-inner', { y: 0, yPercent: 110 });
+      gsap.to('.sintro__words .line-inner', {
+        yPercent: 0, stagger: 0.1, duration: 0.9, ease: 'power4.out',
+        scrollTrigger: { trigger: '.work__panel--sintro', start: 'top 78%' },
+      });
+    });
+  } else if (workTrack && reduced) {
+    gsap.set('.work__panel--intro .line-inner, .sintro__words .line-inner', { y: 0, yPercent: 0 });
+  }
 
   /* ───────── services accordion ───────── */
   document.querySelectorAll('.service').forEach((service) => {
@@ -350,6 +463,11 @@
     });
   });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menuOpen) toggleMenu(false); });
+
+  /* recalc trigger order by document position so the horizontal pin's
+     spacer is accounted for in every later section's trigger */
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
 
   /* ───────── anchor links (non-menu) ───────── */
   document.querySelectorAll('a[href^="#"]:not([data-menu-close])').forEach((a) => {
