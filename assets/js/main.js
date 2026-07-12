@@ -180,7 +180,7 @@
 
   /* ───────── travelling 3D stage: rides with the viewport through
      the hero + manifesto, then stops at the end of section two ───────── */
-  if (!reduced) {
+  if (!reduced && document.getElementById('glStage')) {
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
@@ -269,7 +269,6 @@
       const reveals = [];
       document.querySelectorAll('.wcard').forEach((card) => {
         const tl = gsap.timeline({ paused: true })
-          .from(card.querySelector('.wcard__tagline'), { yPercent: 130, duration: 0.9, ease: 'power4.out' }, 0)
           .from(card.querySelector('.wcard__info'), { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out' }, 0.12);
         reveals.push({ el: card, tl, at: 0.82, played: false });
       });
