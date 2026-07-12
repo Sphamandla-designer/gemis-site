@@ -180,7 +180,7 @@
 
   /* ───────── travelling 3D stage: rides with the viewport through
      the hero + manifesto, then stops at the end of section two ───────── */
-  if (!reduced) {
+  if (!reduced && document.getElementById('glStage')) {
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
