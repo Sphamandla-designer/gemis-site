@@ -43,9 +43,10 @@ if (canvas && !reduced) {
     target.y = (e.clientY / window.innerHeight - 0.5) * 2;
   }, { passive: true });
 
-  // scroll influence — set by main.js via a shared global
-  window.__heroScroll = 0;
+  // travel progress (0 → 1 across hero + manifesto) — set by main.js
+  window.__glP = 0;
 
+  let base = { x: 1.55, y: 0.55, s: 1, compact: false };
   function layout() {
     const w = canvas.clientWidth || window.innerWidth;
     const h = canvas.clientHeight || window.innerHeight;
@@ -53,8 +54,9 @@ if (canvas && !reduced) {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     const compact = w < 820;
-    knot.scale.setScalar(compact ? 0.62 : 1);
-    knot.position.set(compact ? 0 : 1.55, compact ? 1.15 : 0.55, 0);
+    base = compact
+      ? { x: 0, y: 1.15, s: 0.62, compact }
+      : { x: 1.55, y: 0.55, s: 1, compact };
   }
   layout();
   window.addEventListener('resize', layout);
@@ -69,11 +71,20 @@ if (canvas && !reduced) {
     const t = clock.getElapsedTime();
     eased.x += (target.x - eased.x) * 0.045;
     eased.y += (target.y - eased.y) * 0.045;
-    const s = window.__heroScroll || 0;
-    knot.rotation.x = t * 0.18 + eased.y * 0.35 + s * 2.2;
-    knot.rotation.y = t * 0.24 + eased.x * 0.5 + s * 1.4;
-    knot.rotation.z = s * 0.6;
-    knot.position.y += Math.sin(t * 0.8) * 0.0016;
+
+    // phase A: hero (p 0 → .4) — spin up; phase B: manifesto (p .4 → 1) — drift & settle
+    const p = window.__glP || 0;
+    const pHero = Math.min(p / 0.4, 1);
+    const pMan = Math.max(0, (p - 0.4) / 0.6);
+
+    knot.rotation.x = t * 0.18 + eased.y * 0.35 + pHero * 1.7 + pMan * 0.9;
+    knot.rotation.y = t * 0.24 + eased.x * 0.5 + pHero * 1.1 + pMan * 0.8;
+    knot.rotation.z = pMan * 0.35;
+
+    knot.position.x = base.x + pMan * (base.compact ? 0 : 0.65);
+    knot.position.y = base.y - pMan * (base.compact ? 0.35 : 0.5) + Math.sin(t * 0.8) * 0.05;
+    knot.scale.setScalar(base.s * (1 - pMan * 0.22));
+
     renderer.render(scene, camera);
   });
 
