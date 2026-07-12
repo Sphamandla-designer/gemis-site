@@ -469,12 +469,6 @@ main { position: relative; }
   border-radius: 5px;
   pointer-events: none; z-index: 3;
 }
-.wcard__media::before {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
-  height: 46%;
-  background: linear-gradient(180deg, transparent, rgba(11, 11, 12, 0.6));
-  pointer-events: none; z-index: 1;
-}
 .card__canvas {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover;
