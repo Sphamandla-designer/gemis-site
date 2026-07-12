@@ -1,32 +1,32 @@
-# GEMIS® — Software Development Studio
+# Sphamandla Xaba® — Portfolio
 
-An animation-rich, single-page studio site inspired by modern award-winning
-agency websites. Fully static and self-contained — no build step, no CDN
-dependencies, no audio.
+A cinematic, animation-rich portfolio for Sphamandla Xaba — Product Designer &
+AI Experience Designer (Gauteng, South Africa). Fully static — no build step,
+no audio.
 
-## Highlights
+> "I don't design screens. I design understanding."
 
-- **Preloader** — percentage counter, progress bar, masked wordmark reveal,
-  full-screen curtain wipe into the hero.
-- **WebGL hero** — real-time chrome torus knot (Three.js) lit by a procedural
-  studio environment, with pointer parallax and scroll-linked rotation.
-- **Smooth scrolling** — Lenis + GSAP ScrollTrigger orchestration.
-- **Scroll choreography** — staggered character reveals, word-by-word
-  manifesto scrub, line-mask section titles, parallax work cards,
-  scroll-velocity-reactive marquees, animated stat counters.
-- **Live work-card visuals** — four procedural canvas animations (liquid
-  chrome, neural constellation, silk waves, emerald grid) that run only
-  while on screen.
-- **Section theme morphing** — the page background cross-fades between dark
-  and bone as sections enter.
-- **Custom cursor** — lerped dot + ring with contextual "View" label,
-  magnetic buttons, full-screen overlay menu.
-- **Accessibility** — `prefers-reduced-motion` disables heavy animation,
-  semantic markup, keyboard-closable menu.
+## Experience highlights
+
+- **Preloader** — masked name reveal, cycling role captions, tabular counter,
+  dual-curtain wipe straight into the hero type animation.
+- **Cinematic hero** — AI-generated gem video loop (Higgsfield / Veo 3.1 Lite)
+  under a Three.js emerald particle field with pointer + scroll parallax.
+- **Smooth scrolling** — Lenis + GSAP ScrollTrigger orchestration throughout.
+- **Scroll storytelling** — word-by-word manifesto scrub, line-mask titles,
+  pinned horizontal work gallery with counter-parallax imagery, stacked
+  sticky principle cards, velocity-reactive marquees.
+- **Selected work** — ManaGem, WasteMart Portal & Driver (case-study pages),
+  NeuraCalm AI concept (live CSS phone mock), SmartStart Learning.
+- **Footer** — AI-generated liquid-emerald video under giant split-type CTA,
+  magnetic buttons, rotating badge, oversized outline wordmark.
+- **Custom cursor** — lerped dot + trailing ring with contextual labels,
+  magnetic hover targets, full-screen overlay menu with SAST clock.
+- **Accessibility & performance** — `prefers-reduced-motion` fallbacks,
+  videos play only in view, capped DPR on WebGL, semantic markup,
+  keyboard-closable menu.
 
 ## Running locally
-
-Any static file server works:
 
 ```bash
 python3 -m http.server 8000
@@ -36,13 +36,17 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html              # single page, all sections
-assets/css/style.css    # design tokens + all styling
-assets/js/main.js       # GSAP/Lenis interaction & scroll choreography
-assets/js/hero3d.js     # Three.js hero centerpiece (ES module)
-assets/js/cards.js      # procedural canvas visuals for work cards
-assets/js/*.min.js      # vendored gsap, ScrollTrigger, lenis, three
-assets/fonts/           # vendored variable fonts (Archivo, Space Grotesk, JetBrains Mono)
+index.html                  # the portfolio (single page)
+managem.html                # ManaGem case study
+wastemart.html              # WasteMart case study
+brand-studio.html           # brand studio explorations
+assets/css/portfolio.css    # portfolio design tokens + styling
+assets/js/portfolio.js      # GSAP/Lenis interaction & scroll choreography
+assets/js/portfolio3d.js    # Three.js hero particle field (ES module)
+assets/video/               # AI-generated background loops (see README inside)
+assets/js/*.min.js          # vendored gsap, ScrollTrigger, lenis, three
+assets/fonts/               # vendored variable fonts (Archivo, Space Grotesk, JetBrains Mono)
 ```
 
 Libraries: [GSAP](https://gsap.com) + ScrollTrigger, [Lenis](https://lenis.darkroom.engineering), [Three.js](https://threejs.org).
+Media: generated with [Higgsfield](https://higgsfield.ai) (Google Veo 3.1 Lite).
