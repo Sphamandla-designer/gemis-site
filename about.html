@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — GEMIS® Software Development Studio</title>
+  <meta name="description" content="GEMIS is a software development studio — engineers and designers building web platforms, mobile apps, cloud infrastructure and AI systems for ambitious teams." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark" class="page-about">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">A</span><span class="pl-char">B</span><span class="pl-char">O</span><span class="pl-char">U</span><span class="pl-char">T</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Opening the studio doors</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">About the studio</span></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Start a project</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">About</span></a></li>
+        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Services</span></a></li>
+        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════════ HERO — TYPOGRAPHIC, NO 3D ═══════════════ -->
+    <section class="ahero" data-section-theme="dark">
+      <div class="ahero__beam" aria-hidden="true"></div>
+      <div class="ahero__letters" aria-hidden="true">
+        <span class="aletter aletter--g" data-depth="0.5">G</span>
+        <span class="aletter aletter--e" data-depth="1.1">E</span>
+        <span class="aletter aletter--m" data-depth="0.7">M</span>
+        <span class="aletter aletter--i" data-depth="1.4">I</span>
+        <span class="aletter aletter--s" data-depth="0.9">S</span>
+      </div>
+      <div class="ahero__content">
+        <p class="hero__eyebrow"><span class="hero__dot"></span>About the studio</p>
+        <h1 class="ahero__title hero__title">
+          <span class="hero__line"><span class="hero__word" data-split>THE&nbsp;PEOPLE</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>BEHIND</span></span>
+          <span class="hero__line"><span class="hero__word" data-split>THE&nbsp;CODE<span class="hero__accent">.</span></span></span>
+        </h1>
+        <div class="hero__meta ahero__meta">
+          <p class="hero__blurb">A software studio built on one belief —<br />great products come from understanding people.</p>
+          <div class="hero__scroll" id="scrollHint">
+            <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
+            <span>Scroll</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="1">
+          <div class="ticker__track">
+            <span>Engineers</span><i>✦</i><span>Designers</span><i>✦</i><span>Strategists</span><i>✦</i><span>Builders</span><i>✦</i><span>Partners</span><i>✦</i>
+            <span>Engineers</span><i>✦</i><span>Designers</span><i>✦</i><span>Strategists</span><i>✦</i><span>Builders</span><i>✦</i><span>Partners</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MANIFESTO ═══════════════ -->
+    <section class="manifesto" id="story" data-section-theme="light">
+      <div class="manifesto__inner">
+        <p class="manifesto__label">Who we are</p>
+        <p class="manifesto__text" id="manifestoText">GEMIS is a software development studio from South Africa, building for the world. We design, engineer and ship platforms that carry real operations — payroll runs, waste collections, learning journeys, brand launches — and we stay until they work beautifully.</p>
+        <div class="manifesto__cols">
+          <div class="manifesto__col reveal">
+            <h3>Small team, senior hands</h3>
+            <p>No hand-offs to juniors after the pitch. The people who scope your product are the people who build it.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Products, not projects</h3>
+            <p>We measure ourselves on what happens after launch — adoption, uptime and how much your team can do without us.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Design and code, one room</h3>
+            <p>UX and engineering sit together from day one, so what gets designed is what ships — pixel for pixel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FACTS BAND ═══════════════ -->
+    <section class="facts" data-section-theme="light" aria-label="Studio facts">
+      <div class="reveal"><b>Remote-first</b><span>working across time zones</span></div>
+      <div class="reveal"><b>Full-cycle</b><span>strategy → design → engineering → run</span></div>
+      <div class="reveal"><b>Product + brand</b><span>software studio and Brand Studio under one roof</span></div>
+    </section>
+
+    <!-- ═══════════════ DNA ═══════════════ -->
+    <section class="dna" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( How we think )</p>
+        <p class="services__statement">Four habits that shape everything we ship.</p>
+      </header>
+      <div class="dna__grid dna__grid--four">
+        <div class="dna__card" data-cursor="—"><span class="dna__num">01</span><h3>Understand before you build</h3><p>Discovery is not a phase to rush — it's where the product is actually won or lost.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">02</span><h3>Momentum is a feature</h3><p>Working software in weeks. Feedback loops over roadmaps, deploys over decks.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">03</span><h3>Craft survives contact</h3><p>Typed, tested, observable systems — because real users are less polite than demos.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">04</span><h3>Leave teams stronger</h3><p>Documentation, guidelines and codebases your own people are proud to inherit.</p></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ JOURNEY ═══════════════ -->
+    <section class="journey" data-section-theme="dark">
+      <header class="services__head">
+        <p class="eyebrow-label">( The journey )</p>
+        <p class="services__statement">From a two-person dev shop to a full-stack studio.</p>
+      </header>
+      <div class="journey__wrap">
+        <span class="process__rail" aria-hidden="true"><span class="process__line" id="journeyLine"></span></span>
+        <ol class="process__list">
+          <li class="jstep"><span class="jstep__year">2018</span><div><h3>GEMIS is born</h3><p>Two people, one laptop each, and a conviction that local businesses deserved world-class software.</p></div></li>
+          <li class="jstep"><span class="jstep__year">2020</span><div><h3>First platforms ship</h3><p>Early client systems go live — and the studio learns its defining lesson: understand the operation first.</p></div></li>
+          <li class="jstep"><span class="jstep__year">2022</span><div><h3>ManaGem takes shape</h3><p>Everything learned from client work converges into one product — an operating system for growing businesses.</p></div></li>
+          <li class="jstep"><span class="jstep__year">2024</span><div><h3>Brand Studio opens</h3><p>Identity design joins the bench, led by Sphamandla Xaba — because great products deserve great brands.</p></div></li>
+          <li class="jstep"><span class="jstep__year">Today</span><div><h3>Building what's next</h3><p>Platforms, mobile apps, AI systems and brands — one studio, end to end, for teams across the map.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MARQUEE ═══════════════ -->
+    <section class="marquee-block" data-section-theme="dark" aria-hidden="true">
+      <div class="ticker ticker--giant" data-ticker data-speed="1.3">
+        <div class="ticker__track">
+          <span class="outline">People</span><span>First</span><span class="outline">Code</span><span>Second</span>
+          <span class="outline">People</span><span>First</span><span class="outline">Code</span><span>Second</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ THE LEAD ═══════════════ -->
+    <section class="lead" data-section-theme="dark">
+      <div class="lead__grid">
+        <div class="lead__portrait reveal" aria-hidden="true">
+          <span class="lead__monogram">SX</span>
+          <span class="lead__ring"></span>
+          <span class="lead__role-chip">Design lead</span>
+        </div>
+        <div class="lead__bio">
+          <p class="eyebrow-label">( Faces of the studio )</p>
+          <h2 class="lead__name">
+            <span class="line-mask"><span class="line-inner">Sphamandla</span></span>
+            <span class="line-mask"><span class="line-inner">Xaba</span></span>
+          </h2>
+          <p class="lead__title">UI/UX designer · Head of Brand Studio</p>
+          <p class="lead__text">Sphamandla shapes how GEMIS products look, feel and speak. A UI/UX designer by trade, he leads the Brand Studio practice and keeps every interface honest to one rule: design around the people who have to use it.</p>
+          <div class="lead__actions">
+            <a class="btn-big btn-big--sm" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" data-magnetic data-cursor="Connect"><span>LinkedIn ↗</span></a>
+            <a class="link-arrow" href="brand-studio.html">Visit the Brand Studio <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
+    <footer class="footer" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">Now you know us</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>LET'S&nbsp;MAKE</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>SOMETHING&nbsp;REAL</span></span>
+        </h2>
+        <div class="footer__actions">
+          <a href="mailto:hello@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
+            <span>hello@gemis.tech</span>
+          </a>
+          <a class="link-arrow" href="index.html#work">See the work first <span>→</span></a>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__cols">
+          <div>
+            <h4>Studio</h4>
+            <a href="index.html#work">Work</a><a href="index.html#services">Services</a><a href="brand-studio.html">Brand Studio</a>
+          </div>
+          <div>
+            <h4>Social</h4>
+            <a href="#">GitHub</a><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">X / Twitter</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:hello@gemis.tech">hello@gemis.tech</a>
+            <span>Remote-first, worldwide</span>
+          </div>
+        </div>
+        <div class="footer__legal">
+          <span>© 2026 GEMIS. All rights reserved.</span>
+          <span>People first. Code second.</span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/about.js" defer></script>
+</body>
+</html>
