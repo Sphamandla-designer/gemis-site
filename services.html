@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — GEM Information Systems (GEMIS®)</title>
+  <meta name="description" content="We design, develop and support mission-critical Microsoft Cloud solutions — custom software, enterprise SaaS, mobile apps, business intelligence, system integration and long-term support." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark" class="page-services">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">S</span><span class="pl-char">E</span><span class="pl-char">R</span><span class="pl-char">V</span><span class="pl-char">I</span><span class="pl-char">C</span><span class="pl-char">E</span><span class="pl-char">S</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Assembling capabilities</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">What we build</span></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Let's build together</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="about.html" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">About</span></a></li>
+        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Services</span></a></li>
+        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:info@gemis.co.za" class="menu__mail">info@gemis.co.za</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════════ HERO — TYPOGRAPHIC + FLOATING GLYPHS ═══════════════ -->
+    <section class="ahero" data-section-theme="dark">
+      <div class="ahero__beam" aria-hidden="true"></div>
+      <div class="ahero__letters" aria-hidden="true">
+        <span class="aletter sg--1" data-depth="0.6">{</span>
+        <span class="aletter sg--2" data-depth="1.2">&lt;/&gt;</span>
+        <span class="aletter sg--3" data-depth="0.8">#</span>
+        <span class="aletter sg--4" data-depth="1.4">&amp;</span>
+        <span class="aletter sg--5" data-depth="0.9">}</span>
+      </div>
+      <div class="ahero__content">
+        <p class="hero__eyebrow"><span class="hero__dot"></span>Our services — strategy to long-term support</p>
+        <h1 class="ahero__title hero__title ahero__title--svc">
+          <span class="hero__line"><span class="hero__word" data-split>ENTERPRISE&nbsp;SOFTWARE</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>BUILT&nbsp;AROUND</span></span>
+          <span class="hero__line"><span class="hero__word" data-split>YOUR&nbsp;BUSINESS<span class="hero__accent">.</span></span></span>
+        </h1>
+        <div class="hero__meta ahero__meta">
+          <p class="hero__blurb">We design, develop, and support mission-critical Microsoft Cloud solutions that transform complex business processes into intelligent, scalable digital systems.<br /><br />From strategy and architecture to deployment and long-term support — one accountable partner for the full journey.</p>
+          <div class="shero__cta">
+            <a href="#contact" class="btn-big btn-big--sm" data-magnetic data-cursor="Go">
+              <span>Let's build together</span>
+            </a>
+            <div class="hero__scroll" id="scrollHint">
+              <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
+              <span>Scroll</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="1">
+          <div class="ticker__track">
+            <span>Custom software</span><i>✦</i><span>Microsoft Cloud</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Mobile apps</span><i>✦</i><span>Business intelligence</span><i>✦</i><span>System integration</span><i>✦</i><span>UX &amp; system design</span><i>✦</i><span>Modernisation</span><i>✦</i><span>Support &amp; maintenance</span><i>✦</i>
+            <span>Custom software</span><i>✦</i><span>Microsoft Cloud</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Mobile apps</span><i>✦</i><span>Business intelligence</span><i>✦</i><span>System integration</span><i>✦</i><span>UX &amp; system design</span><i>✦</i><span>Modernisation</span><i>✦</i><span>Support &amp; maintenance</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ INTRODUCTION — PROBLEMS WE SOLVE ═══════════════ -->
+    <section class="manifesto" id="intro" data-section-theme="light">
+      <div class="manifesto__inner">
+        <p class="manifesto__label">Technology that solves business problems</p>
+        <p class="manifesto__text" id="manifestoText">Every growing organisation eventually hits the same walls — challenges that off-the-shelf software simply can't solve. We build the systems that break through them.</p>
+        <div class="pains" aria-label="Common business problems we solve">
+          <button class="pain" type="button" data-cursor="Fix it"><s>Disconnected systems</s><i>✓ connected</i></button>
+          <button class="pain" type="button" data-cursor="Fix it"><s>Manual processes</s><i>✓ automated</i></button>
+          <button class="pain" type="button" data-cursor="Fix it"><s>Limited visibility</s><i>✓ real-time</i></button>
+          <button class="pain" type="button" data-cursor="Fix it"><s>Poor reporting</s><i>✓ insight</i></button>
+          <button class="pain" type="button" data-cursor="Fix it"><s>Growing complexity</s><i>✓ simplified</i></button>
+        </div>
+        <p class="pains__hint" aria-hidden="true">( hover each problem — that's the job )</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ ADAPT STATEMENT ═══════════════ -->
+    <section class="pledge pledge--svc" data-section-theme="light">
+      <p class="pledge__title">
+        <span class="line-mask"><span class="line-inner">Software that adapts</span></span>
+        <span class="line-mask"><span class="line-inner pledge__em">to your business.</span></span>
+      </p>
+      <p class="pledge__text">Rather than forcing your teams to adapt to software, we build software that adapts to your business — shaped around your workflows, your people and your goals.</p>
+    </section>
+
+    <!-- ═══════════════ OUR SERVICES — INTERACTIVE INDEX ═══════════════ -->
+    <section class="xsvs" id="services" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( Our services )</p>
+        <p class="services__statement">Nine disciplines, one accountable partner — open each to see exactly what we deliver.</p>
+      </header>
+
+      <div class="xsv-list">
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">01</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Custom Software Development</h3>
+              <span class="xsv__tagline">Built specifically for your business</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">When off-the-shelf software holds you back, we design and build solutions around your exact processes, people and goals — software that fits your business, not the other way around.</p>
+                <div class="xsv__chips">
+                  <span>Enterprise Applications</span><span>Business Portals</span><span>Internal Management Systems</span><span>Workflow Automation</span><span>Customer Portals</span><span>Supplier Portals</span><span>Operations Platforms</span><span>Business Process Automation</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--code"><div class="mk__bar"><i></i><i></i><i></i><em>your-platform.cs</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:72%"></s><s class="c3" style="width:40%"></s><s style="width:66%"></s><s class="c2" style="width:34%"></s><s style="width:58%"></s><s class="c3" style="width:47%"></s></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">02</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Microsoft Cloud Solutions</h3>
+              <span class="xsv__tagline">Secure. Scalable. Enterprise ready.</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
+                <div class="xsv__chips">
+                  <span>Microsoft Azure</span><span>Azure SQL</span><span>Cloud Hosting</span><span>Identity Management</span><span>API Integration</span><span>Business Intelligence</span><span>Data Security</span><span>Disaster Recovery</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--term"><div class="mk__bar"><i></i><i></i><i></i><em>azure — deploy</em></div><div class="mk__term"><p><b>$</b> az deployment create --prod</p><p class="ok">✓ Azure SQL provisioned</p><p class="ok">✓ identity &amp; access configured</p><p class="ok">✓ disaster recovery armed</p><p><b>›</b> region ZA-North live<span class="cursor">▌</span></p></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">03</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Enterprise SaaS Platforms</h3>
+              <span class="xsv__tagline">Software designed to scale</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">Multi-tenant SaaS platforms engineered to serve thousands of users — built for performance, security and growth from day one.</p>
+                <div class="xsv__chips">
+                  <span>Property Management</span><span>Business Operations</span><span>Healthcare</span><span>Manufacturing</span><span>Professional Services</span><span>Logistics</span><span>NGOs</span><span>Government</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--dark"><div class="mk__bar"><i></i><i></i><i></i><em>platform — operations</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>12.4k users</span><span>+38%</span></div><div class="mk__chart"><u style="height:42%"></u><u style="height:68%"></u><u style="height:55%"></u><u style="height:88%"></u><u style="height:64%"></u><u style="height:92%"></u></div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">04</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Mobile Application Development</h3>
+              <span class="xsv__tagline">Business in your pocket</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">Mobile apps that extend your systems into the field — capturing work where it happens, online or offline, always in sync.</p>
+                <div class="xsv__chips">
+                  <span>Field Operations</span><span>Inspections</span><span>Approvals</span><span>Incident Reporting</span><span>Data Collection</span><span>Offline Functionality</span><span>Real-Time Synchronization</span><span>Push Notifications</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--light"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Field Ops</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">05</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Business Intelligence &amp; Reporting</h3>
+              <span class="xsv__tagline">Turn data into decisions</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">Power BI dashboards that turn scattered data into clear, real-time decision-making tools for every level of your organisation.</p>
+                <div class="xsv__chips">
+                  <span>Executive Reporting</span><span>Operational KPIs</span><span>Sales Analytics</span><span>Financial Reporting</span><span>Performance Tracking</span><span>Real-Time Monitoring</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--bi"><div class="mk__bar"><i></i><i></i><i></i><em>power bi — executive</em></div><div class="mk__bi"><div class="mk__donut"></div><div class="mk__bistats"><div class="mk__birow"><i style="width:82%"></i><span>Revenue</span></div><div class="mk__birow"><i style="width:64%"></i><span>Ops KPI</span></div><div class="mk__birow"><i style="width:48%"></i><span>Sales</span></div><div class="mk__birow"><i style="width:71%"></i><span>Uptime</span></div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">06</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">System Integration</h3>
+              <span class="xsv__tagline">Connecting the tools your business depends on</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">We make your systems talk to each other — eliminating double capture, disconnected data and manual hand-offs between platforms.</p>
+                <div class="xsv__chips">
+                  <span>Accounting Systems</span><span>ERP Platforms</span><span>CRM Solutions</span><span>Third-Party APIs</span><span>Government Platforms</span><span>Payment Gateways</span><span>Document Management</span><span>Authentication Services</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--net"><div class="mk__bar"><i></i><i></i><i></i><em>integration map</em></div><div class="mk__net">
+                  <svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <line x1="150" y1="70" x2="52" y2="26" /><line x1="150" y1="70" x2="52" y2="114" /><line x1="150" y1="70" x2="248" y2="26" /><line x1="150" y1="70" x2="248" y2="114" /><line x1="150" y1="70" x2="150" y2="16" /><line x1="150" y1="70" x2="150" y2="124" />
+                    <circle cx="52" cy="26" r="11" /><circle cx="52" cy="114" r="11" /><circle cx="248" cy="26" r="11" /><circle cx="248" cy="114" r="11" /><circle cx="150" cy="16" r="9" /><circle cx="150" cy="124" r="9" />
+                    <circle class="hub" cx="150" cy="70" r="15" />
+                    <text x="52" y="49" text-anchor="middle">ERP</text><text x="52" y="99" text-anchor="middle">CRM</text><text x="248" y="49" text-anchor="middle">API</text><text x="248" y="99" text-anchor="middle">PAY</text><text x="167" y="74">CORE</text>
+                  </svg>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">07</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">UX &amp; System Design</h3>
+              <span class="xsv__tagline">Designed around the people who use it</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">Enterprise software doesn't have to feel like enterprise software. We design systems people actually enjoy using — clear, fast and considered.</p>
+                <div class="xsv__chips">
+                  <span>User Research</span><span>Business Process Mapping</span><span>Wireframes</span><span>Interactive Prototypes</span><span>Design Systems</span><span>Enterprise Dashboards</span><span>Mobile Experiences</span><span>Accessibility</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--ds"><div class="mk__bar"><i></i><i></i><i></i><em>design system</em></div><div class="mk__swatches"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s6"></i></div><div class="mk__type"><span>Aa</span><small>Archivo / Grotesk — 4pt grid</small></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">08</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Software Modernisation</h3>
+              <span class="xsv__tagline">Transform legacy systems without disrupting operations</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">We migrate ageing systems to the cloud, redesign dated interfaces, improve performance and expand features — all without disrupting your daily operations.</p>
+                <div class="xsv__chips">
+                  <span>Cloud Migration</span><span>Interface Redesign</span><span>Performance Improvements</span><span>Feature Expansion</span><span>Data Migration</span><span>Zero-Disruption Rollouts</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--mod"><div class="mk__bar"><i></i><i></i><i></i><em>legacy → modern</em></div><div class="mk__mod"><div class="mk__legacy"><s style="width:88%"></s><s style="width:72%"></s><s style="width:80%"></s><s style="width:60%"></s><s style="width:76%"></s></div><span class="mk__modarrow">→</span><div class="mk__modern"><b style="width:70%"></b><b class="m2" style="width:88%"></b><b style="width:56%"></b><b class="m2" style="width:78%"></b></div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="xsv" data-cursor="Open">
+          <div class="xsv__row" role="button" tabindex="0" aria-expanded="false">
+            <span class="xsv__num">09</span>
+            <div class="xsv__heading">
+              <h3 class="xsv__name">Ongoing Support &amp; Maintenance</h3>
+              <span class="xsv__tagline">Your technology partner beyond launch</span>
+            </div>
+            <span class="xsv__arrow" aria-hidden="true">+</span>
+          </div>
+          <div class="xsv__body">
+            <div class="xsv__grid">
+              <div class="xsv__text">
+                <p class="xsv__desc">Software needs care beyond go-live. We stay with you — monitoring, maintaining and continuously improving the systems your business runs on.</p>
+                <div class="xsv__chips">
+                  <span>Performance Monitoring</span><span>System Maintenance</span><span>Bug Fixes</span><span>Feature Enhancements</span><span>Security Updates</span><span>User Training</span><span>Documentation</span><span>Technical Support</span>
+                </div>
+              </div>
+              <div class="xsv__visual" aria-hidden="true">
+                <div class="mk mk--chat"><div class="mk__bar"><i></i><i></i><i></i><em>support desk</em></div><div class="mk__chat"><div class="bub user">Month-end report looks off</div><div class="bub ai">On it — patched &amp; redeployed ✓</div><div class="mk__input">Message GEMIS support…</div></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ OUR DEVELOPMENT PROCESS ═══════════════ -->
+    <section class="journey" data-section-theme="dark">
+      <header class="services__head">
+        <p class="eyebrow-label">( Our development process )</p>
+        <p class="services__statement">How we deliver successful projects — six stages, no surprises.</p>
+      </header>
+      <div class="journey__wrap">
+        <span class="process__rail" aria-hidden="true"><span class="process__line" id="svcLine"></span></span>
+        <ol class="process__list">
+          <li class="jstep"><span class="jstep__year">01</span><div><h3>Discovery &amp; Business Analysis</h3><p>We immerse ourselves in your operations to understand your challenges, goals and opportunities before proposing anything.</p></div></li>
+          <li class="jstep"><span class="jstep__year">02</span><div><h3>Solution Architecture</h3><p>We design a secure, scalable Microsoft Cloud architecture that fits your business today — and where it's heading.</p></div></li>
+          <li class="jstep"><span class="jstep__year">03</span><div><h3>UX &amp; System Design</h3><p>Wireframes and interactive prototypes make sure the system works the way your people actually do.</p></div></li>
+          <li class="jstep"><span class="jstep__year">04</span><div><h3>Agile Development</h3><p>Iterative sprints with regular demonstrations keep you involved and the solution on target throughout the build.</p></div></li>
+          <li class="jstep"><span class="jstep__year">05</span><div><h3>Quality Assurance</h3><p>Structured testing, performance validation and user acceptance before anything reaches production.</p></div></li>
+          <li class="jstep"><span class="jstep__year">06</span><div><h3>Deployment &amp; Continuous Support</h3><p>Careful rollout, training and documentation — then ongoing monitoring, maintenance and improvement.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════════ WHY GEMIS ═══════════════ -->
+    <section class="dna" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( Why GEMIS )</p>
+        <p class="services__statement">Why organisations choose GEM Information Systems.</p>
+      </header>
+      <div class="dna__grid">
+        <div class="dna__card" data-cursor="—"><span class="dna__num">01</span><h3>Microsoft Cloud specialists</h3><p>Deep expertise across Azure, Azure SQL and the wider Microsoft ecosystem — enterprise infrastructure done properly.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">02</span><h3>Business-first thinking</h3><p>Technology decisions driven by business outcomes, not trends. Every feature has to earn its place.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">03</span><h3>Proven delivery</h3><p>Over a decade of experience shipping mission-critical systems that organisations run on every day.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">04</span><h3>Agile collaboration</h3><p>You see progress every sprint and shape the product as it grows — no black-box development.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">05</span><h3>Enterprise security</h3><p>Security, compliance and data protection engineered in from day one — never bolted on later.</p></div>
+        <div class="dna__card" data-cursor="—"><span class="dna__num">06</span><h3>Long-term partnership</h3><p>We stay beyond launch — support, enhancement and optimisation for the life of your system.</p></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ INDUSTRIES ═══════════════ -->
+    <section class="scope" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( Industries we serve )</p>
+        <p class="services__statement">Twelve sectors, one standard — software that holds up in the real world.</p>
+      </header>
+      <div class="scope__grid">
+        <div class="scope__item reveal"><b>01</b><span>Business &amp; Corporate</span></div>
+        <div class="scope__item reveal"><b>02</b><span>Government</span></div>
+        <div class="scope__item reveal"><b>03</b><span>NGOs &amp; Non-Profit</span></div>
+        <div class="scope__item reveal"><b>04</b><span>Property &amp; Real Estate</span></div>
+        <div class="scope__item reveal"><b>05</b><span>Waste Management</span></div>
+        <div class="scope__item reveal"><b>06</b><span>Healthcare</span></div>
+        <div class="scope__item reveal"><b>07</b><span>Education</span></div>
+        <div class="scope__item reveal"><b>08</b><span>Financial Services</span></div>
+        <div class="scope__item reveal"><b>09</b><span>Manufacturing</span></div>
+        <div class="scope__item reveal"><b>10</b><span>Professional Services</span></div>
+        <div class="scope__item reveal"><b>11</b><span>Community Development</span></div>
+        <div class="scope__item reveal"><b>12</b><span>Logistics</span></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FEATURED SOLUTIONS ═══════════════ -->
+    <section class="sols" data-section-theme="dark">
+      <header class="services__head">
+        <p class="eyebrow-label">( Featured solutions )</p>
+        <p class="services__statement">Solutions we've built — running live, in production, today.</p>
+      </header>
+      <div class="sol-list">
+        <a class="sol" href="managem.html" data-cursor="Visit">
+          <span class="sol__num">01</span>
+          <h3 class="sol__name">ManaGEM</h3>
+          <p class="sol__desc">Integrated business management platform — operations, finance and people in one system.</p>
+          <span class="sol__meta">Enterprise platform</span>
+          <span class="sol__go" aria-hidden="true">→</span>
+        </a>
+        <div class="sol">
+          <span class="sol__num">02</span>
+          <h3 class="sol__name">Home Assist Portal</h3>
+          <p class="sol__desc">Service management platform for warranty claims, dispatch and field operations.</p>
+          <span class="sol__meta">Service management</span>
+        </div>
+        <div class="sol">
+          <span class="sol__num">03</span>
+          <h3 class="sol__name">SwiftMLS</h3>
+          <p class="sol__desc">Real-estate multiple listing service platform serving more than 1,000 agents.</p>
+          <span class="sol__meta">1,000+ agents</span>
+        </div>
+        <div class="sol">
+          <span class="sol__num">04</span>
+          <h3 class="sol__name">Sonke</h3>
+          <p class="sol__desc">Community development platform built for NGOs working on the ground.</p>
+          <span class="sol__meta">NGO platform</span>
+        </div>
+        <a class="sol" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener" data-cursor="Visit">
+          <span class="sol__num">05</span>
+          <h3 class="sol__name">SmartStart Training</h3>
+          <p class="sol__desc">Moodle-based learning management system supporting more than 10,000 learners.</p>
+          <span class="sol__meta">10,000+ learners</span>
+          <span class="sol__go" aria-hidden="true">↗</span>
+        </a>
+        <div class="sol">
+          <span class="sol__num">06</span>
+          <h3 class="sol__name">Tore's Foundation</h3>
+          <p class="sol__desc">Civic engagement platform connecting communities with the causes that move them.</p>
+          <span class="sol__meta">Civic engagement</span>
+        </div>
+        <a class="sol" href="wastemart.html" data-cursor="Read">
+          <span class="sol__num">07</span>
+          <h3 class="sol__name">WasteMart</h3>
+          <p class="sol__desc">Waste management platform with SAP integration — from weighbridge to invoice.</p>
+          <span class="sol__meta">SAP integration</span>
+          <span class="sol__go" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FINAL CTA ═══════════════ -->
+    <footer class="footer" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">Let's build the future of your business</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>LET'S&nbsp;BUILD</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>THE&nbsp;FUTURE</span></span>
+        </h2>
+        <p class="story-final__text">Whether you're modernising legacy systems, launching a new platform or transforming operations — GEM Information Systems turns complex challenges into intelligent, scalable software.</p>
+        <div class="footer__actions">
+          <a href="mailto:info@gemis.co.za?subject=Schedule%20a%20Consultation" class="btn-big" data-magnetic data-cursor="Book">
+            <span>Schedule a consultation</span>
+          </a>
+          <a class="link-arrow" href="mailto:info@gemis.co.za?subject=Talk%20to%20Our%20Experts">Talk to our experts <span>→</span></a>
+          <a class="link-arrow" href="mailto:info@gemis.co.za?subject=Start%20Your%20Project">Start your project <span>→</span></a>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__cols">
+          <div>
+            <h4>Studio</h4>
+            <a href="index.html#work">Work</a><a href="about.html">About</a><a href="brand-studio.html">Brand Studio</a>
+          </div>
+          <div>
+            <h4>Social</h4>
+            <a href="#">GitHub</a><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">X / Twitter</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+            <a href="https://www.gemis.co.za" target="_blank" rel="noopener">www.gemis.co.za</a>
+            <span>9 Tapiola Way, Edgemead, Cape Town</span>
+          </div>
+        </div>
+        <div class="footer__legal">
+          <span>© 2026 GEM Information Systems (PTY) LTD.</span>
+          <span>Bringing ideas &amp; innovation to life through technology.</span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/services.js" defer></script>
+</body>
+</html>
