@@ -31,9 +31,9 @@ if (canvas && isBrandPage && !reduced) {
   const gem = new THREE.Mesh(new THREE.IcosahedronGeometry(1.55, 0), gemMat);
   group.add(gem);
 
-  // orbiting emerald ring
+  // orbiting accent ring
   const ringMat = new THREE.MeshStandardMaterial({
-    color: 0x17e685, metalness: 0.6, roughness: 0.3,
+    color: 0x0F4CFF, metalness: 0.6, roughness: 0.3,
     emissive: 0x0a5c36, emissiveIntensity: 0.6,
   });
   const orbit = new THREE.Mesh(new THREE.TorusGeometry(2.5, 0.025, 12, 128), ringMat);
@@ -47,7 +47,7 @@ if (canvas && isBrandPage && !reduced) {
   const key = new THREE.DirectionalLight(0xffffff, 1.5);
   key.position.set(4, 6, 6);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0x17e685, 2.0);
+  const rim = new THREE.DirectionalLight(0x0F4CFF, 2.0);
   rim.position.set(-6, -3, -4);
   scene.add(rim);
   const ambient = new THREE.AmbientLight(0xffffff, 0.25);
@@ -142,7 +142,7 @@ if (canvas && isBrandPage && !reduced) {
     const c = new THREE.Vector3(0, 0, 0);
     panel(0xffffff, 6, 6, 2, new THREE.Vector3(0, 5, 0), c);
     panel(0xffffff, 2.5, 2, 5, new THREE.Vector3(-6, 0, 2), c);
-    panel(0x17e685, 3.5, 2, 6, new THREE.Vector3(6, -1, -2), c);
+    panel(0x0F4CFF, 3.5, 2, 6, new THREE.Vector3(6, -1, -2), c);
     panel(0x8888ff, 1.2, 4, 1, new THREE.Vector3(0, -5, 3), c);
     return s;
   }

@@ -30,7 +30,7 @@ if (canvas && !reduced) {
   const key = new THREE.DirectionalLight(0xffffff, 1.4);
   key.position.set(4, 6, 6);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0x17e685, 2.2);
+  const rim = new THREE.DirectionalLight(0x0F4CFF, 2.2);
   rim.position.set(-6, -3, -4);
   scene.add(rim);
   const ambient = new THREE.AmbientLight(0xffffff, 0.25);
@@ -124,7 +124,7 @@ if (canvas && !reduced) {
     const c = new THREE.Vector3(0, 0, 0);
     panel(0xffffff, 6, 6, 2, new THREE.Vector3(0, 5, 0), c);      // top softbox
     panel(0xffffff, 2.5, 2, 5, new THREE.Vector3(-6, 0, 2), c);   // left strip
-    panel(0x17e685, 3.5, 2, 6, new THREE.Vector3(6, -1, -2), c);  // emerald strip
+    panel(0x0F4CFF, 3.5, 2, 6, new THREE.Vector3(6, -1, -2), c);  // accent strip
     panel(0x8888ff, 1.2, 4, 1, new THREE.Vector3(0, -5, 3), c);   // cool floor bounce
     return s;
   }

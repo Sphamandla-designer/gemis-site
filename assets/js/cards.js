@@ -5,7 +5,7 @@
   const cards = document.querySelectorAll('.card[data-visual]');
 
   const VISUALS = {
-    /* Liquid chrome — layered sine ridges with emerald glints */
+    /* Liquid chrome — layered sine ridges with accent glints */
     chrome(ctx, w, h, t) {
       ctx.fillStyle = '#0a0a0b';
       ctx.fillRect(0, 0, w, h);
@@ -25,7 +25,7 @@
         const lum = 30 + 60 * Math.abs(Math.sin(p * Math.PI + t * 0.35));
         const glint = Math.pow(Math.abs(Math.sin(p * 6.1 - t * 0.7)), 18);
         ctx.strokeStyle = glint > 0.5
-          ? `rgba(23,230,133,${0.5 * glint})`
+          ? `rgba(15,76,255,${0.5 * glint})`
           : `hsl(220 4% ${lum}% / ${0.5 + p * 0.4})`;
         ctx.lineWidth = 1 + p * 2.2;
         ctx.stroke();
@@ -114,7 +114,7 @@
           const barH = (h / rows) * (0.25 + wave * 0.65);
           const y = h - (gy + 1) * (h / rows) * 0.92 + (h / rows - barH);
           const a = 0.12 + wave * 0.55 * (1 - depth * 0.55);
-          ctx.fillStyle = `rgba(23,230,133,${a})`;
+          ctx.fillStyle = `rgba(15,76,255,${a})`;
           ctx.fillRect(x, y + h * 0.06, cw * 0.7, barH);
           if (wave > 0.86) {
             ctx.fillStyle = `rgba(200,255,225,${(wave - 0.86) * 4})`;
