@@ -181,10 +181,11 @@
   /* ───────── travelling 3D stage: rides with the viewport through
      the hero + manifesto, then stops at the end of section two ───────── */
   if (!reduced && document.getElementById('glStage')) {
+    const glEnd = document.getElementById('proof') ? '#proof' : '#studio';
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
-      endTrigger: '#studio',
+      endTrigger: glEnd,
       end: 'bottom bottom',
       pin: '#glStage',
       pinSpacing: false,
@@ -193,7 +194,7 @@
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
-      endTrigger: '#studio',
+      endTrigger: glEnd,
       end: 'bottom bottom',
       scrub: true,
       onUpdate: (self) => { window.__glP = self.progress; },
@@ -208,13 +209,12 @@
         gsap.set('.hero__content', { yPercent: self.progress * 18, opacity: 1 - self.progress * 0.9 });
       },
     });
-    // small screens: fade the knot out while the manifesto reads
-    if (window.matchMedia('(max-width: 820px)').matches) {
-      gsap.to('#glStage', {
-        opacity: 0, ease: 'none',
-        scrollTrigger: { trigger: '#studio', start: 'top 65%', end: 'top 25%', scrub: true },
-      });
-    }
+    // the second section (stats) spans full width, so fade the knot out as it
+    // arrives — keeps every number readable while preserving the hero drift
+    gsap.to('#glStage', {
+      opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: glEnd, start: 'top 88%', end: 'top 52%', scrub: true },
+    });
   }
 
   /* ───────── manifesto word-by-word reveal ───────── */

@@ -87,7 +87,17 @@
           <span class="hero__line"><span class="hero__word" data-split>EXCELLENCE<span class="hero__accent">.</span></span></span>
         </h1>
         <div class="hero__meta">
-          <p class="hero__blurb">Full-stack product engineering —<br />from first commit to global scale.</p>
+          <div class="hero__intro">
+            <p class="hero__blurb">We build management information systems, ERP platforms, and digital solutions for South African organisations that have outgrown improvised tools.</p>
+            <div class="hero__cta">
+              <a href="mailto:info@gemis.co.za?subject=Book%20a%20Discovery%20Session" class="btn-big btn-big--solid btn-big--sm" data-magnetic data-cursor="Book">
+                <span>Book a Discovery Session</span>
+              </a>
+              <a href="services.html" class="btn-big btn-big--sm" data-magnetic data-cursor="Explore">
+                <span>Explore Our Solutions</span>
+              </a>
+            </div>
+          </div>
           <div class="hero__scroll" id="scrollHint">
             <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
             <span>Scroll</span>
@@ -104,11 +114,34 @@
       </div>
     </section>
 
-    <!-- ═══════════════ MANIFESTO ═══════════════ -->
+    <!-- ═══════════════ STATS — PROOF (second section) ═══════════════ -->
+    <section class="stats" id="proof" data-section-theme="light">
+      <header class="stats__head">
+        <p class="eyebrow-label">( Proof in numbers · Microsoft technology partner )</p>
+        <p class="stats__statement">Twenty years of delivering enterprise systems for South African organisations.</p>
+      </header>
+      <div class="stats__grid">
+        <div class="stat"><span class="stat__num" data-count="20" data-suffix="+">0</span><span class="stat__label">Years in Business</span></div>
+        <div class="stat"><span class="stat__num" data-count="50" data-suffix="+">0</span><span class="stat__label">Systems Delivered</span></div>
+        <div class="stat"><span class="stat__num" data-count="12" data-suffix="+">0</span><span class="stat__label">Active ERP Clients</span></div>
+        <div class="stat"><span class="stat__num" data-count="5" data-suffix="+">0</span><span class="stat__label">Sectors Served</span></div>
+      </div>
+      <div class="stats__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="0.8">
+          <div class="ticker__track ticker__track--mono">
+            <span>Microsoft Azure</span><span>Azure SQL</span><span>C#</span><span>ASP.NET</span><span>Power BI</span><span>Microsoft 365</span><span>Power Platform</span><span>Dynamics 365</span><span>React</span><span>React Native</span><span>SharePoint</span><span>Cloud Hosting</span>
+            <span>Microsoft Azure</span><span>Azure SQL</span><span>C#</span><span>ASP.NET</span><span>Power BI</span><span>Microsoft 365</span><span>Power Platform</span><span>Dynamics 365</span><span>React</span><span>React Native</span><span>SharePoint</span><span>Cloud Hosting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ TRUST — LONG-TERM PARTNERSHIPS ═══════════════ -->
     <section class="manifesto" id="studio" data-section-theme="light">
       <div class="manifesto__inner">
-        <p class="manifesto__label">The company</p>
-        <p class="manifesto__text" id="manifestoText">GEMIS is a team of engineers and designers who turn complex problems into elegant software. We architect, build and ship digital products that feel effortless — and scale without fear.</p>
+        <p class="manifesto__label">Building long-term technology partnerships</p>
+        <p class="manifesto__text" id="manifestoText">Trusted by businesses that value reliable digital transformation.</p>
+        <p class="manifesto__support">Successful digital transformation requires more than software. It requires a partner who understands business processes, operational challenges and long-term growth. At GEM Information Systems, we work alongside organisations to deliver secure, scalable solutions that improve efficiency, strengthen decision-making and create lasting business value.</p>
         <div class="manifesto__cols">
           <div class="manifesto__col reveal">
             <h3>Precision first</h3>
@@ -230,8 +263,9 @@
         <p class="eyebrow-label">( What we do )</p>
         <p class="services__statement">Four disciplines, one team — full-cycle from first sketch to global scale.</p>
       </header>
+      <p class="services__support">Every organisation is different. That's why we design solutions around your operational goals — not generic software. Whether you're modernising infrastructure, automating workflows or improving business intelligence, our approach is focused on measurable business outcomes.</p>
       <ul class="services__list">
-        <li class="service" data-cursor="—" data-preview="web">
+        <li class="service" data-cursor="—">
           <div class="service__row">
             <span class="service__num">01</span>
             <h3 class="service__name">Web platforms</h3>
@@ -239,7 +273,7 @@
           </div>
           <div class="service__body"><p>Design systems, dashboards, SaaS products and marketing sites — engineered with React, Next.js and edge infrastructure for instant loads anywhere on earth.</p></div>
         </li>
-        <li class="service" data-cursor="—" data-preview="mobile">
+        <li class="service" data-cursor="—">
           <div class="service__row">
             <span class="service__num">02</span>
             <h3 class="service__name">Mobile engineering</h3>
@@ -247,7 +281,7 @@
           </div>
           <div class="service__body"><p>Native iOS &amp; Android and cross-platform Flutter apps with offline-first data layers, buttery 120fps interfaces and CI pipelines that ship weekly.</p></div>
         </li>
-        <li class="service" data-cursor="—" data-preview="cloud">
+        <li class="service" data-cursor="—">
           <div class="service__row">
             <span class="service__num">03</span>
             <h3 class="service__name">Cloud &amp; DevOps</h3>
@@ -255,7 +289,7 @@
           </div>
           <div class="service__body"><p>Kubernetes, Terraform and serverless architectures with observability baked in — infrastructure that scales to millions and pages no one at 3am.</p></div>
         </li>
-        <li class="service" data-cursor="—" data-preview="ai">
+        <li class="service" data-cursor="—">
           <div class="service__row">
             <span class="service__num">04</span>
             <h3 class="service__name">AI &amp; data systems</h3>
@@ -264,73 +298,10 @@
           <div class="service__body"><p>LLM-powered products, retrieval pipelines, and analytics platforms — pragmatic machine learning that ships to production, not to slide decks.</p></div>
         </li>
       </ul>
-
-      <!-- floating auto-scrolling mockup preview (desktop hover) -->
-      <div class="svc-preview" id="svcPreview" aria-hidden="true">
-        <div class="svc-strip" data-strip="web">
-          <div class="svc-loop">
-            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
-            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
-            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
-          </div>
-          <div class="svc-loop" aria-hidden="true">
-            <div class="mk mk--land mk--mini"><span class="mk__landword">SHIP<br>BOLD.</span><div class="mk__landbar"><span></span><b>Start →</b></div></div>
-            <div class="mk mk--shop mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>aurum.store</em></div><div class="mk__body mk__body--row"><div class="mk__product"></div><div class="mk__buy"><h5>Meridian 01</h5><p></p><p class="short"></p><div class="mk__btn">Add</div></div></div></div>
-            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>analytics</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>4.2M</span><span>+38%</span></div><div class="mk__chart"><u style="height:40%"></u><u style="height:70%"></u><u style="height:52%"></u><u style="height:88%"></u><u style="height:63%"></u></div></div></div></div>
-          </div>
-        </div>
-        <div class="svc-strip" data-strip="mobile">
-          <div class="svc-loop">
-            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
-            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
-          </div>
-          <div class="svc-loop" aria-hidden="true">
-            <div class="mk mk--light mk--mini"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Lumina</div><div class="mk__card"></div><div class="mk__fab">→</div></div></div>
-            <div class="mk mk--light mk--mini mk--alt"><div class="mk__phone"><div class="mk__notch"></div><div class="mk__card mk__card--hero">Swift 120fps</div><div class="mk__card mk__card--half"></div><div class="mk__card"></div></div></div>
-          </div>
-        </div>
-        <div class="svc-strip" data-strip="cloud">
-          <div class="svc-loop">
-            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
-            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
-          </div>
-          <div class="svc-loop" aria-hidden="true">
-            <div class="mk mk--term mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>deploy</em></div><div class="mk__term"><p><b>$</b> vertex ship --prod</p><p class="ok">✓ build 12s</p><p class="ok">✓ 6 regions live</p></div></div>
-            <div class="mk mk--dark mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>fleet</em></div><div class="mk__body mk__body--row"><div class="mk__side"><b></b><b></b><b></b></div><div class="mk__main"><div class="mk__kpis"><span>99.9%</span><span>42ms</span></div><div class="mk__chart"><u style="height:80%"></u><u style="height:64%"></u><u style="height:91%"></u><u style="height:70%"></u><u style="height:84%"></u></div></div></div></div>
-          </div>
-        </div>
-        <div class="svc-strip" data-strip="ai">
-          <div class="svc-loop">
-            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
-            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
-          </div>
-          <div class="svc-loop" aria-hidden="true">
-            <div class="mk mk--chat mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>copilot</em></div><div class="mk__chat"><div class="bub user">Forecast Q3 churn</div><div class="bub ai">Trending down 2.1%…</div><div class="mk__input">Ask Nexora…</div></div></div>
-            <div class="mk mk--code mk--mini"><div class="mk__bar"><i></i><i></i><i></i><em>pipeline.py</em></div><div class="mk__code"><s style="width:52%"></s><s class="c2" style="width:70%"></s><s class="c3" style="width:44%"></s><s style="width:64%"></s><s class="c2" style="width:36%"></s></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════ STATS ═══════════════ -->
-    <section class="stats" data-section-theme="light">
-      <header class="stats__head">
-        <p class="eyebrow-label">( Proof in production )</p>
-        <p class="stats__statement">Numbers from systems running live around the world.</p>
-      </header>
-      <div class="stats__grid">
-        <div class="stat"><span class="stat__num" data-count="120" data-suffix="+">0</span><span class="stat__label">Products shipped</span></div>
-        <div class="stat"><span class="stat__num" data-count="14">0</span><span class="stat__label">Countries served</span></div>
-        <div class="stat"><span class="stat__num" data-count="10" data-suffix="+ yrs">0</span><span class="stat__label">Building software</span></div>
-        <div class="stat"><span class="stat__num" data-count="99.9" data-suffix="%">0</span><span class="stat__label">Uptime, fleet-wide</span></div>
-      </div>
-      <div class="stats__ticker" aria-hidden="true">
-        <div class="ticker" data-ticker data-speed="0.8">
-          <div class="ticker__track ticker__track--mono">
-            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
-            <span>TypeScript</span><span>React</span><span>Next.js</span><span>Node</span><span>Go</span><span>Rust</span><span>Python</span><span>Kubernetes</span><span>AWS</span><span>PostgreSQL</span><span>GraphQL</span><span>Flutter</span>
-          </div>
-        </div>
+      <div class="services__foot">
+        <a href="services.html" class="btn-big btn-big--sm" data-magnetic data-cursor="View">
+          <span>View All Solutions</span>
+        </a>
       </div>
     </section>
 
