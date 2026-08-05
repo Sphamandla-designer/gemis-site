@@ -480,6 +480,63 @@
     gsap.set(svcPreview, { autoAlpha: 0, scale: 0.92, transformOrigin: 'left center' });
   }
 
+  /* ───────── testimonials: reveal + carousel controls ───────── */
+  const tmsTrack = document.getElementById('tmsTrack');
+  if (tmsTrack) {
+    const cards = gsap.utils.toArray('.tcard-t', tmsTrack);
+    if (!reduced) {
+      cards.forEach((card, i) => {
+        gsap.from(card, {
+          y: 60, opacity: 0, duration: 0.9, ease: 'power3.out', delay: (i % 3) * 0.12,
+          scrollTrigger: { trigger: '.tms__track', start: 'top 82%' },
+        });
+      });
+    }
+    // dots + prev/next (drives the horizontal snap-scroll on narrow screens)
+    const dotsWrap = document.getElementById('tmsDots');
+    const dots = cards.map((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'tms__dot' + (i === 0 ? ' is-active' : '');
+      b.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+      b.addEventListener('click', () => scrollToCard(i));
+      dotsWrap.appendChild(b);
+      return b;
+    });
+    let current = 0;
+    function setActive(i) {
+      current = Math.max(0, Math.min(cards.length - 1, i));
+      dots.forEach((d, k) => d.classList.toggle('is-active', k === current));
+    }
+    function scrollToCard(i) {
+      setActive(i);
+      const card = cards[current];
+      // only horizontal-scroll when the track actually overflows (mobile)
+      if (tmsTrack.scrollWidth > tmsTrack.clientWidth + 4) {
+        tmsTrack.scrollTo({ left: card.offsetLeft - (tmsTrack.clientWidth - card.clientWidth) / 2, behavior: 'smooth' });
+      } else {
+        card.focus({ preventScroll: true });
+      }
+    }
+    document.getElementById('tmsPrev').addEventListener('click', () => scrollToCard(current - 1));
+    document.getElementById('tmsNext').addEventListener('click', () => scrollToCard(current + 1));
+    // keep dots in sync while the user swipes the track
+    let raf = null;
+    tmsTrack.addEventListener('scroll', () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        const mid = tmsTrack.scrollLeft + tmsTrack.clientWidth / 2;
+        let best = 0, bestD = Infinity;
+        cards.forEach((c, i) => {
+          const cc = c.offsetLeft + c.clientWidth / 2;
+          const d = Math.abs(cc - mid);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        setActive(best);
+      });
+    }, { passive: true });
+  }
+
   /* ───────── stat counters ───────── */
   document.querySelectorAll('.stat__num').forEach((el) => {
     const end = parseFloat(el.dataset.count);
