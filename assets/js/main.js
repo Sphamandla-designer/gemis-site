@@ -181,7 +181,9 @@
   /* ───────── travelling 3D stage: rides with the viewport through
      the hero + manifesto, then stops at the end of section two ───────── */
   if (!reduced && document.getElementById('glStage')) {
-    const glEnd = document.getElementById('proof') ? '#proof' : '#studio';
+    // knot travels the hero, through the stats, and settles at the end of the
+    // "Building long-term technology partnerships" (#studio) section
+    const glEnd = '#studio';
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
@@ -209,12 +211,13 @@
         gsap.set('.hero__content', { yPercent: self.progress * 18, opacity: 1 - self.progress * 0.9 });
       },
     });
-    // the second section (stats) spans full width, so fade the knot out as it
-    // arrives — keeps every number readable while preserving the hero drift
-    gsap.to('#glStage', {
-      opacity: 0, ease: 'none',
-      scrollTrigger: { trigger: glEnd, start: 'top 88%', end: 'top 52%', scrub: true },
-    });
+    // phones can't fit the knot beside the content, so fade it out past the hero
+    if (window.matchMedia('(max-width: 820px)').matches && document.getElementById('proof')) {
+      gsap.to('#glStage', {
+        opacity: 0, ease: 'none',
+        scrollTrigger: { trigger: '#proof', start: 'top 78%', end: 'top 40%', scrub: true },
+      });
+    }
   }
 
   /* ───────── manifesto word-by-word reveal ───────── */
