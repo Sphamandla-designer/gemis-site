@@ -636,7 +636,7 @@
   ScrollTrigger.refresh();
 
   /* ───────── anchor links (non-menu) ───────── */
-  document.querySelectorAll('a[href^="#"]:not([data-menu-close])').forEach((a) => {
+  document.querySelectorAll('a[href^="#"]:not([data-menu-close]):not(.skip-link)').forEach((a) => {
     a.addEventListener('click', (e) => {
       const target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
