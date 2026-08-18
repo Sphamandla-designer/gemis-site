@@ -394,13 +394,15 @@
         const vh = window.innerHeight;
         const w = shots[0].offsetWidth;
         const h = shots[0].offsetHeight;
-        // phase 1: ring spins; phase 2: settle into a 2×4 grid
+        // phase 1: ring spins; phase 2: settle into a centred 2-row grid
         const q = smooth(gsap.utils.clamp(0, 1, (p - 0.66) / 0.3));
         const spin = p * Math.PI * 1.35;
         const RX = Math.min(vw * 0.42, 860);
         const gapX = Math.min(vw * 0.012, 18);
         const gapY = 44;
-        const gw = Math.min(w, (vw * 0.92 - 3 * gapX) / 4);
+        const cols = Math.ceil(N / 2);
+        const rows = Math.ceil(N / cols);
+        const gw = Math.min(w, (vw * 0.92 - (cols - 1) * gapX) / cols);
         const gs = gw / w;
 
         shots.forEach((shot, i) => {
@@ -412,10 +414,10 @@
           const ringR = -Math.sin(a) * 26;        // deg, band curvature
           const ringO = depth < -0.25 ? 0 : gsap.utils.clamp(0, 1, (depth + 0.25) * 2.4);
 
-          const col = i % 4;
-          const row = Math.floor(i / 4);
-          const gridX = (col - 1.5) * (gw + gapX);
-          const gridY = (row - 0.5) * (h * gs + gapY);
+          const col = i % cols;
+          const row = Math.floor(i / cols);
+          const gridX = (col - (cols - 1) / 2) * (gw + gapX);
+          const gridY = (row - (rows - 1) / 2) * (h * gs + gapY);
 
           gsap.set(shot, {
             x: ringX * (1 - q) + gridX * q - w / 2,
