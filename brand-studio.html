@@ -3,362 +3,1008 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Studio — GEMIS® Identity Practice</title>
-  <meta name="description" content="Brand Studio is the identity practice inside GEMIS — brand identities for SMEs and start-ups, led by UI/UX designer Sphamandla Xaba." />
+  <title>UI/UX &amp; Product Design Studio in Johannesburg | GEMIS® Studio</title>
+  <meta name="description" content="Product, interface and web design for South African companies. Fixed pricing from R6,500. Designed and built under one roof — Sandton, Johannesburg." />
+  <meta property="og:title" content="UI/UX & Product Design Studio in Johannesburg | GEMIS® Studio" />
+  <meta property="og:description" content="Product, interface and web design for South African companies. Fixed pricing from R6,500. Designed and built under one roof — Sandton, Johannesburg." />
+  <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/style.css?v=20260822" />
-</head>
-<body data-theme="dark" class="page-brand">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/studio.css?v=20260826" />
+  <script>try{if(!sessionStorage.getItem('gemisStudioPre')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('preload-on');}catch(e){}</script>
 
-  <a class="skip-link" href="#top">Skip to content</a>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#website",
+        "url": "https://sphamandla-designer.github.io/gemis-site/",
+        "name": "GEMIS® Studio"
+      },
+      {
+        "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#org",
+        "name": "GEMIS® Studio",
+        "legalName": "GEM Information Systems (Pty) Ltd",
+        "description": "Product, interface and web design for South African companies. Fixed pricing from R6,500. Designed and built under one roof — Sandton, Johannesburg.",
+        "url": "https://sphamandla-designer.github.io/gemis-site/brand-studio.html",
+        "email": "info@gemis.co.za",
+        "telephone": "+27 11 219 5008",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "66 Park Lane, Sandown",
+          "addressLocality": "Sandton",
+          "addressRegion": "Gauteng",
+          "postalCode": "2196",
+          "addressCountry": "ZA"
+        },
+        "geo": { "@type": "GeoCoordinates", "latitude": -26.1076, "longitude": 28.0567 },
+        "areaServed": { "@type": "Country", "name": "South Africa" }
+      },
+      {
+        "@type": "Service",
+        "name": "Product Teardown",
+        "serviceType": "UX audit",
+        "provider": { "@id": "https://sphamandla-designer.github.io/gemis-site/#org" },
+        "areaServed": { "@type": "Country", "name": "South Africa" },
+        "offers": { "@type": "Offer", "price": "6500", "priceCurrency": "ZAR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Interface Refresh Sprint",
+        "serviceType": "Interface design",
+        "provider": { "@id": "https://sphamandla-designer.github.io/gemis-site/#org" },
+        "areaServed": { "@type": "Country", "name": "South Africa" },
+        "offers": { "@type": "Offer", "price": "18000", "priceCurrency": "ZAR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Web Experience",
+        "serviceType": "Website design and build",
+        "provider": { "@id": "https://sphamandla-designer.github.io/gemis-site/#org" },
+        "areaServed": { "@type": "Country", "name": "South Africa" },
+        "offers": { "@type": "Offer", "price": "55000", "priceCurrency": "ZAR" }
+      },
+      {
+        "@type": "Service",
+        "name": "Embedded Designer",
+        "serviceType": "Design retainer",
+        "provider": { "@id": "https://sphamandla-designer.github.io/gemis-site/#org" },
+        "areaServed": { "@type": "Country", "name": "South Africa" },
+        "offers": { "@type": "Offer", "price": "20000", "priceCurrency": "ZAR", "unitText": "per month" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How much does UI/UX design cost in South Africa?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Our work starts at R6,500 for a Product Teardown and runs to R85,000 for a fully designed and built web experience. Every price on this page is fixed, includes developer handoff, and includes thirty days of support. We don't bill hourly and we don't issue change requests for things that should have been in scope." } },
+          { "@type": "Question", "name": "Do you work with companies outside Johannesburg?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. We're based in Sandton and work with clients across South Africa. Discovery, reviews and handover all run remotely, and we travel for stakeholder workshops on larger engagements." } },
+          { "@type": "Question", "name": "Can you work with our existing developers?",
+            "acceptedAnswer": { "@type": "Answer", "text": "That's the normal case. Every engagement ends in a developer-ready specification — measurements, interaction states, design tokens, edge cases and an annotated Figma file — plus a walkthrough call with your team and thirty days of questions answered." } },
+          { "@type": "Question", "name": "What if we already have a designer?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Then you probably want the Embedded Designer arrangement or a single Interface Refresh Sprint rather than a full engagement. We regularly work alongside in-house designers on system definition and overflow capacity." } },
+          { "@type": "Question", "name": "How long does a website take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Six to eight weeks from kickoff to launch for a Web Experience engagement. An Interface Refresh Sprint is two weeks. A Product Teardown is five working days." } },
+          { "@type": "Question", "name": "Do you still do branding and logos?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, as a Brand Foundation module inside a Web Experience engagement, or as a standalone project where identity genuinely needs to come first. It's simply no longer what we lead with." } },
+          { "@type": "Question", "name": "What happens after handover?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Thirty days of build-support questions at no charge, and a twelve-month experience roadmap so you know what the next sensible investment is. Many clients move onto an Embedded Designer arrangement from there." } },
+          { "@type": "Question", "name": "Can you build what you design?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — that's the point. GEMIS Studio sits inside GEM Information Systems, a software development company. Design and build happen under one roof, with no handover to a third party." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="studio">
+
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ═══════════════ PRELOADER ═══════════════ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <div class="preloader__logo" aria-hidden="true">
-        <span class="pl-char">B</span><span class="pl-char">R</span><span class="pl-char">A</span><span class="pl-char">N</span><span class="pl-char">D</span><span class="pl-char pl-char--reg">®</span>
-      </div>
-      <div class="preloader__row">
-        <span class="preloader__hint">Mixing the inks</span>
-        <span class="preloader__count" id="preloaderCount">00</span>
-      </div>
-      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__mark">GEMIS<sup>®</sup></div>
+    <div class="preloader__count" id="preCount">00</div>
+    <div class="preloader__words">
+      <span class="preloader__word is-on" data-preword>DIAGNOSING</span>
+      <span class="preloader__word" data-preword>DESIGNING</span>
+      <span class="preloader__word" data-preword>BUILDING</span>
     </div>
-    <div class="preloader__curtain" aria-hidden="true"></div>
   </div>
 
-  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <!-- ═══════════════ CURSOR + GRAIN ═══════════════ -->
   <div class="cursor" id="cursor" aria-hidden="true">
-    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
-    <div class="cursor__dot" id="cursorDot"></div>
+    <span class="cursor__label" id="cursorLabel"></span>
   </div>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- ═══════════════ HEADER ═══════════════ -->
-  <header class="header" id="header">
-    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">Brand Studio</span></a>
-    <div class="header__right">
-      <a href="#contact" class="header__cta" data-magnetic>Start a brand</a>
-      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
-        <span></span><span></span>
-      </button>
-    </div>
+  <!-- ═══════════════ 01 · NAVIGATION ═══════════════ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html">
+      <span class="nav__logo">GEMIS<sup>®</sup></span>
+      <span class="nav__sub">STUDIO</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link" href="#work"><span class="nav__num">01</span><span class="nav__swap"><span>Work</span><span aria-hidden="true">Work</span></span></a>
+      <a class="nav__link" href="#services"><span class="nav__num">02</span><span class="nav__swap"><span>Services</span><span aria-hidden="true">Services</span></span></a>
+      <a class="nav__link" href="#approach"><span class="nav__num">03</span><span class="nav__swap"><span>Approach</span><span aria-hidden="true">Approach</span></span></a>
+      <a class="nav__link" href="#pricing"><span class="nav__num">04</span><span class="nav__swap"><span>Pricing</span><span aria-hidden="true">Pricing</span></span></a>
+      <a class="nav__link" href="#contact"><span class="nav__num">05</span><span class="nav__swap"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
+    </nav>
+    <a class="btn-gold nav__cta" href="#contact">Book a Teardown</a>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
   </header>
 
-  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <div class="menu__inner">
-      <ul class="menu__list">
-        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="services.html" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
-        <li><a href="managem.html" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Products</span></a></li>
-        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Case Studies</span></a></li>
-        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Brand Studio</span></a></li>
-        <li><a href="about.html" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">About</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">07</span><span class="menu__word">Contact</span></a></li>
-      </ul>
-      <div class="menu__foot">
-        <a href="mailto:info@gemis.co.za" class="menu__mail">info@gemis.co.za</a>
-        <div class="menu__socials">
-          <a href="#" aria-label="GitHub">GitHub</a>
-          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-          <a href="#" aria-label="X">X</a>
-        </div>
-      </div>
+  <!-- Mobile overlay menu -->
+  <nav class="mmenu" id="mobileMenu" aria-hidden="true" aria-label="Mobile">
+    <div class="mmenu__links">
+      <a href="#work" data-mclose><span>01</span>Work</a>
+      <a href="#services" data-mclose><span>02</span>Services</a>
+      <a href="#approach" data-mclose><span>03</span>Approach</a>
+      <a href="#pricing" data-mclose><span>04</span>Pricing</a>
+      <a href="#contact" data-mclose><span>05</span>Contact</a>
+    </div>
+    <div class="mmenu__foot">
+      <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+      <a href="tel:+27112195008">+27 11 219 5008</a>
     </div>
   </nav>
 
-  <main id="top">
+  <main id="main">
 
-    <!-- ═══════════════ TRAVELLING 3D GEM ═══════════════ -->
-    <div class="gl-stage" id="glStage" aria-hidden="true">
-      <canvas class="hero__gl" id="heroCanvas"></canvas>
-    </div>
+    <!-- ═══════════════ 02 · HERO — BEFORE/AFTER SCRUBBER ═══════════════ -->
+    <section class="hero" id="top">
+      <div class="scrub" id="scrub">
 
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero" data-section-theme="dark">
-      <div class="hero__content">
-        <p class="hero__eyebrow"><span class="hero__dot"></span>GEMIS® Brand Studio — identity practice</p>
-        <h1 class="hero__title">
-          <span class="hero__line"><span class="hero__word" data-split>BRANDS</span></span>
-          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>WITH</span></span>
-          <span class="hero__line"><span class="hero__word" data-split>BACKBONE<span class="hero__accent">.</span></span></span>
-        </h1>
-        <div class="hero__meta">
-          <p class="hero__blurb">Brand identities for SMEs &amp; start-ups —<br />led by UI/UX designer Sphamandla Xaba.</p>
-          <div class="hero__scroll" id="scrollHint">
-            <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
-            <span>Scroll</span>
+        <!-- BEFORE — deliberately bad 2011-era admin -->
+        <div class="scrub__layer scrub__layer--before" aria-hidden="true">
+          <div class="mkb">
+            <div class="mkb__titlebar">
+              <span class="mkb__logo">OrderDesk™ Enterprise <em>v3.2.11</em></span>
+              <span class="mkb__menus"><i>File</i><i>Edit</i><i>View</i><i>Reports</i><i>Tools</i><i>Window</i><i>Help</i></span>
+              <span class="mkb__user">Logged in: ADMIN01 | <u>Logout</u></span>
+            </div>
+            <div class="mkb__toolbar">
+              <button class="mkb__btn" type="button" tabindex="-1">✚ New Order</button>
+              <button class="mkb__btn" type="button" tabindex="-1">Export CSV</button>
+              <button class="mkb__btn" type="button" tabindex="-1">🖶 Print</button>
+              <button class="mkb__btn mkb__btn--green" type="button" tabindex="-1">Refresh Grid</button>
+              <span class="mkb__search">Quick find: <input type="text" value="ORD-2026-" tabindex="-1" readonly /></span>
+              <span class="mkb__crumb">Home &gt;&gt; Sales &gt;&gt; Orders &gt;&gt; All Orders (viewing 1–12 of 4,208)</span>
+            </div>
+            <div class="mkb__body">
+              <div class="mkb__side">
+                <p class="mkb__sidehead">▼ NAVIGATION</p>
+                <ul>
+                  <li>▸ Dashboard</li>
+                  <li class="is-sel">▾ Orders<ul><li>All Orders</li><li>Pending</li><li>Back Orders</li><li>Cancelled</li></ul></li>
+                  <li>▸ Customers</li>
+                  <li>▸ Stock Control</li>
+                  <li>▸ Invoicing</li>
+                  <li>▸ Reports (14)</li>
+                  <li>▸ System Config</li>
+                </ul>
+                <div class="mkb__piewrap">
+                  <p class="mkb__sidehead">ORDER MIX (YTD)</p>
+                  <svg class="mkb__pie" viewBox="0 0 42 42" aria-hidden="true">
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#4A76A8" stroke-dasharray="22 100" stroke-dashoffset="0"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#7CB342" stroke-dasharray="18 100" stroke-dashoffset="-22"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#E53935" stroke-dasharray="14 100" stroke-dashoffset="-40"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#FB8C00" stroke-dasharray="12 100" stroke-dashoffset="-54"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#8E24AA" stroke-dasharray="9 100" stroke-dashoffset="-66"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#00ACC1" stroke-dasharray="8 100" stroke-dashoffset="-75"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#FDD835" stroke-dasharray="7 100" stroke-dashoffset="-83"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#6D4C41" stroke-dasharray="6 100" stroke-dashoffset="-90"/>
+                    <circle r="15.9" cx="21" cy="21" pathLength="100" stroke="#C0CA33" stroke-dasharray="4 100" stroke-dashoffset="-96"/>
+                  </svg>
+                  <ul class="mkb__legend">
+                    <li><i style="background:#4A76A8"></i>Hardware</li>
+                    <li><i style="background:#7CB342"></i>Consumbles</li>
+                    <li><i style="background:#E53935"></i>Bulk/Whlsale</li>
+                    <li><i style="background:#FB8C00"></i>Retail-A</li>
+                    <li><i style="background:#8E24AA"></i>Retail-B(old)</li>
+                    <li><i style="background:#00ACC1"></i>Contract</li>
+                    <li><i style="background:#FDD835"></i>Misc.1</li>
+                    <li><i style="background:#6D4C41"></i>Misc.2</li>
+                    <li><i style="background:#C0CA33"></i>Unassigned</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mkb__main">
+                <table class="mkb__table">
+                  <thead>
+                    <tr><th>Ord.No</th><th>Customer Name</th><th>Itm</th><th>Total(R)</th><th>Status</th><th>SalesRep</th><th>Capt.Date</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>ORD-4208</td><td>Nkosi Hardware CC</td><td>14</td><td>18,340.00</td><td><b style="color:#7CB342">DISPATCHED</b></td><td>T.MOKOENA</td><td>26/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4207</td><td>Mzansi Fresh Foods</td><td>3</td><td>2,145.50</td><td><b style="color:#E53935">!! OVERDUE</b></td><td>S.NAIDOO</td><td>26/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4206</td><td>Cape Coast Logistics</td><td>22</td><td>64,780.00</td><td><b style="color:#FB8C00">await.stock</b></td><td>T.MOKOENA</td><td>25/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4205</td><td>Ubuntu Med Supplies</td><td>8</td><td>12,090.25</td><td><b style="color:#4A76A8">Processing</b></td><td>L.DLAMINI</td><td>25/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4204</td><td>Karoo Solar (Pty)</td><td>41</td><td>128,500.00</td><td><b style="color:#7CB342">dispatched</b></td><td>S.NAIDOO</td><td>25/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4203</td><td>Jozi Print Co.</td><td>6</td><td>4,675.00</td><td><b style="color:#E53935">OVERDUE</b></td><td>UNASSIGNED</td><td>24/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4202</td><td>Bright Steel SA</td><td>17</td><td>39,220.75</td><td><b style="color:#FB8C00">Await Stock</b></td><td>T.MOKOENA</td><td>24/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4201</td><td>Veld &amp; Vine Trading</td><td>2</td><td>1,890.00</td><td><b style="color:#7CB342">DELIVERED</b></td><td>L.DLAMINI</td><td>24/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4200</td><td>Atlas Motor Spares</td><td>11</td><td>23,410.00</td><td><b style="color:#4A76A8">processing</b></td><td>S.NAIDOO</td><td>23/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4199</td><td>Sable Stationers</td><td>5</td><td>3,205.50</td><td><b style="color:#E53935">Overdue!!</b></td><td>T.MOKOENA</td><td>23/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4198</td><td>Umhlanga Textiles</td><td>29</td><td>87,660.00</td><td><b style="color:#7CB342">Dispatched</b></td><td>L.DLAMINI</td><td>22/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                    <tr><td>ORD-4197</td><td>Protea Office Park</td><td>9</td><td>15,975.00</td><td><b style="color:#FB8C00">AWAIT.STOCK</b></td><td>UNASSIGNED</td><td>22/08/26</td><td><u>edit</u> <u>del</u> <u>dup</u></td></tr>
+                  </tbody>
+                </table>
+                <div class="mkb__pager">
+                  <button class="mkb__btn" type="button" tabindex="-1">&lt;&lt; First</button>
+                  <button class="mkb__btn" type="button" tabindex="-1">&lt; Prev</button>
+                  <span>Page 1 / 351</span>
+                  <button class="mkb__btn" type="button" tabindex="-1">Next &gt;</button>
+                  <button class="mkb__btn" type="button" tabindex="-1">Last &gt;&gt;</button>
+                  <span class="mkb__note">* double-click row to open. Grid refreshed 08:12:44</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="scrub__tag scrub__tag--before">BEFORE</span>
+        </div>
+
+        <!-- AFTER — the same product, redesigned -->
+        <div class="scrub__layer scrub__layer--after" id="afterLayer" aria-hidden="true">
+          <div class="mka">
+            <aside class="mka__rail">
+              <span class="mka__logo">OD</span>
+              <svg viewBox="0 0 24 24" class="is-on" aria-hidden="true"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4H5zM5 12h14v7H5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m5.4 10V5m5.3 14v-7m5.3 7V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </aside>
+            <div class="mka__page">
+              <header class="mka__top">
+                <div>
+                  <h4>Orders</h4>
+                  <p>Tuesday 26 August · 4,208 total</p>
+                </div>
+                <div class="mka__topright">
+                  <span class="mka__searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m15.5 15.5 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Search orders</span>
+                  <span class="mka__primary">New order</span>
+                </div>
+              </header>
+              <div class="mka__kpis">
+                <div class="mka__kpi"><span>Orders this week</span><b>312</b><i class="is-up">▲ steady</i></div>
+                <div class="mka__kpi"><span>Awaiting stock</span><b>18</b><i>needs action</i></div>
+                <div class="mka__kpi mka__kpi--warn"><span>Overdue</span><b>3</b><i>oldest 4 days</i></div>
+              </div>
+              <div class="mka__grid">
+                <figure class="mka__chart">
+                  <figcaption>Orders dispatched · last 12 weeks</figcaption>
+                  <svg viewBox="0 0 560 220" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#3056D3" stop-opacity="0.22"/>
+                        <stop offset="1" stop-color="#3056D3" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <g class="mka__gridlines">
+                      <line x1="20" y1="38" x2="540" y2="38"/><line x1="20" y1="92" x2="540" y2="92"/>
+                      <line x1="20" y1="146" x2="540" y2="146"/><line x1="20" y1="200" x2="540" y2="200"/>
+                    </g>
+                    <path d="M20 137 L66 128 L112 133 L158 109 L204 113 L250 92 L296 97 L342 74 L388 80 L434 58 L480 64 L526 38 L526 200 L20 200 Z" fill="url(#areaFill)"/>
+                    <path d="M20 137 L66 128 L112 133 L158 109 L204 113 L250 92 L296 97 L342 74 L388 80 L434 58 L480 64 L526 38" fill="none" stroke="#3056D3" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                    <g class="mka__pt"><circle cx="158" cy="109" r="4"/><text x="158" y="94">61</text></g>
+                    <g class="mka__pt"><circle cx="342" cy="74" r="4"/><text x="342" y="59">84</text></g>
+                    <g class="mka__pt"><circle cx="526" cy="38" r="4"/><text x="512" y="26">108</text></g>
+                  </svg>
+                </figure>
+                <table class="mka__table">
+                  <thead>
+                    <tr><th>Order</th><th>Customer</th><th class="is-key">Total</th><th class="is-key">Status</th><th>Dispatch</th><th>Rep</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>4208</td><td>Nkosi Hardware</td><td class="is-key">R 18,340</td><td><em class="ok">Dispatched</em></td><td>Today</td><td>TM</td></tr>
+                    <tr><td>4207</td><td>Mzansi Fresh Foods</td><td class="is-key">R 2,146</td><td><em class="bad">Overdue</em></td><td>—</td><td>SN</td></tr>
+                    <tr><td>4206</td><td>Cape Coast Logistics</td><td class="is-key">R 64,780</td><td><em class="wait">Awaiting stock</em></td><td>Thu</td><td>TM</td></tr>
+                    <tr><td>4205</td><td>Ubuntu Med Supplies</td><td class="is-key">R 12,090</td><td><em class="run">Processing</em></td><td>Wed</td><td>LD</td></tr>
+                    <tr><td>4204</td><td>Karoo Solar</td><td class="is-key">R 128,500</td><td><em class="ok">Dispatched</em></td><td>Today</td><td>SN</td></tr>
+                    <tr><td>4203</td><td>Jozi Print Co.</td><td class="is-key">R 4,675</td><td><em class="bad">Overdue</em></td><td>—</td><td>—</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <span class="scrub__tag scrub__tag--after">AFTER</span>
+        </div>
+
+        <!-- Divider + handle -->
+        <div class="scrub__divider" id="scrubLine" aria-hidden="true"></div>
+        <button class="scrub__handle" id="scrubHandle" type="button" role="slider"
+                aria-label="Before and after comparison"
+                aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                aria-valuetext="50% — showing equal parts of the before and after interface"
+                data-cursor="DRAG" data-cursor-size="drag">↔</button>
+
+        <div class="hero__scrim" aria-hidden="true"></div>
+
+        <!-- Overlay content -->
+        <div class="hero__content">
+          <p class="hero__eyebrow">GEMIS® STUDIO — PRODUCT &amp; EXPERIENCE DESIGN · SANDTON, JOHANNESBURG</p>
+          <h1 class="hero__title">
+            <span class="mask"><span class="mask__inner">DESIGN THAT FIXES</span></span>
+            <span class="mask"><span class="mask__inner">WHAT YOU'RE LOSING.</span></span>
+          </h1>
+          <p class="hero__sub">Product, interface and web design for South African companies — by the studio that can also build it.</p>
+          <div class="hero__ctas">
+            <a class="btn-gold" href="#contact">Book a Product Teardown — R6,500 <span class="btn-gold__arrow" aria-hidden="true">→</span></a>
+            <a class="btn-ghost" href="#work">See the work</a>
           </div>
         </div>
+
+        <p class="hero__meta hero__meta--left">EST. 2005 · 16+ PRODUCTS SHIPPED · 20+ CLIENTS</p>
+        <p class="hero__meta hero__meta--right" aria-hidden="true">SCROLL<span class="hero__scrollline"><i></i></span></p>
       </div>
-      <div class="hero__ticker" aria-hidden="true">
-        <div class="ticker" data-ticker data-speed="1">
-          <div class="ticker__track">
-            <span>Identity systems</span><i>✦</i><span>Logos &amp; marks</span><i>✦</i><span>Typography</span><i>✦</i><span>Colour</span><i>✦</i><span>Voice</span><i>✦</i><span>Guidelines</span><i>✦</i>
-            <span>Identity systems</span><i>✦</i><span>Logos &amp; marks</span><i>✦</i><span>Typography</span><i>✦</i><span>Colour</span><i>✦</i><span>Voice</span><i>✦</i><span>Guidelines</span><i>✦</i>
+    </section>
+
+    <!-- ═══════════════ 03 · CAPABILITY MARQUEE ═══════════════ -->
+    <section class="capm" aria-label="Capabilities">
+      <div class="capm__row" data-marquee>
+        <div class="capm__track capm__track--l">
+          <span>Product design <i>✦</i> Interface design <i>✦</i> Design systems <i>✦</i> Web experience <i>✦</i> Dashboard UX <i>✦</i></span>
+          <span aria-hidden="true">Product design <i>✦</i> Interface design <i>✦</i> Design systems <i>✦</i> Web experience <i>✦</i> Dashboard UX <i>✦</i></span>
+        </div>
+      </div>
+      <div class="capm__row" data-marquee>
+        <div class="capm__track capm__track--r">
+          <span>Operations UX <i>✦</i> AI experience design <i>✦</i> WhatsApp service design <i>✦</i> Developer handoff <i>✦</i></span>
+          <span aria-hidden="true">Operations UX <i>✦</i> AI experience design <i>✦</i> WhatsApp service design <i>✦</i> Developer handoff <i>✦</i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 04 · THE PROBLEM MIRROR ═══════════════ -->
+    <section class="problem" id="problem">
+      <p class="slabel">( Sound familiar )</p>
+      <div class="problem__stagewrap">
+        <div class="problem__stage" id="problemStage" aria-live="polite">
+          <button class="problem__line" data-target="svc-03" type="button">“Our website looks fine but nobody enquires.”</button>
+          <button class="problem__line" data-target="svc-01" type="button">“Our staff hate the system they use all day.”</button>
+          <button class="problem__line" data-target="svc-02" type="button">“It works, it just looks like 2011.”</button>
+          <button class="problem__line" data-target="svc-02" type="button">“Every screen in our product looks different.”</button>
+          <button class="problem__line" data-target="svc-01" type="button">“We're adding AI and nobody trusts it.”</button>
+          <button class="problem__line" data-target="svc-01" type="button">“Users drop off and we don't know where.”</button>
+        </div>
+        <div class="problem__ctrl">
+          <span class="problem__progress" aria-hidden="true"><i id="problemBar"></i></span>
+          <button class="problem__pause" id="problemPause" type="button" aria-pressed="false" aria-label="Pause rotation">⏸</button>
+        </div>
+      </div>
+      <p class="problem__close">Every one of these is a design problem with a commercial cost. We start by finding out which one is yours.</p>
+    </section>
+
+    <!-- ═══════════════ 05 · THE PRACTICE ═══════════════ -->
+    <section class="practice">
+      <p class="slabel">( The practice )</p>
+      <p class="practice__lead" data-reveal-lines>GEMIS Studio is the product and experience design practice inside GEM Information Systems. We design the interfaces South African businesses run on — and unlike a design studio, we can build them too.</p>
+      <div class="practice__cols">
+        <div class="practice__col">
+          <span class="practice__num">01</span>
+          <h3>Diagnosis before decoration</h3>
+          <p>We find what's costing you money before we open Figma. The look follows the logic, every time.</p>
+        </div>
+        <div class="practice__rule" aria-hidden="true"></div>
+        <div class="practice__col">
+          <span class="practice__num">02</span>
+          <h3>Nothing half-delivered</h3>
+          <p>Developer handoff, thirty days of build support and a twelve-month roadmap are inside every price. Never an extra, never a change request.</p>
+        </div>
+        <div class="practice__rule" aria-hidden="true"></div>
+        <div class="practice__col">
+          <span class="practice__num">03</span>
+          <h3>Designed, then built</h3>
+          <p>Most studios hand you a file and leave. We hand you a working system, because the people who design it sit beside the people who build it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 06 · SERVICES (horizontal pin ≥1280px) ═══════════════ -->
+    <section class="svcs" id="services">
+      <div class="svcs__pin" id="svcsPin">
+        <header class="svcs__head">
+          <p class="slabel">( Services )</p>
+          <h2 class="svcs__title">Product, dashboard and website design — priced up front.</h2>
+        </header>
+        <div class="svcs__viewport">
+          <div class="svcs__track" id="svcsTrack">
+
+            <!-- 01 · Product Teardown -->
+            <article class="svc" id="svc-01">
+              <div class="svc__info">
+                <span class="svc__num">01</span>
+                <h3 class="svc__name">Product Teardown</h3>
+                <p class="svc__meta"><b>R6,500</b> · 5 days</p>
+                <p class="svc__outcome">You'll know exactly what's costing you customers, ranked — with the five worst screens already redesigned.</p>
+                <ul class="svc__list">
+                  <li>Heuristic evaluation of your product, site or internal system</li>
+                  <li>Journey walkthrough of your two highest-value user paths</li>
+                  <li>Prioritised issue list, ranked by revenue impact</li>
+                  <li>Annotated redesigns of the five worst screens</li>
+                  <li>Twelve-month experience roadmap</li>
+                </ul>
+                <p class="svc__foot">Fee credited in full against any engagement booked within 60 days.</p>
+                <a class="svc__cta" href="#contact">Book a Teardown <span>→</span></a>
+              </div>
+              <div class="svc__visual">
+                <div class="device device--laptop" data-tilt>
+                  <div class="device__screen">
+                    <div class="mkt">
+                      <header class="mkt__bar"><b>UX audit — screen 3 of 5</b><span>ranked by revenue impact</span></header>
+                      <div class="mkt__body">
+                        <div class="mkt__ui">
+                          <div class="mkt__uibar"></div>
+                          <div class="mkt__uirow"><i></i><i></i><i class="is-wide"></i></div>
+                          <div class="mkt__uiblock"></div>
+                          <div class="mkt__uirow"><i class="is-wide"></i><i></i></div>
+                          <span class="mkt__pin" style="top:16%;left:64%">1</span>
+                          <span class="mkt__pin" style="top:44%;left:22%">2</span>
+                          <span class="mkt__pin" style="top:70%;left:78%">3</span>
+                        </div>
+                        <ol class="mkt__issues">
+                          <li><b>1 · Checkout CTA below fold</b><span>est. impact — high</span></li>
+                          <li><b>2 · Form errors shown on submit only</b><span>est. impact — high</span></li>
+                          <li><b>3 · No empty state on search</b><span>est. impact — medium</span></li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- 02 · Interface Refresh Sprint -->
+            <article class="svc" id="svc-02">
+              <div class="svc__info">
+                <span class="svc__num">02</span>
+                <h3 class="svc__name">Interface Refresh Sprint</h3>
+                <p class="svc__meta"><b>R18,000 – R25,000</b> · 2 weeks</p>
+                <p class="svc__outcome">Your product looks current, and your developer can build it on Monday.</p>
+                <ul class="svc__list">
+                  <li>Up to eight key screens redesigned, desktop and mobile</li>
+                  <li>Visual system: colour, type scale, spacing, components</li>
+                  <li>Every interaction state specified — hover, loading, empty, error</li>
+                  <li>WCAG 2.1 AA contrast pass</li>
+                  <li>Figma file with full developer handoff annotations</li>
+                </ul>
+                <a class="svc__cta" href="#contact">Start a Sprint <span>→</span></a>
+              </div>
+              <div class="svc__visual">
+                <div class="device device--tablet" data-tilt>
+                  <div class="device__screen">
+                    <div class="mks">
+                      <header class="mks__bar">Visual system · v1.0</header>
+                      <div class="mks__swatches">
+                        <i style="background:#141824"></i><i style="background:#3056D3"></i><i style="background:#F5F6FA"></i><i style="background:#20B27A"></i><i style="background:#D64545"></i>
+                      </div>
+                      <div class="mks__type">
+                        <span class="t1">Aa</span><span class="t2">Heading / 28</span><span class="t3">Body / 16 · Label / 12</span>
+                      </div>
+                      <div class="mks__btns">
+                        <span class="b1">Save changes</span><span class="b2">Cancel</span><span class="b3">Disabled</span>
+                      </div>
+                      <div class="mks__fields">
+                        <span class="f1"><i>Email address</i>thabo@company.co.za</span>
+                        <span class="f2"><i>Password</i>••••••••<em>Min. 8 characters</em></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- 03 · Web Experience -->
+            <article class="svc" id="svc-03">
+              <div class="svc__info">
+                <span class="svc__num">03</span>
+                <h3 class="svc__name">Web Experience</h3>
+                <p class="svc__meta"><b>R55,000 – R85,000</b> · 6 – 8 weeks</p>
+                <p class="svc__outcome">A site that turns visitors into enquiries — designed, built, launched and measured.</p>
+                <ul class="svc__list">
+                  <li>Sitemap, user flows and wireframes</li>
+                  <li>Up to ten unique responsive page templates</li>
+                  <li>Built and launched, or handed off to your developers</li>
+                  <li>SEO foundations, analytics and lead capture</li>
+                  <li>Sales one-pager and pitch deck templates</li>
+                </ul>
+                <a class="svc__cta" href="#contact">Plan a site <span>→</span></a>
+              </div>
+              <div class="svc__visual">
+                <div class="device device--laptop" data-tilt>
+                  <div class="device__screen">
+                    <div class="mkw">
+                      <header class="mkw__nav"><b>KAROO<i>SOLAR</i></b><span>Systems · Projects · About</span><em>Get a quote</em></header>
+                      <div class="mkw__hero">
+                        <h5>Power that pays<br/>for itself.</h5>
+                        <p>Commercial solar for farms and factories across the Karoo.</p>
+                        <span class="mkw__cta">Book a site survey</span>
+                      </div>
+                      <div class="mkw__stats"><span><b>214</b>installs</span><span><b>9.2MW</b>capacity</span><span><b>25yr</b>warranty</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- 04 · Embedded Designer -->
+            <article class="svc" id="svc-04">
+              <div class="svc__info">
+                <span class="svc__num">04</span>
+                <h3 class="svc__name">Embedded Designer</h3>
+                <p class="svc__meta"><b>R20,000 – R35,000 / month</b> · Ongoing</p>
+                <p class="svc__outcome">Senior design capacity on your team without a salary, a contract or a recruitment process.</p>
+                <ul class="svc__list">
+                  <li>20, 40 or 60 hour monthly bands</li>
+                  <li>Product and interface iteration</li>
+                  <li>Landing pages and campaign assets</li>
+                  <li>Design system maintenance</li>
+                  <li>Named designer, priority scheduling, one month hour rollover</li>
+                </ul>
+                <a class="svc__cta" href="#contact">Reserve capacity <span>→</span></a>
+              </div>
+              <div class="svc__visual">
+                <div class="device device--phone" data-tilt>
+                  <div class="device__screen">
+                    <div class="mkc">
+                      <header class="mkc__bar"><i>‹</i>Checkout<em>2 / 3</em></header>
+                      <div class="mkc__items">
+                        <p><span>Standing desk · oak</span><b>R4,290</b></p>
+                        <p><span>Monitor arm · single</span><b>R890</b></p>
+                        <p class="mkc__ship"><span>Delivery — Sandton</span><b>R150</b></p>
+                      </div>
+                      <p class="mkc__total"><span>Total</span><b>R5,330</b></p>
+                      <div class="mkc__pay">
+                        <span class="mkc__field"><i>Card number</i>5412 •••• •••• 2296</span>
+                        <span class="mkc__row"><span class="mkc__field"><i>Expiry</i>08 / 28</span><span class="mkc__field"><i>CVV</i>•••</span></span>
+                      </div>
+                      <span class="mkc__btn">Pay R5,330</span>
+                      <p class="mkc__secure">🔒 Secured by PayFast</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <p class="svcs__progress" aria-hidden="true"><span id="svcsIndex">01</span> / 04</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 07 · SELECTED WORK ═══════════════ -->
+    <section class="work" id="work">
+      <p class="slabel">( Selected work )</p>
+
+      <!-- 01 · ManaGem -->
+      <article class="proj proj--gold">
+        <a class="proj__scene" href="managem.html" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="ManaGem case study">
+          <div class="scene" data-reveal-media>
+            <div class="scene__glow" aria-hidden="true"></div>
+            <div class="scene__b" aria-hidden="true">
+              <div class="mg-gantt">
+                <p>Delivery timeline</p>
+                <i style="width:62%;margin-left:4%"></i><i style="width:38%;margin-left:20%"></i><i style="width:50%;margin-left:34%"></i><i style="width:28%;margin-left:52%"></i>
+              </div>
+            </div>
+            <div class="scene__a">
+              <div class="mg-board">
+                <header><b>ManaGem</b><span>Sprint 14 · Board</span><em>TM</em></header>
+                <div class="mg-cols">
+                  <div class="mg-col"><p>To do · 4</p><span>Quote follow-ups</span><span>Site audit — Karoo</span><span>Invoice template v2</span></div>
+                  <div class="mg-col"><p>In progress · 3</p><span class="is-hot">Client portal login</span><span>Driver roster sync</span></div>
+                  <div class="mg-col"><p>Done · 9</p><span>Stock alerts</span><span>Month-end export</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="scene__c" aria-hidden="true">
+              <p>Sprint burndown</p>
+              <svg viewBox="0 0 120 48"><path d="M4 8 L28 16 L52 20 L76 30 L100 38 L116 42" fill="none" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </a>
+        <div class="proj__info">
+          <span class="proj__index">01 / 04</span>
+          <h3 class="proj__name"><span class="nav__swap"><span>ManaGem</span><span aria-hidden="true">ManaGem</span></span></h3>
+          <p class="proj__disc">Product design · Dashboard UX · Design system</p>
+          <a class="proj__link" href="managem.html">View case study ↗</a>
+        </div>
+      </article>
+
+      <!-- 02 · WasteMart -->
+      <article class="proj proj--signal proj--flip">
+        <a class="proj__scene" href="wastemart.html" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="WasteMart case study">
+          <div class="scene" data-reveal-media>
+            <div class="scene__glow" aria-hidden="true"></div>
+            <div class="scene__b" aria-hidden="true">
+              <div class="wm-portal">
+                <p>Customer portal</p>
+                <span>Next collection<br/><b>Thu 28 Aug · 06:00–09:00</b></span>
+              </div>
+            </div>
+            <div class="scene__a">
+              <div class="wm-driver">
+                <header><b>Route 12 — Sandton</b><span>8 stops left</span></header>
+                <ul>
+                  <li class="is-done"><i>✓</i><span>Grayston Drive depot</span><em>06:12</em></li>
+                  <li class="is-done"><i>✓</i><span>Rivonia Rd — Bays 4–9</span><em>06:38</em></li>
+                  <li class="is-now"><i>●</i><span>Katherine St office park</span><em>next</em></li>
+                  <li><i>○</i><span>Wierda Valley — Lot 2</span><em>07:15</em></li>
+                  <li><i>○</i><span>Sandown Mews</span><em>07:40</em></li>
+                </ul>
+                <span class="wm-btn">Confirm pickup</span>
+              </div>
+            </div>
+            <div class="scene__c" aria-hidden="true">
+              <p><i>✓</i> Pickup confirmed · 06:40</p>
+            </div>
+          </div>
+        </a>
+        <div class="proj__info">
+          <span class="proj__index">02 / 04</span>
+          <h3 class="proj__name"><span class="nav__swap"><span>WasteMart</span><span aria-hidden="true">WasteMart</span></span></h3>
+          <p class="proj__disc">Operations UX · Driver app · Customer portal</p>
+          <a class="proj__link" href="wastemart.html">View case study ↗</a>
+        </div>
+      </article>
+
+      <!-- 03 · FINOS -->
+      <article class="proj proj--bone">
+        <a class="proj__scene" href="index.html#work" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="FINOS case study">
+          <div class="scene" data-reveal-media>
+            <div class="scene__glow" aria-hidden="true"></div>
+            <div class="scene__b" aria-hidden="true">
+              <div class="fn-chat">
+                <p>AI review</p>
+                <span class="fn-msg">Invoice #2291 matches PO but the VAT line differs by R42.10.</span>
+                <span class="fn-conf">Confidence · high</span>
+              </div>
+            </div>
+            <div class="scene__a">
+              <div class="fn-table">
+                <header><b>FINOS</b><span>Approval queue · 12</span></header>
+                <table>
+                  <tr><td>INV-2291</td><td>Bright Steel SA</td><td>R 39,221</td><td><em class="warn">Review</em></td></tr>
+                  <tr><td>INV-2290</td><td>Karoo Solar</td><td>R 128,500</td><td><em class="ok">Matched</em></td></tr>
+                  <tr><td>INV-2289</td><td>Jozi Print Co.</td><td>R 4,675</td><td><em class="ok">Matched</em></td></tr>
+                  <tr><td>INV-2288</td><td>Umhlanga Textiles</td><td>R 87,660</td><td><em class="warn">Review</em></td></tr>
+                </table>
+                <span class="fn-btn">Approve 2 matched</span>
+              </div>
+            </div>
+            <div class="scene__c" aria-hidden="true">
+              <p>Month-end close<br/><b>4 items open</b></p>
+            </div>
+          </div>
+        </a>
+        <div class="proj__info">
+          <span class="proj__index">03 / 04</span>
+          <h3 class="proj__name"><span class="nav__swap"><span>FINOS</span><span aria-hidden="true">FINOS</span></span></h3>
+          <p class="proj__disc">Financial operating system · AI review workflow</p>
+          <a class="proj__link" href="index.html#work">View case study ↗</a>
+        </div>
+      </article>
+
+      <!-- 04 · CMAXX -->
+      <article class="proj proj--alert proj--flip">
+        <a class="proj__scene" href="index.html#work" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="CMAXX case study">
+          <div class="scene" data-reveal-media>
+            <div class="scene__glow" aria-hidden="true"></div>
+            <div class="scene__b" aria-hidden="true">
+              <div class="cx-ident">
+                <span class="cx-mono">C<i>X</i></span>
+                <span class="cx-chips"><i style="background:#E5533D"></i><i style="background:#0A0B0D"></i><i style="background:#F4F1EA"></i></span>
+              </div>
+            </div>
+            <div class="scene__a">
+              <div class="cx-web">
+                <header><b>CMAXX</b><span>Fleet · Telematics · Contact</span></header>
+                <h5>Every vehicle.<br/>Accounted for.</h5>
+                <span class="cx-cta">Track your fleet →</span>
+              </div>
+            </div>
+            <div class="scene__c" aria-hidden="true">
+              <p>Launch week<br/><b>Live ✓</b></p>
+            </div>
+          </div>
+        </a>
+        <div class="proj__info">
+          <span class="proj__index">04 / 04</span>
+          <h3 class="proj__name"><span class="nav__swap"><span>CMAXX</span><span aria-hidden="true">CMAXX</span></span></h3>
+          <p class="proj__disc">Web experience · Identity · Launch</p>
+          <a class="proj__link" href="index.html#work">View case study ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ═══════════════ 08 · THE DIFFERENCE ═══════════════ -->
+    <section class="diff">
+      <p class="slabel">( The difference )</p>
+      <h2 class="diff__head">
+        <span class="diff__dim">MOST STUDIOS HAND YOU A FIGMA FILE.</span><br/>
+        <span>WE HAND YOU A WORKING SYSTEM.</span>
+      </h2>
+      <figure class="diff__pipe">
+        <svg viewBox="0 0 1200 300" id="pipeSvg" role="img" aria-labelledby="pipeTitle">
+          <title id="pipeTitle">Pipeline: design studios stop after design; GEMIS continues through build and support.</title>
+          <!-- dimmed "studios stop here" line -->
+          <text class="diff__stoplabel" x="100" y="60">Design studios stop here</text>
+          <path id="pipeStop" d="M100 90 H430" fill="none" stroke="#A9A498" stroke-width="2" stroke-dasharray="6 8" opacity="0.55"/>
+          <circle cx="430" cy="90" r="4" fill="#A9A498" opacity="0.55"/>
+          <!-- main line -->
+          <path id="pipeMain" d="M100 200 H1100" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+          <g class="diff__node" data-node="1">
+            <circle class="diff__pulse" cx="100" cy="200" r="14"/>
+            <circle cx="100" cy="200" r="9" fill="#C9A227"/>
+            <text x="100" y="248">Diagnose</text>
+          </g>
+          <g class="diff__node" data-node="2">
+            <circle class="diff__pulse" cx="433" cy="200" r="14"/>
+            <circle cx="433" cy="200" r="9" fill="#C9A227"/>
+            <text x="433" y="248">Design</text>
+          </g>
+          <g class="diff__node" data-node="3">
+            <circle class="diff__pulse" cx="766" cy="200" r="14"/>
+            <circle cx="766" cy="200" r="9" fill="#C9A227"/>
+            <text x="766" y="248">Build</text>
+          </g>
+          <g class="diff__node" data-node="4">
+            <circle class="diff__pulse" cx="1100" cy="200" r="14"/>
+            <circle cx="1100" cy="200" r="9" fill="#C9A227"/>
+            <text x="1100" y="248">Support</text>
+          </g>
+        </svg>
+      </figure>
+      <p class="diff__close">Design and development under one roof. One team, one standard, no handover to a stranger.</p>
+    </section>
+
+    <!-- ═══════════════ 09 · HOW WE WORK ═══════════════ -->
+    <section class="how" id="approach">
+      <p class="slabel">( How we work )</p>
+      <div class="how__grid">
+        <div class="how__sticky">
+          <span class="how__rail" aria-hidden="true"><i id="howRail"></i></span>
+          <span class="how__bignum" id="howNum" aria-hidden="true">01</span>
+        </div>
+        <div class="how__steps">
+          <div class="how__step" data-step="01">
+            <h3><span>01</span> Diagnose</h3>
+            <p>We map what exists before we change it. Your workflows, your drop-off points, the workarounds your team has quietly invented. The brief is the output of this step, not the input.</p>
+          </div>
+          <div class="how__step" data-step="02">
+            <h3><span>02</span> Design</h3>
+            <p>Explored wide, then pressure-tested narrow. You see real screens with real data, not mood boards — and every interaction state is specified before anything reaches a developer.</p>
+          </div>
+          <div class="how__step" data-step="03">
+            <h3><span>03</span> Build</h3>
+            <p>We hand over developer-ready files, or we build it ourselves. Either way the specification is complete: measurements, states, tokens, edge cases, accessibility.</p>
+          </div>
+          <div class="how__step" data-step="04">
+            <h3><span>04</span> Support</h3>
+            <p>Thirty days of build-support questions answered at no charge, and a twelve-month roadmap so you know what comes next. Included in every engagement, at every price.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ MANIFESTO ═══════════════ -->
-    <section class="manifesto" id="studio" data-section-theme="light">
-      <div class="manifesto__inner">
-        <p class="manifesto__label">The practice</p>
-        <p class="manifesto__text" id="manifestoText">Brand Studio is the identity practice inside GEMIS. We give SMEs and start-ups brands that punch far above their weight — sharp marks, confident typography and systems that scale from day one.</p>
-        <div class="manifesto__cols">
-          <div class="manifesto__col reveal">
-            <h3>Strategy before style</h3>
-            <p>Every identity starts with positioning — who you are, who it's for, and why anyone should care. The look follows the logic.</p>
-          </div>
-          <div class="manifesto__col reveal">
-            <h3>Small budgets, big presence</h3>
-            <p>We design for the size you want to become. Start-up pricing, blue-chip posture — no watered-down "starter" branding.</p>
-          </div>
-          <div class="manifesto__col reveal">
-            <h3>Systems, not stunts</h3>
-            <p>You get a kit that works everywhere: files, guidelines, templates and rules your team can actually use without us.</p>
-          </div>
+    <!-- ═══════════════ 10 · NUMBERS ═══════════════ -->
+    <section class="nums" aria-label="Studio in numbers">
+      <!-- Figures flagged UNVERIFIED in assets/js/studio-content.js -->
+      <div class="nums__item"><b class="nums__val" data-count="2005" data-prefix="EST. ">EST. 2005</b><span>Two decades of shipped software</span></div>
+      <div class="nums__item"><b class="nums__val" data-count="16" data-suffix="+">16+</b><span>products shipped</span></div>
+      <div class="nums__item"><b class="nums__val" data-count="20" data-suffix="+">20+</b><span>clients</span></div>
+      <div class="nums__item"><b class="nums__val" data-count="4">4</b><span>services</span></div>
+    </section>
+
+    <!-- ═══════════════ 11 · CLIENTS & TOOLS ═══════════════ -->
+    <section class="logos" aria-label="Clients and tools">
+      <div class="logos__row" data-marquee>
+        <div class="logos__track logos__track--l">
+          <span class="logos__set">
+            <svg class="lockup lockup--01" viewBox="0 0 300 48"><text x="150" y="34">MANAGEM</text></svg>
+            <svg class="lockup lockup--02" viewBox="0 0 300 48"><text x="150" y="34">WASTEMART</text></svg>
+            <svg class="lockup lockup--03" viewBox="0 0 300 48"><text x="150" y="34">FINOS</text></svg>
+            <svg class="lockup lockup--04" viewBox="0 0 300 48"><text x="150" y="34">CMAXX</text></svg>
+            <svg class="lockup lockup--05" viewBox="0 0 300 48"><text x="150" y="34">SMARTSTART</text></svg>
+            <svg class="lockup lockup--06" viewBox="0 0 300 48"><text x="150" y="34">SONKE</text></svg>
+          </span>
+          <span class="logos__set" aria-hidden="true">
+            <svg class="lockup lockup--01" viewBox="0 0 300 48"><text x="150" y="34">MANAGEM</text></svg>
+            <svg class="lockup lockup--02" viewBox="0 0 300 48"><text x="150" y="34">WASTEMART</text></svg>
+            <svg class="lockup lockup--03" viewBox="0 0 300 48"><text x="150" y="34">FINOS</text></svg>
+            <svg class="lockup lockup--04" viewBox="0 0 300 48"><text x="150" y="34">CMAXX</text></svg>
+            <svg class="lockup lockup--05" viewBox="0 0 300 48"><text x="150" y="34">SMARTSTART</text></svg>
+            <svg class="lockup lockup--06" viewBox="0 0 300 48"><text x="150" y="34">SONKE</text></svg>
+          </span>
+        </div>
+      </div>
+      <div class="logos__row" data-marquee>
+        <div class="logos__track logos__track--r">
+          <span class="logos__set">
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">FIGMA</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">REACT</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">NEXT.JS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">WORDPRESS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">AZURE</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">GSAP</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">THREE.JS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">WEBFLOW</text></svg>
+          </span>
+          <span class="logos__set" aria-hidden="true">
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">FIGMA</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">REACT</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">NEXT.JS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">WORDPRESS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">AZURE</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">GSAP</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">THREE.JS</text></svg>
+            <svg class="lockup lockup--tool" viewBox="0 0 220 48"><text x="110" y="34">WEBFLOW</text></svg>
+          </span>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ MARKS IN ROTATION (auto-scrolling logo wall) ═══════════════ -->
-    <section class="marks" data-section-theme="light" aria-label="Sample marks from the studio">
-      <p class="eyebrow-label marks__label">( Marks in rotation )</p>
-      <div class="ticker marks__ticker" data-ticker data-speed="0.9">
-        <div class="ticker__track marks__track">
+    <!-- ═══════════════ 12 · PRICING (inverted) ═══════════════ -->
+    <section class="pricing inverted" id="pricing">
+      <p class="slabel">( What it costs )</p>
+      <h2 class="pricing__head">NO HOURLY BILLING. NO SURPRISES.</h2>
+      <table class="pricing__table">
+        <thead>
+          <tr><th>Service</th><th>What you get</th><th>From</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Product Teardown</td><td>Ranked issue list + five redesigned screens</td><td>R6,500</td></tr>
+          <tr><td>Interface Refresh Sprint</td><td>Eight screens, fully specified for your developer</td><td>R18,000</td></tr>
+          <tr><td>Web Experience</td><td>Designed, built, launched and measured</td><td>R55,000</td></tr>
+          <tr><td>Embedded Designer</td><td>Ongoing senior design capacity</td><td>R20,000 / month</td></tr>
+        </tbody>
+      </table>
+      <p class="pricing__note">Fixed price. Fixed scope. Developer handoff and thirty days of support included in every engagement.</p>
+    </section>
 
-          <div class="lcard lcard--g">
-            <span class="lcard__mono">G<i>.</i></span>
-            <span class="lcard__cap">Driven by craft.<br>Built for those who notice.</span>
-            <span class="lcard__meta">GEMIS® — 2026</span>
-          </div>
-          <div class="lcard lcard--n">
-            <span class="lcard__mono lcard__mono--soft">n<i>.</i></span>
-            <span class="lcard__meta lcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-          </div>
-          <div class="lcard lcard--ts">
-            <span class="lcard__duo">T<em>S</em></span>
-            <span class="lcard__band">T Ā L A &nbsp;S T U D I O</span>
-          </div>
-          <div class="lcard lcard--au">
-            <svg class="lcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-              <defs><linearGradient id="silv" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-              </linearGradient></defs>
-              <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z"
-                fill="none" stroke="url(#silv)" stroke-width="4" stroke-linejoin="round"/>
-            </svg>
-            <span class="lcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-          </div>
-          <div class="lcard lcard--k">
-            <span class="lcard__mono lcard__mono--k">K<i>›</i></span>
-            <span class="lcard__meta lcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-          </div>
-
-          <div class="lcard lcard--g" aria-hidden="true">
-            <span class="lcard__mono">G<i>.</i></span>
-            <span class="lcard__cap">Driven by craft.<br>Built for those who notice.</span>
-            <span class="lcard__meta">GEMIS® — 2026</span>
-          </div>
-          <div class="lcard lcard--n" aria-hidden="true">
-            <span class="lcard__mono lcard__mono--soft">n<i>.</i></span>
-            <span class="lcard__meta lcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-          </div>
-          <div class="lcard lcard--ts" aria-hidden="true">
-            <span class="lcard__duo">T<em>S</em></span>
-            <span class="lcard__band">T Ā L A &nbsp;S T U D I O</span>
-          </div>
-          <div class="lcard lcard--au" aria-hidden="true">
-            <svg class="lcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-              <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z"
-                fill="none" stroke="url(#silv)" stroke-width="4" stroke-linejoin="round"/>
-            </svg>
-            <span class="lcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-          </div>
-          <div class="lcard lcard--k" aria-hidden="true">
-            <span class="lcard__mono lcard__mono--k">K<i>›</i></span>
-            <span class="lcard__meta lcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-          </div>
-
+    <!-- ═══════════════ 13 · FAQ (inverted) ═══════════════ -->
+    <section class="faq inverted">
+      <p class="slabel">( Questions )</p>
+      <h2 class="faq__head">UX design in South Africa, answered plainly.</h2>
+      <div class="faq__list">
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">How much does UI/UX design cost in South Africa?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1"><p>Our work starts at R6,500 for a Product Teardown and runs to R85,000 for a fully designed and built web experience. Every price on this page is fixed, includes developer handoff, and includes thirty days of support. We don't bill hourly and we don't issue change requests for things that should have been in scope.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">Do you work with companies outside Johannesburg?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2"><p>Yes. We're based in Sandton and work with clients across South Africa. Discovery, reviews and handover all run remotely, and we travel for stakeholder workshops on larger engagements.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Can you work with our existing developers?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3"><p>That's the normal case. Every engagement ends in a developer-ready specification — measurements, interaction states, design tokens, edge cases and an annotated Figma file — plus a walkthrough call with your team and thirty days of questions answered.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">What if we already have a designer?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4"><p>Then you probably want the Embedded Designer arrangement or a single Interface Refresh Sprint rather than a full engagement. We regularly work alongside in-house designers on system definition and overflow capacity.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">How long does a website take?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5"><p>Six to eight weeks from kickoff to launch for a Web Experience engagement. An Interface Refresh Sprint is two weeks. A Product Teardown is five working days.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Do you still do branding and logos?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6"><p>Yes, as a Brand Foundation module inside a Web Experience engagement, or as a standalone project where identity genuinely needs to come first. It's simply no longer what we lead with.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a7" id="faq-q7">What happens after handover?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a7" role="region" aria-labelledby="faq-q7"><p>Thirty days of build-support questions at no charge, and a twelve-month experience roadmap so you know what the next sensible investment is. Many clients move onto an Embedded Designer arrangement from there.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a8" id="faq-q8">Can you build what you design?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a8" role="region" aria-labelledby="faq-q8"><p>Yes — that's the point. GEMIS Studio sits inside GEM Information Systems, a software development company. Design and build happen under one roof, with no handover to a third party.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ WHAT WE SHAPE ═══════════════ -->
-    <section class="shape" id="shape" data-section-theme="light">
-      <header class="services__head">
-        <p class="eyebrow-label">( What we shape )</p>
-        <h2 class="services__statement">Everything a young company needs to look unmistakably grown.</h2>
-      </header>
-      <div class="shape__grid">
-        <div class="tile" data-cursor="—"><span class="tile__num">01</span><h3>Identity systems</h3><p>The full picture — mark, type, colour, layout and motion working as one language.</p><span class="tile__arrow">↗</span></div>
-        <div class="tile" data-cursor="—"><span class="tile__num">02</span><h3>Logos &amp; marks</h3><p>Distinct, ownable marks engineered to survive a favicon and a billboard alike.</p><span class="tile__arrow">↗</span></div>
-        <div class="tile" data-cursor="—"><span class="tile__num">03</span><h3>Typography &amp; colour</h3><p>Palettes and type pairings with a point of view — chosen for contrast, licensed for reality.</p><span class="tile__arrow">↗</span></div>
-        <div class="tile" data-cursor="—"><span class="tile__num">04</span><h3>Naming &amp; voice</h3><p>Names that clear a search and a trademark scan, and a voice your team can imitate.</p><span class="tile__arrow">↗</span></div>
-        <div class="tile" data-cursor="—"><span class="tile__num">05</span><h3>Brand guidelines</h3><p>Living documents — rules, don'ts, and ready-made lockups your hires learn in an afternoon.</p><span class="tile__arrow">↗</span></div>
-        <div class="tile" data-cursor="—"><span class="tile__num">06</span><h3>Launch collateral</h3><p>Decks, social kits, packaging and site styling — everything ready for day one in market.</p><span class="tile__arrow">↗</span></div>
+    <!-- ═══════════════ 14 · CONTACT ═══════════════ -->
+    <section class="contact" id="contact">
+      <h2 class="contact__head">
+        <span class="mask"><span class="mask__inner">YOUR NEXT INTERFACE</span></span>
+        <span class="mask"><span class="mask__inner">STARTS HERE.</span></span>
+      </h2>
+      <p class="contact__sub">Tell us what's not working. We reply within one business day.</p>
+
+      <div class="contact__grid">
+        <form class="cform" id="cform" novalidate>
+          <div class="cform__row">
+            <div class="cform__field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" required autocomplete="name" />
+              <span class="cform__err" aria-hidden="true">Please tell us your name.</span>
+            </div>
+            <div class="cform__field">
+              <label for="f-email">Work email</label>
+              <input id="f-email" name="email" type="email" required autocomplete="email" />
+              <span class="cform__err" aria-hidden="true">That email doesn't look right.</span>
+            </div>
+          </div>
+          <div class="cform__row">
+            <div class="cform__field">
+              <label for="f-company">Company</label>
+              <input id="f-company" name="company" type="text" autocomplete="organization" />
+            </div>
+            <div class="cform__field">
+              <label for="f-need">What do you need?</label>
+              <select id="f-need" name="need">
+                <option>Product Teardown</option>
+                <option>Interface Refresh Sprint</option>
+                <option>Web Experience</option>
+                <option>Embedded Designer</option>
+                <option selected>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="cform__row">
+            <div class="cform__field">
+              <label for="f-budget">Budget</label>
+              <select id="f-budget" name="budget">
+                <option>Under R10,000</option>
+                <option>R10,000 – R30,000</option>
+                <option>R30,000 – R60,000</option>
+                <option>R60,000 – R120,000</option>
+                <option>R120,000+</option>
+                <option selected>Not sure yet</option>
+              </select>
+            </div>
+            <div class="cform__field cform__field--wide">
+              <label for="f-msg">Tell us what's not working</label>
+              <textarea id="f-msg" name="message" rows="4" minlength="20" required></textarea>
+              <span class="cform__count" id="msgCount" aria-hidden="true">0 / 20 min</span>
+              <span class="cform__err" aria-hidden="true">Give us at least 20 characters so we can help properly.</span>
+            </div>
+          </div>
+          <button class="btn-gold cform__submit" type="submit">Send enquiry <span class="btn-gold__arrow" aria-hidden="true">→</span></button>
+          <p class="cform__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <aside class="contact__aside">
+          <a class="contact__call" href="mailto:info@gemis.co.za?subject=30-minute%20call%20with%20GEMIS%20Studio">Or book a 30-minute call ↗</a>
+          <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+          <a href="tel:+27112195008">+27 11 219 5008</a>
+        </aside>
       </div>
     </section>
 
-    <!-- ═══════════════ IDENTITY STACK (sticky cards) ═══════════════ -->
-    <section class="stack" id="stackSec" data-section-theme="light">
-      <header class="services__head stack__head">
-        <p class="eyebrow-label">( Recent identities )</p>
-        <h2 class="services__statement">Fictional friends — sample identities from the studio bench.</h2>
-      </header>
-
-      <div class="stack__cards">
-
-        <article class="bcard bcard--kudu" data-cursor="View">
-          <div class="bcard__visual">
-            <div class="bcard__mark">K<span>›</span></div>
-            <div class="bcard__chips"><i style="background:#0F4CFF"></i><i style="background:#0b0b0c"></i><i style="background:#edeae2"></i><i style="background:#0B39C4"></i></div>
-          </div>
-          <div class="bcard__info">
-            <h3>KUDU</h3>
-            <p class="bcard__tag">Fintech · Identity · Guidelines</p>
-            <p class="bcard__desc">Payments for township businesses — a mark that moves forward, a palette that means money.</p>
-            <span class="bcard__type">Aa Bb 0123 — Archivo Expanded</span>
-          </div>
-          <span class="bcard__year">2026</span>
-        </article>
-
-        <article class="bcard bcard--nova" data-cursor="View">
-          <div class="bcard__visual">
-            <div class="bcard__mark bcard__mark--script">nova</div>
-            <div class="bcard__chips"><i style="background:#e8a33d"></i><i style="background:#3a2415"></i><i style="background:#f4ead9"></i><i style="background:#b4622d"></i></div>
-          </div>
-          <div class="bcard__info">
-            <h3>NOVA CAFÉ</h3>
-            <p class="bcard__tag">Hospitality · Identity · Packaging</p>
-            <p class="bcard__desc">A roastery that outgrew its corner — warmth measured in ink, from cup sleeve to shopfront.</p>
-            <span class="bcard__type">Aa Bb 0123 — Grotesk / warm neutrals</span>
-          </div>
-          <span class="bcard__year">2025</span>
-        </article>
-
-        <article class="bcard bcard--tala" data-cursor="View">
-          <div class="bcard__visual">
-            <div class="bcard__mark bcard__mark--thin">TĀLA</div>
-            <div class="bcard__chips"><i style="background:#c084fc"></i><i style="background:#1c1424"></i><i style="background:#f2ecf7"></i><i style="background:#8b5cf6"></i></div>
-          </div>
-          <div class="bcard__info">
-            <h3>TĀLA</h3>
-            <p class="bcard__tag">Cosmetics · Naming · Identity</p>
-            <p class="bcard__desc">Skincare with spine — a wide-tracked wordmark and a violet that photographs like silk.</p>
-            <span class="bcard__type">Aa Bb 0123 — extended caps, airy spacing</span>
-          </div>
-          <span class="bcard__year">2025</span>
-        </article>
-
-        <article class="bcard bcard--veld" data-cursor="View">
-          <div class="bcard__visual">
-            <div class="bcard__mark bcard__mark--stencil">VELD</div>
-            <div class="bcard__chips"><i style="background:#0B39C4"></i><i style="background:#10131c"></i><i style="background:#e9e6d8"></i><i style="background:#0F4CFF"></i></div>
-          </div>
-          <div class="bcard__info">
-            <h3>VELD</h3>
-            <p class="bcard__tag">Agritech · Identity · Launch kit</p>
-            <p class="bcard__desc">Sensors for smallholder farms — an identity that reads honest in the field and sharp in the pitch deck.</p>
-            <span class="bcard__type">Aa Bb 0123 — stencil cut, earth tones</span>
-          </div>
-          <span class="bcard__year">2024</span>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════ PROCESS ═══════════════ -->
-    <section class="process" data-section-theme="light">
-      <header class="services__head">
-        <p class="eyebrow-label">( How we get there )</p>
-        <h2 class="services__statement">Four moves, three weeks to first reveal.</h2>
-      </header>
-      <div class="process__wrap">
-        <span class="process__rail" aria-hidden="true"><span class="process__line" id="processLine"></span></span>
-        <ol class="process__list">
-          <li class="pstep"><span class="pstep__num">01</span><div><h3>Discover</h3><p>Founders, customers, competitors — a short sharp audit of where you can win.</p></div></li>
-          <li class="pstep"><span class="pstep__num">02</span><div><h3>Define</h3><p>Positioning, personality and the one sentence the whole brand must prove.</p></div></li>
-          <li class="pstep"><span class="pstep__num">03</span><div><h3>Design</h3><p>Marks, type, colour and motion — explored wide, then pressure-tested in the wild.</p></div></li>
-          <li class="pstep"><span class="pstep__num">04</span><div><h3>Deliver</h3><p>Files, guidelines and templates handed over — plus a month of on-call tweaks.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══════════════ THE LEAD ═══════════════ -->
-    <section class="lead" data-section-theme="dark">
-      <div class="lead__grid">
-        <div class="lead__portrait reveal" aria-hidden="true">
-          <span class="lead__monogram">SX</span>
-          <span class="lead__ring"></span>
-          <span class="lead__role-chip">Studio lead</span>
+    <!-- ═══════════════ 15 · FOOTER ═══════════════ -->
+    <footer class="foot">
+      <div class="foot__cols">
+        <div>
+          <h4>Company</h4>
+          <a href="index.html">GEMIS home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="#work">Work</a>
         </div>
-        <div class="lead__bio">
-          <p class="eyebrow-label">( The lead )</p>
-          <h2 class="lead__name">
-            <span class="line-mask"><span class="line-inner">Sphamandla</span></span>
-            <span class="line-mask"><span class="line-inner">Xaba</span></span>
-          </h2>
-          <p class="lead__title">UI/UX designer · Head of Brand Studio</p>
-          <p class="lead__text">Sphamandla leads every identity that leaves this studio. A UI/UX designer by trade, he designs brands the way he designs products — around the people who have to use them. The result: identities that make small companies look unmistakably big, and stay usable long after handover.</p>
-          <div class="lead__actions">
-            <a class="btn-big btn-big--sm" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" data-magnetic data-cursor="Connect"><span>LinkedIn ↗</span></a>
-            <a class="link-arrow" href="mailto:info@gemis.co.za">Start a brand with Sphamandla <span>→</span></a>
-          </div>
+        <div>
+          <h4>Social</h4>
+          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <span>66 Park Lane, Sandown, Sandton, 2196</span>
+          <a href="tel:+27112195008">+27 11 219 5008</a>
+          <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
         </div>
       </div>
-    </section>
-
-    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
-    <footer class="footer" id="contact" data-section-theme="dark">
-      <div class="footer__cta">
-        <p class="footer__pre">Ready when you are</p>
-        <h2 class="footer__title">
-          <span class="hero__line"><span data-split>YOUR&nbsp;BRAND</span></span>
-          <span class="hero__line hero__line--outline"><span data-split>STARTS&nbsp;HERE</span></span>
-        </h2>
-        <div class="footer__actions">
-          <a href="mailto:info@gemis.co.za" class="btn-big" data-magnetic data-cursor="Say hi">
-            <span>info@gemis.co.za</span>
-          </a>
-          <div class="badge" id="badge" aria-hidden="true">
-            <svg viewBox="0 0 120 120">
-              <defs><path id="circlePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
-              <text><textPath href="#circlePath">BRAND STUDIO · BY GEMIS® · EST. 2024 · </textPath></text>
-            </svg>
-            <span class="badge__arrow">↓</span>
-          </div>
-        </div>
+      <div class="foot__legal">
+        <span>© 2026 GEM Information Systems (Pty) Ltd trading as GEMIS® Studio.</span>
+        <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
       </div>
-      <div class="footer__base">
-        <div class="footer__cols">
-          <div>
-            <h4>Company</h4>
-            <a href="index.html">GEMIS home</a><a href="index.html#work">Case studies</a><a href="services.html">Services</a>
-          </div>
-          <div>
-            <h4>Social</h4>
-            <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">GitHub</a><a href="#">X / Twitter</a>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
-            <a href="https://www.gemis.co.za" target="_blank" rel="noopener">www.gemis.co.za</a>
-            <span>9 Tapiola Way, Edgemead, Cape Town</span>
-          </div>
-        </div>
-        <div class="footer__legal">
-          <span>© 2026 GEMIS Brand Studio. All rights reserved.</span>
-          <span>Identities with backbone.</span>
-        </div>
-      </div>
-      <div class="footer__wordmark" aria-hidden="true"><span>BRAND®</span></div>
+      <p class="foot__wordmark" aria-hidden="true">GEMIS<sup>®</sup> STUDIO</p>
     </footer>
 
   </main>
@@ -366,9 +1012,7 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
-  <script type="module" src="assets/js/brand3d.js?v=20260822"></script>
-  <script src="assets/js/main.js?v=20260822" defer></script>
-  <script src="assets/js/brand.js?v=20260822" defer></script>
+  <script src="assets/js/studio-content.js?v=20260826"></script>
+  <script src="assets/js/studio.js?v=20260826" defer></script>
 </body>
 </html>
