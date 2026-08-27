@@ -231,14 +231,42 @@ body.has-cursor a, body.has-cursor button, body.has-cursor [data-cursor] { curso
 .mmenu__links a span { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gold); }
 .mmenu__foot { display: flex; flex-direction: column; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--bone-dim); }
 
-/* ── 02 · Hero — scrubber ─────────────────────────────────────────────── */
-.hero { padding: 0; max-width: none; }
+/* ── 02 · Hero — minimal statement ────────────────────────────────────── */
+.hero {
+  position: relative; max-width: none; overflow: hidden;
+  min-height: 92vh; display: flex; align-items: center;
+  padding: clamp(7rem, 16vh, 10rem) var(--gutter) clamp(5.5rem, 12vh, 8rem);
+}
+.hero__bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(52% 44% at 76% 16%, rgba(201, 162, 39, 0.09), transparent 70%),
+    radial-gradient(42% 38% at 10% 88%, rgba(201, 162, 39, 0.05), transparent 70%);
+}
+.hero__inner { position: relative; max-width: var(--maxw); width: 100%; margin: 0 auto; }
+
+/* ── 02b · Before/After demonstration ─────────────────────────────────── */
+.demo { max-width: none; padding: 0 0 var(--sect); }
+.demo__head { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+.demo__line {
+  font-family: var(--font-body); font-size: var(--fs-h3); line-height: 1.3;
+  max-width: 30ch; margin-bottom: clamp(2rem, 5vh, 3.5rem);
+}
+.demo__hint {
+  position: absolute; left: 50%; bottom: 1.4rem; transform: translateX(-50%);
+  z-index: 8; pointer-events: none; max-width: none; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--bone); background: rgba(10, 11, 13, 0.72); border: 1px solid var(--ink-3);
+  border-radius: 99px; padding: 0.55rem 1.1rem;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
 .scrub {
   --pos: 50%;
-  position: relative; height: 100vh; min-height: 560px; overflow: hidden;
+  position: relative; height: 82vh; min-height: 520px; overflow: hidden;
   background: var(--ink-2);
+  border-top: 1px solid var(--ink-3); border-bottom: 1px solid var(--ink-3);
 }
-.scrub__layer { position: absolute; inset: 0; overflow: hidden; filter: brightness(0.82) saturate(0.92); }
+.scrub__layer { position: absolute; inset: 0; overflow: hidden; filter: brightness(0.92) saturate(0.96); }
 .scrub__layer--after { clip-path: inset(0 0 0 var(--pos)); background: #E9EAEE; }
 .scrub__divider {
   position: absolute; top: 0; bottom: 0; left: var(--pos); width: 1px;
@@ -257,29 +285,18 @@ body.has-cursor a, body.has-cursor button, body.has-cursor [data-cursor] { curso
 }
 .scrub.is-grabbing .scrub__handle { transform: scale(1.15); }
 .scrub__tag {
-  position: absolute; top: 6.5rem; font-family: var(--font-mono); font-size: 0.66rem;
+  position: absolute; top: 1.4rem; font-family: var(--font-mono); font-size: 0.66rem;
   letter-spacing: 0.2em; padding: 0.35rem 0.7rem; color: #fff; z-index: 4;
 }
-.scrub__tag--before { left: 1.2rem; background: var(--alert); }
-.scrub__tag--after { right: 1.2rem; background: #0d7a52; }
+.scrub__tag--before { left: 1.4rem; background: var(--alert); }
+.scrub__tag--after { right: 1.4rem; background: #0d7a52; }
 
-.hero__scrim {
-  position: absolute; inset: 0; z-index: 7; pointer-events: none;
-  background:
-    linear-gradient(to bottom, rgba(10, 11, 13, 0.88) 0%, rgba(10, 11, 13, 0.35) 9%, transparent 16%),
-    linear-gradient(to top, rgba(10, 11, 13, 0.97) 0%, rgba(10, 11, 13, 0.86) 26%, rgba(10, 11, 13, 0.5) 48%, rgba(10, 11, 13, 0.12) 68%, transparent 100%);
-}
-.hero__content {
-  position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(5.5rem, 12vh, 8rem);
-  z-index: 8; max-width: 1200px; pointer-events: none;
-}
-.hero__content a { pointer-events: auto; }
 .hero__eyebrow {
   font-family: var(--font-mono); font-size: var(--fs-mono); letter-spacing: 0.12em;
   color: var(--bone-dim); margin-bottom: 1.4rem; max-width: none;
 }
-.hero__title { font-weight: 800; font-size: clamp(1.7rem, 5vw, 5rem); }
-.hero__sub { margin: 1.5rem 0 2.2rem; max-width: 52ch; color: var(--bone); }
+.hero__title { font-weight: 800; font-size: clamp(1.5rem, 6.2vw, 6rem); }
+.hero__sub { margin: 1.7rem 0 2.4rem; max-width: 52ch; color: var(--bone-dim); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 1.4rem; align-items: center; }
 .hero__meta {
   position: absolute; bottom: 1.6rem; z-index: 8;
@@ -928,21 +945,18 @@ body.has-cursor a, body.has-cursor button, body.has-cursor [data-cursor] { curso
   .pricing__table tbody tr { border-bottom: 1px solid #D9D4C6; }
 }
 @media (max-width: 640px) {
-  .scrub { height: 70vh; min-height: 480px; }
-  .hero__scrim {
-    background: linear-gradient(to top, rgba(10, 11, 13, 0.97) 0%, rgba(10, 11, 13, 0.9) 45%, rgba(10, 11, 13, 0.72) 72%, rgba(10, 11, 13, 0.55) 100%);
-  }
-  .hero__content { bottom: 3.4rem; }
-  .hero__title { font-size: clamp(1.45rem, 5.6vw, 2rem); }
-  .hero__eyebrow { font-size: 0.6rem; margin-bottom: 0.8rem; }
-  .hero__sub { font-size: 0.95rem; margin: 0.9rem 0 1.3rem; }
+  .hero { min-height: 82vh; padding-top: 6.5rem; }
+  .scrub { height: 60vh; min-height: 420px; }
+  .hero__eyebrow { font-size: 0.6rem; margin-bottom: 0.9rem; }
+  .hero__sub { font-size: 0.95rem; margin: 1rem 0 1.5rem; }
   .hero__ctas { gap: 0.9rem; }
   .hero__ctas .btn-gold { padding: 0.7rem 1.3rem; font-size: 0.88rem; }
   .hero__ctas .btn-ghost { padding: 0.5rem 0.2rem; font-size: 0.88rem; }
-  .hero__meta--left { bottom: 1rem; }
+  .hero__meta--left { bottom: 1.2rem; }
   .hero__meta--right { display: none; }
   .cform__row { grid-template-columns: 1fr; gap: 1.6rem; }
-  .scrub__tag { top: 5.4rem; }
+  .scrub__tag { top: 1rem; }
+  .demo__hint { bottom: 1rem; font-size: 0.6rem; }
   .mkb, .mka { min-width: 900px; }
 }
 @media (pointer: coarse) {
