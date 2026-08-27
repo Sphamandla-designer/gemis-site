@@ -78,18 +78,20 @@ button{font-family:inherit;cursor:pointer}
 .filters button{background:none;border:0;font-size:15px;font-weight:600;letter-spacing:.2px;color:#8d969e;padding:0 0 6px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
 .filters button:hover{color:#191c1f}
 .filters button[aria-pressed="true"]{color:#191c1f;border-bottom-color:#a64b21}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(40px,6vh,88px) clamp(24px,3vw,48px)}
-.card{display:flex;flex-direction:column}
-.card__visual{display:block;position:relative;overflow:hidden;background:#f4f4f4;border-radius:16px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-right:1px solid #e2e2e7;align-items:start}
+.card{border-left:1px solid #e2e2e7;padding:0 clamp(16px,2vw,28px) clamp(32px,5vh,56px);display:flex;flex-direction:column;transition:padding-top .45s cubic-bezier(.2,.7,.2,1)}
+.card__visual{display:block;position:relative;overflow:hidden;background:#f4f4f4;border-radius:6px;aspect-ratio:3/4}
 .card__media{position:absolute;inset:0;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card__visual:hover .card__media{transform:scale(1.03)}
 .card__media img{width:100%;height:100%;object-fit:cover}
-.card__tag{position:absolute;left:16px;bottom:14px;font-size:13px;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border-radius:9999px;padding:5px 12px;pointer-events:none}
-.card__row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-top:20px}
-.card__row h3{font-size:clamp(22px,2.2vw,34px);line-height:1.15;letter-spacing:-.34px}
-.card__row .tagline{max-width:56ch;font-size:15px;line-height:1.5;color:#505a63;margin-top:6px}
-.card__row .svc{font-size:13px;color:#8d969e;margin-top:6px}
-.card__case{flex:0 0 auto;font-size:14px;font-weight:600;letter-spacing:.16px;color:#191c1f;border-bottom:1px solid #a64b21;padding-bottom:3px;white-space:nowrap}
+.card__row{margin-top:22px}
+.card__row h3{font-size:clamp(19px,1.7vw,25px);line-height:1.15;letter-spacing:-.3px}
+.card__who{display:flex;align-items:center;gap:10px;margin-top:16px}
+.card__who svg{width:26px;height:26px;flex:none}
+.card__who .wt b{display:block;font-size:14px;font-weight:600;letter-spacing:.1px;color:#191c1f}
+.card__who .wt span{display:block;font-size:12.5px;color:#8d969e;margin-top:1px}
+.card__row .tagline{font-size:13.5px;line-height:1.55;color:#505a63;margin-top:14px}
+.card__case{align-self:flex-start;margin-top:14px;font-size:14px;font-weight:600;letter-spacing:.16px;color:#191c1f;border-bottom:1px solid #a64b21;padding-bottom:3px;white-space:nowrap}
 .card__case:hover{color:#a64b21}
 .empty{display:none;background:#f4f4f4;border-radius:20px;padding:clamp(48px,10vh,96px) clamp(24px,4vw,48px);text-align:center}
 .empty p{margin:0 0 24px;font-size:clamp(24px,3vw,40px);line-height:1.2;letter-spacing:-.4px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
@@ -97,19 +99,22 @@ button{font-family:inherit;cursor:pointer}
 .empty button:hover{opacity:.85}
 .is-hidden{display:none !important}
 
-/* spans */
-.sp12{grid-column:span 12}.sp7{grid-column:span 7}.sp6{grid-column:span 6}.sp5{grid-column:span 5}
-.r168{aspect-ratio:16/8}.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r219{aspect-ratio:21/9}.r11{aspect-ratio:1/1}
+.more{display:flex;justify-content:center;margin-top:clamp(36px,6vh,56px)}
+.more button{height:48px;padding:0 30px;border:1px solid #191c1f;background:#fff;color:#191c1f;border-radius:9999px;font-size:15px;font-weight:600;letter-spacing:.2px;transition:background .2s,color .2s}
+.more button:hover{background:#000;color:#fff}
 @media (max-width:1023px){
-  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .sp12,.sp7,.sp6,.sp5{grid-column:span 4}
-  .r168,.r219{aspect-ratio:16/10}
-  .exp__head,.hero__row,.card__row,.mo__grid{flex-direction:column;align-items:stretch !important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .exp__head,.hero__row,.mo__grid{flex-direction:column;align-items:stretch !important}
   .hero__row .meta{white-space:normal}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr;border-right:0}
+  .card{border-left:0;padding-left:0;padding-right:0}
 }
 
 /* ── CMAXX designed visual ── */
 .cx{position:absolute;inset:0;background:#0d0d0f}
+.cx svg{object-fit:cover}
 .cx svg{width:100%;height:100%}
 /* ── GEMIS brand tile ── */
 .gb{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4%,40px);padding-bottom:clamp(52px,12%,72px)}
@@ -252,165 +257,126 @@ button{font-family:inherit;cursor:pointer}
 
     <div class="grid" id="workGrid">
 
-      <article class="card sp12" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual r168">
-          <div class="card__media"><img src="assets/img/portfolio/finos-wide.jpg" alt="FINOS financial command centre dashboard on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
-          <span class="card__tag">FINOS — command centre</span>
+      <article class="card" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/finos.jpg" alt="FINOS financial command centre on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>FINOS</h3>
-            <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
-            <p class="svc">AI · Product · UX/UI · Strategy</p>
-          </div>
+          <h3>FINOS</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#111"/><circle cx="13" cy="20" r="3.4" fill="#fff"/><rect x="20" y="17" width="12" height="2.6" rx="1.3" fill="#8d969e"/><rect x="20" y="22" width="8" height="2.6" rx="1.3" fill="#8d969e"/></svg><div class="wt"><b>Fintech · AI platform</b><span>AI · Product · UX/UI · Strategy</span></div></div>
+          <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
         </div>
       </article>
 
-      <article class="card sp7" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
-        <div class="card__visual r43">
-          <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone, floating over a dark particle landscape" loading="lazy"></div>
-          <span class="card__tag">WasteMart — driver app</span>
+      <article class="card" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone over a dark particle landscape" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>WasteMart</h3>
-            <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
-            <p class="svc">Systems · Product · UX/UI</p>
-          </div>
+          <h3>WasteMart</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#14B8A6"/><path d="M13 22 a8 8 0 0 1 13-6 M27 18 a8 8 0 0 1 -13 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg><div class="wt"><b>Waste & recycling ops</b><span>Systems · Product · UX/UI</span></div></div>
+          <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
           <a class="card__case" href="wastemart.html">View project →</a>
         </div>
       </article>
 
-      <article class="card sp5" data-cats="AI PRODUCT APPS">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
-          <span class="card__tag">NuraCoach — AI coaching</span>
+      <article class="card" data-cats="PRODUCT SYSTEMS PLATFORMS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>NuraCoach</h3>
-            <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
-            <p class="svc">AI · Product · UX</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="card sp12" data-cats="WEB">
-        <div class="card__visual r219">
-          <div class="cx" aria-hidden="true">
-            <svg viewBox="0 0 1260 540" preserveAspectRatio="xMidYMid slice" role="img" aria-label="CMAXX network map artwork">
-              <defs>
-                <radialGradient id="cxg" cx="30%" cy="40%" r="70%">
-                  <stop offset="0" stop-color="#1a1a1e"/><stop offset="1" stop-color="#0d0d0f"/>
-                </radialGradient>
-                <linearGradient id="cxr" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#a64b21" stop-opacity="0"/><stop offset=".5" stop-color="#e06a35"/><stop offset="1" stop-color="#a64b21" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <rect width="1260" height="540" fill="url(#cxg)"/>
-              <g stroke="#26262b" stroke-width="1">
-                <path d="M0 140 H1260 M0 270 H1260 M0 400 H1260 M210 0 V540 M420 0 V540 M630 0 V540 M840 0 V540 M1050 0 V540"/>
-              </g>
-              <g stroke="#3a3a41" stroke-width="1.4" fill="none">
-                <path d="M140 400 C 300 320, 380 330, 520 270 S 800 160, 940 180 S 1120 240, 1180 200"/>
-                <path d="M100 190 C 260 240, 420 140, 560 170 S 860 330, 1020 300"/>
-              </g>
-              <path d="M140 400 C 300 320, 380 330, 520 270 S 800 160, 940 180" fill="none" stroke="url(#cxr)" stroke-width="3" stroke-dasharray="14 10" style="animation:dashmove 3.5s linear infinite"/>
-              <g fill="#0d0d0f" stroke="#5a5a63" stroke-width="1.5">
-                <circle cx="140" cy="400" r="9"/><circle cx="520" cy="270" r="9"/><circle cx="940" cy="180" r="9"/><circle cx="1180" cy="200" r="7"/><circle cx="560" cy="170" r="7"/><circle cx="1020" cy="300" r="7"/>
-              </g>
-              <g fill="#e06a35"><circle cx="520" cy="270" r="4"/><circle cx="940" cy="180" r="4"/></g>
-              <g font-family="Inter, sans-serif" font-size="15" fill="#6f6f78" letter-spacing="3">
-                <text x="72" y="70" font-weight="600" font-size="20" fill="#c9c9cd" letter-spacing="6">CMAXX</text>
-                <text x="72" y="96">CONNECTIVITY &amp; NETWORK SOLUTIONS</text>
-                <text x="1035" y="496" letter-spacing="2">NODES 214 · UPTIME 99.98</text>
-              </g>
-            </svg>
-          </div>
-          <span class="card__tag">Cmaxx — web experience</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>Cmaxx</h3>
-            <p class="tagline">Connectivity and network solutions — a site that makes infrastructure legible.</p>
-            <p class="svc">Web · Digital Experience</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="card sp7" data-cats="PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual r43">
-          <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business management platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
-          <span class="card__tag">ManaGem — business platform</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>ManaGem</h3>
-            <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
-            <p class="svc">Product · Dashboard UX · Design system</p>
-          </div>
+          <h3>ManaGem</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#3056D3"/><path d="M20 9 L30 17 L26 30 H14 L10 17 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg><div class="wt"><b>Business management</b><span>Product · Dashboard UX · Design system</span></div></div>
+          <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
           <a class="card__case" href="managem.html">View project →</a>
         </div>
       </article>
 
-      <article class="card sp5" data-cats="APPS AI PRODUCT">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property management app screens on two phones in a purple 3D set" loading="lazy"></div>
-          <span class="card__tag">RentFlow — property app</span>
+      <article class="card" data-cats="AI PRODUCT APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>RentFlow</h3>
-            <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
-            <p class="svc">Apps · AI · Product</p>
-          </div>
+          <h3>NuraCoach</h3>
+          <div class="card__who"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="2" y="10" width="44" height="20" rx="10" fill="#0F766E"/><path d="M10 20 h6 l3 -6 l4 12 l3 -6 h9" fill="none" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>AI coaching</b><span>AI · Product · UX</span></div></div>
+          <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
         </div>
       </article>
 
-      <article class="card sp6" data-cats="WEB PLATFORMS">
-        <div class="card__visual r11">
+      <article class="card" data-cats="WEB">
+        <div class="card__visual">
+          <div class="cx" aria-hidden="true">
+            <svg viewBox="0 0 420 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="CMAXX network map artwork">
+              <defs>
+                <radialGradient id="cxg" cx="30%" cy="35%" r="80%"><stop offset="0" stop-color="#1a1a1e"/><stop offset="1" stop-color="#0d0d0f"/></radialGradient>
+                <linearGradient id="cxr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a64b21" stop-opacity="0"/><stop offset=".5" stop-color="#e06a35"/><stop offset="1" stop-color="#a64b21" stop-opacity="0"/></linearGradient>
+              </defs>
+              <rect width="420" height="560" fill="url(#cxg)"/>
+              <g stroke="#26262b" stroke-width="1"><path d="M0 140 H420 M0 280 H420 M0 420 H420 M140 0 V560 M280 0 V560"/></g>
+              <g stroke="#3a3a41" stroke-width="1.4" fill="none">
+                <path d="M60 480 C 140 380, 120 300, 210 250 S 340 160, 360 90"/>
+                <path d="M60 160 C 160 220, 260 180, 340 260 S 300 420, 360 480"/>
+              </g>
+              <path d="M60 480 C 140 380, 120 300, 210 250 S 340 160, 360 90" fill="none" stroke="url(#cxr)" stroke-width="3" stroke-dasharray="14 10" style="animation:dashmove 3.5s linear infinite"/>
+              <g fill="#0d0d0f" stroke="#5a5a63" stroke-width="1.5"><circle cx="60" cy="480" r="9"/><circle cx="210" cy="250" r="9"/><circle cx="360" cy="90" r="9"/><circle cx="340" cy="260" r="7"/><circle cx="360" cy="480" r="7"/></g>
+              <g fill="#e06a35"><circle cx="210" cy="250" r="4"/><circle cx="360" cy="90" r="4"/></g>
+              <g font-family="Inter, sans-serif" fill="#6f6f78"><text x="36" y="52" font-weight="600" font-size="18" fill="#c9c9cd" letter-spacing="6">CMAXX</text><text x="36" y="76" font-size="12" letter-spacing="2">NETWORK SOLUTIONS</text></g>
+            </svg>
+          </div>
+        </div>
+        <div class="card__row">
+          <h3>Cmaxx</h3>
+          <div class="card__who"><svg viewBox="0 0 44 40" aria-hidden="true"><path d="M6 30 L16 10 L22 22 L28 10 L38 30" fill="none" stroke="#E5533D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>Connectivity & networks</b><span>Web · Digital Experience</span></div></div>
+          <p class="tagline">Connectivity and network solutions — a site that makes infrastructure legible.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="APPS AI PRODUCT">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property app screens on two phones in a purple 3D set" loading="lazy"></div>
+        </div>
+        <div class="card__row">
+          <h3>RentFlow</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 V18 A14 14 0 0 1 34 18 V34 Z" fill="#8B5CF6"/><path d="M14 34 V24 a6 6 0 0 1 12 0 v10" fill="#fff"/></svg><div class="wt"><b>Property tech</b><span>Apps · AI · Product</span></div></div>
+          <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="WEB PLATFORMS">
+        <div class="card__visual">
           <div class="card__media"><img src="assets/img/work/smartstart-mock.jpg" alt="SmartStart training platform on a laptop" loading="lazy"></div>
-          <span class="card__tag">SmartStart — learning platform</span>
         </div>
         <div class="card__row">
-          <div>
-            <h3>SmartStart</h3>
-            <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
-            <p class="svc">Web · Platforms · UX/UI</p>
-          </div>
+          <h3>SmartStart</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#7C3AED"/><path d="M20 8 v24 M8 20 h24 M12 12 l16 16 M28 12 l-16 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg><div class="wt"><b>Early learning</b><span>Web · Platforms · UX/UI</span></div></div>
+          <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
         </div>
       </article>
 
-      <article class="card sp6" data-cats="SYSTEMS PRODUCT">
-        <div class="card__visual r11">
-          <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme management system on a laptop against a concrete wall" loading="lazy"></div>
-          <span class="card__tag">Sonke — programme system</span>
+      <article class="card" data-cats="SYSTEMS PRODUCT">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme system on a laptop against a concrete wall" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>Sonke Gender Justice</h3>
-            <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
-            <p class="svc">Systems · Product · UX/UI</p>
-          </div>
+          <h3>Sonke Gender Justice</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="16" height="16" rx="4" fill="#E97817"/><rect x="21" y="3" width="16" height="16" rx="4" fill="#191c1f"/><rect x="3" y="21" width="16" height="16" rx="4" fill="#5C4033"/><rect x="21" y="21" width="16" height="16" rx="4" fill="#c9c9cd"/></svg><div class="wt"><b>Non-profit systems</b><span>Systems · Product · UX/UI</span></div></div>
+          <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
         </div>
       </article>
 
-      <article class="card sp5" data-cats="APPS">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone, on an orange industrial surface" loading="lazy"></div>
-          <span class="card__tag">Lungelo — field app</span>
+      <article class="card" data-cats="APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone on an orange industrial surface" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>Lungelo</h3>
-            <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
-            <p class="svc">Apps · UX/UI · Accessibility</p>
-          </div>
+          <h3>Lungelo</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="6" width="36" height="24" rx="12" fill="#135E63"/><path d="M14 34 l4 -6 h-4 z" fill="#135E63"/><circle cx="14" cy="18" r="2.6" fill="#fff"/><circle cx="21" cy="18" r="2.6" fill="#7DD3C0"/><circle cx="28" cy="18" r="2.6" fill="#fff" opacity=".5"/></svg><div class="wt"><b>Field operations</b><span>Apps · UX/UI · Accessibility</span></div></div>
+          <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
         </div>
       </article>
 
-      <article class="card sp7" data-cats="BRAND WEB STRATEGY">
-        <div class="card__visual r43">
+      <article class="card" data-cats="BRAND WEB STRATEGY">
+        <div class="card__visual">
           <div class="gb" aria-hidden="true">
             <div class="gb__g">G</div>
             <div>
@@ -418,18 +384,17 @@ button{font-family:inherit;cursor:pointer}
               <div class="gb__bar"><i style="background:#000"></i><i style="background:#a64b21"></i><i style="background:#c9c9cd"></i><i style="background:#e2e2e7"></i></div>
             </div>
           </div>
-          <span class="card__tag" style="color:#505a63;background:rgba(255,255,255,.7)">GEMIS — identity system</span>
         </div>
         <div class="card__row">
-          <div>
-            <h3>GEMIS BrandStudio</h3>
-            <p class="tagline">Our own identity — the system this studio runs on, applied from wordmark to interface.</p>
-            <p class="svc">Brand · Digital · Web</p>
-          </div>
+          <h3>GEMIS BrandStudio</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#191c1f"/><text x="12" y="28" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#fff">G</text></svg><div class="wt"><b>Our own identity</b><span>Brand · Digital · Web</span></div></div>
+          <p class="tagline">The system this studio runs on, applied from wordmark to interface.</p>
         </div>
       </article>
 
     </div>
+
+    <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
 
     <div class="empty" id="emptyState">
       <p>More work in this area is coming soon.</p>
@@ -693,33 +658,53 @@ button{font-family:inherit;cursor:pointer}
 <script>
 (function () {
   'use strict';
-  /* ── Work filter ── */
+  /* ── Work filter + view more + stagger ── */
   var buttons = document.querySelectorAll('#filters button');
-  var cards = document.querySelectorAll('#workGrid .card');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#workGrid .card'));
   var grid = document.getElementById('workGrid');
   var empty = document.getElementById('emptyState');
-  function setCat(cat, scroll) {
+  var moreWrap = document.getElementById('moreWrap');
+  var moreBtn = document.getElementById('moreBtn');
+  var CAP = 4, expanded = false, cat = 'ALL';
+  var OFFSETS = [0, 56, 24, 88];
+  function matches(c) { return cat === 'ALL' || (' ' + c.dataset.cats + ' ').indexOf(' ' + cat + ' ') > -1; }
+  function apply(scroll) {
     buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.cat === cat)); });
+    var pool = cards.filter(matches);
+    var wide = window.innerWidth >= 1024;
     var shown = 0;
-    cards.forEach(function (c) {
-      var on = cat === 'ALL' || (' ' + c.dataset.cats + ' ').indexOf(' ' + cat + ' ') > -1;
-      c.classList.toggle('is-hidden', !on);
-      if (on) shown++;
+    cards.forEach(function (c) { c.classList.add('is-hidden'); c.style.paddingTop = ''; });
+    pool.forEach(function (c, i) {
+      var on = expanded || i < CAP;
+      if (on) {
+        c.classList.remove('is-hidden');
+        c.style.paddingTop = wide ? OFFSETS[shown % 4] + 'px' : '';
+        shown++;
+      }
     });
-    grid.classList.toggle('is-hidden', shown === 0);
-    empty.style.display = shown === 0 ? 'block' : 'none';
+    grid.classList.toggle('is-hidden', pool.length === 0);
+    empty.style.display = pool.length === 0 ? 'block' : 'none';
+    moreWrap.style.display = pool.length > CAP ? 'flex' : 'none';
+    moreBtn.textContent = expanded ? 'View less ↑' : 'View more ↓';
     if (scroll) {
       var el = document.getElementById('explorer');
       window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 64, behavior: 'smooth' });
     }
   }
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { setCat(b.dataset.cat, false); });
+    b.addEventListener('click', function () { cat = b.dataset.cat; apply(false); });
   });
-  document.getElementById('resetFilter').addEventListener('click', function () { setCat('ALL', true); });
+  moreBtn.addEventListener('click', function () {
+    expanded = !expanded;
+    apply(!expanded);
+  });
+  document.getElementById('resetFilter').addEventListener('click', function () { cat = 'ALL'; expanded = false; apply(true); });
   document.querySelectorAll('.disc__row').forEach(function (r) {
-    r.addEventListener('click', function () { setCat(r.dataset.goto, true); });
+    r.addEventListener('click', function () { cat = r.dataset.goto; expanded = true; apply(true); });
   });
+  var rT;
+  window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { apply(false); }, 200); });
+  apply(false);
 
   /* ── Logo marquee: duplicate the set once for a seamless loop ── */
   var track = document.getElementById('logoTrack');
