@@ -55,7 +55,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ── Hero ── */
 .hero{position:relative;background:#000;color:#fff;overflow:hidden;min-height:min(88vh,860px);display:flex;align-items:flex-end}
-.hero__bg{position:absolute;inset:0;background-image:url("assets/img/portfolio/hero-wastemart.jpg");background-size:cover;background-position:center 40%}
+.hero__bg{position:absolute;inset:0;background-image:url("assets/img/portfolio/hero-displays.jpg");background-size:cover;background-position:center 38%}
 .hero__s1{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 32%,rgba(0,0,0,.28) 62%,rgba(0,0,0,.88) 100%)}
 .hero__s2{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 46%,rgba(0,0,0,0) 72%)}
 .hero__s3{position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(180deg,rgba(0,0,0,0),#000)}
@@ -78,18 +78,20 @@ button{font-family:inherit;cursor:pointer}
 .filters button{background:none;border:0;font-size:15px;font-weight:600;letter-spacing:.2px;color:#8d969e;padding:0 0 6px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
 .filters button:hover{color:#191c1f}
 .filters button[aria-pressed="true"]{color:#191c1f;border-bottom-color:#a64b21}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(40px,6vh,88px) clamp(24px,3vw,48px)}
-.card{display:flex;flex-direction:column}
-.card__visual{display:block;position:relative;overflow:hidden;background:#f4f4f4;border-radius:16px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-right:1px solid #e2e2e7;align-items:start}
+.card{border-left:1px solid #e2e2e7;padding:0 clamp(16px,2vw,28px) clamp(32px,5vh,56px);display:flex;flex-direction:column;transition:padding-top .45s cubic-bezier(.2,.7,.2,1)}
+.card__visual{display:block;position:relative;overflow:hidden;background:#f4f4f4;border-radius:6px;aspect-ratio:3/4}
 .card__media{position:absolute;inset:0;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .card__visual:hover .card__media{transform:scale(1.03)}
 .card__media img{width:100%;height:100%;object-fit:cover}
-.card__tag{position:absolute;left:16px;bottom:14px;font-size:13px;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border-radius:9999px;padding:5px 12px;pointer-events:none}
-.card__row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-top:20px}
-.card__row h3{font-size:clamp(22px,2.2vw,34px);line-height:1.15;letter-spacing:-.34px}
-.card__row .tagline{max-width:56ch;font-size:15px;line-height:1.5;color:#505a63;margin-top:6px}
-.card__row .svc{font-size:13px;color:#8d969e;margin-top:6px}
-.card__case{flex:0 0 auto;font-size:14px;font-weight:600;letter-spacing:.16px;color:#191c1f;border-bottom:1px solid #a64b21;padding-bottom:3px;white-space:nowrap}
+.card__row{margin-top:22px}
+.card__row h3{font-size:clamp(19px,1.7vw,25px);line-height:1.15;letter-spacing:-.3px}
+.card__who{display:flex;align-items:center;gap:10px;margin-top:16px}
+.card__who svg{width:26px;height:26px;flex:none}
+.card__who .wt b{display:block;font-size:14px;font-weight:600;letter-spacing:.1px;color:#191c1f}
+.card__who .wt span{display:block;font-size:12.5px;color:#8d969e;margin-top:1px}
+.card__row .tagline{font-size:13.5px;line-height:1.55;color:#505a63;margin-top:14px}
+.card__case{align-self:flex-start;margin-top:14px;font-size:14px;font-weight:600;letter-spacing:.16px;color:#191c1f;border-bottom:1px solid #a64b21;padding-bottom:3px;white-space:nowrap}
 .card__case:hover{color:#a64b21}
 .empty{display:none;background:#f4f4f4;border-radius:20px;padding:clamp(48px,10vh,96px) clamp(24px,4vw,48px);text-align:center}
 .empty p{margin:0 0 24px;font-size:clamp(24px,3vw,40px);line-height:1.2;letter-spacing:-.4px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
@@ -97,19 +99,22 @@ button{font-family:inherit;cursor:pointer}
 .empty button:hover{opacity:.85}
 .is-hidden{display:none !important}
 
-/* spans */
-.sp12{grid-column:span 12}.sp7{grid-column:span 7}.sp6{grid-column:span 6}.sp5{grid-column:span 5}
-.r168{aspect-ratio:16/8}.r43{aspect-ratio:4/3}.r45{aspect-ratio:4/5}.r219{aspect-ratio:21/9}.r11{aspect-ratio:1/1}
+.more{display:flex;justify-content:center;margin-top:clamp(36px,6vh,56px)}
+.more button{height:48px;padding:0 30px;border:1px solid #191c1f;background:#fff;color:#191c1f;border-radius:9999px;font-size:15px;font-weight:600;letter-spacing:.2px;transition:background .2s,color .2s}
+.more button:hover{background:#000;color:#fff}
 @media (max-width:1023px){
-  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .sp12,.sp7,.sp6,.sp5{grid-column:span 4}
-  .r168,.r219{aspect-ratio:16/10}
-  .exp__head,.hero__row,.card__row,.mo__grid{flex-direction:column;align-items:stretch !important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .exp__head,.hero__row,.mo__grid{flex-direction:column;align-items:stretch !important}
   .hero__row .meta{white-space:normal}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr;border-right:0}
+  .card{border-left:0;padding-left:0;padding-right:0}
 }
 
 /* ── CMAXX designed visual ── */
 .cx{position:absolute;inset:0;background:#0d0d0f}
+.cx svg{object-fit:cover}
 .cx svg{width:100%;height:100%}
 /* ── GEMIS brand tile ── */
 .gb{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4%,40px);padding-bottom:clamp(52px,12%,72px)}
@@ -147,10 +152,135 @@ button{font-family:inherit;cursor:pointer}
 .beyond .kicker{color:#505a63}
 .beyond .lede{margin:24px 0 clamp(32px,5vh,56px);max-width:62ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#1f2226}
 .bgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:minmax(88px,auto);gap:16px}
-.btile{position:relative;background:#fff;border:1px solid #e2e2e7;border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;padding:16px;min-height:150px}
-.btile>span{position:relative;font-size:13px;color:#8d969e;z-index:2}
-.btile svg{position:absolute;inset:0;width:100%;height:100%}
-@media (max-width:1023px){.bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.btile{grid-column:span 4 !important;grid-row:span 1 !important}}
+.btile{position:relative;background:#fff;border:1px solid #e2e2e7;border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;padding:14px;min-height:150px}
+.btile>span{position:relative;font-size:12px;color:#505a63;z-index:3;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid #e2e2e7;border-radius:9999px;padding:4px 10px}
+.btile--dark>span{background:rgba(10,10,10,.7);border-color:#26262b;color:#c9c9cd}
+.art{position:absolute;inset:0;font-family:'Inter Var',sans-serif;letter-spacing:0}
+.art *{box-sizing:border-box}
+/* shared artboard atoms */
+.a-ink{background:#191c1f;color:#fff}
+.a-chip{display:inline-flex;align-items:center;border-radius:9999px;font-size:9px;font-weight:600;padding:3px 8px}
+.a-shadow{box-shadow:0 12px 28px rgba(25,28,31,.14)}
+.a-lbl{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
+/* 1 · identity spread */
+.id-spread{display:flex;gap:1px;background:#e2e2e7}
+.id-spread>div{background:#fff;flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.id-hero{flex:1.25 !important;background:#191c1f !important;color:#fff;justify-content:flex-start;gap:12px}
+.id-mark{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:34px;letter-spacing:-1px}
+.id-mark sup{font-size:11px;color:#a64b21}
+.id-clear{border:1px dashed rgba(255,255,255,.3);border-radius:6px;padding:12px 10px;align-self:flex-start}
+.id-vars{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
+.id-vars i{border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px}
+.id-sw{display:flex;align-items:center;gap:8px}
+.id-sw i{width:22px;height:22px;border-radius:6px;flex:none;border:1px solid rgba(0,0,0,.08)}
+.id-sw b{font-size:10px;font-weight:600;color:#191c1f;display:block}
+.id-sw span{font-size:8.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
+.id-type b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:22px;color:#191c1f;line-height:1.05}
+.id-type span{font-size:9px;color:#8d969e}
+/* 2 · presentation slides */
+.pres{padding:14px}
+.pres .slide{position:absolute;width:62%;aspect-ratio:16/9;border-radius:8px;overflow:hidden}
+.pres .s-back{right:4%;top:6%;width:62%;background:#fff;border:1px solid #e2e2e7;padding:10px}
+.pres .s-back .bars{display:flex;align-items:flex-end;gap:5px;height:44%;margin-top:8px}
+.pres .s-back .bars i{flex:1;border-radius:2px 2px 0 0;background:#e2e2e7}
+.pres .s-back .bars i:nth-child(3){background:#a64b21}
+.pres .s-front{left:4%;top:24%;width:56%;background:#191c1f;color:#fff;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-2deg)}
+.pres .s-front .kick{color:#e08a5c;font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.pres .s-front h6{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:17px;line-height:1.1;margin:0}
+.pres .s-front .pg{font-size:8px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between}
+/* 3 · design system sheet */
+.ds{padding:14px 16px;display:flex;gap:14px}
+.ds .col{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ds .comp{font-size:9px;font-weight:600;color:#7C3AED;display:flex;align-items:center;gap:4px}
+.ds .btnrow{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ds .b{border-radius:9999px;font-size:10px;font-weight:600;padding:6px 14px}
+.ds .b1{background:#191c1f;color:#fff}
+.ds .b2{background:#3a3d42;color:#fff;outline:2px solid #c9c9cd;outline-offset:2px}
+.ds .b3{background:#f4f4f4;color:#9aa1a9}
+.ds .field{border:1.6px solid #a64b21;border-radius:8px;padding:6px 9px;box-shadow:0 0 0 3px rgba(166,75,33,.15)}
+.ds .field i{display:block;font-style:normal;font-size:7.5px;color:#8d969e}
+.ds .field b{font-size:10px;font-weight:400;color:#191c1f}
+.ds .tokens{display:flex;gap:6px}
+.ds .tk{flex:1;text-align:center}
+.ds .tk i{display:block;height:20px;border-radius:5px;margin-bottom:3px;border:1px solid rgba(0,0,0,.06)}
+.ds .tk span{font-size:7.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
+.ds .redline{display:flex;align-items:center;gap:4px;font-size:8px;color:#E5533D;font-family:'JetBrains Mono',monospace}
+.ds .redline i{flex:1;height:1px;background:#E5533D;position:relative}
+.ds .redline i::before,.ds .redline i::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:#E5533D}
+.ds .redline i::after{right:0}
+/* 4 · campaign */
+.camp{padding:12px}
+.camp .post{position:absolute;left:7%;top:10%;width:36%;aspect-ratio:1;background:#191c1f;color:#fff;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
+.camp .post h6{margin:0;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px;line-height:1.05}
+.camp .post h6 em{font-style:normal;color:#e08a5c}
+.camp .post .foot{display:flex;justify-content:space-between;align-items:center;font-size:7px;color:rgba(255,255,255,.6)}
+.camp .story{position:absolute;right:7%;top:6%;width:26%;aspect-ratio:9/16;border-radius:10px;background:linear-gradient(160deg,#c25a28,#7e3617);color:#fff;padding:9px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px}
+.camp .story .ring{position:absolute;top:7px;left:7px;width:14px;height:14px;border-radius:50%;border:2px solid #fff}
+.camp .story b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:11px;line-height:1.1}
+.camp .story span{align-self:flex-start;background:#fff;color:#191c1f;border-radius:9999px;font-size:7.5px;font-weight:600;padding:3px 8px}
+.camp .like{position:absolute;left:44%;bottom:12%;background:#fff;border:1px solid #e2e2e7;border-radius:9999px;padding:4px 9px;font-size:8px;font-weight:600;color:#191c1f;box-shadow:0 8px 18px rgba(25,28,31,.12)}
+/* 5 · prototype */
+.proto{padding:14px;background:#f7f7f9;display:flex;align-items:center;justify-content:center;gap:12%}
+.proto .ph{width:26%;aspect-ratio:9/17;background:#fff;border:1px solid #d5d8dd;border-radius:10px;padding:5px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:2}
+.proto .ph i{border-radius:3px;background:#f0f0f3}
+.proto .ph .h{height:8px;width:60%}
+.proto .ph .blk{flex:1}
+.proto .ph .pbtn{height:10px;background:#a64b21;flex:none}
+.proto .hot{outline:1.5px solid #4b8bfd;outline-offset:1px;background:#eaf1ff !important}
+.proto svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+/* 7 · AI panel */
+.aip{padding:12px 14px;display:flex;flex-direction:column;gap:7px;justify-content:flex-end}
+.aip .u{align-self:flex-end;background:#191c1f;color:#fff;border-radius:12px 12px 3px 12px;font-size:9.5px;padding:6px 10px;max-width:78%}
+.aip .a{align-self:flex-start;background:#fff;border:1px solid #e2e2e7;border-radius:12px 12px 12px 3px;font-size:9px;color:#3a3f47;padding:8px 10px;max-width:86%;box-shadow:0 8px 20px rgba(25,28,31,.06)}
+.aip .a b{display:flex;align-items:center;gap:4px;font-size:8.5px;color:#a64b21;margin-bottom:3px}
+.aip .src{display:inline-block;margin-top:5px;background:#faf1ec;color:#a64b21;border-radius:9999px;font-size:7.5px;font-weight:600;padding:2px 7px}
+.aip .bar{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #c9c9cd;border-radius:9999px;padding:6px 10px;font-size:8.5px;color:#8d969e}
+.aip .bar u{margin-left:auto;width:18px;height:18px;border-radius:50%;background:#a64b21;flex:none;position:relative}
+.aip .bar u::before{content:"↑";position:absolute;inset:0;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
+/* 8 · email */
+.mail{padding:14px 22px}
+.mail .win{background:#fff;border:1px solid #e2e2e7;border-radius:10px;overflow:hidden;box-shadow:0 14px 30px rgba(25,28,31,.1);height:100%;display:flex;flex-direction:column}
+.mail .mh{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid #eef0f2}
+.mail .mh i{width:14px;height:14px;border-radius:4px;background:#191c1f;color:#fff;font-style:normal;font-size:8px;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight Var',sans-serif}
+.mail .mh span{font-size:8px;color:#8d969e}
+.mail .hero{height:34%;background:linear-gradient(150deg,#c25a28,#6e2f13)}
+.mail .body{padding:8px 10px;display:flex;flex-direction:column;gap:5px;flex:1}
+.mail .body i{border-radius:3px;background:#eef0f2;height:6px}
+.mail .body i.t{height:9px;width:70%;background:#d9dce0}
+.mail .body span{align-self:flex-start;margin-top:auto;background:#a64b21;color:#fff;border-radius:9999px;font-size:7.5px;font-weight:600;padding:4px 10px}
+/* 9 · touchpoints */
+.tp{display:flex;align-items:flex-end;justify-content:space-evenly;padding:12px 20px 34px;gap:10px}
+.tp .cap{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:8px;color:#8d969e;letter-spacing:.06em;text-transform:uppercase}
+.tp .item{position:relative;display:flex;align-items:flex-end;justify-content:center}
+.tp .card2{width:96px;height:58px;background:#191c1f;border-radius:6px;color:#fff;padding:7px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 22px rgba(25,28,31,.18)}
+.tp .card2 b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:9px}
+.tp .card2 span{font-size:5.5px;color:rgba(255,255,255,.55);line-height:1.35}
+.tp .card2 i{position:absolute;right:7px;top:7px;width:8px;height:8px;border-radius:2px;background:#a64b21}
+.tp .phb{width:48px;height:96px;background:#fff;border:1.5px solid #c9c9cd;border-radius:8px;padding:4px;display:flex;flex-direction:column;gap:3px}
+.tp .phb i{background:#f0f0f3;border-radius:2px}
+.tp .phb .n{height:6px;width:55%}
+.tp .phb .f{flex:1}
+.tp .phb .o{height:8px;background:#a64b21}
+.tp .tab{width:104px;height:76px;background:#fff;border:1.5px solid #c9c9cd;border-radius:7px;padding:5px;display:flex;gap:4px}
+.tp .tab .side{width:16px;background:#191c1f;border-radius:3px}
+.tp .tab .mn{flex:1;display:flex;flex-direction:column;gap:3px}
+.tp .tab .mn i{background:#f0f0f3;border-radius:2px;flex:1}
+.tp .tab .mn i.k{flex:none;height:10px;background:#faf1ec}
+.tp .lap{width:142px}
+.tp .lap .scr{height:72px;background:#191c1f;border-radius:6px 6px 0 0;border:1.5px solid #35383d;border-bottom:0;padding:6px;display:flex;flex-direction:column;gap:3px}
+.tp .lap .scr b{color:#fff;font-size:7px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
+.tp .lap .scr i{background:rgba(255,255,255,.14);border-radius:2px;height:5px}
+.tp .lap .scr i.o{background:#a64b21;width:36%}
+.tp .lap .base{height:5px;background:#c9c9cd;border-radius:0 0 5px 5px;margin:0 -6px}
+.tp .sig{width:64px;height:92px;background:#20242a;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative}
+.tp .sig b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:13px}
+.tp .sig i{position:absolute;bottom:6px;width:60%;height:2px;background:#a64b21}
+.tp .bill{width:160px;height:68px;background:#191c1f;border-radius:4px;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;gap:3px;position:relative}
+.tp .bill::after{content:"";position:absolute;left:46%;top:100%;width:8%;height:16px;background:#c9c9cd}
+.tp .bill b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:11px;line-height:1.05}
+.tp .bill b em{font-style:normal;color:#e08a5c}
+.tp .bill span{font-size:6px;color:rgba(255,255,255,.5)}
+@media (max-width:1023px){.bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.btile{grid-column:span 4 !important;grid-row:span 2 !important;min-height:210px}.tp .bill,.tp .tab{display:none}}
 
 /* ── In motion ── */
 .motion{background:#000;color:#fff}
@@ -252,165 +382,109 @@ button{font-family:inherit;cursor:pointer}
 
     <div class="grid" id="workGrid">
 
-      <article class="card sp12" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual r168">
-          <div class="card__media"><img src="assets/img/portfolio/finos-wide.jpg" alt="FINOS financial command centre dashboard on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
-          <span class="card__tag">FINOS — command centre</span>
+      <article class="card" data-cats="WEB">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/portfolio/cmaxx-mock.jpg" alt="Cmaxx website on a desktop display against a dark wood-panelled wall" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>FINOS</h3>
-            <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
-            <p class="svc">AI · Product · UX/UI · Strategy</p>
-          </div>
+          <h3>Cmaxx</h3>
+          <div class="card__who"><svg viewBox="0 0 44 40" aria-hidden="true"><path d="M6 30 L16 10 L22 22 L28 10 L38 30" fill="none" stroke="#E5533D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>Connectivity & networks</b><span>Web · Digital Experience</span></div></div>
+          <p class="tagline">Connectivity and network solutions — a site that makes infrastructure legible.</p>
         </div>
       </article>
 
-      <article class="card sp7" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
-        <div class="card__visual r43">
-          <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone, floating over a dark particle landscape" loading="lazy"></div>
-          <span class="card__tag">WasteMart — driver app</span>
+      <article class="card" data-cats="PRODUCT SYSTEMS PLATFORMS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>WasteMart</h3>
-            <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
-            <p class="svc">Systems · Product · UX/UI</p>
-          </div>
-          <a class="card__case" href="wastemart.html">View project →</a>
-        </div>
-      </article>
-
-      <article class="card sp5" data-cats="AI PRODUCT APPS">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
-          <span class="card__tag">NuraCoach — AI coaching</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>NuraCoach</h3>
-            <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
-            <p class="svc">AI · Product · UX</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="card sp12" data-cats="WEB">
-        <div class="card__visual r219">
-          <div class="cx" aria-hidden="true">
-            <svg viewBox="0 0 1260 540" preserveAspectRatio="xMidYMid slice" role="img" aria-label="CMAXX network map artwork">
-              <defs>
-                <radialGradient id="cxg" cx="30%" cy="40%" r="70%">
-                  <stop offset="0" stop-color="#1a1a1e"/><stop offset="1" stop-color="#0d0d0f"/>
-                </radialGradient>
-                <linearGradient id="cxr" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#a64b21" stop-opacity="0"/><stop offset=".5" stop-color="#e06a35"/><stop offset="1" stop-color="#a64b21" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <rect width="1260" height="540" fill="url(#cxg)"/>
-              <g stroke="#26262b" stroke-width="1">
-                <path d="M0 140 H1260 M0 270 H1260 M0 400 H1260 M210 0 V540 M420 0 V540 M630 0 V540 M840 0 V540 M1050 0 V540"/>
-              </g>
-              <g stroke="#3a3a41" stroke-width="1.4" fill="none">
-                <path d="M140 400 C 300 320, 380 330, 520 270 S 800 160, 940 180 S 1120 240, 1180 200"/>
-                <path d="M100 190 C 260 240, 420 140, 560 170 S 860 330, 1020 300"/>
-              </g>
-              <path d="M140 400 C 300 320, 380 330, 520 270 S 800 160, 940 180" fill="none" stroke="url(#cxr)" stroke-width="3" stroke-dasharray="14 10" style="animation:dashmove 3.5s linear infinite"/>
-              <g fill="#0d0d0f" stroke="#5a5a63" stroke-width="1.5">
-                <circle cx="140" cy="400" r="9"/><circle cx="520" cy="270" r="9"/><circle cx="940" cy="180" r="9"/><circle cx="1180" cy="200" r="7"/><circle cx="560" cy="170" r="7"/><circle cx="1020" cy="300" r="7"/>
-              </g>
-              <g fill="#e06a35"><circle cx="520" cy="270" r="4"/><circle cx="940" cy="180" r="4"/></g>
-              <g font-family="Inter, sans-serif" font-size="15" fill="#6f6f78" letter-spacing="3">
-                <text x="72" y="70" font-weight="600" font-size="20" fill="#c9c9cd" letter-spacing="6">CMAXX</text>
-                <text x="72" y="96">CONNECTIVITY &amp; NETWORK SOLUTIONS</text>
-                <text x="1035" y="496" letter-spacing="2">NODES 214 · UPTIME 99.98</text>
-              </g>
-            </svg>
-          </div>
-          <span class="card__tag">Cmaxx — web experience</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>Cmaxx</h3>
-            <p class="tagline">Connectivity and network solutions — a site that makes infrastructure legible.</p>
-            <p class="svc">Web · Digital Experience</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="card sp7" data-cats="PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual r43">
-          <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business management platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
-          <span class="card__tag">ManaGem — business platform</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>ManaGem</h3>
-            <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
-            <p class="svc">Product · Dashboard UX · Design system</p>
-          </div>
+          <h3>ManaGem</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#3056D3"/><path d="M20 9 L30 17 L26 30 H14 L10 17 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg><div class="wt"><b>Business management</b><span>Product · Dashboard UX · Design system</span></div></div>
+          <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
           <a class="card__case" href="managem.html">View project →</a>
         </div>
       </article>
 
-      <article class="card sp5" data-cats="APPS AI PRODUCT">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property management app screens on two phones in a purple 3D set" loading="lazy"></div>
-          <span class="card__tag">RentFlow — property app</span>
-        </div>
-        <div class="card__row">
-          <div>
-            <h3>RentFlow</h3>
-            <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
-            <p class="svc">Apps · AI · Product</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="card sp6" data-cats="WEB PLATFORMS">
-        <div class="card__visual r11">
+      <article class="card" data-cats="WEB PLATFORMS">
+        <div class="card__visual">
           <div class="card__media"><img src="assets/img/work/smartstart-mock.jpg" alt="SmartStart training platform on a laptop" loading="lazy"></div>
-          <span class="card__tag">SmartStart — learning platform</span>
         </div>
         <div class="card__row">
-          <div>
-            <h3>SmartStart</h3>
-            <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
-            <p class="svc">Web · Platforms · UX/UI</p>
-          </div>
+          <h3>SmartStart</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#7C3AED"/><path d="M20 8 v24 M8 20 h24 M12 12 l16 16 M28 12 l-16 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg><div class="wt"><b>Early learning</b><span>Web · Platforms · UX/UI</span></div></div>
+          <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
         </div>
       </article>
 
-      <article class="card sp6" data-cats="SYSTEMS PRODUCT">
-        <div class="card__visual r11">
-          <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme management system on a laptop against a concrete wall" loading="lazy"></div>
-          <span class="card__tag">Sonke — programme system</span>
+      <article class="card" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone over a dark particle landscape" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>Sonke Gender Justice</h3>
-            <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
-            <p class="svc">Systems · Product · UX/UI</p>
-          </div>
+          <h3>WasteMart</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#14B8A6"/><path d="M13 22 a8 8 0 0 1 13-6 M27 18 a8 8 0 0 1 -13 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg><div class="wt"><b>Waste & recycling ops</b><span>Systems · Product · UX/UI</span></div></div>
+          <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
+          <a class="card__case" href="wastemart.html">View project →</a>
         </div>
       </article>
 
-      <article class="card sp5" data-cats="APPS">
-        <div class="card__visual r45">
-          <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone, on an orange industrial surface" loading="lazy"></div>
-          <span class="card__tag">Lungelo — field app</span>
+      <article class="card" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/finos.jpg" alt="FINOS financial command centre on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
         </div>
         <div class="card__row">
-          <div>
-            <h3>Lungelo</h3>
-            <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
-            <p class="svc">Apps · UX/UI · Accessibility</p>
-          </div>
+          <h3>FINOS</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#111"/><circle cx="13" cy="20" r="3.4" fill="#fff"/><rect x="20" y="17" width="12" height="2.6" rx="1.3" fill="#8d969e"/><rect x="20" y="22" width="8" height="2.6" rx="1.3" fill="#8d969e"/></svg><div class="wt"><b>Fintech · AI platform</b><span>AI · Product · UX/UI · Strategy</span></div></div>
+          <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
         </div>
       </article>
 
-      <article class="card sp7" data-cats="BRAND WEB STRATEGY">
-        <div class="card__visual r43">
+      <article class="card" data-cats="AI PRODUCT APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
+        </div>
+        <div class="card__row">
+          <h3>NuraCoach</h3>
+          <div class="card__who"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="2" y="10" width="44" height="20" rx="10" fill="#0F766E"/><path d="M10 20 h6 l3 -6 l4 12 l3 -6 h9" fill="none" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>AI coaching</b><span>AI · Product · UX</span></div></div>
+          <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="APPS AI PRODUCT">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property app screens on two phones in a purple 3D set" loading="lazy"></div>
+        </div>
+        <div class="card__row">
+          <h3>RentFlow</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 V18 A14 14 0 0 1 34 18 V34 Z" fill="#8B5CF6"/><path d="M14 34 V24 a6 6 0 0 1 12 0 v10" fill="#fff"/></svg><div class="wt"><b>Property tech</b><span>Apps · AI · Product</span></div></div>
+          <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="SYSTEMS PRODUCT">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme system on a laptop against a concrete wall" loading="lazy"></div>
+        </div>
+        <div class="card__row">
+          <h3>Sonke Gender Justice</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="16" height="16" rx="4" fill="#E97817"/><rect x="21" y="3" width="16" height="16" rx="4" fill="#191c1f"/><rect x="3" y="21" width="16" height="16" rx="4" fill="#5C4033"/><rect x="21" y="21" width="16" height="16" rx="4" fill="#c9c9cd"/></svg><div class="wt"><b>Non-profit systems</b><span>Systems · Product · UX/UI</span></div></div>
+          <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="APPS">
+        <div class="card__visual">
+          <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone on an orange industrial surface" loading="lazy"></div>
+        </div>
+        <div class="card__row">
+          <h3>Lungelo</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="6" width="36" height="24" rx="12" fill="#135E63"/><path d="M14 34 l4 -6 h-4 z" fill="#135E63"/><circle cx="14" cy="18" r="2.6" fill="#fff"/><circle cx="21" cy="18" r="2.6" fill="#7DD3C0"/><circle cx="28" cy="18" r="2.6" fill="#fff" opacity=".5"/></svg><div class="wt"><b>Field operations</b><span>Apps · UX/UI · Accessibility</span></div></div>
+          <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
+        </div>
+      </article>
+
+      <article class="card" data-cats="BRAND WEB STRATEGY">
+        <div class="card__visual">
           <div class="gb" aria-hidden="true">
             <div class="gb__g">G</div>
             <div>
@@ -418,18 +492,17 @@ button{font-family:inherit;cursor:pointer}
               <div class="gb__bar"><i style="background:#000"></i><i style="background:#a64b21"></i><i style="background:#c9c9cd"></i><i style="background:#e2e2e7"></i></div>
             </div>
           </div>
-          <span class="card__tag" style="color:#505a63;background:rgba(255,255,255,.7)">GEMIS — identity system</span>
         </div>
         <div class="card__row">
-          <div>
-            <h3>GEMIS BrandStudio</h3>
-            <p class="tagline">Our own identity — the system this studio runs on, applied from wordmark to interface.</p>
-            <p class="svc">Brand · Digital · Web</p>
-          </div>
+          <h3>GEMIS BrandStudio</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#191c1f"/><text x="12" y="28" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#fff">G</text></svg><div class="wt"><b>Our own identity</b><span>Brand · Digital · Web</span></div></div>
+          <p class="tagline">The system this studio runs on, applied from wordmark to interface.</p>
         </div>
       </article>
 
     </div>
+
+    <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
 
     <div class="empty" id="emptyState">
       <p>More work in this area is coming soon.</p>
@@ -481,144 +554,168 @@ button{font-family:inherit;cursor:pointer}
     <div class="bgrid">
 
       <div class="btile" style="grid-column:span 7;grid-row:span 3">
-        <svg viewBox="0 0 560 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <text x="36" y="200" font-family="Inter Tight, Inter, sans-serif" font-weight="500" font-size="190" letter-spacing="-10" fill="#191c1f">G</text>
-          <text x="200" y="120" font-family="Inter, sans-serif" font-size="17" fill="#8d969e">Aa Bb Cc 0123</text>
-          <text x="200" y="148" font-family="Inter, sans-serif" font-size="13" fill="#c9c9cd">Inter 400 · Inter Tight 500 · -1% tracking</text>
-          <g>
-            <rect x="200" y="176" width="52" height="24" rx="12" fill="#000"/>
-            <rect x="258" y="176" width="52" height="24" rx="12" fill="#a64b21"/>
-            <rect x="316" y="176" width="52" height="24" rx="12" fill="#c9c9cd"/>
-            <rect x="374" y="176" width="52" height="24" rx="12" fill="#e2e2e7"/>
-          </g>
-          <g stroke="#e2e2e7"><path d="M36 250 H524"/></g>
-          <text x="36" y="285" font-family="Inter, sans-serif" font-size="13" fill="#8d969e">Wordmark · palette · type scale · rules of use</text>
-        </svg>
+        <div class="art id-spread" aria-hidden="true">
+          <div class="id-hero">
+            <div class="id-clear"><span class="id-mark">GEMIS<sup>®</sup></span></div>
+            <div><span class="a-lbl" style="color:rgba(255,255,255,.45)">Clear space — 2× cap height</span></div>
+          </div>
+          <div>
+            <span class="a-lbl">Logo variants</span>
+            <div class="id-vars">
+              <i style="background:#191c1f;color:#fff">G</i>
+              <i style="background:#f4f4f4;color:#191c1f;border:1px solid #e2e2e7">G</i>
+              <i style="background:#a64b21;color:#fff">G</i>
+              <i style="background:#fff;color:#191c1f;border:1.5px dashed #c9c9cd">G</i>
+            </div>
+            <span class="a-lbl">Minimum size 24px</span>
+          </div>
+          <div>
+            <span class="a-lbl">Colour</span>
+            <div class="id-sw"><i style="background:#191c1f"></i><div><b>Ink</b><span>#191C1F</span></div></div>
+            <div class="id-sw"><i style="background:#a64b21"></i><div><b>Ember</b><span>#A64B21</span></div></div>
+            <div class="id-sw"><i style="background:#c9c9cd"></i><div><b>Stone</b><span>#C9C9CD</span></div></div>
+            <span class="a-lbl" style="margin-top:4px">Typography</span>
+            <div class="id-type"><b>Aa Gg</b><span>Inter Tight 500 · Inter 400</span></div>
+          </div>
+        </div>
         <span>[ Identity system ]</span>
       </div>
 
       <div class="btile" style="grid-column:span 5;grid-row:span 2">
-        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="150" y="46" width="220" height="128" rx="10" fill="#fff" stroke="#e2e2e7"/>
-          <rect x="120" y="60" width="220" height="128" rx="10" fill="#fff" stroke="#e2e2e7"/>
-          <rect x="90" y="74" width="220" height="128" rx="10" fill="#191c1f"/>
-          <rect x="110" y="100" width="120" height="12" rx="6" fill="#fff" opacity=".9"/>
-          <rect x="110" y="122" width="80" height="9" rx="4.5" fill="#fff" opacity=".4"/>
-          <rect x="110" y="164" width="56" height="18" rx="9" fill="#a64b21"/>
-        </svg>
+        <div class="art pres" aria-hidden="true">
+          <div class="slide s-back">
+            <span class="a-lbl">Adoption by quarter</span>
+            <div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:88%"></i><i style="height:55%"></i><i style="height:70%"></i></div>
+          </div>
+          <div class="slide s-front a-shadow">
+            <span class="kick">GEMIS — Product Review</span>
+            <h6>One system.<br>Every screen.</h6>
+            <div class="pg"><span>Q3 2026</span><span>01 / 24</span></div>
+          </div>
+        </div>
         <span>[ Presentation system ]</span>
       </div>
 
       <div class="btile" style="grid-column:span 5;grid-row:span 2">
-        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g font-family="Inter, sans-serif" font-size="11" fill="#8d969e">
-            <rect x="30" y="40" width="88" height="30" rx="15" fill="#000"/>
-            <text x="52" y="59" fill="#fff">Primary</text>
-            <rect x="126" y="40" width="88" height="30" rx="15" fill="#fff" stroke="#c9c9cd"/>
-            <text x="146" y="59" fill="#191c1f">Ghost</text>
-            <rect x="222" y="40" width="88" height="30" rx="15" fill="#f4f4f4"/>
-            <text x="240" y="59" fill="#c9c9cd">Disabled</text>
-            <rect x="30" y="90" width="200" height="34" rx="8" fill="#fff" stroke="#a64b21" stroke-width="1.6"/>
-            <text x="42" y="111">Input — focused</text>
-            <rect x="242" y="90" width="128" height="34" rx="8" fill="#fff" stroke="#e2e2e7"/>
-            <text x="254" y="111">Select</text>
-            <circle cx="44" cy="160" r="10" fill="#a64b21"/><circle cx="72" cy="160" r="10" fill="#191c1f"/><circle cx="100" cy="160" r="10" fill="#c9c9cd"/><circle cx="128" cy="160" r="10" fill="#e2e2e7"/>
-            <text x="30" y="200" fill="#c9c9cd">Tokens · states · spacing · contrast AA</text>
-          </g>
-        </svg>
+        <div class="art ds" aria-hidden="true">
+          <div class="col">
+            <span class="comp">❖ Button / states</span>
+            <div class="btnrow">
+              <span class="b b1">Save changes</span>
+              <span class="b b2">Focused</span>
+              <span class="b b3">Disabled</span>
+            </div>
+            <div class="redline"><i></i>16<i></i></div>
+          </div>
+          <div class="col">
+            <span class="comp">❖ Input / focus</span>
+            <div class="field"><i>Work email</i><b>thabo@company.co.za</b></div>
+            <span class="comp" style="margin-top:2px">❖ Tokens / ember</span>
+            <div class="tokens">
+              <div class="tk"><i style="background:#f6e3d8"></i><span>100</span></div>
+              <div class="tk"><i style="background:#d98d5f"></i><span>300</span></div>
+              <div class="tk"><i style="background:#a64b21"></i><span>500</span></div>
+              <div class="tk"><i style="background:#6e2f13"></i><span>700</span></div>
+            </div>
+          </div>
+        </div>
         <span>[ Design system ]</span>
       </div>
 
       <div class="btile" style="grid-column:span 4;grid-row:span 2">
-        <svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="34" y="40" width="120" height="120" rx="10" fill="#191c1f"/>
-          <text x="52" y="112" font-family="Inter Tight, sans-serif" font-weight="500" font-size="40" fill="#fff">Aa</text>
-          <rect x="166" y="40" width="120" height="120" rx="10" fill="#a64b21"/>
-          <circle cx="226" cy="100" r="28" fill="none" stroke="#fff" stroke-width="3"/>
-          <rect x="34" y="170" width="252" height="34" rx="8" fill="#fff" stroke="#e2e2e7"/>
-          <rect x="46" y="183" width="110" height="8" rx="4" fill="#e2e2e7"/>
-        </svg>
+        <div class="art camp" aria-hidden="true">
+          <div class="post a-shadow">
+            <span class="a-lbl" style="color:rgba(255,255,255,.45)">GEMIS®</span>
+            <h6>Make it<br><em>clear.</em></h6>
+            <div class="foot"><span>@gemis.studio</span><span>♡ 214</span></div>
+          </div>
+          <div class="story a-shadow">
+            <i class="ring"></i>
+            <b>New work<br>is live</b>
+            <span>Learn more</span>
+          </div>
+          <div class="like">↗ Share</div>
+        </div>
         <span>[ Campaign assets ]</span>
       </div>
 
       <div class="btile" style="grid-column:span 3;grid-row:span 2">
-        <svg viewBox="0 0 240 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="70" y="30" width="100" height="185" rx="18" fill="#191c1f"/>
-          <rect x="80" y="46" width="80" height="150" rx="10" fill="#fff"/>
-          <rect x="90" y="60" width="44" height="8" rx="4" fill="#c9c9cd"/>
-          <rect x="90" y="76" width="60" height="26" rx="6" fill="#f4f4f4"/>
-          <rect x="90" y="108" width="60" height="26" rx="6" fill="#f4f4f4"/>
-          <rect x="90" y="164" width="60" height="18" rx="9" fill="#a64b21"/>
-          <path d="M40 120 h22 m0 0 l-7 -7 m7 7 l-7 7 M200 120 h-22 m0 0 l7 -7 m-7 7 l7 7" stroke="#c9c9cd" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-        </svg>
+        <div class="art proto" aria-hidden="true">
+          <svg viewBox="0 0 287 192" preserveAspectRatio="none">
+            <path d="M104 74 C 138 60, 152 60, 182 78" fill="none" stroke="#4b8bfd" stroke-width="1.6"/>
+            <path d="M104 130 C 140 148, 154 142, 182 116" fill="none" stroke="#4b8bfd" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <circle cx="104" cy="74" r="3.2" fill="#fff" stroke="#4b8bfd" stroke-width="1.6"/>
+            <path d="M182 78 l-7 -4 v8 z M182 116 l-7 -4 v8 z" fill="#4b8bfd"/>
+          </svg>
+          <div class="ph a-shadow"><i class="h"></i><i class="blk hot"></i><i class="pbtn"></i></div>
+          <div class="ph a-shadow"><i class="h" style="width:40%"></i><i class="blk"></i><i class="blk" style="flex:.5"></i><i class="pbtn"></i></div>
+        </div>
         <span>[ Prototype ]</span>
       </div>
 
-      <div class="btile" style="grid-column:span 5;grid-row:span 3;background:#0a0a0a;border-color:#1c1c1f">
-        <svg viewBox="0 0 400 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g stroke="rgba(255,255,255,.08)"><path d="M0 60 H400 M0 120 H400 M0 180 H400 M0 240 H400 M0 300 H400"/></g>
-          <rect x="40" y="66" width="150" height="16" rx="8" fill="rgba(255,255,255,.24)"/>
-          <rect x="40" y="98" width="100" height="12" rx="6" fill="rgba(255,255,255,.12)"/>
-          <rect x="40" y="220" width="320" height="90" rx="14" fill="none" stroke="rgba(255,255,255,.16)"/>
-          <rect x="0" y="0" width="400" height="70" fill="url(#mg)"/>
-          <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(166,75,33,0)"/><stop offset="1" stop-color="rgba(166,75,33,.45)"/></linearGradient></defs>
-        </svg>
-        <span style="color:rgba(255,255,255,.6)">[ Motion ]</span>
+      <div class="btile btile--dark" style="grid-column:span 5;grid-row:span 3;background:#0a0a0a;border-color:#1c1c1f">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 489 296" style="position:absolute;inset:0;width:100%;height:100%">
+            <g stroke="rgba(255,255,255,.07)"><path d="M40 40 H300 M40 90 H300 M40 140 H300 M40 190 H300 M90 40 V190 M160 40 V190 M230 40 V190"/></g>
+            <path d="M40 190 C 120 190, 140 40, 300 40" fill="none" stroke="#e06a35" stroke-width="2.5"/>
+            <g stroke="#8d969e" stroke-width="1.2"><path d="M40 190 L110 150 M300 40 L240 78"/></g>
+            <g fill="#fff"><circle cx="40" cy="190" r="4"/><circle cx="300" cy="40" r="4"/></g>
+            <g fill="#0a0a0a" stroke="#8d969e" stroke-width="1.2"><circle cx="110" cy="150" r="3.4"/><circle cx="240" cy="78" r="3.4"/></g>
+            <text x="40" y="24" font-family="JetBrains Mono, monospace" font-size="11" fill="#c9c9cd">cubic-bezier(.2, .7, .2, 1)</text>
+            <text x="316" y="52" font-family="Inter, sans-serif" font-size="10" fill="#8d969e">ease-out-expo</text>
+            <g transform="translate(40, 226)">
+              <rect width="409" height="10" rx="5" fill="rgba(255,255,255,.08)"/>
+              <rect width="180" height="10" rx="5" fill="rgba(224,106,53,.35)"/>
+              <path d="M60 5 l6 -6 6 6 -6 6 z M180 5 l6 -6 6 6 -6 6 z M320 5 l6 -6 6 6 -6 6 z" fill="#e06a35" transform="translate(-6,0)"/>
+              <text y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">fade 200ms</text>
+              <text x="150" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">slide 400ms</text>
+              <text x="300" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">spring 1.2</text>
+            </g>
+            <g transform="translate(408, 20)">
+              <circle cx="16" cy="16" r="16" fill="#e06a35"/>
+              <path d="M12 9 l12 7 -12 7 z" fill="#0a0a0a"/>
+            </g>
+          </svg>
+        </div>
+        <span>[ Motion ]</span>
       </div>
 
-      <div class="btile" style="grid-column:span 4;grid-row:span 2">
-        <svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="40" y="52" width="180" height="44" rx="18" fill="#f4f4f4"/>
-          <rect x="56" y="68" width="120" height="10" rx="5" fill="#c9c9cd"/>
-          <rect x="100" y="112" width="180" height="44" rx="18" fill="#191c1f"/>
-          <rect x="116" y="128" width="120" height="10" rx="5" fill="#8d969e"/>
-          <g fill="#a64b21"><path d="M258 62 l4 8 8 2 -6 6 1 9 -7 -4 -8 4 2 -9 -6 -6 8 -2 z"/></g>
-          <rect x="40" y="172" width="112" height="30" rx="15" fill="#fff" stroke="#a64b21"/>
-          <text x="58" y="191" font-family="Inter, sans-serif" font-size="12" fill="#a64b21">Ask GEMIS…</text>
-        </svg>
+      <div class="btile" style="grid-column:span 4;grid-row:span 2;background:#f7f7f9">
+        <div class="art aip" aria-hidden="true">
+          <div class="u">Summarise this invoice batch</div>
+          <div class="a">
+            <b>✦ GEMIS Assist</b>
+            12 invoices reviewed — 10 match their orders. Two need attention: duplicate charge on INV-2291, VAT variance on INV-2288.
+            <span class="src">12 sources</span>
+          </div>
+          <div class="bar">Ask anything…<u></u></div>
+        </div>
         <span>[ AI concepts ]</span>
       </div>
 
-      <div class="btile" style="grid-column:span 3;grid-row:span 2">
-        <svg viewBox="0 0 240 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect x="36" y="44" width="168" height="112" rx="8" fill="#fff" stroke="#e2e2e7"/>
-          <path d="M36 52 L120 110 L204 52" fill="none" stroke="#c9c9cd" stroke-width="2"/>
-          <rect x="36" y="176" width="100" height="10" rx="5" fill="#e2e2e7"/>
-          <rect x="36" y="194" width="70" height="10" rx="5" fill="#f0f0f3"/>
-          <circle cx="196" cy="190" r="16" fill="#191c1f"/>
-          <text x="190" y="196" font-family="Inter Tight, sans-serif" font-size="15" fill="#fff">G</text>
-        </svg>
+      <div class="btile" style="grid-column:span 3;grid-row:span 2;background:#f7f7f9">
+        <div class="art mail" aria-hidden="true">
+          <div class="win">
+            <div class="mh"><i>G</i><span>GEMIS Studio · newsletter</span></div>
+            <div class="hero"></div>
+            <div class="body">
+              <i class="t"></i><i style="width:92%"></i><i style="width:80%"></i>
+              <span>Read the update</span>
+            </div>
+          </div>
+        </div>
         <span>[ Communications ]</span>
       </div>
 
-      <div class="btile" style="grid-column:span 12;grid-row:span 2">
-        <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g stroke="#e2e2e7" fill="#fff">
-            <rect x="60" y="70" width="60" height="110" rx="10"/>
-            <rect x="160" y="55" width="120" height="125" rx="10"/>
-            <rect x="320" y="45" width="200" height="120" rx="8"/>
-            <rect x="360" y="165" width="120" height="10" rx="5" fill="#e2e2e7" stroke="none"/>
-            <rect x="580" y="30" width="240" height="135" rx="6"/>
-            <rect x="880" y="80" width="150" height="95" rx="8"/>
-            <rect x="1070" y="100" width="70" height="75" rx="8"/>
-          </g>
-          <g fill="#f4f4f4">
-            <rect x="66" y="80" width="48" height="80" rx="6"/>
-            <rect x="170" y="65" width="100" height="95" rx="6"/>
-            <rect x="330" y="55" width="180" height="100" rx="4"/>
-            <rect x="590" y="40" width="220" height="115" rx="3"/>
-            <rect x="890" y="90" width="130" height="65" rx="5"/>
-            <rect x="1078" y="108" width="54" height="50" rx="5"/>
-          </g>
-          <g fill="#a64b21">
-            <rect x="66" y="146" width="48" height="10" rx="5"/>
-            <rect x="330" y="140" width="180" height="12" rx="4"/>
-            <rect x="590" y="132" width="220" height="16" rx="4"/>
-          </g>
-          <g font-family="Inter, sans-serif" font-size="12" fill="#8d969e">
-            <text x="60" y="205">Phone</text><text x="160" y="205">Tablet</text><text x="320" y="205">Laptop</text><text x="580" y="200">Billboard</text><text x="880" y="205">Signage</text><text x="1070" y="205">Card</text>
-          </g>
-        </svg>
+      <div class="btile" style="grid-column:span 12;grid-row:span 2;background:#f7f7f9">
+        <div class="art tp" aria-hidden="true">
+          <div class="item"><div class="card2"><b>GEMIS<span style="color:#e08a5c">®</span></b><i></i><span>Product &amp; experience design<br>Sandton · Johannesburg</span></div><span class="cap">Card</span></div>
+          <div class="item"><div class="phb a-shadow"><i class="n"></i><i class="f"></i><i class="o"></i></div><span class="cap">Phone</span></div>
+          <div class="item"><div class="tab a-shadow"><div class="side"></div><div class="mn"><i class="k"></i><i></i><i></i></div></div><span class="cap">Tablet</span></div>
+          <div class="item"><div class="lap"><div class="scr"><b>GEMIS® Studio</b><i class="o"></i><i style="width:70%"></i><i style="width:52%"></i></div><div class="base"></div></div><span class="cap">Web</span></div>
+          <div class="item"><div class="sig a-shadow"><b>G</b><i></i></div><span class="cap">Signage</span></div>
+          <div class="item"><div class="bill"><b>Design that <em>works.</em></b><span>gemis.co.za</span></div><span class="cap">Billboard</span></div>
+        </div>
         <span>[ Touchpoints ]</span>
       </div>
 
@@ -693,33 +790,53 @@ button{font-family:inherit;cursor:pointer}
 <script>
 (function () {
   'use strict';
-  /* ── Work filter ── */
+  /* ── Work filter + view more + stagger ── */
   var buttons = document.querySelectorAll('#filters button');
-  var cards = document.querySelectorAll('#workGrid .card');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#workGrid .card'));
   var grid = document.getElementById('workGrid');
   var empty = document.getElementById('emptyState');
-  function setCat(cat, scroll) {
+  var moreWrap = document.getElementById('moreWrap');
+  var moreBtn = document.getElementById('moreBtn');
+  var CAP = 4, expanded = false, cat = 'ALL';
+  var OFFSETS = [0, 56, 24, 88];
+  function matches(c) { return cat === 'ALL' || (' ' + c.dataset.cats + ' ').indexOf(' ' + cat + ' ') > -1; }
+  function apply(scroll) {
     buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.cat === cat)); });
+    var pool = cards.filter(matches);
+    var wide = window.innerWidth >= 1024;
     var shown = 0;
-    cards.forEach(function (c) {
-      var on = cat === 'ALL' || (' ' + c.dataset.cats + ' ').indexOf(' ' + cat + ' ') > -1;
-      c.classList.toggle('is-hidden', !on);
-      if (on) shown++;
+    cards.forEach(function (c) { c.classList.add('is-hidden'); c.style.paddingTop = ''; });
+    pool.forEach(function (c, i) {
+      var on = expanded || i < CAP;
+      if (on) {
+        c.classList.remove('is-hidden');
+        c.style.paddingTop = wide ? OFFSETS[shown % 4] + 'px' : '';
+        shown++;
+      }
     });
-    grid.classList.toggle('is-hidden', shown === 0);
-    empty.style.display = shown === 0 ? 'block' : 'none';
+    grid.classList.toggle('is-hidden', pool.length === 0);
+    empty.style.display = pool.length === 0 ? 'block' : 'none';
+    moreWrap.style.display = pool.length > CAP ? 'flex' : 'none';
+    moreBtn.textContent = expanded ? 'View less ↑' : 'View more ↓';
     if (scroll) {
       var el = document.getElementById('explorer');
       window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 64, behavior: 'smooth' });
     }
   }
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { setCat(b.dataset.cat, false); });
+    b.addEventListener('click', function () { cat = b.dataset.cat; apply(false); });
   });
-  document.getElementById('resetFilter').addEventListener('click', function () { setCat('ALL', true); });
+  moreBtn.addEventListener('click', function () {
+    expanded = !expanded;
+    apply(!expanded);
+  });
+  document.getElementById('resetFilter').addEventListener('click', function () { cat = 'ALL'; expanded = false; apply(true); });
   document.querySelectorAll('.disc__row').forEach(function (r) {
-    r.addEventListener('click', function () { setCat(r.dataset.goto, true); });
+    r.addEventListener('click', function () { cat = r.dataset.goto; expanded = true; apply(true); });
   });
+  var rT;
+  window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { apply(false); }, 200); });
+  apply(false);
 
   /* ── Logo marquee: duplicate the set once for a seamless loop ── */
   var track = document.getElementById('logoTrack');
