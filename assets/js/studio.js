@@ -57,30 +57,6 @@
     tl.add(done, 1.6 + 0.9 - 0.2);
   }
 
-  /* ── Custom cursor ───────────────────────────────────────────────── */
-  if (finePointer && !reduced && hasGsap) {
-    document.body.classList.add('has-cursor');
-    var cursor = document.getElementById('cursor');
-    var label = document.getElementById('cursorLabel');
-    var cx = gsap.quickTo(cursor, 'x', { duration: 0.15, ease: 'power4.out' });
-    var cy = gsap.quickTo(cursor, 'y', { duration: 0.15, ease: 'power4.out' });
-    window.addEventListener('pointermove', function (e) { cx(e.clientX); cy(e.clientY); }, { passive: true });
-    document.addEventListener('pointerover', function (e) {
-      var special = e.target.closest('[data-cursor]');
-      if (special) {
-        var size = special.getAttribute('data-cursor-size');
-        cursor.className = 'cursor ' + (size === 'drag' ? 'is-drag' : size === 'view' ? 'is-view' : 'is-link');
-        label.textContent = special.getAttribute('data-cursor') || '';
-        return;
-      }
-      if (e.target.closest('a, button, select, input, textarea, label')) {
-        cursor.className = 'cursor is-link'; label.textContent = '';
-      } else {
-        cursor.className = 'cursor'; label.textContent = '';
-      }
-    });
-  }
-
   /* ── 01 · Navigation ─────────────────────────────────────────────── */
   var nav = document.getElementById('nav');
   function onScrollNav() { nav.classList.toggle('is-solid', window.scrollY > 100); }
@@ -233,7 +209,7 @@
     var ST = { start: 'top 75%', once: true };
 
     /* section labels + headline blocks */
-    gsap.utils.toArray('.slabel, .demo__line, .practice__lead, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
+    gsap.utils.toArray('.slabel, .demo__line, .practice__lead, .lead2__head, .instr__lead, .spec__head, .outc__head, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
       gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'expo.out',
         scrollTrigger: Object.assign({ trigger: el }, ST) });
     });
@@ -244,46 +220,24 @@
     gsap.from('.practice__rule', { scaleY: 0, duration: 0.8, ease: 'expo.out',
       scrollTrigger: Object.assign({ trigger: '.practice__cols' }, ST) });
 
-    /* RevealMedia — work scenes: clip-path opens upward, inner counter-scales */
-    gsap.utils.toArray('[data-reveal-media]').forEach(function (el) {
-      var tl = gsap.timeline({ scrollTrigger: Object.assign({ trigger: el }, ST) });
-      tl.from(el, { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, 0)
-        .from(el.children, { scale: 1.15, duration: 1.1, ease: 'expo.inOut' }, 0);
+    /* new brief blocks — quiet row/cell staggers */
+    [['.lead2__specs', '.lead2__specs li'], ['.staff__rows', '.staff__row'],
+     ['.instr__cols', '.instr__cols li'], ['.outc__row', '.outc__item']].forEach(function (pair) {
+      if (!document.querySelector(pair[0])) return;
+      gsap.from(pair[1], { y: 24, opacity: 0, duration: 0.6, ease: 'expo.out', stagger: 0.05,
+        scrollTrigger: Object.assign({ trigger: pair[0] }, ST) });
     });
-    gsap.utils.toArray('.proj__info').forEach(function (el) {
-      gsap.from(el.children, { y: 30, opacity: 0, duration: 0.7, ease: 'expo.out', stagger: 0.06,
-        scrollTrigger: Object.assign({ trigger: el }, ST) });
+
+    /* index rows — work + services */
+    [['.windex', '.windex__item'], ['.svcx', '.svcx__item']].forEach(function (pair) {
+      if (!document.querySelector(pair[0])) return;
+      gsap.from(pair[1], { y: 34, opacity: 0, duration: 0.7, ease: 'expo.out', stagger: 0.08,
+        scrollTrigger: Object.assign({ trigger: pair[0] }, ST) });
     });
 
     /* contact heading line masks */
     gsap.from('.contact__head .mask__inner', { yPercent: 110, duration: 0.9, ease: 'expo.out', stagger: 0.06,
       scrollTrigger: Object.assign({ trigger: '.contact__head' }, ST) });
-  }
-
-  /* ── 06 · Services — horizontal pin ≥1280px ──────────────────────── */
-  if (hasGsap) {
-    var mm = gsap.matchMedia();
-    mm.add('(min-width: 1280px) and (prefers-reduced-motion: no-preference)', function () {
-      var sec = document.querySelector('.svcs');
-      var track = document.getElementById('svcsTrack');
-      var indexEl = document.getElementById('svcsIndex');
-      sec.classList.add('is-pinned');
-      var getDist = function () { return track.scrollWidth - document.querySelector('.svcs__viewport').clientWidth; };
-      var tween = gsap.to(track, {
-        x: function () { return -getDist(); },
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.svcs__pin', pin: true, scrub: 0.6,
-          end: function () { return '+=' + Math.max(getDist(), window.innerHeight * 3); },
-          invalidateOnRefresh: true,
-          onUpdate: function (self) {
-            var i = Math.min(3, Math.floor(self.progress * 4));
-            indexEl.textContent = '0' + (i + 1);
-          }
-        }
-      });
-      return function () { sec.classList.remove('is-pinned'); tween.scrollTrigger && tween.scrollTrigger.kill(); tween.kill(); };
-    });
   }
 
   /* device pointer tilt */
@@ -345,37 +299,302 @@
     });
   }
 
-  /* ── 10 · Numbers — odometers ────────────────────────────────────── */
-  if (hasGsap && !reduced) {
-    document.querySelectorAll('.nums__val').forEach(function (el) {
-      var target = parseInt(el.dataset.count, 10);
-      var prefix = el.dataset.prefix || '';
-      var suffix = el.dataset.suffix || '';
-      var o = { v: 0 };
-      gsap.to(o, {
-        v: target, duration: 1.8, ease: 'power2.out', snap: { v: 1 },
-        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
-        onUpdate: function () { el.textContent = prefix + o.v + suffix; }
+  /* ── Header clock — Johannesburg time (SAST) ─────────────────────── */
+  (function () {
+    var el = document.getElementById('navClock');
+    if (!el) return;
+    function tick() {
+      var t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Africa/Johannesburg', hour12: false });
+      el.textContent = 'JHB ' + t;
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /* ── Scramble-decode hover on index names ────────────────────────── */
+  (function () {
+    if (reduced) return;
+    var CHARS = '#/[]<>—+*=x%';
+    document.querySelectorAll('[data-scramble]').forEach(function (el) {
+      var original = el.textContent;
+      var frame = null;
+      el.closest('a, button').addEventListener('mouseenter', function () {
+        var i = 0, len = original.length, ticks = 0;
+        cancelAnimationFrame(frame);
+        (function step() {
+          ticks++;
+          if (ticks % 2 === 0) i++;
+          if (i >= len) { el.textContent = original; return; }
+          var out = original.slice(0, i);
+          for (var k = i; k < len; k++) {
+            out += original[k] === ' ' ? ' ' : CHARS[(Math.random() * CHARS.length) | 0];
+          }
+          el.textContent = out;
+          frame = requestAnimationFrame(step);
+        })();
       });
     });
-  }
+  })();
 
-  /* ── 13 · FAQ accordion (single-open) ────────────────────────────── */
+  /* ── 06 · Services — expanding index (first open; FR-06 keeps price
+        and duration visible in every collapsed row) ─────────────────── */
+  (function () {
+    var wrap = document.getElementById('svcx');
+    if (!wrap) return;
+    wrap.classList.add('svcx--js');
+    var heads = wrap.querySelectorAll('.svcx__head');
+    function openOnly(head) {
+      heads.forEach(function (h) {
+        var body = document.getElementById(h.getAttribute('aria-controls'));
+        var on = h === head;
+        h.setAttribute('aria-expanded', String(on));
+        body.classList.toggle('is-open', on);
+      });
+    }
+    heads.forEach(function (h) {
+      h.addEventListener('click', function () {
+        var open = h.getAttribute('aria-expanded') === 'true';
+        openOnly(open ? null : h);
+        if (!open && hasGsap && typeof ScrollTrigger !== 'undefined') {
+          setTimeout(function () { ScrollTrigger.refresh(); }, 600);
+        }
+      });
+    });
+    openOnly(heads[0]);
+    /* the initial collapse changes page height after ScrollTrigger has
+       measured — recalc once the height transition settles */
+    if (hasGsap && typeof ScrollTrigger !== 'undefined') {
+      setTimeout(function () { ScrollTrigger.refresh(); }, 700);
+    }
+  })();
+
+  /* ── 07 · Work index — preview follows the pointer ───────────────── */
+  (function () {
+    if (!window.matchMedia('(hover: hover) and (min-width: 1024px)').matches) return;
+    var rows = document.querySelectorAll('.windex__row');
+    if (!rows.length) return;
+    var active = null;
+    var qx = null, qy = null;
+    rows.forEach(function (row) {
+      var pv = document.getElementById(row.dataset.pv);
+      if (!pv) return;
+      row.addEventListener('mouseenter', function () {
+        if (active) active.classList.remove('is-on');
+        active = pv;
+        pv.classList.add('is-on');
+        if (hasGsap && !qx) {
+          qx = gsap.quickTo(pv, 'x', { duration: 0.4, ease: 'power3.out' });
+          qy = gsap.quickTo(pv, 'y', { duration: 0.4, ease: 'power3.out' });
+        }
+      });
+      row.addEventListener('mouseleave', function () {
+        pv.classList.remove('is-on');
+        if (active === pv) active = null;
+        qx = null; qy = null;
+      });
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!active) return;
+      var w = active.offsetWidth, h = active.offsetHeight;
+      var x = Math.min(e.clientX + 28, window.innerWidth - w - 20);
+      var y = Math.min(Math.max(e.clientY - h / 2, 20), window.innerHeight - h - 20);
+      if (qx) { qx(x); qy(y); }
+      else { active.style.transform = 'translate(' + x + 'px,' + y + 'px)'; }
+    }, { passive: true });
+  })();
+
+  /* ── Hero dot field — pointer-reactive particle grid (canvas 2D) ─── */
+  (function () {
+    var canvas = document.getElementById('heroDots');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var dots = [], W = 0, H = 0, raf = null;
+    var mx = -9999, my = -9999;
+    var SP = 30, R = 130, DOT = 1.1;
+    function build() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width = Math.floor(rect.width * devicePixelRatio);
+      H = canvas.height = Math.floor(rect.height * devicePixelRatio);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      dots = [];
+      var sp = SP * devicePixelRatio;
+      for (var y = sp / 2; y < H; y += sp) {
+        for (var x = sp / 2; x < W; x += sp) {
+          dots.push({ ox: x, oy: y, x: x, y: y });
+        }
+      }
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(210, 210, 205, 0.4)';
+      var r = R * devicePixelRatio;
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var wob = Math.sin(t / 1400 + d.ox / 220 + d.oy / 320) * 1.6 * devicePixelRatio;
+        var tx = d.ox, ty = d.oy + wob;
+        var dx = tx - mx, dy = ty - my;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < r && dist > 0.01) {
+          var f = (1 - dist / r) * 26 * devicePixelRatio;
+          tx += (dx / dist) * f; ty += (dy / dist) * f;
+        }
+        d.x += (tx - d.x) * 0.12; d.y += (ty - d.y) * 0.12;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, DOT * devicePixelRatio, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+    function drawStatic() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = 'rgba(210, 210, 205, 0.3)';
+      dots.forEach(function (d) {
+        ctx.beginPath();
+        ctx.arc(d.ox, d.oy, DOT * devicePixelRatio, 0, 6.2832);
+        ctx.fill();
+      });
+    }
+    build();
+    if (reduced || !window.matchMedia('(min-width: 768px)').matches) {
+      drawStatic();
+    } else {
+      var hero = canvas.closest('.hero');
+      hero.addEventListener('pointermove', function (e) {
+        var rect = canvas.getBoundingClientRect();
+        mx = (e.clientX - rect.left) * devicePixelRatio;
+        my = (e.clientY - rect.top) * devicePixelRatio;
+      }, { passive: true });
+      hero.addEventListener('pointerleave', function () { mx = my = -9999; });
+      var running = true;
+      (function loop(t) { if (running) { draw(t || 0); raf = requestAnimationFrame(loop); } })(0);
+      /* stop rendering when the hero leaves the viewport */
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          var vis = entries[0].isIntersecting;
+          if (vis && !running) { running = true; raf = requestAnimationFrame(function loop2(t) { if (running) { draw(t); raf = requestAnimationFrame(loop2); } }); }
+          else if (!vis) { running = false; cancelAnimationFrame(raf); }
+        }).observe(canvas);
+      }
+    }
+    var rT2;
+    window.addEventListener('resize', function () {
+      clearTimeout(rT2);
+      rT2 = setTimeout(function () { build(); if (reduced || !window.matchMedia('(min-width: 768px)').matches) drawStatic(); }, 250);
+    });
+  })();
+
+  /* ── 09B · Own standards — live token specimen (FR-11) ───────────── */
+  (function () {
+    var tokensEl = document.getElementById('specTokens');
+    if (!tokensEl) return;
+    var css = getComputedStyle(document.documentElement);
+    function toHex(v) {
+      var m = v.trim().match(/rgba?\((\d+),?\s*(\d+),?\s*(\d+)/);
+      if (!m && /^#/.test(v.trim())) return v.trim().toUpperCase();
+      if (!m) return v.trim();
+      return '#' + [m[1], m[2], m[3]].map(function (n) {
+        return (+n).toString(16).padStart(2, '0');
+      }).join('').toUpperCase();
+    }
+    function lum(hex) {
+      var c = [1, 3, 5].map(function (i) {
+        var v = parseInt(hex.slice(i, i + 2), 16) / 255;
+        return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    }
+    function ratio(a, b) {
+      var l1 = lum(a), l2 = lum(b);
+      return ((Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05));
+    }
+    var names = ['--ink', '--ink-2', '--ink-3', '--bone', '--bone-dim', '--gold'];
+    var vals = {};
+    names.forEach(function (n) {
+      var raw = css.getPropertyValue(n).trim();
+      var hex = toHex(raw);
+      vals[n] = hex;
+      var d = document.createElement('div');
+      d.className = 'spec__swatch';
+      d.innerHTML = '<i style="background:' + raw + '"></i><b>' + n + '</b><span>' + hex + '</span>';
+      tokensEl.appendChild(d);
+    });
+    /* type scale — computed live from real elements on this page */
+    var typeEl = document.getElementById('specType');
+    [['t-display', 'Display', '.hero__title', 'Aa'], ['t-body', 'Body', '.hero__sub', 'Aa'], ['t-mono', 'Mono', '.slabel', '01']].forEach(function (t) {
+      var src = document.querySelector(t[2]);
+      var size = src ? Math.round(parseFloat(getComputedStyle(src).fontSize)) : 0;
+      var row = document.createElement('div');
+      row.className = 'spec__trow';
+      row.innerHTML = '<em class="' + t[0] + '">' + t[3] + ' ' + t[1] + '</em><span>' + size + 'px · computed</span>';
+      typeEl.appendChild(row);
+    });
+    /* contrast ratios — computed live from the tokens above */
+    var conEl = document.getElementById('specContrast');
+    [['--bone', '--ink', 'Text / base'], ['--bone-dim', '--ink', 'Secondary / base'], ['--gold', '--ink', 'Accent / base']].forEach(function (pair) {
+      var r = ratio(vals[pair[0]], vals[pair[1]]);
+      var row = document.createElement('div');
+      row.className = 'spec__crow';
+      row.innerHTML = '<b>' + pair[2] + '</b><span>' + r.toFixed(1) + ' : 1 — AA ' + (r >= 4.5 ? '✓' : '✗') + '</span>';
+      conEl.appendChild(row);
+    });
+  })();
+
+  /* ── 13 · FAQ accordion (single-open, fragment-linkable FR-13) ───── */
   (function () {
     var faq = document.querySelector('.faq');
     faq.classList.add('faq--js');
     var qs = faq.querySelectorAll('.faq__q');
+    function openOnly(q) {
+      qs.forEach(function (other) {
+        other.setAttribute('aria-expanded', 'false');
+        document.getElementById(other.getAttribute('aria-controls')).classList.remove('is-open');
+      });
+      if (q) {
+        q.setAttribute('aria-expanded', 'true');
+        document.getElementById(q.getAttribute('aria-controls')).classList.add('is-open');
+      }
+    }
     qs.forEach(function (q) {
       q.addEventListener('click', function () {
-        var panel = document.getElementById(q.getAttribute('aria-controls'));
         var open = q.getAttribute('aria-expanded') === 'true';
-        qs.forEach(function (other) {
-          other.setAttribute('aria-expanded', 'false');
-          document.getElementById(other.getAttribute('aria-controls')).classList.remove('is-open');
-        });
-        if (!open) { q.setAttribute('aria-expanded', 'true'); panel.classList.add('is-open'); }
+        openOnly(open ? null : q);
+        if (!open && history.replaceState) history.replaceState(null, '', '#' + q.id);
       });
     });
+    /* deep link: #faq-qN opens that question */
+    function openFromHash() {
+      var m = (location.hash || '').match(/^#(faq-q\d+)$/);
+      if (!m) return;
+      var q = document.getElementById(m[1]);
+      if (!q) return;
+      openOnly(q);
+      setTimeout(function () { scrollToEl(q.closest('.faq__item')); q.focus(); }, 150);
+    }
+    window.addEventListener('hashchange', openFromHash);
+    openFromHash();
+  })();
+
+  /* ── Analytics conversion events (FR-23) — dataLayer pushes only,
+        no cookies are set by this page ─────────────────────────────── */
+  var track = function (event, detail) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: event }, detail || {}));
+  };
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track(a.classList.contains('contact__call') ? 'booking_click' : 'email_click');
+    });
+  });
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    a.addEventListener('click', function () { track('tel_click'); });
+  });
+  (function () {
+    var pricing = document.getElementById('pricing');
+    if (!pricing || !('IntersectionObserver' in window)) return;
+    var seen = false;
+    new IntersectionObserver(function (entries, obs) {
+      if (!seen && entries[0].isIntersecting) { seen = true; track('pricing_view'); obs.disconnect(); }
+    }, { threshold: 0.25 }).observe(pricing);
   })();
 
   /* ── 14 · Contact form ───────────────────────────────────────────── */
@@ -393,9 +612,12 @@
     function validateField(input) {
       var field = input.closest('.cform__field');
       var ok = true;
-      if (input.required && !input.value.trim()) ok = false;
-      if (ok && input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) ok = false;
-      if (ok && input.minLength > 0 && input.value.trim().length < input.minLength) ok = false;
+      if (input.type === 'checkbox') ok = input.checked;
+      else {
+        if (input.required && !input.value.trim()) ok = false;
+        if (ok && input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) ok = false;
+        if (ok && input.minLength > 0 && input.value.trim().length < input.minLength) ok = false;
+      }
       field.classList.toggle('is-error', !ok);
       var err = field.querySelector('.cform__err');
       if (err) err.setAttribute('aria-hidden', String(ok));
@@ -404,6 +626,11 @@
     /* validate on blur, never on keystroke */
     form.querySelectorAll('input, textarea').forEach(function (input) {
       input.addEventListener('blur', function () { if (input.value) validateField(input); });
+    });
+    /* analytics: form_start on first interaction (FR-23) */
+    var started = false;
+    form.addEventListener('focusin', function () {
+      if (!started) { started = true; track('form_start'); }
     });
 
     form.addEventListener('submit', function (e) {
@@ -415,10 +642,13 @@
       if (!allOk) { status.textContent = 'Please fix the highlighted fields.'; return; }
       status.textContent = '';
       form.classList.add('is-sending');
+      track('form_submit');
       var data = new FormData(form);
       var body = 'Name: ' + data.get('name') + '\nEmail: ' + data.get('email') +
         '\nCompany: ' + (data.get('company') || '—') + '\nNeed: ' + data.get('need') +
-        '\nBudget: ' + data.get('budget') + '\n\n' + data.get('message');
+        '\nBudget: ' + data.get('budget') +
+        '\nConsent: given per the published privacy notice, ' + new Date().toISOString().slice(0, 10) +
+        '\n\n' + data.get('message');
       /* static site — hand the enquiry to the visitor's mail client */
       window.location.href = 'mailto:info@gemis.co.za?subject=' +
         encodeURIComponent('Studio enquiry — ' + data.get('need')) +

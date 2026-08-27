@@ -12,7 +12,7 @@
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/studio.css?v=20260826" />
+  <link rel="stylesheet" href="assets/css/studio.css?v=20260828" />
   <script>try{if(!sessionStorage.getItem('gemisStudioPre')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('preload-on');}catch(e){}</script>
 
   <script type="application/ld+json">
@@ -95,7 +95,9 @@
           { "@type": "Question", "name": "What happens after handover?",
             "acceptedAnswer": { "@type": "Answer", "text": "Thirty days of build-support questions at no charge, and a twelve-month experience roadmap so you know what the next sensible investment is. Many clients move onto an Embedded Designer arrangement from there." } },
           { "@type": "Question", "name": "Can you build what you design?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes — that's the point. GEMIS Studio sits inside GEM Information Systems, a software development company. Design and build happen under one roof, with no handover to a third party." } }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes — that's the point. GEMIS Studio sits inside GEM Information Systems, a software development company. Design and build happen under one roof, with no handover to a third party." } },
+          { "@type": "Question", "name": "Where is GEMIS Studio based?",
+            "acceptedAnswer": { "@type": "Answer", "text": "At 66 Park Lane, Sandown, Sandton, 2196 — in Johannesburg's Sandton district. We work with clients across South Africa: discovery and reviews run remotely, and we meet in person for stakeholder workshops on larger engagements." } }
         ]
       }
     ]
@@ -118,9 +120,6 @@
   </div>
 
   <!-- ═══════════════ CURSOR + GRAIN ═══════════════ -->
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <span class="cursor__label" id="cursorLabel"></span>
-  </div>
   <div class="grain" aria-hidden="true"></div>
 
   <!-- ═══════════════ 01 · NAVIGATION ═══════════════ -->
@@ -136,6 +135,7 @@
       <a class="nav__link" href="#pricing"><span class="nav__num">04</span><span class="nav__swap"><span>Pricing</span><span aria-hidden="true">Pricing</span></span></a>
       <a class="nav__link" href="#contact"><span class="nav__num">05</span><span class="nav__swap"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
     </nav>
+    <span class="nav__clock" id="navClock" aria-hidden="true">JHB --:--:--</span>
     <a class="btn-gold nav__cta" href="#contact">Book a Teardown</a>
     <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span>
@@ -162,6 +162,7 @@
     <!-- ═══════════════ 02 · HERO ═══════════════ -->
     <section class="hero" id="top">
       <div class="hero__bg" aria-hidden="true"></div>
+      <canvas class="hero__dots" id="heroDots" aria-hidden="true"></canvas>
       <div class="hero__inner">
         <p class="hero__eyebrow">GEMIS® STUDIO — PRODUCT &amp; EXPERIENCE DESIGN · SANDTON, JOHANNESBURG</p>
         <h1 class="hero__title">
@@ -174,7 +175,7 @@
           <a class="btn-ghost" href="#work">See the work</a>
         </div>
       </div>
-      <p class="hero__meta hero__meta--left">EST. 2005 · 16+ PRODUCTS SHIPPED · 20+ CLIENTS</p>
+      <p class="hero__meta hero__meta--left">GEM INFORMATION SYSTEMS · SANDTON, JOHANNESBURG — 26.1076°S 28.0567°E</p>
       <p class="hero__meta hero__meta--right" aria-hidden="true">SCROLL<span class="hero__scrollline"><i></i></span></p>
     </section>
 
@@ -413,22 +414,65 @@
       </div>
     </section>
 
-    <!-- ═══════════════ 06 · SERVICES (horizontal pin ≥1280px) ═══════════════ -->
-    <section class="svcs" id="services">
-      <div class="svcs__pin" id="svcsPin">
-        <header class="svcs__head">
-          <p class="slabel">( Services )</p>
-          <h2 class="svcs__title">Product, dashboard and website design — priced up front.</h2>
-        </header>
-        <div class="svcs__viewport">
-          <div class="svcs__track" id="svcsTrack">
+    <!-- ═══════════════ 05b · DESIGN LEADERSHIP ═══════════════ -->
+    <section class="lead2">
+      <p class="slabel">( Design leadership )</p>
+      <div class="lead2__grid">
+        <h2 class="lead2__head">SENIOR EYES ON<br/>EVERY SCREEN.</h2>
+        <div class="lead2__body">
+          <p>Every engagement is led by a senior product designer — the same person who scopes the work reviews every screen that leaves the studio. No handoffs to juniors, no account layer between you and the person designing your product.</p>
+          <ul class="lead2__specs">
+            <li>Product strategy</li><li>Interface design</li><li>Design systems</li><li>UX research</li>
+            <li>Dashboard &amp; data UX</li><li>Service design</li><li>Accessibility</li><li>Developer handoff</li>
+          </ul>
+          <p class="lead2__pivot">One lead, accountable end to end — backed by the team below.</p>
+        </div>
+      </div>
+    </section>
 
-            <!-- 01 · Product Teardown -->
-            <article class="svc" id="svc-01">
+    <!-- ═══════════════ 05c · STAFFING ═══════════════ -->
+    <section class="staff">
+      <p class="slabel">( The team )</p>
+      <div class="staff__rows">
+        <div class="staff__row"><span class="staff__num">A</span><h3>Product design</h3><p>Flows, screens and states, specified to build.</p></div>
+        <div class="staff__row"><span class="staff__num">B</span><h3>Design systems</h3><p>Tokens, components and rules your team can keep.</p></div>
+        <div class="staff__row"><span class="staff__num">C</span><h3>Research &amp; content</h3><p>Interviews, audits and the words on the screen.</p></div>
+        <div class="staff__row"><span class="staff__num">D</span><h3>Engineering</h3><p>The developers beside us who build what we design.</p></div>
+      </div>
+      <p class="staff__close">Sized to the work — never a bench you're paying for.</p>
+    </section>
+
+    <!-- ═══════════════ 05d · INSTRUMENTS ═══════════════ -->
+    <section class="instr">
+      <p class="slabel">( Instruments )</p>
+      <p class="instr__lead">The research and delivery infrastructure behind every engagement.</p>
+      <div class="instr__cols">
+        <div>
+          <h3>Method</h3>
+          <ul><li>Heuristic evaluation</li><li>Journey mapping</li><li>Usability testing</li><li>Analytics review</li><li>Contrast auditing</li><li>Content audits</li></ul>
+        </div>
+        <div>
+          <h3>Delivery</h3>
+          <ul><li>Figma</li><li>Design tokens</li><li>Annotated handoff</li><li>Interaction specs</li><li>Recorded walkthroughs</li><li>30-day support channel</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 06 · SERVICES — EXPANDING INDEX ═══════════════ -->
+    <section class="svcs" id="services">
+      <p class="slabel">( Services )</p>
+      <h2 class="svcs__title">Product, dashboard and website design — priced up front.</h2>
+      <div class="svcx" id="svcx">
+        <div class="svcx__item" id="svc-01">
+          <button class="svcx__head" type="button" aria-expanded="true" aria-controls="svc-01-body">
+            <span class="svcx__num">01</span>
+            <span class="svcx__name" data-scramble>Product Teardown</span>
+            <span class="svcx__meta">R6,500 · 5 days</span>
+            <span class="svcx__x" aria-hidden="true">+</span>
+          </button>
+          <div class="svcx__body" id="svc-01-body">
+            <div class="svcx__clip"><div class="svcx__grid">
               <div class="svc__info">
-                <span class="svc__num">01</span>
-                <h3 class="svc__name">Product Teardown</h3>
-                <p class="svc__meta"><b>R6,500</b> · 5 days</p>
                 <p class="svc__outcome">You'll know exactly what's costing you customers, ranked — with the five worst screens already redesigned.</p>
                 <ul class="svc__list">
                   <li>Heuristic evaluation of your product, site or internal system</li>
@@ -465,14 +509,19 @@
                   </div>
                 </div>
               </div>
-            </article>
-
-            <!-- 02 · Interface Refresh Sprint -->
-            <article class="svc" id="svc-02">
+            </div></div>
+          </div>
+        </div>
+        <div class="svcx__item" id="svc-02">
+          <button class="svcx__head" type="button" aria-expanded="true" aria-controls="svc-02-body">
+            <span class="svcx__num">02</span>
+            <span class="svcx__name" data-scramble>Interface Refresh Sprint</span>
+            <span class="svcx__meta">R18,000 – R25,000 · 2 weeks</span>
+            <span class="svcx__x" aria-hidden="true">+</span>
+          </button>
+          <div class="svcx__body" id="svc-02-body">
+            <div class="svcx__clip"><div class="svcx__grid">
               <div class="svc__info">
-                <span class="svc__num">02</span>
-                <h3 class="svc__name">Interface Refresh Sprint</h3>
-                <p class="svc__meta"><b>R18,000 – R25,000</b> · 2 weeks</p>
                 <p class="svc__outcome">Your product looks current, and your developer can build it on Monday.</p>
                 <ul class="svc__list">
                   <li>Up to eight key screens redesigned, desktop and mobile</li>
@@ -505,14 +554,19 @@
                   </div>
                 </div>
               </div>
-            </article>
-
-            <!-- 03 · Web Experience -->
-            <article class="svc" id="svc-03">
+            </div></div>
+          </div>
+        </div>
+        <div class="svcx__item" id="svc-03">
+          <button class="svcx__head" type="button" aria-expanded="true" aria-controls="svc-03-body">
+            <span class="svcx__num">03</span>
+            <span class="svcx__name" data-scramble>Web Experience</span>
+            <span class="svcx__meta">R55,000 – R85,000 · 6 – 8 weeks</span>
+            <span class="svcx__x" aria-hidden="true">+</span>
+          </button>
+          <div class="svcx__body" id="svc-03-body">
+            <div class="svcx__clip"><div class="svcx__grid">
               <div class="svc__info">
-                <span class="svc__num">03</span>
-                <h3 class="svc__name">Web Experience</h3>
-                <p class="svc__meta"><b>R55,000 – R85,000</b> · 6 – 8 weeks</p>
                 <p class="svc__outcome">A site that turns visitors into enquiries — designed, built, launched and measured.</p>
                 <ul class="svc__list">
                   <li>Sitemap, user flows and wireframes</li>
@@ -538,14 +592,19 @@
                   </div>
                 </div>
               </div>
-            </article>
-
-            <!-- 04 · Embedded Designer -->
-            <article class="svc" id="svc-04">
+            </div></div>
+          </div>
+        </div>
+        <div class="svcx__item" id="svc-04">
+          <button class="svcx__head" type="button" aria-expanded="true" aria-controls="svc-04-body">
+            <span class="svcx__num">04</span>
+            <span class="svcx__name" data-scramble>Embedded Designer</span>
+            <span class="svcx__meta">R20,000 – R35,000 / month · Ongoing</span>
+            <span class="svcx__x" aria-hidden="true">+</span>
+          </button>
+          <div class="svcx__body" id="svc-04-body">
+            <div class="svcx__clip"><div class="svcx__grid">
               <div class="svc__info">
-                <span class="svc__num">04</span>
-                <h3 class="svc__name">Embedded Designer</h3>
-                <p class="svc__meta"><b>R20,000 – R35,000 / month</b> · Ongoing</p>
                 <p class="svc__outcome">Senior design capacity on your team without a salary, a contract or a recruitment process.</p>
                 <ul class="svc__list">
                   <li>20, 40 or 60 hour monthly bands</li>
@@ -577,157 +636,95 @@
                   </div>
                 </div>
               </div>
-            </article>
-
+            </div></div>
           </div>
         </div>
-        <p class="svcs__progress" aria-hidden="true"><span id="svcsIndex">01</span> / 04</p>
       </div>
     </section>
 
-    <!-- ═══════════════ 07 · SELECTED WORK ═══════════════ -->
+    <!-- ═══════════════ 07 · SELECTED WORK — TYPE INDEX ═══════════════ -->
     <section class="work" id="work">
       <p class="slabel">( Selected work )</p>
+      <ul class="windex" id="windex">
 
-      <!-- 01 · ManaGem -->
-      <article class="proj proj--gold">
-        <a class="proj__scene" href="managem.html" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="ManaGem case study">
-          <div class="scene" data-reveal-media>
-            <div class="scene__glow" aria-hidden="true"></div>
-            <div class="scene__b" aria-hidden="true">
-              <div class="mg-gantt">
-                <p>Delivery timeline</p>
-                <i style="width:62%;margin-left:4%"></i><i style="width:38%;margin-left:20%"></i><i style="width:50%;margin-left:34%"></i><i style="width:28%;margin-left:52%"></i>
+        <li class="windex__item">
+          <a class="windex__row" href="managem.html" data-pv="pv-01">
+            <span class="windex__num">01</span>
+            <span class="windex__name" data-scramble>ManaGem</span>
+            <span class="windex__disc">Product design · Dashboard UX · Design system</span>
+            <span class="windex__arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="windex__pv" id="pv-01" aria-hidden="true">
+            <div class="mg-board">
+              <header><b>ManaGem</b><span>Sprint 14 · Board</span><em>TM</em></header>
+              <div class="mg-cols">
+                <div class="mg-col"><p>To do · 4</p><span>Quote follow-ups</span><span>Site audit — Karoo</span><span>Invoice template v2</span></div>
+                <div class="mg-col"><p>In progress · 3</p><span class="is-hot">Client portal login</span><span>Driver roster sync</span></div>
+                <div class="mg-col"><p>Done · 9</p><span>Stock alerts</span><span>Month-end export</span></div>
               </div>
-            </div>
-            <div class="scene__a">
-              <div class="mg-board">
-                <header><b>ManaGem</b><span>Sprint 14 · Board</span><em>TM</em></header>
-                <div class="mg-cols">
-                  <div class="mg-col"><p>To do · 4</p><span>Quote follow-ups</span><span>Site audit — Karoo</span><span>Invoice template v2</span></div>
-                  <div class="mg-col"><p>In progress · 3</p><span class="is-hot">Client portal login</span><span>Driver roster sync</span></div>
-                  <div class="mg-col"><p>Done · 9</p><span>Stock alerts</span><span>Month-end export</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="scene__c" aria-hidden="true">
-              <p>Sprint burndown</p>
-              <svg viewBox="0 0 120 48"><path d="M4 8 L28 16 L52 20 L76 30 L100 38 L116 42" fill="none" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
           </div>
-        </a>
-        <div class="proj__info">
-          <span class="proj__index">01 / 04</span>
-          <h3 class="proj__name"><span class="nav__swap"><span>ManaGem</span><span aria-hidden="true">ManaGem</span></span></h3>
-          <p class="proj__disc">Product design · Dashboard UX · Design system</p>
-          <a class="proj__link" href="managem.html">View case study ↗</a>
-        </div>
-      </article>
+        </li>
 
-      <!-- 02 · WasteMart -->
-      <article class="proj proj--signal proj--flip">
-        <a class="proj__scene" href="wastemart.html" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="WasteMart case study">
-          <div class="scene" data-reveal-media>
-            <div class="scene__glow" aria-hidden="true"></div>
-            <div class="scene__b" aria-hidden="true">
-              <div class="wm-portal">
-                <p>Customer portal</p>
-                <span>Next collection<br/><b>Thu 28 Aug · 06:00–09:00</b></span>
-              </div>
-            </div>
-            <div class="scene__a">
-              <div class="wm-driver">
-                <header><b>Route 12 — Sandton</b><span>8 stops left</span></header>
-                <ul>
-                  <li class="is-done"><i>✓</i><span>Grayston Drive depot</span><em>06:12</em></li>
-                  <li class="is-done"><i>✓</i><span>Rivonia Rd — Bays 4–9</span><em>06:38</em></li>
-                  <li class="is-now"><i>●</i><span>Katherine St office park</span><em>next</em></li>
-                  <li><i>○</i><span>Wierda Valley — Lot 2</span><em>07:15</em></li>
-                  <li><i>○</i><span>Sandown Mews</span><em>07:40</em></li>
-                </ul>
-                <span class="wm-btn">Confirm pickup</span>
-              </div>
-            </div>
-            <div class="scene__c" aria-hidden="true">
-              <p><i>✓</i> Pickup confirmed · 06:40</p>
+        <li class="windex__item">
+          <a class="windex__row" href="wastemart.html" data-pv="pv-02">
+            <span class="windex__num">02</span>
+            <span class="windex__name" data-scramble>WasteMart</span>
+            <span class="windex__disc">Operations UX · Driver app · Customer portal</span>
+            <span class="windex__arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="windex__pv" id="pv-02" aria-hidden="true">
+            <div class="wm-driver">
+              <header><b>Route 12 — Sandton</b><span>8 stops left</span></header>
+              <ul>
+                <li class="is-done"><i>✓</i><span>Grayston Drive depot</span><em>06:12</em></li>
+                <li class="is-done"><i>✓</i><span>Rivonia Rd — Bays 4–9</span><em>06:38</em></li>
+                <li class="is-now"><i>●</i><span>Katherine St office park</span><em>next</em></li>
+                <li><i>○</i><span>Wierda Valley — Lot 2</span><em>07:15</em></li>
+              </ul>
+              <span class="wm-btn">Confirm pickup</span>
             </div>
           </div>
-        </a>
-        <div class="proj__info">
-          <span class="proj__index">02 / 04</span>
-          <h3 class="proj__name"><span class="nav__swap"><span>WasteMart</span><span aria-hidden="true">WasteMart</span></span></h3>
-          <p class="proj__disc">Operations UX · Driver app · Customer portal</p>
-          <a class="proj__link" href="wastemart.html">View case study ↗</a>
-        </div>
-      </article>
+        </li>
 
-      <!-- 03 · FINOS -->
-      <article class="proj proj--bone">
-        <a class="proj__scene" href="index.html#work" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="FINOS case study">
-          <div class="scene" data-reveal-media>
-            <div class="scene__glow" aria-hidden="true"></div>
-            <div class="scene__b" aria-hidden="true">
-              <div class="fn-chat">
-                <p>AI review</p>
-                <span class="fn-msg">Invoice #2291 matches PO but the VAT line differs by R42.10.</span>
-                <span class="fn-conf">Confidence · high</span>
-              </div>
-            </div>
-            <div class="scene__a">
-              <div class="fn-table">
-                <header><b>FINOS</b><span>Approval queue · 12</span></header>
-                <table>
-                  <tr><td>INV-2291</td><td>Bright Steel SA</td><td>R 39,221</td><td><em class="warn">Review</em></td></tr>
-                  <tr><td>INV-2290</td><td>Karoo Solar</td><td>R 128,500</td><td><em class="ok">Matched</em></td></tr>
-                  <tr><td>INV-2289</td><td>Jozi Print Co.</td><td>R 4,675</td><td><em class="ok">Matched</em></td></tr>
-                  <tr><td>INV-2288</td><td>Umhlanga Textiles</td><td>R 87,660</td><td><em class="warn">Review</em></td></tr>
-                </table>
-                <span class="fn-btn">Approve 2 matched</span>
-              </div>
-            </div>
-            <div class="scene__c" aria-hidden="true">
-              <p>Month-end close<br/><b>4 items open</b></p>
+        <li class="windex__item">
+          <a class="windex__row" href="index.html#work" data-pv="pv-03">
+            <span class="windex__num">03</span>
+            <span class="windex__name" data-scramble>FINOS</span>
+            <span class="windex__disc">Financial operating system · AI review workflow</span>
+            <span class="windex__arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="windex__pv" id="pv-03" aria-hidden="true">
+            <div class="fn-table">
+              <header><b>FINOS</b><span>Approval queue · 12</span></header>
+              <table>
+                <tr><td>INV-2291</td><td>Bright Steel SA</td><td>R 39,221</td><td><em class="warn">Review</em></td></tr>
+                <tr><td>INV-2290</td><td>Karoo Solar</td><td>R 128,500</td><td><em class="ok">Matched</em></td></tr>
+                <tr><td>INV-2289</td><td>Jozi Print Co.</td><td>R 4,675</td><td><em class="ok">Matched</em></td></tr>
+                <tr><td>INV-2288</td><td>Umhlanga Textiles</td><td>R 87,660</td><td><em class="warn">Review</em></td></tr>
+              </table>
+              <span class="fn-btn">Approve 2 matched</span>
             </div>
           </div>
-        </a>
-        <div class="proj__info">
-          <span class="proj__index">03 / 04</span>
-          <h3 class="proj__name"><span class="nav__swap"><span>FINOS</span><span aria-hidden="true">FINOS</span></span></h3>
-          <p class="proj__disc">Financial operating system · AI review workflow</p>
-          <a class="proj__link" href="index.html#work">View case study ↗</a>
-        </div>
-      </article>
+        </li>
 
-      <!-- 04 · CMAXX -->
-      <article class="proj proj--alert proj--flip">
-        <a class="proj__scene" href="index.html#work" data-cursor="VIEW ↗" data-cursor-size="view" aria-label="CMAXX case study">
-          <div class="scene" data-reveal-media>
-            <div class="scene__glow" aria-hidden="true"></div>
-            <div class="scene__b" aria-hidden="true">
-              <div class="cx-ident">
-                <span class="cx-mono">C<i>X</i></span>
-                <span class="cx-chips"><i style="background:#E5533D"></i><i style="background:#0A0B0D"></i><i style="background:#F4F1EA"></i></span>
-              </div>
-            </div>
-            <div class="scene__a">
-              <div class="cx-web">
-                <header><b>CMAXX</b><span>Fleet · Telematics · Contact</span></header>
-                <h5>Every vehicle.<br/>Accounted for.</h5>
-                <span class="cx-cta">Track your fleet →</span>
-              </div>
-            </div>
-            <div class="scene__c" aria-hidden="true">
-              <p>Launch week<br/><b>Live ✓</b></p>
+        <li class="windex__item">
+          <a class="windex__row" href="index.html#work" data-pv="pv-04">
+            <span class="windex__num">04</span>
+            <span class="windex__name" data-scramble>CMAXX</span>
+            <span class="windex__disc">Web experience · Identity · Launch</span>
+            <span class="windex__arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="windex__pv" id="pv-04" aria-hidden="true">
+            <div class="cx-web">
+              <header><b>CMAXX</b><span>Fleet · Telematics · Contact</span></header>
+              <h5>Every vehicle.<br/>Accounted for.</h5>
+              <span class="cx-cta">Track your fleet →</span>
             </div>
           </div>
-        </a>
-        <div class="proj__info">
-          <span class="proj__index">04 / 04</span>
-          <h3 class="proj__name"><span class="nav__swap"><span>CMAXX</span><span aria-hidden="true">CMAXX</span></span></h3>
-          <p class="proj__disc">Web experience · Identity · Launch</p>
-          <a class="proj__link" href="index.html#work">View case study ↗</a>
-        </div>
-      </article>
+        </li>
+
+      </ul>
     </section>
 
     <!-- ═══════════════ 08 · THE DIFFERENCE ═══════════════ -->
@@ -742,28 +739,28 @@
           <title id="pipeTitle">Pipeline: design studios stop after design; GEMIS continues through build and support.</title>
           <!-- dimmed "studios stop here" line -->
           <text class="diff__stoplabel" x="100" y="60">Design studios stop here</text>
-          <path id="pipeStop" d="M100 90 H430" fill="none" stroke="#A9A498" stroke-width="2" stroke-dasharray="6 8" opacity="0.55"/>
-          <circle cx="430" cy="90" r="4" fill="#A9A498" opacity="0.55"/>
+          <path id="pipeStop" d="M100 90 H430" fill="none" stroke="#94948E" stroke-width="2" stroke-dasharray="6 8" opacity="0.55"/>
+          <circle cx="430" cy="90" r="4" fill="#94948E" opacity="0.55"/>
           <!-- main line -->
-          <path id="pipeMain" d="M100 200 H1100" fill="none" stroke="#C9A227" stroke-width="2.5"/>
+          <path id="pipeMain" d="M100 200 H1100" fill="none" stroke="#D2D2CD" stroke-width="2.5"/>
           <g class="diff__node" data-node="1">
             <circle class="diff__pulse" cx="100" cy="200" r="14"/>
-            <circle cx="100" cy="200" r="9" fill="#C9A227"/>
+            <circle cx="100" cy="200" r="9" fill="#D2D2CD"/>
             <text x="100" y="248">Diagnose</text>
           </g>
           <g class="diff__node" data-node="2">
             <circle class="diff__pulse" cx="433" cy="200" r="14"/>
-            <circle cx="433" cy="200" r="9" fill="#C9A227"/>
+            <circle cx="433" cy="200" r="9" fill="#D2D2CD"/>
             <text x="433" y="248">Design</text>
           </g>
           <g class="diff__node" data-node="3">
             <circle class="diff__pulse" cx="766" cy="200" r="14"/>
-            <circle cx="766" cy="200" r="9" fill="#C9A227"/>
+            <circle cx="766" cy="200" r="9" fill="#D2D2CD"/>
             <text x="766" y="248">Build</text>
           </g>
           <g class="diff__node" data-node="4">
             <circle class="diff__pulse" cx="1100" cy="200" r="14"/>
-            <circle cx="1100" cy="200" r="9" fill="#C9A227"/>
+            <circle cx="1100" cy="200" r="9" fill="#D2D2CD"/>
             <text x="1100" y="248">Support</text>
           </g>
         </svg>
@@ -800,13 +797,31 @@
       </div>
     </section>
 
-    <!-- ═══════════════ 10 · NUMBERS ═══════════════ -->
-    <section class="nums" aria-label="Studio in numbers">
-      <!-- Figures flagged UNVERIFIED in assets/js/studio-content.js -->
-      <div class="nums__item"><b class="nums__val" data-count="2005" data-prefix="EST. ">EST. 2005</b><span>Two decades of shipped software</span></div>
-      <div class="nums__item"><b class="nums__val" data-count="16" data-suffix="+">16+</b><span>products shipped</span></div>
-      <div class="nums__item"><b class="nums__val" data-count="20" data-suffix="+">20+</b><span>clients</span></div>
-      <div class="nums__item"><b class="nums__val" data-count="4">4</b><span>services</span></div>
+    <!-- ═══════════════ 09B · OUR OWN STANDARDS — LIVE TOKEN SPECIMEN ═══════════════ -->
+    <section class="spec">
+      <p class="slabel">( Our own standards )</p>
+      <h2 class="spec__head">THE SPECIFICATION WE SELL<br/>IS THE ONE WE SHIP.</h2>
+      <p class="spec__intro">Every engagement ends in a documented system of tokens — colour, type, spacing — measured and testable. This page runs on exactly that kind of system. The values below are not a mockup: they are read live from this page's stylesheet as you look at it.</p>
+      <div class="spec__grid" id="specGrid">
+        <div class="spec__tokens" id="specTokens" aria-label="Colour tokens read live from the stylesheet"></div>
+        <div class="spec__type" id="specType" aria-label="Type scale read live from the page"></div>
+        <div class="spec__contrast" id="specContrast" aria-label="Contrast ratios computed live"></div>
+      </div>
+      <p class="spec__foot">Read at render time via <code>getComputedStyle</code> — these values cannot drift from the page you are looking at.</p>
+    </section>
+
+    <!-- ═══════════════ 10 · MEASURED OUTCOMES ═══════════════ -->
+    <section class="outc" aria-label="Measured outcomes">
+      <p class="slabel">( Measured outcomes )</p>
+      <h2 class="outc__head">MEASURED, OR NOT CLAIMED.</h2>
+      <p class="outc__method">Every engagement defines its success measures up front — enquiry rate, task completion, error rate — and measures them before and after launch. We publish a figure only once it is verified with the client and we hold documented permission to use it.</p>
+      <div class="outc__row">
+        <!-- Metric values withheld pending verification — see studio-content.js -->
+        <div class="outc__item"><span class="outc__dir" aria-hidden="true">↑</span><h3>Enquiry conversion</h3><p>Measured on Web Experience engagements, before and after launch.</p></div>
+        <div class="outc__item"><span class="outc__dir" aria-hidden="true">↓</span><h3>Task errors</h3><p>Measured on operations UX engagements, per release.</p></div>
+        <div class="outc__item"><span class="outc__dir" aria-hidden="true">↓</span><h3>Time on task</h3><p>Measured in usability testing, before and after redesign.</p></div>
+      </div>
+      <p class="outc__foot">Figures appear here as client verification and publication rights are secured.</p>
     </section>
 
     <!-- ═══════════════ 11 · CLIENTS & TOOLS ═══════════════ -->
@@ -873,6 +888,7 @@
         </tbody>
       </table>
       <p class="pricing__note">Fixed price. Fixed scope. Developer handoff and thirty days of support included in every engagement.</p>
+      <p class="pricing__vat">All prices exclude VAT. GEM Information Systems (Pty) Ltd is a VAT-registered vendor.</p>
     </section>
 
     <!-- ═══════════════ 13 · FAQ (inverted) ═══════════════ -->
@@ -911,6 +927,10 @@
         <div class="faq__item">
           <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a8" id="faq-q8">Can you build what you design?<span class="faq__x" aria-hidden="true">+</span></button></h3>
           <div class="faq__a" id="faq-a8" role="region" aria-labelledby="faq-q8"><p>Yes — that's the point. GEMIS Studio sits inside GEM Information Systems, a software development company. Design and build happen under one roof, with no handover to a third party.</p></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="faq-a9" id="faq-q9">Where is GEMIS Studio based?<span class="faq__x" aria-hidden="true">+</span></button></h3>
+          <div class="faq__a" id="faq-a9" role="region" aria-labelledby="faq-q9"><p>At 66 Park Lane, Sandown, Sandton, 2196 — in Johannesburg's Sandton district. We work with clients across South Africa: discovery and reviews run remotely, and we meet in person for stakeholder workshops on larger engagements.</p></div>
         </div>
       </div>
     </section>
@@ -972,6 +992,13 @@
               <span class="cform__err" aria-hidden="true">Give us at least 20 characters so we can help properly.</span>
             </div>
           </div>
+          <div class="cform__field cform__field--consent">
+            <label class="cform__consent">
+              <input id="f-consent" name="consent" type="checkbox" required />
+              <span>I consent to GEMIS Studio contacting me about this enquiry and processing my details as described in the <a href="privacy.html">privacy notice</a>.</span>
+            </label>
+            <span class="cform__err" aria-hidden="true">We need your consent to respond to your enquiry.</span>
+          </div>
           <button class="btn-gold cform__submit" type="submit">Send enquiry <span class="btn-gold__arrow" aria-hidden="true">→</span></button>
           <p class="cform__status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
@@ -1008,7 +1035,7 @@
       </div>
       <div class="foot__legal">
         <span>© 2026 GEM Information Systems (Pty) Ltd trading as GEMIS® Studio.</span>
-        <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+        <span><a href="privacy.html">Privacy</a> · <a href="privacy.html#terms">Terms</a></span>
       </div>
       <p class="foot__wordmark" aria-hidden="true">GEMIS<sup>®</sup> STUDIO</p>
     </footer>
@@ -1018,7 +1045,7 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/studio-content.js?v=20260826"></script>
-  <script src="assets/js/studio.js?v=20260826" defer></script>
+  <script src="assets/js/studio-content.js?v=20260828"></script>
+  <script src="assets/js/studio.js?v=20260828" defer></script>
 </body>
 </html>
