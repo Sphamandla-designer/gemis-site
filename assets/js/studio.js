@@ -151,22 +151,28 @@
     gsap.from(['.hero__eyebrow', '.hero__sub', '.hero__ctas'], {
       y: 24, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.08, delay: 0.25, clearProps: 'all'
     });
-    /* auto-sweep 20 → 80 → 50 teaches the interaction, once */
-    var p = { v: 50 };
-    sweep = gsap.timeline({ delay: 0.5, onUpdate: function () { setPos(p.v); } });
-    sweep.to(p, { v: 20, duration: 0.7, ease: 'power2.inOut' })
-         .to(p, { v: 80, duration: 1.0, ease: 'power2.inOut' })
-         .to(p, { v: 50, duration: 0.7, ease: 'power2.inOut' });
   }
 
   if (preOn) runPreloader(heroIntro); else heroIntro();
 
-  /* hero parallax on scroll away */
+  /* auto-sweep 20 → 80 → 50 teaches the interaction, once, when the demo scrolls into view */
   if (hasGsap && !reduced) {
-    gsap.to(scrub.children, {
-      yPercent: 12, scale: 1.06, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    ScrollTrigger.create({
+      trigger: '.demo .scrub', start: 'top 70%', once: true,
+      onEnter: function () {
+        var p = { v: 50 };
+        sweep = gsap.timeline({ onUpdate: function () { setPos(p.v); } });
+        sweep.to(p, { v: 20, duration: 0.7, ease: 'power2.inOut' })
+             .to(p, { v: 80, duration: 1.0, ease: 'power2.inOut' })
+             .to(p, { v: 50, duration: 0.7, ease: 'power2.inOut' });
+      }
     });
+    /* gentle drift as the demo passes through the viewport (mockup roots, so
+       the clip edge stays glued to the divider) */
+    gsap.fromTo(['.demo .mkb', '.demo .mka'],
+      { yPercent: -3, scale: 1.05 },
+      { yPercent: 3, scale: 1.05, ease: 'none',
+        scrollTrigger: { trigger: '.demo .scrub', start: 'top bottom', end: 'bottom top', scrub: true } });
   }
 
   /* ── 04 · Problem mirror ─────────────────────────────────────────── */
@@ -227,7 +233,7 @@
     var ST = { start: 'top 75%', once: true };
 
     /* section labels + headline blocks */
-    gsap.utils.toArray('.slabel, .practice__lead, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
+    gsap.utils.toArray('.slabel, .demo__line, .practice__lead, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
       gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'expo.out',
         scrollTrigger: Object.assign({ trigger: el }, ST) });
     });
