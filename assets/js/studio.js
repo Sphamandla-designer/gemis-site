@@ -233,7 +233,7 @@
     var ST = { start: 'top 75%', once: true };
 
     /* section labels + headline blocks */
-    gsap.utils.toArray('.slabel, .demo__line, .practice__lead, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
+    gsap.utils.toArray('.slabel, .demo__line, .practice__lead, .lead2__head, .instr__lead, .spec__head, .outc__head, .diff__head, .pricing__head, .faq__head, .contact__sub, .svcs__title').forEach(function (el) {
       gsap.from(el, { y: 40, opacity: 0, duration: 0.8, ease: 'expo.out',
         scrollTrigger: Object.assign({ trigger: el }, ST) });
     });
@@ -243,6 +243,14 @@
       scrollTrigger: Object.assign({ trigger: '.practice__cols' }, ST) });
     gsap.from('.practice__rule', { scaleY: 0, duration: 0.8, ease: 'expo.out',
       scrollTrigger: Object.assign({ trigger: '.practice__cols' }, ST) });
+
+    /* new brief blocks — quiet row/cell staggers */
+    [['.lead2__specs', '.lead2__specs li'], ['.staff__rows', '.staff__row'],
+     ['.instr__cols', '.instr__cols li'], ['.outc__row', '.outc__item']].forEach(function (pair) {
+      if (!document.querySelector(pair[0])) return;
+      gsap.from(pair[1], { y: 24, opacity: 0, duration: 0.6, ease: 'expo.out', stagger: 0.05,
+        scrollTrigger: Object.assign({ trigger: pair[0] }, ST) });
+    });
 
     /* RevealMedia — work scenes: clip-path opens upward, inner counter-scales */
     gsap.utils.toArray('[data-reveal-media]').forEach(function (el) {
@@ -345,37 +353,118 @@
     });
   }
 
-  /* ── 10 · Numbers — odometers ────────────────────────────────────── */
-  if (hasGsap && !reduced) {
-    document.querySelectorAll('.nums__val').forEach(function (el) {
-      var target = parseInt(el.dataset.count, 10);
-      var prefix = el.dataset.prefix || '';
-      var suffix = el.dataset.suffix || '';
-      var o = { v: 0 };
-      gsap.to(o, {
-        v: target, duration: 1.8, ease: 'power2.out', snap: { v: 1 },
-        scrollTrigger: { trigger: el, start: 'top 75%', once: true },
-        onUpdate: function () { el.textContent = prefix + o.v + suffix; }
+  /* ── 09B · Own standards — live token specimen (FR-11) ───────────── */
+  (function () {
+    var tokensEl = document.getElementById('specTokens');
+    if (!tokensEl) return;
+    var css = getComputedStyle(document.documentElement);
+    function toHex(v) {
+      var m = v.trim().match(/rgba?\((\d+),?\s*(\d+),?\s*(\d+)/);
+      if (!m && /^#/.test(v.trim())) return v.trim().toUpperCase();
+      if (!m) return v.trim();
+      return '#' + [m[1], m[2], m[3]].map(function (n) {
+        return (+n).toString(16).padStart(2, '0');
+      }).join('').toUpperCase();
+    }
+    function lum(hex) {
+      var c = [1, 3, 5].map(function (i) {
+        var v = parseInt(hex.slice(i, i + 2), 16) / 255;
+        return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
       });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    }
+    function ratio(a, b) {
+      var l1 = lum(a), l2 = lum(b);
+      return ((Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05));
+    }
+    var names = ['--ink', '--ink-2', '--ink-3', '--bone', '--bone-dim', '--gold'];
+    var vals = {};
+    names.forEach(function (n) {
+      var raw = css.getPropertyValue(n).trim();
+      var hex = toHex(raw);
+      vals[n] = hex;
+      var d = document.createElement('div');
+      d.className = 'spec__swatch';
+      d.innerHTML = '<i style="background:' + raw + '"></i><b>' + n + '</b><span>' + hex + '</span>';
+      tokensEl.appendChild(d);
     });
-  }
+    /* type scale — computed live from real elements on this page */
+    var typeEl = document.getElementById('specType');
+    [['t-display', 'Display', '.hero__title', 'Aa'], ['t-body', 'Body', '.hero__sub', 'Aa'], ['t-mono', 'Mono', '.slabel', '01']].forEach(function (t) {
+      var src = document.querySelector(t[2]);
+      var size = src ? Math.round(parseFloat(getComputedStyle(src).fontSize)) : 0;
+      var row = document.createElement('div');
+      row.className = 'spec__trow';
+      row.innerHTML = '<em class="' + t[0] + '">' + t[3] + ' ' + t[1] + '</em><span>' + size + 'px · computed</span>';
+      typeEl.appendChild(row);
+    });
+    /* contrast ratios — computed live from the tokens above */
+    var conEl = document.getElementById('specContrast');
+    [['--bone', '--ink', 'Text / base'], ['--bone-dim', '--ink', 'Secondary / base'], ['--gold', '--ink', 'Accent / base']].forEach(function (pair) {
+      var r = ratio(vals[pair[0]], vals[pair[1]]);
+      var row = document.createElement('div');
+      row.className = 'spec__crow';
+      row.innerHTML = '<b>' + pair[2] + '</b><span>' + r.toFixed(1) + ' : 1 — AA ' + (r >= 4.5 ? '✓' : '✗') + '</span>';
+      conEl.appendChild(row);
+    });
+  })();
 
-  /* ── 13 · FAQ accordion (single-open) ────────────────────────────── */
+  /* ── 13 · FAQ accordion (single-open, fragment-linkable FR-13) ───── */
   (function () {
     var faq = document.querySelector('.faq');
     faq.classList.add('faq--js');
     var qs = faq.querySelectorAll('.faq__q');
+    function openOnly(q) {
+      qs.forEach(function (other) {
+        other.setAttribute('aria-expanded', 'false');
+        document.getElementById(other.getAttribute('aria-controls')).classList.remove('is-open');
+      });
+      if (q) {
+        q.setAttribute('aria-expanded', 'true');
+        document.getElementById(q.getAttribute('aria-controls')).classList.add('is-open');
+      }
+    }
     qs.forEach(function (q) {
       q.addEventListener('click', function () {
-        var panel = document.getElementById(q.getAttribute('aria-controls'));
         var open = q.getAttribute('aria-expanded') === 'true';
-        qs.forEach(function (other) {
-          other.setAttribute('aria-expanded', 'false');
-          document.getElementById(other.getAttribute('aria-controls')).classList.remove('is-open');
-        });
-        if (!open) { q.setAttribute('aria-expanded', 'true'); panel.classList.add('is-open'); }
+        openOnly(open ? null : q);
+        if (!open && history.replaceState) history.replaceState(null, '', '#' + q.id);
       });
     });
+    /* deep link: #faq-qN opens that question */
+    function openFromHash() {
+      var m = (location.hash || '').match(/^#(faq-q\d+)$/);
+      if (!m) return;
+      var q = document.getElementById(m[1]);
+      if (!q) return;
+      openOnly(q);
+      setTimeout(function () { scrollToEl(q.closest('.faq__item')); q.focus(); }, 150);
+    }
+    window.addEventListener('hashchange', openFromHash);
+    openFromHash();
+  })();
+
+  /* ── Analytics conversion events (FR-23) — dataLayer pushes only,
+        no cookies are set by this page ─────────────────────────────── */
+  var track = function (event, detail) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: event }, detail || {}));
+  };
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track(a.classList.contains('contact__call') ? 'booking_click' : 'email_click');
+    });
+  });
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    a.addEventListener('click', function () { track('tel_click'); });
+  });
+  (function () {
+    var pricing = document.getElementById('pricing');
+    if (!pricing || !('IntersectionObserver' in window)) return;
+    var seen = false;
+    new IntersectionObserver(function (entries, obs) {
+      if (!seen && entries[0].isIntersecting) { seen = true; track('pricing_view'); obs.disconnect(); }
+    }, { threshold: 0.25 }).observe(pricing);
   })();
 
   /* ── 14 · Contact form ───────────────────────────────────────────── */
@@ -393,9 +482,12 @@
     function validateField(input) {
       var field = input.closest('.cform__field');
       var ok = true;
-      if (input.required && !input.value.trim()) ok = false;
-      if (ok && input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) ok = false;
-      if (ok && input.minLength > 0 && input.value.trim().length < input.minLength) ok = false;
+      if (input.type === 'checkbox') ok = input.checked;
+      else {
+        if (input.required && !input.value.trim()) ok = false;
+        if (ok && input.type === 'email' && input.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) ok = false;
+        if (ok && input.minLength > 0 && input.value.trim().length < input.minLength) ok = false;
+      }
       field.classList.toggle('is-error', !ok);
       var err = field.querySelector('.cform__err');
       if (err) err.setAttribute('aria-hidden', String(ok));
@@ -404,6 +496,11 @@
     /* validate on blur, never on keystroke */
     form.querySelectorAll('input, textarea').forEach(function (input) {
       input.addEventListener('blur', function () { if (input.value) validateField(input); });
+    });
+    /* analytics: form_start on first interaction (FR-23) */
+    var started = false;
+    form.addEventListener('focusin', function () {
+      if (!started) { started = true; track('form_start'); }
     });
 
     form.addEventListener('submit', function (e) {
@@ -415,10 +512,13 @@
       if (!allOk) { status.textContent = 'Please fix the highlighted fields.'; return; }
       status.textContent = '';
       form.classList.add('is-sending');
+      track('form_submit');
       var data = new FormData(form);
       var body = 'Name: ' + data.get('name') + '\nEmail: ' + data.get('email') +
         '\nCompany: ' + (data.get('company') || '—') + '\nNeed: ' + data.get('need') +
-        '\nBudget: ' + data.get('budget') + '\n\n' + data.get('message');
+        '\nBudget: ' + data.get('budget') +
+        '\nConsent: given per the published privacy notice, ' + new Date().toISOString().slice(0, 10) +
+        '\n\n' + data.get('message');
       /* static site — hand the enquiry to the visitor's mail client */
       window.location.href = 'mailto:info@gemis.co.za?subject=' +
         encodeURIComponent('Studio enquiry — ' + data.get('need')) +
