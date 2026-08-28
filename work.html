@@ -24,7 +24,7 @@ button{font-family:inherit;cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 [data-reveal]{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
 [data-reveal="2"]{animation-delay:.1s}[data-reveal="3"]{animation-delay:.2s}[data-reveal="4"]{animation-delay:.3s}
-@keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(420px)}}
+@keyframes demoPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
 @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes glide{0%,100%{transform:translateX(0)}50%{transform:translateX(38px)}}
@@ -113,24 +113,6 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ── GEMIS brand tile ── */
-.gb{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4%,40px);padding-bottom:clamp(52px,12%,72px)}
-.gb__g{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(64px,13vw,180px);line-height:.8;letter-spacing:-.05em;color:#191c1f}
-.gb__spec{font-size:14px;color:#8d969e;margin-bottom:14px}
-.gb__bar{display:flex;height:24px;border-radius:9999px;overflow:hidden}
-.gb__bar i{flex:1}
-
-/* ── Logo cards marquee ── */
-.logos{background:#fff;border-top:1px solid #e2e2e7;padding:clamp(48px,7vh,72px) 0}
-.logos .kicker{color:#505a63;padding:0 clamp(16px,3vw,40px);max-width:1280px;margin:0 auto 28px}
-.logos__rail{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
-.logos__track{display:flex;gap:20px;width:max-content;animation:drift 36s linear infinite}
-.logos__rail:hover .logos__track{animation-play-state:paused}
-.lcard{flex:none;width:216px;height:120px;background:#f4f4f4;border:1px solid #e9e9ee;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform .3s,box-shadow .3s}
-.lcard:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(25,28,31,.1)}
-.lcard svg{display:block}
-.lcard b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px;letter-spacing:-.1px;color:#191c1f}
-.lcard b.lc-caps{letter-spacing:2.5px;font-size:13px;font-weight:600}
-.lcard b.lc-low{text-transform:lowercase;letter-spacing:.2px}
 
 /* ── Disciplines ── */
 .disc{background:#000;color:#fff}
@@ -140,7 +122,6 @@ button{font-family:inherit;cursor:pointer}
 .disc__row:hover{background:#16181a;padding-left:clamp(16px,2.4vw,32px)}
 .disc__row .nm{flex:0 0 auto;min-width:clamp(120px,16vw,240px);font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.48px}
 .disc__row .ln{flex:1;font-size:15px;line-height:1.6;color:rgba(255,255,255,.6)}
-.disc__row .cue{white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.24px;color:#a64b21}
 @media (max-width:1023px){.disc__row{flex-direction:column;align-items:flex-start;gap:10px}}
 
 /* ── Beyond screens collage ── */
@@ -356,12 +337,29 @@ button{font-family:inherit;cursor:pointer}
 .mo__a{grid-column:span 7;display:flex;flex-direction:column;gap:14px}
 .mo__b{grid-column:span 5;display:flex;flex-direction:column;gap:14px}
 @media (max-width:1023px){.mo__a,.mo__b{grid-column:span 12}}
-.mo__frame{position:relative;border-radius:28px;overflow:hidden;background:#0a0a0a}
-.mo__frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.mo__frame{position:relative;border-radius:28px;overflow:hidden;background:#101214;border:1px solid #26262b}
 .mo__a .mo__frame{aspect-ratio:16/10}
 .mo__b .mo__frame{aspect-ratio:4/5}
-.mo__scan{position:absolute;left:0;right:0;top:-110px;height:110px;background:linear-gradient(180deg,transparent,rgba(166,75,33,.4));animation:scan 5s linear infinite}
 .mo__cap{font-size:13px;color:rgba(255,255,255,.72)}
+/* Live prototype demos — the actual uploaded products, driven on a loop */
+.mo__frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.demo{background:#101214}
+.demo__chrome{position:absolute;top:0;left:0;right:0;height:38px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.08);z-index:4;background:#101214}
+.demo__chrome i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
+.demo__chrome span{margin-left:8px;font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
+.demo__view{position:absolute;inset:38px 0 0;overflow:hidden}
+.demo--phone .demo__view{inset:0;display:flex;align-items:center;justify-content:center}
+.demo__stage{position:absolute;top:0;left:0;transform-origin:0 0}
+.demo--phone .demo__stage{position:relative;border-radius:34px;overflow:hidden;border:6px solid #26262b;box-shadow:0 24px 70px rgba(0,0,0,.55);flex:none}
+.demo__stage iframe{border:0;display:block;pointer-events:none;background:#fff}
+.demo__cursor{position:absolute;width:22px;height:22px;z-index:6;left:50%;top:60%;transition:left .75s cubic-bezier(.3,.7,.25,1),top .75s cubic-bezier(.3,.7,.25,1);filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));pointer-events:none}
+.demo__cursor::before{content:"";position:absolute;left:-4px;top:-4px;width:28px;height:28px;border-radius:50%;opacity:0}
+.demo__cursor.is-click::before{opacity:1;animation:demoPulse .5s ease-out}
+.demo__cover{position:absolute;inset:0;background:#101214;z-index:5;opacity:1;transition:opacity .6s ease;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.demo__cover.is-off{opacity:0}
+.demo__cover span{font-size:12px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
+.demo__badge{position:absolute;left:16px;bottom:14px;z-index:6;display:flex;align-items:center;gap:8px;background:rgba(10,10,10,.66);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:9999px;padding:6px 12px;color:#fff;font-size:11.5px;font-weight:600}
+.demo__badge i{width:7px;height:7px;border-radius:50%;background:#3ddc97;flex:none;font-style:normal}
 .mo__ticker{grid-column:span 12;overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:24px 0}
 .mo__tickertrack{display:flex;gap:56px;width:max-content;animation:drift 26s linear infinite;font-size:14px;color:rgba(255,255,255,.72)}
 .mo__tickertrack span{white-space:nowrap}
@@ -421,6 +419,79 @@ button{font-family:inherit;cursor:pointer}
       <p class="meta" data-reveal="4">Brand · Digital · Product · Systems · AI · Strategy</p>
     </div>
   </div>
+</section>
+
+<!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
+<section class="marks" aria-label="Identity marks from the studio">
+  <p class="kicker">Marks in rotation</p>
+  <h2>Identities from the studio bench.</h2>
+  <div class="marks__rail">
+    <div class="marks__track">
+      <div class="mcard mcard--g">
+        <span class="mcard__mono">G<i>.</i></span>
+        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
+        <span class="mcard__meta">GEMIS® — 2026</span>
+      </div>
+      <div class="mcard mcard--gt">
+        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
+        <span class="mcard__cap">AI, put to work.</span>
+        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      </div>
+      <div class="mcard mcard--n">
+        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
+        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      </div>
+      <div class="mcard mcard--ts">
+        <span class="mcard__duo">T<em>S</em></span>
+        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
+      </div>
+      <div class="mcard mcard--au">
+        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
+          </linearGradient></defs>
+          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+      </div>
+      <div class="mcard mcard--k">
+        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
+        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--g">
+        <span class="mcard__mono">G<i>.</i></span>
+        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
+        <span class="mcard__meta">GEMIS® — 2026</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--gt">
+        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
+        <span class="mcard__cap">AI, put to work.</span>
+        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--n">
+        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
+        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--ts">
+        <span class="mcard__duo">T<em>S</em></span>
+        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--au">
+        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="msilv2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
+          </linearGradient></defs>
+          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv2)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--k">
+        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
+        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      </div>
+    </div>
+  </div>
+  <p class="marks__note">Exploratory identities and original brand marks developed as part of our studio practice.</p>
 </section>
 
 <!-- ═══ Explorer ═══ -->
@@ -550,23 +621,6 @@ button{font-family:inherit;cursor:pointer}
         </div>
       </article>
 
-      <article class="card" data-cats="BRAND WEB STRATEGY">
-        <div class="card__visual">
-          <div class="gb" aria-hidden="true">
-            <div class="gb__g">G</div>
-            <div>
-              <div class="gb__spec">AaBbCc — Inter 400 / Inter Tight 500</div>
-              <div class="gb__bar"><i style="background:#000"></i><i style="background:#a64b21"></i><i style="background:#c9c9cd"></i><i style="background:#e2e2e7"></i></div>
-            </div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>GEMIS BrandStudio</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#191c1f"/><text x="12" y="28" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#fff">G</text></svg><div class="wt"><b>Our own identity</b><span>Brand · Digital · Web</span></div></div>
-          <p class="tagline">The system this studio runs on, applied from wordmark to interface.</p>
-        </div>
-      </article>
-
     </div>
 
     <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
@@ -578,36 +632,17 @@ button{font-family:inherit;cursor:pointer}
   </div>
 </section>
 
-<!-- ═══ Logo cards marquee (right → left) ═══ -->
-<section class="logos" aria-label="Clients and products">
-  <p class="kicker">Trusted across sectors</p>
-  <div class="logos__rail">
-    <div class="logos__track" id="logoTrack">
-      <!-- set A -->
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#3056D3"/><path d="M20 9 L30 17 L26 30 H14 L10 17 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg><b>ManaGem</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#14B8A6"/><path d="M13 22 a8 8 0 0 1 13-6 M27 18 a8 8 0 0 1 -13 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M26 9 v5 h-5 M14 31 v-5 h5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>WasteMart</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#111"/><circle cx="13" cy="20" r="3.4" fill="#fff"/><rect x="20" y="17" width="12" height="2.6" rx="1.3" fill="#8d969e"/><rect x="20" y="22" width="8" height="2.6" rx="1.3" fill="#8d969e"/></svg><b class="lc-caps">FINOS</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#1F2C4F"/><path d="M20 8 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z" fill="#D4A63C"/></svg><b class="lc-low">gemis.tech</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#7C3AED"/><path d="M20 8 v24 M8 20 h24 M12 12 l16 16 M28 12 l-16 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg><b class="lc-low">smartstart</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="16" height="16" rx="4" fill="#E97817"/><rect x="21" y="3" width="16" height="16" rx="4" fill="#191c1f"/><rect x="3" y="21" width="16" height="16" rx="4" fill="#5C4033"/><rect x="21" y="21" width="16" height="16" rx="4" fill="#c9c9cd"/></svg><b>Sonke</b></div>
-      <div class="lcard"><svg width="48" height="40" viewBox="0 0 48 40" aria-hidden="true"><rect x="2" y="10" width="44" height="20" rx="10" fill="#0F766E"/><path d="M10 20 h6 l3 -6 l4 12 l3 -6 h9" fill="none" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>NuraCoach</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 V18 A14 14 0 0 1 34 18 V34 Z" fill="#8B5CF6"/><path d="M14 34 V24 a6 6 0 0 1 12 0 v10" fill="#fff"/></svg><b>RentFlow</b></div>
-      <div class="lcard"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="6" width="36" height="24" rx="12" fill="#135E63"/><path d="M14 34 l4 -6 h-4 z" fill="#135E63"/><circle cx="14" cy="18" r="2.6" fill="#fff"/><circle cx="21" cy="18" r="2.6" fill="#7DD3C0"/><circle cx="28" cy="18" r="2.6" fill="#fff" opacity=".5"/></svg><b class="lc-low">lungelo</b></div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ Disciplines ═══ -->
 <section class="disc pad">
   <div class="wrap">
     <p class="kicker">What we make</p>
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px);max-width:20ch">Different outputs. One way of thinking.</h2>
     <div class="disc__list">
-      <button type="button" class="disc__row" data-goto="BRAND"><span class="nm">Brand</span><span class="ln">Identity systems · Positioning · Visual languages · Campaigns</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="WEB"><span class="nm">Digital</span><span class="ln">Websites · Digital experiences · Microsites · Content systems</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="PRODUCT"><span class="nm">Product</span><span class="ln">Apps · SaaS · Platforms · AI products</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="SYSTEMS"><span class="nm">Systems</span><span class="ln">Dashboards · Enterprise systems · Operational tools · Data interfaces</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="STRATEGY"><span class="nm">Strategy</span><span class="ln">Research · UX strategy · Product strategy · Digital transformation</span><span class="cue" aria-hidden="true">View work →</span></button>
+      <button type="button" class="disc__row" data-goto="BRAND"><span class="nm">Brand</span><span class="ln">Identity systems · Positioning · Visual languages · Campaigns</span></button>
+      <button type="button" class="disc__row" data-goto="WEB"><span class="nm">Digital</span><span class="ln">Websites · Digital experiences · Microsites · Content systems</span></button>
+      <button type="button" class="disc__row" data-goto="PRODUCT"><span class="nm">Product</span><span class="ln">Apps · SaaS · Platforms · AI products</span></button>
+      <button type="button" class="disc__row" data-goto="SYSTEMS"><span class="nm">Systems</span><span class="ln">Dashboards · Enterprise systems · Operational tools · Data interfaces</span></button>
+      <button type="button" class="disc__row" data-goto="STRATEGY"><span class="nm">Strategy</span><span class="ln">Research · UX strategy · Product strategy · Digital transformation</span></button>
     </div>
   </div>
 </section>
@@ -841,79 +876,6 @@ button{font-family:inherit;cursor:pointer}
 </section>
 
 
-<!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
-<section class="marks" aria-label="Identity marks from the studio">
-  <p class="kicker">Marks in rotation</p>
-  <h2>Identities from the studio bench.</h2>
-  <div class="marks__rail">
-    <div class="marks__track">
-      <div class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
-      </div>
-      <div class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
-      </div>
-      <div class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-      </div>
-      <div class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
-      </div>
-      <div class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-      </div>
-      <div class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv2)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-      </div>
-    </div>
-  </div>
-  <p class="marks__note">Sample identities and own-brand marks — not client work.</p>
-</section>
-
 <!-- ═══ In motion ═══ -->
 <section class="motion pad">
   <div class="wrap">
@@ -921,18 +883,25 @@ button{font-family:inherit;cursor:pointer}
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px)">Designed to move.</h2>
     <div class="mo__grid">
       <div class="mo__a">
-        <div class="mo__frame">
-          <img src="assets/img/shots/managem-desk.jpg" alt="ManaGem dashboard on a desktop display" loading="lazy">
-          <div class="mo__scan" aria-hidden="true"></div>
+        <div class="mo__frame demo" id="demoMg" data-src="ManaGem.html" role="img" aria-label="ManaGem management system — the live prototype signing in, opening the dashboard and browsing the sales pipeline">
+          <div class="demo__chrome" aria-hidden="true"><i></i><i></i><i></i><span>managem.app — live prototype</span></div>
+          <div class="demo__view" aria-hidden="true">
+            <div class="demo__stage" data-w="1280" data-h="800"></div>
+          </div>
+          <div class="demo__cover" aria-hidden="true"><span>LOADING PROTOTYPE…</span></div>
+          <div class="demo__badge" aria-hidden="true"><i></i>Live prototype</div>
         </div>
-        <p class="mo__cap">ManaGem — dashboard interactions in review</p>
+        <p class="mo__cap">ManaGem — the actual prototype driving itself: sign-in, dashboard, sales pipeline</p>
       </div>
       <div class="mo__b">
-        <div class="mo__frame">
-          <img src="assets/img/shots/wastemart-driver.jpg" alt="WasteMart driver app flow on a phone" loading="lazy">
-          <div class="mo__scan" style="animation-delay:1.2s" aria-hidden="true"></div>
+        <div class="mo__frame demo demo--phone" id="demoWm" data-src="WasteMart%20Driver%20(offline).html" role="img" aria-label="WasteMart driver app — the live prototype logging in, selecting a vehicle and starting the workday">
+          <div class="demo__view" aria-hidden="true">
+            <div class="demo__stage" data-w="420" data-h="880"></div>
+          </div>
+          <div class="demo__cover" aria-hidden="true"><span>LOADING PROTOTYPE…</span></div>
+          <div class="demo__badge" aria-hidden="true"><i></i>Live prototype</div>
         </div>
-        <p class="mo__cap">WasteMart — driver check-in flow</p>
+        <p class="mo__cap">WasteMart Driver — the actual prototype: log in, pick a truck, start the day</p>
       </div>
       <div class="mo__ticker">
         <div class="mo__tickertrack" aria-hidden="true">
@@ -978,6 +947,9 @@ button{font-family:inherit;cursor:pointer}
   </div>
 </footer>
 
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
 <script>
 (function () {
   'use strict';
@@ -1011,8 +983,11 @@ button{font-family:inherit;cursor:pointer}
     moreBtn.textContent = expanded ? 'View less ↑' : 'View more ↓';
     if (scroll) {
       var el = document.getElementById('explorer');
-      window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 64, behavior: 'smooth' });
+      var top = window.scrollY + el.getBoundingClientRect().top - 64;
+      if (window.__smoothTo) { window.__smoothTo(top); }
+      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
     }
+    if (window.ScrollTrigger) { ScrollTrigger.refresh(); }
   }
   buttons.forEach(function (b) {
     b.addEventListener('click', function () { cat = b.dataset.cat; apply(false); });
@@ -1029,15 +1004,284 @@ button{font-family:inherit;cursor:pointer}
   window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { apply(false); }, 200); });
   apply(false);
 
-  /* ── Logo marquee: duplicate the set once for a seamless loop ── */
-  var track = document.getElementById('logoTrack');
-  var clones = [];
-  Array.prototype.forEach.call(track.children, function (c) {
-    var k = c.cloneNode(true);
-    k.setAttribute('aria-hidden', 'true');
-    clones.push(k);
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Live prototype demos: the actual uploaded HTML prototypes, driven on a loop ── */
+  function LiveDemo(rootId, script) {
+    var root = document.getElementById(rootId);
+    if (!root) { return; }
+    var stage = root.querySelector('.demo__stage');
+    var cover = root.querySelector('.demo__cover');
+    var W = parseInt(stage.dataset.w, 10), H = parseInt(stage.dataset.h, 10);
+    var phone = root.classList.contains('demo--phone');
+    var iframe = null, cursor = null, doc = null, win = null;
+    var booted = false, paused = true, dead = false;
+
+    function fit() {
+      var view = root.querySelector('.demo__view');
+      var vw = view.clientWidth, vh = view.clientHeight;
+      var sc = phone ? Math.min((vh * .92) / H, (vw * .9) / W) : vw / W;
+      stage.style.width = W + 'px';
+      stage.style.height = H + 'px';
+      if (phone) {
+        stage.style.position = 'relative';
+        stage.style.transformOrigin = '50% 50%';
+        stage.style.transform = 'scale(' + sc + ')';
+        stage.style.margin = (-(H - H * sc) / 2) + 'px ' + (-(W - W * sc) / 2) + 'px';
+      } else {
+        stage.style.transformOrigin = '0 0';
+        stage.style.transform = 'scale(' + sc + ')';
+      }
+    }
+    window.addEventListener('resize', function () { if (booted) { fit(); } });
+
+    function boot() {
+      if (booted) { return; }
+      booted = true;
+      fit();
+      iframe = document.createElement('iframe');
+      iframe.width = W; iframe.height = H;
+      iframe.setAttribute('tabindex', '-1');
+      iframe.src = root.dataset.src;
+      stage.appendChild(iframe);
+      cursor = document.createElement('svg');
+      stage.insertAdjacentHTML('beforeend',
+        '<svg class="demo__cursor" viewBox="0 0 24 24"><path d="M4 2 L20 11 L12.6 12.8 L9.6 21 Z" fill="#fff" stroke="#191c1f" stroke-width="1.6"/></svg>');
+      cursor = stage.querySelector('.demo__cursor');
+      var started = false;
+      iframe.addEventListener('load', function () {
+        doc = iframe.contentDocument; win = iframe.contentWindow;
+        if (reduced) { cover.classList.add('is-off'); return; }
+        if (started) { return; }
+        started = true;
+        waitFor(function () { return doc.querySelector('input,button'); }, 20000, function (ok) {
+          cover.classList.add('is-off');
+          if (ok) { setTimeout(run, 800); }
+        });
+      });
+    }
+
+    function waitFor(test, timeout, cb) {
+      var t0 = Date.now();
+      (function poll() {
+        if (dead) { return; }
+        var r = null;
+        try { r = test(); } catch (e) { r = null; }
+        if (r) { cb(true); }
+        else if (Date.now() - t0 > timeout) { cb(false); }
+        else { setTimeout(poll, 250); }
+      })();
+    }
+
+    function find(sel, text) {
+      try {
+        var els = doc.querySelectorAll(sel);
+        if (!text) { return els[0] || null; }
+        var best = null;
+        for (var i = 0; i < els.length; i++) {
+          var t = (els[i].textContent || '').replace(/\s+/g, ' ').trim();
+          if (t.indexOf(text) > -1 && els[i].getBoundingClientRect().width > 0) {
+            if (!best || t.length < (best.textContent || '').replace(/\s+/g, ' ').trim().length) { best = els[i]; }
+          }
+        }
+        return best;
+      } catch (e) { return null; }
+    }
+
+    function moveTo(el, cb) {
+      if (!el) { cb(); return; }
+      var r = el.getBoundingClientRect();
+      cursor.style.left = (r.left + Math.min(r.width * .5, 140)) + 'px';
+      cursor.style.top = (r.top + r.height * .55) + 'px';
+      setTimeout(cb, 820);
+    }
+
+    function press(el, cb) {
+      moveTo(el, function () {
+        cursor.classList.add('is-click');
+        setTimeout(function () { cursor.classList.remove('is-click'); }, 520);
+        try {
+          el.dispatchEvent(new win.MouseEvent('pointerdown', { bubbles: true }));
+          el.dispatchEvent(new win.MouseEvent('mousedown', { bubbles: true }));
+          el.dispatchEvent(new win.MouseEvent('pointerup', { bubbles: true }));
+          el.dispatchEvent(new win.MouseEvent('mouseup', { bubbles: true }));
+          el.click();
+        } catch (e) {}
+        cb();
+      });
+    }
+
+    function type(input, value, cb) {
+      if (!input) { cb(); return; }
+      moveTo(input, function () {
+        try { input.focus(); } catch (e) {}
+        var i = 0;
+        var setter = Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype, 'value').set;
+        (function tick() {
+          if (dead) { return; }
+          i++;
+          try {
+            setter.call(input, value.slice(0, i));
+            input.dispatchEvent(new win.Event('input', { bubbles: true }));
+          } catch (e) {}
+          if (i < value.length) { setTimeout(tick, 55 + Math.random() * 60); }
+          else { cb(); }
+        })();
+      });
+    }
+
+    function scrollMain(dy, cb) {
+      try {
+        var target = null, all = doc.querySelectorAll('div,main,section');
+        for (var i = 0; i < all.length; i++) {
+          var el = all[i];
+          if (el.scrollHeight - el.clientHeight > 160 && el.clientHeight > 240) { target = el; break; }
+        }
+        if (target) { target.scrollBy({ top: dy, behavior: 'smooth' }); }
+        else { win.scrollBy({ top: dy, behavior: 'smooth' }); }
+      } catch (e) {}
+      setTimeout(cb, 1100);
+    }
+
+    function reset(cb) {
+      cover.classList.remove('is-off');
+      setTimeout(function () {
+        iframe.src = root.dataset.src;
+        iframe.addEventListener('load', function onl() {
+          iframe.removeEventListener('load', onl);
+          doc = iframe.contentDocument; win = iframe.contentWindow;
+          waitFor(function () { return doc.querySelector('input,button'); }, 20000, function () {
+            cover.classList.add('is-off');
+            setTimeout(cb, 900);
+          });
+        });
+      }, 700);
+    }
+
+    var steps = script({ find: find, press: press, type: type, scrollMain: scrollMain, reset: reset, moveTo: moveTo });
+    var si = 0;
+    function run() {
+      if (dead) { return; }
+      if (paused) { setTimeout(run, 500); return; }
+      var st = steps[si];
+      st(function () {
+        si = (si + 1) % steps.length;
+        setTimeout(run, 60);
+      });
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { paused = false; boot(); }
+        else { paused = true; }
+      });
+    }, { rootMargin: '360px 0px' });
+    io.observe(root);
+  }
+
+  var wait = function (ms) { return function (done) { setTimeout(done, ms); }; };
+
+  LiveDemo('demoMg', function (d) {
+    return [
+      function (done) { d.type(d.find('input'), 'sebastian.dunn', done); },
+      function (done) { d.type(d.find('input[type="password"]'), 'gemis2026', done); },
+      function (done) { d.press(d.find('button', 'Sign in'), done); },
+      wait(2600),
+      function (done) { d.press(d.find('button,span,div', 'Annual'), done); },
+      wait(1800),
+      function (done) { d.press(d.find('button,a,div,span', 'Open Enquiries'), done); },
+      wait(2200),
+      function (done) { d.scrollMain(340, done); },
+      wait(900),
+      function (done) { d.scrollMain(-340, done); },
+      wait(600),
+      function (done) { d.press(d.find('button,a,div,span', 'Customers'), done); },
+      wait(2800),
+      function (done) { d.reset(done); }
+    ];
   });
-  clones.forEach(function (k) { track.appendChild(k); });
+
+  LiveDemo('demoWm', function (d) {
+    return [
+      function (done) { d.type(d.find('input'), 'sipho.dlamini', done); },
+      function (done) { d.type(d.find('input[type="password"]'), 'wm-417', done); },
+      function (done) { d.press(d.find('button', 'Log in'), done); },
+      wait(1900),
+      function (done) { d.press(d.find('button,div', 'Select Vehicle'), done); },
+      wait(1300),
+      function (done) { d.press(d.find('button', 'CT-WM-417'), done); },
+      wait(900),
+      function (done) { d.press(d.find('button', 'Use this vehicle'), done); },
+      wait(1400),
+      function (done) { d.press(d.find('button', 'Start Day'), done); },
+      wait(1100),
+      function (done) { d.press(d.find('button', 'Yes, Start Day'), done); },
+      wait(2400),
+      function (done) { d.scrollMain(320, done); },
+      wait(800),
+      function (done) { d.press(d.find('button', 'Pick n Pay'), done); },
+      wait(2800),
+      function (done) { d.reset(done); }
+    ];
+  });
+
+  /* ── Smooth scroll (Lenis) + scroll-in animations (GSAP) ── */
+  if (!reduced && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    var lenis = null;
+    if (window.Lenis) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+    window.__smoothTo = function (top) {
+      if (lenis) { lenis.scrollTo(top, { duration: .9 }); }
+      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    };
+
+    /* section headings + copy */
+    gsap.utils.toArray(
+      '.marks .kicker, .marks h2, .marks__note, .pad .kicker, .pad .h2, .explorer .lede, .beyond .lede, ' +
+      '.think .kicker, .think h2, .think .lede, .cta .kicker, .cta h2, .cta .lede'
+    ).forEach(function (el) {
+      gsap.from(el, {
+        y: 34, opacity: 0, duration: .9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+      });
+    });
+
+    /* work cards — staggered rise on first approach */
+    gsap.from('#workGrid .card:not(.is-hidden)', {
+      y: 56, opacity: 0, duration: .85, stagger: .1, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '#workGrid', start: 'top 85%', once: true }
+    });
+
+    /* beyond-screens tiles */
+    gsap.from('.bgrid .btile', {
+      y: 40, opacity: 0, scale: .97, duration: .75, stagger: .07, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.bgrid', start: 'top 82%', once: true }
+    });
+
+    /* discipline rows */
+    gsap.from('.disc__row', {
+      x: -44, opacity: 0, duration: .7, stagger: .09, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.disc__list', start: 'top 85%', once: true }
+    });
+
+    /* motion frames */
+    gsap.from('.mo__a, .mo__b', {
+      y: 48, opacity: 0, duration: .9, stagger: .14, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.mo__grid', start: 'top 82%', once: true }
+    });
+
+    ScrollTrigger.refresh();
+  }
 })();
 </script>
 </body>
