@@ -91,8 +91,11 @@ button{font-family:inherit;cursor:pointer}
 .card__who .wt b{display:block;font-size:14px;font-weight:600;letter-spacing:.1px;color:#191c1f}
 .card__who .wt span{display:block;font-size:12.5px;color:#8d969e;margin-top:1px}
 .card__row .tagline{font-size:13.5px;line-height:1.55;color:#505a63;margin-top:14px}
-.card__case{align-self:flex-start;margin-top:14px;font-size:14px;font-weight:600;letter-spacing:.16px;color:#191c1f;border-bottom:1px solid #a64b21;padding-bottom:3px;white-space:nowrap}
-.card__case:hover{color:#a64b21}
+.card__btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#191c1f;color:#fff;border-radius:9999px;padding:10px 18px;font-size:13.5px;font-weight:600;letter-spacing:.1px;white-space:nowrap;transition:background .25s,transform .25s}
+.card__btn i{font-style:normal;transition:transform .25s}
+.card__btn:hover{background:#a64b21;transform:translateY(-1px)}
+.card__btn:hover i{transform:translate(2px,-2px)}
+.card__btn--soon{background:#fff;color:#8d969e;border:1px solid #d9dce0;cursor:default;pointer-events:none}
 .empty{display:none;background:#f4f4f4;border-radius:20px;padding:clamp(48px,10vh,96px) clamp(24px,4vw,48px);text-align:center}
 .empty p{margin:0 0 24px;font-size:clamp(24px,3vw,40px);line-height:1.2;letter-spacing:-.4px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
 .empty button{height:48px;padding:0 28px;border:0;border-radius:9999px;background:#000;color:#fff;font-size:16px;font-weight:600;letter-spacing:.24px}
@@ -528,6 +531,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>Gemis.tech</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#1F2C4F"/><path d="M20 8 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z" fill="#D4A63C"/></svg><div class="wt"><b>AI training &amp; enablement</b><span>Web · Platform · AI</span></div></div>
           <p class="tagline">AI is changing how professionals work — a platform that helps teams stay ahead of it.</p>
+          <a class="card__btn" href="https://gemis.tech" target="_blank" rel="noopener">See project <i>↗</i></a>
         </div>
       </article>
 
@@ -539,7 +543,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>ManaGem</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#3056D3"/><path d="M20 9 L30 17 L26 30 H14 L10 17 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg><div class="wt"><b>Business management</b><span>Product · Dashboard UX · Design system</span></div></div>
           <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
-          <a class="card__case" href="managem.html">View project →</a>
+          <a class="card__btn" href="ManaGem.html" target="_blank" rel="noopener">See project <i>↗</i></a>
         </div>
       </article>
 
@@ -551,6 +555,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>SmartStart</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#7C3AED"/><path d="M20 8 v24 M8 20 h24 M12 12 l16 16 M28 12 l-16 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg><div class="wt"><b>Early learning</b><span>Web · Platforms · UX/UI</span></div></div>
           <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
@@ -562,7 +567,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>WasteMart</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#14B8A6"/><path d="M13 22 a8 8 0 0 1 13-6 M27 18 a8 8 0 0 1 -13 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg><div class="wt"><b>Waste & recycling ops</b><span>Systems · Product · UX/UI</span></div></div>
           <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
-          <a class="card__case" href="wastemart.html">View project →</a>
+          <a class="card__btn" href="WasteMart%20Driver%20(offline).html" target="_blank" rel="noopener">See project <i>↗</i></a>
         </div>
       </article>
 
@@ -574,6 +579,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>FINOS</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#111"/><circle cx="13" cy="20" r="3.4" fill="#fff"/><rect x="20" y="17" width="12" height="2.6" rx="1.3" fill="#8d969e"/><rect x="20" y="22" width="8" height="2.6" rx="1.3" fill="#8d969e"/></svg><div class="wt"><b>Fintech · AI platform</b><span>AI · Product · UX/UI · Strategy</span></div></div>
           <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
@@ -585,6 +591,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>NuraCoach</h3>
           <div class="card__who"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="2" y="10" width="44" height="20" rx="10" fill="#0F766E"/><path d="M10 20 h6 l3 -6 l4 12 l3 -6 h9" fill="none" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>AI coaching</b><span>AI · Product · UX</span></div></div>
           <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
@@ -596,6 +603,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>RentFlow</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 V18 A14 14 0 0 1 34 18 V34 Z" fill="#8B5CF6"/><path d="M14 34 V24 a6 6 0 0 1 12 0 v10" fill="#fff"/></svg><div class="wt"><b>Property tech</b><span>Apps · AI · Product</span></div></div>
           <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
@@ -607,6 +615,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>Sonke Gender Justice</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="16" height="16" rx="4" fill="#E97817"/><rect x="21" y="3" width="16" height="16" rx="4" fill="#191c1f"/><rect x="3" y="21" width="16" height="16" rx="4" fill="#5C4033"/><rect x="21" y="21" width="16" height="16" rx="4" fill="#c9c9cd"/></svg><div class="wt"><b>Non-profit systems</b><span>Systems · Product · UX/UI</span></div></div>
           <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
@@ -618,6 +627,7 @@ button{font-family:inherit;cursor:pointer}
           <h3>Lungelo</h3>
           <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="6" width="36" height="24" rx="12" fill="#135E63"/><path d="M14 34 l4 -6 h-4 z" fill="#135E63"/><circle cx="14" cy="18" r="2.6" fill="#fff"/><circle cx="21" cy="18" r="2.6" fill="#7DD3C0"/><circle cx="28" cy="18" r="2.6" fill="#fff" opacity=".5"/></svg><div class="wt"><b>Field operations</b><span>Apps · UX/UI · Accessibility</span></div></div>
           <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
+          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
         </div>
       </article>
 
