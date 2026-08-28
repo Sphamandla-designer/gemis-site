@@ -158,66 +158,89 @@ button{font-family:inherit;cursor:pointer}
 .a-chip{display:inline-flex;align-items:center;border-radius:9999px;font-size:9px;font-weight:600;padding:3px 8px}
 .a-shadow{box-shadow:0 12px 28px rgba(25,28,31,.14)}
 .a-lbl{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
-/* 1 · identity spread */
-.id-spread{display:flex;gap:1px;background:#e2e2e7}
-.id-spread>div{background:#fff;flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.id-hero{flex:1.25 !important;background:#191c1f !important;color:#fff;justify-content:flex-start;gap:12px}
-.id-mark{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:34px;letter-spacing:-1px}
-.id-mark sup{font-size:11px;color:#a64b21}
-.id-clear{border:1px dashed rgba(255,255,255,.3);border-radius:6px;padding:12px 10px;align-self:flex-start}
-.id-vars{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
-.id-vars i{border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px}
-.id-sw{display:flex;align-items:center;gap:8px}
-.id-sw i{width:22px;height:22px;border-radius:6px;flex:none;border:1px solid rgba(0,0,0,.08)}
-.id-sw b{font-size:10px;font-weight:600;color:#191c1f;display:block}
-.id-sw span{font-size:8.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
-.id-type b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:22px;color:#191c1f;line-height:1.05}
-.id-type span{font-size:9px;color:#8d969e}
+/* 1 · brand board */
+.bb{padding:12px;display:flex;flex-direction:column;gap:10px;background:#eef0f2}
+.bb-top{flex:1.2;display:grid;grid-template-columns:1.4fr .82fr .82fr;gap:10px;min-height:0}
+.bb-logo{border-radius:12px;background:radial-gradient(135% 135% at 16% 12%,#f9e7d8 0%,#eda878 46%,#a64b21 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid rgba(0,0,0,.04)}
+.bb-logo b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(18px,2vw,26px);letter-spacing:-.5px;color:#46220e}
+.bb-logo b sup{font-size:.4em;color:#6e2f13}
+.bb-logo span{font-size:7px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(70,34,14,.55)}
+.bb-col{display:flex;flex-direction:column;gap:10px;min-height:0}
+.bb-sw{border-radius:10px;padding:8px 9px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(0,0,0,.05);min-height:0}
+.bb-sw b{font-size:8.5px;font-weight:600;line-height:1.2}
+.bb-sw span{font-size:7px;font-family:'JetBrains Mono',monospace;opacity:.72}
+.bb-ui{flex:1;background:#fff;border:1px solid #e2e2e7;border-radius:12px;padding:10px 12px;display:flex;gap:16px;min-height:0}
+.bb-z{display:flex;flex-direction:column;gap:6px;justify-content:center;min-width:0}
+.bb-z1{flex:1.15}.bb-z2{flex:1}.bb-z3{flex:1}
+.bb-z1 b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:13px;color:#191c1f;line-height:1.1}
+.bb-z1 em{font-style:normal;font-size:7.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
+.bb-z1 p{margin:0;font-size:8px;line-height:1.45;color:#5c646d}
+.bb-tabs{display:flex;background:#f1f2f4;border-radius:9999px;padding:2px;align-self:flex-start}
+.bb-tabs i{font-style:normal;font-size:8.5px;font-weight:600;padding:3px 10px;border-radius:9999px;color:#5c646d}
+.bb-tabs i.on{background:#191c1f;color:#fff}
+.bb-search{display:flex;align-items:center;gap:5px;border:1px solid #d9dce0;border-radius:9999px;padding:4px 9px;font-size:8px;color:#8d969e}
+.bb-tog{display:flex;align-items:center;gap:6px;font-size:8px;color:#3a3f47;font-weight:600}
+.bb-tog i{margin-left:auto;width:22px;height:12px;border-radius:9999px;background:#20b26b;position:relative}
+.bb-tog i::after{content:"";position:absolute;right:1.5px;top:1.5px;width:9px;height:9px;border-radius:50%;background:#fff}
+.bb-z3 .kb{border-radius:9999px;font-size:8.5px;font-weight:600;padding:5px 0;text-align:center}
+.bb-z3 .kb--p{background:#a64b21;color:#fff}
+.bb-z3 .kb--o{border:1.3px solid #d9dce0;color:#3a3f47;font-family:'JetBrains Mono',monospace;font-size:7.5px}
+.bb-ico{display:flex;gap:4px;justify-content:center}
+.bb-ico i{width:13px;height:13px;border-radius:50%}
 /* 2 · presentation slides */
 .pres{padding:14px}
 .pres .slide{position:absolute;width:62%;aspect-ratio:16/9;border-radius:8px;overflow:hidden}
-.pres .s-back{right:4%;top:6%;width:62%;background:#fff;border:1px solid #e2e2e7;padding:10px}
-.pres .s-back .bars{display:flex;align-items:flex-end;gap:5px;height:44%;margin-top:8px}
-.pres .s-back .bars i{flex:1;border-radius:2px 2px 0 0;background:#e2e2e7}
-.pres .s-back .bars i:nth-child(3){background:#a64b21}
-.pres .s-front{left:4%;top:24%;width:56%;background:#191c1f;color:#fff;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-2deg)}
+.pres .s-back{right:4%;top:6%;width:62%;max-width:300px;background:#fff;border:1px solid #e2e2e7;padding:10px}
+.pres .s-back .bars{display:flex;gap:6px;height:52%;margin-top:8px}
+.pres .s-back .bars>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;text-align:center;min-width:0}
+.pres .s-back .bars i{display:block;border-radius:2px 2px 0 0;background:#e8eaed}
+.pres .s-back .bars>div:nth-child(3) i{background:#a64b21}
+.pres .s-back .bars span{font-size:6px;color:#8d969e;font-family:'JetBrains Mono',monospace}
+.pres .s-front{left:4%;top:24%;width:56%;max-width:260px;background:#191c1f;color:#fff;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-2deg)}
 .pres .s-front .kick{color:#e08a5c;font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .pres .s-front h6{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:17px;line-height:1.1;margin:0}
 .pres .s-front .pg{font-size:8px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between}
-/* 3 · design system sheet */
-.ds{padding:14px 16px;display:flex;gap:14px}
-.ds .col{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
-.ds .comp{font-size:9px;font-weight:600;color:#7C3AED;display:flex;align-items:center;gap:4px}
-.ds .btnrow{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
-.ds .b{border-radius:9999px;font-size:10px;font-weight:600;padding:6px 14px}
-.ds .b1{background:#191c1f;color:#fff}
-.ds .b2{background:#3a3d42;color:#fff;outline:2px solid #c9c9cd;outline-offset:2px}
-.ds .b3{background:#f4f4f4;color:#9aa1a9}
-.ds .field{border:1.6px solid #a64b21;border-radius:8px;padding:6px 9px;box-shadow:0 0 0 3px rgba(166,75,33,.15)}
-.ds .field i{display:block;font-style:normal;font-size:7.5px;color:#8d969e}
-.ds .field b{font-size:10px;font-weight:400;color:#191c1f}
-.ds .tokens{display:flex;gap:6px}
-.ds .tk{flex:1;text-align:center}
-.ds .tk i{display:block;height:20px;border-radius:5px;margin-bottom:3px;border:1px solid rgba(0,0,0,.06)}
-.ds .tk span{font-size:7.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
-.ds .redline{display:flex;align-items:center;gap:4px;font-size:8px;color:#E5533D;font-family:'JetBrains Mono',monospace}
-.ds .redline i{flex:1;height:1px;background:#E5533D;position:relative}
-.ds .redline i::before,.ds .redline i::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:#E5533D}
-.ds .redline i::after{right:0}
+/* 3 · ui kit sheet */
+.uik{padding:12px 16px;display:flex;gap:18px}
+.uik .ucol{flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
+.uik .uh{font-size:10.5px;font-weight:700;color:#191c1f;letter-spacing:-.1px}
+.uik .ul{font-size:7px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8d969e}
+.uik .brow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.uik .ub{border-radius:9999px;font-size:8.5px;font-weight:600;padding:4.5px 11px;position:relative;white-space:nowrap}
+.uik .ub--p{background:#a64b21;color:#fff}
+.uik .ub--s{border:1.3px solid #a64b21;color:#a64b21;padding:3.5px 10px}
+.uik .ub--t{color:#a64b21;padding:4.5px 0;text-decoration:underline;text-underline-offset:2px}
+.uik .cur{position:absolute;right:-7px;bottom:-8px;width:14px;height:14px}
+.uik .ufield{border:1px solid #d9dce0;border-radius:8px;padding:5px 8px;background:#fff}
+.uik .ufield i{display:block;font-style:normal;font-size:7px;color:#8d969e}
+.uik .ufield b{font-size:9px;font-weight:400;color:#191c1f;display:flex;justify-content:space-between;align-items:center}
+.uik .ufield b u{text-decoration:none;color:#8d969e;font-size:7px}
+.uik .ramp{display:flex;align-items:center;gap:4px}
+.uik .ramp em{font-style:normal;font-size:6.5px;color:#8d969e;width:32px;flex:none;font-family:'JetBrains Mono',monospace}
+.uik .ramp i{flex:1;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.05)}
+.uik .tagrow{display:flex;gap:4px;flex-wrap:wrap}
+.uik .tg{border-radius:9999px;font-size:7.5px;font-weight:600;padding:2.5px 7px}
+.uik .rev{display:flex;align-items:baseline;gap:5px}
+.uik .rev b{font-size:13px;font-weight:700;color:#191c1f}
+.uik .rev i{font-style:normal;color:#e8a33d;font-size:9px;letter-spacing:1px}
+.uik .rev span{font-size:7.5px;color:#8d969e}
+.uik .step{display:inline-flex;align-items:center;border:1px solid #d9dce0;border-radius:8px;overflow:hidden;background:#fff}
+.uik .step i{font-style:normal;font-size:9px;padding:2px 7px;color:#5c646d}
+.uik .step b{font-size:8.5px;padding:2px 8px;border-left:1px solid #eef0f2;border-right:1px solid #eef0f2;color:#191c1f}
 /* 4 · campaign */
 .camp{padding:12px}
-.camp .post{position:absolute;left:7%;top:10%;width:36%;aspect-ratio:1;background:#191c1f;color:#fff;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
+.camp .post{position:absolute;left:7%;top:10%;width:36%;max-width:150px;aspect-ratio:1;background:#191c1f;color:#fff;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
 .camp .post h6{margin:0;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px;line-height:1.05}
 .camp .post h6 em{font-style:normal;color:#e08a5c}
 .camp .post .foot{display:flex;justify-content:space-between;align-items:center;font-size:7px;color:rgba(255,255,255,.6)}
-.camp .story{position:absolute;right:7%;top:6%;width:26%;aspect-ratio:9/16;border-radius:10px;background:linear-gradient(160deg,#c25a28,#7e3617);color:#fff;padding:9px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px}
+.camp .story{position:absolute;right:7%;top:5%;width:24.5%;max-width:105px;aspect-ratio:9/16;border-radius:10px;background:linear-gradient(160deg,#c25a28,#7e3617);color:#fff;padding:9px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px}
 .camp .story .ring{position:absolute;top:7px;left:7px;width:14px;height:14px;border-radius:50%;border:2px solid #fff}
 .camp .story b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:11px;line-height:1.1}
 .camp .story span{align-self:flex-start;background:#fff;color:#191c1f;border-radius:9999px;font-size:7.5px;font-weight:600;padding:3px 8px}
 .camp .like{position:absolute;left:44%;bottom:12%;background:#fff;border:1px solid #e2e2e7;border-radius:9999px;padding:4px 9px;font-size:8px;font-weight:600;color:#191c1f;box-shadow:0 8px 18px rgba(25,28,31,.12)}
 /* 5 · prototype */
 .proto{padding:14px;background:#f7f7f9;display:flex;align-items:center;justify-content:center;gap:12%}
-.proto .ph{width:26%;aspect-ratio:9/17;background:#fff;border:1px solid #d5d8dd;border-radius:10px;padding:5px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:2}
+.proto .ph{width:26%;max-width:110px;aspect-ratio:9/17;background:#fff;border:1px solid #d5d8dd;border-radius:10px;padding:5px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:2}
 .proto .ph i{border-radius:3px;background:#f0f0f3}
 .proto .ph .h{height:8px;width:60%}
 .proto .ph .blk{flex:1}
@@ -239,44 +262,59 @@ button{font-family:inherit;cursor:pointer}
 .mail .mh{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid #eef0f2}
 .mail .mh i{width:14px;height:14px;border-radius:4px;background:#191c1f;color:#fff;font-style:normal;font-size:8px;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight Var',sans-serif}
 .mail .mh span{font-size:8px;color:#8d969e}
-.mail .hero{height:34%;background:linear-gradient(150deg,#c25a28,#6e2f13)}
-.mail .body{padding:8px 10px;display:flex;flex-direction:column;gap:5px;flex:1}
-.mail .body i{border-radius:3px;background:#eef0f2;height:6px}
-.mail .body i.t{height:9px;width:70%;background:#d9dce0}
+.mail .mhero{height:27%;flex:none;background:linear-gradient(150deg,#c25a28,#6e2f13);display:flex;align-items:center;justify-content:center}
+.mail .mhero b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:12px;letter-spacing:-.2px}
+.mail .body{padding:8px 10px;display:flex;flex-direction:column;gap:4px;flex:1}
+.mail .body .sub{font-family:'Inter Tight Var',sans-serif;font-weight:600;font-size:10px;color:#191c1f;letter-spacing:-.1px}
+.mail .body p{margin:0;font-size:7.5px;line-height:1.5;color:#5c646d}
 .mail .body span{align-self:flex-start;margin-top:auto;background:#a64b21;color:#fff;border-radius:9999px;font-size:7.5px;font-weight:600;padding:4px 10px}
-/* 9 · touchpoints */
-.tp{display:flex;align-items:flex-end;justify-content:space-evenly;padding:12px 20px 34px;gap:10px}
-.tp .cap{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:8px;color:#8d969e;letter-spacing:.06em;text-transform:uppercase}
-.tp .item{position:relative;display:flex;align-items:flex-end;justify-content:center}
-.tp .card2{width:96px;height:58px;background:#191c1f;border-radius:6px;color:#fff;padding:7px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 22px rgba(25,28,31,.18)}
-.tp .card2 b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:9px}
-.tp .card2 span{font-size:5.5px;color:rgba(255,255,255,.55);line-height:1.35}
-.tp .card2 i{position:absolute;right:7px;top:7px;width:8px;height:8px;border-radius:2px;background:#a64b21}
-.tp .phb{width:48px;height:96px;background:#fff;border:1.5px solid #c9c9cd;border-radius:8px;padding:4px;display:flex;flex-direction:column;gap:3px}
-.tp .phb i{background:#f0f0f3;border-radius:2px}
-.tp .phb .n{height:6px;width:55%}
-.tp .phb .f{flex:1}
-.tp .phb .o{height:8px;background:#a64b21}
-.tp .tab{width:104px;height:76px;background:#fff;border:1.5px solid #c9c9cd;border-radius:7px;padding:5px;display:flex;gap:4px}
-.tp .tab .side{width:16px;background:#191c1f;border-radius:3px}
-.tp .tab .mn{flex:1;display:flex;flex-direction:column;gap:3px}
-.tp .tab .mn i{background:#f0f0f3;border-radius:2px;flex:1}
-.tp .tab .mn i.k{flex:none;height:10px;background:#faf1ec}
-.tp .lap{width:142px}
-.tp .lap .scr{height:72px;background:#191c1f;border-radius:6px 6px 0 0;border:1.5px solid #35383d;border-bottom:0;padding:6px;display:flex;flex-direction:column;gap:3px}
-.tp .lap .scr b{color:#fff;font-size:7px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
-.tp .lap .scr i{background:rgba(255,255,255,.14);border-radius:2px;height:5px}
-.tp .lap .scr i.o{background:#a64b21;width:36%}
-.tp .lap .base{height:5px;background:#c9c9cd;border-radius:0 0 5px 5px;margin:0 -6px}
-.tp .sig{width:64px;height:92px;background:#20242a;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative}
-.tp .sig b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:13px}
-.tp .sig i{position:absolute;bottom:6px;width:60%;height:2px;background:#a64b21}
-.tp .bill{width:160px;height:68px;background:#191c1f;border-radius:4px;padding:8px 10px;display:flex;flex-direction:column;justify-content:center;gap:3px;position:relative}
-.tp .bill::after{content:"";position:absolute;left:46%;top:100%;width:8%;height:16px;background:#c9c9cd}
-.tp .bill b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:11px;line-height:1.05}
-.tp .bill b em{font-style:normal;color:#e08a5c}
-.tp .bill span{font-size:6px;color:rgba(255,255,255,.5)}
-@media (max-width:1023px){.bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.btile{grid-column:span 4 !important;grid-row:span 2 !important;min-height:210px}.tp .bill,.tp .tab{display:none}}
+/* 9 · product ui flat-lay */
+.kit{display:flex;gap:14px;padding:14px 16px;align-items:stretch}
+.kcol{display:flex;flex-direction:column;gap:6px;min-width:0;justify-content:center}
+.kcol--a{flex:1.1}.kcol--b{flex:.85}.kcol--c{flex:.9}.kcol--d{flex:1.25}.kcol--e{flex:1.1}
+.klbl{font-size:7px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
+.krow{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #e8eaee;border-radius:9999px;padding:3px 6px 3px 3px}
+.krow .av{width:17px;height:17px;border-radius:50%;color:#fff;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;font-style:normal}
+.krow b{font-size:8.5px;font-weight:600;color:#191c1f;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.krow em{font-style:normal;font-size:7.5px;color:#8d969e;flex:none;font-family:'JetBrains Mono',monospace}
+.kst{border-radius:9999px;font-size:7px;font-weight:600;padding:2px 6px;flex:none;white-space:nowrap}
+.kbtn{border-radius:9999px;text-align:center;font-weight:600}
+.kbtn--l{background:#a64b21;color:#fff;font-size:9px;padding:6px 0}
+.kbtn--m{background:#191c1f;color:#fff;font-size:8px;padding:4.5px 0}
+.kbtn--o{border:1.3px solid #d9dce0;color:#3a3f47;font-size:8px;padding:3.5px 0}
+.kseg{display:flex;background:#fff;border:1px solid #e8eaee;border-radius:9999px;padding:2px}
+.kseg i{font-style:normal;flex:1;text-align:center;font-size:7.5px;font-weight:600;color:#8d969e;padding:2.5px 0;border-radius:9999px}
+.kseg i.on{background:#191c1f;color:#fff}
+.ktags{display:flex;gap:4px;flex-wrap:wrap}
+.ktip{background:#191c1f;color:#fff;font-size:7px;line-height:1.4;border-radius:7px;padding:5px 7px;position:relative;max-width:130px}
+.ktip::after{content:"";position:absolute;left:12px;bottom:100%;border:4px solid transparent;border-bottom-color:#191c1f}
+.kbook{background:#fff;border:1px solid #e2e2e7;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:5px;box-shadow:0 10px 24px rgba(25,28,31,.08)}
+.kbook .r1{display:flex;align-items:center;gap:7px}
+.kbook .th{width:26px;height:26px;border-radius:6px;background:linear-gradient(140deg,#e08a5c,#a64b21);flex:none}
+.kbook .nm{min-width:0}
+.kbook .nm b{display:block;font-size:9.5px;font-weight:700;color:#191c1f}
+.kbook .nm span{font-size:7px;color:#8d969e;white-space:nowrap}
+.kbook .pr{margin-left:auto;font-size:9.5px;font-weight:700;color:#191c1f;flex:none}
+.kalert{background:#fdecec;color:#c23b3b;font-size:7px;font-weight:600;border-radius:6px;padding:3.5px 7px}
+.kbtns{display:flex;gap:5px}
+.kbtns span{flex:1;border:1.2px solid #d9dce0;border-radius:9999px;font-size:7.5px;font-weight:600;color:#3a3f47;text-align:center;padding:3px 0;white-space:nowrap}
+.kcard{background:#fff;border:1px solid #e2e2e7;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:5px}
+.kcard .khd{display:flex;justify-content:space-between;align-items:baseline}
+.kcard .khd b{font-size:9px;font-weight:700;color:#191c1f}
+.kcard .khd span{font-size:7px;color:#a64b21;font-weight:600}
+.kmeter em{font-style:normal;display:flex;justify-content:space-between;font-size:7.5px;color:#3a3f47;margin-bottom:2px}
+.kmeter em u{text-decoration:none;color:#8d969e;font-family:'JetBrains Mono',monospace}
+.kmeter i{height:5px;border-radius:9999px;background:#eef0f2;position:relative;display:block}
+.kmeter i::after{content:"";position:absolute;inset:0;width:var(--w,50%);border-radius:inherit;background:#a64b21}
+.ksync{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #e8eaee;border-radius:10px;padding:6px 8px}
+.ksync .ic{width:20px;height:20px;border-radius:6px;background:#e4f6ec;color:#177245;font-size:9px;display:flex;align-items:center;justify-content:center;flex:none;font-style:normal}
+.ksync .tx{min-width:0}
+.ksync b{font-size:8px;font-weight:600;color:#191c1f;display:block;line-height:1.25}
+.ksync small{font-size:6.5px;color:#8d969e;display:block;white-space:nowrap}
+.ksync .sw{margin-left:auto;width:22px;height:12px;border-radius:9999px;background:#20b26b;position:relative;flex:none}
+.ksync .sw::after{content:"";position:absolute;right:1.5px;top:1.5px;width:9px;height:9px;border-radius:50%;background:#fff}
+@media (max-width:1023px){.bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.btile{grid-column:span 4 !important;grid-row:span 2 !important;min-height:210px}.kcol--c,.kcol--e{display:none}.bb-top{grid-template-columns:1.3fr .9fr}.bb-col--b{display:none}}
+@media (max-width:640px){.kcol--b{display:none}.bb-z2{display:none}.bb-z1 p{display:none}.krow em{display:none}.uik{gap:12px}}
 
 
 /* ── Marks in rotation — auto-sliding identity cards ── */
@@ -583,28 +621,34 @@ button{font-family:inherit;cursor:pointer}
     <div class="bgrid">
 
       <div class="btile" style="grid-column:span 7;grid-row:span 3">
-        <div class="art id-spread" aria-hidden="true">
-          <div class="id-hero">
-            <div class="id-clear"><span class="id-mark">GEMIS<sup>®</sup></span></div>
-            <div><span class="a-lbl" style="color:rgba(255,255,255,.45)">Clear space — 2× cap height</span></div>
-          </div>
-          <div>
-            <span class="a-lbl">Logo variants</span>
-            <div class="id-vars">
-              <i style="background:#191c1f;color:#fff">G</i>
-              <i style="background:#f4f4f4;color:#191c1f;border:1px solid #e2e2e7">G</i>
-              <i style="background:#a64b21;color:#fff">G</i>
-              <i style="background:#fff;color:#191c1f;border:1.5px dashed #c9c9cd">G</i>
+        <div class="art bb" aria-hidden="true">
+          <div class="bb-top">
+            <div class="bb-logo"><b>GEMIS<sup>®</sup></b><span>Brand guidelines — v2.4</span></div>
+            <div class="bb-col">
+              <div class="bb-sw" style="flex:1.5;background:#a64b21;color:#fff"><b>Ember</b><span>#A64B21</span></div>
+              <div class="bb-sw" style="flex:1;background:#f1eee9;color:#191c1f"><b>Bone</b><span>#F1EEE9</span></div>
             </div>
-            <span class="a-lbl">Minimum size 24px</span>
+            <div class="bb-col bb-col--b">
+              <div class="bb-sw" style="flex:1;background:#191c1f;color:#fff"><b>Ink</b><span>#191C1F</span></div>
+              <div class="bb-sw" style="flex:1.5;background:#fff;color:#191c1f"><b>White</b><span>#FFFFFF</span></div>
+            </div>
           </div>
-          <div>
-            <span class="a-lbl">Colour</span>
-            <div class="id-sw"><i style="background:#191c1f"></i><div><b>Ink</b><span>#191C1F</span></div></div>
-            <div class="id-sw"><i style="background:#a64b21"></i><div><b>Ember</b><span>#A64B21</span></div></div>
-            <div class="id-sw"><i style="background:#c9c9cd"></i><div><b>Stone</b><span>#C9C9CD</span></div></div>
-            <span class="a-lbl" style="margin-top:4px">Typography</span>
-            <div class="id-type"><b>Aa Gg</b><span>Inter Tight 500 · Inter 400</span></div>
+          <div class="bb-ui">
+            <div class="bb-z bb-z1">
+              <b>Brand guidelines</b>
+              <em>v2.4 — updated Aug 2026</em>
+              <p>Logo, colour, type and usage rules for every GEMIS touchpoint — screens, decks, print and signage.</p>
+            </div>
+            <div class="bb-z bb-z2">
+              <div class="bb-tabs"><i class="on">Guidelines</i><i>Assets</i></div>
+              <div class="bb-search">⌕ Search assets…</div>
+              <div class="bb-tog">Share with team<i></i></div>
+            </div>
+            <div class="bb-z bb-z3">
+              <span class="kb kb--p">Download kit</span>
+              <span class="kb kb--o">tokens.json</span>
+              <div class="bb-ico"><i style="background:#6f7cf5"></i><i style="background:#8a5cf6"></i><i style="background:#2ea6f0"></i><i style="background:#f5b73c"></i><i style="background:#e06a35"></i><i style="background:#20b26b"></i><i style="background:#191c1f"></i><i style="background:#c9c9cd"></i></div>
+            </div>
           </div>
         </div>
         <span>[ Identity system ]</span>
@@ -614,7 +658,12 @@ button{font-family:inherit;cursor:pointer}
         <div class="art pres" aria-hidden="true">
           <div class="slide s-back">
             <span class="a-lbl">Adoption by quarter</span>
-            <div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:88%"></i><i style="height:55%"></i><i style="height:70%"></i></div>
+            <div class="bars">
+              <div><i style="height:38%"></i><span>Q1</span></div>
+              <div><i style="height:56%"></i><span>Q2</span></div>
+              <div><i style="height:84%"></i><span>Q3</span></div>
+              <div><i style="height:66%"></i><span>Q4</span></div>
+            </div>
           </div>
           <div class="slide s-front a-shadow">
             <span class="kick">GEMIS — Product Review</span>
@@ -626,26 +675,32 @@ button{font-family:inherit;cursor:pointer}
       </div>
 
       <div class="btile" style="grid-column:span 5;grid-row:span 2">
-        <div class="art ds" aria-hidden="true">
-          <div class="col">
-            <span class="comp">❖ Button / states</span>
-            <div class="btnrow">
-              <span class="b b1">Save changes</span>
-              <span class="b b2">Focused</span>
-              <span class="b b3">Disabled</span>
+        <div class="art uik" aria-hidden="true">
+          <div class="ucol">
+            <span class="uh">Buttons</span>
+            <div class="brow">
+              <span class="ub ub--p">Book a demo<svg class="cur" viewBox="0 0 24 24"><path d="M5 3 L19 11 L12 12.5 L9.5 20 Z" fill="#191c1f" stroke="#fff" stroke-width="2"/></svg></span>
+              <span class="ub ub--s">Secondary</span>
             </div>
-            <div class="redline"><i></i>16<i></i></div>
+            <div class="brow"><span class="ub ub--t">Text button</span><span class="step"><i>−</i><b>2</b><i>+</i></span></div>
+            <span class="uh" style="margin-top:2px">Form elements</span>
+            <div class="ufield"><i>Full name</i><b>Naledi Mokoena</b></div>
+            <div class="ufield"><i>Space type</i><b>Boardroom<u>▾</u></b></div>
           </div>
-          <div class="col">
-            <span class="comp">❖ Input / focus</span>
-            <div class="field"><i>Work email</i><b>thabo@company.co.za</b></div>
-            <span class="comp" style="margin-top:2px">❖ Tokens / ember</span>
-            <div class="tokens">
-              <div class="tk"><i style="background:#f6e3d8"></i><span>100</span></div>
-              <div class="tk"><i style="background:#d98d5f"></i><span>300</span></div>
-              <div class="tk"><i style="background:#a64b21"></i><span>500</span></div>
-              <div class="tk"><i style="background:#6e2f13"></i><span>700</span></div>
+          <div class="ucol">
+            <span class="ul">Colour · Ink</span>
+            <div class="ramp"><em>900–100</em><i style="background:#191c1f"></i><i style="background:#3a3f47"></i><i style="background:#7b838c"></i><i style="background:#c9c9cd"></i><i style="background:#f1f2f4"></i></div>
+            <span class="ul">Colour · Ember</span>
+            <div class="ramp"><em>700–100</em><i style="background:#6e2f13"></i><i style="background:#a64b21"></i><i style="background:#d98d5f"></i><i style="background:#f0c6ab"></i><i style="background:#faeee6"></i></div>
+            <span class="ul" style="margin-top:2px">Tags</span>
+            <div class="tagrow">
+              <span class="tg" style="background:#fbf0cf;color:#8a6400">Pending</span>
+              <span class="tg" style="background:#e4f6ec;color:#177245">Confirmed</span>
+              <span class="tg" style="background:#fde8e8;color:#c23b3b">Alert</span>
+              <span class="tg" style="background:#e8effd;color:#2f5fd0">Active</span>
             </div>
+            <span class="ul" style="margin-top:2px">Review</span>
+            <div class="rev"><b>4.8</b><i>★★★★★</i><span>214 ratings</span></div>
           </div>
         </div>
         <span>[ Design system ]</span>
@@ -726,9 +781,10 @@ button{font-family:inherit;cursor:pointer}
         <div class="art mail" aria-hidden="true">
           <div class="win">
             <div class="mh"><i>G</i><span>GEMIS Studio · newsletter</span></div>
-            <div class="hero"></div>
+            <div class="mhero"><b>ManaGem</b></div>
             <div class="body">
-              <i class="t"></i><i style="width:92%"></i><i style="width:80%"></i>
+              <b class="sub">The new ManaGem is live.</b>
+              <p>Bookings, billing and access — now in one place for your whole team.</p>
               <span>Read the update</span>
             </div>
           </div>
@@ -737,15 +793,47 @@ button{font-family:inherit;cursor:pointer}
       </div>
 
       <div class="btile" style="grid-column:span 12;grid-row:span 2;background:#f7f7f9">
-        <div class="art tp" aria-hidden="true">
-          <div class="item"><div class="card2"><b>GEMIS<span style="color:#e08a5c">®</span></b><i></i><span>Product &amp; experience design<br>Sandton · Johannesburg</span></div><span class="cap">Card</span></div>
-          <div class="item"><div class="phb a-shadow"><i class="n"></i><i class="f"></i><i class="o"></i></div><span class="cap">Phone</span></div>
-          <div class="item"><div class="tab a-shadow"><div class="side"></div><div class="mn"><i class="k"></i><i></i><i></i></div></div><span class="cap">Tablet</span></div>
-          <div class="item"><div class="lap"><div class="scr"><b>GEMIS® Studio</b><i class="o"></i><i style="width:70%"></i><i style="width:52%"></i></div><div class="base"></div></div><span class="cap">Web</span></div>
-          <div class="item"><div class="sig a-shadow"><b>G</b><i></i></div><span class="cap">Signage</span></div>
-          <div class="item"><div class="bill"><b>Design that <em>works.</em></b><span>gemis.co.za</span></div><span class="cap">Billboard</span></div>
+        <div class="art kit" aria-hidden="true">
+          <div class="kcol kcol--a">
+            <span class="klbl">Bookings · today</span>
+            <div class="krow"><i class="av" style="background:#a64b21">NM</i><b>Naledi Mokoena</b><em>09:30</em><span class="kst" style="background:#e4f6ec;color:#177245">Confirmed</span></div>
+            <div class="krow"><i class="av" style="background:#2f5fd0">SK</i><b>Sipho Khumalo</b><em>11:00</em><span class="kst" style="background:#fbf0cf;color:#8a6400">Pending</span></div>
+            <div class="krow"><i class="av" style="background:#191c1f">TR</i><b>Thandi Radebe</b><em>14:15</em><span class="kst" style="background:#eef0f2;color:#5c646d">Closed</span></div>
+          </div>
+          <div class="kcol kcol--b">
+            <span class="kbtn kbtn--l">+ New booking</span>
+            <span class="kbtn kbtn--m">Invite team</span>
+            <span class="kbtn kbtn--o">Export report</span>
+            <div class="kseg"><i>Month</i><i>Week</i><i class="on">Day</i></div>
+          </div>
+          <div class="kcol kcol--c">
+            <span class="klbl">Tags</span>
+            <div class="ktags">
+              <span class="kst" style="background:#fff;border:1px solid #e2e2e7;color:#3a3f47">Hot desk</span>
+              <span class="kst" style="background:#fff;border:1px solid #e2e2e7;color:#3a3f47">Wi-Fi</span>
+              <span class="kst" style="background:#fbf0cf;color:#8a6400">Waiting</span>
+              <span class="kst" style="background:#e8effd;color:#2f5fd0">Active</span>
+              <span class="kst" style="background:#fde8e8;color:#c23b3b">Alert</span>
+            </div>
+            <div class="ktip">This booking has not been confirmed yet.</div>
+          </div>
+          <div class="kcol kcol--d">
+            <div class="kbook">
+              <div class="r1"><i class="th"></i><div class="nm"><b>Boardroom 2</b><span>29 Aug 2026 · 09:30 – 11:00</span></div><span class="pr">R450.00</span></div>
+              <div class="kalert">⚠ One or more resources are unavailable</div>
+              <div class="kbtns"><span>Make a booking</span><span>Book an event</span></div>
+            </div>
+          </div>
+          <div class="kcol kcol--e">
+            <div class="kcard">
+              <div class="khd"><b>Benefits (2)</b><span>View all</span></div>
+              <div class="kmeter"><em>All-day pass<u>6/10</u></em><i style="--w:60%"></i></div>
+              <div class="kmeter"><em>Booking credits<u>8/20</u></em><i style="--w:40%"></i></div>
+            </div>
+            <div class="ksync"><i class="ic">✓</i><div class="tx"><b>Calendar sync</b><small>Bookings land in your calendar</small></div><i class="sw"></i></div>
+          </div>
         </div>
-        <span>[ Touchpoints ]</span>
+        <span>[ Product UI — ManaGem ]</span>
       </div>
 
     </div>
