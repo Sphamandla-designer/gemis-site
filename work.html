@@ -365,20 +365,23 @@ button{font-family:inherit;cursor:pointer}
 .mcard__meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;opacity:.75}
 .mcard__meta small{font-size:8.5px;letter-spacing:.22em;opacity:.7}
 .mcard__meta--left{position:absolute;left:22px;bottom:20px;text-align:left}
-.mcard--g{background:#e9e5db;color:#8f1d14}
-.mcard--n{background:#f6f4ee;color:#17181a;border:1px solid #e2e2e7}
-.mcard__mono--soft{font-weight:850;text-transform:lowercase;letter-spacing:-.04em}
-.mcard--ts{background:#0b0b0c;color:#f2efe9}
-.mcard__duo{font-family:Georgia,'Times New Roman',serif;font-size:clamp(82px,8.2vw,128px);line-height:.8;letter-spacing:-.06em}
-.mcard__duo em{font-style:italic;margin-left:-.22em;opacity:.92}
-.mcard__band{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);font-weight:500;font-size:10px;letter-spacing:.3em;padding:7px 0;background:#0b0b0c}
-.mcard--au{background:#101114;color:#e9e6df}
-.mcard__bldg{width:46%}
-.mcard--k{background:#0c0e14;color:#0F4CFF}
-.mcard__mono--k i{color:#edeae2;font-size:.7em;vertical-align:.12em}
-.mcard--k .mcard__meta{color:rgba(237,234,226,.75)}
-.mcard--gt{background:#1F2C4F;color:#D4A63C}
-.mcard--gt .mcard__meta{color:rgba(255,255,255,.65)}
+.mcard__logo{width:100%;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(20px,2.4vw,32px)}
+/* each mark is sized for equal optical presence — never stretched, never recoloured */
+.mcard__logo img{width:100%;height:auto;max-height:100%;object-fit:contain;display:block}
+.mcard__logo--sq img{max-width:60%;margin:0 auto}
+.mcard__logo--md img{max-width:80%;margin:0 auto}
+.mcard__logo--wide img{max-width:96%;margin:0 auto}
+.mcard__logo--box img{max-width:86%;margin:0 auto}
+.mcard__logo--sm img{max-width:66%;margin:0 auto}
+.mcard--dark{background:#191c1f}
+.mcard--dark .mcard__meta{color:rgba(255,255,255,.6)}
+.mcard--ink{background:#101114}
+.mcard--ink .mcard__meta{color:rgba(255,255,255,.6)}
+.mcard--bone{background:#f1eee9;border:1px solid #e6e2da}
+.mcard--bone .mcard__meta{color:#6a7178}
+.mcard--paper{background:#fff;border:1px solid #e6e7ea}
+.mcard--paper .mcard__meta{color:#6a7178}
+.mcard__meta--btm{position:absolute;left:0;right:0;bottom:18px;text-align:center}
 @media (max-width:640px){.mcard{width:62vw}}
 
 /* ── In motion ── */
@@ -472,74 +475,52 @@ button{font-family:inherit;cursor:pointer}
 <!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
 <section class="marks" aria-label="Identity marks from the studio">
   <p class="kicker">Marks in rotation</p>
-  <h2>Identities from the studio bench.</h2>
+  <h2>Brands in rotation.</h2>
   <div class="marks__rail">
     <div class="marks__track">
-      <div class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
+      <div class="mcard mcard--dark">
+        <span class="mcard__logo mcard__logo--sq"><img src="assets/img/logos/ax-channels.png" alt="AX-Channels logo" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">AX-Channels</span>
       </div>
-      <div class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      <div class="mcard mcard--ink">
+        <span class="mcard__logo mcard__logo--md"><img src="assets/img/logos/neuraux.png" alt="NeuraUX logo" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">NeuraUX</span>
       </div>
-      <div class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      <div class="mcard mcard--bone">
+        <span class="mcard__logo mcard__logo--wide"><img src="assets/img/logos/gemis.png" alt="GEMIS — GEM Information Systems logo" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">GEM Information Systems</span>
       </div>
-      <div class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
+      <div class="mcard mcard--paper">
+        <span class="mcard__logo mcard__logo--box"><img src="assets/img/logos/kiy-trucking.png" alt="KiY Trucking logo" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">KiY Trucking</span>
       </div>
-      <div class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+      <div class="mcard mcard--dark">
+        <span class="mcard__logo mcard__logo--sm"><img src="assets/img/logos/cmaxx.png" alt="CMaxx WiFi Solutions logo" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">CMaxx WiFi Solutions</span>
       </div>
-      <div class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      <div class="mcard mcard--dark" aria-hidden="true">
+        <span class="mcard__logo mcard__logo--sq"><img src="assets/img/logos/ax-channels.png" alt="" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">AX-Channels</span>
       </div>
-      <div aria-hidden="true" class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
+      <div class="mcard mcard--ink" aria-hidden="true">
+        <span class="mcard__logo mcard__logo--md"><img src="assets/img/logos/neuraux.png" alt="" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">NeuraUX</span>
       </div>
-      <div aria-hidden="true" class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      <div class="mcard mcard--bone" aria-hidden="true">
+        <span class="mcard__logo mcard__logo--wide"><img src="assets/img/logos/gemis.png" alt="" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">GEM Information Systems</span>
       </div>
-      <div aria-hidden="true" class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      <div class="mcard mcard--paper" aria-hidden="true">
+        <span class="mcard__logo mcard__logo--box"><img src="assets/img/logos/kiy-trucking.png" alt="" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">KiY Trucking</span>
       </div>
-      <div aria-hidden="true" class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv2)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      <div class="mcard mcard--dark" aria-hidden="true">
+        <span class="mcard__logo mcard__logo--sm"><img src="assets/img/logos/cmaxx.png" alt="" loading="lazy"></span>
+        <span class="mcard__meta mcard__meta--btm">CMaxx WiFi Solutions</span>
       </div>
     </div>
   </div>
-  <p class="marks__note">Exploratory identities and original brand marks developed as part of our studio practice.</p>
+  <p class="marks__note">A selection of client and partner brands.</p>
 </section>
 
 <!-- ═══ Explorer ═══ -->
