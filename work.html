@@ -24,13 +24,10 @@ button{font-family:inherit;cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 [data-reveal]{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
 [data-reveal="2"]{animation-delay:.1s}[data-reveal="3"]{animation-delay:.2s}[data-reveal="4"]{animation-delay:.3s}
-@keyframes wmTruck{0%,6%{top:10px}22%,30%{top:calc(33% - 2px)}46%,54%{top:calc(66% - 6px)}72%,96%{top:calc(100% - 22px)}100%{top:calc(100% - 22px)}}
-@keyframes wmFill{0%,6%{transform:scaleY(0)}22%,30%{transform:scaleY(.33)}46%,54%{transform:scaleY(.66)}72%,100%{transform:scaleY(1)}}
-@keyframes wmBar{0%,6%{transform:scaleX(0)}22%,30%{transform:scaleX(.33)}46%,54%{transform:scaleX(.66)}72%,100%{transform:scaleX(1)}}
-@keyframes wmS1{0%,5%{opacity:0;transform:scale(.4)}9%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
-@keyframes wmS2{0%,26%{opacity:0;transform:scale(.4)}31%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
-@keyframes wmS3{0%,50%{opacity:0;transform:scale(.4)}55%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
-@keyframes wmS4{0%,68%{opacity:0;transform:scale(.4)}73%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
+@keyframes kbA{from{transform:scale(1)}to{transform:scale(1.09) translate(-1.2%,-1%)}}
+@keyframes kbB{from{transform:scale(1.09) translate(1.2%,1%)}to{transform:scale(1)}}
+@keyframes reelbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes driftzoom{from{transform:scale(1)}to{transform:scale(1.12) translate(1.6%,-1.6%)}}
 @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes glide{0%,100%{transform:translateX(0)}50%{transform:translateX(38px)}}
@@ -347,75 +344,23 @@ button{font-family:inherit;cursor:pointer}
 .mo__a .mo__frame{aspect-ratio:16/10}
 .mo__b .mo__frame{aspect-ratio:4/5}
 .mo__cap{font-size:13px;color:rgba(255,255,255,.72)}
-/* ManaGem coded prototype */
-.pm{font-family:'Inter Var',sans-serif}
-.pm__bar{display:flex;align-items:center;gap:6px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
-.pm__bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
-.pm__bar span{margin-left:8px;font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
-.pm__body{position:absolute;inset:40px 0 0;display:flex}
-.pm__side{width:26%;border-right:1px solid rgba(255,255,255,.08);padding:16px 14px;display:flex;flex-direction:column;gap:8px}
-.pm__side b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:14px;color:#fff;margin-bottom:8px}
-.pm__side span{font-size:11.5px;color:rgba(255,255,255,.45);padding:6px 9px;border-radius:8px}
-.pm__side span.on{background:rgba(166,75,33,.18);color:#e08a5c}
-.pm__main{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:9px;min-width:0}
-.pm__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
-.pm__head b{font-size:14px;color:#fff}
-.pm__new{background:#a64b21;color:#fff;border-radius:9999px;font-size:11px;font-weight:600;padding:6px 12px;transition:transform .18s,box-shadow .18s}
-.pm--press1 .pm__new{transform:scale(.94);box-shadow:0 0 0 4px rgba(166,75,33,.28)}
-.pm__row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:9px 11px}
-.pm__row>i{width:26px;height:26px;border-radius:8px;font-style:normal;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
-.pm__row>div{flex:1;min-width:0}
-.pm__row b{display:block;font-size:12px;color:#fff}
-.pm__row small{font-size:9.5px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
-.pm__chip{font-style:normal;font-size:9px;font-weight:600;border-radius:9999px;padding:3px 8px;flex:none}
-.pm__chip--pend{background:rgba(245,183,60,.15);color:#f5b73c}
-.pm__chip--new{background:rgba(61,220,151,.14);color:#3ddc97;display:none}
-.pm--done .pm__chip--pend{display:none}
-.pm--done .pm__chip--new{display:inline-block}
-.pm__chip--ok{background:rgba(61,220,151,.14);color:#3ddc97}
-.pm__chip--gray{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
-.pm__modal{position:absolute;left:50%;top:52%;transform:translate(-50%,-46%) scale(.94);width:min(64%,340px);background:#fff;border-radius:14px;padding:14px 16px;opacity:0;transition:opacity .35s,transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:7px;z-index:3}
-.pm--modal .pm__modal{opacity:1;transform:translate(-50%,-50%) scale(1)}
-.pm__modal>b{font-size:13px;color:#191c1f;font-family:'Inter Tight Var',sans-serif;font-weight:600}
-.pm__lbl{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
-.pm__opts{display:flex;gap:6px}
-.pm__opts .o{flex:1;border:1.3px solid #e2e2e7;border-radius:9px;font-size:10px;font-weight:600;color:#3a3f47;text-align:center;padding:7px 4px;transition:border-color .25s,background .25s,color .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pm--room .o1{border-color:#a64b21;background:#faeee6;color:#a64b21}
-.pm--time .t2{border-color:#a64b21;background:#faeee6;color:#a64b21}
-.pm__go{background:#191c1f;color:#fff;border-radius:9999px;font-size:11px;font-weight:600;text-align:center;padding:8px 0;margin-top:4px;transition:transform .18s,background .18s}
-.pm--press2 .pm__go{transform:scale(.96);background:#a64b21}
-.pm__toast{position:absolute;right:16px;top:50px;background:#fff;color:#191c1f;border-radius:10px;font-size:11px;font-weight:600;padding:9px 13px;box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s;z-index:4}
-.pm--done .pm__toast{opacity:1;transform:none}
-.pm__cursor{position:absolute;width:18px;height:18px;left:42%;top:76%;z-index:5;transition:left .85s cubic-bezier(.3,.7,.3,1),top .85s cubic-bezier(.3,.7,.3,1);filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
-@media (max-width:640px){.mo__a .mo__frame{aspect-ratio:4/3}.pm__modal{width:80%}.pm__side{display:none}}
-.pm--toNew .pm__cursor{left:84%;top:15%}
-.pm--mcur .pm__cursor{left:40%;top:44%}
-.pm--room .pm__cursor{left:40%;top:44%}
-.pm--time .pm__cursor{left:51%;top:57%}
-.pm--press2 .pm__cursor{left:50%;top:69%}
-.pm--done .pm__cursor{left:66%;top:82%}
-/* WasteMart route loop */
-.mo__frame--ph{display:flex;align-items:center;justify-content:center}
-.wm__phone{width:min(70%,250px);height:84%;background:#17191c;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:16px 15px;display:flex;flex-direction:column;gap:14px}
-.wm__top b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:14px;color:#fff}
-.wm__top span{font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
-.wm__route{position:relative;flex:1;padding-left:20px;display:flex;flex-direction:column;justify-content:space-between}
-.wm__line,.wm__fill{position:absolute;left:5px;top:10px;bottom:10px;width:2px;background:rgba(255,255,255,.14)}
-.wm__fill{background:#3ddc97;transform-origin:top;transform:scaleY(0);animation:wmFill 12s linear infinite}
-.wm__truck{position:absolute;left:6px;top:10px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px rgba(61,220,151,.2);animation:wmTruck 12s linear infinite}
-.wm__stop{display:flex;align-items:center;gap:8px}
-.wm__stop>div{flex:1;min-width:0}
-.wm__stop b{display:block;font-size:11px;color:#fff}
-.wm__stop small{font-size:8.5px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
-.wm__stop em{font-style:normal;width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.16);color:#3ddc97;font-size:9px;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
-.wm__stop--1 em{animation:wmS1 12s linear infinite}
-.wm__stop--2 em{animation:wmS2 12s linear infinite}
-.wm__stop--3 em{animation:wmS3 12s linear infinite}
-.wm__stop--4 em{animation:wmS4 12s linear infinite}
-.wm__stat{display:flex;flex-direction:column;gap:6px}
-.wm__stat span{font-size:9.5px;color:rgba(255,255,255,.5)}
-.wm__stat i{display:block;height:5px;border-radius:9999px;background:rgba(255,255,255,.1);overflow:hidden}
-.wm__statfill{display:block;height:100%;border-radius:inherit;background:#3ddc97;transform-origin:left;transform:scaleX(0);animation:wmBar 12s linear infinite}
+/* Project reel — real shots from the repo */
+.mo__frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.reel__img{opacity:0;transition:opacity .9s ease;will-change:transform,opacity}
+.reel__img.is-on{opacity:1}
+.reel__img.is-on{animation:kbA 9s ease-out forwards}
+.reel__img:nth-child(even).is-on{animation-name:kbB}
+.reel__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,transparent 26%,transparent 52%,rgba(0,0,0,.6) 100%);pointer-events:none}
+.reel__tag{position:absolute;left:22px;bottom:20px;color:#fff;z-index:2}
+.reel__tag b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(17px,1.8vw,22px);letter-spacing:-.2px}
+.reel__tag span{font-size:12.5px;color:rgba(255,255,255,.78)}
+.reel__bars{position:absolute;left:22px;right:22px;top:16px;display:flex;gap:6px;z-index:2}
+.reel__bars i{flex:1;height:3px;border-radius:9999px;background:rgba(255,255,255,.28);overflow:hidden;position:relative}
+.reel__bars i u{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(0)}
+.reel__bars i.is-done u{transform:scaleX(1)}
+.reel__bars i.is-live u{animation:reelbar 4.5s linear forwards}
+.reel.is-hold .reel__img.is-on,.reel.is-hold .reel__bars i.is-live u{animation-play-state:paused}
+.mo__frame--drift img{animation:driftzoom 15s ease-in-out infinite alternate}
 .mo__ticker{grid-column:span 12;overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:24px 0}
 .mo__tickertrack{display:flex;gap:56px;width:max-content;animation:drift 26s linear infinite;font-size:14px;color:rgba(255,255,255,.72)}
 .mo__tickertrack span{white-space:nowrap}
@@ -939,48 +884,25 @@ button{font-family:inherit;cursor:pointer}
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px)">Designed to move.</h2>
     <div class="mo__grid">
       <div class="mo__a">
-        <div class="mo__frame mo__frame--app pm" id="pmProto" role="img" aria-label="ManaGem booking flow — auto-playing prototype">
-          <div class="pm__bar" aria-hidden="true"><i></i><i></i><i></i><span>managem.app — bookings</span></div>
-          <div class="pm__body" aria-hidden="true">
-            <aside class="pm__side">
-              <b>ManaGem</b>
-              <span class="on">Bookings</span><span>Spaces</span><span>Billing</span><span>Access</span>
-            </aside>
-            <div class="pm__main">
-              <div class="pm__head"><b>Today</b><span class="pm__new">+ New booking</span></div>
-              <div class="pm__row"><i style="background:#a64b21">BR</i><div><b>Boardroom 2</b><small>09:30 – 11:00</small></div><em class="pm__chip pm__chip--pend">Pending</em><em class="pm__chip pm__chip--new">Confirmed</em></div>
-              <div class="pm__row"><i style="background:#2f5fd0">DK</i><div><b>Desk 14</b><small>11:00 – 17:00</small></div><em class="pm__chip pm__chip--ok">Confirmed</em></div>
-              <div class="pm__row"><i style="background:#3a3f47">SA</i><div><b>Studio A</b><small>14:15 – 16:00</small></div><em class="pm__chip pm__chip--gray">Closed</em></div>
-            </div>
+        <div class="mo__frame reel" id="reel" role="img" aria-label="Project reel — ManaGem, FINOS, RentFlow, NuraCoach and Lungelo interfaces">
+          <img src="assets/img/shots/managem-desk.jpg" alt="" class="reel__img is-on">
+          <img src="assets/img/shots/finos.jpg" alt="" class="reel__img" loading="lazy">
+          <img src="assets/img/shots/rentflow.jpg" alt="" class="reel__img" loading="lazy">
+          <img src="assets/img/shots/nuracoach.jpg" alt="" class="reel__img" loading="lazy">
+          <img src="assets/img/shots/lungelo.jpg" alt="" class="reel__img" loading="lazy">
+          <div class="reel__shade" aria-hidden="true"></div>
+          <div class="reel__tag" aria-hidden="true"><b id="reelName">ManaGem</b><span id="reelLine">Business management — dashboard</span></div>
+          <div class="reel__bars" aria-hidden="true">
+            <i><u></u></i><i><u></u></i><i><u></u></i><i><u></u></i><i><u></u></i>
           </div>
-          <div class="pm__modal" aria-hidden="true">
-            <b>New booking</b>
-            <span class="pm__lbl">Space</span>
-            <div class="pm__opts"><span class="o o1">Boardroom 2</span><span class="o o2">Desk 14</span><span class="o o3">Studio A</span></div>
-            <span class="pm__lbl">Time</span>
-            <div class="pm__opts"><span class="o t1">08:00</span><span class="o t2">09:30</span><span class="o t3">13:00</span></div>
-            <div class="pm__go">Confirm — R450.00</div>
-          </div>
-          <div class="pm__toast" aria-hidden="true">✓ Booking confirmed — Boardroom 2, 09:30</div>
-          <svg class="pm__cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2 L20 11 L12.6 12.8 L9.6 21 Z" fill="#fff" stroke="#191c1f" stroke-width="1.6"/></svg>
         </div>
-        <p class="mo__cap">ManaGem — booking flow prototype, playing on a loop</p>
+        <p class="mo__cap">Project reel — interfaces from the studio, playing on a loop</p>
       </div>
       <div class="mo__b">
-        <div class="mo__frame mo__frame--ph" role="img" aria-label="WasteMart driver app — route progress animation">
-          <div class="wm__phone" aria-hidden="true">
-            <div class="wm__top"><b>WasteMart</b><span>ROUTE 12 — SANDTON</span></div>
-            <div class="wm__route">
-              <i class="wm__line"></i><i class="wm__fill"></i><i class="wm__truck"></i>
-              <div class="wm__stop wm__stop--1"><div><b>Depot — load out</b><small>06:40</small></div><em>✓</em></div>
-              <div class="wm__stop wm__stop--2"><div><b>Grayston Drive</b><small>07:15</small></div><em>✓</em></div>
-              <div class="wm__stop wm__stop--3"><div><b>Katherine St</b><small>08:05</small></div><em>✓</em></div>
-              <div class="wm__stop wm__stop--4"><div><b>Depot — weigh in</b><small>09:20</small></div><em>✓</em></div>
-            </div>
-            <div class="wm__stat"><span>Collections today</span><i><u class="wm__statfill"></u></i></div>
-          </div>
+        <div class="mo__frame mo__frame--drift">
+          <img src="assets/img/shots/wastemart-driver.jpg" alt="WasteMart driver app — check-in flow on a phone" loading="lazy">
         </div>
-        <p class="mo__cap">WasteMart — driver route run, looping</p>
+        <p class="mo__cap">WasteMart — driver check-in flow</p>
       </div>
       <div class="mo__ticker">
         <div class="mo__tickertrack" aria-hidden="true">
@@ -1085,33 +1007,40 @@ button{font-family:inherit;cursor:pointer}
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── ManaGem prototype: auto-playing booking flow ── */
-  var pm = document.getElementById('pmProto');
-  if (pm) {
-    var PMBASE = 'mo__frame mo__frame--app pm';
-    if (reduced) {
-      pm.className = PMBASE + ' pm--done';
-    } else {
-      var seq = [
-        ['', 1400],
-        ['pm--toNew', 1000],
-        ['pm--toNew pm--press1', 420],
-        ['pm--modal pm--mcur', 1000],
-        ['pm--modal pm--room', 1000],
-        ['pm--modal pm--room pm--time', 1000],
-        ['pm--modal pm--room pm--time pm--press2', 460],
-        ['pm--done', 3200]
-      ];
-      var si = 0;
-      var playing = true;
-      (function step() {
-        if (playing) { pm.className = PMBASE + (seq[si][0] ? ' ' + seq[si][0] : ''); }
-        var d = seq[si][1];
-        si = (si + 1) % seq.length;
-        setTimeout(step, d);
-      })();
-      pm.addEventListener('mouseenter', function () { playing = false; });
-      pm.addEventListener('mouseleave', function () { playing = true; });
+  /* ── Project reel: auto-playing loop of real project shots ── */
+  var reel = document.getElementById('reel');
+  if (reel) {
+    var slides = Array.prototype.slice.call(reel.querySelectorAll('.reel__img'));
+    var bars = Array.prototype.slice.call(reel.querySelectorAll('.reel__bars i'));
+    var nameEl = document.getElementById('reelName');
+    var lineEl = document.getElementById('reelLine');
+    var META = [
+      ['ManaGem', 'Business management — dashboard'],
+      ['FINOS', 'Personal finance — command center'],
+      ['RentFlow', 'Resident app — rent, bills & insights'],
+      ['NuraCoach', 'AI money coach — privacy controls'],
+      ['Lungelo', 'Field services — multilingual sign-in']
+    ];
+    var DUR = 4500, idx = 0;
+    function show(i) {
+      slides.forEach(function (s, j) { s.classList.toggle('is-on', j === i); });
+      bars.forEach(function (b, j) {
+        b.classList.remove('is-live');
+        b.classList.toggle('is-done', j < i);
+        if (j === i && !reduced) { void b.offsetWidth; b.classList.add('is-live'); }
+      });
+      nameEl.textContent = META[i][0];
+      lineEl.textContent = META[i][1];
+    }
+    show(0);
+    if (!reduced) {
+      setInterval(function () {
+        if (reel.classList.contains('is-hold')) { return; }
+        idx = (idx + 1) % slides.length;
+        show(idx);
+      }, DUR);
+      reel.addEventListener('mouseenter', function () { reel.classList.add('is-hold'); });
+      reel.addEventListener('mouseleave', function () { reel.classList.remove('is-hold'); });
     }
   }
 
