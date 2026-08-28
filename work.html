@@ -117,42 +117,20 @@ button{font-family:inherit;cursor:pointer}
 
 /* ── GEMIS brand tile ── */
 
-/* ── Live sites collection ── */
-.sites{background:#f4f4f4;border-top:1px solid #e2e2e7}
-.sites .kicker{color:#505a63}
-.sites .lede{margin:22px 0 10px;max-width:56ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#1f2226}
-.collab{display:inline-flex;align-items:center;gap:9px;margin-bottom:clamp(30px,5vh,52px);font-size:13.5px;color:#505a63}
-.collab i{font-style:normal;width:5px;height:5px;border-radius:50%;background:#a64b21;flex:none}
-.sgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.2vw,30px)}
-.site{display:flex;flex-direction:column;min-width:0}
-.site--lg{grid-column:span 6}.site--md{grid-column:span 4}.site--sm{grid-column:span 3}
-.win{border-radius:14px;overflow:hidden;background:#fff;border:1px solid #e2e2e7;box-shadow:0 14px 34px rgba(25,28,31,.07);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
-.site:hover .win{transform:translateY(-5px);box-shadow:0 26px 54px rgba(25,28,31,.14)}
-.win__bar{display:flex;align-items:center;gap:5px;padding:9px 12px;border-bottom:1px solid #eef0f2;background:#fbfbfc}
+/* ── Site covers inside work cards ── */
+.card__visual .win{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff}
+.win__bar{display:flex;align-items:center;gap:5px;padding:9px 12px;border-bottom:1px solid #eef0f2;background:#fbfbfc;flex:none}
 .win__bar i{width:7px;height:7px;border-radius:50%;background:#dcdfe3;flex:none}
 .win__bar span{margin-left:8px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:#8d969e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,2vw,26px);overflow:hidden;color:#fff}
-.site--lg .cover{aspect-ratio:16/10}.site--md .cover{aspect-ratio:4/3}.site--sm .cover{aspect-ratio:1/1}
-.cover__nav{display:flex;gap:14px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.cover{flex:1;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(14px,1.5vw,22px);overflow:hidden;color:#fff;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card__visual:hover .cover{transform:scale(1.03)}
+.cover__nav{display:flex;gap:12px;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
 .cover__mid{margin-top:auto}
-.cover__wm{font-family:'Inter Tight Var',sans-serif;font-weight:500;line-height:1;letter-spacing:-.03em}
-.site--lg .cover__wm{font-size:clamp(30px,3.6vw,54px)}
-.site--md .cover__wm{font-size:clamp(24px,2.5vw,34px)}
-.site--sm .cover__wm{font-size:clamp(19px,1.9vw,26px)}
-.cover__sub{margin-top:10px;font-size:clamp(11px,1vw,14px);line-height:1.5;opacity:.78;max-width:30ch}
-.cover__rule{margin-top:14px;height:1px;background:currentColor;opacity:.22}
-.site__meta{margin-top:16px;display:flex;flex-direction:column;gap:6px}
-.site__meta h3{font-size:clamp(16px,1.4vw,20px);line-height:1.2;letter-spacing:-.2px}
-.site__cat{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8d969e}
-.site__desc{font-size:13.5px;line-height:1.55;color:#505a63;max-width:40ch}
-.site__go{margin-top:4px;align-self:flex-start;font-size:13px;font-weight:600;color:#191c1f;display:inline-flex;gap:6px;position:relative;padding-bottom:3px}
-.site__go::after{content:"";position:absolute;left:0;bottom:0;height:1.4px;width:100%;background:#a64b21;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.site:hover .site__go::after{transform:scaleX(1)}
-.site__go i{font-style:normal;transition:transform .3s}
-.site:hover .site__go i{transform:translate(2px,-2px)}
-.site__tag{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#a64b21}
-@media (max-width:1023px){.site--lg,.site--md{grid-column:span 6}.site--sm{grid-column:span 6}.site--lg .cover{aspect-ratio:4/3}.site--sm .cover{aspect-ratio:4/3}}
-@media (max-width:640px){.site--lg,.site--md,.site--sm{grid-column:span 12}}
+.cover__wm{font-family:'Inter Tight Var',sans-serif;font-weight:500;line-height:1;letter-spacing:-.03em;font-size:clamp(22px,2.3vw,34px)}
+.cover__rule{margin-top:12px;height:1px;background:currentColor;opacity:.22}
+.cover__sub{margin-top:10px;font-size:clamp(10.5px,.9vw,12.5px);line-height:1.5;opacity:.78}
+.collab{display:inline-flex;align-items:center;gap:9px;margin:clamp(20px,3vh,30px) 0 clamp(4px,1vh,10px);font-size:13.5px;color:#505a63}
+.collab i{font-style:normal;width:5px;height:5px;border-radius:50%;background:#a64b21;flex:none}
 
 /* ── Social & digital campaigns ── */
 .soc{background:#fff;border-top:1px solid #e2e2e7}
@@ -568,6 +546,8 @@ button{font-family:inherit;cursor:pointer}
       <p class="note">Different problems, different outputs — connected by the same attention to clarity, usefulness and experience.</p>
     </div>
 
+    <p class="collab"><i></i>Selected work delivered in collaboration with Hive Studio.</p>
+
     <div class="filters" role="group" aria-label="Filter work by category" id="filters">
       <button type="button" data-cat="ALL" aria-pressed="true">All</button>
       <button type="button" data-cat="BRAND" aria-pressed="false">Brand</button>
@@ -691,6 +671,123 @@ button{font-family:inherit;cursor:pointer}
         </div>
       </article>
 
+      <article class="card" data-cats="WEB PLATFORMS SYSTEMS">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hodlotc.com</span></div>
+          <div class="cover" style="background:linear-gradient(150deg,#0b1220 0%,#111f34 58%,#0b1220 100%);color:#fff"><div class="cover__nav"><span>Trade</span><span>Services</span><span>Security</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">HODL<span style="color:#21d07a">OTC</span></div><div class="cover__rule"></div><p class="cover__sub">Over-the-counter desk for Bitcoin, Ethereum and leading digital assets — single-price settlement, full KYC, registered FSP.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>HODL OTC</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#0f2f22"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#21d07a">H</text></svg><div class="wt"><b>Fintech</b><span>Web platform · Web</span></div></div>
+          <p class="tagline">Public site for a South African OTC crypto desk — services, security and compliance explained for private and institutional clients.</p>
+          <a class="card__btn" href="https://hodlotc.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB BRAND">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>towerbosch.com</span></div>
+          <div class="cover" style="background:linear-gradient(155deg,#3f3527 0%,#5c4a34 55%,#2c251b 100%);color:#fff"><div class="cover__nav"><span>Menu</span><span>The farm</span><span>Bookings</span><span>Visit</span></div><div class="cover__mid"><div class="cover__wm">Towerbosch</div><div class="cover__rule"></div><p class="cover__sub">Traditional boerekos served under the trees on Knorhoek farm, six kilometres outside Stellenbosch.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Towerbosch</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#3f3527"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#d8bb8a">T</text></svg><div class="wt"><b>Hospitality</b><span>Restaurant site · Web</span></div></div>
+          <p class="tagline">Restaurant site for the Knorhoek estate eatery — menu, setting and table bookings in the Stellenbosch winelands.</p>
+          <a class="card__btn" href="https://towerbosch.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB PLATFORMS">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>berliner.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(160deg,#8e1b1b 0%,#5d1212 100%);color:#fff"><div class="cover__nav"><span>Shop</span><span>Butchery</span><span>Deli</span><span>Stores</span></div><div class="cover__mid"><div class="cover__wm">Berliner</div><div class="cover__rule"></div><p class="cover__sub">Wholesale continental butchery and delicatessen — beef, lamb, pork and poultry, with home delivery.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Berliner</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#8e1b1b"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#f0d9d9">B</text></svg><div class="wt"><b>Retail</b><span>E-commerce · Web</span></div></div>
+          <p class="tagline">Online storefront for the continental butchery and deli, with stores at Coachman’s Crossing, Cambridge Crossing and Northlands Corner.</p>
+          <a class="card__btn" href="https://berliner.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB STRATEGY">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>obsidianwealth.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(150deg,#14161a 0%,#25292f 60%,#0e1013 100%);color:#fff"><div class="cover__nav"><span>Approach</span><span>Products</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">Obsidian<span style="opacity:.55"> Wealth</span></div><div class="cover__rule"></div><p class="cover__sub">Boutique advisory in digital assets, yield products and alternative wealth architecture.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Obsidian Wealth</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#14161a"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#9aa1a9">O</text></svg><div class="wt"><b>Finance</b><span>Advisory site · Web</span></div></div>
+          <p class="tagline">Positioning site for a Nelspruit boutique advisory working with a select group of individuals and families.</p>
+          <a class="card__btn" href="https://obsidianwealth.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB PLATFORMS">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>saltbru.com</span></div>
+          <div class="cover" style="background:linear-gradient(155deg,#241f1c 0%,#3d332b 52%,#1a1613 100%);color:#fff"><div class="cover__nav"><span>Butchery</span><span>Biltong</span><span>Deals</span><span>Delivery</span></div><div class="cover__mid"><div class="cover__wm">Salt<span style="color:#e0a33d">Bru</span></div><div class="cover__rule"></div><p class="cover__sub">Online butchery delivering restaurant-quality cuts across Gauteng — vacuum-sealed and cold-packed.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>SALTBRU</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#241f1c"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#e0a33d">S</text></svg><div class="wt"><b>Retail</b><span>Online butchery · Web</span></div></div>
+          <p class="tagline">E-commerce site for a Gauteng online butchery — cuts, biltong and specials with doorstep delivery.</p>
+          <a class="card__btn" href="https://saltbru.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB BRAND">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hivestudio.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(150deg,#e8a33d 0%,#c9761c 100%);color:#2a2015"><div class="cover__nav"><span>Work</span><span>Studio</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#1f1a12">Hive</span></div><div class="cover__rule"></div><p class="cover__sub">Full-service creative studio in Nelspruit — branding, digital and social.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Hive Studio</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#e8a33d"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#2a2015">H</text></svg><div class="wt"><b>Studio site</b><span>Partner · Web</span></div></div>
+          <p class="tagline">Site for the Nelspruit creative studio GEMIS partners with on selected digital work.</p>
+          <a class="card__btn" href="https://hivestudio.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>havenholistic.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(155deg,#6e8b74 0%,#3f5546 100%);color:#fff"><div class="cover__nav"><span>Therapy</span><span>About</span></div><div class="cover__mid"><div class="cover__wm">Haven</div><div class="cover__rule"></div><p class="cover__sub">A safe space for growth, healing and self-discovery — holistic counselling.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Haven Holistic</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#6e8b74"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#eaf1ec">H</text></svg><div class="wt"><b>Wellness</b><span>Practice site · Web</span></div></div>
+          <p class="tagline">Practice site for a holistic counselling service, built around a calm, unhurried reading experience.</p>
+          <a class="card__btn" href="https://havenholistic.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>kaapsehoopadventures.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(160deg,#5b6b6a 0%,#8fa09b 45%,#31403f 100%);color:#fff"><div class="cover__nav"><span>Trails</span><span>Stay</span></div><div class="cover__mid"><div class="cover__wm">Kaapsehoop</div><div class="cover__rule"></div><p class="cover__sub">Horse trails, teepees and off-grid stays on the escarpment above Nelspruit.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>Kaapsehoop Adventures</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#4d5b58"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#dfe6e4">K</text></svg><div class="wt"><b>Tourism</b><span>Booking site · Web</span></div></div>
+          <p class="tagline">Site for an off-grid escarpment retreat — horse trails, accommodation and volunteer programmes.</p>
+          <a class="card__btn" href="https://kaapsehoopadventures.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
+      <article class="card" data-cats="WEB BRAND">
+        <div class="card__visual">
+          <div class="win">
+          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>v1architects.co.za</span></div>
+          <div class="cover" style="background:linear-gradient(155deg,#d9dbdd 0%,#f2f3f4 55%,#c5c8cb 100%);color:#3a3f47"><div class="cover__nav"><span>Projects</span><span>Practice</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#191c1f">V1</span></div><div class="cover__rule"></div><p class="cover__sub">Architecture practice portfolio.</p></div></div>
+        </div>
+        <div class="card__row">
+          <h3>V1 Architects</h3>
+          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#3a3f47"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#e6e8ea">V</text></svg><div class="wt"><b>Architecture</b><span>Portfolio site · Web</span></div></div>
+          <p class="tagline">Portfolio site presenting the practice’s architectural work.</p>
+          <a class="card__btn" href="https://v1architects.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
+        </div>
+      </article>
     </div>
 
     <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
@@ -702,127 +799,6 @@ button{font-family:inherit;cursor:pointer}
   </div>
 </section>
 
-
-<!-- ═══ Live sites ═══ -->
-<section class="sites pad" id="sites" aria-label="Websites and digital experiences">
-  <div class="wrap">
-    <p class="kicker">Live sites</p>
-    <h2 class="h2" style="max-width:20ch">Websites, shipped and running.</h2>
-    <p class="lede">Digital experiences across retail, finance, hospitality, wellness and tourism — each one live and in use today.</p>
-    <p class="collab"><i></i>Selected work delivered in collaboration with Hive Studio.</p>
-    <div class="sgrid">
-      <a class="site site--lg" href="https://hodlotc.com/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hodlotc.com</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#0b1220 0%,#111f34 58%,#0b1220 100%);color:#fff"><div class="cover__nav"><span>Trade</span><span>Services</span><span>Security</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">HODL<span style="color:#21d07a">OTC</span></div><div class="cover__rule"></div><p class="cover__sub">Over-the-counter desk for Bitcoin, Ethereum and leading digital assets — single-price settlement, full KYC, registered FSP.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>HODL OTC</h3>
-          <span class="site__cat">Fintech · Web platform</span>
-          <p class="site__desc">Public site for a South African OTC crypto desk — services, security and compliance explained for private and institutional clients.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--lg" href="https://towerbosch.com/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>towerbosch.com</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#3f3527 0%,#5c4a34 55%,#2c251b 100%);color:#fff"><div class="cover__nav"><span>Menu</span><span>The farm</span><span>Bookings</span><span>Visit</span></div><div class="cover__mid"><div class="cover__wm">Towerbosch</div><div class="cover__rule"></div><p class="cover__sub">Traditional boerekos served under the trees on Knorhoek farm, six kilometres outside Stellenbosch.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Towerbosch</h3>
-          <span class="site__cat">Hospitality · Restaurant site</span>
-          <p class="site__desc">Restaurant site for the Knorhoek estate eatery — menu, setting and table bookings in the Stellenbosch winelands.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--md" href="https://berliner.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>berliner.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(160deg,#8e1b1b 0%,#5d1212 100%);color:#fff"><div class="cover__nav"><span>Shop</span><span>Butchery</span><span>Deli</span><span>Stores</span></div><div class="cover__mid"><div class="cover__wm">Berliner</div><div class="cover__rule"></div><p class="cover__sub">Wholesale continental butchery and delicatessen — beef, lamb, pork and poultry, with home delivery.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Berliner</h3>
-          <span class="site__cat">Retail · E-commerce</span>
-          <p class="site__desc">Online storefront for the continental butchery and deli, with stores at Coachman’s Crossing, Cambridge Crossing and Northlands Corner.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--md" href="https://obsidianwealth.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>obsidianwealth.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#14161a 0%,#25292f 60%,#0e1013 100%);color:#fff"><div class="cover__nav"><span>Approach</span><span>Products</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">Obsidian<span style="opacity:.55"> Wealth</span></div><div class="cover__rule"></div><p class="cover__sub">Boutique advisory in digital assets, yield products and alternative wealth architecture.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Obsidian Wealth</h3>
-          <span class="site__cat">Finance · Advisory site</span>
-          <p class="site__desc">Positioning site for a Nelspruit boutique advisory working with a select group of individuals and families.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--md" href="https://saltbru.com/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>saltbru.com</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#241f1c 0%,#3d332b 52%,#1a1613 100%);color:#fff"><div class="cover__nav"><span>Butchery</span><span>Biltong</span><span>Deals</span><span>Delivery</span></div><div class="cover__mid"><div class="cover__wm">Salt<span style="color:#e0a33d">Bru</span></div><div class="cover__rule"></div><p class="cover__sub">Online butchery delivering restaurant-quality cuts across Gauteng — vacuum-sealed and cold-packed.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>SALTBRU</h3>
-          <span class="site__cat">Retail · Online butchery</span>
-          <p class="site__desc">E-commerce site for a Gauteng online butchery — cuts, biltong and specials with doorstep delivery.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--sm" href="https://hivestudio.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hivestudio.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#e8a33d 0%,#c9761c 100%);color:#2a2015"><div class="cover__nav"><span>Work</span><span>Studio</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#1f1a12">Hive</span></div><div class="cover__rule"></div><p class="cover__sub">Full-service creative studio in Nelspruit — branding, digital and social.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Hive Studio</h3>
-          <span class="site__cat">Studio site · Partner</span>
-          <p class="site__desc">Site for the Nelspruit creative studio GEMIS partners with on selected digital work.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--sm" href="https://havenholistic.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>havenholistic.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#6e8b74 0%,#3f5546 100%);color:#fff"><div class="cover__nav"><span>Therapy</span><span>About</span></div><div class="cover__mid"><div class="cover__wm">Haven</div><div class="cover__rule"></div><p class="cover__sub">A safe space for growth, healing and self-discovery — holistic counselling.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Haven Holistic</h3>
-          <span class="site__cat">Wellness · Practice site</span>
-          <p class="site__desc">Practice site for a holistic counselling service, built around a calm, unhurried reading experience.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--sm" href="https://kaapsehoopadventures.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>kaapsehoopadventures.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(160deg,#5b6b6a 0%,#8fa09b 45%,#31403f 100%);color:#fff"><div class="cover__nav"><span>Trails</span><span>Stay</span></div><div class="cover__mid"><div class="cover__wm">Kaapsehoop</div><div class="cover__rule"></div><p class="cover__sub">Horse trails, teepees and off-grid stays on the escarpment above Nelspruit.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>Kaapsehoop Adventures</h3>
-          <span class="site__cat">Tourism · Booking site</span>
-          <p class="site__desc">Site for an off-grid escarpment retreat — horse trails, accommodation and volunteer programmes.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-      <a class="site site--sm" href="https://v1architects.co.za/" target="_blank" rel="noopener">
-        <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>v1architects.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#d9dbdd 0%,#f2f3f4 55%,#c5c8cb 100%);color:#3a3f47"><div class="cover__nav"><span>Projects</span><span>Practice</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#191c1f">V1</span></div><div class="cover__rule"></div><p class="cover__sub">Architecture practice portfolio.</p></div></div>
-        </div>
-        <div class="site__meta">
-          <h3>V1 Architects</h3>
-          <span class="site__cat">Architecture · Portfolio site</span>
-          <p class="site__desc">Portfolio site presenting the practice’s architectural work.</p>
-          <span class="site__go">Visit site <i>↗</i></span>
-        </div>
-      </a>
-    </div>
-    <p class="soc__note">Covers designed for this index — each card opens the live site.</p>
-  </div>
-</section>
 
 <!-- ═══ Social & digital campaigns ═══ -->
 <section class="soc pad" id="social" aria-label="Social and digital campaign work">
@@ -1495,7 +1471,7 @@ button{font-family:inherit;cursor:pointer}
     /* section headings + copy */
     gsap.utils.toArray(
       '.marks .kicker, .marks h2, .marks__note, .pad .kicker, .pad .h2, .explorer .lede, .beyond .lede, ' +
-      '.sites .lede, .soc .lede, .collab, .think .kicker, .think h2, .think .lede, .cta .kicker, .cta h2, .cta .lede'
+      '.soc .lede, .collab, .think .kicker, .think h2, .think .lede, .cta .kicker, .cta h2, .cta .lede'
     ).forEach(function (el) {
       gsap.from(el, {
         y: 34, opacity: 0, duration: .9, ease: 'power3.out',
@@ -1525,11 +1501,6 @@ button{font-family:inherit;cursor:pointer}
     });
 
     /* live sites + social wall */
-    gsap.from('.sgrid .site', {
-      y: 44, opacity: 0, duration: .8, stagger: .08, ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.sgrid', start: 'top 84%', once: true }
-    });
     gsap.from('.wall .spost', {
       y: 38, opacity: 0, scale: .98, duration: .75, stagger: .07, ease: 'power3.out',
       clearProps: 'transform,opacity',
