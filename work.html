@@ -373,6 +373,28 @@ button{font-family:inherit;cursor:pointer}
 .think h2{font-size:clamp(38px,5.4vw,84px);line-height:1.02;letter-spacing:-.01em;max-width:16ch;margin-bottom:28px}
 .think h2 span{color:#8d969e}
 .think .lede{max-width:52ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#505a63}
+/* ── Design behind GEMIS ── */
+.auth{background:#fff;border-top:1px solid #e2e2e7;padding:clamp(72px,11vh,130px) clamp(16px,3vw,40px)}
+.auth__in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:clamp(40px,6vw,110px);row-gap:0;align-items:start}
+.auth .kicker{color:#505a63}
+.auth__name{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(40px,5.6vw,88px);line-height:1;letter-spacing:-.02em;color:#191c1f;margin:clamp(20px,3.5vh,36px) 0 10px}
+.auth__role{font-size:clamp(17px,1.6vw,21px);font-weight:600;color:#a64b21;letter-spacing:-.1px}
+.auth__line{margin-top:18px;max-width:44ch;font-size:17px;line-height:1.6;letter-spacing:-.09px;color:#505a63}
+.auth__caps{margin-top:clamp(20px,3vh,30px);max-width:52ch;font-size:13.5px;line-height:2;letter-spacing:.02em;color:#8d969e}
+.auth__caps i{font-style:normal;color:#c9c9cd;margin:0 .55em}
+.auth__foot{grid-column:1/-1;margin-top:clamp(28px,4.5vh,48px)}
+.auth__ln{display:inline-flex;align-items:baseline;gap:8px;font-size:15px;font-weight:600;letter-spacing:.12px;color:#191c1f;position:relative;padding-bottom:4px}
+.auth__ln::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:100%;background:#a64b21;transform:scaleX(.32);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.auth__ln:hover::after{transform:scaleX(1)}
+.auth__ln i{font-style:normal;display:inline-block;transition:transform .3s}
+.auth__ln:hover i{transform:translate(3px,-3px)}
+.auth__stats{display:flex;flex-direction:column;margin-top:clamp(8px,6vh,64px)}
+.astat{display:flex;align-items:baseline;justify-content:space-between;gap:18px;border-top:1px solid #e2e2e7;padding:clamp(18px,3vh,26px) 0}
+.astat:last-child{border-bottom:1px solid #e2e2e7}
+.astat b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(34px,3.4vw,52px);line-height:1;letter-spacing:-.02em;color:#191c1f}
+.astat span{font-size:14px;color:#505a63;text-align:right;line-height:1.45;max-width:24ch}
+@media (max-width:1023px){.auth__in{grid-template-columns:1fr;row-gap:32px}.auth__stats{margin-top:0}.auth__foot{margin-top:clamp(4px,1vh,10px)}}
+
 .cta{background:#000;color:#fff;padding:clamp(80px,14vh,140px) clamp(16px,3vw,40px)}
 .cta .kicker{color:rgba(255,255,255,.72);margin-bottom:clamp(28px,5vh,48px)}
 .cta h2{font-size:clamp(48px,9vw,136px);line-height:1;letter-spacing:-.02em}
@@ -927,6 +949,26 @@ button{font-family:inherit;cursor:pointer}
   </div>
 </section>
 
+<!-- ═══ Design behind GEMIS ═══ -->
+<section class="auth" id="designer" aria-label="The designer behind the work">
+  <div class="wrap auth__in">
+    <div class="auth__id">
+      <p class="kicker">Designed by GEMIS</p>
+      <h2 class="auth__name">Sphamandla Xaba</h2>
+      <p class="auth__role">Product UI/UX Designer</p>
+      <p class="auth__line">Designing digital products, systems and experiences at GEMIS.</p>
+      <p class="auth__caps">Product Design <i>·</i> UI/UX <i>·</i> UX Strategy <i>·</i> AI Experiences <i>·</i> Digital Products <i>·</i> Systems <i>·</i> Web <i>·</i> Mobile</p>
+    </div>
+    <div class="auth__stats">
+      <div class="astat"><b>15+</b><span>Products, systems &amp; identities</span></div>
+      <div class="astat"><b>5</b><span>Areas of practice</span></div>
+    </div>
+    <div class="auth__foot">
+      <a class="auth__ln" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">View LinkedIn <i>↗</i></a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ CTA ═══ -->
 <section class="cta">
   <div class="wrap">
@@ -1283,6 +1325,23 @@ button{font-family:inherit;cursor:pointer}
       y: 48, opacity: 0, duration: .9, stagger: .14, ease: 'power3.out',
       clearProps: 'transform,opacity',
       scrollTrigger: { trigger: '.mo__grid', start: 'top 82%', once: true }
+    });
+
+    /* designer credit — label, name, role, line, capabilities, stats, then CTA */
+    gsap.from(['.auth .kicker', '.auth__name', '.auth__role', '.auth__line', '.auth__caps'], {
+      y: 30, opacity: 0, duration: .85, stagger: .12, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.auth', start: 'top 80%', once: true }
+    });
+    gsap.from('.astat', {
+      y: 26, opacity: 0, duration: .7, stagger: .16, ease: 'power3.out', delay: .48,
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.auth', start: 'top 80%', once: true }
+    });
+    gsap.from('.auth__ln', {
+      y: 18, opacity: 0, duration: .7, ease: 'power3.out', delay: .92,
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.auth', start: 'top 80%', once: true }
     });
 
     ScrollTrigger.refresh();
