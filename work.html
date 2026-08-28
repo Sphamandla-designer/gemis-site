@@ -24,7 +24,13 @@ button{font-family:inherit;cursor:pointer}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 [data-reveal]{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
 [data-reveal="2"]{animation-delay:.1s}[data-reveal="3"]{animation-delay:.2s}[data-reveal="4"]{animation-delay:.3s}
-@keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(420px)}}
+@keyframes wmTruck{0%,6%{top:10px}22%,30%{top:calc(33% - 2px)}46%,54%{top:calc(66% - 6px)}72%,96%{top:calc(100% - 22px)}100%{top:calc(100% - 22px)}}
+@keyframes wmFill{0%,6%{transform:scaleY(0)}22%,30%{transform:scaleY(.33)}46%,54%{transform:scaleY(.66)}72%,100%{transform:scaleY(1)}}
+@keyframes wmBar{0%,6%{transform:scaleX(0)}22%,30%{transform:scaleX(.33)}46%,54%{transform:scaleX(.66)}72%,100%{transform:scaleX(1)}}
+@keyframes wmS1{0%,5%{opacity:0;transform:scale(.4)}9%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
+@keyframes wmS2{0%,26%{opacity:0;transform:scale(.4)}31%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
+@keyframes wmS3{0%,50%{opacity:0;transform:scale(.4)}55%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
+@keyframes wmS4{0%,68%{opacity:0;transform:scale(.4)}73%,97%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.4)}}
 @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
 @keyframes glide{0%,100%{transform:translateX(0)}50%{transform:translateX(38px)}}
@@ -113,11 +119,6 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ── GEMIS brand tile ── */
-.gb{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,4%,40px);padding-bottom:clamp(52px,12%,72px)}
-.gb__g{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(64px,13vw,180px);line-height:.8;letter-spacing:-.05em;color:#191c1f}
-.gb__spec{font-size:14px;color:#8d969e;margin-bottom:14px}
-.gb__bar{display:flex;height:24px;border-radius:9999px;overflow:hidden}
-.gb__bar i{flex:1}
 
 /* ── Disciplines ── */
 .disc{background:#000;color:#fff}
@@ -127,7 +128,6 @@ button{font-family:inherit;cursor:pointer}
 .disc__row:hover{background:#16181a;padding-left:clamp(16px,2.4vw,32px)}
 .disc__row .nm{flex:0 0 auto;min-width:clamp(120px,16vw,240px);font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.48px}
 .disc__row .ln{flex:1;font-size:15px;line-height:1.6;color:rgba(255,255,255,.6)}
-.disc__row .cue{white-space:nowrap;font-size:14px;font-weight:600;letter-spacing:.24px;color:#a64b21}
 @media (max-width:1023px){.disc__row{flex-direction:column;align-items:flex-start;gap:10px}}
 
 /* ── Beyond screens collage ── */
@@ -343,12 +343,79 @@ button{font-family:inherit;cursor:pointer}
 .mo__a{grid-column:span 7;display:flex;flex-direction:column;gap:14px}
 .mo__b{grid-column:span 5;display:flex;flex-direction:column;gap:14px}
 @media (max-width:1023px){.mo__a,.mo__b{grid-column:span 12}}
-.mo__frame{position:relative;border-radius:28px;overflow:hidden;background:#0a0a0a}
-.mo__frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.mo__frame{position:relative;border-radius:28px;overflow:hidden;background:#101214;border:1px solid #26262b}
 .mo__a .mo__frame{aspect-ratio:16/10}
 .mo__b .mo__frame{aspect-ratio:4/5}
-.mo__scan{position:absolute;left:0;right:0;top:-110px;height:110px;background:linear-gradient(180deg,transparent,rgba(166,75,33,.4));animation:scan 5s linear infinite}
 .mo__cap{font-size:13px;color:rgba(255,255,255,.72)}
+/* ManaGem coded prototype */
+.pm{font-family:'Inter Var',sans-serif}
+.pm__bar{display:flex;align-items:center;gap:6px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.pm__bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
+.pm__bar span{margin-left:8px;font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
+.pm__body{position:absolute;inset:40px 0 0;display:flex}
+.pm__side{width:26%;border-right:1px solid rgba(255,255,255,.08);padding:16px 14px;display:flex;flex-direction:column;gap:8px}
+.pm__side b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:14px;color:#fff;margin-bottom:8px}
+.pm__side span{font-size:11.5px;color:rgba(255,255,255,.45);padding:6px 9px;border-radius:8px}
+.pm__side span.on{background:rgba(166,75,33,.18);color:#e08a5c}
+.pm__main{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.pm__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.pm__head b{font-size:14px;color:#fff}
+.pm__new{background:#a64b21;color:#fff;border-radius:9999px;font-size:11px;font-weight:600;padding:6px 12px;transition:transform .18s,box-shadow .18s}
+.pm--press1 .pm__new{transform:scale(.94);box-shadow:0 0 0 4px rgba(166,75,33,.28)}
+.pm__row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:9px 11px}
+.pm__row>i{width:26px;height:26px;border-radius:8px;font-style:normal;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.pm__row>div{flex:1;min-width:0}
+.pm__row b{display:block;font-size:12px;color:#fff}
+.pm__row small{font-size:9.5px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
+.pm__chip{font-style:normal;font-size:9px;font-weight:600;border-radius:9999px;padding:3px 8px;flex:none}
+.pm__chip--pend{background:rgba(245,183,60,.15);color:#f5b73c}
+.pm__chip--new{background:rgba(61,220,151,.14);color:#3ddc97;display:none}
+.pm--done .pm__chip--pend{display:none}
+.pm--done .pm__chip--new{display:inline-block}
+.pm__chip--ok{background:rgba(61,220,151,.14);color:#3ddc97}
+.pm__chip--gray{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+.pm__modal{position:absolute;left:50%;top:52%;transform:translate(-50%,-46%) scale(.94);width:min(64%,340px);background:#fff;border-radius:14px;padding:14px 16px;opacity:0;transition:opacity .35s,transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:7px;z-index:3}
+.pm--modal .pm__modal{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.pm__modal>b{font-size:13px;color:#191c1f;font-family:'Inter Tight Var',sans-serif;font-weight:600}
+.pm__lbl{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
+.pm__opts{display:flex;gap:6px}
+.pm__opts .o{flex:1;border:1.3px solid #e2e2e7;border-radius:9px;font-size:10px;font-weight:600;color:#3a3f47;text-align:center;padding:7px 4px;transition:border-color .25s,background .25s,color .25s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm--room .o1{border-color:#a64b21;background:#faeee6;color:#a64b21}
+.pm--time .t2{border-color:#a64b21;background:#faeee6;color:#a64b21}
+.pm__go{background:#191c1f;color:#fff;border-radius:9999px;font-size:11px;font-weight:600;text-align:center;padding:8px 0;margin-top:4px;transition:transform .18s,background .18s}
+.pm--press2 .pm__go{transform:scale(.96);background:#a64b21}
+.pm__toast{position:absolute;right:16px;top:50px;background:#fff;color:#191c1f;border-radius:10px;font-size:11px;font-weight:600;padding:9px 13px;box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s;z-index:4}
+.pm--done .pm__toast{opacity:1;transform:none}
+.pm__cursor{position:absolute;width:18px;height:18px;left:42%;top:76%;z-index:5;transition:left .85s cubic-bezier(.3,.7,.3,1),top .85s cubic-bezier(.3,.7,.3,1);filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+@media (max-width:640px){.mo__a .mo__frame{aspect-ratio:4/3}.pm__modal{width:80%}.pm__side{display:none}}
+.pm--toNew .pm__cursor{left:84%;top:15%}
+.pm--mcur .pm__cursor{left:40%;top:44%}
+.pm--room .pm__cursor{left:40%;top:44%}
+.pm--time .pm__cursor{left:51%;top:57%}
+.pm--press2 .pm__cursor{left:50%;top:69%}
+.pm--done .pm__cursor{left:66%;top:82%}
+/* WasteMart route loop */
+.mo__frame--ph{display:flex;align-items:center;justify-content:center}
+.wm__phone{width:min(70%,250px);height:84%;background:#17191c;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:16px 15px;display:flex;flex-direction:column;gap:14px}
+.wm__top b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:14px;color:#fff}
+.wm__top span{font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
+.wm__route{position:relative;flex:1;padding-left:20px;display:flex;flex-direction:column;justify-content:space-between}
+.wm__line,.wm__fill{position:absolute;left:5px;top:10px;bottom:10px;width:2px;background:rgba(255,255,255,.14)}
+.wm__fill{background:#3ddc97;transform-origin:top;transform:scaleY(0);animation:wmFill 12s linear infinite}
+.wm__truck{position:absolute;left:6px;top:10px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px rgba(61,220,151,.2);animation:wmTruck 12s linear infinite}
+.wm__stop{display:flex;align-items:center;gap:8px}
+.wm__stop>div{flex:1;min-width:0}
+.wm__stop b{display:block;font-size:11px;color:#fff}
+.wm__stop small{font-size:8.5px;color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace}
+.wm__stop em{font-style:normal;width:16px;height:16px;border-radius:50%;background:rgba(61,220,151,.16);color:#3ddc97;font-size:9px;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
+.wm__stop--1 em{animation:wmS1 12s linear infinite}
+.wm__stop--2 em{animation:wmS2 12s linear infinite}
+.wm__stop--3 em{animation:wmS3 12s linear infinite}
+.wm__stop--4 em{animation:wmS4 12s linear infinite}
+.wm__stat{display:flex;flex-direction:column;gap:6px}
+.wm__stat span{font-size:9.5px;color:rgba(255,255,255,.5)}
+.wm__stat i{display:block;height:5px;border-radius:9999px;background:rgba(255,255,255,.1);overflow:hidden}
+.wm__statfill{display:block;height:100%;border-radius:inherit;background:#3ddc97;transform-origin:left;transform:scaleX(0);animation:wmBar 12s linear infinite}
 .mo__ticker{grid-column:span 12;overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:24px 0}
 .mo__tickertrack{display:flex;gap:56px;width:max-content;animation:drift 26s linear infinite;font-size:14px;color:rgba(255,255,255,.72)}
 .mo__tickertrack span{white-space:nowrap}
@@ -408,6 +475,79 @@ button{font-family:inherit;cursor:pointer}
       <p class="meta" data-reveal="4">Brand · Digital · Product · Systems · AI · Strategy</p>
     </div>
   </div>
+</section>
+
+<!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
+<section class="marks" aria-label="Identity marks from the studio">
+  <p class="kicker">Marks in rotation</p>
+  <h2>Identities from the studio bench.</h2>
+  <div class="marks__rail">
+    <div class="marks__track">
+      <div class="mcard mcard--g">
+        <span class="mcard__mono">G<i>.</i></span>
+        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
+        <span class="mcard__meta">GEMIS® — 2026</span>
+      </div>
+      <div class="mcard mcard--gt">
+        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
+        <span class="mcard__cap">AI, put to work.</span>
+        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      </div>
+      <div class="mcard mcard--n">
+        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
+        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      </div>
+      <div class="mcard mcard--ts">
+        <span class="mcard__duo">T<em>S</em></span>
+        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
+      </div>
+      <div class="mcard mcard--au">
+        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
+          </linearGradient></defs>
+          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+      </div>
+      <div class="mcard mcard--k">
+        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
+        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--g">
+        <span class="mcard__mono">G<i>.</i></span>
+        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
+        <span class="mcard__meta">GEMIS® — 2026</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--gt">
+        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
+        <span class="mcard__cap">AI, put to work.</span>
+        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--n">
+        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
+        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--ts">
+        <span class="mcard__duo">T<em>S</em></span>
+        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--au">
+        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="msilv2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
+          </linearGradient></defs>
+          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv2)" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+      </div>
+      <div aria-hidden="true" class="mcard mcard--k">
+        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
+        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+      </div>
+    </div>
+  </div>
+  <p class="marks__note">Exploratory identities and original brand marks developed as part of our studio practice.</p>
 </section>
 
 <!-- ═══ Explorer ═══ -->
@@ -537,23 +677,6 @@ button{font-family:inherit;cursor:pointer}
         </div>
       </article>
 
-      <article class="card" data-cats="BRAND WEB STRATEGY">
-        <div class="card__visual">
-          <div class="gb" aria-hidden="true">
-            <div class="gb__g">G</div>
-            <div>
-              <div class="gb__spec">AaBbCc — Inter 400 / Inter Tight 500</div>
-              <div class="gb__bar"><i style="background:#000"></i><i style="background:#a64b21"></i><i style="background:#c9c9cd"></i><i style="background:#e2e2e7"></i></div>
-            </div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>GEMIS BrandStudio</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#191c1f"/><text x="12" y="28" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" fill="#fff">G</text></svg><div class="wt"><b>Our own identity</b><span>Brand · Digital · Web</span></div></div>
-          <p class="tagline">The system this studio runs on, applied from wordmark to interface.</p>
-        </div>
-      </article>
-
     </div>
 
     <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
@@ -571,11 +694,11 @@ button{font-family:inherit;cursor:pointer}
     <p class="kicker">What we make</p>
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px);max-width:20ch">Different outputs. One way of thinking.</h2>
     <div class="disc__list">
-      <button type="button" class="disc__row" data-goto="BRAND"><span class="nm">Brand</span><span class="ln">Identity systems · Positioning · Visual languages · Campaigns</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="WEB"><span class="nm">Digital</span><span class="ln">Websites · Digital experiences · Microsites · Content systems</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="PRODUCT"><span class="nm">Product</span><span class="ln">Apps · SaaS · Platforms · AI products</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="SYSTEMS"><span class="nm">Systems</span><span class="ln">Dashboards · Enterprise systems · Operational tools · Data interfaces</span><span class="cue" aria-hidden="true">View work →</span></button>
-      <button type="button" class="disc__row" data-goto="STRATEGY"><span class="nm">Strategy</span><span class="ln">Research · UX strategy · Product strategy · Digital transformation</span><span class="cue" aria-hidden="true">View work →</span></button>
+      <button type="button" class="disc__row" data-goto="BRAND"><span class="nm">Brand</span><span class="ln">Identity systems · Positioning · Visual languages · Campaigns</span></button>
+      <button type="button" class="disc__row" data-goto="WEB"><span class="nm">Digital</span><span class="ln">Websites · Digital experiences · Microsites · Content systems</span></button>
+      <button type="button" class="disc__row" data-goto="PRODUCT"><span class="nm">Product</span><span class="ln">Apps · SaaS · Platforms · AI products</span></button>
+      <button type="button" class="disc__row" data-goto="SYSTEMS"><span class="nm">Systems</span><span class="ln">Dashboards · Enterprise systems · Operational tools · Data interfaces</span></button>
+      <button type="button" class="disc__row" data-goto="STRATEGY"><span class="nm">Strategy</span><span class="ln">Research · UX strategy · Product strategy · Digital transformation</span></button>
     </div>
   </div>
 </section>
@@ -809,79 +932,6 @@ button{font-family:inherit;cursor:pointer}
 </section>
 
 
-<!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
-<section class="marks" aria-label="Identity marks from the studio">
-  <p class="kicker">Marks in rotation</p>
-  <h2>Identities from the studio bench.</h2>
-  <div class="marks__rail">
-    <div class="marks__track">
-      <div class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
-      </div>
-      <div class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
-      </div>
-      <div class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-      </div>
-      <div class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
-      </div>
-      <div class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-      </div>
-      <div class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--g">
-        <span class="mcard__mono">G<i>.</i></span>
-        <span class="mcard__cap">Driven by craft.<br>Built for those who notice.</span>
-        <span class="mcard__meta">GEMIS® — 2026</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--gt">
-        <svg width="64" height="64" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 l3.8 10.2 10.2 3.8 -10.2 3.8 -3.8 10.2 -3.8 -10.2 -10.2 -3.8 10.2 -3.8 z" fill="#D4A63C"/></svg>
-        <span class="mcard__cap">AI, put to work.</span>
-        <span class="mcard__meta">GEMIS.TECH — TRAINING</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--n">
-        <span class="mcard__mono mcard__mono--soft">n<i>.</i></span>
-        <span class="mcard__meta mcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--ts">
-        <span class="mcard__duo">T<em>S</em></span>
-        <span class="mcard__band">T Ā L A &nbsp;S T U D I O</span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--au">
-        <svg class="mcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
-          <defs><linearGradient id="msilv2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
-          </linearGradient></defs>
-          <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z" fill="none" stroke="url(#msilv2)" stroke-width="4" stroke-linejoin="round"/>
-        </svg>
-        <span class="mcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
-      </div>
-      <div aria-hidden="true" class="mcard mcard--k">
-        <span class="mcard__mono mcard__mono--k">K<i>›</i></span>
-        <span class="mcard__meta mcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
-      </div>
-    </div>
-  </div>
-  <p class="marks__note">Sample identities and own-brand marks — not client work.</p>
-</section>
-
 <!-- ═══ In motion ═══ -->
 <section class="motion pad">
   <div class="wrap">
@@ -889,18 +939,48 @@ button{font-family:inherit;cursor:pointer}
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px)">Designed to move.</h2>
     <div class="mo__grid">
       <div class="mo__a">
-        <div class="mo__frame">
-          <img src="assets/img/shots/managem-desk.jpg" alt="ManaGem dashboard on a desktop display" loading="lazy">
-          <div class="mo__scan" aria-hidden="true"></div>
+        <div class="mo__frame mo__frame--app pm" id="pmProto" role="img" aria-label="ManaGem booking flow — auto-playing prototype">
+          <div class="pm__bar" aria-hidden="true"><i></i><i></i><i></i><span>managem.app — bookings</span></div>
+          <div class="pm__body" aria-hidden="true">
+            <aside class="pm__side">
+              <b>ManaGem</b>
+              <span class="on">Bookings</span><span>Spaces</span><span>Billing</span><span>Access</span>
+            </aside>
+            <div class="pm__main">
+              <div class="pm__head"><b>Today</b><span class="pm__new">+ New booking</span></div>
+              <div class="pm__row"><i style="background:#a64b21">BR</i><div><b>Boardroom 2</b><small>09:30 – 11:00</small></div><em class="pm__chip pm__chip--pend">Pending</em><em class="pm__chip pm__chip--new">Confirmed</em></div>
+              <div class="pm__row"><i style="background:#2f5fd0">DK</i><div><b>Desk 14</b><small>11:00 – 17:00</small></div><em class="pm__chip pm__chip--ok">Confirmed</em></div>
+              <div class="pm__row"><i style="background:#3a3f47">SA</i><div><b>Studio A</b><small>14:15 – 16:00</small></div><em class="pm__chip pm__chip--gray">Closed</em></div>
+            </div>
+          </div>
+          <div class="pm__modal" aria-hidden="true">
+            <b>New booking</b>
+            <span class="pm__lbl">Space</span>
+            <div class="pm__opts"><span class="o o1">Boardroom 2</span><span class="o o2">Desk 14</span><span class="o o3">Studio A</span></div>
+            <span class="pm__lbl">Time</span>
+            <div class="pm__opts"><span class="o t1">08:00</span><span class="o t2">09:30</span><span class="o t3">13:00</span></div>
+            <div class="pm__go">Confirm — R450.00</div>
+          </div>
+          <div class="pm__toast" aria-hidden="true">✓ Booking confirmed — Boardroom 2, 09:30</div>
+          <svg class="pm__cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2 L20 11 L12.6 12.8 L9.6 21 Z" fill="#fff" stroke="#191c1f" stroke-width="1.6"/></svg>
         </div>
-        <p class="mo__cap">ManaGem — dashboard interactions in review</p>
+        <p class="mo__cap">ManaGem — booking flow prototype, playing on a loop</p>
       </div>
       <div class="mo__b">
-        <div class="mo__frame">
-          <img src="assets/img/shots/wastemart-driver.jpg" alt="WasteMart driver app flow on a phone" loading="lazy">
-          <div class="mo__scan" style="animation-delay:1.2s" aria-hidden="true"></div>
+        <div class="mo__frame mo__frame--ph" role="img" aria-label="WasteMart driver app — route progress animation">
+          <div class="wm__phone" aria-hidden="true">
+            <div class="wm__top"><b>WasteMart</b><span>ROUTE 12 — SANDTON</span></div>
+            <div class="wm__route">
+              <i class="wm__line"></i><i class="wm__fill"></i><i class="wm__truck"></i>
+              <div class="wm__stop wm__stop--1"><div><b>Depot — load out</b><small>06:40</small></div><em>✓</em></div>
+              <div class="wm__stop wm__stop--2"><div><b>Grayston Drive</b><small>07:15</small></div><em>✓</em></div>
+              <div class="wm__stop wm__stop--3"><div><b>Katherine St</b><small>08:05</small></div><em>✓</em></div>
+              <div class="wm__stop wm__stop--4"><div><b>Depot — weigh in</b><small>09:20</small></div><em>✓</em></div>
+            </div>
+            <div class="wm__stat"><span>Collections today</span><i><u class="wm__statfill"></u></i></div>
+          </div>
         </div>
-        <p class="mo__cap">WasteMart — driver check-in flow</p>
+        <p class="mo__cap">WasteMart — driver route run, looping</p>
       </div>
       <div class="mo__ticker">
         <div class="mo__tickertrack" aria-hidden="true">
@@ -946,6 +1026,9 @@ button{font-family:inherit;cursor:pointer}
   </div>
 </footer>
 
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
 <script>
 (function () {
   'use strict';
@@ -979,8 +1062,11 @@ button{font-family:inherit;cursor:pointer}
     moreBtn.textContent = expanded ? 'View less ↑' : 'View more ↓';
     if (scroll) {
       var el = document.getElementById('explorer');
-      window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 64, behavior: 'smooth' });
+      var top = window.scrollY + el.getBoundingClientRect().top - 64;
+      if (window.__smoothTo) { window.__smoothTo(top); }
+      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
     }
+    if (window.ScrollTrigger) { ScrollTrigger.refresh(); }
   }
   buttons.forEach(function (b) {
     b.addEventListener('click', function () { cat = b.dataset.cat; apply(false); });
@@ -996,6 +1082,96 @@ button{font-family:inherit;cursor:pointer}
   var rT;
   window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { apply(false); }, 200); });
   apply(false);
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── ManaGem prototype: auto-playing booking flow ── */
+  var pm = document.getElementById('pmProto');
+  if (pm) {
+    var PMBASE = 'mo__frame mo__frame--app pm';
+    if (reduced) {
+      pm.className = PMBASE + ' pm--done';
+    } else {
+      var seq = [
+        ['', 1400],
+        ['pm--toNew', 1000],
+        ['pm--toNew pm--press1', 420],
+        ['pm--modal pm--mcur', 1000],
+        ['pm--modal pm--room', 1000],
+        ['pm--modal pm--room pm--time', 1000],
+        ['pm--modal pm--room pm--time pm--press2', 460],
+        ['pm--done', 3200]
+      ];
+      var si = 0;
+      var playing = true;
+      (function step() {
+        if (playing) { pm.className = PMBASE + (seq[si][0] ? ' ' + seq[si][0] : ''); }
+        var d = seq[si][1];
+        si = (si + 1) % seq.length;
+        setTimeout(step, d);
+      })();
+      pm.addEventListener('mouseenter', function () { playing = false; });
+      pm.addEventListener('mouseleave', function () { playing = true; });
+    }
+  }
+
+  /* ── Smooth scroll (Lenis) + scroll-in animations (GSAP) ── */
+  if (!reduced && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    var lenis = null;
+    if (window.Lenis) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    }
+    window.__smoothTo = function (top) {
+      if (lenis) { lenis.scrollTo(top, { duration: .9 }); }
+      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    };
+
+    /* section headings + copy */
+    gsap.utils.toArray(
+      '.marks .kicker, .marks h2, .marks__note, .pad .kicker, .pad .h2, .explorer .lede, .beyond .lede, ' +
+      '.think .kicker, .think h2, .think .lede, .cta .kicker, .cta h2, .cta .lede'
+    ).forEach(function (el) {
+      gsap.from(el, {
+        y: 34, opacity: 0, duration: .9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+      });
+    });
+
+    /* work cards — staggered rise on first approach */
+    gsap.from('#workGrid .card:not(.is-hidden)', {
+      y: 56, opacity: 0, duration: .85, stagger: .1, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '#workGrid', start: 'top 85%', once: true }
+    });
+
+    /* beyond-screens tiles */
+    gsap.from('.bgrid .btile', {
+      y: 40, opacity: 0, scale: .97, duration: .75, stagger: .07, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.bgrid', start: 'top 82%', once: true }
+    });
+
+    /* discipline rows */
+    gsap.from('.disc__row', {
+      x: -44, opacity: 0, duration: .7, stagger: .09, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.disc__list', start: 'top 85%', once: true }
+    });
+
+    /* motion frames */
+    gsap.from('.mo__a, .mo__b', {
+      y: 48, opacity: 0, duration: .9, stagger: .14, ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.mo__grid', start: 'top 82%', once: true }
+    });
+
+    ScrollTrigger.refresh();
+  }
 })();
 </script>
 </body>
