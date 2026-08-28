@@ -62,7 +62,7 @@ button{font-family:inherit;cursor:pointer}
 .hero__in{position:relative;width:100%;max-width:1200px;margin:0 auto;padding:clamp(96px,16vh,160px) clamp(16px,3vw,40px) clamp(48px,9vh,96px)}
 .hero__badge{margin:0 0 clamp(24px,4vh,40px);display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.24px;color:rgba(255,255,255,.86);text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:9999px;padding:10px 20px}
 .hero__badge i{width:7px;height:7px;border-radius:9999px;background:#a64b21}
-.hero h1{font-size:clamp(44px,8vw,120px);line-height:1;letter-spacing:-.02em;text-shadow:0 2px 40px rgba(0,0,0,.45)}
+.hero h1{font-size:clamp(31px,4.5vw,62px);line-height:1.06;letter-spacing:-.02em;max-width:31ch;text-shadow:0 2px 40px rgba(0,0,0,.45)}
 .hero h1 span{color:rgba(255,255,255,.56)}
 .hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(24px,4vw,64px);margin-top:clamp(32px,6vh,64px)}
 .hero__row .lede{max-width:46ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:rgba(255,255,255,.8)}
@@ -175,7 +175,7 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ── Disciplines ── */
-.disc{background:#000;color:#fff}
+.disc{background:#000;color:#fff;position:relative;overflow:hidden}
 .disc .kicker{color:rgba(255,255,255,.72)}
 .disc__list{display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,.12)}
 .disc__row{display:flex;align-items:baseline;gap:clamp(20px,4vw,64px);width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.12);padding:clamp(24px,3vw,40px) clamp(4px,1vw,16px);color:#fff;transition:background .25s ease,padding-left .25s ease}
@@ -358,6 +358,35 @@ button{font-family:inherit;cursor:pointer}
 @media (max-width:640px){.kcol--b{display:none}.bb-z2{display:none}.bb-z1 p{display:none}.krow em{display:none}.uik{gap:12px}}
 
 
+
+/* ── Motion system ── */
+.mtn{position:fixed;top:0;left:0;right:0;height:2px;z-index:80;pointer-events:none}
+.mtn__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#a64b21,#e08a5c)}
+#workGrid.rv-on .card{opacity:0;transform:translateY(52px)}
+#workGrid.rv-on .card,#workGrid.rv-on .card .card__media,#workGrid.rv-on .card .win{transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1)}
+#workGrid.rv-on .card .card__media,#workGrid.rv-on .card .win{opacity:.5;transform:scale(1.05)}
+#workGrid.rv-on .card.is-in{opacity:1;transform:none}
+#workGrid.rv-on .card.is-in .card__media,#workGrid.rv-on .card.is-in .win{opacity:1;transform:none}
+/* cursor-tracked light on work cards */
+.card__visual{--gx:50%;--gy:50%}
+.card__glow{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .45s ease;background:radial-gradient(320px circle at var(--gx) var(--gy),rgba(255,255,255,.16),transparent 62%);mix-blend-mode:soft-light}
+.card:hover .card__glow{opacity:1}
+.card__visual{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+.card:hover .card__visual{transform:translateY(-3px);box-shadow:0 22px 48px rgba(25,28,31,.14)}
+.card__row h3,.card__row .tagline{transition:color .35s ease}
+.card:hover .card__row h3{color:#000}
+.card:hover .card__row .tagline{color:#3a3f47}
+/* social rows pick up the same light */
+.srow{--gx:50%}
+.srow::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(420px circle at var(--gx) 50%,rgba(166,75,33,.07),transparent 70%)}
+.srow:hover::after{opacity:1}
+/* ambient light that drifts through the dark sections */
+.amb{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.amb i{position:absolute;left:50%;top:40%;width:min(70vw,900px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(166,75,33,.16),transparent 62%);filter:blur(30px)}
+.motion .wrap,.disc .wrap,.cta .wrap{position:relative;z-index:1}
+@media (hover:none),(pointer:coarse){.card__glow,.srow::after{display:none}}
+@media (prefers-reduced-motion:reduce){.mtn,.amb{display:none}}
+
 /* ── Marks in rotation — auto-sliding identity cards ── */
 @font-face{font-family:'Archivo Var';src:url('assets/fonts/archivo-latin-wdth-normal.woff2') format('woff2-variations');font-weight:100 900;font-stretch:62.5% 125%;font-display:swap}
 .marks{background:#fff;border-top:1px solid #e2e2e7;padding:clamp(56px,9vh,96px) 0}
@@ -394,7 +423,7 @@ button{font-family:inherit;cursor:pointer}
 @media (max-width:640px){.mcard{width:62vw}}
 
 /* ── In motion ── */
-.motion{background:#000;color:#fff}
+.motion{background:#000;color:#fff;position:relative;overflow:hidden}
 .motion .kicker{color:rgba(255,255,255,.72)}
 .mo__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
 .mo__a{grid-column:span 7;display:flex;flex-direction:column;gap:14px}
@@ -457,6 +486,7 @@ button{font-family:inherit;cursor:pointer}
 </style>
 </head>
 <body>
+<div class="mtn" aria-hidden="true"><div class="mtn__bar" id="mtnBar"></div></div>
 
 <header class="hd">
   <span class="hd__logo">GEMIS<span> BrandStudio</span></span>
@@ -473,7 +503,7 @@ button{font-family:inherit;cursor:pointer}
   <div class="hero__s3" aria-hidden="true"></div>
   <div class="hero__in">
     <p class="hero__badge" data-reveal><i aria-hidden="true"></i>Portfolio</p>
-    <h1 data-reveal="2">From identity to interface.<br><span>From idea to experience.</span></h1>
+    <h1 data-reveal="2">We design the digital products, systems, <span>and experiences people use.</span></h1>
     <div class="hero__row">
       <p class="lede" data-reveal="3">Selected work across brand, digital products, websites, apps, systems and emerging experiences.</p>
       <div class="hero__side">
@@ -568,6 +598,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="WEB AI PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/portfolio/gemistech-mock.jpg" alt="Gemis.tech AI training platform on a desktop display against a dark wood-panelled wall" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -580,6 +611,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="PRODUCT SYSTEMS PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -592,6 +624,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="WEB PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/work/smartstart-mock.jpg" alt="SmartStart training platform on a laptop" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -604,6 +637,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone over a dark particle landscape" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -616,6 +650,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/shots/finos.jpg" alt="FINOS financial command centre on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -628,6 +663,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="AI PRODUCT APPS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -640,6 +676,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="APPS AI PRODUCT">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property app screens on two phones in a purple 3D set" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -652,6 +689,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="SYSTEMS PRODUCT">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme system on a laptop against a concrete wall" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -664,6 +702,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="APPS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone on an orange industrial surface" loading="lazy"></div>
         </div>
         <div class="card__row">
@@ -676,6 +715,7 @@ button{font-family:inherit;cursor:pointer}
 
       <article class="card" data-cats="WEB PLATFORMS SYSTEMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hodlotc.com</span></div>
           <div class="cover" style="background:linear-gradient(150deg,#0b1220 0%,#111f34 58%,#0b1220 100%);color:#fff"><div class="cover__nav"><span>Trade</span><span>Services</span><span>Security</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">HODL<span style="color:#21d07a">OTC</span></div><div class="cover__rule"></div><p class="cover__sub">Over-the-counter desk for Bitcoin, Ethereum and leading digital assets — single-price settlement, full KYC, registered FSP.</p></div></div>
@@ -690,6 +730,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB BRAND">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>towerbosch.com</span></div>
           <div class="cover" style="background:linear-gradient(155deg,#3f3527 0%,#5c4a34 55%,#2c251b 100%);color:#fff"><div class="cover__nav"><span>Menu</span><span>The farm</span><span>Bookings</span><span>Visit</span></div><div class="cover__mid"><div class="cover__wm">Towerbosch</div><div class="cover__rule"></div><p class="cover__sub">Traditional boerekos served under the trees on Knorhoek farm, six kilometres outside Stellenbosch.</p></div></div>
@@ -704,6 +745,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>berliner.co.za</span></div>
           <div class="cover" style="background:linear-gradient(160deg,#8e1b1b 0%,#5d1212 100%);color:#fff"><div class="cover__nav"><span>Shop</span><span>Butchery</span><span>Deli</span><span>Stores</span></div><div class="cover__mid"><div class="cover__wm">Berliner</div><div class="cover__rule"></div><p class="cover__sub">Wholesale continental butchery and delicatessen — beef, lamb, pork and poultry, with home delivery.</p></div></div>
@@ -718,6 +760,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB STRATEGY">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>obsidianwealth.co.za</span></div>
           <div class="cover" style="background:linear-gradient(150deg,#14161a 0%,#25292f 60%,#0e1013 100%);color:#fff"><div class="cover__nav"><span>Approach</span><span>Products</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">Obsidian<span style="opacity:.55"> Wealth</span></div><div class="cover__rule"></div><p class="cover__sub">Boutique advisory in digital assets, yield products and alternative wealth architecture.</p></div></div>
@@ -732,6 +775,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB PLATFORMS">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>saltbru.com</span></div>
           <div class="cover" style="background:linear-gradient(155deg,#241f1c 0%,#3d332b 52%,#1a1613 100%);color:#fff"><div class="cover__nav"><span>Butchery</span><span>Biltong</span><span>Deals</span><span>Delivery</span></div><div class="cover__mid"><div class="cover__wm">Salt<span style="color:#e0a33d">Bru</span></div><div class="cover__rule"></div><p class="cover__sub">Online butchery delivering restaurant-quality cuts across Gauteng — vacuum-sealed and cold-packed.</p></div></div>
@@ -746,6 +790,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB BRAND">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hivestudio.co.za</span></div>
           <div class="cover" style="background:linear-gradient(150deg,#e8a33d 0%,#c9761c 100%);color:#2a2015"><div class="cover__nav"><span>Work</span><span>Studio</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#1f1a12">Hive</span></div><div class="cover__rule"></div><p class="cover__sub">Full-service creative studio in Nelspruit — branding, digital and social.</p></div></div>
@@ -760,6 +805,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>havenholistic.co.za</span></div>
           <div class="cover" style="background:linear-gradient(155deg,#6e8b74 0%,#3f5546 100%);color:#fff"><div class="cover__nav"><span>Therapy</span><span>About</span></div><div class="cover__mid"><div class="cover__wm">Haven</div><div class="cover__rule"></div><p class="cover__sub">A safe space for growth, healing and self-discovery — holistic counselling.</p></div></div>
@@ -774,6 +820,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>kaapsehoopadventures.co.za</span></div>
           <div class="cover" style="background:linear-gradient(160deg,#5b6b6a 0%,#8fa09b 45%,#31403f 100%);color:#fff"><div class="cover__nav"><span>Trails</span><span>Stay</span></div><div class="cover__mid"><div class="cover__wm">Kaapsehoop</div><div class="cover__rule"></div><p class="cover__sub">Horse trails, teepees and off-grid stays on the escarpment above Nelspruit.</p></div></div>
@@ -788,6 +835,7 @@ button{font-family:inherit;cursor:pointer}
       </article>
       <article class="card" data-cats="WEB BRAND">
         <div class="card__visual">
+          <span class="card__glow" aria-hidden="true"></span>
           <div class="win">
           <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>v1architects.co.za</span></div>
           <div class="cover" style="background:linear-gradient(155deg,#d9dbdd 0%,#f2f3f4 55%,#c5c8cb 100%);color:#3a3f47"><div class="cover__nav"><span>Projects</span><span>Practice</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#191c1f">V1</span></div><div class="cover__rule"></div><p class="cover__sub">Architecture practice portfolio.</p></div></div>
@@ -864,6 +912,7 @@ button{font-family:inherit;cursor:pointer}
 
 <!-- ═══ Disciplines ═══ -->
 <section class="disc pad">
+  <div class="amb" aria-hidden="true"><i></i></div>
   <div class="wrap">
     <p class="kicker">What we make</p>
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px);max-width:20ch">Different outputs. One way of thinking.</h2>
@@ -1108,6 +1157,7 @@ button{font-family:inherit;cursor:pointer}
 
 <!-- ═══ In motion ═══ -->
 <section class="motion pad">
+  <div class="amb" aria-hidden="true"><i></i></div>
   <div class="wrap">
     <p class="kicker">In motion</p>
     <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px)">Designed to move.</h2>
@@ -1487,52 +1537,141 @@ button{font-family:inherit;cursor:pointer}
       else { window.scrollTo({ top: top, behavior: 'smooth' }); }
     };
 
-    /* section headings + copy */
+    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var wide = window.matchMedia('(min-width: 768px)').matches;
+    var EASE = 'power3.out';
+
+    /* ── scroll progress ── */
+    var bar = document.getElementById('mtnBar');
+    if (bar) {
+      gsap.to(bar, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: .3 }
+      });
+    }
+
+    /* ── typography: heading masks, copy follows ── */
+    gsap.utils.toArray('.marks h2, .pad .h2, .think h2, .cta h2').forEach(function (el) {
+      gsap.from(el, {
+        yPercent: 18, opacity: 0, duration: 1.05, ease: 'expo.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
     gsap.utils.toArray(
-      '.marks .kicker, .marks h2, .marks__note, .pad .kicker, .pad .h2, .explorer .lede, .beyond .lede, ' +
-      '.soc .lede, .collab, .think .kicker, .think h2, .think .lede, .cta .kicker, .cta h2, .cta .lede'
+      '.marks .kicker, .pad .kicker, .think .kicker, .cta .kicker, .marks__note, ' +
+      '.explorer .lede, .beyond .lede, .soc .lede, .collab, .think .lede, .cta .lede, .exp__head .note'
     ).forEach(function (el) {
       gsap.from(el, {
-        y: 34, opacity: 0, duration: .9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+        y: 22, opacity: 0, duration: .8, ease: EASE, delay: .06,
+        clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
       });
     });
 
-    /* work cards — staggered rise on first approach */
-    gsap.from('#workGrid .card:not(.is-hidden)', {
-      y: 56, opacity: 0, duration: .85, stagger: .1, ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '#workGrid', start: 'top 85%', once: true }
+    /* ── work cards: organic entrance that survives filtering and View more ── */
+    var wg = document.getElementById('workGrid');
+    if (wg) {
+      wg.classList.add('rv-on');
+      var cardIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) { return; }
+          var idx = Array.prototype.indexOf.call(wg.children, en.target);
+          en.target.style.transitionDelay = ((idx % 4) * 70) + 'ms';
+          en.target.classList.add('is-in');
+          cardIO.unobserve(en.target);
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
+      Array.prototype.forEach.call(wg.querySelectorAll('.card'), function (c) { cardIO.observe(c); });
+    }
+
+    /* ── depth: visuals drift a few pixels against the scroll ── */
+    if (wide) {
+      gsap.utils.toArray('#workGrid .card .card__media img').forEach(function (img) {
+        gsap.fromTo(img, { yPercent: -2.5 }, {
+          yPercent: 2.5, ease: 'none',
+          scrollTrigger: { trigger: img.closest('.card'), start: 'top bottom', end: 'bottom top', scrub: .6 }
+        });
+      });
+      gsap.to('.hero__bg', {
+        yPercent: 8, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .5 }
+      });
+      gsap.utils.toArray('.amb i').forEach(function (el) {
+        gsap.fromTo(el, { yPercent: -14, xPercent: -58 }, {
+          yPercent: 14, xPercent: -42, ease: 'none',
+          scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+      });
+    }
+
+    /* ── beyond screens: artefacts arrive at their own pace ── */
+    gsap.utils.toArray('.bgrid .btile').forEach(function (tile, i) {
+      gsap.from(tile, {
+        y: 46 + (i % 3) * 10, opacity: 0, scale: .975, duration: .9, ease: EASE, delay: (i % 3) * .05,
+        clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: tile, start: 'top 90%', once: true }
+      });
+      if (wide) {
+        gsap.fromTo(tile, { yPercent: (i % 3) - 1 }, {
+          yPercent: ((i % 3) - 1) * -2.2, ease: 'none',
+          scrollTrigger: { trigger: '.bgrid', start: 'top bottom', end: 'bottom top', scrub: .8 }
+        });
+      }
     });
 
-    /* beyond-screens tiles */
-    gsap.from('.bgrid .btile', {
-      y: 40, opacity: 0, scale: .97, duration: .75, stagger: .07, ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.bgrid', start: 'top 82%', once: true }
-    });
-
-    /* discipline rows */
+    /* ── discipline rows ── */
     gsap.from('.disc__row', {
-      x: -44, opacity: 0, duration: .7, stagger: .09, ease: 'power3.out',
+      x: -40, opacity: 0, duration: .75, stagger: .08, ease: EASE,
       clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.disc__list', start: 'top 85%', once: true }
+      scrollTrigger: { trigger: '.disc__list', start: 'top 86%', once: true }
     });
 
-    /* live sites + social wall */
+    /* ── social index ── */
     gsap.from('.srow', {
-      y: 26, opacity: 0, duration: .7, stagger: .075, ease: 'power3.out',
+      y: 24, opacity: 0, duration: .7, stagger: .07, ease: EASE,
       clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.sidx', start: 'top 86%', once: true }
+      scrollTrigger: { trigger: '.sidx', start: 'top 88%', once: true }
     });
 
-    /* motion frames */
-    gsap.from('.mo__a, .mo__b', {
-      y: 48, opacity: 0, duration: .9, stagger: .14, ease: 'power3.out',
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.mo__grid', start: 'top 82%', once: true }
+    /* ── in motion: the frames settle, then the prototypes take over ── */
+    gsap.utils.toArray('.mo__a, .mo__b').forEach(function (el, i) {
+      gsap.from(el, {
+        y: 44, opacity: 0, scale: .985, duration: 1, ease: 'expo.out', delay: i * .1,
+        clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: '.mo__grid', start: 'top 86%', once: true }
+      });
     });
 
+    /* ── marks marquee eases in ── */
+    gsap.from('.marks__rail', {
+      opacity: 0, y: 26, duration: .9, ease: EASE,
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: '.marks__rail', start: 'top 92%', once: true }
+    });
+
+    /* ── cursor light: one rAF pass, transform-free ── */
+    if (fine) {
+      var glowQueue = [], glowPending = false;
+      function flushGlow() {
+        glowPending = false;
+        for (var i = 0; i < glowQueue.length; i++) {
+          var g = glowQueue[i];
+          g.el.style.setProperty('--gx', g.x + 'px');
+          if (g.hasY) { g.el.style.setProperty('--gy', g.y + 'px'); }
+        }
+        glowQueue.length = 0;
+      }
+      function track(el, hasY) {
+        el.addEventListener('pointermove', function (e) {
+          var r = el.getBoundingClientRect();
+          glowQueue.push({ el: el, x: Math.round(e.clientX - r.left), y: Math.round(e.clientY - r.top), hasY: hasY });
+          if (!glowPending) { glowPending = true; requestAnimationFrame(flushGlow); }
+        });
+      }
+      document.querySelectorAll('#workGrid .card .card__visual').forEach(function (el) { track(el, true); });
+      document.querySelectorAll('.srow').forEach(function (el) { track(el, false); });
+    }
 
     ScrollTrigger.refresh();
   }
