@@ -147,29 +147,44 @@ h1, h2, h3, h4 {
   justify-content: space-between;
   gap: 24px;
 }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* The logo is a single traced sprite filled with currentColor, so it simply
+   inherits whatever colour its context sets — white over the dark hero and
+   photographic bands, navy on paper. */
+.logo {
+  display: block;
+  width: auto;
+  height: 100%;
+  fill: currentColor;
+}
+
 .nav__logo {
   position: relative;
   z-index: 2;
-  font-size: clamp(21px, 1.7vw, 25px);
-  font-weight: 700;
-  letter-spacing: -.035em;
+  display: block;
+  height: clamp(26px, 2.1vw, 32px);
   color: #fff;
   transition: color .4s var(--ease);
 }
-.nav__logo i { font-style: normal; color: inherit; }
+.nav__logo .logo { filter: drop-shadow(0 1px 2px rgba(4, 20, 38, .28)); }
+.nav.is-stuck .nav__logo .logo,
+.nav.is-mega .nav__logo .logo { filter: none; }
+.nav__drawer { display: contents; }
+
 .nav__links {
   display: flex;
   align-items: center;
   gap: clamp(20px, 2.6vw, 40px);
   margin: 0; padding: 0; list-style: none;
 }
-.nav__links a {
+.nav__links > li > a {
   position: relative;
   font-size: clamp(13.5px, 1vw, 15px);
   color: rgba(255,255,255,.92);
   transition: color .4s var(--ease), opacity .3s var(--ease);
 }
-.nav__links a::after {
+.nav__links > li > a::after {
   content: '';
   position: absolute; left: 0; bottom: -5px;
   width: 100%; height: 1px;
@@ -178,7 +193,7 @@ h1, h2, h3, h4 {
   transform-origin: right;
   transition: transform .4s var(--ease);
 }
-.nav__links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav__links > li > a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 /* solid state once scrolled past the hero */
 .nav.is-stuck {
@@ -187,9 +202,20 @@ h1, h2, h3, h4 {
   box-shadow: 0 1px 0 var(--rule);
   padding-block: 14px;
 }
+/* The open panel is paper, so the bar above it must be too — otherwise the
+   logo and links sit navy-on-blue. Padding is left alone so the panel, which
+   hangs off the bar's bottom edge, does not jump as it opens. */
+.nav.is-mega {
+  background: var(--paper);
+  backdrop-filter: none;
+  box-shadow: none;
+}
 .nav.is-stuck .nav__logo,
-.nav.is-stuck .nav__links a { color: var(--ink); }
-.nav.is-stuck .nav__burger span { background: var(--ink); }
+.nav.is-mega .nav__logo { color: var(--navy); }
+.nav.is-stuck .nav__links > li > a, .nav.is-stuck .nav__trigger,
+.nav.is-mega .nav__links > li > a, .nav.is-mega .nav__trigger { color: var(--ink); }
+.nav.is-stuck .nav__burger span,
+.nav.is-mega .nav__burger span { background: var(--ink); }
 
 .nav__burger {
   position: relative;
@@ -211,6 +237,124 @@ h1, h2, h3, h4 {
 .nav.is-open .nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .nav.is-open .nav__burger span:nth-child(2) { opacity: 0; }
 .nav.is-open .nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   PRODUCTS MEGA MENU
+   Expands under the header on hover (pointer) or click/keyboard, in the
+   manner of accenture.com's top-level menus.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.nav__item--mega { position: static; }
+
+.nav__trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: clamp(13.5px, 1vw, 15px);
+  line-height: inherit;
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+  transition: color .4s var(--ease);
+}
+.nav__chev { width: 10px; height: 6px; transition: transform .35s var(--ease); }
+.nav__item--mega[data-open] .nav__chev { transform: rotate(180deg); }
+
+.nav__trigger::after {
+  content: '';
+  position: absolute; left: 0; bottom: -5px;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .4s var(--ease);
+}
+.nav__item--mega[data-open] .nav__trigger::after,
+.nav__trigger:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid var(--rule-soft);
+  box-shadow: 0 28px 44px -30px rgba(10, 18, 38, .34);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity .34s var(--ease), transform .34s var(--ease), visibility .34s;
+}
+.mega.is-open { opacity: 1; visibility: visible; transform: none; }
+
+.mega__in { padding-block: clamp(30px, 3.4vw, 48px) clamp(32px, 3.6vw, 52px); }
+
+.mega__head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: baseline;
+  padding-bottom: clamp(22px, 2.6vw, 34px);
+  margin-bottom: clamp(24px, 2.8vw, 38px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.mega__head .eyebrow { margin: 0; }
+.mega__lede { margin: 0; max-width: 78ch; color: var(--ink-2); font-size: clamp(13px, .96vw, 14.5px); }
+
+.mega__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.6vw, 40px);
+}
+
+.prod { display: flex; flex-direction: column; }
+.prod__body { display: flex; flex-direction: column; flex: 1 1 auto; min-width: 0; }
+.prod__media {
+  display: block;
+  overflow: hidden;
+  margin-bottom: clamp(16px, 1.8vw, 22px);
+  background: #e4e4e0;
+}
+.prod__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform .7s var(--ease);
+}
+.prod:hover .prod__media img { transform: scale(1.04); }
+
+.prod__name {
+  margin: 0 0 10px;
+  font-size: clamp(17px, 1.35vw, 21px);
+  letter-spacing: -.018em;
+  color: var(--ink);
+}
+.prod__desc {
+  margin: 0 0 clamp(16px, 1.8vw, 22px);
+  font-size: clamp(12.5px, .94vw, 14px);
+  line-height: 1.62;
+  color: var(--ink-2);
+}
+.prod__cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 9px;
+  margin-top: auto;
+  padding: 11px 20px;
+  border: 1px solid var(--navy);
+  border-radius: 999px;
+  font-size: clamp(12.5px, .93vw, 14px);
+  color: var(--navy);
+  transition: background .35s var(--ease), color .35s var(--ease);
+}
+.prod__cta svg { width: 11px; height: 11px; transition: transform .35s var(--ease); }
+.prod__cta:hover { background: var(--navy); color: #fff; }
+.prod__cta:hover svg { transform: translate(3px, -3px); }
 
 /* ══════════════════════════════════════════════════════════════════════
    HERO
@@ -483,55 +627,6 @@ h1, h2, h3, h4 {
 .lead .arrow-link { color: #fff; }
 
 /* ══════════════════════════════════════════════════════════════════════
-   TEAM
-   ══════════════════════════════════════════════════════════════════════ */
-
-.team { position: relative; padding-top: clamp(72px, 9vw, 126px); overflow: hidden; }
-.team .dotgrid { right: 0; top: 2%; width: 18%; height: 260px; opacity: .5;
-  -webkit-mask-image: linear-gradient(240deg, #000, transparent 76%);
-          mask-image: linear-gradient(240deg, #000, transparent 76%); }
-.team__head {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: clamp(28px, 5vw, 76px);
-  align-items: end;
-  padding-bottom: clamp(32px, 4.2vw, 56px);
-}
-
-.people {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--rule-soft);
-  border-bottom: 0;
-}
-.person {
-  padding: clamp(18px, 2vw, 26px);
-  border-right: 1px solid var(--rule-soft);
-  border-bottom: 1px solid var(--rule-soft);
-}
-.person:nth-child(3n) { border-right: 0; }
-.person__face {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 5;
-  margin-bottom: clamp(16px, 1.8vw, 24px);
-  background: linear-gradient(158deg, #dfe1e6 0%, #c9ccd4 52%, #b9bdc7 100%);
-  color: var(--navy);
-  font-size: clamp(34px, 3.6vw, 52px);
-  letter-spacing: .01em;
-  font-weight: 500;
-  transition: filter .5s var(--ease);
-}
-.person:hover .person__face { filter: brightness(1.05) saturate(1.1); }
-.person__n {
-  margin: 0 0 5px;
-  font-size: clamp(15px, 1.15vw, 17.5px);
-  letter-spacing: -.012em;
-}
-.person__r { margin: 0; font-size: clamp(12.5px, .93vw, 14px); color: var(--ink-3); line-height: 1.45; }
-
-/* ══════════════════════════════════════════════════════════════════════
    WORK
    ══════════════════════════════════════════════════════════════════════ */
 
@@ -679,11 +774,9 @@ h1, h2, h3, h4 {
   padding-bottom: clamp(46px, 6vw, 78px);
 }
 .foot__logo {
-  display: inline-block;
-  margin-bottom: 18px;
-  font-size: clamp(23px, 1.9vw, 28px);
-  font-weight: 700;
-  letter-spacing: -.035em;
+  display: block;
+  height: clamp(30px, 2.4vw, 36px);
+  margin-bottom: 20px;
   color: var(--navy);
 }
 .foot__blurb { margin: 0 0 20px; max-width: 34ch; font-size: clamp(13px, .96vw, 14.5px); color: var(--ink-2); }
@@ -733,12 +826,13 @@ h1, h2, h3, h4 {
 
 @media (max-width: 900px) {
   .nav__burger { display: block; }
-  .nav__links {
+  .nav__drawer {
+    display: block;
     position: fixed;
     inset: 0 0 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    max-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: clamp(86px, 13vh, 112px) var(--gutter) 34px;
     background: var(--paper);
     box-shadow: 0 20px 40px -28px rgba(0,0,0,.4);
@@ -746,25 +840,61 @@ h1, h2, h3, h4 {
     transition: transform .55s var(--ease);
     visibility: hidden;
   }
-  .nav.is-open .nav__links { transform: none; visibility: visible; }
+  .nav.is-open .nav__drawer { transform: none; visibility: visible; }
+
+  .nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 0;
+  }
   /* the open panel is light, so the wordmark and burger must flip to ink */
-  .nav.is-open .nav__logo { color: var(--ink); }
+  .nav.is-open .nav__logo { color: var(--navy); }
   .nav.is-open .nav__burger span { background: var(--ink); }
-  .nav__links a { color: var(--ink); font-size: 19px; padding-block: 9px; }
-  .nav__links a::after { display: none; }
+  .nav__links > li > a { color: var(--ink); font-size: 19px; padding-block: 9px; }
+  .nav__links > li > a::after { display: none; }
+
+  /* Products becomes an in-panel accordion on small screens */
+  .nav__item--mega { position: static; width: 100%; }
+  .nav__trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding-block: 9px;
+    font-size: 19px;
+    color: var(--ink);
+  }
+  .nav__trigger::after { display: none; }
+
+  .mega {
+    position: static;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: none;
+    border-top: 0;
+    box-shadow: none;
+    transition: none;
+  }
+  .mega.is-open { display: block; }
+  .mega__in { padding: 14px 0 18px; }
+  .mega__head { display: none; }
+  .mega__grid { grid-template-columns: 1fr; gap: 20px; }
+
+  .prod { flex-direction: row; gap: 14px; align-items: flex-start; }
+  .prod__media { flex: 0 0 96px; margin-bottom: 0; }
+  .prod__body { flex: 1 1 auto; min-width: 0; }
+  .prod__name { font-size: 16px; margin-bottom: 6px; }
+  .prod__desc { margin-bottom: 12px; font-size: 13px; line-height: 1.5; }
+  .prod__cta { padding: 8px 15px; font-size: 12.5px; }
 
   .about__grid,
   .values__head,
-  .team__head,
   .work__head { grid-template-columns: 1fr; }
   .about__title, .values__head .display, .lead__title { max-width: 22ch; }
 
   .row { grid-template-columns: 44px 1fr; row-gap: 6px; }
   .row__body { grid-column: 2; }
-
-  .people { grid-template-columns: repeat(2, 1fr); }
-  .person:nth-child(3n) { border-right: 1px solid var(--rule-soft); }
-  .person:nth-child(2n) { border-right: 0; }
 
   .stories { grid-template-columns: 1fr; }
   .lead__cols { grid-template-columns: 1fr; }
@@ -777,8 +907,6 @@ h1, h2, h3, h4 {
   .cards { grid-template-columns: 1fr; }
   .card { min-height: 0; }
   .card__icon { margin-bottom: 20px; }
-  .people { grid-template-columns: 1fr; }
-  .person { border-right: 0 !important; }
   .foot__grid { grid-template-columns: 1fr; }
   .foot__bar { flex-direction: column; align-items: flex-start; }
   .cta__form { flex-wrap: wrap; border-radius: 14px; }
