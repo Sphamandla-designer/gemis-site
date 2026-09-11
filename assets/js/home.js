@@ -22,12 +22,19 @@
 
   /* ── mobile menu ─────────────────────────────────────────────────────── */
   var burger = document.getElementById('navBurger');
-  var links = document.getElementById('navLinks');
+  var links = document.getElementById('navDrawer');
 
   function closeMenu() {
     if (!nav) return;
     nav.classList.remove('is-open');
     if (burger) burger.setAttribute('aria-expanded', 'false');
+    var panel = document.getElementById('productsMenu');
+    var trigger = document.getElementById('productsTrigger');
+    if (panel) panel.classList.remove('is-open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    var item = document.querySelector('[data-mega]');
+    if (item) item.removeAttribute('data-open');
+    nav.classList.remove('is-mega');
   }
 
   if (burger && nav && links) {
@@ -37,11 +44,80 @@
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
     links.addEventListener('click', function (e) {
-      if (e.target.closest('a')) closeMenu();
+      if (e.target.closest('a')) closeMenu();   // real navigation only
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMenu();
     });
+  }
+
+  /* ── products mega menu ──────────────────────────────────────────────
+        Hover opens it on pointer devices (with a close delay so the cursor can
+        travel diagonally into the panel); click and keyboard drive it
+        everywhere, which is also the whole story on touch and inside the
+        mobile burger panel. */
+
+  var megaItem = document.querySelector('[data-mega]');
+  var megaTrigger = document.getElementById('productsTrigger');
+  var megaPanel = document.getElementById('productsMenu');
+
+  if (megaItem && megaTrigger && megaPanel && nav) {
+    var closeTimer = null;
+    var megaOpen = false;
+
+    var setMega = function (open) {
+      megaOpen = open;
+      megaPanel.classList.toggle('is-open', open);
+      megaItem.toggleAttribute('data-open', open);
+      megaTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      // the panel is light, so the header has to leave its transparent state
+      nav.classList.toggle('is-mega', open);
+    };
+
+    var openMega = function () { clearTimeout(closeTimer); if (!megaOpen) setMega(true); };
+    var closeMega = function () { clearTimeout(closeTimer); if (megaOpen) setMega(false); };
+    var deferClose = function () {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(closeMega, 220);
+    };
+
+    megaTrigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      megaOpen ? closeMega() : openMega();
+    });
+
+    // hover only where a real pointer exists; touch would fire it on every tap
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      [megaItem, megaPanel].forEach(function (el) {
+        el.addEventListener('mouseenter', openMega);
+        el.addEventListener('mouseleave', deferClose);
+      });
+    }
+
+    // Keyboard opens it on focus, but only for keyboard focus: a mouse or touch
+    // press focuses the button first and would otherwise open the panel just in
+    // time for the click handler to toggle it straight back shut.
+    megaTrigger.addEventListener('focus', function () {
+      var keyboard = true;
+      try { keyboard = megaTrigger.matches(':focus-visible'); } catch (err) { /* older engines */ }
+      if (keyboard) openMega();
+    });
+    document.addEventListener('focusin', function (e) {
+      if (!megaOpen) return;
+      if (!megaItem.contains(e.target) && !megaPanel.contains(e.target)) closeMega();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && megaOpen) { closeMega(); megaTrigger.focus(); }
+    });
+
+    // a click anywhere else, or any scroll, dismisses it
+    document.addEventListener('click', function (e) {
+      if (megaOpen && !megaItem.contains(e.target) && !megaPanel.contains(e.target)) closeMega();
+    });
+    window.addEventListener('scroll', function () {
+      if (megaOpen && !nav.classList.contains('is-open')) closeMega();
+    }, { passive: true });
   }
 
   /* ── scroll reveals + stat counters ─────────────────────────────────
