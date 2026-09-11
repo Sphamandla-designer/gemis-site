@@ -240,6 +240,42 @@
   window.addEventListener('hashchange', openFromHash);
   openFromHash();
 
+  /* ── work filters ────────────────────────────────────────────────────
+        Filtering is attribute-driven: each tile lists its disciplines and a
+        button matches against them. Tiles are hidden with the hidden
+        attribute, so they leave the a11y tree as well as the layout. */
+
+  var filterBar = document.querySelector('[data-filters]');
+
+  if (filterBar) {
+    var tiles = [].slice.call(document.querySelectorAll('[data-tags]'));
+    var countEl = document.querySelector('[data-count-out]');
+    var buttons = [].slice.call(filterBar.querySelectorAll('button'));
+
+    var apply = function (want) {
+      var shown = 0;
+      tiles.forEach(function (tile) {
+        var tags = (tile.getAttribute('data-tags') || '').split(/\s+/);
+        var match = want === 'all' || tags.indexOf(want) !== -1;
+        tile.hidden = !match;
+        if (match) shown++;
+      });
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-filter') === want ? 'true' : 'false');
+      });
+      if (countEl) {
+        countEl.textContent = shown + (shown === 1 ? ' project' : ' projects');
+      }
+    };
+
+    filterBar.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-filter]');
+      if (btn) apply(btn.getAttribute('data-filter'));
+    });
+
+    apply('all');
+  }
+
   /* ── contact form → email hand-off (the site is static, so there is no
         endpoint to post to; we open a pre-addressed message instead) ────── */
   var form = document.getElementById('ctaForm');

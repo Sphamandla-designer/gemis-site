@@ -1,1681 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work — GEMIS BrandStudio</title>
-<meta name="description" content="Selected work by GEMIS BrandStudio across brand, digital products, websites, apps, systems and AI experiences — from identity to interface.">
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<style>
-@font-face{font-family:'Inter Var';src:url('assets/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 500;font-display:swap}
-@font-face{font-family:'Inter Tight Var';src:url('assets/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 600;font-display:swap}
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:#000;color:#191c1f;font-family:'Inter Var',Inter,"Helvetica Neue",Helvetica,sans-serif;font-weight:400;letter-spacing:.24px;overflow-x:hidden}
-h1,h2,h3{font-family:'Inter Tight Var','Inter Var',sans-serif;font-weight:500;letter-spacing:-.01em}
-a{color:#191c1f;text-decoration:none}
-img{display:block;max-width:100%}
-button{font-family:inherit;cursor:pointer}
-:focus-visible{outline:2px solid #a64b21;outline-offset:3px}
-
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-[data-reveal]{animation:rise .6s cubic-bezier(.2,.7,.2,1) backwards}
-[data-reveal="2"]{animation-delay:.1s}[data-reveal="3"]{animation-delay:.2s}[data-reveal="4"]{animation-delay:.3s}[data-reveal="5"]{animation-delay:.42s}
-@keyframes demoPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
-@keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
-@keyframes glide{0%,100%{transform:translateX(0)}50%{transform:translateX(38px)}}
-@keyframes dashmove{to{stroke-dashoffset:-120}}
-
-.wrap{max-width:1280px;margin:0 auto}
-.pad{padding:clamp(56px,9vh,96px) clamp(16px,3vw,40px)}
-.kicker{margin:0 0 16px;font-size:14px;font-weight:600;letter-spacing:.24px;text-transform:uppercase}
-.h2{font-size:clamp(38px,5vw,76px);line-height:1;letter-spacing:-.01em}
-
-/* ── Header ── */
-.hd{position:sticky;top:0;z-index:60;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 clamp(16px,3vw,40px);background:rgba(0,0,0,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);color:#fff}
-.hd__logo{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:20px;letter-spacing:-.2px}
-.hd__logo span{color:rgba(255,255,255,.72);font-weight:400}
-.hd nav{display:flex;align-items:center;gap:clamp(14px,2vw,28px);font-size:16px;font-weight:500;letter-spacing:.24px}
-.hd nav a{color:rgba(255,255,255,.72);transition:color .2s}
-.hd nav a:hover{color:#fff}
-.hd nav a[aria-current]{color:#fff}
-.hd__cta{background:#fff;color:#000 !important;height:44px;display:flex;align-items:center;padding:0 22px;border-radius:9999px;transition:background .2s}
-.hd__cta:hover{background:#c9c9cd}
-@media (max-width:640px){.hd nav a[data-hide-sm]{display:none}}
-@media (max-width:420px){
-  .hd{gap:10px}
-  .hd nav{gap:12px;font-size:14px}
-  .hd__cta{padding:0 14px;height:38px}
-  .hd__logo{font-size:17px}
-}
-
-/* ── Hero ── */
-.hero{position:relative;background:#000;color:#fff;overflow:hidden;min-height:min(88vh,860px);display:flex;align-items:flex-end}
-.hero__bg{position:absolute;inset:0;background-image:url("assets/img/portfolio/hero-displays.jpg");background-size:cover;background-position:center 38%}
-.hero__s1{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 32%,rgba(0,0,0,.28) 62%,rgba(0,0,0,.88) 100%)}
-.hero__s2{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 46%,rgba(0,0,0,0) 72%)}
-.hero__s3{position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(180deg,rgba(0,0,0,0),#000)}
-.hero__in{position:relative;width:100%;max-width:1200px;margin:0 auto;padding:clamp(96px,16vh,160px) clamp(16px,3vw,40px) clamp(48px,9vh,96px)}
-.hero__badge{margin:0 0 clamp(24px,4vh,40px);display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;letter-spacing:.24px;color:rgba(255,255,255,.86);text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:9999px;padding:10px 20px}
-.hero__badge i{width:7px;height:7px;border-radius:9999px;background:#a64b21}
-.hero h1{font-size:clamp(31px,4.5vw,62px);line-height:1.06;letter-spacing:-.02em;max-width:31ch;text-shadow:0 2px 40px rgba(0,0,0,.45)}
-.hero h1 span{color:rgba(255,255,255,.56)}
-.hero__row{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(24px,4vw,64px);margin-top:clamp(32px,6vh,64px)}
-.hero__row .lede{max-width:46ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:rgba(255,255,255,.8)}
-.hero__row .meta{font-size:14px;line-height:1.43;color:rgba(255,255,255,.72);white-space:nowrap}
-.hero__side{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:clamp(14px,2vh,20px)}
-.hero__collab{display:inline-flex;align-items:center;gap:11px;padding:9px 16px 9px 11px;border-radius:9999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-size:13px;letter-spacing:.1px;color:rgba(255,255,255,.66);white-space:nowrap;transition:background .35s,border-color .35s,transform .35s cubic-bezier(.2,.7,.2,1)}
-.hero__collab:hover{background:rgba(255,255,255,.12);border-color:rgba(232,163,61,.55);transform:translateY(-2px)}
-.hero__collab svg{width:19px;height:19px;flex:none}
-.hero__collab b{color:#fff;font-weight:600;letter-spacing:-.1px}
-.hero__collab i{font-style:normal;color:#e8a33d;transition:transform .3s}
-.hero__collab:hover i{transform:translate(3px,-3px)}
-@media (max-width:1023px){.hero__side{align-items:flex-start}}
-@media (max-width:420px){.hero__collab{font-size:12px;padding:8px 13px 8px 9px;gap:8px;white-space:normal}}
-
-/* ── Explorer ── */
-.explorer{background:#fff}
-.exp__head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.exp__head .kicker{color:#505a63}
-.exp__head .note{max-width:36ch;font-size:15px;line-height:1.5;color:#505a63}
-.filters{display:flex;gap:clamp(18px,2.4vw,32px);margin:clamp(36px,5vh,56px) 0;padding-bottom:14px;border-bottom:1px solid #e2e2e7;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-.filters::-webkit-scrollbar{display:none}
-.filters button{background:none;border:0;font-size:15px;font-weight:600;letter-spacing:.2px;color:#8d969e;padding:0 0 6px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
-.filters button:hover{color:#191c1f}
-.filters button[aria-pressed="true"]{color:#191c1f;border-bottom-color:#a64b21}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-right:1px solid #e2e2e7;align-items:start}
-.card{border-left:1px solid #e2e2e7;padding:0 clamp(16px,2vw,28px) clamp(32px,5vh,56px);display:flex;flex-direction:column;transition:padding-top .45s cubic-bezier(.2,.7,.2,1)}
-.card__visual{display:block;position:relative;overflow:hidden;background:#f4f4f4;border-radius:6px;aspect-ratio:3/4}
-.card__media{position:absolute;inset:0;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.card__visual:hover .card__media{transform:scale(1.03)}
-.card__media img{width:100%;height:100%;object-fit:cover}
-.card__row{margin-top:22px}
-.card__row h3{font-size:clamp(19px,1.7vw,25px);line-height:1.15;letter-spacing:-.3px}
-.card__who{display:flex;align-items:center;gap:10px;margin-top:16px}
-.card__who svg{width:26px;height:26px;flex:none}
-.card__who .wt b{display:block;font-size:14px;font-weight:600;letter-spacing:.1px;color:#191c1f}
-.card__who .wt span{display:block;font-size:12.5px;color:#8d969e;margin-top:1px}
-.card__row .tagline{font-size:13.5px;line-height:1.55;color:#505a63;margin-top:14px}
-.card__btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#191c1f;color:#fff;border-radius:9999px;padding:10px 18px;font-size:13.5px;font-weight:600;letter-spacing:.1px;white-space:nowrap;transition:background .25s,transform .25s}
-.card__btn i{font-style:normal;transition:transform .25s}
-.card__btn:hover{background:#a64b21;transform:translateY(-1px)}
-.card__btn:hover i{transform:translate(2px,-2px)}
-.card__btn--soon{background:#fff;color:#8d969e;border:1px solid #d9dce0;cursor:default;pointer-events:none}
-.empty{display:none;background:#f4f4f4;border-radius:20px;padding:clamp(48px,10vh,96px) clamp(24px,4vw,48px);text-align:center}
-.empty p{margin:0 0 24px;font-size:clamp(24px,3vw,40px);line-height:1.2;letter-spacing:-.4px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
-.empty button{height:48px;padding:0 28px;border:0;border-radius:9999px;background:#000;color:#fff;font-size:16px;font-weight:600;letter-spacing:.24px}
-.empty button:hover{opacity:.85}
-.is-hidden{display:none !important}
-
-.more{display:flex;justify-content:center;margin-top:clamp(36px,6vh,56px)}
-.more button{height:48px;padding:0 30px;border:1px solid #191c1f;background:#fff;color:#191c1f;border-radius:9999px;font-size:15px;font-weight:600;letter-spacing:.2px;transition:background .2s,color .2s}
-.more button:hover{background:#000;color:#fff}
-@media (max-width:1023px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .exp__head,.hero__row,.mo__grid{flex-direction:column;align-items:stretch !important}
-  .hero__row .meta{white-space:normal}
-}
-@media (max-width:640px){
-  .grid{grid-template-columns:1fr;border-right:0}
-  .card{border-left:0;padding-left:0;padding-right:0}
-}
-
-/* ── GEMIS brand tile ── */
-
-/* ── Site covers inside work cards ── */
-.card__visual .win{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff}
-.win__bar{display:flex;align-items:center;gap:5px;padding:9px 12px;border-bottom:1px solid #eef0f2;background:#fbfbfc;flex:none}
-.win__bar i{width:7px;height:7px;border-radius:50%;background:#dcdfe3;flex:none}
-.win__bar span{margin-left:8px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:#8d969e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cover{flex:1;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(14px,1.5vw,22px);overflow:hidden;color:#fff;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.card__visual:hover .cover{transform:scale(1.03)}
-.cover__nav{display:flex;gap:12px;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
-.cover__mid{margin-top:auto}
-.cover__wm{font-family:'Inter Tight Var',sans-serif;font-weight:500;line-height:1;letter-spacing:-.03em;font-size:clamp(22px,2.3vw,34px)}
-.cover__rule{margin-top:12px;height:1px;background:currentColor;opacity:.22}
-.cover__sub{margin-top:10px;font-size:clamp(10.5px,.9vw,12.5px);line-height:1.5;opacity:.78}
-.collab{display:inline-flex;align-items:center;gap:9px;margin:clamp(20px,3vh,30px) 0 clamp(4px,1vh,10px);font-size:13.5px;color:#505a63}
-.collab i{font-style:normal;width:5px;height:5px;border-radius:50%;background:#a64b21;flex:none}
-
-/* ── Social & digital campaigns — index ── */
-.soc{background:#fff;border-top:1px solid #e2e2e7}
-.soc .kicker{color:#505a63}
-.soc .lede{margin:22px 0 0;max-width:56ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#1f2226}
-.sidx{margin-top:clamp(28px,4.5vh,44px);border-top:1px solid #191c1f}
-.sidx__head{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.85fr) 28px;gap:clamp(14px,2vw,30px);align-items:center;padding:14px clamp(6px,1vw,14px);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8d969e}
-.srow{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,.85fr) 28px;gap:clamp(14px,2vw,30px);align-items:center;border-top:1px solid #e6e7ea;padding:clamp(18px,2.4vh,26px) clamp(6px,1vw,14px);position:relative;transition:padding-left .35s cubic-bezier(.2,.7,.2,1),background .3s}
-.srow:last-of-type{border-bottom:1px solid #e6e7ea}
-.srow::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:#a64b21;transition:width .55s cubic-bezier(.2,.7,.2,1)}
-.srow:hover{background:#fafafa;padding-left:clamp(14px,2vw,28px)}
-.srow:hover::before{width:100%}
-.srow__id{display:flex;align-items:center;gap:14px;min-width:0}
-.srow__dot{width:10px;height:34px;border-radius:6px;flex:none;transition:width .4s cubic-bezier(.2,.7,.2,1),transform .4s}
-.srow:hover .srow__dot{width:34px}
-.srow__nm{min-width:0}
-.srow__nm b{display:block;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(17px,1.6vw,22px);line-height:1.2;letter-spacing:-.24px;color:#191c1f}
-.srow__nm span{display:block;margin-top:3px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:#8d969e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow__tags{display:flex;flex-wrap:wrap;gap:7px}
-.stag{border:1px solid #dfe1e5;border-radius:9999px;padding:4px 11px;font-size:11.5px;font-weight:500;color:#3a3f47;background:#fff;transition:border-color .3s,color .3s}
-.srow:hover .stag{border-color:#c9ccd1}
-.srow__ch{font-size:14.5px;font-weight:500;color:#a64b21;letter-spacing:-.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.srow__go{justify-self:end;font-style:normal;font-size:15px;color:#8d969e;transition:transform .35s cubic-bezier(.2,.7,.2,1),color .3s}
-.srow:hover .srow__go{transform:translate(3px,-3px);color:#191c1f}
-.soc__note{margin-top:clamp(24px,3.5vh,36px);font-size:13px;color:#8d969e}
-@media (max-width:860px){
-  .sidx__head{display:none}
-  .srow{grid-template-columns:1fr 24px;gap:12px;row-gap:14px;align-items:start}
-  .srow__id{grid-column:1}
-  .srow__go{grid-column:2;align-self:start;margin-top:8px}
-  .srow__tags{grid-column:1;grid-row:2}
-  .srow__ch{grid-column:1;grid-row:3;font-size:13.5px}
-}
-
-/* ── Disciplines ── */
-.disc{background:#000;color:#fff;position:relative;overflow:hidden}
-.disc .kicker{color:rgba(255,255,255,.72)}
-.disc__list{display:flex;flex-direction:column;border-top:1px solid rgba(255,255,255,.12)}
-.disc__row{display:flex;align-items:baseline;gap:clamp(20px,4vw,64px);width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.12);padding:clamp(24px,3vw,40px) clamp(4px,1vw,16px);color:#fff;transition:background .25s ease,padding-left .25s ease}
-.disc__row:hover{background:#16181a;padding-left:clamp(16px,2.4vw,32px)}
-.disc__row .nm{flex:0 0 auto;min-width:clamp(120px,16vw,240px);font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.48px}
-.disc__row .ln{flex:1;font-size:15px;line-height:1.6;color:rgba(255,255,255,.6)}
-@media (max-width:1023px){.disc__row{flex-direction:column;align-items:flex-start;gap:10px}}
-
-/* ── Beyond screens collage ── */
-.beyond{background:#f4f4f4}
-.beyond .kicker{color:#505a63}
-.beyond .lede{margin:24px 0 clamp(32px,5vh,56px);max-width:62ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#1f2226}
-.bgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:minmax(88px,auto);gap:16px}
-.btile{position:relative;background:#fff;border:1px solid #e2e2e7;border-radius:16px;overflow:hidden;display:flex;align-items:flex-end;padding:14px;min-height:150px}
-.btile>span{position:relative;font-size:12px;color:#505a63;z-index:3;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid #e2e2e7;border-radius:9999px;padding:4px 10px}
-.btile--dark>span{background:rgba(10,10,10,.7);border-color:#26262b;color:#c9c9cd}
-.art{position:absolute;inset:0;font-family:'Inter Var',sans-serif;letter-spacing:0}
-.art *{box-sizing:border-box}
-/* shared artboard atoms */
-.a-ink{background:#191c1f;color:#fff}
-.a-chip{display:inline-flex;align-items:center;border-radius:9999px;font-size:9px;font-weight:600;padding:3px 8px}
-.a-shadow{box-shadow:0 12px 28px rgba(25,28,31,.14)}
-.a-lbl{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
-/* 1 · brand board */
-.bb{padding:12px;display:flex;flex-direction:column;gap:10px;background:#eef0f2}
-.bb-top{flex:1.2;display:grid;grid-template-columns:1.4fr .82fr .82fr;gap:10px;min-height:0}
-.bb-logo{border-radius:12px;background:radial-gradient(135% 135% at 16% 12%,#f9e7d8 0%,#eda878 46%,#a64b21 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid rgba(0,0,0,.04)}
-.bb-logo b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:clamp(18px,2vw,26px);letter-spacing:-.5px;color:#46220e}
-.bb-logo b sup{font-size:.4em;color:#6e2f13}
-.bb-logo span{font-size:7px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(70,34,14,.55)}
-.bb-col{display:flex;flex-direction:column;gap:10px;min-height:0}
-.bb-sw{border-radius:10px;padding:8px 9px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(0,0,0,.05);min-height:0}
-.bb-sw b{font-size:8.5px;font-weight:600;line-height:1.2}
-.bb-sw span{font-size:7px;font-family:'JetBrains Mono',monospace;opacity:.72}
-.bb-ui{flex:1;background:#fff;border:1px solid #e2e2e7;border-radius:12px;padding:10px 12px;display:flex;gap:16px;min-height:0}
-.bb-z{display:flex;flex-direction:column;gap:6px;justify-content:center;min-width:0}
-.bb-z1{flex:1.15}.bb-z2{flex:1}.bb-z3{flex:1}
-.bb-z1 b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:13px;color:#191c1f;line-height:1.1}
-.bb-z1 em{font-style:normal;font-size:7.5px;color:#8d969e;font-family:'JetBrains Mono',monospace}
-.bb-z1 p{margin:0;font-size:8px;line-height:1.45;color:#5c646d}
-.bb-tabs{display:flex;background:#f1f2f4;border-radius:9999px;padding:2px;align-self:flex-start}
-.bb-tabs i{font-style:normal;font-size:8.5px;font-weight:600;padding:3px 10px;border-radius:9999px;color:#5c646d}
-.bb-tabs i.on{background:#191c1f;color:#fff}
-.bb-search{display:flex;align-items:center;gap:5px;border:1px solid #d9dce0;border-radius:9999px;padding:4px 9px;font-size:8px;color:#8d969e}
-.bb-tog{display:flex;align-items:center;gap:6px;font-size:8px;color:#3a3f47;font-weight:600}
-.bb-tog i{margin-left:auto;width:22px;height:12px;border-radius:9999px;background:#20b26b;position:relative}
-.bb-tog i::after{content:"";position:absolute;right:1.5px;top:1.5px;width:9px;height:9px;border-radius:50%;background:#fff}
-.bb-z3 .kb{border-radius:9999px;font-size:8.5px;font-weight:600;padding:5px 0;text-align:center}
-.bb-z3 .kb--p{background:#a64b21;color:#fff}
-.bb-z3 .kb--o{border:1.3px solid #d9dce0;color:#3a3f47;font-family:'JetBrains Mono',monospace;font-size:7.5px}
-.bb-ico{display:flex;gap:4px;justify-content:center}
-.bb-ico i{width:13px;height:13px;border-radius:50%}
-/* 2 · presentation slides */
-.pres{padding:14px}
-.pres .slide{position:absolute;width:62%;aspect-ratio:16/9;border-radius:8px;overflow:hidden}
-.pres .s-back{right:4%;top:6%;width:62%;max-width:300px;background:#fff;border:1px solid #e2e2e7;padding:10px}
-.pres .s-back .bars{display:flex;gap:6px;height:52%;margin-top:8px}
-.pres .s-back .bars>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;text-align:center;min-width:0}
-.pres .s-back .bars i{display:block;border-radius:2px 2px 0 0;background:#e8eaed}
-.pres .s-back .bars>div:nth-child(3) i{background:#a64b21}
-.pres .s-back .bars span{font-size:6px;color:#8d969e;font-family:'JetBrains Mono',monospace}
-.pres .s-front{left:4%;top:24%;width:56%;max-width:260px;background:#191c1f;color:#fff;padding:12px 14px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-2deg)}
-.pres .s-front .kick{color:#e08a5c;font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.pres .s-front h6{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:17px;line-height:1.1;margin:0}
-.pres .s-front .pg{font-size:8px;color:rgba(255,255,255,.5);display:flex;justify-content:space-between}
-/* 3 · ui kit sheet */
-.uik{padding:12px 16px;display:flex;gap:18px}
-.uik .ucol{flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
-.uik .uh{font-size:10.5px;font-weight:700;color:#191c1f;letter-spacing:-.1px}
-.uik .ul{font-size:7px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8d969e}
-.uik .brow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.uik .ub{border-radius:9999px;font-size:8.5px;font-weight:600;padding:4.5px 11px;position:relative;white-space:nowrap}
-.uik .ub--p{background:#a64b21;color:#fff}
-.uik .ub--s{border:1.3px solid #a64b21;color:#a64b21;padding:3.5px 10px}
-.uik .ub--t{color:#a64b21;padding:4.5px 0;text-decoration:underline;text-underline-offset:2px}
-.uik .cur{position:absolute;right:-7px;bottom:-8px;width:14px;height:14px}
-.uik .ufield{border:1px solid #d9dce0;border-radius:8px;padding:5px 8px;background:#fff}
-.uik .ufield i{display:block;font-style:normal;font-size:7px;color:#8d969e}
-.uik .ufield b{font-size:9px;font-weight:400;color:#191c1f;display:flex;justify-content:space-between;align-items:center}
-.uik .ufield b u{text-decoration:none;color:#8d969e;font-size:7px}
-.uik .ramp{display:flex;align-items:center;gap:4px}
-.uik .ramp em{font-style:normal;font-size:6.5px;color:#8d969e;width:32px;flex:none;font-family:'JetBrains Mono',monospace}
-.uik .ramp i{flex:1;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.05)}
-.uik .tagrow{display:flex;gap:4px;flex-wrap:wrap}
-.uik .tg{border-radius:9999px;font-size:7.5px;font-weight:600;padding:2.5px 7px}
-.uik .rev{display:flex;align-items:baseline;gap:5px}
-.uik .rev b{font-size:13px;font-weight:700;color:#191c1f}
-.uik .rev i{font-style:normal;color:#e8a33d;font-size:9px;letter-spacing:1px}
-.uik .rev span{font-size:7.5px;color:#8d969e}
-.uik .step{display:inline-flex;align-items:center;border:1px solid #d9dce0;border-radius:8px;overflow:hidden;background:#fff}
-.uik .step i{font-style:normal;font-size:9px;padding:2px 7px;color:#5c646d}
-.uik .step b{font-size:8.5px;padding:2px 8px;border-left:1px solid #eef0f2;border-right:1px solid #eef0f2;color:#191c1f}
-/* 4 · campaign */
-.camp{padding:12px}
-.camp .post{position:absolute;left:7%;top:10%;width:36%;max-width:150px;aspect-ratio:1;background:#191c1f;color:#fff;border-radius:10px;padding:10px;display:flex;flex-direction:column;justify-content:space-between}
-.camp .post h6{margin:0;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:15px;line-height:1.05}
-.camp .post h6 em{font-style:normal;color:#e08a5c}
-.camp .post .foot{display:flex;justify-content:space-between;align-items:center;font-size:7px;color:rgba(255,255,255,.6)}
-.camp .story{position:absolute;right:7%;top:5%;width:24.5%;max-width:105px;aspect-ratio:9/16;border-radius:10px;background:linear-gradient(160deg,#c25a28,#7e3617);color:#fff;padding:9px;display:flex;flex-direction:column;justify-content:flex-end;gap:5px}
-.camp .story .ring{position:absolute;top:7px;left:7px;width:14px;height:14px;border-radius:50%;border:2px solid #fff}
-.camp .story b{font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:11px;line-height:1.1}
-.camp .story span{align-self:flex-start;background:#fff;color:#191c1f;border-radius:9999px;font-size:7.5px;font-weight:600;padding:3px 8px}
-.camp .like{position:absolute;left:44%;bottom:12%;background:#fff;border:1px solid #e2e2e7;border-radius:9999px;padding:4px 9px;font-size:8px;font-weight:600;color:#191c1f;box-shadow:0 8px 18px rgba(25,28,31,.12)}
-/* 5 · prototype */
-.proto{padding:14px;background:#f7f7f9;display:flex;align-items:center;justify-content:center;gap:12%}
-.proto .ph{width:26%;max-width:110px;aspect-ratio:9/17;background:#fff;border:1px solid #d5d8dd;border-radius:10px;padding:5px;display:flex;flex-direction:column;gap:4px;position:relative;z-index:2}
-.proto .ph i{border-radius:3px;background:#f0f0f3}
-.proto .ph .h{height:8px;width:60%}
-.proto .ph .blk{flex:1}
-.proto .ph .pbtn{height:10px;background:#a64b21;flex:none}
-.proto .hot{outline:1.5px solid #4b8bfd;outline-offset:1px;background:#eaf1ff !important}
-.proto svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
-/* 7 · AI panel */
-.aip{padding:12px 14px;display:flex;flex-direction:column;gap:7px;justify-content:flex-end}
-.aip .u{align-self:flex-end;background:#191c1f;color:#fff;border-radius:12px 12px 3px 12px;font-size:9.5px;padding:6px 10px;max-width:78%}
-.aip .a{align-self:flex-start;background:#fff;border:1px solid #e2e2e7;border-radius:12px 12px 12px 3px;font-size:9px;color:#3a3f47;padding:8px 10px;max-width:86%;box-shadow:0 8px 20px rgba(25,28,31,.06)}
-.aip .a b{display:flex;align-items:center;gap:4px;font-size:8.5px;color:#a64b21;margin-bottom:3px}
-.aip .src{display:inline-block;margin-top:5px;background:#faf1ec;color:#a64b21;border-radius:9999px;font-size:7.5px;font-weight:600;padding:2px 7px}
-.aip .bar{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #c9c9cd;border-radius:9999px;padding:6px 10px;font-size:8.5px;color:#8d969e}
-.aip .bar u{margin-left:auto;width:18px;height:18px;border-radius:50%;background:#a64b21;flex:none;position:relative}
-.aip .bar u::before{content:"↑";position:absolute;inset:0;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center}
-/* 8 · email */
-.mail{padding:14px 22px}
-.mail .win{background:#fff;border:1px solid #e2e2e7;border-radius:10px;overflow:hidden;box-shadow:0 14px 30px rgba(25,28,31,.1);height:100%;display:flex;flex-direction:column}
-.mail .mh{display:flex;align-items:center;gap:6px;padding:7px 10px;border-bottom:1px solid #eef0f2}
-.mail .mh i{width:14px;height:14px;border-radius:4px;background:#191c1f;color:#fff;font-style:normal;font-size:8px;display:flex;align-items:center;justify-content:center;font-family:'Inter Tight Var',sans-serif}
-.mail .mh span{font-size:8px;color:#8d969e}
-.mail .mhero{height:27%;flex:none;background:linear-gradient(150deg,#c25a28,#6e2f13);display:flex;align-items:center;justify-content:center}
-.mail .mhero b{color:#fff;font-family:'Inter Tight Var',sans-serif;font-weight:500;font-size:12px;letter-spacing:-.2px}
-.mail .body{padding:8px 10px;display:flex;flex-direction:column;gap:4px;flex:1}
-.mail .body .sub{font-family:'Inter Tight Var',sans-serif;font-weight:600;font-size:10px;color:#191c1f;letter-spacing:-.1px}
-.mail .body p{margin:0;font-size:7.5px;line-height:1.5;color:#5c646d}
-.mail .body span{align-self:flex-start;margin-top:auto;background:#a64b21;color:#fff;border-radius:9999px;font-size:7.5px;font-weight:600;padding:4px 10px}
-/* 9 · product ui flat-lay */
-.kit{display:flex;gap:14px;padding:14px 16px;align-items:stretch}
-.kcol{display:flex;flex-direction:column;gap:6px;min-width:0;justify-content:center}
-.kcol--a{flex:1.1}.kcol--b{flex:.85}.kcol--c{flex:.9}.kcol--d{flex:1.25}.kcol--e{flex:1.1}
-.klbl{font-size:7px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8d969e}
-.krow{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #e8eaee;border-radius:9999px;padding:3px 6px 3px 3px}
-.krow .av{width:17px;height:17px;border-radius:50%;color:#fff;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;font-style:normal}
-.krow b{font-size:8.5px;font-weight:600;color:#191c1f;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.krow em{font-style:normal;font-size:7.5px;color:#8d969e;flex:none;font-family:'JetBrains Mono',monospace}
-.kst{border-radius:9999px;font-size:7px;font-weight:600;padding:2px 6px;flex:none;white-space:nowrap}
-.kbtn{border-radius:9999px;text-align:center;font-weight:600}
-.kbtn--l{background:#a64b21;color:#fff;font-size:9px;padding:6px 0}
-.kbtn--m{background:#191c1f;color:#fff;font-size:8px;padding:4.5px 0}
-.kbtn--o{border:1.3px solid #d9dce0;color:#3a3f47;font-size:8px;padding:3.5px 0}
-.kseg{display:flex;background:#fff;border:1px solid #e8eaee;border-radius:9999px;padding:2px}
-.kseg i{font-style:normal;flex:1;text-align:center;font-size:7.5px;font-weight:600;color:#8d969e;padding:2.5px 0;border-radius:9999px}
-.kseg i.on{background:#191c1f;color:#fff}
-.ktags{display:flex;gap:4px;flex-wrap:wrap}
-.ktip{background:#191c1f;color:#fff;font-size:7px;line-height:1.4;border-radius:7px;padding:5px 7px;position:relative;max-width:130px}
-.ktip::after{content:"";position:absolute;left:12px;bottom:100%;border:4px solid transparent;border-bottom-color:#191c1f}
-.kbook{background:#fff;border:1px solid #e2e2e7;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:5px;box-shadow:0 10px 24px rgba(25,28,31,.08)}
-.kbook .r1{display:flex;align-items:center;gap:7px}
-.kbook .th{width:26px;height:26px;border-radius:6px;background:linear-gradient(140deg,#e08a5c,#a64b21);flex:none}
-.kbook .nm{min-width:0}
-.kbook .nm b{display:block;font-size:9.5px;font-weight:700;color:#191c1f}
-.kbook .nm span{font-size:7px;color:#8d969e;white-space:nowrap}
-.kbook .pr{margin-left:auto;font-size:9.5px;font-weight:700;color:#191c1f;flex:none}
-.kalert{background:#fdecec;color:#c23b3b;font-size:7px;font-weight:600;border-radius:6px;padding:3.5px 7px}
-.kbtns{display:flex;gap:5px}
-.kbtns span{flex:1;border:1.2px solid #d9dce0;border-radius:9999px;font-size:7.5px;font-weight:600;color:#3a3f47;text-align:center;padding:3px 0;white-space:nowrap}
-.kcard{background:#fff;border:1px solid #e2e2e7;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:5px}
-.kcard .khd{display:flex;justify-content:space-between;align-items:baseline}
-.kcard .khd b{font-size:9px;font-weight:700;color:#191c1f}
-.kcard .khd span{font-size:7px;color:#a64b21;font-weight:600}
-.kmeter em{font-style:normal;display:flex;justify-content:space-between;font-size:7.5px;color:#3a3f47;margin-bottom:2px}
-.kmeter em u{text-decoration:none;color:#8d969e;font-family:'JetBrains Mono',monospace}
-.kmeter i{height:5px;border-radius:9999px;background:#eef0f2;position:relative;display:block}
-.kmeter i::after{content:"";position:absolute;inset:0;width:var(--w,50%);border-radius:inherit;background:#a64b21}
-.ksync{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid #e8eaee;border-radius:10px;padding:6px 8px}
-.ksync .ic{width:20px;height:20px;border-radius:6px;background:#e4f6ec;color:#177245;font-size:9px;display:flex;align-items:center;justify-content:center;flex:none;font-style:normal}
-.ksync .tx{min-width:0}
-.ksync b{font-size:8px;font-weight:600;color:#191c1f;display:block;line-height:1.25}
-.ksync small{font-size:6.5px;color:#8d969e;display:block;white-space:nowrap}
-.ksync .sw{margin-left:auto;width:22px;height:12px;border-radius:9999px;background:#20b26b;position:relative;flex:none}
-.ksync .sw::after{content:"";position:absolute;right:1.5px;top:1.5px;width:9px;height:9px;border-radius:50%;background:#fff}
-@media (max-width:1023px){.bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.btile{grid-column:span 4 !important;grid-row:span 2 !important;min-height:210px}.kcol--c,.kcol--e{display:none}.bb-top{grid-template-columns:1.3fr .9fr}.bb-col--b{display:none}}
-@media (max-width:640px){.kcol--b{display:none}.bb-z2{display:none}.bb-z1 p{display:none}.krow em{display:none}.uik{gap:12px}}
-
-
-
-/* ── Motion system ── */
-.mtn{position:fixed;top:0;left:0;right:0;height:2px;z-index:80;pointer-events:none}
-.mtn__bar{height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#a64b21,#e08a5c)}
-#workGrid.rv-on .card{opacity:0;transform:translateY(52px)}
-#workGrid.rv-on .card,#workGrid.rv-on .card .card__media,#workGrid.rv-on .card .win{transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1)}
-#workGrid.rv-on .card .card__media,#workGrid.rv-on .card .win{opacity:.5;transform:scale(1.05)}
-#workGrid.rv-on .card.is-in{opacity:1;transform:none}
-#workGrid.rv-on .card.is-in .card__media,#workGrid.rv-on .card.is-in .win{opacity:1;transform:none}
-/* cursor-tracked light on work cards */
-.card__visual{--gx:50%;--gy:50%}
-.card__glow{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .45s ease;background:radial-gradient(320px circle at var(--gx) var(--gy),rgba(255,255,255,.16),transparent 62%);mix-blend-mode:soft-light}
-.card:hover .card__glow{opacity:1}
-.card__visual{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
-.card:hover .card__visual{transform:translateY(-3px);box-shadow:0 22px 48px rgba(25,28,31,.14)}
-.card__row h3,.card__row .tagline{transition:color .35s ease}
-.card:hover .card__row h3{color:#000}
-.card:hover .card__row .tagline{color:#3a3f47}
-/* social rows pick up the same light */
-.srow{--gx:50%}
-.srow::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(420px circle at var(--gx) 50%,rgba(166,75,33,.07),transparent 70%)}
-.srow:hover::after{opacity:1}
-/* ambient light that drifts through the dark sections */
-.amb{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.amb i{position:absolute;left:50%;top:40%;width:min(70vw,900px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(166,75,33,.16),transparent 62%);filter:blur(30px)}
-.motion .wrap,.disc .wrap,.cta .wrap{position:relative;z-index:1}
-@media (hover:none),(pointer:coarse){.card__glow,.srow::after{display:none}}
-@media (prefers-reduced-motion:reduce){.mtn,.amb{display:none}}
-
-/* ── Marks in rotation — auto-sliding identity cards ── */
-@font-face{font-family:'Archivo Var';src:url('assets/fonts/archivo-latin-wdth-normal.woff2') format('woff2-variations');font-weight:100 900;font-stretch:62.5% 125%;font-display:swap}
-.marks{background:#fff;border-top:1px solid #e2e2e7;padding:clamp(56px,9vh,96px) 0}
-.marks .kicker{color:#505a63;padding:0 clamp(16px,3vw,40px);max-width:1280px;margin:0 auto 8px}
-.marks h2{font-size:clamp(30px,3.6vw,52px);line-height:1.05;letter-spacing:-.01em;padding:0 clamp(16px,3vw,40px);max-width:1280px;margin:0 auto clamp(28px,5vh,44px)}
-.marks__rail{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
-.marks__track{display:flex;gap:18px;width:max-content;animation:drift 44s linear infinite}
-.marks__rail:hover .marks__track{animation-play-state:paused}
-.marks__note{padding:0 clamp(16px,3vw,40px);max-width:1280px;margin:24px auto 0;font-size:12.5px;color:#8d969e}
-.mcard{position:relative;flex:0 0 auto;width:clamp(210px,20vw,300px);aspect-ratio:4/5;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center;letter-spacing:0;box-shadow:0 14px 34px rgba(25,28,31,.1)}
-.mcard__mono{font-family:'Archivo Var',sans-serif;font-stretch:112%;font-weight:900;font-size:clamp(76px,7.6vw,120px);line-height:.8}
-.mcard__mono i{font-style:normal}
-.mcard__cap{font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.08em;line-height:1.5}
-.mcard__meta{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;line-height:1.7;opacity:.75}
-.mcard__meta small{font-size:8.5px;letter-spacing:.22em;opacity:.7}
-.mcard__meta--left{position:absolute;left:22px;bottom:20px;text-align:left}
-.mcard__logo{width:100%;flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(20px,2.4vw,32px)}
-/* each mark is sized for equal optical presence — never stretched, never recoloured */
-.mcard__logo img{width:100%;height:auto;max-height:100%;object-fit:contain;display:block}
-.mcard__logo--sq img{max-width:60%;margin:0 auto}
-.mcard__logo--md img{max-width:80%;margin:0 auto}
-.mcard__logo--wide img{max-width:96%;margin:0 auto}
-.mcard__logo--box img{max-width:86%;margin:0 auto}
-.mcard__logo--sm img{max-width:66%;margin:0 auto}
-.mcard--dark{background:#191c1f}
-.mcard--dark .mcard__meta{color:rgba(255,255,255,.6)}
-.mcard--ink{background:#101114}
-.mcard--ink .mcard__meta{color:rgba(255,255,255,.6)}
-.mcard--bone{background:#f1eee9;border:1px solid #e6e2da}
-.mcard--bone .mcard__meta{color:#6a7178}
-.mcard--paper{background:#fff;border:1px solid #e6e7ea}
-.mcard--paper .mcard__meta{color:#6a7178}
-.mcard__meta--btm{position:absolute;left:0;right:0;bottom:18px;text-align:center}
-@media (max-width:640px){.mcard{width:62vw}}
-
-/* ── In motion ── */
-.motion{background:#000;color:#fff;position:relative;overflow:hidden}
-.motion .kicker{color:rgba(255,255,255,.72)}
-.mo__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
-.mo__a{grid-column:span 7;display:flex;flex-direction:column;gap:14px}
-.mo__b{grid-column:span 5;display:flex;flex-direction:column;gap:14px}
-@media (max-width:1023px){.mo__a,.mo__b{grid-column:span 12}}
-.mo__frame{position:relative;border-radius:28px;overflow:hidden;background:#101214;border:1px solid #26262b}
-.mo__a .mo__frame{aspect-ratio:16/10}
-.mo__b .mo__frame{aspect-ratio:4/5}
-.mo__cap{font-size:13px;color:rgba(255,255,255,.72)}
-/* Live prototype demos — the actual uploaded products, driven on a loop */
-.mo__frame img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.demo{background:#101214}
-.demo__chrome{position:absolute;top:0;left:0;right:0;height:38px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.08);z-index:4;background:#101214}
-.demo__chrome i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16)}
-.demo__chrome span{margin-left:8px;font-size:11px;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
-.demo__view{position:absolute;inset:38px 0 0;overflow:hidden;z-index:2}
-.demo--phone .demo__view{inset:0;display:flex;align-items:center;justify-content:center;z-index:2}
-.demo__stage{position:absolute;top:0;left:0;transform-origin:0 0}
-.demo--phone .demo__stage{position:relative;border-radius:34px;overflow:hidden;border:6px solid #26262b;box-shadow:0 24px 70px rgba(0,0,0,.55);flex:none}
-.demo__stage iframe{border:0;display:block;pointer-events:none;background:#fff}
-.demo__cursor{position:absolute;width:22px;height:22px;z-index:6;left:50%;top:60%;transition:left .75s cubic-bezier(.3,.7,.25,1),top .75s cubic-bezier(.3,.7,.25,1);filter:drop-shadow(0 2px 6px rgba(0,0,0,.45));pointer-events:none}
-.demo__cursor::before{content:"";position:absolute;left:-4px;top:-4px;width:28px;height:28px;border-radius:50%;opacity:0}
-.demo__cursor.is-click::before{opacity:1;animation:demoPulse .5s ease-out}
-.demo__cover{position:absolute;inset:0;background:#101214;z-index:1;opacity:1;transition:opacity .6s ease;pointer-events:none}
-.demo__cover.is-off{opacity:0}
-.demo__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:4;opacity:1;transition:opacity .7s ease;pointer-events:none}
-.demo.is-live .demo__poster{opacity:0}
-.demo__badge{position:absolute;left:16px;bottom:14px;z-index:6;display:flex;align-items:center;gap:8px;background:rgba(10,10,10,.66);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:9999px;padding:6px 12px;color:#fff;font-size:11.5px;font-weight:600}
-.demo__badge i{width:7px;height:7px;border-radius:50%;background:#3ddc97;flex:none;font-style:normal}
-.mo__ticker{grid-column:span 12;overflow:hidden;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:24px 0}
-.mo__tickertrack{display:flex;gap:56px;width:max-content;animation:drift 26s linear infinite;font-size:14px;color:rgba(255,255,255,.72)}
-.mo__tickertrack span{white-space:nowrap}
-
-/* ── Think + CTA + footer ── */
-.think{background:#fff;padding:clamp(72px,12vh,140px) clamp(16px,3vw,40px)}
-.think .kicker{color:#505a63}
-.think h2{font-size:clamp(38px,5.4vw,84px);line-height:1.02;letter-spacing:-.01em;max-width:16ch;margin-bottom:28px}
-.think h2 span{color:#8d969e}
-.think .lede{max-width:52ch;font-size:18px;line-height:1.56;letter-spacing:-.09px;color:#505a63}
-
-.cta{background:#000;color:#fff;padding:clamp(80px,14vh,140px) clamp(16px,3vw,40px)}
-.cta .kicker{color:rgba(255,255,255,.72);margin-bottom:clamp(28px,5vh,48px)}
-.cta h2{font-size:clamp(48px,9vw,136px);line-height:1;letter-spacing:-.02em}
-.cta__row{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(28px,4vw,64px);margin-top:clamp(36px,7vh,80px);flex-wrap:wrap}
-.cta__row .lede{max-width:52ch;font-size:18px;line-height:1.56;color:rgba(255,255,255,.72)}
-.cta__btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn-w{height:48px;display:flex;align-items:center;padding:0 28px;border-radius:9999px;background:#fff;color:#000;font-size:18px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
-.btn-w:hover{background:#c9c9cd}
-.btn-o{height:48px;display:flex;align-items:center;padding:0 27px;border-radius:9999px;border:1px solid #fff;color:#fff;font-size:18px;font-family:'Inter Tight Var',sans-serif;font-weight:500}
-.btn-o:hover{background:#16181a}
-.ft{background:#000;color:rgba(255,255,255,.72);padding:80px clamp(16px,3vw,40px) 40px}
-.ft__in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:13px}
-.ft a{color:rgba(255,255,255,.72)}
-.ft a:hover{color:#fff}
-
-@media (prefers-reduced-motion:reduce){
-  *{animation:none !important;transition:none !important}
-  html{scroll-behavior:auto}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — GEM Information Systems (GEMIS®)</title>
+  <meta name="description" content="Selected GEMIS work across brand, digital products, websites, apps and operational systems — platforms, sites and campaigns designed, engineered and shipped for clients across South Africa." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260911c" />
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
+    .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
 <body>
-<div class="mtn" aria-hidden="true"><div class="mtn__bar" id="mtnBar"></div></div>
 
-<header class="hd">
-  <span class="hd__logo">GEMIS<span> BrandStudio</span></span>
-  <a class="hd__cta" href="mailto:info@gemis.co.za?subject=Start%20a%20project">Start a project</a>
-</header>
+  <a class="skip-link" href="#hero">Skip to content</a>
 
-<main>
+  <!-- ═══════════════ LOGO SPRITE ═══════════════ -->
+  <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <symbol id="gemisLogo" viewBox="0 0 187 34" fill-rule="evenodd"><path fill="currentColor" opacity=".34" d="M12.9,26.2C12.3,26.1 12,25.9 11.6,25.6C11.3,25.4 10.9,25.1 10.6,25C10.4,24.8 10.1,24.6 10,24.5C9.9,24.4 9.6,24.3 9.3,24.1C9,24 8.6,23.7 8.4,23.5C8.1,23.4 7.7,23.1 7.5,23.1C7.2,23 6.7,22.6 6.2,22.3C5,21.3 5,21.4 5,17.5L5,14.4L5.3,13.9C5.5,13.4 5.6,13.3 6.3,13C6.6,12.8 7.1,12.5 7.3,12.4C7.5,12.2 7.9,12 8.1,11.9C8.3,11.8 8.7,11.6 8.8,11.4C9,11.3 9.3,11.1 9.6,11C9.8,10.9 10.2,10.6 10.5,10.4C10.7,10.2 11.1,10 11.3,9.9C11.6,9.9 12,9.6 12.2,9.4C12.9,8.8 13.6,8.8 14.4,9.4C14.7,9.6 15.1,9.9 15.4,10C15.6,10.2 15.9,10.4 16,10.5C16.1,10.6 16.4,10.7 16.7,10.9C17,11 17.4,11.3 17.6,11.5C17.9,11.6 18.3,11.9 18.5,11.9C18.8,12 19.2,12.2 19.4,12.4C19.7,12.6 20.1,12.9 20.3,13C20.7,13.2 20.9,13.5 21.1,13.8L21.3,14.3L21.3,17.8C21.3,21.8 21.3,21.7 20.5,22.1C20.3,22.2 19.8,22.5 19.6,22.7C19.4,22.9 19,23.1 18.8,23.2C18.6,23.2 18.3,23.4 18.2,23.5C18,23.7 17.7,23.9 17.4,24C17.2,24.1 16.8,24.3 16.6,24.5C16.3,24.7 15.9,25 15.6,25.1C15.3,25.2 14.9,25.5 14.7,25.7C14.4,25.9 13.4,26.4 13.4,26.3C13.4,26.3 13.2,26.2 12.9,26.2Z"/><path fill="currentColor" d="M12.1,21.5C11.9,21.4 11.5,21.1 11.3,21C11,20.9 10.6,20.7 10.4,20.5C10.1,20.4 9.8,20.2 9.6,20.1C9,19.9 8.1,19.2 8,18.7C7.8,18.3 7.9,15.8 8.1,15.5C8.3,15.2 8.3,15.1 9,15C9.2,14.9 9.6,14.7 9.8,14.5C10,14.3 10.4,14.1 10.7,14C10.9,13.8 11.4,13.6 11.7,13.4C12.6,12.8 13.3,12.8 14.1,13.4C14.3,13.5 14.8,13.8 15.1,14C15.3,14.1 15.7,14.4 15.9,14.5C16.1,14.7 16.3,14.8 16.3,14.8C16.4,14.8 16.7,14.9 17,15C17.8,15.4 17.9,15.8 17.9,17.4L17.9,18.7L17.5,19.1C17.3,19.4 16.8,19.7 16.5,19.9C16.1,20.1 15.7,20.4 15.4,20.6C15.2,20.8 14.8,21 14.6,21C14.3,21.1 13.9,21.3 13.7,21.5C13.1,21.9 12.6,21.9 12.1,21.5ZM13.4,19C13.8,18.8 14.3,18 14.4,17.3C14.5,16.5 13.7,15.3 13,15.1C12,14.8 10.5,16 10.5,17.1C10.5,17.6 11.1,18.8 11.4,19C11.7,19.1 13,19.1 13.4,19Z"/><path fill="currentColor" d="M37.4,31C36.8,30.8 36.6,30.6 35.8,29.6C35.1,28.7 35,28.3 35,27.3C35.1,26.4 35.4,25.7 36.1,25C36.9,24.2 37.4,24 38.4,24C39.3,24 39.7,24.1 40.4,24.5C41.1,25 41.3,25.6 40.9,25.8C40.6,26 40.3,25.9 39.8,25.5C39.4,25.1 39.4,25 38.5,25C37.5,25 37.3,25.1 36.8,25.7C36.1,26.5 36.1,26.6 36.1,27.7L36.1,28.7L36.6,29.2C37.2,29.9 37.4,30 38.5,30C39.6,30 39.8,29.9 40.1,29.3C40.4,28.5 40.4,28.4 39.6,28.1C39,27.7 38.8,27.4 39.3,27.2C39.6,27 41.1,27.2 41.3,27.5C41.4,27.6 41.5,27.9 41.5,29C41.6,30.6 41.6,30.6 40.8,30.5C40.4,30.5 40.2,30.5 39.9,30.7C39.2,31.1 38.1,31.2 37.4,31ZM82,31C81,30.9 80.2,30.3 79.6,29.1C79.2,28.3 79.2,28.2 79.2,27.5C79.2,27 79.2,26.7 79.3,26.5C79.4,26.3 79.6,26 79.7,25.7C80,25.2 81,24.3 81.4,24.1C81.8,24 83.4,24 83.8,24.1C84.2,24.3 85.1,25.2 85.6,25.9C85.9,26.4 85.9,26.4 85.9,27.4C85.9,28.6 85.7,29.2 84.8,30.1C84,30.9 83.3,31.1 82,31ZM123.1,31C121.9,30.8 121.2,30.2 120.6,29.1C119.8,27.5 120.1,26 121.5,24.8C121.9,24.5 122.3,24.2 122.4,24.1C122.8,24 124.4,24 124.8,24.1C125.4,24.4 126.7,25.8 126.9,26.5C127.1,27.1 127,28.6 126.7,29C126.5,29.5 125.3,30.6 124.9,30.8C124.4,31 123.8,31.1 123.1,31ZM44.5,30.9C44.1,30.8 43.8,30.7 43.7,30.5C43.7,30.4 43.7,29.3 43.7,28.1C43.7,26.9 43.7,25.6 43.7,25.4C43.5,24.2 43.7,24.1 46,24C47.5,24 47.6,24 47.7,24.2C48,24.4 47.9,24.9 47.6,25C47.5,25 46.9,25 46.4,25C45,25 44.6,25.2 44.6,26C44.6,26.8 45.1,27.1 46.4,27.1C47.3,27.1 47.6,27.2 47.6,27.5C47.6,27.8 47.3,27.9 46.4,27.9C45.1,27.9 44.6,28.2 44.6,29C44.6,29.8 45,30 46.4,30C46.9,30 47.5,30 47.6,30C47.9,30.1 48,30.6 47.7,30.8C47.6,31 47.4,31 46.2,31C45.4,31 44.7,31 44.5,30.9ZM140.9,30.9C140.2,30.7 139.5,29.7 139.8,29.3C140,29.1 140.4,29.2 140.9,29.6C141.3,30 141.4,30 142,30C142.8,30 143.1,29.8 143.1,29.1C143.1,28.4 142.8,28.1 141.8,28C141.3,27.9 139.9,26.7 139.8,26.3C139.7,25.8 139.8,25.2 140.1,24.7C140.6,24 142.2,23.7 143.1,24.3C143.8,24.8 144.2,25.4 143.9,25.7C143.7,25.9 143.3,25.8 142.9,25.4C142.4,25 141.6,24.8 141.2,25.1C140.7,25.5 141,26.6 141.6,26.8C141.7,26.8 142.1,26.9 142.3,27C143.3,27.2 144.1,28 144.2,28.8C144.2,29.3 143.9,30.3 143.6,30.6C143.2,31 141.8,31.1 140.9,30.9ZM153.7,30.9C153.6,30.9 153.2,30.6 152.8,30.4C152.1,29.8 152,29.5 152.3,29.2C152.5,28.9 152.9,29 153.4,29.4C153.9,29.9 154.1,30 154.8,30C155.5,30 155.8,29.8 155.8,29.3C155.8,28.7 155.5,28.3 154.8,28C153.8,27.7 153.5,27.5 153,27C152.1,26.3 152,26 152.7,24.9C153.2,24.2 153.5,24 154.4,24C155.2,24 155.6,24.1 156.2,24.7C156.7,25.3 156.8,25.5 156.5,25.7C156.3,25.8 156.1,25.8 155.5,25.3C154.8,24.9 154.4,24.8 153.9,25.1C153.1,25.7 153.7,26.8 155,27C156.1,27.3 157,28.2 157,29.1C157,29.7 156.9,29.9 156.2,30.5L155.7,30.9L154.8,31C154.3,31 153.8,31 153.7,30.9ZM166.2,30.9C165.8,30.9 165.4,30.7 165.3,30.5C165.3,30.3 165.3,29 165.3,27.4C165.3,24.7 165.3,24.5 165.5,24.4C165.7,24.1 166.4,24 167.8,24C169.2,24 169.5,24.1 169.6,24.5C169.6,24.9 169.3,25 167.9,25C166.3,25.1 165.8,25.4 166,26.3C166.2,26.8 166.7,27 167.7,27C168.6,27.1 169,27.2 169,27.5C169,27.8 168.6,27.9 167.7,28C166.4,28 166,28.3 166,29C166,29.7 166.6,30 168.1,30C169.3,30 169.6,30.1 169.6,30.5C169.5,30.9 169.2,31 167.8,31C167.1,31 166.4,31 166.2,30.9ZM181.9,30.7C181.2,30.3 180.9,29.9 180.9,29.6C180.9,29 181.4,28.8 181.8,29.3C182.4,29.9 182.5,30 183,30C184.1,30.2 184.8,29.5 184.3,28.7C184.1,28.3 183.8,28.1 183.1,28C182.7,27.9 182.5,27.7 182.3,27.5C182.2,27.3 181.9,27.1 181.8,27C181,26.7 180.8,26.2 181,25.5C181.1,25 181.7,24.4 182.2,24.1C182.6,23.9 184.2,24 184.6,24.2C184.9,24.5 185.3,25.3 185.1,25.5C185,25.7 184.4,25.7 184.1,25.4C183.7,25 183.5,24.9 183.1,24.9C182.3,24.9 182,25.3 182.2,26.1C182.3,26.7 182.4,26.7 183.2,26.9C183.9,27 184.7,27.5 185.1,28C185.8,28.8 185.8,29.3 185.3,29.9C185.2,30 185,30.3 184.9,30.5C184.6,31.1 182.7,31.2 181.9,30.7ZM50.1,30.7C49.9,30.5 49.9,30.4 50,28.5C50,26.3 50,25.5 50,24.9C50,24.4 50.2,24.1 50.6,24.1C51.1,24.1 51.6,24.7 51.9,25.8C52,26.2 52.2,26.5 52.4,26.7C52.6,26.8 52.8,27.2 52.9,27.5C53.2,28.5 53.6,28.5 54.1,27.7C54.2,27.4 54.5,27 54.6,26.8C54.9,26.6 55,26.4 55.1,26C55.2,25.2 55.9,24.2 56.3,24.1C56.4,24.1 56.6,24.1 56.8,24.2L57,24.4L57.1,27C57.1,28.5 57.1,29.9 57.1,30.1C57.1,30.7 57,30.9 56.5,30.9C56.1,30.9 56,30.6 56.1,29.2C56.1,27.9 56,27.4 55.6,27.1C55.3,26.9 55.1,27 55,27.8C54.5,29.5 53.7,30.4 53.1,29.6C52.6,28.9 52.2,28.2 52,27.7C51.8,27 51.6,26.9 51.3,27.2C51.1,27.4 51,27.5 51,29C51,30.5 51,30.6 50.9,30.8C50.6,31 50.3,30.9 50.1,30.7ZM70.1,30.7C69.8,30.5 69,29.2 69,29C69,29 68.8,28.7 68.6,28.5C68.4,28.2 68.1,27.9 68,27.6C67.7,26.9 67.4,26.7 66.9,27.1L66.7,27.3L66.7,28.9C66.8,30.6 66.7,30.7 66.2,30.7C65.7,30.7 65.6,30.5 65.6,29.7C65.7,29 65.7,26 65.7,25C65.6,24.4 66,24 66.4,24.1C66.7,24.2 67.6,25.3 68,26.1C68.1,26.3 68.4,26.7 68.5,26.8C68.7,27 68.9,27.4 69,27.7C69.1,28.3 69.3,28.4 69.7,28.3C70.1,28.1 70.2,27.7 70.1,26.3C70,24.4 70.1,24.2 70.6,24.2C71.2,24.3 71.2,24.5 71.1,26.9C71,28.5 71,29.3 71.1,29.7C71.3,30.7 70.7,31.3 70.1,30.7ZM88.1,30.7C87.9,30.5 87.9,30.8 87.9,27.5C87.9,24.3 87.9,24.3 88.6,24.1C89.1,24 91.1,24 91.4,24.1C91.5,24.2 91.8,24.5 92,24.8C92.2,25.1 92.4,25.4 92.5,25.6C92.8,26 92.7,26.4 92.5,26.8C92.3,26.9 92.1,27.3 92,27.5C91.8,27.7 91.6,28 91.5,28.1C91.2,28.4 91.2,28.7 91.6,29C91.9,29.3 92.3,30.2 92.3,30.4C92.3,30.6 92.2,30.7 91.9,30.7C91.4,30.7 91.2,30.5 90.9,29.7C90.8,29.4 90.6,28.9 90.4,28.7C89.9,28 90,27.7 90.7,27.2C91.5,26.6 91.7,26.3 91.5,25.8C91.3,25 89.7,24.7 89.1,25.3C88.7,25.7 88.8,26.5 89.4,27.4C89.5,27.6 89.5,27.6 89.4,27.8C89,28.4 89,28.5 89,29.5C89,30.3 89,30.6 88.8,30.7C88.6,30.9 88.3,31 88.1,30.7ZM129.1,30.7C128.9,30.4 128.8,27.7 129,26.4C129.1,26 129.1,25.4 129,25.2C128.9,24.4 129.2,23.9 129.8,24.2C130.1,24.4 130.8,25.3 130.9,25.7C131,26 131.1,26.2 131.4,26.3C131.6,26.5 131.7,26.7 131.9,27.1C132.2,27.8 132.2,27.8 132.8,28C133,28 133.4,28.1 133.5,28.2C133.7,28.2 133.7,28.2 133.6,28C133.6,27.9 133.5,27.4 133.5,26.8C133.5,26.1 133.5,25.4 133.4,25.2C133.4,24.6 133.6,24.3 134,24.3C134.5,24.3 134.5,24.2 134.5,27.5C134.5,30.9 134.5,30.8 133.8,30.8C133.4,30.8 133.2,30.7 132.9,30C132.8,29.8 132.6,29.5 132.4,29.3C132.3,29.1 132.1,28.8 132.1,28.7C132,28.6 131.8,28.3 131.6,28.1C131.3,27.7 131,27.1 131,26.8C131,26.2 130.4,26.3 130.1,26.9C129.9,27.2 129.9,27.4 130,28.9C130,30.4 130,30.5 129.9,30.7C129.6,31 129.2,31 129.1,30.7ZM62.5,30.7C62.4,30.6 62.3,30.5 62.3,30.5C62.2,29.2 62.3,24.5 62.4,24.4C62.5,24.2 63.1,24.2 63.2,24.4C63.3,24.5 63.4,30.5 63.2,30.6C63.1,30.7 62.8,30.8 62.5,30.7ZM73.5,30.7C73.3,30.5 73.3,30.3 73.3,27.6C73.3,26 73.3,24.6 73.3,24.5C73.4,24.2 73.9,24.1 75.4,24C76.9,24 77.5,24.1 77.6,24.4C77.8,24.8 77.4,25 76,25C74.5,25.1 73.9,25.4 74.2,26.2C74.3,26.8 74.7,26.9 75.8,27C76.6,27 76.7,27.1 76.9,27.2C77,27.5 77,27.6 76.8,27.8C76.6,28 76.5,28 75.8,28C74.6,28 74.1,28.3 74.2,29.2C74.4,30.4 74.4,30.4 74.1,30.6C73.8,30.8 73.7,30.8 73.5,30.7ZM101,30.7C100.9,30.6 100.9,30.1 101,29C101,27.8 101,27.5 100.9,27.2C100.6,26.6 100.4,26.7 100,27.4C99.9,27.8 99.6,28.2 99.5,28.3C99.3,28.4 99.2,28.7 99.1,28.9C99,29.5 98.7,29.8 98.3,29.8C97.7,29.8 97.4,29.4 97.1,28.2C96.9,27.4 96.9,27.3 96.5,27.3C95.8,27.3 95.5,28.3 95.7,29.7C95.9,30.4 95.8,30.6 95.3,30.7C94.8,30.7 94.8,30.6 94.9,28.8C95,27.9 95,27.1 95.1,27.1C95.1,27 95,26.5 94.9,25.9C94.7,24.8 94.7,24.7 94.8,24.5C95,24.2 95.4,24 95.7,24.2C96,24.3 96.8,25.7 97,26.4C97.1,26.7 97.3,27 97.6,27.3C98.4,28.2 98.9,28.3 99.1,27.5C99.1,27.3 99.1,27 99.2,26.9C99.2,26.7 99.4,26.4 99.6,26.2C99.8,25.9 100,25.5 100.1,25.2C100.3,24.3 101,23.8 101.6,24.3C101.8,24.4 101.8,24.5 101.9,27.4C101.9,29.5 101.9,30.4 101.8,30.6C101.7,30.8 101.2,30.9 101,30.7ZM103.9,30.6C103.7,30.4 103.8,29.9 104.4,28.8C104.7,28 104.9,27.4 105,26.8C105.2,26.2 105.3,25.8 105.5,25.6C105.6,25.3 105.8,25 105.9,24.8C106.1,24.3 106.3,24.1 106.6,24.1C107.2,24.1 107.8,25 108.1,26.3C108.2,26.9 108.3,27.3 108.5,27.5C108.7,27.8 108.8,28.2 108.9,28.7C109.1,29.2 109.2,29.6 109.4,29.8C109.7,30.2 109.8,30.5 109.6,30.7C109.2,31 109,30.8 107.6,29.2L107.1,28.6L107.3,28.2C107.7,27.6 107.7,27.4 107.1,26.6C106.5,25.7 106.3,25.6 106.1,26.1C105.7,27.1 105.8,27.9 106.4,28.4C106.9,28.8 106.8,28.8 105.9,29.1C105.5,29.2 105.4,29.3 105.1,29.9C105,30.2 104.8,30.5 104.7,30.6C104.5,30.8 104.1,30.8 103.9,30.6ZM147.9,30.6C147.8,30.5 147.8,30.3 147.8,29.9C147.9,28.6 147.8,28.5 147.2,27.3C146.9,26.7 146.6,26.1 146.4,25.9C145.7,24.8 145.6,24.4 146.1,24.2C146.5,24 146.9,24.3 147.2,25C147.5,26 148.2,26.9 148.5,26.9C148.9,26.9 148.9,26.7 149.1,26C149.2,25.3 149.9,24.2 150.3,24.2C150.9,24 151,24.6 150.4,25.2C150.3,25.4 150.1,25.7 150.1,25.7C150.1,26.1 149.8,26.7 149.5,27C149,27.6 148.9,28.1 148.9,29.4C148.9,30 148.8,30.5 148.8,30.6C148.7,30.8 148.1,30.9 147.9,30.6ZM178.1,30.6C177.9,30.5 177.9,30.3 178,29C178,27.8 178,27.5 177.9,27.2C177.6,26.6 177.4,26.7 177,27.4C176.9,27.8 176.6,28.2 176.5,28.3C176.3,28.4 176.2,28.7 176.1,28.9C176,29.5 175.7,29.8 175.3,29.8C174.7,29.8 174.4,29.4 174.1,28.2C173.9,27.4 173.9,27.3 173.5,27.3C172.8,27.3 172.5,28.3 172.7,29.7C172.9,30.4 172.8,30.6 172.3,30.7C171.8,30.7 171.8,30.6 171.9,28.8C172.1,26.8 172,26 171.9,25.5C171.6,24.9 171.7,24.7 171.9,24.4C172.1,24.1 172.5,24 172.8,24.2C173,24.3 173.8,25.8 174,26.4C174.1,26.7 174.3,27 174.6,27.3C175.4,28.2 175.9,28.3 176.1,27.5C176.1,27.3 176.1,27 176.2,26.9C176.2,26.7 176.4,26.4 176.6,26.2C176.8,25.9 177,25.5 177.1,25.2C177.3,24.3 178,23.8 178.6,24.3L178.8,24.5L178.9,27.5C178.9,29.8 178.9,30.5 178.8,30.7C178.6,30.8 178.3,30.8 178.1,30.6ZM117.3,30.6C117.2,30.4 117.3,24.6 117.3,24.4C117.4,24.3 118,24.3 118.1,24.4C118.1,24.5 118.1,25.9 118.1,27.5C118.1,29.1 118.1,30.5 118.1,30.6C118,30.7 117.4,30.7 117.3,30.6ZM160.6,30.5C160.4,30.3 160.4,30.2 160.4,29.8C160.5,29.6 160.5,28.7 160.5,27.9C160.5,27.1 160.5,26.3 160.6,26.1C160.6,26 160.6,25.7 160.6,25.6C160.5,25.4 159.8,25 159.5,25C158.6,25 158.2,24.3 158.9,24.1C159.4,24 163,24 163.3,24.2C163.8,24.5 163.3,25 162.5,25C162.2,25 161.5,25.4 161.4,25.6C161.4,25.8 161.4,26 161.4,26.1C161.4,26.3 161.5,27.3 161.5,28.4C161.5,30.2 161.5,30.5 161.4,30.6C161.2,30.8 160.7,30.7 160.6,30.5ZM112.5,30.4C112.4,30.3 112.4,30.2 112.4,29.9C112.5,29.6 112.5,28.8 112.5,27.9C112.5,26.5 112.6,26 112.9,25.9C113.1,25.8 113.2,26.4 113.2,27.9C113.2,28.8 113.2,29.6 113.3,29.8C113.4,30.1 113.3,30.4 113.2,30.5C113,30.6 112.6,30.6 112.5,30.4ZM83.6,29.9C83.8,29.8 84.5,29 84.8,28.6C84.9,28.3 84.9,26.9 84.8,26.6C84.6,26.1 83.8,25.1 83.6,25.1C83,24.9 81.7,25 81.3,25.2C81.1,25.3 81,25.4 81,25.5C81,25.5 80.8,25.8 80.6,26.1L80.1,26.6L80.2,27.5C80.2,28.1 80.3,28.4 80.4,28.6C80.5,28.7 80.7,29 80.8,29.1C81.2,29.9 81.4,30 82.4,30C83,30 83.5,30 83.6,29.9ZM125.1,29.5C125.8,28.7 125.9,28.6 125.9,27.5C125.9,26.5 125.9,26.4 125.3,25.7C124.7,25.1 124.6,25 123.6,25C122.5,25 122.2,25.1 122,25.7C121.9,25.9 121.7,26.3 121.5,26.5C121.2,26.9 121.1,28 121.4,28.4C121.5,28.6 121.7,28.9 121.9,29.2C122.4,29.9 122.5,30 123.7,30L124.6,30L125.1,29.5ZM112.7,25.7C112.6,25.4 111.7,25 111.4,25C110.4,25 109.9,24.4 110.7,24.1C111.2,24 115,24 115.3,24.2C115.8,24.5 115.5,24.9 114.5,25C113.9,25.1 113,25.5 113,25.7C113,25.8 112.8,25.8 112.7,25.7ZM79,15.1C78.1,14.9 77.9,14.5 77.9,13.5C77.9,12.9 77.9,12.8 78.1,12.5C78.5,12.1 78.9,12.3 79.1,13C79.2,13.6 79.4,13.7 80,14C81.1,14.5 80.3,15.4 79,15.1ZM38.6,15C38.5,14.9 38.2,14.7 38,14.6C37.8,14.4 37.5,14.2 37.3,14.1C36.8,13.9 36.1,13.1 35.6,12C35,10.8 34.9,9.8 35.4,8.7C35.5,8.4 35.7,7.9 35.7,7.8C35.8,7.6 36.1,7.2 36.5,6.7C37.1,6 37.3,5.9 37.7,5.8C37.9,5.7 38.2,5.6 38.4,5.4C38.7,5.1 39,5 39.4,5.2C40,5.4 39.6,5.9 38.9,5.9C38.6,5.9 38.4,6.1 38.2,6.8C38.1,7 38,7.3 37.8,7.6C37.4,8.2 37.3,9 37.4,10.3C37.6,12.2 38.2,13.4 39.4,13.9C39.9,14.2 40.1,14.3 40.1,14.5C40.1,14.7 40.1,14.8 39.9,14.9C39.5,15 38.9,15.1 38.6,15ZM43.2,15C43.1,15 42.9,14.9 42.8,14.8C42.7,14.6 42.7,14.6 43,13.7L43.2,12.9L43.1,12.4C42.6,11.3 42.9,10.8 44.1,10.9C45.1,11 45.2,11.1 45.1,12.9C45.1,13.7 45.1,14.5 45,14.6C45,15 44.1,15.2 43.2,15ZM48.7,15C48.1,14.8 47.9,14.4 48.3,13.8C48.6,13.3 48.6,6.8 48.3,6.1C48.1,5.6 48.1,5.6 48.2,5.3C48.5,4.9 49.8,4.8 51.2,5.1C51.9,5.2 52,5.2 52.5,5C53.8,4.6 54.8,5.1 54.8,6C54.8,6.6 54.6,6.8 54.1,6.5C53.4,6.2 52,5.8 51.7,5.9C51.2,6 50.6,6.3 50.5,6.5C50.4,6.7 50.5,8.5 50.7,8.8C50.7,9 50.9,9.2 51.1,9.3C51.5,9.5 51.5,9.5 51.1,9.7C50.6,10 50.5,10.2 50.5,11.9C50.4,13.5 50.4,13.6 51,13.9C51.6,14.2 51.9,14.2 52.5,14.1C52.9,14 53.3,13.9 53.4,13.9C53.6,13.8 53.9,13.6 54.1,13.4C54.3,13.2 54.5,13 54.6,13C54.9,13 55,13.5 55,14.1C55,14.5 55,14.6 54.8,14.9C54.4,15.2 53.4,15.2 52.5,14.9C52,14.8 51.8,14.8 51.2,14.9C50.4,15.1 49.1,15.1 48.7,15ZM57.7,15C57.1,14.8 57.1,14.5 57.7,13.8C58.1,13.4 58.3,13.1 58.4,12.9C58.4,12.5 58.6,12.4 58.6,12.6C58.6,12.7 58.8,13.1 59,13.6C59.5,14.4 59.5,14.6 59.1,14.9C58.9,15.1 58.1,15.2 57.7,15ZM66.6,14.9C66.2,14.7 66.1,14.4 66.4,13.9C66.6,13.5 66.6,13.5 66.5,12C66.3,9.7 66.3,9.5 65.7,9.5C65.2,9.5 65.1,8.9 65.6,7.8C65.7,7.6 65.8,7.1 65.9,6.8C66,6.1 66.5,5.4 66.9,5.1C67.5,4.8 68.5,4.9 68.7,5.3C68.9,5.5 68.8,5.7 68.3,6.3C68.1,6.6 68.1,6.7 68.1,7.2C68.3,8.2 68.5,11.5 68.5,12.2C68.5,12.9 68.6,13.2 68.8,13.7C68.9,14 69,14.3 69,14.4C69,15 67.4,15.3 66.6,14.9ZM72.6,15C71.9,14.8 71.8,14.5 72.1,13.9C72.3,13.6 72.3,13.5 72.3,10C72.3,6.9 72.3,6.4 72.2,6.1C71.8,5.4 72.2,5 73.4,4.9C74.7,4.9 75.2,5.3 74.6,6.1L74.3,6.5L74.3,10L74.3,13.4L74.6,13.9C74.9,14.4 74.8,14.7 74.4,14.9C74,15.1 73.1,15.1 72.6,15ZM81.9,14.9C81.6,14.7 81.7,14.3 82.1,13.8C82.6,13.3 82.6,13 82.1,12.1C81.7,11.3 81.7,11.3 79.8,10.1C79.6,9.9 79.1,9.4 78.7,9.1L78,8.4L78,7.6C77.9,6.6 77.9,6.4 78.7,5.7C79.8,4.7 80.6,5 80,6.2C79.5,7.1 79.9,7.9 81.5,8.9C81.8,9.2 82.4,9.6 82.8,9.8C83.8,10.6 84.2,11.2 84.2,12.4C84.2,13.3 84.1,13.8 83.7,14C83.5,14.1 83.2,14.4 83,14.6C82.7,14.9 82.2,15.1 81.9,14.9ZM62.2,14.3C62.1,14.2 61.9,13.8 61.8,13.5C61.8,13.2 61.6,12.8 61.4,12.7C61.3,12.5 61.1,12.1 61,11.8C60.9,11.5 60.7,11 60.5,10.7C60.3,10.4 60.1,10 60,9.6C59.8,9 59.6,8.7 59.3,8.7C59,8.7 58.9,9 58.7,10.2C58.5,12.5 58.1,11.6 58.2,8.7C58.2,6.7 58.2,6.6 57.7,6C57.1,5.4 57.4,5 58.6,4.9C59.5,4.9 59.8,5 60.1,5.6C60.2,5.9 60.4,6.1 60.5,6.3C60.6,6.4 60.8,6.8 61,7.2C61.2,7.6 61.4,8.2 61.6,8.4C61.8,8.6 62,9 62.1,9.2C62.1,9.5 62.3,9.8 62.5,10C62.6,10.3 62.8,10.7 62.9,10.9C63.1,11.4 63.3,11.6 63.7,11.7C64.1,11.8 64.2,11.7 64.1,11.2C64,10.4 64.5,9.8 64.8,10.3C65,10.6 64.9,11.4 64.5,11.7C64.3,11.9 64.2,12.1 64.2,12.4C64.1,12.9 63.6,14 63.3,14.3C63.1,14.6 62.5,14.6 62.2,14.3ZM52.8,10.4C52.5,10.1 52.1,9.8 51.9,9.7C51.8,9.6 51.6,9.5 51.6,9.5C51.6,9.4 53.3,8.7 53.4,8.7C54,8.7 54.3,10.5 53.7,10.9C53.5,11.1 53.3,11 52.8,10.4ZM44,7C43.7,6.7 43.2,6.4 42.8,6.1C42,5.7 41.8,5.5 42,5.2C42.2,4.8 43.5,4.7 44.1,5.1C44.8,5.5 45.2,6.8 44.7,7.2C44.5,7.5 44.4,7.5 44,7ZM83.2,7.1C83.1,7 83,6.8 83,6.8C83,6.6 82.6,6.3 82.2,6.1C81.6,5.7 81.5,5.1 82.2,4.9C82.9,4.7 83.7,5.1 83.9,5.7C84.1,6.2 84,7.1 83.7,7.3C83.5,7.4 83.4,7.4 83.2,7.1Z"/></symbol>
+  </svg>
 
-<!-- ═══ Hero ═══ -->
-<section class="hero">
-  <div class="hero__bg" aria-hidden="true"></div>
-  <div class="hero__s1" aria-hidden="true"></div>
-  <div class="hero__s2" aria-hidden="true"></div>
-  <div class="hero__s3" aria-hidden="true"></div>
-  <div class="hero__in">
-    <p class="hero__badge" data-reveal><i aria-hidden="true"></i>Portfolio</p>
-    <h1 data-reveal="2">We design the digital products, systems, <span>and experiences people use.</span></h1>
-    <div class="hero__row">
-      <p class="lede" data-reveal="3">Selected work across brand, digital products, websites, apps, systems and emerging experiences.</p>
-      <div class="hero__side">
-        <p class="meta" data-reveal="4">Brand · Digital · Product · Systems · AI · Strategy</p>
-        <a class="hero__collab" data-reveal="5" href="https://hivestudio.co.za/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4 20.3 7.2 V16.8 L12 21.6 3.7 16.8 V7.2 Z" fill="none" stroke="#e8a33d" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8 15.6 10.1 V14.3 L12 16.4 8.4 14.3 V10.1 Z" fill="#e8a33d" opacity=".9"/></svg>
-          In collaboration with <b>Hive Creative Studio</b> <i>↗</i>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+  <header class="nav nav--solid" id="nav">
+    <div class="shell nav__in">
+      <a class="nav__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
 
-<!-- ═══ Marks in rotation — auto-sliding identity cards ═══ -->
-<section class="marks" aria-label="Identity marks from the studio">
-  <p class="kicker">Marks in rotation</p>
-  <h2>Brands in rotation.</h2>
-  <div class="marks__rail">
-    <div class="marks__track">
-      <div class="mcard mcard--dark">
-        <span class="mcard__logo mcard__logo--sq"><img src="assets/img/logos/ax-channels.png" alt="AX-Channels logo" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">AX-Channels</span>
-      </div>
-      <div class="mcard mcard--ink">
-        <span class="mcard__logo mcard__logo--md"><img src="assets/img/logos/neuraux.png" alt="NeuraUX logo" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">NeuraUX</span>
-      </div>
-      <div class="mcard mcard--bone">
-        <span class="mcard__logo mcard__logo--wide"><img src="assets/img/logos/gemis.png" alt="GEMIS — GEM Information Systems logo" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">GEM Information Systems</span>
-      </div>
-      <div class="mcard mcard--paper">
-        <span class="mcard__logo mcard__logo--box"><img src="assets/img/logos/kiy-trucking.png" alt="KiY Trucking logo" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">KiY Trucking</span>
-      </div>
-      <div class="mcard mcard--dark">
-        <span class="mcard__logo mcard__logo--sm"><img src="assets/img/logos/cmaxx.png" alt="CMaxx WiFi Solutions logo" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">CMaxx WiFi Solutions</span>
-      </div>
-      <div class="mcard mcard--dark" aria-hidden="true">
-        <span class="mcard__logo mcard__logo--sq"><img src="assets/img/logos/ax-channels.png" alt="" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">AX-Channels</span>
-      </div>
-      <div class="mcard mcard--ink" aria-hidden="true">
-        <span class="mcard__logo mcard__logo--md"><img src="assets/img/logos/neuraux.png" alt="" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">NeuraUX</span>
-      </div>
-      <div class="mcard mcard--bone" aria-hidden="true">
-        <span class="mcard__logo mcard__logo--wide"><img src="assets/img/logos/gemis.png" alt="" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">GEM Information Systems</span>
-      </div>
-      <div class="mcard mcard--paper" aria-hidden="true">
-        <span class="mcard__logo mcard__logo--box"><img src="assets/img/logos/kiy-trucking.png" alt="" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">KiY Trucking</span>
-      </div>
-      <div class="mcard mcard--dark" aria-hidden="true">
-        <span class="mcard__logo mcard__logo--sm"><img src="assets/img/logos/cmaxx.png" alt="" loading="lazy"></span>
-        <span class="mcard__meta mcard__meta--btm">CMaxx WiFi Solutions</span>
-      </div>
-    </div>
-  </div>
-  <p class="marks__note">A selection of client and partner brands.</p>
-</section>
+      <div class="nav__drawer" id="navDrawer">
+        <ul class="nav__links" id="navLinks">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li class="nav__item nav__item--mega" data-mega>
+          <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
+            Products
+            <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
+          </button>
 
-<!-- ═══ Explorer ═══ -->
-<section id="explorer" class="explorer pad">
-  <div class="wrap">
-    <div class="exp__head">
-      <div>
-        <p class="kicker">Selected work</p>
-        <h2 class="h2" style="max-width:20ch">A body of work across disciplines.</h2>
+        <div class="mega" id="productsMenu" aria-labelledby="productsTrigger">
+          <div class="shell mega__in">
+            <div class="mega__head">
+              <p class="eyebrow">Our Products</p>
+              <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
+            </div>
+
+            <div class="mega__grid">
+              <article class="prod">
+                <a class="prod__media" href="managem.html" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/managem.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
+                <div class="prod__body">
+                  <h3 class="prod__name">ManaGem</h3>
+                  <p class="prod__desc">An all-in-one management platform covering sales, stock, payroll, projects and multi-company accounting — one source of truth your finance and operations teams share.</p>
+                  <a class="prod__cta" href="managem.html">Explore ManaGem <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+                </div>
+              </article>
+
+              <article class="prod">
+                <a class="prod__media" href="services.html" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/gemis-tech.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
+                <div class="prod__body">
+                  <h3 class="prod__name">Gemis Tech</h3>
+                  <p class="prod__desc">Our engineering practice — custom software, enterprise SaaS, mobile apps and system integration, architected and supported on the Microsoft Cloud.</p>
+                  <a class="prod__cta" href="services.html">Explore Gemis Tech <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+                </div>
+              </article>
+
+              <article class="prod">
+                <a class="prod__media" href="brand-studio.html" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/design-studio.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
+                <div class="prod__body">
+                  <h3 class="prod__name">Design Studio</h3>
+                  <p class="prod__desc">Product, interface and web design from GEMIS Studio in Sandton — research, prototypes and design systems, by the studio that can also build it.</p>
+                  <a class="prod__cta" href="brand-studio.html">Explore Design Studio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        </li>
+        <li><a href="work.html" aria-current="page">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+        </ul>
+
       </div>
-      <p class="note">Different problems, different outputs — connected by the same attention to clarity, usefulness and experience.</p>
+
+      <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+        <span></span><span></span><span></span>
+      </button>
     </div>
 
-    <p class="collab"><i></i>Selected work delivered in collaboration with Hive Studio.</p>
+  </header>
 
-    <div class="filters" role="group" aria-label="Filter work by category" id="filters">
-      <button type="button" data-cat="ALL" aria-pressed="true">All</button>
-      <button type="button" data-cat="BRAND" aria-pressed="false">Brand</button>
-      <button type="button" data-cat="WEB" aria-pressed="false">Web</button>
-      <button type="button" data-cat="PRODUCT" aria-pressed="false">Product</button>
-      <button type="button" data-cat="APPS" aria-pressed="false">Apps</button>
-      <button type="button" data-cat="SYSTEMS" aria-pressed="false">Systems</button>
-      <button type="button" data-cat="PLATFORMS" aria-pressed="false">Platforms</button>
-      <button type="button" data-cat="AI" aria-pressed="false">AI</button>
-      <button type="button" data-cat="STRATEGY" aria-pressed="false">Strategy</button>
-      <button type="button" data-cat="EXPERIMENTS" aria-pressed="false">Experiments</button>
-    </div>
+  <main>
 
-    <div class="grid" id="workGrid">
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section class="whero" id="hero">
+      <div class="shell">
+        <p class="eyebrow" data-reveal>Selected Work</p>
+        <h1 class="whero__title" data-reveal style="--d:80ms">We Design The Digital Products, Systems And Experiences People Use</h1>
 
-      <article class="card" data-cats="WEB AI PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/portfolio/gemistech-mock.jpg" alt="Gemis.tech AI training platform on a desktop display against a dark wood-panelled wall" loading="lazy"></div>
+        <div class="whero__row">
+          <p data-reveal style="--d:160ms">
+            Selected work across brand, digital products, websites, apps, systems and
+            emerging experiences. Different problems, different outputs — connected by the
+            same attention to clarity, usefulness and experience.
+          </p>
+          <p class="whero__credit" data-reveal style="--d:220ms">
+            <span>In collaboration with</span>
+            <a href="#contact">Hive Creative Studio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </p>
         </div>
-        <div class="card__row">
-          <h3>Gemis.tech</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#1F2C4F"/><path d="M20 8 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z" fill="#D4A63C"/></svg><div class="wt"><b>AI training &amp; enablement</b><span>Web · Platform · AI</span></div></div>
-          <p class="tagline">AI is changing how professionals work — a platform that helps teams stay ahead of it.</p>
-          <a class="card__btn" href="https://gemis.tech" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-
-      <article class="card" data-cats="PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem business platform on a laptop, photographed on an orange industrial crate" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>ManaGem</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#3056D3"/><path d="M20 9 L30 17 L26 30 H14 L10 17 Z" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/></svg><div class="wt"><b>Business management</b><span>Product · Dashboard UX · Design system</span></div></div>
-          <p class="tagline">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
-          <a class="card__btn" href="ManaGem.html" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-
-      <article class="card" data-cats="WEB PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/work/smartstart-mock.jpg" alt="SmartStart training platform on a laptop" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>SmartStart</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#7C3AED"/><path d="M20 8 v24 M8 20 h24 M12 12 l16 16 M28 12 l-16 16" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg><div class="wt"><b>Early learning</b><span>Web · Platforms · UX/UI</span></div></div>
-          <p class="tagline">Early-learning training platform — courses and franchise operations for practitioners.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="SYSTEMS PLATFORMS PRODUCT APPS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app check-in screen on a phone over a dark particle landscape" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>WasteMart</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#14B8A6"/><path d="M13 22 a8 8 0 0 1 13-6 M27 18 a8 8 0 0 1 -13 6" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg><div class="wt"><b>Waste & recycling ops</b><span>Systems · Product · UX/UI</span></div></div>
-          <p class="tagline">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
-          <a class="card__btn" href="wastemart-driver.html" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-
-      <article class="card" data-cats="AI PRODUCT SYSTEMS PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/shots/finos.jpg" alt="FINOS financial command centre on a tilted display, photographed on a concrete studio set" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>FINOS</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="8" fill="#111"/><circle cx="13" cy="20" r="3.4" fill="#fff"/><rect x="20" y="17" width="12" height="2.6" rx="1.3" fill="#8d969e"/><rect x="20" y="22" width="8" height="2.6" rx="1.3" fill="#8d969e"/></svg><div class="wt"><b>Fintech · AI platform</b><span>AI · Product · UX/UI · Strategy</span></div></div>
-          <p class="tagline">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="AI PRODUCT APPS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach AI coaching app on a phone resting on concrete blocks" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>NuraCoach</h3>
-          <div class="card__who"><svg viewBox="0 0 48 40" aria-hidden="true"><rect x="2" y="10" width="44" height="20" rx="10" fill="#0F766E"/><path d="M10 20 h6 l3 -6 l4 12 l3 -6 h9" fill="none" stroke="#5EEAD4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="wt"><b>AI coaching</b><span>AI · Product · UX</span></div></div>
-          <p class="tagline">AI coaching companion — guidance that reads like a conversation, not a report.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="APPS AI PRODUCT">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/portfolio/rentflow-tall.jpg" alt="RentFlow property app screens on two phones in a purple 3D set" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>RentFlow</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34 V18 A14 14 0 0 1 34 18 V34 Z" fill="#8B5CF6"/><path d="M14 34 V24 a6 6 0 0 1 12 0 v10" fill="#fff"/></svg><div class="wt"><b>Property tech</b><span>Apps · AI · Product</span></div></div>
-          <p class="tagline">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="SYSTEMS PRODUCT">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice programme system on a laptop against a concrete wall" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>Sonke Gender Justice</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="16" height="16" rx="4" fill="#E97817"/><rect x="21" y="3" width="16" height="16" rx="4" fill="#191c1f"/><rect x="3" y="21" width="16" height="16" rx="4" fill="#5C4033"/><rect x="21" y="21" width="16" height="16" rx="4" fill="#c9c9cd"/></svg><div class="wt"><b>Non-profit systems</b><span>Systems · Product · UX/UI</span></div></div>
-          <p class="tagline">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="APPS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="card__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo multilingual field-work app on a phone on an orange industrial surface" loading="lazy"></div>
-        </div>
-        <div class="card__row">
-          <h3>Lungelo</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="6" width="36" height="24" rx="12" fill="#135E63"/><path d="M14 34 l4 -6 h-4 z" fill="#135E63"/><circle cx="14" cy="18" r="2.6" fill="#fff"/><circle cx="21" cy="18" r="2.6" fill="#7DD3C0"/><circle cx="28" cy="18" r="2.6" fill="#fff" opacity=".5"/></svg><div class="wt"><b>Field operations</b><span>Apps · UX/UI · Accessibility</span></div></div>
-          <p class="tagline">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
-          <span class="card__btn card__btn--soon" aria-disabled="true" title="Project link coming soon">See project <i>↗</i></span>
-        </div>
-      </article>
-
-      <article class="card" data-cats="WEB PLATFORMS SYSTEMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hodlotc.com</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#0b1220 0%,#111f34 58%,#0b1220 100%);color:#fff"><div class="cover__nav"><span>Trade</span><span>Services</span><span>Security</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">HODL<span style="color:#21d07a">OTC</span></div><div class="cover__rule"></div><p class="cover__sub">Over-the-counter desk for Bitcoin, Ethereum and leading digital assets — single-price settlement, full KYC, registered FSP.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>HODL OTC</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#0f2f22"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#21d07a">H</text></svg><div class="wt"><b>Fintech</b><span>Web platform · Web</span></div></div>
-          <p class="tagline">Public site for a South African OTC crypto desk — services, security and compliance explained for private and institutional clients.</p>
-          <a class="card__btn" href="https://hodlotc.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB BRAND">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>towerbosch.com</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#3f3527 0%,#5c4a34 55%,#2c251b 100%);color:#fff"><div class="cover__nav"><span>Menu</span><span>The farm</span><span>Bookings</span><span>Visit</span></div><div class="cover__mid"><div class="cover__wm">Towerbosch</div><div class="cover__rule"></div><p class="cover__sub">Traditional boerekos served under the trees on Knorhoek farm, six kilometres outside Stellenbosch.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Towerbosch</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#3f3527"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#d8bb8a">T</text></svg><div class="wt"><b>Hospitality</b><span>Restaurant site · Web</span></div></div>
-          <p class="tagline">Restaurant site for the Knorhoek estate eatery — menu, setting and table bookings in the Stellenbosch winelands.</p>
-          <a class="card__btn" href="https://towerbosch.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>berliner.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(160deg,#8e1b1b 0%,#5d1212 100%);color:#fff"><div class="cover__nav"><span>Shop</span><span>Butchery</span><span>Deli</span><span>Stores</span></div><div class="cover__mid"><div class="cover__wm">Berliner</div><div class="cover__rule"></div><p class="cover__sub">Wholesale continental butchery and delicatessen — beef, lamb, pork and poultry, with home delivery.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Berliner</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#8e1b1b"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#f0d9d9">B</text></svg><div class="wt"><b>Retail</b><span>E-commerce · Web</span></div></div>
-          <p class="tagline">Online storefront for the continental butchery and deli, with stores at Coachman’s Crossing, Cambridge Crossing and Northlands Corner.</p>
-          <a class="card__btn" href="https://berliner.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB STRATEGY">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>obsidianwealth.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#14161a 0%,#25292f 60%,#0e1013 100%);color:#fff"><div class="cover__nav"><span>Approach</span><span>Products</span><span>Contact</span></div><div class="cover__mid"><div class="cover__wm">Obsidian<span style="opacity:.55"> Wealth</span></div><div class="cover__rule"></div><p class="cover__sub">Boutique advisory in digital assets, yield products and alternative wealth architecture.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Obsidian Wealth</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#14161a"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#9aa1a9">O</text></svg><div class="wt"><b>Finance</b><span>Advisory site · Web</span></div></div>
-          <p class="tagline">Positioning site for a Nelspruit boutique advisory working with a select group of individuals and families.</p>
-          <a class="card__btn" href="https://obsidianwealth.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB PLATFORMS">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>saltbru.com</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#241f1c 0%,#3d332b 52%,#1a1613 100%);color:#fff"><div class="cover__nav"><span>Butchery</span><span>Biltong</span><span>Deals</span><span>Delivery</span></div><div class="cover__mid"><div class="cover__wm">Salt<span style="color:#e0a33d">Bru</span></div><div class="cover__rule"></div><p class="cover__sub">Online butchery delivering restaurant-quality cuts across Gauteng — vacuum-sealed and cold-packed.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>SALTBRU</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#241f1c"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#e0a33d">S</text></svg><div class="wt"><b>Retail</b><span>Online butchery · Web</span></div></div>
-          <p class="tagline">E-commerce site for a Gauteng online butchery — cuts, biltong and specials with doorstep delivery.</p>
-          <a class="card__btn" href="https://saltbru.com/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB BRAND">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>hivestudio.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(150deg,#e8a33d 0%,#c9761c 100%);color:#2a2015"><div class="cover__nav"><span>Work</span><span>Studio</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#1f1a12">Hive</span></div><div class="cover__rule"></div><p class="cover__sub">Full-service creative studio in Nelspruit — branding, digital and social.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Hive Studio</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#e8a33d"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#2a2015">H</text></svg><div class="wt"><b>Studio site</b><span>Partner · Web</span></div></div>
-          <p class="tagline">Site for the Nelspruit creative studio GEMIS partners with on selected digital work.</p>
-          <a class="card__btn" href="https://hivestudio.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>havenholistic.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#6e8b74 0%,#3f5546 100%);color:#fff"><div class="cover__nav"><span>Therapy</span><span>About</span></div><div class="cover__mid"><div class="cover__wm">Haven</div><div class="cover__rule"></div><p class="cover__sub">A safe space for growth, healing and self-discovery — holistic counselling.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Haven Holistic</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#6e8b74"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#eaf1ec">H</text></svg><div class="wt"><b>Wellness</b><span>Practice site · Web</span></div></div>
-          <p class="tagline">Practice site for a holistic counselling service, built around a calm, unhurried reading experience.</p>
-          <a class="card__btn" href="https://havenholistic.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>kaapsehoopadventures.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(160deg,#5b6b6a 0%,#8fa09b 45%,#31403f 100%);color:#fff"><div class="cover__nav"><span>Trails</span><span>Stay</span></div><div class="cover__mid"><div class="cover__wm">Kaapsehoop</div><div class="cover__rule"></div><p class="cover__sub">Horse trails, teepees and off-grid stays on the escarpment above Nelspruit.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>Kaapsehoop Adventures</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#4d5b58"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#dfe6e4">K</text></svg><div class="wt"><b>Tourism</b><span>Booking site · Web</span></div></div>
-          <p class="tagline">Site for an off-grid escarpment retreat — horse trails, accommodation and volunteer programmes.</p>
-          <a class="card__btn" href="https://kaapsehoopadventures.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-      <article class="card" data-cats="WEB BRAND">
-        <div class="card__visual">
-          <span class="card__glow" aria-hidden="true"></span>
-          <div class="win">
-          <div class="win__bar" aria-hidden="true"><i></i><i></i><i></i><span>v1architects.co.za</span></div>
-          <div class="cover" style="background:linear-gradient(155deg,#d9dbdd 0%,#f2f3f4 55%,#c5c8cb 100%);color:#3a3f47"><div class="cover__nav"><span>Projects</span><span>Practice</span></div><div class="cover__mid"><div class="cover__wm"><span style="color:#191c1f">V1</span></div><div class="cover__rule"></div><p class="cover__sub">Architecture practice portfolio.</p></div></div>
-          </div>
-        </div>
-        <div class="card__row">
-          <h3>V1 Architects</h3>
-          <div class="card__who"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#3a3f47"/><text x="20" y="27" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="19" font-weight="500" fill="#e6e8ea">V</text></svg><div class="wt"><b>Architecture</b><span>Portfolio site · Web</span></div></div>
-          <p class="tagline">Portfolio site presenting the practice’s architectural work.</p>
-          <a class="card__btn" href="https://v1architects.co.za/" target="_blank" rel="noopener">See project <i>↗</i></a>
-        </div>
-      </article>
-    </div>
-
-    <div class="more" id="moreWrap"><button type="button" id="moreBtn">View more ↓</button></div>
-
-    <div class="empty" id="emptyState">
-      <p>More work in this area is coming soon.</p>
-      <button type="button" id="resetFilter">View all work →</button>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══ Social & digital campaigns ═══ -->
-<section class="soc pad" id="social" aria-label="Social and digital campaign work">
-  <div class="wrap">
-    <p class="kicker">Social &amp; digital campaigns</p>
-    <h2 class="h2" style="max-width:22ch">Design that keeps talking.</h2>
-    <p class="lede">Ongoing content, campaigns and visual communication for brands across the Lowveld — the part of the work that runs every week, not once at launch.</p>
-    <p class="collab"><i></i>Selected work delivered in collaboration with Hive Studio.</p>
-    <div class="sidx">
-      <div class="sidx__head" aria-hidden="true"><span>Account</span><span>Discipline</span><span>Channel</span><span></span></div>
-      <a class="srow" href="https://www.instagram.com/buylocallowveld" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#2f7a55,#1f4d3a)" aria-hidden="true"></i><span class="srow__nm"><b>Buy Local Lowveld</b><span>@buylocallowveld</span></span></span>
-        <span class="srow__tags"><span class="stag">Social content</span><span class="stag">Community</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-      <a class="srow" href="https://www.instagram.com/girafmacadamia" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#c9a05a,#7a4d1f)" aria-hidden="true"></i><span class="srow__nm"><b>Giraf Macadamia</b><span>@girafmacadamia</span></span></span>
-        <span class="srow__tags"><span class="stag">Social content</span><span class="stag">Product campaign</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-      <a class="srow" href="http://instagram.com/kwanyonilodge" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#6b533a,#3c2f21)" aria-hidden="true"></i><span class="srow__nm"><b>Kwanyoni Lodge</b><span>@kwanyonilodge</span></span></span>
-        <span class="srow__tags"><span class="stag">Social content</span><span class="stag">Hospitality</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-      <a class="srow" href="https://www.instagram.com/kaapsehoop__adventures" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#8c9c95,#4d5b58)" aria-hidden="true"></i><span class="srow__nm"><b>Kaapsehoop Adventures</b><span>@kaapsehoop__adventures</span></span></span>
-        <span class="srow__tags"><span class="stag">Social content</span><span class="stag">Reels</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-      <a class="srow" href="https://www.instagram.com/krugerlowveld" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#4f92b5,#1d3b52)" aria-hidden="true"></i><span class="srow__nm"><b>Kruger Lowveld</b><span>@krugerlowveld</span></span></span>
-        <span class="srow__tags"><span class="stag">Campaign</span><span class="stag">Destination content</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-      <a class="srow" href="https://www.instagram.com/hivestudioza" target="_blank" rel="noopener">
-        <span class="srow__id"><i class="srow__dot" style="background:linear-gradient(180deg,#e8a33d,#b06f18)" aria-hidden="true"></i><span class="srow__nm"><b>Hive Studio</b><span>@hivestudioza</span></span></span>
-        <span class="srow__tags"><span class="stag">Social content</span><span class="stag">Brand</span></span>
-        <span class="srow__ch">Instagram</span>
-        <i class="srow__go" aria-hidden="true">↗</i>
-      </a>
-    </div>
-    <p class="soc__note">Each row opens the account it was made for.</p>
-  </div>
-</section>
-
-<!-- ═══ Disciplines ═══ -->
-<section class="disc pad">
-  <div class="amb" aria-hidden="true"><i></i></div>
-  <div class="wrap">
-    <p class="kicker">What we make</p>
-    <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px);max-width:20ch">Different outputs. One way of thinking.</h2>
-    <div class="disc__list">
-      <button type="button" class="disc__row" data-goto="BRAND"><span class="nm">Brand</span><span class="ln">Identity systems · Positioning · Visual languages · Campaigns</span></button>
-      <button type="button" class="disc__row" data-goto="WEB"><span class="nm">Digital</span><span class="ln">Websites · Digital experiences · Microsites · Content systems</span></button>
-      <button type="button" class="disc__row" data-goto="PRODUCT"><span class="nm">Product</span><span class="ln">Apps · SaaS · Platforms · AI products</span></button>
-      <button type="button" class="disc__row" data-goto="SYSTEMS"><span class="nm">Systems</span><span class="ln">Dashboards · Enterprise systems · Operational tools · Data interfaces</span></button>
-      <button type="button" class="disc__row" data-goto="STRATEGY"><span class="nm">Strategy</span><span class="ln">Research · UX strategy · Product strategy · Digital transformation</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ Beyond screens ═══ -->
-<section class="beyond pad">
-  <div class="wrap">
-    <p class="kicker">Beyond screens</p>
-    <h2 class="h2" style="max-width:24ch">We design the ecosystem, not just the screen.</h2>
-    <p class="lede">Brands, interfaces, content, systems and communications rarely exist in isolation. GEMIS considers the wider experience around what we create.</p>
-    <div class="bgrid">
-
-      <div class="btile" style="grid-column:span 7;grid-row:span 3">
-        <div class="art bb" aria-hidden="true">
-          <div class="bb-top">
-            <div class="bb-logo"><b>GEMIS<sup>®</sup></b><span>Brand guidelines — v2.4</span></div>
-            <div class="bb-col">
-              <div class="bb-sw" style="flex:1.5;background:#a64b21;color:#fff"><b>Ember</b><span>#A64B21</span></div>
-              <div class="bb-sw" style="flex:1;background:#f1eee9;color:#191c1f"><b>Bone</b><span>#F1EEE9</span></div>
-            </div>
-            <div class="bb-col bb-col--b">
-              <div class="bb-sw" style="flex:1;background:#191c1f;color:#fff"><b>Ink</b><span>#191C1F</span></div>
-              <div class="bb-sw" style="flex:1.5;background:#fff;color:#191c1f"><b>White</b><span>#FFFFFF</span></div>
-            </div>
-          </div>
-          <div class="bb-ui">
-            <div class="bb-z bb-z1">
-              <b>Brand guidelines</b>
-              <em>v2.4 — updated Aug 2026</em>
-              <p>Logo, colour, type and usage rules for every GEMIS touchpoint — screens, decks, print and signage.</p>
-            </div>
-            <div class="bb-z bb-z2">
-              <div class="bb-tabs"><i class="on">Guidelines</i><i>Assets</i></div>
-              <div class="bb-search">⌕ Search assets…</div>
-              <div class="bb-tog">Share with team<i></i></div>
-            </div>
-            <div class="bb-z bb-z3">
-              <span class="kb kb--p">Download kit</span>
-              <span class="kb kb--o">tokens.json</span>
-              <div class="bb-ico"><i style="background:#6f7cf5"></i><i style="background:#8a5cf6"></i><i style="background:#2ea6f0"></i><i style="background:#f5b73c"></i><i style="background:#e06a35"></i><i style="background:#20b26b"></i><i style="background:#191c1f"></i><i style="background:#c9c9cd"></i></div>
-            </div>
-          </div>
-        </div>
-        <span>[ Identity system ]</span>
       </div>
 
-      <div class="btile" style="grid-column:span 5;grid-row:span 2">
-        <div class="art pres" aria-hidden="true">
-          <div class="slide s-back">
-            <span class="a-lbl">Adoption by quarter</span>
-            <div class="bars">
-              <div><i style="height:38%"></i><span>Q1</span></div>
-              <div><i style="height:56%"></i><span>Q2</span></div>
-              <div><i style="height:84%"></i><span>Q3</span></div>
-              <div><i style="height:66%"></i><span>Q4</span></div>
-            </div>
-          </div>
-          <div class="slide s-front a-shadow">
-            <span class="kick">GEMIS — Product Review</span>
-            <h6>One system.<br>Every screen.</h6>
-            <div class="pg"><span>Q3 2026</span><span>01 / 24</span></div>
-          </div>
+      <div class="shell">
+        <div class="mq" aria-label="Clients and partners">
+          <div class="mq__track"><span>AX-Channels</span><span>NeuraUX</span><span>GEM Information Systems</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span><span>AX-Channels</span><span>NeuraUX</span><span>GEM Information Systems</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span></div>
         </div>
-        <span>[ Presentation system ]</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ PROJECT INDEX ═══════════════════ -->
+    <section class="sec sec--tight" id="projects">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>The Index</p>
+            <h2 class="display" data-reveal style="--d:80ms">A Body Of Work Across Disciplines</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Platforms, operational systems and sites we have designed, engineered and
+            shipped. Filter by discipline to narrow the list.
+          </p>
+        </div>
+
+        <div class="filters" data-filters role="group" aria-label="Filter projects by discipline">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="web" aria-pressed="false">Web</button>
+            <button type="button" data-filter="product" aria-pressed="false">Product</button>
+            <button type="button" data-filter="apps" aria-pressed="false">Apps</button>
+            <button type="button" data-filter="systems" aria-pressed="false">Systems</button>
+            <button type="button" data-filter="platforms" aria-pressed="false">Platforms</button>
+            <button type="button" data-filter="ai" aria-pressed="false">AI</button>
+            <button type="button" data-filter="brand" aria-pressed="false">Brand</button>
+            <button type="button" data-filter="strategy" aria-pressed="false">Strategy</button>
+            <span class="filters__count" data-count-out aria-live="polite"></span>
+        </div>
+
+        <div class="grid">
+          <article class="tile tile--wide" data-tags="web platforms ai" data-reveal>
+            <div class="tile__media"><img src="assets/img/portfolio/gemistech-mock.jpg" alt="Gemis.tech interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">AI training &amp; enablement</p>
+            <h3 class="tile__name">Gemis.tech</h3>
+            <p class="tile__desc">AI is changing how professionals work — a platform that helps teams stay ahead of it.</p>
+            <p class="tile__tags">Web · Platform · AI</p>
+            <a class="arrow-link" href="services.html">See project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="product systems" data-reveal>
+            <div class="tile__media"><img src="assets/img/work/managem-mock.jpg" alt="ManaGem interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Business management</p>
+            <h3 class="tile__name">ManaGem</h3>
+            <p class="tile__desc">Business management platform — quotes, jobs, stock and invoicing in one working system.</p>
+            <p class="tile__tags">Product · Dashboard UX · Design system</p>
+            <a class="arrow-link" href="managem.html">See project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="systems product" data-reveal>
+            <div class="tile__media"><img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Waste &amp; recycling ops</p>
+            <h3 class="tile__name">WasteMart</h3>
+            <p class="tile__desc">Recycling operations system — routes, pickups and manifests from depot to doorstep.</p>
+            <p class="tile__tags">Systems · Product · UX/UI</p>
+            <a class="arrow-link" href="wastemart.html">See project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="ai product strategy" data-reveal>
+            <div class="tile__media"><img src="assets/img/shots/finos.jpg" alt="FINOS interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Fintech · AI platform</p>
+            <h3 class="tile__name">FINOS</h3>
+            <p class="tile__desc">AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p>
+            <p class="tile__tags">AI · Product · UX/UI · Strategy</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web platforms" data-reveal>
+            <div class="tile__media"><img src="assets/img/work/smartstart-mock.jpg" alt="SmartStart interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Early learning</p>
+            <h3 class="tile__name">SmartStart</h3>
+            <p class="tile__desc">Early-learning training platform — courses and franchise operations for practitioners.</p>
+            <p class="tile__tags">Web · Platforms · UX/UI</p>
+            <a class="arrow-link" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener">Visit site <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="systems product" data-reveal>
+            <div class="tile__media"><img src="assets/img/work/sonke-mock.jpg" alt="Sonke Gender Justice interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Non-profit systems</p>
+            <h3 class="tile__name">Sonke Gender Justice</h3>
+            <p class="tile__desc">Programme management system — programmes, court cases and resource mobilisation in one place.</p>
+            <p class="tile__tags">Systems · Product · UX/UI</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="apps ai product" data-reveal>
+            <div class="tile__media"><img src="assets/img/shots/rentflow.jpg" alt="RentFlow interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Property tech</p>
+            <h3 class="tile__name">RentFlow</h3>
+            <p class="tile__desc">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
+            <p class="tile__tags">Apps · AI · Product</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="ai product" data-reveal>
+            <div class="tile__media"><img src="assets/img/shots/nuracoach.jpg" alt="NuraCoach interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">AI coaching</p>
+            <h3 class="tile__name">NuraCoach</h3>
+            <p class="tile__desc">AI coaching companion — guidance that reads like a conversation, not a report.</p>
+            <p class="tile__tags">AI · Product · UX</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="apps product" data-reveal>
+            <div class="tile__media"><img src="assets/img/shots/lungelo.jpg" alt="Lungelo interface shown on a device" loading="lazy" width="1400" height="1050" /></div>
+            <p class="tile__cat">Field operations</p>
+            <h3 class="tile__name">Lungelo</h3>
+            <p class="tile__desc">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
+            <p class="tile__tags">Apps · UX/UI · Accessibility</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web" data-reveal>
+            <div class="tile__media"><span class="frame" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">hodlotc.com</span></span><span class="frame__body"><span class="frame__nav"><span>Trade</span><span>Services</span><span>Security</span></span><span class="frame__h">HODL OTC</span><span class="frame__p">Over-the-counter desk for Bitcoin, Ethereum and leading digital assets — single-price settlement, full KYC, registered FSP.</span></span></span></div>
+            <p class="tile__cat">Fintech</p>
+            <h3 class="tile__name">HODL OTC</h3>
+            <p class="tile__desc">Public site for a South African OTC crypto desk — services, security and compliance explained for private and institutional clients.</p>
+            <p class="tile__tags">Web platform · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web brand" data-reveal>
+            <div class="tile__media"><span class="frame frame--light" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">towerbosch.com</span></span><span class="frame__body"><span class="frame__nav"><span>Menu</span><span>The farm</span><span>Visit</span></span><span class="frame__h">Towerbosch</span><span class="frame__p">Traditional boerekos served under the trees on Knorhoek farm, six kilometres outside Stellenbosch.</span></span></span></div>
+            <p class="tile__cat">Hospitality</p>
+            <h3 class="tile__name">Towerbosch</h3>
+            <p class="tile__desc">Restaurant site for the Knorhoek estate eatery — menu, setting and table bookings in the Stellenbosch winelands.</p>
+            <p class="tile__tags">Restaurant site · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web" data-reveal>
+            <div class="tile__media"><span class="frame frame--light" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">berliner.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Shop</span><span>Butchery</span><span>Deli</span></span><span class="frame__h">Berliner</span><span class="frame__p">Wholesale continental butchery and delicatessen — beef, lamb, pork and poultry, with home delivery.</span></span></span></div>
+            <p class="tile__cat">Retail</p>
+            <h3 class="tile__name">Berliner</h3>
+            <p class="tile__desc">Online storefront for the continental butchery and deli, with stores at Coachman&#x27;s Crossing, Cambridge Crossing and Northlands Corner.</p>
+            <p class="tile__tags">E-commerce · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web strategy" data-reveal>
+            <div class="tile__media"><span class="frame" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">obsidianwealth.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Approach</span><span>Products</span><span>Contact</span></span><span class="frame__h">Obsidian Wealth</span><span class="frame__p">Boutique advisory in digital assets, yield products and alternative wealth architecture.</span></span></span></div>
+            <p class="tile__cat">Finance</p>
+            <h3 class="tile__name">Obsidian Wealth</h3>
+            <p class="tile__desc">Positioning site for a Nelspruit boutique advisory working with a select group of individuals and families.</p>
+            <p class="tile__tags">Advisory site · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web" data-reveal>
+            <div class="tile__media"><span class="frame" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">saltbru.com</span></span><span class="frame__body"><span class="frame__nav"><span>Butchery</span><span>Biltong</span><span>Delivery</span></span><span class="frame__h">SALTBRU</span><span class="frame__p">Online butchery delivering restaurant-quality cuts across Gauteng — vacuum-sealed and cold-packed.</span></span></span></div>
+            <p class="tile__cat">Retail</p>
+            <h3 class="tile__name">SALTBRU</h3>
+            <p class="tile__desc">E-commerce site for a Gauteng online butchery — cuts, biltong and specials with doorstep delivery.</p>
+            <p class="tile__tags">Online butchery · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web brand" data-reveal>
+            <div class="tile__media"><span class="frame frame--light" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">hivestudio.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Work</span><span>Studio</span></span><span class="frame__h">Hive</span><span class="frame__p">Full-service creative studio in Nelspruit — branding, digital and social.</span></span></span></div>
+            <p class="tile__cat">Studio site</p>
+            <h3 class="tile__name">Hive Studio</h3>
+            <p class="tile__desc">Site for the Nelspruit creative studio GEMIS partners with on selected digital work.</p>
+            <p class="tile__tags">Partner · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web" data-reveal>
+            <div class="tile__media"><span class="frame frame--light" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">havenholistic.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Therapy</span><span>About</span></span><span class="frame__h">Haven</span><span class="frame__p">A safe space for growth, healing and self-discovery — holistic counselling.</span></span></span></div>
+            <p class="tile__cat">Wellness</p>
+            <h3 class="tile__name">Haven Holistic</h3>
+            <p class="tile__desc">Practice site for a holistic counselling service, built around a calm, unhurried reading experience.</p>
+            <p class="tile__tags">Practice site · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web" data-reveal>
+            <div class="tile__media"><span class="frame" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">kaapsehoopadventures.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Trails</span><span>Stay</span></span><span class="frame__h">Kaapsehoop</span><span class="frame__p">Horse trails, teepees and off-grid stays on the escarpment above Nelspruit.</span></span></span></div>
+            <p class="tile__cat">Tourism</p>
+            <h3 class="tile__name">Kaapsehoop Adventures</h3>
+            <p class="tile__desc">Site for an off-grid escarpment retreat — horse trails, accommodation and volunteer programmes.</p>
+            <p class="tile__tags">Booking site · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <article class="tile" data-tags="web brand" data-reveal>
+            <div class="tile__media"><span class="frame frame--light" aria-hidden="true"><span class="frame__bar"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__url">v1architects.co.za</span></span><span class="frame__body"><span class="frame__nav"><span>Projects</span><span>Practice</span></span><span class="frame__h">V1</span><span class="frame__p">Architecture practice portfolio.</span></span></span></div>
+            <p class="tile__cat">Architecture</p>
+            <h3 class="tile__name">V1 Architects</h3>
+            <p class="tile__desc">Portfolio site presenting the practice&#x27;s architectural work.</p>
+            <p class="tile__tags">Portfolio site · Web</p>
+            <a class="arrow-link" href="#contact">Talk to us about it <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </article>
+
+          <p class="tile__more">More work in this area is coming soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CAMPAIGNS ═══════════════════ -->
+    <section class="sec" id="campaigns">
+      <span class="dotgrid" aria-hidden="true"></span>
+
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Social &amp; Digital Campaigns</p>
+            <h2 class="display" data-reveal style="--d:80ms">Design That Keeps Talking</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Ongoing content, campaigns and visual communication for brands across the
+            Lowveld — the part of the work that runs every week, not once at launch.
+          </p>
+        </div>
+
+        <table class="tbl" data-reveal>
+          <caption>Selected accounts, delivered in collaboration with Hive Studio. Each row opens the account it was made for.</caption>
+          <thead>
+            <tr><th scope="col">Account</th><th scope="col">Discipline</th><th scope="col">Channel</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/buylocallowveld/" target="_blank" rel="noopener">Buy Local Lowveld <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@buylocallowveld</span></td>
+              <td>Social content</td>
+              <td>Community</td>
+            </tr>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/girafmacadamia/" target="_blank" rel="noopener">Giraf Macadamia <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@girafmacadamia</span></td>
+              <td>Product campaign</td>
+              <td>Instagram</td>
+            </tr>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/kwanyonilodge/" target="_blank" rel="noopener">Kwanyoni Lodge <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@kwanyonilodge</span></td>
+              <td>Hospitality</td>
+              <td>Instagram</td>
+            </tr>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/kaapsehoop__adventures/" target="_blank" rel="noopener">Kaapsehoop Adventures <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@kaapsehoop__adventures</span></td>
+              <td>Reels</td>
+              <td>Instagram</td>
+            </tr>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/krugerlowveld/" target="_blank" rel="noopener">Kruger Lowveld <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@krugerlowveld</span></td>
+              <td>Destination content</td>
+              <td>Campaign</td>
+            </tr>
+            <tr>
+              <td class="tbl__acct"><a href="https://www.instagram.com/hivestudioza/" target="_blank" rel="noopener">Hive Studio <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a><span class="tbl__at">@hivestudioza</span></td>
+              <td>Brand</td>
+              <td>Instagram</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ DISCIPLINES ═══════════════════ -->
+    <section class="sec sec--last" id="disciplines">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>What We Make</p>
+            <h2 class="display" data-reveal style="--d:80ms">Different Outputs. One Way Of Thinking.</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Brands, interfaces, content, systems and communications rarely exist in
+            isolation. We design the ecosystem, not just the screen.
+          </p>
+        </div>
+
+        <dl class="disc">
+          <div class="disc__row" data-reveal>
+            <dt class="disc__k">Brand</dt>
+            <dd class="disc__v">Identity systems · Positioning · Visual languages · Campaigns</dd>
+          </div>
+          <div class="disc__row" data-reveal>
+            <dt class="disc__k">Digital</dt>
+            <dd class="disc__v">Websites · Digital experiences · Microsites · Content systems</dd>
+          </div>
+          <div class="disc__row" data-reveal>
+            <dt class="disc__k">Product</dt>
+            <dd class="disc__v">Apps · SaaS · Platforms · AI products</dd>
+          </div>
+          <div class="disc__row" data-reveal>
+            <dt class="disc__k">Systems</dt>
+            <dd class="disc__v">Dashboards · Enterprise systems · Operational tools · Data interfaces</dd>
+          </div>
+          <div class="disc__row" data-reveal>
+            <dt class="disc__k">Strategy</dt>
+            <dd class="disc__v">Research · UX strategy · Product strategy · Digital transformation</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ CTA ═══════════════════ -->
+    <section class="cta" id="contact">
+      <img class="cta__bg" src="assets/img/home/cta-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
+      <span class="dotgrid dotgrid--l" aria-hidden="true"></span>
+      <span class="dotgrid dotgrid--r" aria-hidden="true"></span>
+
+      <div class="shell">
+        <h2 class="cta__t" data-reveal>Ready To Modernise Your Operations?</h2>
+        <p class="cta__s" data-reveal style="--d:80ms">
+          Whether you're replacing a legacy system, launching a new digital platform or
+          connecting the tools you already run, we'll scope it with you — no obligation.
+        </p>
+
+        <form class="cta__form" id="ctaForm" data-reveal style="--d:160ms">
+          <label class="skip-link" for="ctaEmail">Your email address</label>
+          <input id="ctaEmail" name="email" type="email" placeholder="Email Address" required autocomplete="email" />
+          <button type="submit">Get Started</button>
+        </form>
+        <p class="cta__note" data-reveal style="--d:200ms">
+          Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="shell">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
+          <p class="foot__blurb">
+            Bringing ideas and innovation to life through technology — secure, scalable
+            systems built on the Microsoft Cloud.
+          </p>
+          <address class="foot__addr">
+            9 Tapiola Way, Edgemead, Cape Town<br />
+            <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+          </address>
+        </div>
+
+        <div class="foot__col">
+          <h3>Products</h3>
+          <ul>
+            <li><a href="managem.html">ManaGem</a></li>
+            <li><a href="services.html">Gemis Tech</a></li>
+            <li><a href="brand-studio.html">Design Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="foot__col">
+          <h3>About GEMIS</h3>
+          <ul>
+            <li><a href="about.html">Who We Are</a></li>
+            <li><a href="about.html#story">Our Philosophy</a></li>
+            <li><a href="work.html">Case Studies</a></li>
+            <li><a href="wastemart.html">WasteMart</a></li>
+          </ul>
+        </div>
+
+        <div class="foot__col">
+          <h3>Support &amp; Resources</h3>
+          <ul>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="services.html#services">Ongoing Support</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="btile" style="grid-column:span 5;grid-row:span 2">
-        <div class="art uik" aria-hidden="true">
-          <div class="ucol">
-            <span class="uh">Buttons</span>
-            <div class="brow">
-              <span class="ub ub--p">Book a demo<svg class="cur" viewBox="0 0 24 24"><path d="M5 3 L19 11 L12 12.5 L9.5 20 Z" fill="#191c1f" stroke="#fff" stroke-width="2"/></svg></span>
-              <span class="ub ub--s">Secondary</span>
-            </div>
-            <div class="brow"><span class="ub ub--t">Text button</span><span class="step"><i>−</i><b>2</b><i>+</i></span></div>
-            <span class="uh" style="margin-top:2px">Form elements</span>
-            <div class="ufield"><i>Full name</i><b>Naledi Mokoena</b></div>
-            <div class="ufield"><i>Space type</i><b>Boardroom<u>▾</u></b></div>
-          </div>
-          <div class="ucol">
-            <span class="ul">Colour · Ink</span>
-            <div class="ramp"><em>900–100</em><i style="background:#191c1f"></i><i style="background:#3a3f47"></i><i style="background:#7b838c"></i><i style="background:#c9c9cd"></i><i style="background:#f1f2f4"></i></div>
-            <span class="ul">Colour · Ember</span>
-            <div class="ramp"><em>700–100</em><i style="background:#6e2f13"></i><i style="background:#a64b21"></i><i style="background:#d98d5f"></i><i style="background:#f0c6ab"></i><i style="background:#faeee6"></i></div>
-            <span class="ul" style="margin-top:2px">Tags</span>
-            <div class="tagrow">
-              <span class="tg" style="background:#fbf0cf;color:#8a6400">Pending</span>
-              <span class="tg" style="background:#e4f6ec;color:#177245">Confirmed</span>
-              <span class="tg" style="background:#fde8e8;color:#c23b3b">Alert</span>
-              <span class="tg" style="background:#e8effd;color:#2f5fd0">Active</span>
-            </div>
-            <span class="ul" style="margin-top:2px">Review</span>
-            <div class="rev"><b>4.8</b><i>★★★★★</i><span>214 ratings</span></div>
-          </div>
-        </div>
-        <span>[ Design system ]</span>
-      </div>
-
-      <div class="btile" style="grid-column:span 4;grid-row:span 2">
-        <div class="art camp" aria-hidden="true">
-          <div class="post a-shadow">
-            <span class="a-lbl" style="color:rgba(255,255,255,.45)">GEMIS®</span>
-            <h6>Make it<br><em>clear.</em></h6>
-            <div class="foot"><span>@gemis.studio</span><span>♡ 214</span></div>
-          </div>
-          <div class="story a-shadow">
-            <i class="ring"></i>
-            <b>New work<br>is live</b>
-            <span>Learn more</span>
-          </div>
-          <div class="like">↗ Share</div>
-        </div>
-        <span>[ Campaign assets ]</span>
-      </div>
-
-      <div class="btile" style="grid-column:span 3;grid-row:span 2">
-        <div class="art proto" aria-hidden="true">
-          <svg viewBox="0 0 287 192" preserveAspectRatio="none">
-            <path d="M104 74 C 138 60, 152 60, 182 78" fill="none" stroke="#4b8bfd" stroke-width="1.6"/>
-            <path d="M104 130 C 140 148, 154 142, 182 116" fill="none" stroke="#4b8bfd" stroke-width="1.6" stroke-dasharray="4 3"/>
-            <circle cx="104" cy="74" r="3.2" fill="#fff" stroke="#4b8bfd" stroke-width="1.6"/>
-            <path d="M182 78 l-7 -4 v8 z M182 116 l-7 -4 v8 z" fill="#4b8bfd"/>
-          </svg>
-          <div class="ph a-shadow"><i class="h"></i><i class="blk hot"></i><i class="pbtn"></i></div>
-          <div class="ph a-shadow"><i class="h" style="width:40%"></i><i class="blk"></i><i class="blk" style="flex:.5"></i><i class="pbtn"></i></div>
-        </div>
-        <span>[ Prototype ]</span>
-      </div>
-
-      <div class="btile btile--dark" style="grid-column:span 5;grid-row:span 3;background:#0a0a0a;border-color:#1c1c1f">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 489 296" style="position:absolute;inset:0;width:100%;height:100%">
-            <g stroke="rgba(255,255,255,.07)"><path d="M40 40 H300 M40 90 H300 M40 140 H300 M40 190 H300 M90 40 V190 M160 40 V190 M230 40 V190"/></g>
-            <path d="M40 190 C 120 190, 140 40, 300 40" fill="none" stroke="#e06a35" stroke-width="2.5"/>
-            <g stroke="#8d969e" stroke-width="1.2"><path d="M40 190 L110 150 M300 40 L240 78"/></g>
-            <g fill="#fff"><circle cx="40" cy="190" r="4"/><circle cx="300" cy="40" r="4"/></g>
-            <g fill="#0a0a0a" stroke="#8d969e" stroke-width="1.2"><circle cx="110" cy="150" r="3.4"/><circle cx="240" cy="78" r="3.4"/></g>
-            <text x="40" y="24" font-family="JetBrains Mono, monospace" font-size="11" fill="#c9c9cd">cubic-bezier(.2, .7, .2, 1)</text>
-            <text x="316" y="52" font-family="Inter, sans-serif" font-size="10" fill="#8d969e">ease-out-expo</text>
-            <g transform="translate(40, 226)">
-              <rect width="409" height="10" rx="5" fill="rgba(255,255,255,.08)"/>
-              <rect width="180" height="10" rx="5" fill="rgba(224,106,53,.35)"/>
-              <path d="M60 5 l6 -6 6 6 -6 6 z M180 5 l6 -6 6 6 -6 6 z M320 5 l6 -6 6 6 -6 6 z" fill="#e06a35" transform="translate(-6,0)"/>
-              <text y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">fade 200ms</text>
-              <text x="150" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">slide 400ms</text>
-              <text x="300" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#8d969e">spring 1.2</text>
-            </g>
-            <g transform="translate(408, 20)">
-              <circle cx="16" cy="16" r="16" fill="#e06a35"/>
-              <path d="M12 9 l12 7 -12 7 z" fill="#0a0a0a"/>
-            </g>
-          </svg>
-        </div>
-        <span>[ Motion ]</span>
-      </div>
-
-      <div class="btile" style="grid-column:span 4;grid-row:span 2;background:#f7f7f9">
-        <div class="art aip" aria-hidden="true">
-          <div class="u">Summarise this invoice batch</div>
-          <div class="a">
-            <b>✦ GEMIS Assist</b>
-            12 invoices reviewed — 10 match their orders. Two need attention: duplicate charge on INV-2291, VAT variance on INV-2288.
-            <span class="src">12 sources</span>
-          </div>
-          <div class="bar">Ask anything…<u></u></div>
-        </div>
-        <span>[ AI concepts ]</span>
-      </div>
-
-      <div class="btile" style="grid-column:span 3;grid-row:span 2;background:#f7f7f9">
-        <div class="art mail" aria-hidden="true">
-          <div class="win">
-            <div class="mh"><i>G</i><span>GEMIS Studio · newsletter</span></div>
-            <div class="mhero"><b>ManaGem</b></div>
-            <div class="body">
-              <b class="sub">The new ManaGem is live.</b>
-              <p>Bookings, billing and access — now in one place for your whole team.</p>
-              <span>Read the update</span>
-            </div>
-          </div>
-        </div>
-        <span>[ Communications ]</span>
-      </div>
-
-      <div class="btile" style="grid-column:span 12;grid-row:span 2;background:#f7f7f9">
-        <div class="art kit" aria-hidden="true">
-          <div class="kcol kcol--a">
-            <span class="klbl">Bookings · today</span>
-            <div class="krow"><i class="av" style="background:#a64b21">NM</i><b>Naledi Mokoena</b><em>09:30</em><span class="kst" style="background:#e4f6ec;color:#177245">Confirmed</span></div>
-            <div class="krow"><i class="av" style="background:#2f5fd0">SK</i><b>Sipho Khumalo</b><em>11:00</em><span class="kst" style="background:#fbf0cf;color:#8a6400">Pending</span></div>
-            <div class="krow"><i class="av" style="background:#191c1f">TR</i><b>Thandi Radebe</b><em>14:15</em><span class="kst" style="background:#eef0f2;color:#5c646d">Closed</span></div>
-          </div>
-          <div class="kcol kcol--b">
-            <span class="kbtn kbtn--l">+ New booking</span>
-            <span class="kbtn kbtn--m">Invite team</span>
-            <span class="kbtn kbtn--o">Export report</span>
-            <div class="kseg"><i>Month</i><i>Week</i><i class="on">Day</i></div>
-          </div>
-          <div class="kcol kcol--c">
-            <span class="klbl">Tags</span>
-            <div class="ktags">
-              <span class="kst" style="background:#fff;border:1px solid #e2e2e7;color:#3a3f47">Hot desk</span>
-              <span class="kst" style="background:#fff;border:1px solid #e2e2e7;color:#3a3f47">Wi-Fi</span>
-              <span class="kst" style="background:#fbf0cf;color:#8a6400">Waiting</span>
-              <span class="kst" style="background:#e8effd;color:#2f5fd0">Active</span>
-              <span class="kst" style="background:#fde8e8;color:#c23b3b">Alert</span>
-            </div>
-            <div class="ktip">This booking has not been confirmed yet.</div>
-          </div>
-          <div class="kcol kcol--d">
-            <div class="kbook">
-              <div class="r1"><i class="th"></i><div class="nm"><b>Boardroom 2</b><span>29 Aug 2026 · 09:30 – 11:00</span></div><span class="pr">R450.00</span></div>
-              <div class="kalert">⚠ One or more resources are unavailable</div>
-              <div class="kbtns"><span>Make a booking</span><span>Book an event</span></div>
-            </div>
-          </div>
-          <div class="kcol kcol--e">
-            <div class="kcard">
-              <div class="khd"><b>Benefits (2)</b><span>View all</span></div>
-              <div class="kmeter"><em>All-day pass<u>6/10</u></em><i style="--w:60%"></i></div>
-              <div class="kmeter"><em>Booking credits<u>8/20</u></em><i style="--w:40%"></i></div>
-            </div>
-            <div class="ksync"><i class="ic">✓</i><div class="tx"><b>Calendar sync</b><small>Bookings land in your calendar</small></div><i class="sw"></i></div>
-          </div>
-        </div>
-        <span>[ Product UI — ManaGem ]</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══ In motion ═══ -->
-<section class="motion pad">
-  <div class="amb" aria-hidden="true"><i></i></div>
-  <div class="wrap">
-    <p class="kicker">In motion</p>
-    <h2 class="h2" style="margin-bottom:clamp(32px,5vh,56px)">Designed to move.</h2>
-    <div class="mo__grid">
-      <div class="mo__a">
-        <div class="mo__frame demo" id="demoMg" data-src="ManaGem.html" role="img" aria-label="ManaGem management system — the live prototype signing in, opening the dashboard and browsing the sales pipeline">
-          <div class="demo__chrome" aria-hidden="true"><i></i><i></i><i></i><span>managem.app — live prototype</span></div>
-          <div class="demo__view" aria-hidden="true">
-            <div class="demo__stage" data-w="1280" data-h="800"><img class="demo__poster" src="assets/img/proto/managem-poster.jpg" alt="" width="1280" height="800"></div>
-          </div>
-          <div class="demo__cover" aria-hidden="true"></div>
-          <div class="demo__badge" aria-hidden="true"><i></i>Live prototype</div>
-        </div>
-        <p class="mo__cap">ManaGem — the actual prototype driving itself: sign-in, dashboard, sales pipeline</p>
-      </div>
-      <div class="mo__b">
-        <div class="mo__frame demo demo--phone" id="demoWm" data-src="wastemart-driver.html" role="img" aria-label="WasteMart driver app — the live prototype logging in, selecting a vehicle and starting the workday">
-          <div class="demo__view" aria-hidden="true">
-            <div class="demo__stage" data-w="420" data-h="880"><img class="demo__poster" src="assets/img/proto/wastemart-poster.jpg" alt="" width="420" height="880"></div>
-          </div>
-          <div class="demo__cover" aria-hidden="true"></div>
-          <div class="demo__badge" aria-hidden="true"><i></i>Live prototype</div>
-        </div>
-        <p class="mo__cap">WasteMart Driver — the actual prototype: log in, pick a truck, start the day</p>
-      </div>
-      <div class="mo__ticker">
-        <div class="mo__tickertrack" aria-hidden="true">
-          <span>Website interactions</span><span>App flows</span><span>Dashboard interactions</span><span>Prototype transitions</span><span>Mobile interfaces</span><span>Brand motion</span><span>UI animation</span><span>Scroll interactions</span>
-          <span>Website interactions</span><span>App flows</span><span>Dashboard interactions</span><span>Prototype transitions</span><span>Mobile interfaces</span><span>Brand motion</span><span>UI animation</span><span>Scroll interactions</span>
+      <div class="foot__bar">
+        <p>Copyright © 2026 GEM Information Systems (PTY) LTD. All Rights Reserved.</p>
+        <div class="foot__social">
+          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="GEMIS on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.75-1.95C21.4 8.75 22 11.2 22 14.4V21h-4v-5.9c0-1.4-.03-3.2-2-3.2-2 0-2.3 1.53-2.3 3.1V21h-4V9Z"/></svg>
+          </a>
+          <a href="https://www.gemis.co.za" target="_blank" rel="noopener" aria-label="GEMIS website">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>
+          </a>
+          <a href="mailto:info@gemis.co.za" aria-label="Email GEMIS">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ═══ How we think ═══ -->
-<section class="think">
-  <div class="wrap">
-    <p class="kicker">How we think</p>
-    <h2>Different problems.<br>Different outputs.<br><span>One way of thinking.</span></h2>
-    <p class="lede">We move between strategy, brand, product and digital depending on what the problem requires.</p>
-  </div>
-</section>
-
-<!-- ═══ CTA ═══ -->
-<section class="cta">
-  <div class="wrap">
-    <p class="kicker">Have something worth building?</p>
-    <h2>Let's make it clear.</h2>
-    <div class="cta__row">
-      <p class="lede">Whether it's a brand, website, product, platform or system, GEMIS can help turn the idea into an experience people can understand and use.</p>
-      <div class="cta__btns">
-        <a class="btn-w" href="mailto:info@gemis.co.za?subject=Start%20a%20project">Start a conversation →</a>
-        <a class="btn-o" href="tel:+27814182518">Call the studio →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="ft">
-  <div class="ft__in">
-    <span>GEMIS BrandStudio — GEM Information Systems (Pty) Ltd</span>
-    <span>66 Park Lane, Sandown, Sandton, 2196 · <a href="tel:+27814182518">+27 81 418 2518</a> · <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></span>
-    <span>From identity to interface. From idea to experience.</span>
-  </div>
-</footer>
-
-<script src="assets/js/lenis.min.js"></script>
-<script src="assets/js/gsap.min.js"></script>
-<script src="assets/js/ScrollTrigger.min.js"></script>
-<script>
-(function () {
-  'use strict';
-  /* ── Work filter + view more + stagger ── */
-  var buttons = document.querySelectorAll('#filters button');
-  var cards = Array.prototype.slice.call(document.querySelectorAll('#workGrid .card'));
-  var grid = document.getElementById('workGrid');
-  var empty = document.getElementById('emptyState');
-  var moreWrap = document.getElementById('moreWrap');
-  var moreBtn = document.getElementById('moreBtn');
-  var CAP = 4, expanded = false, cat = 'ALL';
-  var OFFSETS = [0, 56, 24, 88];
-  function matches(c) { return cat === 'ALL' || (' ' + c.dataset.cats + ' ').indexOf(' ' + cat + ' ') > -1; }
-  function apply(scroll) {
-    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.cat === cat)); });
-    var pool = cards.filter(matches);
-    var wide = window.innerWidth >= 1024;
-    var shown = 0;
-    cards.forEach(function (c) { c.classList.add('is-hidden'); c.style.paddingTop = ''; });
-    pool.forEach(function (c, i) {
-      var on = expanded || i < CAP;
-      if (on) {
-        c.classList.remove('is-hidden');
-        c.style.paddingTop = wide ? OFFSETS[shown % 4] + 'px' : '';
-        shown++;
-      }
-    });
-    grid.classList.toggle('is-hidden', pool.length === 0);
-    empty.style.display = pool.length === 0 ? 'block' : 'none';
-    moreWrap.style.display = pool.length > CAP ? 'flex' : 'none';
-    moreBtn.textContent = expanded ? 'View less ↑' : 'View more ↓';
-    if (scroll) {
-      var el = document.getElementById('explorer');
-      var top = window.scrollY + el.getBoundingClientRect().top - 64;
-      if (window.__smoothTo) { window.__smoothTo(top); }
-      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
-    }
-    if (window.ScrollTrigger) { ScrollTrigger.refresh(); }
-  }
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () { cat = b.dataset.cat; apply(false); });
-  });
-  moreBtn.addEventListener('click', function () {
-    expanded = !expanded;
-    apply(!expanded);
-  });
-  document.getElementById('resetFilter').addEventListener('click', function () { cat = 'ALL'; expanded = false; apply(true); });
-  document.querySelectorAll('.disc__row').forEach(function (r) {
-    r.addEventListener('click', function () { cat = r.dataset.goto; expanded = true; apply(true); });
-  });
-  var rT;
-  window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(function () { apply(false); }, 200); });
-  apply(false);
-
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── Live prototype demos: the actual uploaded HTML prototypes, driven on a loop ── */
-  var bootQueue = Promise.resolve();
-
-  function LiveDemo(rootId, script) {
-    var root = document.getElementById(rootId);
-    if (!root) { return; }
-    var stage = root.querySelector('.demo__stage');
-    var cover = root.querySelector('.demo__cover');
-    var W = parseInt(stage.dataset.w, 10), H = parseInt(stage.dataset.h, 10);
-    var phone = root.classList.contains('demo--phone');
-    var iframe = null, cursor = null, doc = null, win = null;
-    var booted = false, paused = true;
-
-    function fit() {
-      var view = root.querySelector('.demo__view');
-      var vw = view.clientWidth, vh = view.clientHeight;
-      if (!vw || !vh) { return; }
-      var sc = phone ? Math.min((vh * .92) / H, (vw * .9) / W) : vw / W;
-      stage.style.width = W + 'px';
-      stage.style.height = H + 'px';
-      if (phone) {
-        stage.style.position = 'relative';
-        stage.style.transformOrigin = '50% 50%';
-        stage.style.margin = (-(H - H * sc) / 2) + 'px ' + (-(W - W * sc) / 2) + 'px';
-      } else {
-        stage.style.transformOrigin = '0 0';
-      }
-      stage.style.transform = 'scale(' + sc + ')';
-    }
-    fit();
-    window.addEventListener('resize', fit);
-
-    function waitFor(test, timeout, cb) {
-      var t0 = Date.now();
-      (function poll() {
-        var r = null;
-        try { r = test(); } catch (e) { r = null; }
-        if (r) { cb(true); }
-        else if (Date.now() - t0 > timeout) { cb(false); }
-        else { setTimeout(poll, 200); }
-      })();
-    }
-
-    function boot() {
-      if (booted) { return; }
-      booted = true;
-      /* one prototype boots at a time — parsing two large bundles at once stalls both */
-      bootQueue = bootQueue.then(function () {
-        return new Promise(function (resolve) {
-          var settled = false;
-          function go() { if (!settled) { settled = true; resolve(); } }
-          fit();
-          iframe = document.createElement('iframe');
-          iframe.width = W; iframe.height = H;
-          iframe.setAttribute('tabindex', '-1');
-          iframe.setAttribute('loading', 'eager');
-          iframe.src = root.dataset.src;
-          stage.appendChild(iframe);
-          stage.insertAdjacentHTML('beforeend',
-            '<svg class="demo__cursor" viewBox="0 0 24 24"><path d="M4 2 L20 11 L12.6 12.8 L9.6 21 Z" fill="#fff" stroke="#191c1f" stroke-width="1.6"/></svg>');
-          cursor = stage.querySelector('.demo__cursor');
-          iframe.addEventListener('load', function () {
-            doc = iframe.contentDocument; win = iframe.contentWindow;
-            waitFor(function () { return doc.querySelector('input,button'); }, 25000, function (ok) {
-              root.classList.add('is-live');
-              cover.classList.add('is-off');
-              if (ok && !reduced) { setTimeout(run, 700); }
-              setTimeout(go, 500);
-            });
-          });
-          setTimeout(go, 12000);
-        });
-      });
-    }
-
-    function find(sel, text) {
-      try {
-        var els = doc.querySelectorAll(sel);
-        if (!text) { return els[0] || null; }
-        var best = null, bestLen = 1e9;
-        for (var i = 0; i < els.length; i++) {
-          var t = (els[i].textContent || '').replace(/\s+/g, ' ').trim();
-          if (t.indexOf(text) > -1 && els[i].getBoundingClientRect().width > 0 && t.length < bestLen) {
-            best = els[i]; bestLen = t.length;
-          }
-        }
-        return best;
-      } catch (e) { return null; }
-    }
-
-    function moveTo(el, cb) {
-      if (!el) { cb(); return; }
-      var r = el.getBoundingClientRect();
-      cursor.style.left = (r.left + Math.min(r.width * .5, 140)) + 'px';
-      cursor.style.top = (r.top + r.height * .55) + 'px';
-      setTimeout(cb, 820);
-    }
-
-    function press(el, cb) {
-      moveTo(el, function () {
-        cursor.classList.add('is-click');
-        setTimeout(function () { cursor.classList.remove('is-click'); }, 520);
-        try {
-          el.dispatchEvent(new win.MouseEvent('pointerdown', { bubbles: true }));
-          el.dispatchEvent(new win.MouseEvent('mousedown', { bubbles: true }));
-          el.dispatchEvent(new win.MouseEvent('pointerup', { bubbles: true }));
-          el.dispatchEvent(new win.MouseEvent('mouseup', { bubbles: true }));
-          el.click();
-        } catch (e) {}
-        cb();
-      });
-    }
-
-    function type(input, value, cb) {
-      if (!input) { cb(); return; }
-      moveTo(input, function () {
-        try { input.focus(); } catch (e) {}
-        var i = 0;
-        var setter = Object.getOwnPropertyDescriptor(win.HTMLInputElement.prototype, 'value').set;
-        (function tick() {
-          i++;
-          try {
-            setter.call(input, value.slice(0, i));
-            input.dispatchEvent(new win.Event('input', { bubbles: true }));
-          } catch (e) {}
-          if (i < value.length) { setTimeout(tick, 48 + Math.random() * 45); }
-          else { cb(); }
-        })();
-      });
-    }
-
-    function scrollMain(dy, cb) {
-      try {
-        var target = null, all = doc.querySelectorAll('div,main,section');
-        for (var i = 0; i < all.length; i++) {
-          var el = all[i];
-          if (el.scrollHeight - el.clientHeight > 160 && el.clientHeight > 240) { target = el; break; }
-        }
-        if (target) { target.scrollBy({ top: dy, behavior: 'smooth' }); }
-        else { win.scrollBy({ top: dy, behavior: 'smooth' }); }
-      } catch (e) {}
-      setTimeout(cb, 1100);
-    }
-
-    var api = { find: find, press: press, type: type, scrollMain: scrollMain, moveTo: moveTo };
-    var intro = script.intro(api), loop = script.loop(api);
-    var phase = 'intro', si = 0;
-
-    /* the sign-in plays once; after that the demo keeps navigating inside the
-       running app, so the bundle is never re-parsed mid-loop */
-    function run() {
-      if (paused) { setTimeout(run, 400); return; }
-      var list = phase === 'intro' ? intro : loop;
-      list[si](function () {
-        si++;
-        if (si >= list.length) { si = 0; phase = 'loop'; }
-        setTimeout(run, 60);
-      });
-    }
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { paused = false; boot(); }
-        else { paused = true; }
-      });
-    }, { rootMargin: '1200px 0px' });
-    io.observe(root);
-  }
-
-  var wait = function (ms) { return function (done) { setTimeout(done, ms); }; };
-
-  LiveDemo('demoMg', {
-    intro: function (d) {
-      return [
-        function (done) { d.type(d.find('input'), 'sebastian.dunn', done); },
-        function (done) { d.type(d.find('input[type="password"]'), 'gemis2026', done); },
-        function (done) { d.press(d.find('button', 'Sign in'), done); },
-        wait(2600)
-      ];
-    },
-    loop: function (d) {
-      return [
-        function (done) { d.press(d.find('button,span,div', 'Annual'), done); },
-        wait(1700),
-        function (done) { d.press(d.find('button,a,div,span', 'Open Enquiries'), done); },
-        wait(2000),
-        function (done) { d.scrollMain(330, done); },
-        wait(800),
-        function (done) { d.scrollMain(-330, done); },
-        wait(500),
-        function (done) { d.press(d.find('button,a,div,span', 'Customers'), done); },
-        wait(2400),
-        function (done) { d.press(d.find('button,a,div,span', 'Invoices'), done); },
-        wait(2200),
-        function (done) { d.press(d.find('button,a,div,span', 'Dashboard'), done); },
-        wait(2400)
-      ];
-    }
-  });
-
-  LiveDemo('demoWm', {
-    intro: function (d) {
-      return [
-        function (done) { d.type(d.find('input'), 'sipho.dlamini', done); },
-        function (done) { d.type(d.find('input[type="password"]'), 'wm-417', done); },
-        function (done) { d.press(d.find('button', 'Log in'), done); },
-        wait(1800),
-        function (done) { d.press(d.find('button,div', 'Select Vehicle'), done); },
-        wait(1200),
-        function (done) { d.press(d.find('button', 'CT-WM-417'), done); },
-        wait(800),
-        function (done) { d.press(d.find('button', 'Use this vehicle'), done); },
-        wait(1300),
-        function (done) { d.press(d.find('button', 'Start Day'), done); },
-        wait(1000),
-        function (done) { d.press(d.find('button', 'Yes, Start Day'), done); },
-        wait(2300)
-      ];
-    },
-    loop: function (d) {
-      return [
-        function (done) { d.scrollMain(320, done); },
-        wait(900),
-        function (done) { d.scrollMain(-320, done); },
-        wait(600),
-        function (done) { d.press(d.find('button', 'Activity'), done); },
-        wait(2300),
-        function (done) { d.press(d.find('button', 'Shift Controls'), done); },
-        wait(2300),
-        function (done) { d.press(d.find('button', 'Jobs'), done); },
-        wait(2000)
-      ];
-    }
-  });
-
-  /* ── Smooth scroll (Lenis) + scroll-in animations (GSAP) ── */
-  if (!reduced && window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-    var lenis = null;
-    if (window.Lenis) {
-      document.documentElement.style.scrollBehavior = 'auto';
-      lenis = new Lenis({ duration: 1.05, smoothWheel: true });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
-      gsap.ticker.lagSmoothing(0);
-    }
-    window.__smoothTo = function (top) {
-      if (lenis) { lenis.scrollTo(top, { duration: .9 }); }
-      else { window.scrollTo({ top: top, behavior: 'smooth' }); }
-    };
-
-    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    var wide = window.matchMedia('(min-width: 768px)').matches;
-    var EASE = 'power3.out';
-
-    /* ── scroll progress ── */
-    var bar = document.getElementById('mtnBar');
-    if (bar) {
-      gsap.to(bar, {
-        scaleX: 1, ease: 'none',
-        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: .3 }
-      });
-    }
-
-    /* ── typography: heading masks, copy follows ── */
-    gsap.utils.toArray('.marks h2, .pad .h2, .think h2, .cta h2').forEach(function (el) {
-      gsap.from(el, {
-        yPercent: 18, opacity: 0, duration: 1.05, ease: 'expo.out',
-        clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-      });
-    });
-    gsap.utils.toArray(
-      '.marks .kicker, .pad .kicker, .think .kicker, .cta .kicker, .marks__note, ' +
-      '.explorer .lede, .beyond .lede, .soc .lede, .collab, .think .lede, .cta .lede, .exp__head .note'
-    ).forEach(function (el) {
-      gsap.from(el, {
-        y: 22, opacity: 0, duration: .8, ease: EASE, delay: .06,
-        clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: el, start: 'top 92%', once: true }
-      });
-    });
-
-    /* ── work cards: organic entrance that survives filtering and View more ── */
-    var wg = document.getElementById('workGrid');
-    if (wg) {
-      wg.classList.add('rv-on');
-      var cardIO = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (!en.isIntersecting) { return; }
-          var idx = Array.prototype.indexOf.call(wg.children, en.target);
-          en.target.style.transitionDelay = ((idx % 4) * 70) + 'ms';
-          en.target.classList.add('is-in');
-          cardIO.unobserve(en.target);
-        });
-      }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
-      Array.prototype.forEach.call(wg.querySelectorAll('.card'), function (c) { cardIO.observe(c); });
-    }
-
-    /* ── depth: visuals drift a few pixels against the scroll ── */
-    if (wide) {
-      gsap.utils.toArray('#workGrid .card .card__media img').forEach(function (img) {
-        gsap.fromTo(img, { yPercent: -2.5 }, {
-          yPercent: 2.5, ease: 'none',
-          scrollTrigger: { trigger: img.closest('.card'), start: 'top bottom', end: 'bottom top', scrub: .6 }
-        });
-      });
-      gsap.to('.hero__bg', {
-        yPercent: 8, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: .5 }
-      });
-      gsap.utils.toArray('.amb i').forEach(function (el) {
-        gsap.fromTo(el, { yPercent: -14, xPercent: -58 }, {
-          yPercent: 14, xPercent: -42, ease: 'none',
-          scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: 1 }
-        });
-      });
-    }
-
-    /* ── beyond screens: artefacts arrive at their own pace ── */
-    gsap.utils.toArray('.bgrid .btile').forEach(function (tile, i) {
-      gsap.from(tile, {
-        y: 46 + (i % 3) * 10, opacity: 0, scale: .975, duration: .9, ease: EASE, delay: (i % 3) * .05,
-        clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: tile, start: 'top 90%', once: true }
-      });
-      if (wide) {
-        gsap.fromTo(tile, { yPercent: (i % 3) - 1 }, {
-          yPercent: ((i % 3) - 1) * -2.2, ease: 'none',
-          scrollTrigger: { trigger: '.bgrid', start: 'top bottom', end: 'bottom top', scrub: .8 }
-        });
-      }
-    });
-
-    /* ── discipline rows ── */
-    gsap.from('.disc__row', {
-      x: -40, opacity: 0, duration: .75, stagger: .08, ease: EASE,
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.disc__list', start: 'top 86%', once: true }
-    });
-
-    /* ── social index ── */
-    gsap.from('.srow', {
-      y: 24, opacity: 0, duration: .7, stagger: .07, ease: EASE,
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.sidx', start: 'top 88%', once: true }
-    });
-
-    /* ── in motion: the frames settle, then the prototypes take over ── */
-    gsap.utils.toArray('.mo__a, .mo__b').forEach(function (el, i) {
-      gsap.from(el, {
-        y: 44, opacity: 0, scale: .985, duration: 1, ease: 'expo.out', delay: i * .1,
-        clearProps: 'transform,opacity',
-        scrollTrigger: { trigger: '.mo__grid', start: 'top 86%', once: true }
-      });
-    });
-
-    /* ── marks marquee eases in ── */
-    gsap.from('.marks__rail', {
-      opacity: 0, y: 26, duration: .9, ease: EASE,
-      clearProps: 'transform,opacity',
-      scrollTrigger: { trigger: '.marks__rail', start: 'top 92%', once: true }
-    });
-
-    /* ── cursor light: one rAF pass, transform-free ── */
-    if (fine) {
-      var glowQueue = [], glowPending = false;
-      function flushGlow() {
-        glowPending = false;
-        for (var i = 0; i < glowQueue.length; i++) {
-          var g = glowQueue[i];
-          g.el.style.setProperty('--gx', g.x + 'px');
-          if (g.hasY) { g.el.style.setProperty('--gy', g.y + 'px'); }
-        }
-        glowQueue.length = 0;
-      }
-      function track(el, hasY) {
-        el.addEventListener('pointermove', function (e) {
-          var r = el.getBoundingClientRect();
-          glowQueue.push({ el: el, x: Math.round(e.clientX - r.left), y: Math.round(e.clientY - r.top), hasY: hasY });
-          if (!glowPending) { glowPending = true; requestAnimationFrame(flushGlow); }
-        });
-      }
-      document.querySelectorAll('#workGrid .card .card__visual').forEach(function (el) { track(el, true); });
-      document.querySelectorAll('.srow').forEach(function (el) { track(el, false); });
-    }
-
-    ScrollTrigger.refresh();
-  }
-})();
-</script>
+  <script src="assets/js/site.js?v=20260911c" defer></script>
 </body>
 </html>
