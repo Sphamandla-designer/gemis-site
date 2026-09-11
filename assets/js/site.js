@@ -276,6 +276,56 @@
     apply('all');
   }
 
+  /* ── enquiry form → email hand-off ───────────────────────────────────
+        Same constraint as the CTA field: the site is static, so there is no
+        endpoint. Validate here, then open a pre-filled message. The consent
+        box is required because the privacy notice promises consent is
+        recorded with the enquiry. */
+
+  var enquiry = document.getElementById('enquiry');
+
+  if (enquiry) {
+    enquiry.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // novalidate is set so we can report the first problem ourselves
+      var invalid = enquiry.querySelector(':invalid');
+      if (invalid) {
+        invalid.focus();
+        if (invalid.reportValidity) invalid.reportValidity();
+        return;
+      }
+
+      var val = function (id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      };
+
+      var lines = [
+        'Name: ' + val('f-name'),
+        'Work email: ' + val('f-email'),
+        'Company: ' + (val('f-company') || '—'),
+        'Service: ' + (val('f-service') || '—'),
+        'Indicative budget: ' + (val('f-budget') || 'Prefer not to say'),
+        '',
+        'What we are trying to solve:',
+        val('f-message'),
+        '',
+        'I consent to GEMIS processing this information in order to respond to this enquiry.'
+      ];
+
+      window.location.href = 'mailto:info@gemis.co.za'
+        + '?subject=' + encodeURIComponent('Enquiry from ' + (val('f-company') || val('f-name')))
+        + '&body=' + encodeURIComponent(lines.join('\n'));
+
+      var note = document.getElementById('enquiryNote');
+      if (note) {
+        note.textContent = 'Opening your email client with the enquiry pre-filled. '
+          + 'If nothing happens, email info@gemis.co.za directly.';
+      }
+    });
+  }
+
   /* ── contact form → email hand-off (the site is static, so there is no
         endpoint to post to; we open a pre-addressed message instead) ────── */
   var form = document.getElementById('ctaForm');
