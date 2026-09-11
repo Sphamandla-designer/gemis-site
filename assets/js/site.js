@@ -195,6 +195,51 @@
     sweep();
   }
 
+  /* ── services accordion ──────────────────────────────────────────────
+        Rows are real <button>s inside the list, so keyboard and screen-reader
+        behaviour comes for free; the panel animates on grid-template-rows,
+        which works without measuring heights. */
+
+  var accItems = [].slice.call(document.querySelectorAll('.acc__item'));
+
+  accItems.forEach(function (item) {
+    var btn = item.querySelector('.acc__btn');
+    var panel = item.querySelector('.acc__panel');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function () {
+      var open = item.hasAttribute('data-open');
+      if (open) {
+        item.removeAttribute('data-open');
+      } else {
+        // one open at a time keeps the list scannable
+        accItems.forEach(function (other) {
+          if (other === item) return;
+          other.removeAttribute('data-open');
+          var b = other.querySelector('.acc__btn');
+          var pnl = other.querySelector('.acc__panel');
+          if (b) b.setAttribute('aria-expanded', 'false');
+          if (pnl) pnl.setAttribute('aria-hidden', 'true');
+        });
+        item.setAttribute('data-open', '');
+      }
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.setAttribute('aria-hidden', open ? 'true' : 'false');
+    });
+  });
+
+  // a jump link into a collapsed service should open it on arrival
+  function openFromHash() {
+    if (!window.location.hash) return;
+    var target = document.querySelector(window.location.hash);
+    var item = target && target.closest ? target.closest('.acc__item') : null;
+    if (!item) return;
+    var btn = item.querySelector('.acc__btn');
+    if (btn && !item.hasAttribute('data-open')) btn.click();
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
   /* ── contact form → email hand-off (the site is static, so there is no
         endpoint to post to; we open a pre-addressed message instead) ────── */
   var form = document.getElementById('ctaForm');

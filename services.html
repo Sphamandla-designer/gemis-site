@@ -7,9 +7,9 @@
   <meta name="description" content="Custom software, Microsoft Cloud solutions, enterprise SaaS, mobile apps, business intelligence, integration, UX, modernisation and ongoing support from GEMIS." />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" as="image" href="assets/img/home/hero-bg.jpg" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911" />
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260911b" />
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
+    .acc__panel{grid-template-rows:1fr!important}</style></noscript>
 </head>
 <body>
 
@@ -93,37 +93,38 @@
 
   <main>
 
-    <!-- ═══════════════════ HERO ═══════════════════ -->
-    <section class="hero hero--page" id="hero">
-      <img class="hero__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" />
+    <!-- ═══════════════════ INDEX HERO ═══════════════════ -->
+    <section class="ihero" id="hero">
+      <img class="ihero__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" />
 
-      <div class="shell hero__in">
-        <p class="eyebrow eyebrow--light" data-reveal>Our Services</p>
-        <h1 class="hero__title" data-reveal style="--d:80ms">Enterprise Software Built Around Your Business</h1>
-        <p class="hero__copy" data-reveal style="--d:160ms">
-          We design, develop and support mission-critical Microsoft Cloud solutions that turn
-          complex business processes into intelligent, scalable digital systems — one
-          accountable partner for the full journey.
-        </p>
+      <div class="shell">
+        <div class="ihero__grid">
+          <div>
+            <p class="eyebrow eyebrow--light" data-reveal>Our Services</p>
+            <h1 class="ihero__title" data-reveal style="--d:80ms">Enterprise Software Built Around Your Business</h1>
+            <p class="ihero__copy" data-reveal style="--d:160ms">
+              We design, develop and support mission-critical Microsoft Cloud solutions that
+              turn complex business processes into intelligent, scalable digital systems —
+              one accountable partner for the full journey.
+            </p>
+          </div>
 
-        <dl class="hero__meta" data-reveal style="--d:240ms">
-          <div>
-            <dt>Disciplines</dt>
-            <dd>Nine, under one team</dd>
-          </div>
-          <div>
-            <dt>Delivery</dt>
-            <dd>Six stages, no surprises</dd>
-          </div>
-          <div>
-            <dt>After launch</dt>
-            <dd>Monitoring, maintenance &amp; improvement</dd>
-          </div>
-        </dl>
+          <ul class="jump" data-reveal style="--d:240ms">
+            <li><a href="#s01"><span>01</span>Custom Software Development</a></li>
+            <li><a href="#s02"><span>02</span>Microsoft Cloud Solutions</a></li>
+            <li><a href="#s03"><span>03</span>Enterprise SaaS Platforms</a></li>
+            <li><a href="#s04"><span>04</span>Mobile Application Development</a></li>
+            <li><a href="#s05"><span>05</span>Business Intelligence</a></li>
+            <li><a href="#s06"><span>06</span>System Integration</a></li>
+            <li><a href="#s07"><span>07</span>UX &amp; System Design</a></li>
+            <li><a href="#s08"><span>08</span>Software Modernisation</a></li>
+            <li><a href="#support"><span>09</span>Ongoing Support</a></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ THE PROBLEM ═══════════════════ -->
+    <!-- ═══════════════════ PROBLEM → OUTCOME ═══════════════════ -->
     <section class="sec" id="problems">
       <span class="dotgrid" aria-hidden="true"></span>
 
@@ -141,157 +142,106 @@
         </div>
 
         <ul class="pairs">
-          <li class="pair" data-reveal>
-            <span class="pair__from">Disconnected systems</span>
-            <span class="pair__arrow" aria-hidden="true">→</span>
-            <span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Connected, with one source of truth</span>
+          <li class="pair" data-reveal><span class="pair__from">Disconnected systems</span><span class="pair__arrow" aria-hidden="true">→</span><span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Connected, with one source of truth</span></li>
+          <li class="pair" data-reveal><span class="pair__from">Manual processes</span><span class="pair__arrow" aria-hidden="true">→</span><span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Automated, with the audit trail kept</span></li>
+          <li class="pair" data-reveal><span class="pair__from">Limited visibility</span><span class="pair__arrow" aria-hidden="true">→</span><span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Real-time, at every level</span></li>
+          <li class="pair" data-reveal><span class="pair__from">Poor reporting</span><span class="pair__arrow" aria-hidden="true">→</span><span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Insight leaders can act on</span></li>
+          <li class="pair" data-reveal><span class="pair__from">Growing complexity</span><span class="pair__arrow" aria-hidden="true">→</span><span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Simplified, and built to scale</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ SERVICES — ACCORDION ═══════════════════ -->
+    <section class="sec" id="services">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
+            <h2 class="display" data-reveal style="--d:80ms">Nine Disciplines, One Team</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Open any discipline to see exactly what we deliver. Most engagements draw on
+            several of these at once — you deal with one accountable partner throughout.
+          </p>
+        </div>
+
+        <ul class="acc">
+          <li class="acc__item" id="s01" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p01"><span class="acc__n">01</span><h3 class="acc__name">Custom Software Development</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p01" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>When off-the-shelf software holds you back, we design and build solutions around your exact processes, people and goals — software that fits your business, not the other way around.</p>
+              <ul class="chips"><li>Enterprise applications</li><li>Business portals</li><li>Internal management systems</li><li>Workflow automation</li><li>Customer &amp; supplier portals</li><li>Operations platforms</li></ul>
+            </div></div></div></div>
           </li>
-          <li class="pair" data-reveal>
-            <span class="pair__from">Manual processes</span>
-            <span class="pair__arrow" aria-hidden="true">→</span>
-            <span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Automated, with the audit trail kept</span>
+
+          <li class="acc__item" id="s02" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p02"><span class="acc__n">02</span><h3 class="acc__name">Microsoft Cloud Solutions</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p02" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
+              <ul class="chips"><li>Microsoft Azure</li><li>Azure SQL</li><li>Cloud hosting</li><li>Identity management</li><li>API integration</li><li>Disaster recovery</li></ul>
+            </div></div></div></div>
           </li>
-          <li class="pair" data-reveal>
-            <span class="pair__from">Limited visibility</span>
-            <span class="pair__arrow" aria-hidden="true">→</span>
-            <span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Real-time, at every level</span>
+
+          <li class="acc__item" id="s03" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p03"><span class="acc__n">03</span><h3 class="acc__name">Enterprise SaaS Platforms</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p03" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>Multi-tenant platforms engineered to serve thousands of users — built for performance, security and growth from day one.</p>
+              <ul class="chips"><li>Property management</li><li>Business operations</li><li>Healthcare</li><li>Manufacturing</li><li>Logistics</li><li>Government &amp; NGO</li></ul>
+            </div></div></div></div>
           </li>
-          <li class="pair" data-reveal>
-            <span class="pair__from">Poor reporting</span>
-            <span class="pair__arrow" aria-hidden="true">→</span>
-            <span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Insight leaders can act on</span>
+
+          <li class="acc__item" id="s04" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p04"><span class="acc__n">04</span><h3 class="acc__name">Mobile Application Development</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p04" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>Mobile apps that extend your systems into the field — capturing work where it happens, online or offline, always in sync.</p>
+              <ul class="chips"><li>Field operations</li><li>Inspections</li><li>Incident reporting</li><li>Data collection</li><li>Offline functionality</li><li>Real-time synchronisation</li></ul>
+            </div></div></div></div>
           </li>
-          <li class="pair" data-reveal>
-            <span class="pair__from">Growing complexity</span>
-            <span class="pair__arrow" aria-hidden="true">→</span>
-            <span class="pair__to"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m3 8.4 3.2 3.2L13 5"/></svg>Simplified, and built to scale</span>
+
+          <li class="acc__item" id="s05" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p05"><span class="acc__n">05</span><h3 class="acc__name">Business Intelligence &amp; Reporting</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p05" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>Power BI dashboards that turn scattered data into clear, real-time decision-making tools for every level of your organisation.</p>
+              <ul class="chips"><li>Executive reporting</li><li>Operational KPIs</li><li>Sales analytics</li><li>Financial reporting</li><li>Performance tracking</li><li>Real-time monitoring</li></ul>
+            </div></div></div></div>
+          </li>
+
+          <li class="acc__item" id="s06" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p06"><span class="acc__n">06</span><h3 class="acc__name">System Integration</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p06" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>We make your systems talk to each other — eliminating double capture, disconnected data and manual hand-offs between platforms.</p>
+              <ul class="chips"><li>Accounting systems</li><li>ERP platforms</li><li>CRM solutions</li><li>Third-party APIs</li><li>Payment gateways</li><li>Authentication services</li></ul>
+            </div></div></div></div>
+          </li>
+
+          <li class="acc__item" id="s07" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p07"><span class="acc__n">07</span><h3 class="acc__name">UX &amp; System Design</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p07" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>Enterprise software doesn't have to feel like enterprise software. We design systems people actually enjoy using — clear, fast and considered.</p>
+              <ul class="chips"><li>User research</li><li>Business process mapping</li><li>Interactive prototypes</li><li>Design systems</li><li>Enterprise dashboards</li><li>Accessibility</li></ul>
+            </div></div></div></div>
+          </li>
+
+          <li class="acc__item" id="s08" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p08"><span class="acc__n">08</span><h3 class="acc__name">Software Modernisation</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p08" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>We migrate ageing systems to the cloud, redesign dated interfaces, improve performance and expand features — all without disrupting your daily operations.</p>
+              <ul class="chips"><li>Cloud migration</li><li>Interface redesign</li><li>Performance improvements</li><li>Feature expansion</li><li>Data migration</li><li>Zero-disruption rollouts</li></ul>
+            </div></div></div></div>
+          </li>
+
+          <li class="acc__item" id="support" data-reveal>
+            <button class="acc__btn" aria-expanded="false" aria-controls="p09"><span class="acc__n">09</span><h3 class="acc__name">Ongoing Support &amp; Maintenance</h3><span class="acc__sign" aria-hidden="true"></span></button>
+            <div class="acc__panel" id="p09" aria-hidden="true"><div class="acc__inner"><div class="acc__body"><div>
+              <p>Software needs care beyond go-live. We stay with you — monitoring, maintaining and continuously improving the systems your business runs on.</p>
+              <ul class="chips"><li>Performance monitoring</li><li>System maintenance</li><li>Security updates</li><li>Feature enhancements</li><li>User training</li><li>Technical support</li></ul>
+            </div></div></div></div>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- ═══════════════════ SERVICES ═══════════════════ -->
-    <section class="what" id="services">
-      <span class="dotgrid" aria-hidden="true"></span>
-
-      <div class="shell">
-        <div class="what__head">
-          <div>
-            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
-            <h2 class="display" data-reveal style="--d:80ms">What We Do</h2>
-          </div>
-          <a class="arrow-link" href="#contact" data-reveal style="--d:140ms">
-            Scope a project
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-          </a>
-        </div>
-
-        <ol class="rows">
-          <li class="row" data-reveal>
-            <span class="row__n">01</span>
-            <h3 class="row__name">Custom Software Development</h3>
-            <div class="row__body">
-              <p>When off-the-shelf software holds you back, we design and build solutions around your exact processes, people and goals — software that fits your business, not the other way around.</p>
-              <ul class="chips"><li>Enterprise applications</li><li>Business portals</li><li>Workflow automation</li><li>Operations platforms</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">02</span>
-            <h3 class="row__name">Microsoft Cloud Solutions</h3>
-            <div class="row__body">
-              <p>We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
-              <ul class="chips"><li>Microsoft Azure</li><li>Azure SQL</li><li>Identity management</li><li>Disaster recovery</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">03</span>
-            <h3 class="row__name">Enterprise SaaS Platforms</h3>
-            <div class="row__body">
-              <p>Multi-tenant platforms engineered to serve thousands of users — built for performance, security and growth from day one.</p>
-              <ul class="chips"><li>Property management</li><li>Business operations</li><li>Logistics</li><li>Government &amp; NGO</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">04</span>
-            <h3 class="row__name">Mobile Application Development</h3>
-            <div class="row__body">
-              <p>Mobile apps that extend your systems into the field — capturing work where it happens, online or offline, always in sync.</p>
-              <ul class="chips"><li>Field operations</li><li>Inspections</li><li>Offline functionality</li><li>Real-time sync</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">05</span>
-            <h3 class="row__name">Business Intelligence &amp; Reporting</h3>
-            <div class="row__body">
-              <p>Power BI dashboards that turn scattered data into clear, real-time decision-making tools for every level of your organisation.</p>
-              <ul class="chips"><li>Executive reporting</li><li>Operational KPIs</li><li>Financial reporting</li><li>Performance tracking</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">06</span>
-            <h3 class="row__name">System Integration</h3>
-            <div class="row__body">
-              <p>We make your systems talk to each other — eliminating double capture, disconnected data and manual hand-offs between platforms.</p>
-              <ul class="chips"><li>Accounting &amp; ERP</li><li>CRM solutions</li><li>Third-party APIs</li><li>Payment gateways</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">07</span>
-            <h3 class="row__name">UX &amp; System Design</h3>
-            <div class="row__body">
-              <p>Enterprise software doesn't have to feel like enterprise software. We design systems people actually enjoy using — clear, fast and considered.</p>
-              <ul class="chips"><li>User research</li><li>Process mapping</li><li>Design systems</li><li>Accessibility</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal>
-            <span class="row__n">08</span>
-            <h3 class="row__name">Software Modernisation</h3>
-            <div class="row__body">
-              <p>We migrate ageing systems to the cloud, redesign dated interfaces, improve performance and expand features — without disrupting daily operations.</p>
-              <ul class="chips"><li>Cloud migration</li><li>Interface redesign</li><li>Data migration</li><li>Zero-disruption rollouts</li></ul>
-            </div>
-          </li>
-          <li class="row" data-reveal id="support">
-            <span class="row__n">09</span>
-            <h3 class="row__name">Ongoing Support &amp; Maintenance</h3>
-            <div class="row__body">
-              <p>Software needs care beyond go-live. We stay with you — monitoring, maintaining and continuously improving the systems your business runs on.</p>
-              <ul class="chips"><li>Performance monitoring</li><li>Security updates</li><li>User training</li><li>Technical support</li></ul>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ ADAPTS BAND ═══════════════════ -->
-    <section class="lead">
-      <img class="lead__bg" src="assets/img/home/leadership-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-
-      <div class="shell lead__in">
-        <p class="eyebrow eyebrow--light" data-reveal>The Difference</p>
-        <h2 class="display lead__title" data-reveal style="--d:80ms">Software That Adapts To Your Business</h2>
-
-        <div class="lead__cols">
-          <p data-reveal style="--d:140ms">
-            Rather than forcing your teams to adapt to software, we build software that
-            adapts to your business — shaped around your workflows, your people and your
-            goals.
-          </p>
-          <p data-reveal style="--d:200ms">
-            Technology decisions are driven by business outcomes, not trends. Every feature
-            has to earn its place, and security and compliance are engineered in from day
-            one rather than bolted on later.
-          </p>
-        </div>
-
-        <a class="arrow-link" href="#contact" data-reveal style="--d:260ms">
-          Book a discovery session
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ PROCESS ═══════════════════ -->
+    <!-- ═══════════════════ PROCESS — STEPPER ═══════════════════ -->
     <section class="sec" id="process">
       <div class="shell">
         <div class="sec__head">
@@ -306,45 +256,39 @@
           </p>
         </div>
 
-        <ol class="steps">
-          <li class="step" data-reveal>
-            <span class="step__n">01</span>
-            <h3 class="step__t">Discovery &amp; Business Analysis</h3>
-            <p>We immerse ourselves in your operations to understand your challenges, goals and opportunities before proposing anything.</p>
-          </li>
-          <li class="step" data-reveal style="--d:70ms">
-            <span class="step__n">02</span>
-            <h3 class="step__t">Solution Architecture</h3>
-            <p>We design a secure, scalable Microsoft Cloud architecture that fits your business today — and where it's heading.</p>
-          </li>
-          <li class="step" data-reveal style="--d:140ms">
-            <span class="step__n">03</span>
-            <h3 class="step__t">UX &amp; System Design</h3>
-            <p>Wireframes and interactive prototypes make sure the system works the way your people actually do.</p>
-          </li>
-          <li class="step" data-reveal style="--d:70ms">
-            <span class="step__n">04</span>
-            <h3 class="step__t">Agile Development</h3>
-            <p>Iterative sprints with regular demonstrations keep you involved and the solution on target throughout the build.</p>
-          </li>
-          <li class="step" data-reveal style="--d:140ms">
-            <span class="step__n">05</span>
-            <h3 class="step__t">Quality Assurance</h3>
-            <p>Structured testing, performance validation and user acceptance before anything reaches production.</p>
-          </li>
-          <li class="step" data-reveal style="--d:210ms">
-            <span class="step__n">06</span>
-            <h3 class="step__t">Deployment &amp; Continuous Support</h3>
-            <p>Careful rollout, training and documentation — then ongoing monitoring, maintenance and improvement.</p>
-          </li>
+        <ol class="stepper">
+          <li class="stp" data-reveal><span class="stp__n">01</span><h3 class="stp__t">Discovery</h3><p>We immerse ourselves in your operations to understand the challenges and goals before proposing anything.</p></li>
+          <li class="stp" data-reveal style="--d:70ms"><span class="stp__n">02</span><h3 class="stp__t">Architecture</h3><p>A secure, scalable Microsoft Cloud design that fits your business today — and where it's heading.</p></li>
+          <li class="stp" data-reveal style="--d:140ms"><span class="stp__n">03</span><h3 class="stp__t">UX &amp; Design</h3><p>Wireframes and prototypes make sure the system works the way your people actually do.</p></li>
+          <li class="stp" data-reveal style="--d:210ms"><span class="stp__n">04</span><h3 class="stp__t">Build</h3><p>Iterative sprints with regular demonstrations keep you involved and the solution on target.</p></li>
+          <li class="stp" data-reveal style="--d:280ms"><span class="stp__n">05</span><h3 class="stp__t">Assurance</h3><p>Structured testing, performance validation and user acceptance before anything reaches production.</p></li>
+          <li class="stp" data-reveal style="--d:350ms"><span class="stp__n">06</span><h3 class="stp__t">Support</h3><p>Careful rollout, training and documentation — then ongoing monitoring and improvement.</p></li>
         </ol>
       </div>
     </section>
 
-    <!-- ═══════════════════ WHY GEMIS ═══════════════════ -->
-    <section class="values sec--last">
+    <!-- ═══════════════════ ADAPTS BAND ═══════════════════ -->
+    <section class="lead">
+      <img class="lead__bg" src="assets/img/home/leadership-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
+
+      <div class="shell lead__in">
+        <p class="eyebrow eyebrow--light" data-reveal>The Difference</p>
+        <h2 class="display lead__title" data-reveal style="--d:80ms">Software That Adapts To Your Business</h2>
+        <div class="lead__cols">
+          <p data-reveal style="--d:140ms">Rather than forcing your teams to adapt to software, we build software that adapts to your business — shaped around your workflows, your people and your goals.</p>
+          <p data-reveal style="--d:200ms">Technology decisions are driven by business outcomes, not trends. Every feature has to earn its place, and security is engineered in from day one rather than bolted on later.</p>
+        </div>
+        <a class="arrow-link" href="#contact" data-reveal style="--d:260ms">
+          Book a discovery session
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ WHY GEMIS — SPEC LIST ═══════════════════ -->
+    <section class="sec sec--last">
       <div class="shell">
-        <div class="values__head">
+        <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Why GEMIS</p>
             <h2 class="display" data-reveal style="--d:80ms">Why Organisations Choose Us</h2>
@@ -355,39 +299,33 @@
           </p>
         </div>
 
-        <div class="cards">
-          <article class="card" data-reveal>
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 15.5a3.8 3.8 0 0 1 .4-7.6 5.2 5.2 0 0 1 10 1 3.6 3.6 0 0 1-.4 7.2Z"/><path d="M12 12v6M9.6 15.6 12 18l2.4-2.4"/></svg>
-            </span>
-            <h3 class="card__t">Microsoft Cloud Specialists</h3>
-            <p>Deep expertise across Azure, Azure SQL and the wider Microsoft ecosystem — enterprise infrastructure done properly.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:80ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg>
-            </span>
-            <h3 class="card__t">Business-First Thinking</h3>
-            <p>Technology decisions driven by business outcomes, not trends. Every feature has to earn its place.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:160ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M9.3 19V4M14.7 19v-7M20 19V7"/></svg>
-            </span>
-            <h3 class="card__t">Proven Delivery</h3>
-            <p>Over a decade of experience shipping mission-critical systems that organisations depend on daily.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:240ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s6.5-3.4 6.5-8.4V6L12 3.5 5.5 6v6.1c0 5 6.5 8.4 6.5 8.4Z"/><path d="m9.2 11.8 2 2 3.6-3.6"/></svg>
-            </span>
-            <h3 class="card__t">Enterprise Security</h3>
-            <p>Security, compliance and data protection engineered in from day one — never bolted on later.</p>
-          </article>
-        </div>
+        <dl class="spec">
+          <div class="spec__row" data-reveal>
+            <dt class="spec__k">Platform</dt>
+            <dd class="spec__v">Microsoft Cloud specialists</dd>
+            <dd class="spec__d">Deep expertise across Azure, Azure SQL and the wider Microsoft ecosystem — enterprise infrastructure done properly.</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt class="spec__k">Mindset</dt>
+            <dd class="spec__v">Business-first thinking</dd>
+            <dd class="spec__d">Technology decisions driven by business outcomes, not trends. Every feature has to earn its place.</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt class="spec__k">Track record</dt>
+            <dd class="spec__v">Proven delivery</dd>
+            <dd class="spec__d">Over a decade of experience shipping mission-critical systems that organisations depend on daily.</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt class="spec__k">Collaboration</dt>
+            <dd class="spec__v">Agile, never black-box</dd>
+            <dd class="spec__d">You see progress every sprint and shape the product as it grows — no surprises at hand-over.</dd>
+          </div>
+          <div class="spec__row" data-reveal>
+            <dt class="spec__k">Security</dt>
+            <dd class="spec__v">Engineered in, not bolted on</dd>
+            <dd class="spec__d">Security, compliance and data protection designed in from day one, across every layer of the stack.</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -478,6 +416,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911" defer></script>
+  <script src="assets/js/site.js?v=20260911b" defer></script>
 </body>
 </html>
