@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product &amp; interface design, designed and built | GEMIS Studio</title>
+<meta name="description" content="GEMIS Studio is the product and experience design practice of GEM Information Systems. Start with a Product Teardown — a five-day diagnosis of what your users actually do, R6,500 excl. VAT.">
+<link rel="canonical" href="https://gemis.co.za/studio/">
+<meta property="og:title" content="Product &amp; interface design, designed and built | GEMIS Studio">
+<meta property="og:description" content="Start with a Product Teardown — a five-day diagnosis of what your users actually do. R6,500 excl. VAT, credited in full against anything booked within 60 days.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gemis.co.za/studio/">
+<link rel="icon" href="../assets/img/favicon.svg">
+
+<link rel="preload" href="../assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   GEMIS Studio — tokens (brief §11). Brand is a values change only.
+   ═══════════════════════════════════════════════════════════════ */
+@font-face{font-family:'Inter Var';src:url('../assets/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 600;font-display:swap}
+@font-face{font-family:'Inter Tight Var';src:url('../assets/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 700;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+
+:root{
+  /* colour */
+  --bg:#EFEEEC;          /* page field behind the sheet */
+  --surface:#FFFFFF;     /* the sheet */
+  --panel:#F2F2F0;       /* raised surface: cards, fields */
+  --ink:#0E0E0E;         /* headings, emphasis — 19:1 on surface */
+  --body:#3A3A38;        /* body copy — 10.9:1 on surface */
+  --soft:#63635F;        /* secondary + meta — 6.1:1 on surface */
+  --line:#E3E2DF;        /* dividers */
+  --line-2:#C9C8C4;      /* input borders — 3:1+ */
+  --action:#0E0E0E; --action-hover:#262625; --action-text:#FFFFFF;
+  --focus:#0E0E0E;
+  --dark:#0E0E0E; --dark-2:#1A1A19;
+  --on-dark:#FFFFFF; --on-dark-soft:#A9A9A4;
+  --error:#8A1F11;
+
+  /* one radius decision (brief §11) */
+  --r:20px; --r-sm:12px; --pill:9999px;
+
+  /* spacing 4px base */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+
+  /* type — 1.25 modular scale from 17px */
+  --display:clamp(2.2rem,6.2vw,3.31rem);
+  --h1:clamp(1.9rem,4.4vw,2.64rem);
+  --h2:clamp(1.55rem,3.2vw,2.11rem);
+  --h3:1.41rem; --h4:1.13rem;
+  --small:.88rem; --micro:.78rem;
+
+  --f:'Inter Var',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --fd:'Inter Tight Var','Inter Var',sans-serif;
+  --fm:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* motion (brief §14) */
+  --t-hover:120ms; --t-acc:200ms; --t-draw:240ms; --t-sel:180ms; --t-head:180ms;
+  --e-out:cubic-bezier(.22,.61,.36,1); --e-draw:cubic-bezier(.32,.72,0,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--body);
+  font-family:var(--f);font-size:17px;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--fd);color:var(--ink);margin:0;font-weight:600;letter-spacing:-.02em}
+p{margin:0;max-width:68ch}
+ul,ol{margin:0;padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+.dark :focus-visible,.drawer :focus-visible{outline-color:#FFFFFF}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* skip link */
+.skip{
+  position:absolute;left:var(--s4);top:-100px;z-index:200;
+  background:var(--action);color:var(--action-text);
+  padding:var(--s3) var(--s5);border-radius:var(--pill);font-size:var(--small);font-weight:600;
+  transition:top var(--t-hover) var(--e-out);
+}
+.skip:focus{top:var(--s4)}
+
+/* ── the sheet ─────────────────────────────────────────── */
+.sheet{
+  background:var(--surface);
+  max-width:1416px;margin:0 auto;
+  border-radius:var(--r);overflow:hidden;
+}
+@media (min-width:900px){.sheet{margin:var(--s5) auto}}
+.wrap{max-width:1200px;margin:0 auto;padding-left:20px;padding-right:20px}
+@media (min-width:600px){.wrap{padding-left:32px;padding-right:32px}}
+@media (min-width:900px){.wrap{padding-left:48px;padding-right:48px}}
+section{padding:var(--s8) 0}
+@media (min-width:900px){section{padding:var(--s9) 0}}
+
+/* arc texture — decorative, CSS only, no image weight */
+.arcs{position:relative;isolation:isolate}
+.arcs::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:repeating-radial-gradient(circle at 78% 12%,
+    rgba(255,255,255,.055) 0 1px, transparent 1px 13px);
+}
+
+/* ── type helpers ──────────────────────────────────────── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  border:1px solid var(--line-2);border-radius:var(--pill);
+  padding:6px 14px;font-size:var(--micro);font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--soft);
+}
+.dark .eyebrow{border-color:rgba(255,255,255,.28);color:var(--on-dark-soft)}
+.h-display{font-size:var(--display);line-height:1.06;letter-spacing:-.03em;text-transform:uppercase;font-weight:700}
+.h2{font-size:var(--h2);line-height:1.2}
+.h3{font-size:var(--h3);line-height:1.3}
+.h4{font-size:var(--h4);line-height:1.4}
+.lede{font-size:1.06rem;line-height:1.62;color:var(--body);max-width:62ch}
+.small{font-size:var(--small);line-height:1.5}
+.soft{color:var(--soft)}
+.mono{font-family:var(--fm);font-size:var(--micro);letter-spacing:.06em;text-transform:uppercase}
+
+/* ── buttons ───────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--s3);
+  min-height:48px;padding:12px 14px 12px 22px;
+  border-radius:var(--pill);font-size:1rem;font-weight:600;letter-spacing:-.01em;
+  background:var(--action);color:var(--action-text);
+  transition:background var(--t-hover) var(--e-out);
+}
+.btn:hover{background:var(--action-hover)}
+.btn__ico{
+  width:28px;height:28px;border-radius:50%;background:var(--action-text);color:var(--action);
+  display:grid;place-items:center;flex:none;
+  transition:transform var(--t-hover) var(--e-out);
+}
+.btn:hover .btn__ico{transform:translate(2px,-2px)}
+.btn--ghost{
+  background:transparent;color:var(--ink);border:1px solid var(--line-2);
+  padding:12px 22px;
+}
+.btn--ghost:hover{background:var(--panel)}
+.dark .btn{background:var(--on-dark);color:var(--ink)}
+.dark .btn:hover{background:#E8E8E4}
+.dark .btn__ico{background:var(--ink);color:var(--on-dark)}
+.dark .btn--ghost{background:transparent;color:var(--on-dark);border-color:rgba(255,255,255,.3)}
+.dark .btn--ghost:hover{background:rgba(255,255,255,.08)}
+.link-arrow{
+  display:inline-flex;align-items:center;gap:6px;min-height:44px;
+  font-weight:600;font-size:var(--small);color:var(--ink);
+}
+.link-arrow i{font-style:normal;transition:transform var(--t-hover) var(--e-out)}
+.link-arrow:hover i{transform:translate(3px,-3px)}
+
+/* ── header ────────────────────────────────────────────── */
+.hd{
+  position:sticky;top:0;z-index:100;background:var(--surface);
+  border-bottom:1px solid transparent;
+  transition:box-shadow var(--t-head) var(--e-out),border-color var(--t-head) var(--e-out);
+}
+.hd__in{display:flex;align-items:center;gap:var(--s5);height:80px;transition:height var(--t-head) var(--e-out)}
+.hd.is-compact{box-shadow:0 1px 20px rgba(14,14,14,.08);border-bottom-color:var(--line)}
+.hd.is-compact .hd__in{height:64px}
+.wordmark{font-family:var(--fd);font-weight:700;font-size:1.18rem;letter-spacing:-.03em;color:var(--ink);white-space:nowrap;transition:font-size var(--t-head) var(--e-out)}
+.hd.is-compact .wordmark{font-size:1.05rem}
+.wordmark span{color:var(--soft);font-weight:500}
+.nav{display:none;margin-left:auto;align-items:center;gap:var(--s5)}
+@media (min-width:1000px){.nav{display:flex}}
+.nav a,.nav button{font-size:.94rem;color:var(--body);min-height:44px;display:inline-flex;align-items:center;gap:6px;transition:color var(--t-hover) var(--e-out)}
+.nav a:hover,.nav button:hover{color:var(--ink)}
+.hd__cta{margin-left:auto}
+@media (min-width:1000px){.hd__cta{margin-left:0}}
+.hd__cta .btn{min-height:44px;padding:9px 11px 9px 18px;font-size:.94rem}
+.hd__cta .btn__ico{width:24px;height:24px}
+
+/* services dropdown */
+.drop{position:relative}
+.drop__panel{
+  position:absolute;top:calc(100% + 10px);left:-16px;width:390px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s3);opacity:0;visibility:hidden;transform:translateY(-4px);
+  transition:opacity var(--t-hover) var(--e-out),transform var(--t-hover) var(--e-out),visibility var(--t-hover);
+}
+.drop.is-open .drop__panel{opacity:1;visibility:visible;transform:none}
+.drop__item{display:flex;align-items:baseline;gap:var(--s3);padding:11px 13px;border-radius:var(--r-sm);min-height:48px}
+.drop__item:hover{background:var(--panel)}
+.drop__item b{font-weight:600;color:var(--ink);font-size:.94rem}
+.drop__item span{margin-left:auto;font-size:var(--small);color:var(--soft);white-space:nowrap}
+
+/* burger + drawer */
+.burger{display:inline-grid;place-items:center;width:48px;height:48px;margin-left:var(--s2)}
+@media (min-width:1000px){.burger{display:none}}
+.burger i{display:block;width:20px;height:1.5px;background:var(--ink);position:relative;transition:background var(--t-hover)}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:var(--ink);transition:transform var(--t-draw) var(--e-draw)}
+.burger i::before{top:-6px}.burger i::after{top:6px}
+.is-drawer .burger i{background:transparent}
+.is-drawer .burger i::before{transform:translateY(6px) rotate(45deg)}
+.is-drawer .burger i::after{transform:translateY(-6px) rotate(-45deg)}
+.drawer{
+  position:fixed;inset:0;z-index:150;background:var(--surface);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform var(--t-draw) var(--e-draw);
+  box-shadow:-8px 0 40px rgba(14,14,14,.16);
+}
+.drawer[hidden]{display:flex}
+.drawer.is-open{transform:none}
+.drawer__top{display:flex;align-items:center;height:80px;padding:0 20px;border-bottom:1px solid var(--line)}
+.drawer__body{flex:1;overflow-y:auto;padding:var(--s5) 20px}
+.drawer__body a{display:block;font-family:var(--fd);font-size:1.3rem;font-weight:600;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line)}
+.drawer__svc{margin-top:var(--s5)}
+.drawer__svc p{font-size:var(--micro);letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:var(--s2)}
+.drawer__svc a{font-size:1rem;display:flex;justify-content:space-between;gap:var(--s4);align-items:baseline}
+.drawer__svc a span{font-size:var(--small);color:var(--soft);font-weight:400}
+.drawer__foot{padding:var(--s5) 20px;border-top:1px solid var(--line);display:grid;gap:var(--s3)}
+.drawer__foot .btn{justify-content:space-between}
+.drawer__foot a.small{color:var(--soft)}
+
+/* ── hero ──────────────────────────────────────────────── */
+.hero{padding-top:var(--s7)}
+.hero__grid{display:grid;gap:var(--s7)}
+@media (min-width:1000px){.hero__grid{grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:var(--s8);align-items:start}}
+.hero h1{margin:var(--s5) 0 0}
+.hero .lede{margin-top:var(--s5)}
+.hero__act{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;margin-top:var(--s6)}
+.hero__credit{margin-top:var(--s4);font-size:var(--small);color:var(--soft);max-width:52ch}
+
+/* the ladder */
+.ladder{display:grid;gap:var(--s2)}
+.ladder__h{font-size:var(--micro);letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:var(--s3);font-family:var(--fm)}
+.rung{
+  display:block;border:1px solid var(--line);border-radius:var(--r);
+  padding:var(--s4) var(--s5);background:var(--surface);
+  transition:border-color var(--t-hover) var(--e-out),background var(--t-hover) var(--e-out);
+}
+.rung:hover{border-color:var(--ink);background:var(--panel)}
+@media (min-width:1000px){
+  .rung--2{margin-left:14px}
+  .rung--3{margin-left:28px}
+  .rung--4{margin-left:42px}
+}
+.rung__top{display:flex;align-items:baseline;gap:var(--s3);margin-bottom:6px}
+.rung__slot{font-family:var(--fm);font-size:var(--micro);letter-spacing:.08em;color:var(--soft)}
+.rung__quote{font-size:var(--small);color:var(--soft);font-style:italic;margin-bottom:var(--s2)}
+.rung__row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);flex-wrap:wrap}
+.rung__name{font-family:var(--fd);font-weight:600;font-size:1.06rem;color:var(--ink);letter-spacing:-.02em}
+.rung__price{font-size:var(--small);color:var(--ink);font-weight:600;white-space:nowrap}
+.rung__dur{font-size:var(--small);color:var(--soft)}
+.tbc{
+  display:inline-block;font-size:var(--micro);color:var(--soft);
+  border:1px dashed var(--line-2);border-radius:var(--pill);padding:2px 9px;white-space:nowrap;
+}
+
+/* ── proof strip ───────────────────────────────────────── */
+.proof{padding-top:var(--s7);padding-bottom:var(--s7)}
+.proof__list{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);margin-top:var(--s4);border-top:1px solid var(--line);padding-top:var(--s5)}
+.proof__list li{font-family:var(--fd);font-weight:500;font-size:1.02rem;color:var(--ink);letter-spacing:-.01em}
+
+/* ── situation ─────────────────────────────────────────── */
+.sit__list{margin-top:var(--s6);display:grid;gap:0}
+.sit__list li{
+  font-family:var(--fd);font-weight:500;font-size:clamp(1.18rem,2.4vw,1.55rem);
+  line-height:1.35;letter-spacing:-.02em;color:var(--ink);
+  padding:var(--s5) 0;border-top:1px solid var(--line);max-width:30ch;
+}
+.sit__cause{margin-top:var(--s6);border-top:1px solid var(--ink);padding-top:var(--s5);font-size:1.12rem;color:var(--ink);max-width:56ch}
+
+/* ── services ──────────────────────────────────────────── */
+.svc__grid{display:grid;gap:var(--s4);margin-top:var(--s7)}
+@media (min-width:760px){.svc__grid{grid-template-columns:1fr 1fr}}
+.svc{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel);
+  padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);
+  transition:border-color var(--t-hover) var(--e-out);
+}
+.svc:hover{border-color:var(--line-2)}
+.svc__quote{font-size:var(--small);color:var(--soft);font-style:italic}
+.svc__meta{display:flex;align-items:baseline;gap:var(--s3);flex-wrap:wrap;margin-top:-4px}
+.svc__price{font-weight:600;color:var(--ink)}
+.svc__out{color:var(--body)}
+.svc__del{display:grid;gap:var(--s2);margin-top:var(--s2);border-top:1px solid var(--line);padding-top:var(--s4)}
+.svc__del li{position:relative;padding-left:18px;font-size:var(--small);color:var(--body)}
+.svc__del li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:1.5px;background:var(--ink)}
+.svc .link-arrow{margin-top:auto;padding-top:var(--s3)}
+
+/* ── selector ──────────────────────────────────────────── */
+.sel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:var(--s5);margin-top:var(--s6)}
+@media (min-width:760px){.sel{padding:var(--s7)}}
+.sel__q{margin-top:var(--s5)}
+.sel__qh{font-family:var(--fd);font-weight:600;font-size:1.18rem;color:var(--ink);letter-spacing:-.02em;margin-bottom:var(--s4)}
+.sel__opts{display:grid;gap:var(--s2)}
+@media (min-width:700px){.sel__opts{grid-template-columns:1fr 1fr}}
+.sel__opt{
+  text-align:left;min-height:48px;padding:13px 18px;background:var(--surface);
+  border:1px solid var(--line-2);border-radius:var(--r-sm);color:var(--body);font-size:.97rem;
+  transition:border-color var(--t-hover) var(--e-out),background var(--t-hover) var(--e-out),color var(--t-hover) var(--e-out);
+}
+.sel__opt:hover{border-color:var(--ink);color:var(--ink)}
+.sel__opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.sel__step{animation:selIn var(--t-sel) var(--e-out) both}
+@keyframes selIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sel__prog{display:flex;gap:6px;align-items:center;font-size:var(--micro);color:var(--soft);font-family:var(--fm)}
+.sel__answers{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s5)}
+.sel__ans{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;
+  background:var(--surface);border:1px solid var(--line-2);border-radius:var(--pill);font-size:var(--small);color:var(--body);
+}
+.sel__ans em{font-style:normal;color:var(--soft);font-size:var(--micro);text-transform:uppercase;letter-spacing:.05em}
+.sel__ans u{text-decoration:none;color:var(--ink);font-weight:600}
+.sel__ans:hover{border-color:var(--ink)}
+.sel__res{border-top:1px solid var(--line);padding-top:var(--s5)}
+.sel__resname{font-family:var(--fd);font-size:var(--h3);font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.sel__why{margin:var(--s3) 0 var(--s5);color:var(--body)}
+.sel__alt{margin-top:var(--s4);font-size:var(--small);color:var(--soft)}
+.sel__alt a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)}
+.sel__acts{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.sel__restart{font-size:var(--small);color:var(--soft);min-height:44px;display:inline-flex;align-items:center}
+.sel__restart:hover{color:var(--ink)}
+
+/* ── every engagement (dark) ───────────────────────────── */
+.dark{background:var(--dark);color:var(--on-dark-soft)}
+.dark h2,.dark h3,.dark h4,.dark .h2,.dark .h3{color:var(--on-dark)}
+.dark .lede{color:var(--on-dark-soft)}
+.eng{border-radius:var(--r);margin:0 auto;max-width:1416px}
+.eng__grid{display:grid;gap:var(--s4);margin-top:var(--s7)}
+@media (min-width:700px){.eng__grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1050px){.eng__grid{grid-template-columns:repeat(4,1fr)}}
+.eng__card{border:1px solid rgba(255,255,255,.16);border-radius:var(--r);padding:var(--s5);display:grid;gap:var(--s3);align-content:start}
+.eng__n{font-family:var(--fm);font-size:var(--micro);color:var(--on-dark-soft);letter-spacing:.08em}
+.eng__card h3{font-size:1.06rem;letter-spacing:-.02em}
+.eng__card p{font-size:var(--small);color:var(--on-dark-soft)}
+
+/* ── alternatives ──────────────────────────────────────── */
+.alt__list{margin-top:var(--s7);border-top:1px solid var(--line)}
+.alt__row{display:grid;gap:var(--s2);padding:var(--s5) 0;border-bottom:1px solid var(--line)}
+@media (min-width:800px){.alt__row{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:var(--s7);align-items:baseline}}
+.alt__row h3{font-size:1.06rem;letter-spacing:-.02em}
+.alt__row p{color:var(--body)}
+.alt__row--last h3,.alt__row--last p{color:var(--ink)}
+.alt__row--last{border-bottom:1px solid var(--ink)}
+
+/* ── how we work — scattered sequence ──────────────────── */
+.how__grid{display:grid;gap:var(--s4);margin-top:var(--s7)}
+@media (min-width:860px){
+  .how__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s6) var(--s7);max-width:920px}
+  .how__step:nth-child(1){transform:rotate(-1.4deg)}
+  .how__step:nth-child(2){transform:rotate(1.2deg);margin-top:var(--s7)}
+  .how__step:nth-child(3){transform:rotate(1deg)}
+  .how__step:nth-child(4){transform:rotate(-1.1deg);margin-top:var(--s5)}
+  .how__step:nth-child(5){transform:rotate(-.6deg)}
+}
+.how__step{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:var(--s5);
+}
+.how__step::before{
+  content:"";position:absolute;top:-7px;left:var(--s5);
+  width:14px;height:14px;border-radius:50%;background:var(--ink);
+}
+.how__n{font-family:var(--fm);font-size:var(--micro);color:var(--soft);letter-spacing:.08em;display:block;margin-bottom:var(--s3)}
+.how__step h3{font-size:1.06rem;letter-spacing:-.02em;margin-bottom:6px}
+.how__step p{font-size:var(--small);color:var(--body)}
+.how__note{
+  margin-top:var(--s5);font-family:var(--fd);font-style:italic;font-weight:500;
+  color:var(--soft);font-size:1rem;
+}
+@media (min-width:860px){.how__note{margin-left:auto;text-align:right;max-width:920px;transform:rotate(-2deg)}}
+
+/* ── faq ───────────────────────────────────────────────── */
+.faq__list{margin-top:var(--s7);border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s5);
+  padding:var(--s5) 0;min-height:48px;cursor:pointer;list-style:none;
+  font-family:var(--fd);font-weight:600;font-size:1.06rem;color:var(--ink);letter-spacing:-.02em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:none;width:13px;height:13px;margin-top:6px;
+  border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  transform:rotate(45deg);transition:transform var(--t-acc) ease-in-out;
+}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq__a{padding:0 0 var(--s5);max-width:68ch;color:var(--body)}
+.faq details[open] .faq__a{animation:accIn var(--t-acc) ease-in-out both}
+@keyframes accIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* ── closing cta ───────────────────────────────────────── */
+.book{border-radius:var(--r);margin:0 auto;max-width:1416px}
+.book__grid{display:grid;gap:var(--s7);margin-top:var(--s6)}
+@media (min-width:900px){.book__grid{grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:var(--s8);align-items:start}}
+.book__list{display:grid;gap:var(--s3);margin-top:var(--s5)}
+.book__list li{position:relative;padding-left:20px;color:var(--on-dark-soft)}
+.book__list li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:1.5px;background:var(--on-dark)}
+.book__direct{border:1px solid rgba(255,255,255,.16);border-radius:var(--r);padding:var(--s5);display:grid;gap:var(--s3)}
+.book__direct a{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);min-height:48px;color:var(--on-dark);font-weight:600;border-bottom:1px solid rgba(255,255,255,.14)}
+.book__direct a:last-child{border-bottom:0}
+.book__direct span{font-size:var(--small);color:var(--on-dark-soft);font-weight:400}
+
+/* ── footer ────────────────────────────────────────────── */
+.ft{padding:var(--s8) 0 var(--s6)}
+.ft__grid{display:grid;gap:var(--s7)}
+@media (min-width:800px){.ft__grid{grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr))}}
+.ft h2{font-family:var(--fd);font-size:1.18rem;font-weight:700;letter-spacing:-.03em;margin-bottom:var(--s3)}
+.ft p{font-size:var(--small);color:var(--soft);max-width:38ch}
+.ft__col p.mono{color:var(--soft);margin-bottom:var(--s3)}
+.ft__col li a{display:inline-flex;align-items:center;min-height:40px;font-size:var(--small);color:var(--body)}
+.ft__col li a:hover{color:var(--ink)}
+.ft__bar{margin-top:var(--s7);padding-top:var(--s5);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between;font-size:var(--micro);color:var(--soft)}
+
+/* ── hero settle: one orchestrated moment, first load only ── */
+.js-settle .settle{opacity:0;transform:translateY(10px)}
+.js-settle.is-settled .settle{
+  opacity:1;transform:none;
+  transition:opacity 340ms var(--e-out),transform 340ms var(--e-out);
+}
+.js-settle.is-settled .settle:nth-child(2){transition-delay:60ms}
+.js-settle.is-settled .settle:nth-child(3){transition-delay:110ms}
+.js-settle.is-settled .settle:nth-child(4){transition-delay:160ms}
+.js-settle.is-settled .ladder .rung{opacity:1;transform:none;transition:opacity 300ms var(--e-out),transform 300ms var(--e-out)}
+.js-settle .ladder .rung{opacity:0;transform:translateY(8px)}
+.js-settle.is-settled .ladder .rung:nth-child(2){transition-delay:180ms}
+.js-settle.is-settled .ladder .rung:nth-child(3){transition-delay:230ms}
+.js-settle.is-settled .ladder .rung:nth-child(4){transition-delay:280ms}
+.js-settle.is-settled .ladder .rung:nth-child(5){transition-delay:330ms}
+
+/* ── reduced motion: state changes become instantaneous ── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.001ms !important;animation-delay:0ms !important;
+    transition-duration:.001ms !important;transition-delay:0ms !important;
+  }
+  .js-settle .settle,.js-settle .ladder .rung{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+<header class="hd" id="hd">
+  <div class="wrap hd__in">
+    <a class="wordmark" href="./">GEMIS <span>Studio</span></a>
+
+    <nav class="nav" aria-label="Primary">
+      <div class="drop" id="drop">
+        <button type="button" id="dropBtn" aria-expanded="false" aria-controls="dropPanel">
+          Services
+          <svg width="10" height="7" viewBox="0 0 10 7" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="drop__panel" id="dropPanel">
+          <a class="drop__item" href="#service-teardown"><b>Product Teardown</b><span class="tnum">R6,500 · 5 days</span></a>
+          <a class="drop__item" href="#service-refresh"><b>Interface Refresh Sprint</b><span>Price pending</span></a>
+          <a class="drop__item" href="#service-web"><b>Web Experience</b><span>Price pending</span></a>
+          <a class="drop__item" href="#service-embedded"><b>Embedded Designer</b><span>Price pending</span></a>
+        </div>
+      </div>
+      <a href="#work">Work</a>
+      <a href="#studio">Studio</a>
+      <a href="#book">Contact</a>
+    </nav>
+
+    <div class="hd__cta">
+      <a class="btn" href="#book" data-ev="cta_click" data-loc="header">
+        Book a Teardown
+        <span class="btn__ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="drawer">
+      <i aria-hidden="true"></i><span class="skip" style="position:absolute;left:-9999px">Menu</span>
+    </button>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer" hidden aria-label="Menu">
+  <div class="drawer__top">
+    <span class="wordmark">GEMIS <span>Studio</span></span>
+    <button class="burger" type="button" id="drawerClose" style="margin-left:auto" aria-label="Close menu">
+      <i aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="drawer__body">
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#book">Contact</a>
+    <div class="drawer__svc">
+      <p class="mono">Services</p>
+      <a href="#service-teardown">Product Teardown <span class="tnum">R6,500</span></a>
+      <a href="#service-refresh">Interface Refresh Sprint <span>Price pending</span></a>
+      <a href="#service-web">Web Experience <span>Price pending</span></a>
+      <a href="#service-embedded">Embedded Designer <span>Price pending</span></a>
+    </div>
+  </div>
+  <div class="drawer__foot">
+    <a class="btn" href="#book" data-ev="cta_click" data-loc="drawer">
+      Book a Teardown
+      <span class="btn__ico" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+    </a>
+    <a class="small" href="mailto:info@gemis.co.za">info@gemis.co.za</a>
+    <a class="small" href="tel:+27814182518">+27 81 418 2518</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ═══ 1 · HERO — proposition and the ladder ═══ -->
+<section class="hero" id="hero">
+  <div class="wrap hero__grid">
+    <div id="heroCol">
+      <p class="eyebrow settle">The design practice of GEM Information Systems</p>
+      <h1 class="h-display settle">We design the product, and we build it.</h1>
+      <p class="lede settle">GEMIS Studio designs products, interfaces and the systems behind them — not logos. We work out what your users actually do, redesign it, and hand it to your developers, or build it ourselves in the same company.</p>
+      <div class="hero__act settle">
+        <a class="btn" href="#book" data-ev="cta_click" data-loc="hero">
+          Book a Teardown — <span class="tnum">R6,500</span>
+          <span class="btn__ico" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost" href="#services">See the four services</a>
+      </div>
+      <p class="hero__credit settle">The fee is credited in full against any engagement you book within 60 days. Prices exclude VAT.</p>
+    </div>
+
+    <div>
+      <p class="ladder__h">Where you start</p>
+      <div class="ladder">
+        <a class="rung rung--1" href="#service-teardown" data-ev="ladder_step_click" data-svc="product-teardown" data-pos="1">
+          <span class="rung__top"><span class="rung__slot">01 · START HERE</span></span>
+          <p class="rung__quote">“Users complain and we don't know why”</p>
+          <span class="rung__row">
+            <span class="rung__name">Product Teardown</span>
+            <span><span class="rung__price tnum">R6,500</span> <span class="rung__dur">· 5 days</span></span>
+          </span>
+        </a>
+        <a class="rung rung--2" href="#service-refresh" data-ev="ladder_step_click" data-svc="interface-refresh" data-pos="2">
+          <span class="rung__top"><span class="rung__slot">02 · THEN</span></span>
+          <p class="rung__quote">“It works, it just looks like 2011”</p>
+          <span class="rung__row">
+            <span class="rung__name">Interface Refresh Sprint</span>
+            <span class="tbc">Price pending sign-off</span>
+          </span>
+        </a>
+        <a class="rung rung--3" href="#service-web" data-ev="ladder_step_click" data-svc="web-experience" data-pos="3">
+          <span class="rung__top"><span class="rung__slot">03 · OR</span></span>
+          <p class="rung__quote">“Our site doesn't convert”</p>
+          <span class="rung__row">
+            <span class="rung__name">Web Experience</span>
+            <span class="tbc">Price pending sign-off</span>
+          </span>
+        </a>
+        <a class="rung rung--4" href="#service-embedded" data-ev="ladder_step_click" data-svc="embedded-designer" data-pos="4">
+          <span class="rung__top"><span class="rung__slot">04 · ONGOING</span></span>
+          <p class="rung__quote">“We need design capacity, not a hire”</p>
+          <span class="rung__row">
+            <span class="rung__name">Embedded Designer</span>
+            <span class="tbc">Price pending sign-off</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2 · PROOF STRIP — systems designed ═══ -->
+<section class="proof" aria-labelledby="proof-h">
+  <div class="wrap">
+    <p class="mono soft" id="proof-h">Systems we have designed</p>
+    <ul class="proof__list">
+      <li>Enterprise SaaS platforms</li>
+      <li>Financial operating systems</li>
+      <li>Operational dashboards</li>
+      <li>AI-assisted review workflows</li>
+      <li>Conversational interfaces</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ 3 · THE SITUATION ═══ -->
+<section aria-labelledby="sit-h">
+  <div class="wrap">
+    <p class="eyebrow">The situation</p>
+    <h2 class="h2" id="sit-h" style="margin-top:var(--s5);max-width:22ch">You already know something is wrong.</h2>
+    <ul class="sit__list">
+      <li>Support load keeps climbing and nobody can say which screen is causing it.</li>
+      <li>The team quietly avoids the internal system and works around it in spreadsheets.</li>
+      <li>The redesign stalled after the Figma file and never reached a developer.</li>
+      <li>Users drop out at a step nobody has actually watched them use.</li>
+    </ul>
+    <p class="sit__cause">Every one of these has the same root: <strong>nobody has mapped what actually happens</strong> — only what was supposed to.</p>
+  </div>
+</section>
+
+<!-- ═══ 4 · THE FOUR SERVICES ═══ -->
+<section id="services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <p class="eyebrow">What you can buy</p>
+    <h2 class="h2" id="svc-h" style="margin-top:var(--s5);max-width:26ch">Four services. Published prices. No proposal required.</h2>
+
+    <div class="svc__grid">
+
+      <article class="svc" id="service-teardown">
+        <p class="svc__quote">“Users complain and we don't know why”</p>
+        <h3 class="h3">Product Teardown</h3>
+        <p class="svc__meta"><span class="svc__price tnum">R6,500</span> <span class="soft small">excl. VAT · 5 days</span></p>
+        <p class="svc__out">A ranked, evidenced account of what is actually going wrong in your product — and the first five screens redrawn so you can see the fix, not just read about it.</p>
+        <ul class="svc__del">
+          <li>Ranked issue list, each with the cost it carries</li>
+          <li>Five redesigned screens</li>
+          <li>Twelve-month product roadmap</li>
+        </ul>
+        <a class="link-arrow" href="#book" data-ev="cta_click" data-loc="service-card-teardown">See what's included <i>↗</i></a>
+      </article>
+
+      <article class="svc" id="service-refresh">
+        <p class="svc__quote">“It works, it just looks like 2011”</p>
+        <h3 class="h3">Interface Refresh Sprint</h3>
+        <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
+        <p class="svc__out">A fixed-scope, fixed-price visual and interaction refresh of a product that functions but no longer looks like it does — delivered developer-ready.</p>
+        <ul class="svc__del">
+          <li>Redesigned screens, before and after</li>
+          <li>WCAG 2.1 AA contrast pass</li>
+          <li>Developer-ready handoff</li>
+        </ul>
+        <a class="link-arrow" href="#book" data-ev="cta_click" data-loc="service-card-refresh">See what's included <i>↗</i></a>
+      </article>
+
+      <article class="svc" id="service-web">
+        <p class="svc__quote">“Our site doesn't convert”</p>
+        <h3 class="h3">Web Experience</h3>
+        <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
+        <p class="svc__out">A website designed and built by the same company, so nothing is lost between the design file and the thing your customers actually load.</p>
+        <ul class="svc__del">
+          <li>Designed and built, end to end</li>
+          <li>Design-only handoff available at a reduced fee</li>
+          <li>Optional Brand Foundation module, <span class="tnum">+R15,000</span></li>
+        </ul>
+        <a class="link-arrow" href="#book" data-ev="cta_click" data-loc="service-card-web">See what's included <i>↗</i></a>
+      </article>
+
+      <article class="svc" id="service-embedded">
+        <p class="svc__quote">“We need design capacity, not a hire”</p>
+        <h3 class="h3">Embedded Designer</h3>
+        <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
+        <p class="svc__out">A designer inside your team on a monthly retainer — the capacity of a hire, without the salary, the recruitment or the single point of failure.</p>
+        <ul class="svc__del">
+          <li>Monthly hour bands: 20, 40 or 60</li>
+          <li>Unused hours roll over</li>
+          <li>Three-month minimum term</li>
+        </ul>
+        <a class="link-arrow" href="#book" data-ev="cta_click" data-loc="service-card-embedded">See what's included <i>↗</i></a>
+      </article>
+
+    </div>
+
+    <!-- ═══ 5 · SERVICE SELECTOR ═══ -->
+    <div class="sel" id="selector">
+      <p class="eyebrow">Not sure which one you need?</p>
+      <h3 class="h3" style="margin-top:var(--s4);max-width:24ch">Three questions. No email required.</h3>
+
+      <div id="selLive" aria-live="polite" class="sel__q">
+        <!-- steps injected here; server-rendered fallback below for no-JS -->
+        <noscript>
+          <p style="margin-top:var(--s4)">The guide needs JavaScript. If you're not sure which service fits, start with the <a href="#service-teardown" style="color:var(--ink);font-weight:600">Product Teardown</a> — it exists for exactly that.</p>
+        </noscript>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6 · WHAT'S IN EVERY ENGAGEMENT ═══ -->
+<section class="dark arcs eng" aria-labelledby="eng-h">
+  <div class="wrap">
+    <p class="eyebrow">In every engagement</p>
+    <h2 class="h2" id="eng-h" style="margin-top:var(--s5);max-width:24ch">Four things you never have to negotiate.</h2>
+
+    <div class="eng__grid">
+      <div class="eng__card">
+        <span class="eng__n">01</span>
+        <h3>We never sell a stage</h3>
+        <p>You buy an outcome, not a phase of one. No engagement ends at a handover that leaves you needing another supplier to finish it.</p>
+      </div>
+      <div class="eng__card">
+        <span class="eng__n">02</span>
+        <h3>Developer handoff is in the price</h3>
+        <p>Specifications, states and assets your developers can build from — included, not quoted separately after the fact.</p>
+      </div>
+      <div class="eng__card">
+        <span class="eng__n">03</span>
+        <h3>Thirty days of aftercare</h3>
+        <p>For a month after delivery we answer questions and fix what we got wrong, at no additional cost.</p>
+      </div>
+      <div class="eng__card">
+        <span class="eng__n">04</span>
+        <h3>You see the roadmap first</h3>
+        <p>Every engagement produces a twelve-month view, so you can see what comes next before you decide whether to buy it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7 · SELECTED WORK — hidden until four case studies clear publication rights (brief §6, §25) ═══ -->
+<section id="work" hidden data-staging-only>
+  <div class="wrap">
+    <p class="eyebrow">Selected work</p>
+    <h2 class="h2">Four case studies, one per service.</h2>
+  </div>
+</section>
+
+<!-- ═══ 8 · ALTERNATIVES ═══ -->
+<section aria-labelledby="alt-h">
+  <div class="wrap">
+    <p class="eyebrow">Your alternatives</p>
+    <h2 class="h2" id="alt-h" style="margin-top:var(--s5);max-width:24ch">You have five options. Four of them aren't us.</h2>
+
+    <div class="alt__list">
+      <div class="alt__row">
+        <h3>A freelance designer</h3>
+        <p>Often excellent, and usually cheaper. You carry the risk of availability, and the work stops at the design file unless you have developers waiting.</p>
+      </div>
+      <div class="alt__row">
+        <h3>A design agency</h3>
+        <p>Deeper bench and a broader brand offer. Expect a proposal process, a larger minimum, and a separate conversation with whoever builds it.</p>
+      </div>
+      <div class="alt__row">
+        <h3>A development shop</h3>
+        <p>They will build exactly what you specify. The question they can't answer is whether what you specified is what your users needed.</p>
+      </div>
+      <div class="alt__row">
+        <h3>Hiring in-house</h3>
+        <p>The right answer once there is enough design work to fill a full week, every week. Until then it is roughly R600,000 a year and a recruitment cycle ahead of the work.</p>
+      </div>
+      <div class="alt__row alt__row--last">
+        <h3>Doing nothing</h3>
+        <p>Entirely reasonable — provided you know what it costs. The support load, the workarounds and the churn continue, and they compound quietly. A Teardown at R6,500 is the cheapest way to find out whether they are worth fixing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9 · HOW WE WORK ═══ -->
+<section aria-labelledby="how-h">
+  <div class="wrap">
+    <p class="eyebrow">How we work</p>
+    <h2 class="h2" id="how-h" style="margin-top:var(--s5);max-width:22ch">What happens after you book.</h2>
+
+    <div class="how__grid">
+      <div class="how__step">
+        <span class="how__n">01</span>
+        <h3>You book</h3>
+        <p>You tell us what to take apart — the product, the internal system or the website — and what people complain about.</p>
+      </div>
+      <div class="how__step">
+        <span class="how__n">02</span>
+        <h3>We meet within three working days</h3>
+        <p>A 45-minute session. You walk us through the product and what you already suspect. We listen more than we talk.</p>
+      </div>
+      <div class="how__step">
+        <span class="how__n">03</span>
+        <h3>We evaluate</h3>
+        <p>We work through the product the way your users do, and record what actually happens rather than what was intended.</p>
+      </div>
+      <div class="how__step">
+        <span class="how__n">04</span>
+        <h3>You receive the findings</h3>
+        <p>A ranked issue list, five redesigned screens and a twelve-month roadmap — in your hands, whether or not you continue.</p>
+      </div>
+      <div class="how__step">
+        <span class="how__n">05</span>
+        <h3>We walk you through it</h3>
+        <p>We take you and your team through the findings, so the reasoning stays in the building after we leave.</p>
+      </div>
+    </div>
+    <p class="how__note">Five days from booking to findings.</p>
+  </div>
+</section>
+
+<!-- ═══ 10 · FAQ ═══ -->
+<section class="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2 class="h2" id="faq-h" style="margin-top:var(--s5);max-width:20ch">Before you ask us.</h2>
+
+    <div class="faq__list">
+      <details>
+        <summary>Are prices excluding VAT?</summary>
+        <div class="faq__a"><p>Yes. GEM Information Systems is a registered VAT vendor, and every price published on this site excludes VAT. The VAT amount is shown on your invoice.</p></div>
+      </details>
+      <details>
+        <summary>What if we already have a developer?</summary>
+        <div class="faq__a"><p>That is the normal case, and nothing changes. Developer handoff is included in every engagement — specifications, states and assets your team can build from. We are equally happy handing over as building.</p></div>
+      </details>
+      <details>
+        <summary>Who owns the files and the IP?</summary>
+        <div class="faq__a"><p>Ownership of the design files and the work delivered transfers to you. The specific terms — including revision rounds and scope boundaries — are set out in the engagement terms, which you receive before you commit to anything.</p></div>
+      </details>
+      <details>
+        <summary>What if the Teardown says we don't need a redesign?</summary>
+        <div class="faq__a"><p>Then that is the finding, and it is a useful one. You keep the ranked issue list, the five redesigned screens and the roadmap, and you have spent R6,500 instead of committing to a project you did not need.</p></div>
+      </details>
+      <details>
+        <summary>Can you build as well as design, and does that cost extra?</summary>
+        <div class="faq__a"><p>Yes. GEMIS Studio is the design practice of GEM Information Systems, a software company — so design and build sit under one roof. Build is scoped and priced separately from design, but the handoff between them costs you nothing, because there isn't one.</p></div>
+      </details>
+      <details>
+        <summary>How quickly can you start?</summary>
+        <div class="faq__a"><p>The Teardown session is held within three working days of booking, and findings follow five days from that point. Larger engagements are scheduled against current capacity, which we tell you before you commit.</p></div>
+      </details>
+      <details>
+        <summary>Do you work outside South Africa?</summary>
+        <div class="faq__a"><p>Yes. The work is remote by default and the sessions are held online. Pricing is published in South African Rand and invoiced in Rand.</p></div>
+      </details>
+      <details>
+        <summary>What happens after the 30 days of aftercare?</summary>
+        <div class="faq__a"><p>Nothing expires that you depend on — the work is yours. If you want continuing design capacity after that month, the Embedded Designer retainer is built for it; otherwise we are available for a further engagement when you need one.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11 · CLOSING CTA ═══ -->
+<section class="dark arcs book" id="book" aria-labelledby="book-h">
+  <div class="wrap">
+    <p class="eyebrow">Start here</p>
+    <h2 class="h2" id="book-h" style="margin-top:var(--s5);max-width:20ch">Book a Product Teardown.</h2>
+
+    <div class="book__grid">
+      <div>
+        <p class="lede">Five days. <span class="tnum">R6,500</span> excl. VAT. You get a ranked account of what is going wrong, five screens redrawn, and a twelve-month roadmap — and the fee comes off anything you book with us in the next 60 days.</p>
+        <ul class="book__list">
+          <li>45-minute session within three working days of booking</li>
+          <li>Ranked issue list, each finding carrying its cost</li>
+          <li>Five redesigned screens</li>
+          <li>Twelve-month roadmap</li>
+          <li>Walkthrough with you and your team</li>
+        </ul>
+        <div class="hero__act">
+          <a class="btn" href="mailto:info@gemis.co.za?subject=Book%20a%20Product%20Teardown&amp;body=What%20should%20we%20take%20apart%3F%20(the%20product%2C%20the%20internal%20system%20or%20the%20website)%20%E2%80%94%20and%20what%20do%20users%20complain%20about%3F%0A%0AName%3A%0ACompany%3A%0APhone%3A" data-ev="cta_click" data-loc="closing">
+            Book a Teardown — <span class="tnum">R6,500</span>
+            <span class="btn__ico" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="book__direct">
+        <p class="mono" style="color:var(--on-dark-soft)">Or speak to someone</p>
+        <a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email">info@gemis.co.za <span>Email</span></a>
+        <a href="tel:+27814182518" data-ev="contact_click" data-method="phone"><span class="tnum">+27 81 418 2518</span> <span>Direct</span></a>
+        <p class="small" style="color:var(--on-dark-soft);margin-top:var(--s2)">66 Park Lane, Sandown, Sandton, 2196</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft" id="studio">
+  <div class="wrap">
+    <div class="ft__grid">
+      <div>
+        <h2>GEMIS <span style="color:var(--soft);font-weight:500">Studio</span></h2>
+        <p>The product and experience design practice of GEM Information Systems. We design what your users actually use — and build it in the same company.</p>
+      </div>
+      <div class="ft__col">
+        <p class="mono">Services</p>
+        <ul>
+          <li><a href="#service-teardown">Product Teardown</a></li>
+          <li><a href="#service-refresh">Interface Refresh Sprint</a></li>
+          <li><a href="#service-web">Web Experience</a></li>
+          <li><a href="#service-embedded">Embedded Designer</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p class="mono">Studio</p>
+        <ul>
+          <li><a href="#services">What you can buy</a></li>
+          <li><a href="#selector">Which service fits</a></li>
+          <li><a href="#book">Book a Teardown</a></li>
+          <li><a href="../privacy.html">Privacy notice</a></li>
+        </ul>
+      </div>
+      <div class="ft__col">
+        <p class="mono">Contact</p>
+        <ul>
+          <li><a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email">info@gemis.co.za</a></li>
+          <li><a href="tel:+27814182518" data-ev="contact_click" data-method="phone">+27 81 418 2518</a></li>
+          <li><a href="../index.html">GEM Information Systems</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft__bar">
+      <span>© 2026 GEM Information Systems (Pty) Ltd. All prices exclude VAT.</span>
+      <span>Sandton, South Africa</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /sheet -->
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"GEMIS Studio",
+  "description":"Product and experience design practice of GEM Information Systems. Product teardowns, interface refresh sprints, web experience design and build, and embedded design retainers.",
+  "url":"https://gemis.co.za/studio/",
+  "email":"info@gemis.co.za",
+  "telephone":"+27814182518",
+  "parentOrganization":{"@type":"Organization","name":"GEM Information Systems (Pty) Ltd"},
+  "address":{"@type":"PostalAddress","streetAddress":"66 Park Lane, Sandown","addressLocality":"Sandton","postalCode":"2196","addressCountry":"ZA"},
+  "areaServed":"ZA",
+  "makesOffer":{
+    "@type":"Offer",
+    "itemOffered":{"@type":"Service","name":"Product Teardown","description":"Five-day UX diagnosis: ranked issue list, five redesigned screens and a twelve-month roadmap."},
+    "price":"6500","priceCurrency":"ZAR",
+    "description":"Excludes VAT. Credited in full against any engagement booked within 60 days."
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Are prices excluding VAT?","acceptedAnswer":{"@type":"Answer","text":"Yes. GEM Information Systems is a registered VAT vendor, and every price published on this site excludes VAT."}},
+    {"@type":"Question","name":"What if we already have a developer?","acceptedAnswer":{"@type":"Answer","text":"Developer handoff is included in every engagement — specifications, states and assets your team can build from."}},
+    {"@type":"Question","name":"Who owns the files and the IP?","acceptedAnswer":{"@type":"Answer","text":"Ownership of the design files and the work delivered transfers to you. Specific terms are set out in the engagement terms, provided before you commit."}},
+    {"@type":"Question","name":"What if the Teardown says we don't need a redesign?","acceptedAnswer":{"@type":"Answer","text":"That is the finding. You keep the ranked issue list, the five redesigned screens and the roadmap."}},
+    {"@type":"Question","name":"Can you build as well as design, and does that cost extra?","acceptedAnswer":{"@type":"Answer","text":"Yes. GEMIS Studio is the design practice of a software company. Build is scoped separately from design, but the handoff between them costs nothing."}},
+    {"@type":"Question","name":"How quickly can you start?","acceptedAnswer":{"@type":"Answer","text":"The Teardown session is held within three working days of booking, with findings five days from that point."}},
+    {"@type":"Question","name":"Do you work outside South Africa?","acceptedAnswer":{"@type":"Answer","text":"Yes. Work is remote by default and priced in South African Rand."}},
+    {"@type":"Question","name":"What happens after the 30 days of aftercare?","acceptedAnswer":{"@type":"Answer","text":"The work is yours. Continuing design capacity is available on the Embedded Designer retainer."}}
+  ]
+}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── analytics (§19) — pushes to dataLayer, no third-party script ── */
+  function track(name, params) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: name }, params || {}));
+  }
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-ev]');
+    if (!el) { return; }
+    var ev = el.dataset.ev;
+    if (ev === 'cta_click') { track(ev, { location: el.dataset.loc, label: el.textContent.trim().slice(0, 40), page: 'home' }); }
+    else if (ev === 'ladder_step_click') { track(ev, { service: el.dataset.svc, position: Number(el.dataset.pos) }); }
+    else if (ev === 'contact_click') { track(ev, { method: el.dataset.method, page: 'home' }); }
+  });
+
+  /* ── header: compact after 80px (§5) ── */
+  var hd = document.getElementById('hd'), ticking = false;
+  function onScroll() {
+    if (ticking) { return; }
+    ticking = true;
+    requestAnimationFrame(function () {
+      hd.classList.toggle('is-compact', window.scrollY > 80);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ── services dropdown ── */
+  var drop = document.getElementById('drop'), dropBtn = document.getElementById('dropBtn');
+  function closeDrop() { drop.classList.remove('is-open'); dropBtn.setAttribute('aria-expanded', 'false'); }
+  dropBtn.addEventListener('click', function () {
+    var open = drop.classList.toggle('is-open');
+    dropBtn.setAttribute('aria-expanded', String(open));
+  });
+  drop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeDrop(); dropBtn.focus(); } });
+  document.addEventListener('click', function (e) { if (!drop.contains(e.target)) { closeDrop(); } });
+  drop.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget)) { closeDrop(); } });
+
+  /* ── mobile drawer: focus trapped, Escape closes (§12) ── */
+  var drawer = document.getElementById('drawer'),
+      burger = document.getElementById('burger'),
+      drawerClose = document.getElementById('drawerClose'),
+      lastFocus = null;
+  function openDrawer() {
+    lastFocus = document.activeElement;
+    drawer.hidden = false;
+    requestAnimationFrame(function () { drawer.classList.add('is-open'); });
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('is-drawer');
+    burger.setAttribute('aria-expanded', 'true');
+    drawerClose.focus();
+  }
+  function closeDrawer() {
+    drawer.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.body.classList.remove('is-drawer');
+    burger.setAttribute('aria-expanded', 'false');
+    var delay = reduced ? 0 : 240;
+    setTimeout(function () { drawer.hidden = true; }, delay);
+    if (lastFocus) { lastFocus.focus(); }
+  }
+  burger.addEventListener('click', function () {
+    if (drawer.classList.contains('is-open')) { closeDrawer(); } else { openDrawer(); }
+  });
+  drawerClose.addEventListener('click', closeDrawer);
+  drawer.addEventListener('click', function (e) { if (e.target.closest('a')) { closeDrawer(); } });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) { closeDrawer(); return; }
+    if (e.key !== 'Tab' || !drawer.classList.contains('is-open')) { return; }
+    var f = drawer.querySelectorAll('a[href],button:not([disabled])');
+    if (!f.length) { return; }
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ── hero settle: one orchestrated moment, first load only (§14) ── */
+  var heroCol = document.getElementById('heroCol');
+  if (!reduced && !sessionStorage.getItem('gemis-studio-settled')) {
+    document.body.classList.add('js-settle');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.body.classList.add('is-settled');
+        try { sessionStorage.setItem('gemis-studio-settled', '1'); } catch (err) {}
+      });
+    });
+  }
+
+  /* ═══ service selector (§10) ═══════════════════════════════
+     Three questions, adaptive second question, no email gate,
+     answers editable in place, keyboard operable, announced. */
+  var SERVICES = {
+    teardown: { id: 'product-teardown', name: 'Product Teardown', price: 'R6,500', dur: '5 days', href: '#service-teardown' },
+    refresh:  { id: 'interface-refresh', name: 'Interface Refresh Sprint', price: null, dur: null, href: '#service-refresh' },
+    web:      { id: 'web-experience', name: 'Web Experience', price: null, dur: null, href: '#service-web' },
+    embedded: { id: 'embedded-designer', name: 'Embedded Designer', price: null, dur: null, href: '#service-embedded' }
+  };
+
+  var Q1 = {
+    key: 'subject', label: 'What are you working with?',
+    opts: [
+      { v: 'product',  t: 'A product or platform our customers use' },
+      { v: 'internal', t: 'An internal system our staff use' },
+      { v: 'website',  t: 'Our website' },
+      { v: 'unsure',   t: "We're not sure yet" }
+    ]
+  };
+  var Q2 = {
+    product: { key: 'situation', label: "What's the situation?", opts: [
+      { v: 'confusing', t: "It's confusing and we don't know why" },
+      { v: 'dated',     t: 'It works but looks dated' },
+      { v: 'ongoing',   t: 'We need ongoing design help' }
+    ]},
+    website: { key: 'situation', label: "What's the situation?", opts: [
+      { v: 'noenq',   t: "It doesn't generate enquiries" },
+      { v: 'old',     t: "It's out of date" },
+      { v: 'none',    t: "We don't have one yet" }
+    ]}
+  };
+  Q2.internal = Q2.product;
+  Q2.unsure = { key: 'situation', label: "What's the situation?", opts: [
+    { v: 'confusing', t: "Something isn't working and we can't name it" },
+    { v: 'dated',     t: 'It all looks older than it should' },
+    { v: 'ongoing',   t: 'We need design help in general' }
+  ]};
+  var Q3 = {
+    key: 'timeframe', label: "What's your timeframe?",
+    opts: [
+      { v: 'month',     t: 'This month' },
+      { v: 'quarter',   t: 'This quarter' },
+      { v: 'exploring', t: 'Exploring' }
+    ]
+  };
+
+  function recommend(a) {
+    /* "not sure" and "exploring" always resolve to the Teardown (§10) */
+    if (a.subject === 'unsure' || a.timeframe === 'exploring') {
+      return { svc: SERVICES.teardown, why: "You told us you're still working out what the problem is — which is exactly what the Teardown is for. It ends with a ranked account of what's wrong, and the fee comes off whatever you do next." };
+    }
+    if (a.situation === 'confusing') {
+      return { svc: SERVICES.teardown, why: 'Something is going wrong and the cause is not yet named. Diagnosis has to come before redesign, or you pay to rebuild the wrong thing.' };
+    }
+    if (a.situation === 'ongoing') {
+      return { svc: SERVICES.embedded, why: 'You need design capacity over time rather than a single piece of work, so a monthly retainer costs less and keeps the context in the room.' };
+    }
+    if (a.subject === 'website') {
+      return { svc: SERVICES.web, why: 'A website that needs to earn its keep is a design and build problem, not a design-only one — so it is worth having both under one roof.' };
+    }
+    if (a.situation === 'dated') {
+      return { svc: SERVICES.refresh, why: 'The product works; it is the surface that has aged. A fixed-scope sprint deals with that without reopening the whole product.' };
+    }
+    return { svc: SERVICES.teardown, why: 'Your answers do not point cleanly at one service, so the honest first step is a diagnosis rather than a guess.' };
+  }
+
+  var live = document.getElementById('selLive');
+  if (live) {
+    var answers = {}, step = 0, started = false;
+
+    function qFor(i) {
+      if (i === 0) { return Q1; }
+      if (i === 1) { return Q2[answers.subject] || Q2.product; }
+      return Q3;
+    }
+    function labelFor(key, value) {
+      var qs = [Q1, Q2[answers.subject] || Q2.product, Q3];
+      for (var i = 0; i < qs.length; i++) {
+        if (qs[i].key !== key) { continue; }
+        for (var j = 0; j < qs[i].opts.length; j++) {
+          if (qs[i].opts[j].v === value) { return qs[i].opts[j].t; }
+        }
+      }
+      return value;
+    }
+
+    function render() {
+      live.innerHTML = '';
+      var wrap = document.createElement('div');
+      wrap.className = 'sel__step';
+
+      if (step < 3) {
+        var q = qFor(step);
+        var prog = document.createElement('p');
+        prog.className = 'sel__prog';
+        prog.textContent = 'Question ' + (step + 1) + ' of 3';
+        wrap.appendChild(prog);
+
+        var h = document.createElement('p');
+        h.className = 'sel__qh';
+        h.textContent = q.label;
+        wrap.appendChild(h);
+
+        var opts = document.createElement('div');
+        opts.className = 'sel__opts';
+        opts.setAttribute('role', 'group');
+        opts.setAttribute('aria-label', q.label);
+        q.opts.forEach(function (o) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'sel__opt';
+          b.textContent = o.t;
+          b.setAttribute('aria-pressed', String(answers[q.key] === o.v));
+          b.addEventListener('click', function () {
+            if (!started) { started = true; track('selector_start', {}); }
+            answers[q.key] = o.v;
+            track('selector_answer', { question: q.key, value: o.v });
+            step = Math.min(step + 1, 3);
+            render();
+          });
+          opts.appendChild(b);
+        });
+        wrap.appendChild(opts);
+
+        if (step > 0) {
+          var back = document.createElement('button');
+          back.type = 'button';
+          back.className = 'sel__restart';
+          back.textContent = '← Back';
+          back.style.marginTop = 'var(--s4)';
+          back.addEventListener('click', function () { step--; render(); });
+          wrap.appendChild(back);
+        }
+      } else {
+        var r = recommend(answers);
+        track('selector_complete', { recommended_service: r.svc.id });
+
+        var chips = document.createElement('div');
+        chips.className = 'sel__answers';
+        [['subject', 'Working with'], ['situation', 'Situation'], ['timeframe', 'Timeframe']].forEach(function (pair, i) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'sel__ans';
+          b.innerHTML = '<em>' + pair[1] + '</em> <u></u>';
+          b.querySelector('u').textContent = labelFor(pair[0], answers[pair[0]]);
+          b.setAttribute('aria-label', 'Change ' + pair[1].toLowerCase() + ': ' + labelFor(pair[0], answers[pair[0]]));
+          b.addEventListener('click', function () { step = i; render(); });
+          chips.appendChild(b);
+        });
+        wrap.appendChild(chips);
+
+        var res = document.createElement('div');
+        res.className = 'sel__res';
+        var nm = document.createElement('p');
+        nm.className = 'sel__resname';
+        nm.textContent = r.svc.name;
+        res.appendChild(nm);
+
+        var meta = document.createElement('p');
+        meta.className = 'small soft';
+        meta.style.marginTop = '6px';
+        meta.innerHTML = r.svc.price
+          ? '<span class="tnum">' + r.svc.price + '</span> excl. VAT · ' + r.svc.dur
+          : '<span class="tbc">Price pending sign-off</span>';
+        res.appendChild(meta);
+
+        var why = document.createElement('p');
+        why.className = 'sel__why';
+        why.textContent = r.why;
+        res.appendChild(why);
+
+        var acts = document.createElement('div');
+        acts.className = 'sel__acts';
+        var go = document.createElement('a');
+        go.className = 'btn';
+        go.href = r.svc.href;
+        go.innerHTML = 'See ' + r.svc.name + ' <span class="btn__ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>';
+        acts.appendChild(go);
+        var again = document.createElement('button');
+        again.type = 'button';
+        again.className = 'sel__restart';
+        again.textContent = 'Start again';
+        again.addEventListener('click', function () { answers = {}; step = 0; render(); });
+        acts.appendChild(again);
+        res.appendChild(acts);
+
+        if (r.svc.id !== 'product-teardown') {
+          var alt = document.createElement('p');
+          alt.className = 'sel__alt';
+          alt.innerHTML = 'Or start with a Teardown and find out properly — <a href="#service-teardown" class="tnum">R6,500</a>.';
+          res.appendChild(alt);
+        }
+        wrap.appendChild(res);
+      }
+
+      live.appendChild(wrap);
+
+      /* keyboard: arrows move between options, Enter selects, Escape goes back */
+      var btns = Array.prototype.slice.call(wrap.querySelectorAll('.sel__opt'));
+      btns.forEach(function (b, i) {
+        b.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); btns[(i + 1) % btns.length].focus(); }
+          else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); btns[(i - 1 + btns.length) % btns.length].focus(); }
+          else if (e.key === 'Escape' && step > 0) { e.preventDefault(); step--; render(); }
+        });
+      });
+    }
+
+    /* abandonment: report the last question reached */
+    window.addEventListener('pagehide', function () {
+      if (started && step < 3) { track('selector_abandon', { last_question: step + 1 }); }
+    });
+
+    render();
+  }
+})();
+</script>
+</body>
+</html>
