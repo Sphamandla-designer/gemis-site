@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us — GEM Information Systems (GEMIS®)</title>
-  <meta name="description" content="GEM Information Systems has partnered with businesses, NGOs and enterprise organisations since 2014 — designing, building and supporting secure Microsoft Cloud software from Cape Town." />
-  <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/about.html" />
+  <title>Insights — GEM Information Systems (GEMIS®)</title>
+  <meta name="description" content="Writing from GEM Information Systems on digital transformation, the Microsoft Cloud and delivering mission-critical systems." />
+  <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/insights.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GEM Information Systems" />
-  <meta property="og:title" content="About Us — GEM Information Systems (GEMIS®)" />
-  <meta property="og:description" content="GEM Information Systems has partnered with businesses, NGOs and enterprise organisations since 2014 — designing, building and supporting secure Microsoft Cloud software from Cape Town." />
+  <meta property="og:title" content="Insights — GEM Information Systems (GEMIS®)" />
+  <meta property="og:description" content="Writing from GEM Information Systems on digital transformation, the Microsoft Cloud and delivering mission-critical systems." />
   <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/home/about-band.jpg" />
-  <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/about.html" />
+  <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/insights.html" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260917a" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
-    .acc__panel{grid-template-rows:1fr!important}</style></noscript>
+    .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
 <body>
 
@@ -34,7 +34,7 @@
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
             Solutions
@@ -92,7 +92,7 @@
         <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
              articles exist. See CONTENT-TODO.md. -->
         <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
 
@@ -107,246 +107,169 @@
 
   <main>
 
-    <!-- ═══════════════════ SPLIT HERO ═══════════════════ -->
-    <section class="shero" id="hero">
-      <div class="shero__type">
-        <p class="eyebrow" data-reveal>About GEM Information Systems</p>
-        <h1 class="shero__title" data-reveal style="--d:80ms">Technology Should Move Your Business Forward</h1>
-        <p class="shero__copy" data-reveal style="--d:160ms">
-          Technology should never become another problem to manage. It should simplify
-          operations, empower your teams, eliminate inefficiencies and give leaders the
-          insight to decide with confidence.
-        </p>
-        <a class="arrow-link" href="#story" data-reveal style="--d:240ms">
-          Read our story
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2.6 6.6 6 10l3.4-3.4"/></svg>
-        </a>
-      </div>
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section class="whero" id="hero">
+      <div class="shell">
+        <p class="eyebrow" data-reveal>Insights</p>
+        <h1 class="whero__title" data-reveal style="--d:80ms">Notes From Building Systems That Have To Work</h1>
 
-      <div class="shero__panel">
-        <img src="assets/img/home/leadership-bg.jpg" alt="" aria-hidden="true" />
-        <dl class="shero__facts">
-          <div class="shero__fact"><dt>Trusted since</dt><dd>2014</dd></div>
-          <div class="shero__fact"><dt>Based in</dt><dd>Edgemead, Cape Town</dd></div>
-          <div class="shero__fact"><dt>Specialism</dt><dd>Microsoft Cloud</dd></div>
-        </dl>
+        <div class="whero__row">
+          <p data-reveal style="--d:160ms">
+            Writing on digital transformation, the Microsoft Cloud and what we learn
+            putting mission-critical systems into production.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ STORY + TIMELINE ═══════════════════ -->
-    <section class="sec" id="story">
-      <span class="dotgrid" aria-hidden="true"></span>
-
+    <!-- ═══════════════════ ARTICLES ═══════════════════ -->
+    <section class="sec sec--last" id="articles">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>Our Story</p>
-            <h2 class="display" data-reveal style="--d:80ms">A Decade Of Systems That Matter</h2>
+            <p class="eyebrow" data-reveal>Latest</p>
+            <h2 class="display" data-reveal style="--d:80ms">Articles</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
-            For over a decade, GEM Information Systems has partnered with businesses, NGOs
-            and enterprise organisations to design, build and support software that solves
-            complex operational challenges. We don't simply develop applications — we
-            engineer secure, scalable digital ecosystems built on Microsoft Cloud.
+            <!-- CONTENT-TODO: this page is a placeholder shell. It is hidden from the
+                 nav by SHOW_INSIGHTS in assets/js/site.js until real articles exist.
+                 Replace the three cards below, then flip the flag to true. -->
+            [PLACEHOLDER: intro line for the insights index]
           </p>
         </div>
 
-        <ol class="tl">
-          <li class="tl__item" data-reveal>
-            <span class="tl__year">2014</span>
-            <h3 class="tl__t">Founded In Cape Town</h3>
-            <p>GEM Information Systems opens its doors, building affordable tools for SMEs and non-profits.</p>
-          </li>
-          <li class="tl__item" data-reveal style="--d:80ms">
-            <span class="tl__year">Then</span>
-            <h3 class="tl__t">Into The Microsoft Cloud</h3>
-            <p>Azure, Azure SQL and C# become the backbone — enterprise infrastructure for mission-critical work.</p>
-          </li>
-          <li class="tl__item" data-reveal style="--d:160ms">
-            <span class="tl__year">Since</span>
-            <h3 class="tl__t">Platforms At National Scale</h3>
-            <p>ERP, learning, waste, property and community systems serving organisations nationally and abroad.</p>
-          </li>
-          <li class="tl__item" data-reveal style="--d:240ms">
-            <span class="tl__year">Today</span>
-            <h3 class="tl__t">A Long-Term Partner</h3>
-            <p>Discovery through continuous improvement — we stay with the systems we ship.</p>
-          </li>
-        </ol>
+        <div class="stories">
+          <article class="story" data-reveal>
+            <div class="story__top">
+              <span class="story__plus" aria-hidden="true">+</span>
+              <span class="story__k">[PLACEHOLDER: topic]</span>
+            </div>
+            <div class="story__frame">
+              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
+            </div>
+            <p>[PLACEHOLDER: article 1 standfirst — one or two sentences on what the piece argues.]</p>
+            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+          </article>
+          <article class="story" data-reveal style="--d:100ms">
+            <div class="story__top">
+              <span class="story__plus" aria-hidden="true">+</span>
+              <span class="story__k">[PLACEHOLDER: topic]</span>
+            </div>
+            <div class="story__frame">
+              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
+            </div>
+            <p>[PLACEHOLDER: article 2 standfirst — one or two sentences on what the piece argues.]</p>
+            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+          </article>
+          <article class="story" data-reveal style="--d:200ms">
+            <div class="story__top">
+              <span class="story__plus" aria-hidden="true">+</span>
+              <span class="story__k">[PLACEHOLDER: topic]</span>
+            </div>
+            <div class="story__frame">
+              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
+            </div>
+            <p>[PLACEHOLDER: article 3 standfirst — one or two sentences on what the piece argues.]</p>
+            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ SOLUTION DOMAINS — STICKY ASIDE ═══════════════════ -->
-    <section class="sec">
-      <div class="shell stik">
-        <div class="stik__aside">
-          <p class="eyebrow" data-reveal>What We Build</p>
-          <h2 class="display" data-reveal style="--d:80ms">Eight Solution Domains</h2>
-          <p data-reveal style="--d:140ms">
-            Different sectors, one engineering standard. Each of these started as a problem
-            a client could not solve with anything off the shelf.
-          </p>
-          <p data-reveal style="--d:200ms; margin-top:22px">
-            <a class="arrow-link" href="solutions.html">
-              See our services
+    <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
+    <section class="ctc" id="discovery">
+      <div class="shell">
+        <div class="ctc__grid">
+
+          <div>
+            <p class="eyebrow" data-reveal>Get started</p>
+            <h2 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h2>
+            <p class="ctc__lede" data-reveal style="--d:140ms">
+              Tell us what you're trying to fix. We'll come back within two working days
+              with a short written view and a time to talk. No obligation.
+            </p>
+
+            <div class="ctc__block" data-reveal style="--d:200ms">
+              <h2>Rather email?</h2>
+              <p>Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
+            </div>
+          </div>
+
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
+            <div class="form__rows">
+              <div class="field">
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
+                  <option value="">Select one…</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
+              </div>
+            </div>
+
+            <div class="consent">
+              <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
+              <label for="d-consent">
+                I consent to GEM Information Systems processing the information above in
+                order to respond to this enquiry, as described in the
+                <a href="privacy.html">privacy notice</a>. I can withdraw this consent at
+                any time.
+              </label>
+            </div>
+            <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
+
+            <button class="form__send" type="submit">
+              Book a Discovery Session
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-            </a>
-          </p>
-        </div>
+            </button>
 
-        <ol class="dlist">
-          <li data-reveal><b>01</b><div><h3>Enterprise Resource Planning</h3><p>Multi-company accounting, stock, payroll and project control brought into one system that finance and operations share.</p></div></li>
-          <li data-reveal><b>02</b><div><h3>Business Management Platforms</h3><p>Operations portals that replace spreadsheets and disconnected tools with a single, auditable source of truth.</p></div></li>
-          <li data-reveal><b>03</b><div><h3>Learning Management Systems</h3><p>Custom learning environments for national practitioner networks — including SmartStart's early-learning programme.</p></div></li>
-          <li data-reveal><b>04</b><div><h3>Community Development Platforms</h3><p>Programme, case and resource-mobilisation tools for organisations working at community and national scale.</p></div></li>
-          <li data-reveal><b>05</b><div><h3>Property Technology Solutions</h3><p>Resident, rental and facilities systems that keep landlords, agents and tenants working from the same record.</p></div></li>
-          <li data-reveal><b>06</b><div><h3>Waste Management Systems</h3><p>Driver apps, customer portals and live operations views that capture work in the field, offline when signal drops.</p></div></li>
-          <li data-reveal><b>07</b><div><h3>Government &amp; NGO Solutions</h3><p>Reporting, compliance and programme systems built to the accountability standards the public and donor sectors require.</p></div></li>
-          <li data-reveal><b>08</b><div><h3>Custom Enterprise Applications</h3><p>When nothing off the shelf fits, systems designed around your exact processes, people and goals.</p></div></li>
-        </ol>
-      </div>
-    </section>
+            <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
+              This site is static, so sending opens a pre-filled message in your email
+              client addressed to info@gemis.co.za — nothing is submitted or stored here.
+            </p>
+          </form>
 
-    <!-- ═══════════════════ PULL QUOTE ═══════════════════ -->
-    <section class="quote">
-      <span class="dotgrid" aria-hidden="true"></span>
-      <div class="shell">
-        <blockquote data-reveal>Great software begins with understanding people.</blockquote>
-        <p class="quote__by" data-reveal style="--d:120ms">
-          Before a single line of code, we learn your workflows, processes and goals — so the
-          result is software people actually enjoy using.
-        </p>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ APPROACH — STICKY ASIDE ═══════════════════ -->
-    <section class="sec">
-      <div class="shell stik">
-        <div class="stik__aside">
-          <p class="eyebrow" data-reveal>Our Approach</p>
-          <h2 class="display" data-reveal style="--d:80ms">Five Disciplines, Every Project</h2>
-          <p data-reveal style="--d:140ms">
-            The same sequence carries every engagement from first conversation to lasting
-            value — so you always know where a project stands and what comes next.
-          </p>
-        </div>
-
-        <ol class="dlist">
-          <li data-reveal><b>01</b><div><h3>Understanding before building</h3><p>Every successful project begins with listening — business goals, operational challenges, user needs and future ambitions, before any solution is proposed.</p></div></li>
-          <li data-reveal><b>02</b><div><h3>Designing for the future</h3><p>Modern architectures on Azure, Azure SQL, C#, React, React Native and Power BI — secure, flexible and ready for what comes next.</p></div></li>
-          <li data-reveal><b>03</b><div><h3>Agile development</h3><p>Iterative cycles, regular demonstrations and continuous collaboration — solutions shaped by feedback, not assumptions.</p></div></li>
-          <li data-reveal><b>04</b><div><h3>Quality without compromise</h3><p>Structured testing, QA, performance validation and user acceptance before deployment. Reliability is never optional.</p></div></li>
-          <li data-reveal><b>05</b><div><h3>Long-term success</h3><p>Deployment planning, training, documentation, maintenance and continuous improvement — value that lasts long after launch.</p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ CAPABILITY ═══════════════════ -->
-    <section class="sec">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Powered By Microsoft Cloud</p>
-            <h2 class="display" data-reveal style="--d:80ms">Enterprise Software Needs Enterprise Infrastructure</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">
-            Security, reliability, compliance and scale — the foundations underneath every
-            system we put into production, and the sectors we put them to work in.
-          </p>
-        </div>
-
-        <div class="groups">
-          <div class="group" data-reveal>
-            <h3>Technology</h3>
-            <ul class="chips">
-              <li>Azure Cloud Infrastructure</li><li>Azure SQL Database</li><li>C#</li><li>ASP.NET</li>
-              <li>React</li><li>React Native</li><li>Bootstrap</li><li>Power BI</li>
-              <li>API Integrations</li><li>Cloud Hosting</li><li>Data Security</li><li>Business Intelligence</li>
-            </ul>
-          </div>
-          <div class="group" data-reveal style="--d:100ms">
-            <h3>Industries We Empower</h3>
-            <ul class="chips">
-              <li>Business &amp; Corporate</li><li>Waste Management</li><li>Property &amp; Real Estate</li>
-              <li>Education</li><li>NGOs &amp; Non-Profits</li><li>Government Programmes</li>
-              <li>Community Development</li><li>Healthcare Support</li><li>Professional Services</li>
-            </ul>
-          </div>
         </div>
       </div>
     </section>
-
-    <!-- ═══════════════════ ROSTER ═══════════════════ -->
-    <section class="sec sec--last" id="team">
-      <span class="dotgrid" aria-hidden="true"></span>
-
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>The People</p>
-            <h2 class="display" data-reveal style="--d:80ms">Faces Behind GEMIS</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">
-            Leadership, engineering and design — one accountable team that stays with your
-            system from first conversation through to continuous improvement.
-          </p>
-        </div>
-
-        <div class="roster">
-          <article class="mate" data-reveal>
-            <div class="mate__face" aria-hidden="true">GM</div>
-            <h3 class="mate__n">Graeme Mehl</h3>
-            <p class="mate__r">CEO — strategic leadership &amp; quality assurance</p>
-          </article>
-          <article class="mate" data-reveal style="--d:70ms">
-            <div class="mate__face" aria-hidden="true">LS</div>
-            <h3 class="mate__n">Leon Small</h3>
-            <p class="mate__r">Business development — client liaison &amp; system scoping</p>
-          </article>
-          <article class="mate" data-reveal style="--d:140ms">
-            <div class="mate__face" aria-hidden="true">BT</div>
-            <h3 class="mate__n">Byron Thompson</h3>
-            <p class="mate__r">Senior developer — architecture &amp; coding standards</p>
-          </article>
-          <article class="mate" data-reveal style="--d:70ms">
-            <div class="mate__face" aria-hidden="true">SV</div>
-            <h3 class="mate__n">Sebastian Vries</h3>
-            <p class="mate__r">Senior developer — C#, Azure SQL &amp; SaaS systems</p>
-          </article>
-          <article class="mate" data-reveal style="--d:140ms">
-            <div class="mate__face" aria-hidden="true">VD</div>
-            <h3 class="mate__n">Vanessa Davis</h3>
-            <p class="mate__r">Testing, data validation &amp; user support</p>
-          </article>
-          <article class="mate" data-reveal style="--d:210ms">
-            <div class="mate__face" aria-hidden="true">SX</div>
-            <h3 class="mate__n">Sphamandla Xaba</h3>
-            <p class="mate__r">UI/UX designer — head of Brand Studio</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ CTA ═══════════════════ -->
-    <section class="cta" id="contact">
-      <img class="cta__bg" src="assets/img/home/cta-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-      <span class="dotgrid dotgrid--l" aria-hidden="true"></span>
-      <span class="dotgrid dotgrid--r" aria-hidden="true"></span>
-
-      <div class="shell">
-        <h2 class="cta__t" data-reveal>Ready To Modernise Your Operations?</h2>
-        <p class="cta__s" data-reveal style="--d:80ms">
-          Whether you're replacing a legacy system, launching a new digital platform or
-          connecting the tools you already run, we'll scope it with you — no obligation.
-        </p>
-
-        <p class="cta__note"><a class="arrow-link" href="index.html#discovery">Book a Discovery Session <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-        <p class="cta__note" data-reveal style="--d:200ms">
-          Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
-        </p>
-      </div>
-    </section>
-
   </main>
 
   <footer class="foot">
@@ -410,6 +333,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911e" defer></script>
+  <script src="assets/js/site.js?v=20260917a" defer></script>
 </body>
 </html>

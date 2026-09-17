@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GEMIS® — Mission-Critical Software for Better Business</title>
   <meta name="description" content="GEM Information Systems designs, builds and supports secure Microsoft Cloud platforms — custom software, enterprise SaaS, mobile apps and business intelligence for organisations across South Africa." />
+  <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GEM Information Systems" />
+  <meta property="og:title" content="GEMIS® — Mission-Critical Software for Better Business" />
+  <meta property="og:description" content="GEM Information Systems designs, builds and supports secure Microsoft Cloud platforms — custom software, enterprise SaaS, mobile apps and business intelligence for organisations across South Africa." />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/home/about-band.jpg" />
+  <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" as="image" href="assets/img/home/hero-bg.jpg" />
@@ -23,23 +31,24 @@
   <!-- ═══════════════════ HEADER ═══════════════════ -->
   <header class="nav" id="nav">
     <div class="shell nav__in">
-      <a class="nav__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
+      <a class="nav__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Products
+            Solutions
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
+
 
         <div class="mega" id="productsMenu" aria-labelledby="productsTrigger">
           <div class="shell mega__in">
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
+              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -79,7 +88,12 @@
           </div>
         </div>
         </li>
-        <li><a href="work.html">Work</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
+             articles exist. See CONTENT-TODO.md. -->
+        <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
 
@@ -94,78 +108,100 @@
 
   <main>
 
-    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <!-- ═══════════════════ 1 · HERO ═══════════════════ -->
     <section class="hero" id="hero">
       <img class="hero__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" />
 
       <div class="shell hero__in">
-        <p class="eyebrow eyebrow--light" data-reveal>Trusted since 2014</p>
-        <h1 class="hero__title" data-reveal style="--d:80ms">Mission-Critical Software For Better Business</h1>
+        <p class="eyebrow eyebrow--light" data-reveal>Microsoft-powered digital transformation partner</p>
+        <h1 class="hero__title" data-reveal style="--d:80ms">Systems your operation can run on — not work around.</h1>
         <p class="hero__copy" data-reveal style="--d:160ms">
-          GEM Information Systems designs, builds and supports secure Microsoft Cloud
-          platforms for businesses, NGOs and enterprise organisations — engineered
-          around how your operation actually works.
+          We replace disconnected tools, legacy systems and manual capture with secure
+          platforms on the Microsoft Cloud, designed around how your organisation
+          actually works.
         </p>
-        <a class="arrow-link" href="#contact" data-reveal style="--d:240ms">
-          Start a Project
+        <a class="arrow-link" href="#discovery" data-reveal style="--d:240ms">
+          Book a Discovery Session
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
         </a>
 
         <div class="hero__partners" data-reveal style="--d:320ms">
-          <span>Built on:</span>
-          <div class="hero__logos">
-            <span>Microsoft Azure</span>
-            <span>Azure SQL</span>
-            <span>C# / .NET</span>
-            <span>Power BI</span>
-            <span>React</span>
-          </div>
+          <span>Trusted since 2014</span>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ ABOUT ═══════════════════ -->
-    <section class="about" id="about">
-      <span class="dotgrid" aria-hidden="true"></span>
-
+    <!-- ═══════════════════ 2 · PROBLEM ═══════════════════ -->
+    <section class="values">
       <div class="shell">
-        <div class="about__grid">
+        <div class="values__head">
           <div>
-            <p class="eyebrow" data-reveal>About Us</p>
-            <h2 class="display about__title" data-reveal style="--d:80ms">Building Systems, Empowering Teams.</h2>
+            <p class="eyebrow" data-reveal>Sound familiar?</p>
+            <h2 class="display" data-reveal style="--d:80ms">The cost of systems that don't fit</h2>
           </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Most organisations we meet are not short of software. They are short of
+            software that agrees with itself.
+          </p>
+        </div>
 
-          <div class="about__side">
-            <p class="lede" data-reveal style="--d:120ms">
-              For over a decade, GEM Information Systems has partnered with businesses,
-              NGOs and enterprise organisations to design, build and support software that
-              solves complex operational challenges. We don't simply develop applications —
-              we engineer secure, scalable digital ecosystems built on Microsoft Cloud,
-              guided by deep business understanding and close collaboration.
-            </p>
+        <div class="cards">
+          <article class="card" data-reveal>
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1.4"/><rect x="14" y="13" width="7" height="7" rx="1.4"/><path d="M10 7.5h4M7.5 11v4"/></svg></span>
+            <h3 class="card__t">Disconnected tools</h3>
+            <p>Sales, stock, payroll and projects in separate systems, with no single source of truth.</p>
+          </article>
+          <article class="card" data-reveal style="--d:80ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="11" height="13" rx="1.4"/><path d="M9 20.5h11V7.5"/></svg></span>
+            <h3 class="card__t">Double capture</h3>
+            <p>The same data typed in twice, and hand-offs that break.</p>
+          </article>
+          <article class="card" data-reveal style="--d:160ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5C4 6 7.6 4.8 12 4.8s8 1.2 8 2.7-3.6 2.7-8 2.7-8-1.2-8-2.7Z"/><path d="M4 7.5v9c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7v-9"/><path d="M4 12c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7"/></svg></span>
+            <h3 class="card__t">Legacy systems</h3>
+            <p>Software the business has outgrown but can't switch off.</p>
+          </article>
+          <article class="card" data-reveal style="--d:240ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z"/><path d="m5 19 14-14"/></svg></span>
+            <h3 class="card__t">Blind spots</h3>
+            <p>Data scattered across tools, so decisions wait for reports.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-            <div class="stats">
+    <!-- ═══════════════════ 3 · IMPACT ═══════════════════ -->
+    <section class="sec" id="impact">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Why it matters</p>
+            <h2 class="display" data-reveal style="--d:80ms">Every workaround has a running cost</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Every workaround costs time, accuracy and visibility, and the cost grows as
+            you do.
+          </p>
+        </div>
+
+        <div class="stats">
               <div class="stat" data-reveal style="--d:180ms">
-                <span class="stat__n" data-count="12" data-sup="+">0</span>
+                <span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span>
                 <span class="stat__l">Years building mission-critical systems</span>
               </div>
               <div class="stat" data-reveal style="--d:240ms">
-                <span class="stat__n" data-count="50" data-sup="+">0</span>
+                <span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span>
                 <span class="stat__l">Systems delivered into production</span>
               </div>
               <div class="stat" data-reveal style="--d:300ms">
-                <span class="stat__n" data-count="5" data-sup="+">0</span>
+                <span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span>
                 <span class="stat__l">Sectors served nationally</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <img class="about__band" src="assets/img/home/about-band.jpg" alt="FINOS financial command centre — a GEMIS-built reporting dashboard shown on a tablet workstation" loading="lazy" width="2000" height="860" data-reveal />
       </div>
     </section>
 
-    <!-- ═══════════════════ WHAT WE DO ═══════════════════ -->
+    <!-- ═══════════════════ 4 · SOLUTION ═══════════════════ -->
     <section class="what" id="services">
       <span class="dotgrid" aria-hidden="true"></span>
 
@@ -173,10 +209,10 @@
         <div class="what__head">
           <div>
             <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
-            <h2 class="display" data-reveal style="--d:80ms">What We Do</h2>
+            <h2 class="display" data-reveal style="--d:80ms">Solutions</h2>
           </div>
-          <a class="arrow-link" href="services.html" data-reveal style="--d:140ms">
-            See Details
+          <a class="arrow-link" href="solutions.html" data-reveal style="--d:140ms">
+            Explore Solutions
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
           </a>
         </div>
@@ -257,86 +293,7 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ VALUES ═══════════════════ -->
-    <section class="values">
-      <div class="shell">
-        <div class="values__head">
-          <div>
-            <p class="eyebrow" data-reveal>Our Philosophy</p>
-            <h2 class="display" data-reveal style="--d:80ms">The Foundation Of Every Build</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">
-            Great software begins with understanding people. These four principles shape how
-            we scope, build and support every system we put into production — and why our
-            clients stay with us long after go-live.
-          </p>
-        </div>
-
-        <div class="cards">
-          <article class="card" data-reveal>
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-3.6 7-9V5.6L12 3 5 5.6V12c0 5.4 7 9 7 9Z"/><path d="m9 11.8 2.1 2.1L15 10"/></svg>
-            </span>
-            <h3 class="card__t">Built Around People</h3>
-            <p>Before a single line of code, we learn your workflows, processes and goals — so the result is software people actually enjoy using.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:80ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9M10 20V4M16 20v-7M22 20h-20"/></svg>
-            </span>
-            <h3 class="card__t">Built For Scale</h3>
-            <p>Businesses evolve, and your software should evolve with them — growth without rebuilding the systems you rely on every day.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:160ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".6" fill="currentColor"/></svg>
-            </span>
-            <h3 class="card__t">Built For Reliability</h3>
-            <p>Mission-critical systems cannot fail. Our architecture prioritises stability, security, performance and maintainability.</p>
-          </article>
-
-          <article class="card" data-reveal style="--d:240ms">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg>
-            </span>
-            <h3 class="card__t">Built For Partnership</h3>
-            <p>The relationship doesn't end at go-live — support, enhancement and optimisation continue. Software is a journey, not a destination.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ LEADERSHIP BAND ═══════════════════ -->
-    <section class="lead">
-      <img class="lead__bg" src="assets/img/home/leadership-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-
-      <div class="shell lead__in">
-        <p class="eyebrow eyebrow--light" data-reveal>Led With Purpose</p>
-        <h2 class="display lead__title" data-reveal style="--d:80ms">Guiding Delivery Through Proven Practice</h2>
-
-        <div class="lead__cols">
-          <p data-reveal style="--d:140ms">
-            Every successful project begins with listening — business goals, operational
-            challenges, user needs and future ambitions, before any solution is proposed.
-            Iterative sprints and regular demonstrations keep you involved throughout.
-          </p>
-          <p data-reveal style="--d:200ms">
-            Structured testing, performance validation and user acceptance happen before
-            anything reaches production. Then deployment planning, training, documentation
-            and continuous improvement carry the value long after launch.
-          </p>
-        </div>
-
-        <a class="arrow-link" href="services.html" data-reveal style="--d:260ms">
-          See Our Process
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ SELECTED WORK ═══════════════════ -->
+    <!-- ═══════════════════ 5 · PROOF ═══════════════════ -->
     <section class="work" id="work">
       <span class="dotgrid" aria-hidden="true"></span>
 
@@ -362,7 +319,10 @@
             <div class="story__frame">
               <img class="story__img" src="assets/img/work/managem-mock.jpg" alt="ManaGem management platform shown on a laptop" loading="lazy" width="1400" height="1050" />
             </div>
-            <p>
+                          <!-- CONTENT-TODO: measurable outcome for ManaGem — e.g. hours saved per week,
+                   error rate before/after, time-to-invoice. Replace the placeholder text. -->
+              <p class="story__k">[PLACEHOLDER: measurable outcome, e.g. hours saved per week]</p>
+<p>
               ManaGem is an all-in-one management system covering sales, stock, payroll,
               projects and multi-company accounting — replacing a stack of disconnected
               tools with a single source of truth that finance and operations share.
@@ -387,7 +347,10 @@
             <div class="story__frame">
               <img class="story__img" src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver application shown on a mobile phone" loading="lazy" width="1400" height="1050" />
             </div>
-            <p>
+                          <!-- CONTENT-TODO: measurable outcome for WasteMart — e.g. hours saved per week,
+                   error rate before/after, time-to-invoice. Replace the placeholder text. -->
+              <p class="story__k">[PLACEHOLDER: measurable outcome, e.g. hours saved per week]</p>
+<p>
               WasteMart pairs a driver app with a customer portal and a live operations
               view — capturing collections, check-ins and manifests in the field, offline
               when signal drops, and syncing the moment it returns.
@@ -404,30 +367,172 @@
             </a>
           </article>
         </div>
+        <!-- CONTENT-TODO: client logo row — replace the six placeholders with real
+             client names or logos. Reuses the existing .mq marquee from the case
+             studies page; no image-row pattern exists in the codebase. -->
+        <div class="mq" aria-label="Clients">
+          <div class="mq__track"><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span></div>
+        </div>
+
+        <!-- Technology strip, moved down from the hero. Reuses the existing
+             .group + .chips pattern (about page capability lists) because the
+             hero's .hero__partners styling is white-on-image and unreadable here. -->
+        <div class="group" data-reveal>
+          <h3>Built on the Microsoft Cloud</h3>
+          <ul class="chips">
+            <li>Microsoft Azure</li>
+            <li>Azure SQL</li>
+            <li>C# / .NET</li>
+            <li>Power BI</li>
+            <li>React</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ CTA ═══════════════════ -->
-    <section class="cta" id="contact">
-      <img class="cta__bg" src="assets/img/home/cta-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-      <span class="dotgrid dotgrid--l" aria-hidden="true"></span>
-      <span class="dotgrid dotgrid--r" aria-hidden="true"></span>
+    <!-- ═══════════════════ 6 · TRUST ═══════════════════ -->
+    <section class="about" id="about">
+      <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
-        <h2 class="cta__t" data-reveal>Ready To Modernise Your Operations?</h2>
-        <p class="cta__s" data-reveal style="--d:80ms">
-          Whether you're replacing a legacy system, launching a new digital platform or
-          connecting the tools you already run, we'll scope it with you — no obligation.
-        </p>
+        <div class="about__grid">
+          <div>
+            <p class="eyebrow" data-reveal>How we work</p>
+            <h2 class="display about__title" data-reveal style="--d:80ms">A partner long after go-live</h2>
+          </div>
 
-        <form class="cta__form" id="ctaForm" data-reveal style="--d:160ms">
-          <label class="skip-link" for="ctaEmail">Your email address</label>
-          <input id="ctaEmail" name="email" type="email" placeholder="Email Address" required autocomplete="email" />
-          <button type="submit">Get Started</button>
-        </form>
-        <p class="cta__note" data-reveal style="--d:200ms">
-          Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
-        </p>
+          <div class="about__side">
+            <p class="lede" data-reveal style="--d:120ms">
+              For over a decade, GEM Information Systems has partnered with businesses,
+              NGOs and enterprise organisations to design, build and support software that
+              solves complex operational challenges. Every project starts by understanding
+              how your organisation works — not just what software you need. Discovery
+              comes before development, testing and user acceptance come before
+              production, and support, enhancement and optimisation continue long after
+              launch.
+            </p>
+
+            <dl class="disc" data-reveal style="--d:180ms">
+              <div class="disc__row">
+                <dt class="disc__k">Built around people</dt>
+                <dd class="disc__v">We learn your workflows, processes and goals before a single line of code.</dd>
+              </div>
+              <div class="disc__row">
+                <dt class="disc__k">Built for scale</dt>
+                <dd class="disc__v">Growth without rebuilding the systems you rely on every day.</dd>
+              </div>
+              <div class="disc__row">
+                <dt class="disc__k">Built for reliability</dt>
+                <dd class="disc__v">Stability, security, performance and maintainability come first.</dd>
+              </div>
+              <div class="disc__row">
+                <dt class="disc__k">Built for partnership</dt>
+                <dd class="disc__v">The relationship doesn't end at go-live — it starts there.</dd>
+              </div>
+            </dl>
+
+            <p data-reveal style="--d:240ms">
+              <a class="arrow-link" href="solutions.html#process">See Our Process <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </p>
+          </div>
+        </div>
+
+        <img class="about__band" src="assets/img/home/about-band.jpg" alt="FINOS financial command centre — a GEMIS-built reporting dashboard shown on a tablet workstation" loading="lazy" width="2000" height="860" data-reveal />
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
+    <section class="ctc" id="discovery">
+      <div class="shell">
+        <div class="ctc__grid">
+
+          <div>
+            <p class="eyebrow" data-reveal>Get started</p>
+            <h2 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h2>
+            <p class="ctc__lede" data-reveal style="--d:140ms">
+              Tell us what you're trying to fix. We'll come back within two working days
+              with a short written view and a time to talk. No obligation.
+            </p>
+
+            <div class="ctc__block" data-reveal style="--d:200ms">
+              <h2>Rather email?</h2>
+              <p>Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
+            </div>
+          </div>
+
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
+            <div class="form__rows">
+              <div class="field">
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
+                  <option value="">Select one…</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
+              </div>
+            </div>
+
+            <div class="consent">
+              <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
+              <label for="d-consent">
+                I consent to GEM Information Systems processing the information above in
+                order to respond to this enquiry, as described in the
+                <a href="privacy.html">privacy notice</a>. I can withdraw this consent at
+                any time.
+              </label>
+            </div>
+            <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
+
+            <button class="form__send" type="submit">
+              Book a Discovery Session
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+            </button>
+
+            <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
+              This site is static, so sending opens a pre-filled message in your email
+              client addressed to info@gemis.co.za — nothing is submitted or stored here.
+            </p>
+          </form>
+
+        </div>
       </div>
     </section>
 
@@ -438,7 +543,7 @@
     <div class="shell">
       <div class="foot__grid">
         <div class="foot__brand">
-          <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
+          <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
           <p class="foot__blurb">
             Bringing ideas and innovation to life through technology — secure, scalable
             systems built on the Microsoft Cloud.
@@ -450,7 +555,7 @@
         </div>
 
         <div class="foot__col">
-          <h3>Products</h3>
+          <h2>Products</h2>
           <ul>
             <li><a href="managem.html">ManaGem</a></li>
             <li><a href="https://gemis.tech/" target="_blank" rel="noopener">Gemis Tech</a></li>
@@ -459,20 +564,20 @@
         </div>
 
         <div class="foot__col">
-          <h3>About GEMIS</h3>
+          <h2>About GEMIS</h2>
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
-            <li><a href="work.html">Case Studies</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
             <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
 
         <div class="foot__col">
-          <h3>Support &amp; Resources</h3>
+          <h2>Support &amp; Resources</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="services.html#services">Ongoing Support</a></li>
+            <li><a href="solutions.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>

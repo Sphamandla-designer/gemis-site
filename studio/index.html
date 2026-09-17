@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
 <meta charset="utf-8">
 
 
@@ -14,6 +14,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GEMIS® Studio — Product &amp; Experience Design</title>
 <meta name="description" content="GEMIS® Studio designs the products, interfaces and websites South African companies run on — by the studio that can also build them.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:title" content="GEMIS® Studio — Product &amp; Experience Design">
+<meta property="og:description" content="GEMIS® Studio designs the products, interfaces and websites South African companies run on — by the studio that can also build them.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/heroBg.jpg">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
 
 <script src="assets/react.js"></script>
@@ -30,10 +38,7 @@
   "finosWide": "assets/finosWide.jpg"
 };</script>
 <script src="assets/dc-runtime.js" defer></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <style>/* cyrillic-ext */
 @font-face {
@@ -384,382 +389,625 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
 [data-word]{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}[data-word]>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .in [data-word]>span{transform:none}.in [data-word]{overflow:visible}
 @media (prefers-reduced-motion:reduce){[data-reveal],[data-word]>span{opacity:1;transform:none;transition:none}}
-</style>
-</helmet>
 
-<div data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:28px 32px;color:#fff;mix-blend-mode:difference">
-  <a href="#top" aria-label="GEMIS Studio" style="display:flex;align-items:center;gap:12px;color:#fff">
-    <span style="display:grid;gap:3px;width:22px">
-      <span style="display:block;height:4px;width:22px;background:#fff"></span>
-      <span style="display:block;height:4px;width:15px;background:#fff"></span>
-      <span style="display:block;height:4px;width:8px;background:#fff"></span>
+/* ── accessibility ────────────────────────────────────────────────────────
+   Added for WCAG 2.2 AA. Nothing here changes a colour, a size or a position
+   of anything that was already on the page. */
+
+/* visually hidden, still announced */
+.dc-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* skip link — off-screen until it takes focus, then in the studio's own style */
+.dc-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#16161a;color:#f5f6f8;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em}
+.dc-skip:focus{left:12px;top:12px}
+
+/* the header is fixed, so a fragment jump would land its target underneath it */
+html{scroll-padding-top:110px}
+
+/* visible keyboard focus, in the studio's existing accent */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #ff1f7a;outline-offset:3px}
+
+/* marquees stop on hover, on focus, on the motion toggle and under reduced motion */
+/* the marquee elements set the animation shorthand inline, which resets
+   play-state, so these have to win */
+[data-marquee]:hover>div,[data-marquee]:focus-within>div{animation-play-state:paused!important}
+[data-motion="paused"] [data-marquee]>div{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){[data-marquee]>div{animation:none!important}[data-rotator] span{animation:none!important}}
+</style>
+
+<style id="dc-prerender-css">
+html,body{height:100%;margin:0}
+#dc-prerender,#dc-prerender>.sc-host{height:auto}
+#dc-prerender [role="tabpanel"]{display:grid!important}
+#dc-prerender [data-reveal]{opacity:1!important;transform:none!important}
+#dc-prerender [data-word]>span{transform:none!important}
+#dc-prerender [data-rotator] span{visibility:hidden!important}
+#dc-prerender [data-rotator] span:first-child{visibility:visible!important;animation:none!important}
+</style>
+</head>
+<body>
+<!-- Pre-rendered by tools/build-studio.mjs. Edit studio/src/index.html, then re-run it. -->
+<div id="dc-prerender"><div class="sc-host" data-sc-name=".prerender"><a data-dc-tpl="4" class="dc-skip" href="#main">Skip to content</a><header data-dc-tpl="5"><div data-dc-tpl="6" data-nav="" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; color: rgb(255, 255, 255); mix-blend-mode: difference;">
+  <a data-dc-tpl="7" href="#top" aria-label="GEMIS Studio" style="display: flex; align-items: center; gap: 12px; color: rgb(255, 255, 255);">
+    <span data-dc-tpl="8" style="display: grid; gap: 3px; width: 22px;">
+      <span data-dc-tpl="9" style="display: block; height: 4px; width: 22px; background: rgb(255, 255, 255);"></span>
+      <span data-dc-tpl="10" style="display: block; height: 4px; width: 15px; background: rgb(255, 255, 255);"></span>
+      <span data-dc-tpl="11" style="display: block; height: 4px; width: 8px; background: rgb(255, 255, 255);"></span>
     </span>
-    <span style="display:flex;flex-direction:column;line-height:1">
-      <span style="font-weight:700;letter-spacing:0.08em;font-size:14px">GEMIS</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-weight:400;letter-spacing:0.16em;font-size:9px;margin-top:3px;opacity:.85">STUDIO</span>
+    <span data-dc-tpl="12" style="display: flex; flex-direction: column; line-height: 1;">
+      <span data-dc-tpl="13" style="font-weight: 700; letter-spacing: 0.08em; font-size: 14px;">GEMIS</span>
+      <span data-dc-tpl="14" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-weight: 400; letter-spacing: 0.16em; font-size: 9px; margin-top: 3px; opacity: 0.85;">STUDIO</span>
     </span>
   </a>
-  <div style="display:flex;align-items:center;gap:10px">
-    <a href="../index.html" style="display:flex;align-items:center;gap:7px;height:38px;padding:0 4px;margin-right:4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#fff;opacity:.72;text-decoration:none;white-space:nowrap" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.72">GEMIS.CO.ZA<span aria-hidden="true">&#8599;</span></a><span style="width:150px;height:38px;visibility:hidden"></span>
-    <button sc-camel-on-click="{{ toggleMenu }}" style="background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;font-family:inherit;cursor:pointer">{{ menuLabel }}</button>
-  </div>
-</div>
-<a href="#enquire" style="{{ ctaStyle }}">BOOK A TEARDOWN</a>
-
-<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-<div style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
-  <div style="display:flex;flex-direction:column;gap:10px">
-    <a href="#work" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
-    <a href="#services" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
-    <a href="#about" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">About</a>
-    <a href="#why" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Why us</a>
-    <a href="#contact" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Contact</a>
-<a href="../index.html" style="font-size:34px;font-weight:500;opacity:.6">GEM Information Systems<span aria-hidden="true"> &#8599;</span></a>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:28px">
-    <div>
-      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px">BUSINESS ENQUIRY</div>
-      <div style="display:grid;grid-template-columns:24px 1fr;row-gap:6px;font-size:17px"><span style="color:#8a8886">E.</span><span>info@gemis.co.za</span><span style="color:#8a8886">P.</span><span>+27 11 219 5008</span></div>
-    </div>
-    <div>
-      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px">SOCIAL</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px"><span>LinkedIn</span><span>Dribbble</span><span>Behance</span><span>Instagram</span></div>
+  <div data-dc-tpl="15" style="display: flex; align-items: center; gap: 10px;">
+    <a data-dc-tpl="16" href="../index.html" style="display: flex; align-items: center; gap: 7px; height: 38px; padding: 0px 4px; margin-right: 4px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.12em; color: rgb(255, 255, 255); opacity: 0.72; text-decoration: none; white-space: nowrap;">GEMIS.CO.ZA<span data-dc-tpl="17" aria-hidden="true">↗</span></a><span data-dc-tpl="18" style="width: 150px; height: 38px; visibility: hidden;"></span>
+    <button data-dc-tpl="19" aria-expanded="false" aria-controls="studioMenu" style="background: transparent; color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); border-radius: 999px; padding: 9px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; font-family: inherit; cursor: pointer; text-transform: uppercase;">Menu <span data-dc-tpl="20" aria-hidden="true"><span class="sc-interp">≡</span></span></button>
+  </div></div><a data-dc-tpl="21" href="#enquire" style="position: fixed; top: 28px; right: calc(128px); z-index: 51; background: rgb(255, 31, 122); color: rgb(255, 255, 255); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: background 0.4s, color 0.4s; line-height: 1.4;"><span data-dc-tpl="22" style="text-transform: uppercase;">Book a teardown</span></a></header><main data-dc-tpl="48" id="main" data-motion="running"><div data-dc-tpl="49" style="position: relative; overflow: hidden;"><section data-dc-tpl="50" id="top" data-screen-label="Hero" style="position: relative; min-height: 100vh; padding: 140px 32px 48px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 32px; overflow: hidden; background: rgb(238, 240, 243);">
+  <div data-dc-tpl="51" style="position: absolute; inset: 0px; z-index: 0;"></div>
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; inset: -6%; pointer-events: none; background-image: url(&quot;assets/heroBg.jpg&quot;); background-size: cover; background-position: center center; transform: translate3d(0px, 0px, 0px); transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); will-change: transform;"><div style="position: absolute; inset: 0px; animation: 28s ease-in-out 0s infinite normal none running kenburns, 18s ease-in-out 0s infinite normal none running hueShift; background-image: inherit; background-size: cover; background-position: center center;"></div></div><div style="position: absolute; right: 8%; top: 14%; width: 26vw; height: 26vw; pointer-events: none; background-image: url(&quot;assets/heroBg.jpg&quot;); background-size: 400% 400%; background-position: 78% 18%; border-radius: 50%; opacity: 0;"></div><div style="position: absolute; left: 50%; top: 50%; width: 46vw; height: 46vw; margin-left: -23vw; margin-top: -23vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.3) 0%, rgba(255, 122, 18, 0.18) 30%, transparent 62%); filter: blur(30px); mix-blend-mode: screen; transition: left 1.4s, top 1.4s, background 0.8s; animation: 22s ease-in-out 0s infinite normal none running driftA;"></div><div style="position: absolute; left: 50%; top: 50%; width: 32vw; height: 3px; margin-top: -1px; transform-origin: right center; transform: translateX(-100%) rotate(0deg); background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0), rgba(255, 31, 122, 0)); filter: blur(1.2px); transition: left 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), top 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.6s, transform 0.5s; mix-blend-mode: screen;"></div><div style="position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px; border-radius: 50%; background: rgb(255, 255, 255); box-shadow: rgba(255, 255, 255, 0.9) 0px 0px 24px 8px, rgba(255, 31, 122, 0.7) 0px 0px 60px 20px; opacity: 0; transition: left 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), top 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s;"></div><div style="position: absolute; inset: -6%; pointer-events: none; background-image: url(&quot;assets/heroBg.jpg&quot;); background-size: cover; background-position: center center; transform: translate3d(0px, 0px, 0px); transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); will-change: transform; mask-image: radial-gradient(circle at 72% 30%, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 12vw, transparent 15vw); opacity: 0.95;"><div style="position: absolute; inset: 0px; animation: 14s ease-in-out 0s infinite normal none running floatA; background-image: inherit; background-size: cover; background-position: center center;"></div></div><div style="position: absolute; inset: -6%; pointer-events: none; background-image: url(&quot;assets/heroBg.jpg&quot;); background-size: cover; background-position: center center; transform: translate3d(0px, 0px, 0px); transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); will-change: transform; mask-image: radial-gradient(circle at 86% 68%, rgb(0, 0, 0) 0px, rgb(0, 0, 0) 9vw, transparent 12vw); opacity: 0.95;"><div style="position: absolute; inset: 0px; animation: 18s ease-in-out 0s infinite normal none running floatB; background-image: inherit; background-size: cover; background-position: center center;"></div></div></div>
+  <div data-dc-tpl="52" style="position: absolute; inset: 0px; pointer-events: none; background: linear-gradient(90deg, rgba(238, 240, 243, 0.96) 0%, rgba(238, 240, 243, 0.9) 50%, rgba(238, 240, 243, 0.3) 78%, rgba(238, 240, 243, 0) 100%);"></div>
+  <div data-dc-tpl="53" style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 40px; pointer-events: none;">
+    <h1 data-dc-tpl="54" data-reveal="1" class="in" style="margin: 0px; font-size: clamp(56px, 7vw, 110px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);"><span data-dc-tpl="55" data-word=""><span data-dc-tpl="56">Designed</span></span> <span data-dc-tpl="57" data-word=""><span data-dc-tpl="58">to</span></span> <span data-dc-tpl="59" data-word=""><span data-dc-tpl="60">be</span></span><br data-dc-tpl="61"><span data-dc-tpl="62" class="dc-vh">built.</span><span aria-hidden="true" data-rotator="" style="display: inline-grid; color: rgb(255, 31, 122); perspective: 600px;"><span style="grid-area: 1 / 1; display: inline-block; animation: 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0s 1 normal both running wordIn; pointer-events: none; visibility: visible;">built.</span><span style="grid-area: 1 / 1; display: inline-block; animation: 0.5s cubic-bezier(0.6, 0, 0.8, 0.4) 0s 1 normal both running wordOut; pointer-events: none; visibility: hidden;">used.</span><span style="grid-area: 1 / 1; display: inline-block; animation: 0.5s cubic-bezier(0.6, 0, 0.8, 0.4) 0s 1 normal both running wordOut; pointer-events: none; visibility: hidden;">shipped.</span><span style="grid-area: 1 / 1; display: inline-block; animation: 0.5s cubic-bezier(0.6, 0, 0.8, 0.4) 0s 1 normal both running wordOut; pointer-events: none; visibility: visible;">trusted.</span></span></h1>
+    <p data-dc-tpl="63" data-reveal="2" class="in" style="margin: 0px; max-width: 520px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65); text-wrap: pretty;">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
+    <div data-dc-tpl="64" style="display: flex; gap: 24px; flex-wrap: wrap; pointer-events: auto;">
+      <a data-dc-tpl="65" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; letter-spacing: 0.02em; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="66" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="67">→</span></a>
+      <a data-dc-tpl="68" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; letter-spacing: 0.02em; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="69" style="text-transform: uppercase;">Discuss your project</span><span data-dc-tpl="70">→</span></a>
+      <button data-dc-tpl="71" type="button" style="align-self: flex-end; padding: 0px 0px 10px; border: 0px; background: transparent; cursor: pointer; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(106, 107, 115);"><span class="sc-interp">Pause motion</span></button>
     </div>
   </div>
-</div>
-</sc-if>
-
-<div style="position:relative;overflow:hidden">
-<section id="top" data-screen-label="Hero" style="position:relative;min-height:100vh;padding:140px 32px 48px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;gap:32px;overflow:hidden;background:#eef0f3">
-  <div sc-camel-on-mouse-move="{{ heroMove }}" sc-camel-on-mouse-leave="{{ heroLeave }}" style="position:absolute;inset:0;z-index:0"></div>
-  {{ heroScene }}
-  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
-  <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;pointer-events:none">
-    <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br>{{ rotator }}</h1>
-    <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
-    <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
-      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #16161a;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
-      <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
+  <div data-dc-tpl="72" style="grid-column: 1 / -1; position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-top: 24px;">
+  <div data-dc-tpl="73" style="flex: 1 1 0%; text-align: center; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; color: rgb(22, 22, 26); min-width: 240px; align-self: flex-end; text-transform: uppercase;">Senior eyes on every screen.<br data-dc-tpl="74"><span data-dc-tpl="75" style="font-weight: 500;">Designed and built under one roof.</span></div>
+  <div data-dc-tpl="76" style="width: 250px; display: flex; flex-direction: column; gap: 24px;">
+    <div data-dc-tpl="77" style="display: grid; grid-template-columns: 96px 1fr; border: 1px solid rgba(22, 22, 26, 0.25); background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); color: rgb(22, 22, 26);">
+      <div data-dc-tpl="78" style="padding: 20px 12px; border-right: 1px solid rgba(22, 22, 26, 0.25); text-align: center; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;"><div data-dc-tpl="79" style="width: 32px; height: 32px; border: 1.5px solid rgb(255, 122, 18); border-radius: 50%; margin: 0px auto 10px;"></div>Sandton, JHB</div>
+      <div data-dc-tpl="80" style="padding: 20px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase;">The design practice of GEM Information Systems.</div>
+    </div>
+    <p data-dc-tpl="81" style="margin: 0px; font-size: 17px; line-height: 1.35; color: rgb(22, 22, 26); text-align: justify; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px); padding: 14px 16px;">Product, interface and web design for South African companies. Designed and built under one roof.</p>
+  </div>
+  </div></section><section data-dc-tpl="82" id="about" data-screen-label="About" style="position: relative; z-index: 1; padding: 140px 32px 120px; overflow: hidden; background: rgb(22, 22, 26); color: rgb(245, 246, 248);">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: -10%; top: -20%; width: 55vw; height: 55vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.22) 0%, transparent 65%); filter: blur(60px); animation: 30s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div><div style="position: absolute; left: 55%; top: 10%; width: 45vw; height: 45vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.16) 0%, transparent 65%); filter: blur(60px); animation: 38s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div></div>
+  <div data-dc-tpl="83" style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 40px; color: rgb(255, 122, 18); text-transform: uppercase;">About</div>
+  <h2 data-dc-tpl="84" data-reveal="1" style="position: relative; margin: 0px auto; max-width: 1560px; font-size: clamp(40px, 5vw, 84px); line-height: 1.02; letter-spacing: -0.045em; font-weight: 500; color: rgb(245, 246, 248); text-indent: 9%; padding-left: 8%;">GEMIS Studio is the product and experience design practice of GEM Information Systems — we design the screen and <span data-dc-tpl="85" style="color: rgb(255, 31, 122);">build what we design.</span></h2>
+  <div data-dc-tpl="86" style="margin: 100px 8% 0px; border-top: 1px solid rgba(255, 255, 255, 0.15); position: relative;"><span data-dc-tpl="87" style="position: absolute; left: 64%; top: -11px; color: rgb(255, 122, 18); font-size: 16px;">×</span></div>
+  <div data-dc-tpl="88" style="margin: 80px 8% 0px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+    <div data-dc-tpl="89" style="font-size: 13px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.35; max-width: 260px; text-transform: uppercase;">We never sell a stage.<br data-dc-tpl="90">Developer handoff in the price.<br data-dc-tpl="91">Thirty days of aftercare.</div>
+    <div data-dc-tpl="92" style="display: flex; flex-direction: column; gap: 80px; max-width: 380px;">
+      <p data-dc-tpl="93" style="margin: 0px; font-size: 17px; line-height: 1.4; color: rgb(201, 202, 209);">Support load rising. The team avoiding the internal system. A redesign that stalled after the Figma file. Underneath every one: nobody has mapped what actually happens.</p>
+      <a data-dc-tpl="94" href="#about" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; border-bottom: 1px solid rgb(255, 122, 18); padding-bottom: 10px; width: 190px;"><span data-dc-tpl="95" style="text-transform: uppercase;">About the studio</span><span data-dc-tpl="96">→</span></a>
+    </div>
+  </div></section><section data-dc-tpl="97" data-screen-label="Marquee" style="position: relative; z-index: 1; padding: 140px 0px 120px; overflow: hidden; background: rgb(22, 22, 26); color: rgb(245, 246, 248);">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: 30%; top: -30%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.18) 0%, transparent 65%); filter: blur(60px); animation: 34s ease-in-out 0s infinite normal none running driftC; will-change: transform;"></div><div style="position: absolute; left: -5%; top: 40%; width: 40vw; height: 40vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.16) 0%, transparent 65%); filter: blur(60px); animation: 42s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div></div>
+  <div data-dc-tpl="98" style="position: absolute; left: 180px; top: 160px; font-size: 15px; font-weight: 600; color: rgb(255, 122, 18); line-height: 1.3; text-transform: uppercase;">Published prices.<br data-dc-tpl="99">Fixed after the Teardown.</div>
+  <div data-dc-tpl="100" data-marquee="" aria-hidden="true" style="margin-top: 120px; overflow: hidden; white-space: nowrap;"><div style="display: inline-flex; align-items: center; animation: 24s linear 0s infinite normal none running marquee; will-change: transform;"><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(245, 246, 248); line-height: 1;">DIAGNOSE</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(255, 31, 122); line-height: 1;">REFRESH</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(245, 246, 248); line-height: 1;">BUILD</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(245, 246, 248); line-height: 1;">DIAGNOSE</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(255, 31, 122); line-height: 1;">REFRESH</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span><span style="font-size: clamp(72px, 8vw, 150px); letter-spacing: -0.03em; font-weight: 500; color: rgb(245, 246, 248); line-height: 1;">BUILD</span><span style="font-size: 40px; color: rgb(255, 122, 18); margin: 0px 56px; font-weight: 300;">+</span></div></div>
+  <div data-dc-tpl="101" style="text-align: center; margin-top: 100px; font-size: 15px; font-weight: 600; color: rgb(245, 246, 248); text-transform: uppercase;">✦ Diagnose. Refresh. Build. Embed.</div></section></div><section data-dc-tpl="102" data-screen-label="Every engagement" style="position: relative; overflow: hidden; background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 100px 32px 60px; text-align: center;">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: -10%; top: -30%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.14) 0%, transparent 65%); filter: blur(80px); animation: 36s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div><div style="position: absolute; left: 60%; top: 30%; width: 40vw; height: 40vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.12) 0%, transparent 65%); filter: blur(80px); animation: 44s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div></div>
+  <h2 data-dc-tpl="103" data-reveal="1" style="position: relative; margin: 0px; font-size: clamp(48px, 5vw, 88px); letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);">Every engagement</h2>
+  <p data-dc-tpl="104" style="margin: 20px auto 0px; font-size: 17px; line-height: 1.3; max-width: 200px; color: rgb(90, 91, 99);">Three rules, in every price.</p>
+  <div data-dc-tpl="105" style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px; max-width: 1160px; margin: 80px auto 0px; position: relative;">
+    <div data-dc-tpl="106" data-reveal="1" class="scp0" style="background: rgb(22, 22, 26); color: rgb(245, 246, 248); aspect-ratio: 370 / 455; padding: 36px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 24px; text-align: left; overflow: hidden; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+      <div data-dc-tpl="107" style="display: flex; justify-content: space-between; align-items: center;"><div data-dc-tpl="108" style="font-size: 14px; font-weight: 600; letter-spacing: 0.04em; color: rgb(255, 122, 18); text-transform: uppercase;">Developer handoff</div><div data-dc-tpl="109" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163);">01</div></div>
+      <div data-dc-tpl="110" style="min-height: 0px; overflow: hidden; position: relative;"><img data-dc-tpl="111" src="assets/asset-01.jpg" alt="" loading="lazy" decoding="async" class="scp1" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"><div data-dc-tpl="112" style="position: absolute; inset: 0px; background: linear-gradient(transparent 60%, rgba(22, 22, 26, 0.6));"></div></div>
+      <div data-dc-tpl="113" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;"><div data-dc-tpl="114" style="font-size: 15px; line-height: 1.3; max-width: 170px; color: rgb(201, 202, 209);">Component spec, tokens and a handoff session with your developers.</div><div data-dc-tpl="115" style="font-size: clamp(44px, 4vw, 60px); letter-spacing: -0.04em; line-height: 1; font-weight: 600;">1<sup data-dc-tpl="116" style="font-size: 20px; font-weight: 500; color: rgb(255, 122, 18);">session</sup></div></div>
+    </div>
+    <div data-dc-tpl="117" data-reveal="2" class="scp2" style="background: linear-gradient(135deg, rgb(255, 31, 122), rgb(255, 122, 18)); color: rgb(255, 255, 255); aspect-ratio: 370 / 455; padding: 36px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 24px; text-align: left; overflow: hidden; position: relative; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+      <div data-dc-tpl="118" style="position: absolute; inset: 0px; background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.28) 50%, transparent 60%) 0% 0% / 250% 100%; animation: 5s ease-in-out 0s infinite normal none running shimmer; pointer-events: none;"></div>
+      <div data-dc-tpl="119" style="display: flex; justify-content: space-between; align-items: center; position: relative;"><div data-dc-tpl="120" style="font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;">Fee credited</div><div data-dc-tpl="121" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; opacity: 0.8;">02</div></div>
+      <div data-dc-tpl="122" style="display: flex; align-items: center; justify-content: center; position: relative;"><div data-dc-tpl="123" class="scp3" style="width: min(186px, 70%); aspect-ratio: 1 / 1; border-radius: 50%; background: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: clamp(40px, 3.6vw, 56px); letter-spacing: -0.04em; color: rgb(255, 31, 122); font-weight: 600; box-shadow: rgba(22, 22, 26, 0.5) 0px 20px 50px -20px; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);">60<sup data-dc-tpl="124" style="font-size: 18px; font-weight: 500;">days</sup></div></div>
+      <div data-dc-tpl="125" style="font-size: 15px; line-height: 1.3; position: relative;">The Teardown fee is credited in full against any engagement booked within 60 days.</div>
+    </div>
+    <div data-dc-tpl="126" data-reveal="3" class="scp4" style="background: rgb(255, 255, 255); color: rgb(22, 22, 26); border: 1px solid rgb(220, 222, 227); aspect-ratio: 370 / 455; padding: 36px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 24px; text-align: left; overflow: hidden; transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+      <div data-dc-tpl="127" style="display: flex; justify-content: space-between; align-items: center;"><div data-dc-tpl="128" style="font-size: 14px; font-weight: 600; letter-spacing: 0.04em; color: rgb(255, 31, 122); text-transform: uppercase;">Aftercare</div><div data-dc-tpl="129" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163);">03</div></div>
+      <div data-dc-tpl="130" style="min-height: 0px; overflow: hidden; position: relative;"><img data-dc-tpl="131" src="assets/asset-05.jpg" alt="Embedded designer at work" loading="lazy" decoding="async" class="scp1" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"></div>
+      <div data-dc-tpl="132" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;"><div data-dc-tpl="133" style="font-size: 15px; line-height: 1.3; max-width: 170px; color: rgb(90, 91, 99);">Thirty days of aftercare after every engagement.</div><div data-dc-tpl="134" style="font-size: clamp(44px, 4vw, 60px); letter-spacing: -0.04em; line-height: 1; font-weight: 600;">30<sup data-dc-tpl="135" style="font-size: 20px; font-weight: 500; color: rgb(255, 31, 122);">days</sup></div></div>
     </div>
   </div>
-  <div style="grid-column:1 / -1;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:24px">
-  <div style="flex:1;text-align:center;font-size:15px;font-weight:600;letter-spacing:0.01em;color:#16161a;min-width:240px;align-self:flex-end">SENIOR EYES ON EVERY SCREEN.<br><span style="font-weight:500">DESIGNED AND BUILT UNDER ONE ROOF.</span></div>
-  <div style="width:250px;display:flex;flex-direction:column;gap:24px">
-    <div style="display:grid;grid-template-columns:96px 1fr;border:1px solid rgba(22,22,26,.25);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);color:#16161a">
-      <div style="padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:0.04em"><div style="width:32px;height:32px;border:1.5px solid #ff7a12;border-radius:50%;margin:0 auto 10px"></div>SANDTON, JHB</div>
-      <div style="padding:20px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;line-height:1.4">THE DESIGN PRACTICE OF GEM INFORMATION SYSTEMS.</div>
-    </div>
-    <p style="margin:0;font-size:17px;line-height:1.35;color:#16161a;text-align:justify;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:14px 16px">Product, interface and web design for South African companies. Designed and built under one roof.</p>
+  <div data-dc-tpl="136" style="margin-top: 110px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: rgb(255, 122, 18); text-transform: uppercase;">Systems we have designed</div>
+  <div data-dc-tpl="137" data-marquee="" style="margin-top: 40px; overflow: hidden; white-space: nowrap; position: relative; mask-image: linear-gradient(90deg, transparent, rgb(0, 0, 0) 12%, rgb(0, 0, 0) 88%, transparent);"><div style="display: inline-flex; align-items: center; animation: 40s linear 0s infinite normal none running marquee; will-change: transform;"><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Enterprise SaaS</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Financial OS</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Websites</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Mobile Apps</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Ops Dashboards</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Graphic Design</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Logos &amp; Identity</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">AI Workflows</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Design Systems</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Conversational UI</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">E-commerce</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Internal Tools</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Enterprise SaaS</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Financial OS</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Websites</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Mobile Apps</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Ops Dashboards</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Graphic Design</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Logos &amp; Identity</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">AI Workflows</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Design Systems</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Conversational UI</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">E-commerce</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 31, 122); flex: 0 0 auto;"></span><span aria-hidden="true" style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: rgb(22, 22, 26); padding: 0px 36px; white-space: nowrap;">Internal Tools</span><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 50%; background: rgb(255, 122, 18); flex: 0 0 auto;"></span></div>
+  </div></section><section data-dc-tpl="138" id="work" data-screen-label="Selected work" style="position: relative; overflow: hidden; background: rgb(238, 240, 243); color: rgb(22, 22, 26); padding: 100px 32px 120px;">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: 50%; top: -20%; width: 55vw; height: 55vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.12) 0%, transparent 65%); filter: blur(80px); animation: 40s ease-in-out 0s infinite normal none running driftC; will-change: transform;"></div><div style="position: absolute; left: -15%; top: 50%; width: 40vw; height: 40vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.1) 0%, transparent 65%); filter: blur(80px); animation: 48s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div></div>
+  <div data-dc-tpl="139" style="position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; max-width: 1400px; margin: 0px auto;">
+    <h2 data-dc-tpl="140" data-reveal="1" style="margin: 0px; font-size: clamp(44px, 4.5vw, 80px); line-height: 1; letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);">Selected work<br data-dc-tpl="141">&amp; <span data-dc-tpl="142" style="color: rgb(255, 31, 122);">evidence</span></h2>
+    <p data-dc-tpl="143" data-reveal="2" style="margin: 0px; font-size: clamp(20px, 1.6vw, 26px); line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; max-width: 380px; color: rgb(22, 22, 26); justify-self: end; border-left: 1px solid rgb(220, 222, 227); padding-left: 32px;">Every case study evidences a named service — never the studio in general.</p>
   </div>
-  </div>
-</section>
-
-<section id="about" data-screen-label="About" style="position:relative;z-index:1;padding:140px 32px 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
-  {{ darkBg }}
-  <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12">ABOUT</div>
-  <h2 data-reveal="1" style="position:relative;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-0.045em;font-weight:500;color:#f5f6f8;text-indent:9%;padding-left:8%">GEMIS Studio is the product and experience design practice of GEM Information Systems — we design the screen and <span style="color:#ff1f7a">build what we design.</span></h2>
-  <div style="margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15);position:relative"><span style="position:absolute;left:64%;top:-11px;color:#ff7a12;font-size:16px">×</span></div>
-  <div style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
-    <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px">WE NEVER SELL A STAGE.<br>DEVELOPER HANDOFF IN THE PRICE.<br>THIRTY DAYS OF AFTERCARE.</div>
-    <div style="display:flex;flex-direction:column;gap:80px;max-width:380px">
-      <p style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Support load rising. The team avoiding the internal system. A redesign that stalled after the Figma file. Underneath every one: nobody has mapped what actually happens.</p>
-      <a href="#about" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid #ff7a12;padding-bottom:10px;width:190px"><span>ABOUT THE STUDIO</span><span>→</span></a>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Marquee" style="position:relative;z-index:1;padding:140px 0 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
-  {{ darkBg2 }}
-  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3">FIXED SCOPE.<br>FIXED PRICE.</div>
-  <div style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
-  <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8">✦ DIAGNOSE. REFRESH. BUILD. EMBED.</div>
-</section>
-</div>
-
-<section data-screen-label="Every engagement" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:100px 32px 60px;text-align:center">
-  {{ lightBg }}
-  <h2 data-reveal="1" style="position:relative;margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;color:#16161a">Every engagement</h2>
-  <p style="margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:#5a5b63">Four rules, in every price.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative">
-    <div data-reveal="1" style="background:#16161a;color:#f5f6f8;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.6)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">PRODUCT TEARDOWN</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
-      <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-01.jpg" alt="Product Teardown" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#c9cad1">Ranked findings, five screens, a roadmap.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">5<sup style="font-size:20px;font-weight:500;color:#ff7a12">days</sup></div></div>
-    </div>
-    <div data-reveal="2" style="background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)">
-      <div style="position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);background-size:250% 100%;animation:shimmer 5s ease-in-out infinite;pointer-events:none"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;position:relative"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em">FEE CREDITED</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.8">02</div></div>
-      <div style="display:flex;align-items:center;justify-content:center;position:relative"><div style="width:min(186px,70%);aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,3.6vw,56px);letter-spacing:-0.04em;color:#ff1f7a;font-weight:600;box-shadow:0 20px 50px -20px rgba(22,22,26,.5);transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06) rotate(-4deg)">60<sup style="font-size:18px;font-weight:500">days</sup></div></div>
-      <div style="font-size:15px;line-height:1.3;position:relative">The Teardown fee is credited in full against any engagement booked within 60 days.</div>
-    </div>
-    <div data-reveal="3" style="background:#ffffff;color:#16161a;border:1px solid #dcdee3;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.35)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff1f7a">AFTERCARE</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">03</div></div>
-      <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-05.jpg" alt="Embedded designer at work" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Developer handoff in the price.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#ff1f7a">days</sup></div></div>
-    </div>
-  </div>
-  <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#ff7a12">SYSTEMS WE HAVE DESIGNED</div>
-  <div style="margin-top:40px;overflow:hidden;white-space:nowrap;position:relative;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">{{ partnerMarquee }}
-  </div>
-</section>
-
-<section id="work" data-screen-label="Selected work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:100px 32px 120px">
-  {{ lightBg2 }}
-  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto">
-    <h2 data-reveal="1" style="margin:0;font-size:clamp(44px,4.5vw,80px);line-height:1;letter-spacing:-0.045em;font-weight:600;color:#16161a">Selected work<br>&amp; <span style="color:#ff1f7a">evidence</span></h2>
-    <p data-reveal="2" style="margin:0;font-size:clamp(20px,1.6vw,26px);line-height:1.25;letter-spacing:-0.02em;font-weight:500;max-width:380px;color:#16161a;justify-self:end;border-left:1px solid #dcdee3;padding-left:32px">Every case study evidences a named service — never the studio in general.</p>
-  </div>
-  <div style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">
-    <sc-for list="{{ projects }}" as="w" hint-placeholder-count="3">
-      <div style="display:flex;flex-direction:column;gap:20px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="{{ w.img }}" alt="{{ w.name }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">{{ w.name }}</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">{{ w.desc }}</p>
-          <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span>EXPLORE PROJECT</span><span>→</span></a>
+  <div data-dc-tpl="144" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 40px; margin: 72px auto 0px; max-width: 1400px;">
+    
+      <div data-dc-tpl="146" style="display: flex; flex-direction: column; gap: 20px;">
+        <div data-dc-tpl="147" style="aspect-ratio: 16 / 11; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="148" src="assets/managem.jpg" alt="ManaGem" loading="lazy" decoding="async" class="scp5" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"></div>
+        <div data-dc-tpl="149" style="font-size: 28px; letter-spacing: -0.03em; font-weight: 600;"><span class="sc-interp">ManaGem</span></div>
+        <div data-dc-tpl="150" style="display: flex; justify-content: space-between; gap: 24px; align-items: flex-end;">
+          <p data-dc-tpl="151" style="margin: 0px; font-size: 16px; line-height: 1.35; max-width: 300px; color: rgb(90, 91, 99);"><span class="sc-interp">Product design · Dashboard UX · Design system. Evidences: Interface Refresh Sprint.</span></p>
+          <a data-dc-tpl="152" href="#work" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; white-space: nowrap;"><span data-dc-tpl="153" style="text-transform: uppercase;">Explore project</span><span data-dc-tpl="154">→</span></a>
         </div>
       </div>
-    </sc-for>
-  </div>
-  <div style="position:relative;display:flex;justify-content:center;margin-top:88px">
-    <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>VIEW ALL PROJECTS</span><span>→</span></a>
-  </div>
-</section>
-
-<section id="services" data-screen-label="Services" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px 120px">
-  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
-  {{ darkBg3 }}
-  <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">OUR SERVICES</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h2>
+    
+      <div data-dc-tpl="146" style="display: flex; flex-direction: column; gap: 20px;">
+        <div data-dc-tpl="147" style="aspect-ratio: 16 / 11; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="148" src="assets/wastemart.jpg" alt="WasteMart" loading="lazy" decoding="async" class="scp5" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"></div>
+        <div data-dc-tpl="149" style="font-size: 28px; letter-spacing: -0.03em; font-weight: 600;"><span class="sc-interp">WasteMart</span></div>
+        <div data-dc-tpl="150" style="display: flex; justify-content: space-between; gap: 24px; align-items: flex-end;">
+          <p data-dc-tpl="151" style="margin: 0px; font-size: 16px; line-height: 1.35; max-width: 300px; color: rgb(90, 91, 99);"><span class="sc-interp">Operations UX · Driver app · Customer portal. Evidences: Product Teardown.</span></p>
+          <a data-dc-tpl="152" href="#work" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; white-space: nowrap;"><span data-dc-tpl="153" style="text-transform: uppercase;">Explore project</span><span data-dc-tpl="154">→</span></a>
+        </div>
       </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. No “from”. Fee credited when you climb.</p>
+    
+      <div data-dc-tpl="146" style="display: flex; flex-direction: column; gap: 20px;">
+        <div data-dc-tpl="147" style="aspect-ratio: 16 / 11; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="148" src="assets/finosWide.jpg" alt="FINOS" loading="lazy" decoding="async" class="scp5" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);"></div>
+        <div data-dc-tpl="149" style="font-size: 28px; letter-spacing: -0.03em; font-weight: 600;"><span class="sc-interp">FINOS</span></div>
+        <div data-dc-tpl="150" style="display: flex; justify-content: space-between; gap: 24px; align-items: flex-end;">
+          <p data-dc-tpl="151" style="margin: 0px; font-size: 16px; line-height: 1.35; max-width: 300px; color: rgb(90, 91, 99);"><span class="sc-interp">Financial operating system · AI review workflow. Evidences: Embedded Designer.</span></p>
+          <a data-dc-tpl="152" href="#work" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; white-space: nowrap;"><span data-dc-tpl="153" style="text-transform: uppercase;">Explore project</span><span data-dc-tpl="154">→</span></a>
+        </div>
+      </div>
+    
+  </div>
+  <div data-dc-tpl="155" style="position: relative; display: flex; justify-content: center; margin-top: 88px;">
+    <a data-dc-tpl="156" href="#work" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; width: 190px;"><span data-dc-tpl="157" style="text-transform: uppercase;">View all projects</span><span data-dc-tpl="158">→</span></a>
+  </div></section><section data-dc-tpl="159" id="services" data-screen-label="Services" style="position: relative; overflow: hidden; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 120px 32px;">
+  <div data-dc-tpl="160" style="position: absolute; inset: -6%; pointer-events: none; background: url(&quot;assets/asset-04.jpg&quot;) center center / cover no-repeat; opacity: 0.08; animation: 40s ease-in-out 0s infinite normal none running kenburns; filter: invert(1);"></div>
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: 50%; top: -20%; width: 60vw; height: 60vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.18) 0%, transparent 65%); filter: blur(60px); animation: 36s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div><div style="position: absolute; left: -10%; top: 50%; width: 45vw; height: 45vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.14) 0%, transparent 65%); filter: blur(60px); animation: 44s ease-in-out 0s infinite normal none running driftC; will-change: transform;"></div></div>
+  <div data-dc-tpl="161" style="position: relative; max-width: 1400px; margin: 0px auto;">
+    <div data-dc-tpl="162" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end;">
+      <div data-dc-tpl="163">
+        <div data-dc-tpl="164" style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: rgb(255, 122, 18); text-transform: uppercase;">Our services</div>
+        <h2 data-dc-tpl="165" data-reveal="1" style="margin: 20px 0px 0px; font-size: clamp(44px, 5vw, 88px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; color: rgb(245, 246, 248);">One ladder.<br data-dc-tpl="166">Four <span data-dc-tpl="167" style="color: rgb(255, 31, 122);">fixed</span> steps.</h2>
+      </div>
+      <p data-dc-tpl="168" data-reveal="2" style="margin: 0px; max-width: 380px; font-size: 17px; line-height: 1.4; color: rgb(201, 202, 209); justify-self: end;">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start">
-      <div style="position:sticky;top:96px;display:flex;flex-direction:column">
-        <sc-for list="{{ ladder }}" as="l" hint-placeholder-count="4">
-          <button sc-camel-on-click="{{ l.select }}" sc-camel-on-mouse-enter="{{ l.select }}" style="{{ l.style }}">
-            <span style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;width:100%">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ l.numColor }}">{{ l.num }}</span>
-              <span style="font-size:clamp(20px,1.9vw,28px);letter-spacing:-0.03em;font-weight:600;text-align:left">{{ l.name }}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;white-space:nowrap">{{ l.time }}</span>
-            </span>
-            <span style="display:block;height:2px;background:rgba(255,255,255,.08);margin-top:18px;position:relative;overflow:hidden"><span style="{{ l.barStyle }}"></span></span>
-          </button>
-        </sc-for>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">
-          <span>{{ activeStep.num }} / 04</span>
-          <span style="display:flex;gap:8px"><button sc-camel-on-click="{{ prevStep }}" style="width:40px;height:40px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#f5f6f8;cursor:pointer;font-size:16px">←</button><button sc-camel-on-click="{{ nextStep }}" style="width:40px;height:40px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#f5f6f8;cursor:pointer;font-size:16px">→</button></span>
+    <div data-dc-tpl="169" style="display: grid; grid-template-columns: minmax(0px, 5fr) minmax(0px, 7fr); gap: clamp(24px, 4vw, 64px); margin-top: 80px; align-items: start;">
+      <div data-dc-tpl="170" style="position: sticky; top: 96px; display: flex; flex-direction: column;">
+        <div data-dc-tpl="171" role="tablist" aria-label="Service ladder" aria-orientation="vertical" style="display: flex; flex-direction: column;">
+          
+            <button data-dc-tpl="173" role="tab" id="ladder-tab-1" aria-selected="true" aria-controls="ladder-panel-1" tabindex="0" style="display: block; width: 100%; background: transparent; border: 0px; padding: 22px 0px; color: rgb(245, 246, 248); font: inherit; cursor: pointer; text-align: left; transition: color 0.4s;">
+              <span data-dc-tpl="174" style="display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; width: 100%;">
+                <span data-dc-tpl="175" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(255, 31, 122);"><span class="sc-interp">01</span></span>
+                <span data-dc-tpl="176" style="font-size: clamp(20px, 1.9vw, 28px); letter-spacing: -0.03em; font-weight: 600; text-align: left;"><span class="sc-interp">Product Teardown</span></span>
+                <span data-dc-tpl="177" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163); white-space: nowrap; text-transform: uppercase;"><span class="sc-interp">5 days</span></span>
+              </span>
+              <span data-dc-tpl="178" style="display: block; height: 2px; background: rgba(255, 255, 255, 0.08); margin-top: 18px; position: relative; overflow: hidden;"><span data-dc-tpl="179" style="position: absolute; inset: 0px; background: linear-gradient(90deg, rgb(255, 31, 122), rgb(255, 122, 18)); transform-origin: left center; transform: scaleX(1); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);"></span></span>
+            </button>
+          
+            <button data-dc-tpl="173" role="tab" id="ladder-tab-2" aria-selected="false" aria-controls="ladder-panel-2" tabindex="-1" style="display: block; width: 100%; background: transparent; border: 0px; padding: 22px 0px; color: rgb(141, 142, 151); font: inherit; cursor: pointer; text-align: left; transition: color 0.4s;">
+              <span data-dc-tpl="174" style="display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; width: 100%;">
+                <span data-dc-tpl="175" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(154, 155, 163);"><span class="sc-interp">02</span></span>
+                <span data-dc-tpl="176" style="font-size: clamp(20px, 1.9vw, 28px); letter-spacing: -0.03em; font-weight: 600; text-align: left;"><span class="sc-interp">Interface Refresh Sprint</span></span>
+                <span data-dc-tpl="177" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163); white-space: nowrap; text-transform: uppercase;"><span class="sc-interp">2 weeks</span></span>
+              </span>
+              <span data-dc-tpl="178" style="display: block; height: 2px; background: rgba(255, 255, 255, 0.08); margin-top: 18px; position: relative; overflow: hidden;"><span data-dc-tpl="179" style="position: absolute; inset: 0px; background: linear-gradient(90deg, rgb(255, 31, 122), rgb(255, 122, 18)); transform-origin: left center; transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);"></span></span>
+            </button>
+          
+            <button data-dc-tpl="173" role="tab" id="ladder-tab-3" aria-selected="false" aria-controls="ladder-panel-3" tabindex="-1" style="display: block; width: 100%; background: transparent; border: 0px; padding: 22px 0px; color: rgb(141, 142, 151); font: inherit; cursor: pointer; text-align: left; transition: color 0.4s;">
+              <span data-dc-tpl="174" style="display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; width: 100%;">
+                <span data-dc-tpl="175" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(154, 155, 163);"><span class="sc-interp">03</span></span>
+                <span data-dc-tpl="176" style="font-size: clamp(20px, 1.9vw, 28px); letter-spacing: -0.03em; font-weight: 600; text-align: left;"><span class="sc-interp">Web Experience</span></span>
+                <span data-dc-tpl="177" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163); white-space: nowrap; text-transform: uppercase;"><span class="sc-interp">6 – 8 weeks</span></span>
+              </span>
+              <span data-dc-tpl="178" style="display: block; height: 2px; background: rgba(255, 255, 255, 0.08); margin-top: 18px; position: relative; overflow: hidden;"><span data-dc-tpl="179" style="position: absolute; inset: 0px; background: linear-gradient(90deg, rgb(255, 31, 122), rgb(255, 122, 18)); transform-origin: left center; transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);"></span></span>
+            </button>
+          
+            <button data-dc-tpl="173" role="tab" id="ladder-tab-4" aria-selected="false" aria-controls="ladder-panel-4" tabindex="-1" style="display: block; width: 100%; background: transparent; border: 0px; padding: 22px 0px; color: rgb(141, 142, 151); font: inherit; cursor: pointer; text-align: left; transition: color 0.4s;">
+              <span data-dc-tpl="174" style="display: grid; grid-template-columns: 44px 1fr auto; gap: 16px; align-items: center; width: 100%;">
+                <span data-dc-tpl="175" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(154, 155, 163);"><span class="sc-interp">04</span></span>
+                <span data-dc-tpl="176" style="font-size: clamp(20px, 1.9vw, 28px); letter-spacing: -0.03em; font-weight: 600; text-align: left;"><span class="sc-interp">Embedded Designer</span></span>
+                <span data-dc-tpl="177" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163); white-space: nowrap; text-transform: uppercase;"><span class="sc-interp">Ongoing</span></span>
+              </span>
+              <span data-dc-tpl="178" style="display: block; height: 2px; background: rgba(255, 255, 255, 0.08); margin-top: 18px; position: relative; overflow: hidden;"><span data-dc-tpl="179" style="position: absolute; inset: 0px; background: linear-gradient(90deg, rgb(255, 31, 122), rgb(255, 122, 18)); transform-origin: left center; transform: scaleX(0); transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);"></span></span>
+            </button>
+          
+        </div>
+        <div data-dc-tpl="180" style="display: flex; justify-content: space-between; align-items: center; margin-top: 36px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163);">
+          <span data-dc-tpl="181"><span class="sc-interp">01</span> / 04</span>
+          <span data-dc-tpl="182" style="display: flex; gap: 8px;"><button data-dc-tpl="183" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: rgb(245, 246, 248); cursor: pointer; font-size: 16px;">←</button><button data-dc-tpl="184" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: rgb(245, 246, 248); cursor: pointer; font-size: 16px;">→</button></span>
         </div>
       </div>
 
-      <div style="position:relative;min-height:560px">
-        <div key="{{ activeStep.num }}" style="background:#f5f6f8;color:#16161a;animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both;display:grid;grid-template-rows:auto auto auto 1fr auto">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
-            <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px">{{ activeStep.num }} — {{ activeStep.kicker }}</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">{{ activeStep.time }}</span>
+      <div data-dc-tpl="185" style="position: relative; min-height: 560px;">
+        
+          <div data-dc-tpl="187" role="tabpanel" id="ladder-panel-1" aria-labelledby="ladder-tab-1" tabindex="0" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); animation: 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0s 1 normal both running fadeUp; display: grid; grid-template-rows: auto auto auto 1fr auto;">
+          <div data-dc-tpl="188" style="display: flex; justify-content: space-between; align-items: center; padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 40px) 0px;">
+            <span data-dc-tpl="189" style="background: rgb(22, 22, 26); color: rgb(245, 246, 248); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; padding: 10px 14px; text-transform: uppercase;"><span class="sc-interp">01</span> — <span class="sc-interp">Diagnose</span></span>
+            <span data-dc-tpl="190" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115); text-transform: uppercase;"><span class="sc-interp">5 days</span></span>
           </div>
-          <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
-            <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">{{ activeStep.name }}</div>
-            <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">{{ activeStep.price }}</div>
+          <div data-dc-tpl="191" style="padding: 28px clamp(24px, 3vw, 40px) 0px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end;">
+            <div data-dc-tpl="192" style="font-size: clamp(30px, 3vw, 46px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; min-width: 0px;"><span class="sc-interp">Product Teardown</span></div>
+            <div data-dc-tpl="193" style="font-size: clamp(26px, 2.4vw, 38px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; color: rgb(255, 31, 122); white-space: nowrap;"><span class="sc-interp">R6,500</span></div>
           </div>
-          <div style="padding:24px clamp(24px,3vw,40px) 0">
-            <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">{{ activeStep.desc }}</p>
-            <div style="margin-top:28px;border-top:1px solid #16161a">
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">TIMELINE</span><span style="font-weight:600">{{ activeStep.priceNote }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">EVIDENCE</span><span style="font-weight:600">{{ activeStep.evidence }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">CREDIT</span><span style="color:#3a3b41">{{ activeStep.credit }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">YOU GET</span>
-                <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
-                  <sc-for list="{{ activeStep.deliverables }}" as="d" hint-placeholder-count="4">
-                    <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">{{ d.n }}</span><span style="font-weight:500">{{ d.t }}</span></li>
-                  </sc-for>
+          <div data-dc-tpl="194" style="padding: 24px clamp(24px, 3vw, 40px) 0px;">
+            <p data-dc-tpl="195" style="margin: 0px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65); max-width: 620px;"><span class="sc-interp">A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.</span></p>
+            <div data-dc-tpl="196" style="margin-top: 28px; border-top: 1px solid rgb(22, 22, 26);">
+              <div data-dc-tpl="197" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="198" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Timeline</span><span data-dc-tpl="199" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Fixed · 5 working days</span></span></div>
+              <div data-dc-tpl="200" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="201" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Evidence</span><span data-dc-tpl="202" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Evidence — WasteMart</span></span></div>
+              <div data-dc-tpl="203" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="204" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Credit</span><span data-dc-tpl="205" style="color: rgb(58, 59, 65);"><span class="sc-interp">Fee credited in full against any engagement booked within 60 days.</span></span></div>
+              <div data-dc-tpl="206" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; font-size: 14px; line-height: 1.35;"><span data-dc-tpl="207" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">You get</span>
+                <ol data-dc-tpl="208" style="margin: 0px; padding: 0px; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 24px;">
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">01</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">45-minute discovery session</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">02</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Ranked issue list with severity</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">03</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Five screens redesigned</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">04</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">12-month product roadmap</span></span></li>
+                  
                 </ol>
               </div>
             </div>
           </div>
-          <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
-            <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
-            <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span>{{ activeStep.cta }}</span><span>→</span></a>
+          <div data-dc-tpl="213" style="margin-top: 32px; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 22px clamp(24px, 3vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
+            <span data-dc-tpl="214" style="font-size: 14px; color: rgb(154, 155, 163);">Excl. VAT · developer handoff and 30 days aftercare included</span>
+            <a data-dc-tpl="215" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; min-width: 200px; color: rgb(245, 246, 248);"><span data-dc-tpl="216" style="text-transform: uppercase;"><span class="sc-interp">Book a teardown</span></span><span data-dc-tpl="217">→</span></a>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:100px;gap:24px;flex-wrap:wrap">
-      <div style="font-size:15px;font-weight:600">✦ DEVELOPER HANDOFF · WCAG 2.1 AA · 30 DAYS AFTERCARE — IN EVERY PRICE.</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">ALL PRICES EXCL. VAT</div>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Alternatives" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:90px 10% 120px">
-  {{ lightBg3 }}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
-    <h2 data-reveal="1" style="margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;line-height:1;color:#16161a">Alternatives</h2>
-    <p style="margin:0;font-size:16px;line-height:1.3;max-width:200px">Honest comparison, including doing nothing.</p>
-  </div>
-  <div style="border-top:1px solid #dcdee3;margin-top:80px;position:relative"><span style="position:absolute;left:50%;top:-12px;font-size:20px;color:#ff7a12">+</span></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:80px">
-    <div style="display:flex;flex-direction:column;justify-content:space-between;gap:120px">
-      <div style="display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600;letter-spacing:0.02em">
-        <sc-for list="{{ clients }}" as="c" hint-placeholder-count="5">
-          <button sc-camel-on-click="{{ c.select }}" style="{{ c.style }}">{{ c.label }}</button>
-        </sc-for>
-      </div>
-      <div style="display:flex;border:1px solid #16161a;width:148px">
-        <button sc-camel-on-click="{{ prevClient }}" style="flex:1;height:72px;background:transparent;border:0;border-right:1px solid #16161a;font-size:18px;cursor:pointer;color:#16161a">←</button>
-        <button sc-camel-on-click="{{ nextClient }}" style="flex:1;height:72px;background:transparent;border:0;font-size:18px;cursor:pointer;color:#16161a">→</button>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;justify-content:space-between;gap:80px">
-      <div style="display:flex;flex-direction:column;gap:80px">
-        <p style="margin:0;font-size:clamp(24px,2.1vw,34px);line-height:1.15;letter-spacing:-0.03em;font-weight:500;color:#16161a">{{ activeClient.quote }}</p>
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
-          <div style="display:flex;gap:20px;align-items:center">
-            <div style="width:76px;height:76px;overflow:hidden;border-radius:4px"><img src="{{ activeClient.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>
-            <div><div style="font-size:17px;font-weight:500">{{ activeClient.person }}</div><div style="font-size:16px;color:#8a8886;margin-top:4px">{{ activeClient.role }}</div></div>
+        
+          <div data-dc-tpl="187" role="tabpanel" id="ladder-panel-2" aria-labelledby="ladder-tab-2" tabindex="0" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); display: none; grid-template-rows: auto auto auto 1fr auto;">
+          <div data-dc-tpl="188" style="display: flex; justify-content: space-between; align-items: center; padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 40px) 0px;">
+            <span data-dc-tpl="189" style="background: rgb(22, 22, 26); color: rgb(245, 246, 248); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; padding: 10px 14px; text-transform: uppercase;"><span class="sc-interp">02</span> — <span class="sc-interp">Refresh</span></span>
+            <span data-dc-tpl="190" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115); text-transform: uppercase;"><span class="sc-interp">2 weeks</span></span>
           </div>
-          <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#ff1f7a">→ SEE THE LADDER</a>
-        </div>
-      </div>
-      <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>BECOME A CLIENT</span><span>→</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="why" data-screen-label="Why work with us" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
-  {{ darkBg }}
-  <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">WHY WORK WITH US</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Designers who<br>answer to the <span style="color:#ff1f7a">build.</span></h2>
-      </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
-      <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4">
-        <div data-reveal="{{ r.n }}" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:340px;border-top:4px solid #ff1f7a;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)">
-          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12">{{ r.tag }}</span></div>
-          <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">{{ r.title }}</div>
-          <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">{{ r.body }}</p>
-        </div>
-      </sc-for>
-    </div>
-    <div data-reveal="1" style="margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:32px">
-      <div style="width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d"><img src="assets/asset-09.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)"></div>
-      <div style="min-width:0">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3">PRACTICE LEAD</div>
-        <div style="font-size:17px;margin-top:6px;line-height:1.35"><span style="font-weight:600">Sphamandla Xaba</span>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">ENTERPRISE SAAS</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">FINTECH</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">OPERATIONS</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section id="enquire" data-screen-label="Enquiry form" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:120px 32px">
-  {{ lightBg }}
-  <div style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
-    <div style="position:sticky;top:120px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">START HERE</div>
-      <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,4.6vw,80px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Tell us what<br>isn't <span style="color:#ff1f7a">working.</span></h2>
-      <p data-reveal="2" style="margin:28px 0 0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
-      <div style="margin-top:48px;border-top:1px solid #16161a">
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">REPLY</span><span style="font-weight:600">Within 2 working days</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">START</span><span style="font-weight:600">Within 3 working days of booking</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">DIRECT</span><span style="font-weight:600">info@gemis.co.za · +27 11 219 5008</span></div>
-      </div>
-    </div>
-    <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
-      <div style="background:#16161a;color:#f5f6f8;padding:clamp(32px,4vw,56px);min-height:420px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">RECEIVED</div>
-        <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600">Thanks, {{ formName }}.<br>You'll hear from us within two working days.</div>
-        <button sc-camel-on-click="{{ resetForm }}" style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:13px;background:transparent;border:0;border-bottom:2px solid #ff7a12;padding:0 0 8px;color:#f5f6f8;cursor:pointer">SEND ANOTHER →</button>
-      </div>
-    </sc-if>
-    <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-      <form sc-camel-on-submit="{{ submitForm }}" data-reveal="2" style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">NAME<input name="name" required="" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" placeholder="Your name" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WORK EMAIL<input name="email" type="email" required="" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" placeholder="name@company.co.za" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">COMPANY<input name="company" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">PRODUCT URL (OPTIONAL)<input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-        </div>
-        <div style="display:grid;gap:12px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHERE ARE YOU ON THE LADDER?</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <sc-for list="{{ serviceChips }}" as="c" hint-placeholder-count="5">
-              <button type="button" sc-camel-on-click="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
-            </sc-for>
+          <div data-dc-tpl="191" style="padding: 28px clamp(24px, 3vw, 40px) 0px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end;">
+            <div data-dc-tpl="192" style="font-size: clamp(30px, 3vw, 46px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; min-width: 0px;"><span class="sc-interp">Interface Refresh Sprint</span></div>
+            <div data-dc-tpl="193" style="font-size: clamp(26px, 2.4vw, 38px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; color: rgb(255, 31, 122); white-space: nowrap;"><span class="sc-interp">R18,000 – R25,000</span></div>
+          </div>
+          <div data-dc-tpl="194" style="padding: 24px clamp(24px, 3vw, 40px) 0px;">
+            <p data-dc-tpl="195" style="margin: 0px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65); max-width: 620px;"><span class="sc-interp">The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.</span></p>
+            <div data-dc-tpl="196" style="margin-top: 28px; border-top: 1px solid rgb(22, 22, 26);">
+              <div data-dc-tpl="197" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="198" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Timeline</span><span data-dc-tpl="199" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Fixed scope · 2 weeks</span></span></div>
+              <div data-dc-tpl="200" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="201" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Evidence</span><span data-dc-tpl="202" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Evidence — ManaGem</span></span></div>
+              <div data-dc-tpl="203" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="204" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Credit</span><span data-dc-tpl="205" style="color: rgb(58, 59, 65);"><span class="sc-interp">Teardown fee credited. Thirty days of aftercare included.</span></span></div>
+              <div data-dc-tpl="206" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; font-size: 14px; line-height: 1.35;"><span data-dc-tpl="207" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">You get</span>
+                <ol data-dc-tpl="208" style="margin: 0px; padding: 0px; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 24px;">
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">01</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Up to 12 screens redesigned</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">02</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Component spec and tokens</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">03</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">WCAG 2.2 AA contrast pass</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">04</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Developer handoff session</span></span></li>
+                  
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div data-dc-tpl="213" style="margin-top: 32px; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 22px clamp(24px, 3vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
+            <span data-dc-tpl="214" style="font-size: 14px; color: rgb(154, 155, 163);">Excl. VAT · developer handoff and 30 days aftercare included</span>
+            <a data-dc-tpl="215" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; min-width: 200px; color: rgb(245, 246, 248);"><span data-dc-tpl="216" style="text-transform: uppercase;"><span class="sc-interp">Book a teardown</span></span><span data-dc-tpl="217">→</span></a>
           </div>
         </div>
-        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHAT'S NOT WORKING?<textarea name="message" required="" rows="4" value="{{ form.message }}" sc-camel-on-change="{{ setField }}" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.4;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;resize:vertical;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></textarea></label>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:8px">
-          <span style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4">Read by the practice lead, not a sales team. We don't share your details.</span>
-          <button type="submit" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#fff;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s" style-hover="background:#16161a;transform:translateY(-2px)"><span>SEND ENQUIRY</span><span>→</span></button>
+        
+          <div data-dc-tpl="187" role="tabpanel" id="ladder-panel-3" aria-labelledby="ladder-tab-3" tabindex="0" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); display: none; grid-template-rows: auto auto auto 1fr auto;">
+          <div data-dc-tpl="188" style="display: flex; justify-content: space-between; align-items: center; padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 40px) 0px;">
+            <span data-dc-tpl="189" style="background: rgb(22, 22, 26); color: rgb(245, 246, 248); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; padding: 10px 14px; text-transform: uppercase;"><span class="sc-interp">03</span> — <span class="sc-interp">Build</span></span>
+            <span data-dc-tpl="190" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115); text-transform: uppercase;"><span class="sc-interp">6 – 8 weeks</span></span>
+          </div>
+          <div data-dc-tpl="191" style="padding: 28px clamp(24px, 3vw, 40px) 0px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end;">
+            <div data-dc-tpl="192" style="font-size: clamp(30px, 3vw, 46px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; min-width: 0px;"><span class="sc-interp">Web Experience</span></div>
+            <div data-dc-tpl="193" style="font-size: clamp(26px, 2.4vw, 38px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; color: rgb(255, 31, 122); white-space: nowrap;"><span class="sc-interp">R55,000 – R85,000</span></div>
+          </div>
+          <div data-dc-tpl="194" style="padding: 24px clamp(24px, 3vw, 40px) 0px;">
+            <p data-dc-tpl="195" style="margin: 0px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65); max-width: 620px;"><span class="sc-interp">Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.</span></p>
+            <div data-dc-tpl="196" style="margin-top: 28px; border-top: 1px solid rgb(22, 22, 26);">
+              <div data-dc-tpl="197" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="198" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Timeline</span><span data-dc-tpl="199" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Design + build · 6–8 weeks</span></span></div>
+              <div data-dc-tpl="200" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="201" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Evidence</span><span data-dc-tpl="202" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Evidence — FINOS</span></span></div>
+              <div data-dc-tpl="203" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="204" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Credit</span><span data-dc-tpl="205" style="color: rgb(58, 59, 65);"><span class="sc-interp">Teardown fee credited. Thirty days of aftercare included.</span></span></div>
+              <div data-dc-tpl="206" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; font-size: 14px; line-height: 1.35;"><span data-dc-tpl="207" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">You get</span>
+                <ol data-dc-tpl="208" style="margin: 0px; padding: 0px; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 24px;">
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">01</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Content and structure map</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">02</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Full responsive design system</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">03</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">WordPress build and CMS training</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">04</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Performance and SEO baseline</span></span></li>
+                  
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div data-dc-tpl="213" style="margin-top: 32px; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 22px clamp(24px, 3vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
+            <span data-dc-tpl="214" style="font-size: 14px; color: rgb(154, 155, 163);">Excl. VAT · developer handoff and 30 days aftercare included</span>
+            <a data-dc-tpl="215" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; min-width: 200px; color: rgb(245, 246, 248);"><span data-dc-tpl="216" style="text-transform: uppercase;"><span class="sc-interp">Book a teardown</span></span><span data-dc-tpl="217">→</span></a>
+          </div>
+        </div>
+        
+          <div data-dc-tpl="187" role="tabpanel" id="ladder-panel-4" aria-labelledby="ladder-tab-4" tabindex="0" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); display: none; grid-template-rows: auto auto auto 1fr auto;">
+          <div data-dc-tpl="188" style="display: flex; justify-content: space-between; align-items: center; padding: clamp(20px, 2.5vw, 32px) clamp(24px, 3vw, 40px) 0px;">
+            <span data-dc-tpl="189" style="background: rgb(22, 22, 26); color: rgb(245, 246, 248); font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; padding: 10px 14px; text-transform: uppercase;"><span class="sc-interp">04</span> — <span class="sc-interp">Embed</span></span>
+            <span data-dc-tpl="190" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115); text-transform: uppercase;"><span class="sc-interp">Ongoing</span></span>
+          </div>
+          <div data-dc-tpl="191" style="padding: 28px clamp(24px, 3vw, 40px) 0px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end;">
+            <div data-dc-tpl="192" style="font-size: clamp(30px, 3vw, 46px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; min-width: 0px;"><span class="sc-interp">Embedded Designer</span></div>
+            <div data-dc-tpl="193" style="font-size: clamp(26px, 2.4vw, 38px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; color: rgb(255, 31, 122); white-space: nowrap;"><span class="sc-interp">R20,000 – R35,000/month</span></div>
+          </div>
+          <div data-dc-tpl="194" style="padding: 24px clamp(24px, 3vw, 40px) 0px;">
+            <p data-dc-tpl="195" style="margin: 0px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65); max-width: 620px;"><span class="sc-interp">A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.</span></p>
+            <div data-dc-tpl="196" style="margin-top: 28px; border-top: 1px solid rgb(22, 22, 26);">
+              <div data-dc-tpl="197" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="198" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Timeline</span><span data-dc-tpl="199" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Per month · 3-month minimum</span></span></div>
+              <div data-dc-tpl="200" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="201" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Evidence</span><span data-dc-tpl="202" style="font-weight: 600; text-transform: uppercase;"><span class="sc-interp">Evidence — RentFlow</span></span></div>
+              <div data-dc-tpl="203" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px; line-height: 1.35;"><span data-dc-tpl="204" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Credit</span><span data-dc-tpl="205" style="color: rgb(58, 59, 65);"><span class="sc-interp">Three-month minimum. Scale the band up or down monthly.</span></span></div>
+              <div data-dc-tpl="206" style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0px; font-size: 14px; line-height: 1.35;"><span data-dc-tpl="207" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">You get</span>
+                <ol data-dc-tpl="208" style="margin: 0px; padding: 0px; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 24px;">
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">01</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">20 / 40 / 60 hour bands</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">02</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Weekly planning with your PM</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">03</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Design system ownership</span></span></li>
+                  
+                    <li data-dc-tpl="210" style="display: flex; gap: 10px; align-items: baseline;"><span data-dc-tpl="211" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(255, 122, 18);"><span class="sc-interp">04</span></span><span data-dc-tpl="212" style="font-weight: 500;"><span class="sc-interp">Direct line to our developers</span></span></li>
+                  
+                </ol>
+              </div>
+            </div>
+          </div>
+          <div data-dc-tpl="213" style="margin-top: 32px; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 22px clamp(24px, 3vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
+            <span data-dc-tpl="214" style="font-size: 14px; color: rgb(154, 155, 163);">Excl. VAT · developer handoff and 30 days aftercare included</span>
+            <a data-dc-tpl="215" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 40px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 8px; min-width: 200px; color: rgb(245, 246, 248);"><span data-dc-tpl="216" style="text-transform: uppercase;"><span class="sc-interp">Book a teardown</span></span><span data-dc-tpl="217">→</span></a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div data-dc-tpl="218" style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 100px; gap: 24px; flex-wrap: wrap;">
+      <div data-dc-tpl="219" style="font-size: 15px; font-weight: 600; text-transform: uppercase;">✦ Developer handoff · WCAG 2.2 AA · 30 days aftercare — in every price.</div>
+      <div data-dc-tpl="220" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(154, 155, 163); text-transform: uppercase;">All prices excl. VAT</div>
+    </div>
+  </div></section><section data-dc-tpl="221" data-screen-label="Alternatives" style="position: relative; overflow: hidden; background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 90px 10% 120px;">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: -10%; top: 10%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.12) 0%, transparent 65%); filter: blur(80px); animation: 38s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div></div>
+  <div data-dc-tpl="222" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+    <h2 data-dc-tpl="223" data-reveal="1" style="margin: 0px; font-size: clamp(48px, 5vw, 88px); letter-spacing: -0.045em; font-weight: 600; line-height: 1; color: rgb(22, 22, 26);">Alternatives</h2>
+    <p data-dc-tpl="224" style="margin: 0px; font-size: 16px; line-height: 1.3; max-width: 200px;">Honest comparison, including doing nothing.</p>
+  </div>
+  <div data-dc-tpl="225" style="border-top: 1px solid rgb(220, 222, 227); margin-top: 80px; position: relative;"><span data-dc-tpl="226" style="position: absolute; left: 50%; top: -12px; font-size: 20px; color: rgb(255, 122, 18);">+</span></div>
+  <div data-dc-tpl="227" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 80px;">
+    <div data-dc-tpl="228" style="display: flex; flex-direction: column; justify-content: space-between; gap: 120px;">
+      <div data-dc-tpl="229" role="tablist" aria-label="Alternatives to the studio" aria-orientation="vertical" style="display: flex; flex-direction: column; gap: 14px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em;">
+        
+          <button data-dc-tpl="231" role="tab" id="alt-tab-1" aria-selected="false" aria-controls="alt-panel-1" tabindex="-1" style="background: transparent; border: 0px; padding: 0px; text-align: left; font: inherit; cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(154, 155, 163);"><span class="sc-interp">Freelance designer</span></button>
+        
+          <button data-dc-tpl="231" role="tab" id="alt-tab-2" aria-selected="false" aria-controls="alt-panel-2" tabindex="-1" style="background: transparent; border: 0px; padding: 0px; text-align: left; font: inherit; cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(154, 155, 163);"><span class="sc-interp">Design agency</span></button>
+        
+          <button data-dc-tpl="231" role="tab" id="alt-tab-3" aria-selected="false" aria-controls="alt-panel-3" tabindex="-1" style="background: transparent; border: 0px; padding: 0px; text-align: left; font: inherit; cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(154, 155, 163);"><span class="sc-interp">Development shop</span></button>
+        
+          <button data-dc-tpl="231" role="tab" id="alt-tab-4" aria-selected="false" aria-controls="alt-panel-4" tabindex="-1" style="background: transparent; border: 0px; padding: 0px; text-align: left; font: inherit; cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(154, 155, 163);"><span class="sc-interp">Hiring in-house</span></button>
+        
+          <button data-dc-tpl="231" role="tab" id="alt-tab-5" aria-selected="true" aria-controls="alt-panel-5" tabindex="0" style="background: transparent; border: 0px; padding: 0px; text-align: left; font: inherit; cursor: pointer; letter-spacing: 0.02em; text-transform: uppercase; color: rgb(255, 31, 122);"><span class="sc-interp">Doing nothing  →</span></button>
+        
+      </div>
+      <div data-dc-tpl="232" style="display: flex; border: 1px solid rgb(22, 22, 26); width: 148px;">
+        <button data-dc-tpl="233" style="flex: 1 1 0%; height: 72px; background: transparent; border-width: 0px 1px 0px 0px; border-top-style: initial; border-right-style: solid; border-bottom-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: rgb(22, 22, 26); border-bottom-color: initial; border-left-color: initial; border-image: initial; font-size: 18px; cursor: pointer; color: rgb(22, 22, 26);">←</button>
+        <button data-dc-tpl="234" style="flex: 1 1 0%; height: 72px; background: transparent; border: 0px; font-size: 18px; cursor: pointer; color: rgb(22, 22, 26);">→</button>
+      </div>
+    </div>
+    <div data-dc-tpl="235" style="display: flex; flex-direction: column; justify-content: space-between; gap: 80px;">
+      
+      <div data-dc-tpl="237" role="tabpanel" id="alt-panel-1" aria-labelledby="alt-tab-1" tabindex="0" style="display: none;">
+        <p data-dc-tpl="238" style="margin: 0px; font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 500; color: rgb(22, 22, 26);"><span class="sc-interp">A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.</span></p>
+        <div data-dc-tpl="239" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;">
+          <div data-dc-tpl="240" style="display: flex; gap: 20px; align-items: center;">
+            <div data-dc-tpl="241" style="width: 76px; height: 76px; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="242" src="assets/shotFinos.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div data-dc-tpl="243"><div data-dc-tpl="244" style="font-size: 17px; font-weight: 500;"><span class="sc-interp">Alternative 01</span></div><div data-dc-tpl="245" style="font-size: 16px; color: rgb(138, 136, 134); margin-top: 4px;"><span class="sc-interp">Freelance designer</span></div></div>
+          </div>
+          <a data-dc-tpl="246" href="#services" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; white-space: nowrap; color: rgb(255, 31, 122); text-transform: uppercase;">→ See the ladder</a>
+        </div>
+      </div>
+      
+      <div data-dc-tpl="237" role="tabpanel" id="alt-panel-2" aria-labelledby="alt-tab-2" tabindex="0" style="display: none;">
+        <p data-dc-tpl="238" style="margin: 0px; font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 500; color: rgb(22, 22, 26);"><span class="sc-interp">An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.</span></p>
+        <div data-dc-tpl="239" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;">
+          <div data-dc-tpl="240" style="display: flex; gap: 20px; align-items: center;">
+            <div data-dc-tpl="241" style="width: 76px; height: 76px; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="242" src="assets/shotManagem.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div data-dc-tpl="243"><div data-dc-tpl="244" style="font-size: 17px; font-weight: 500;"><span class="sc-interp">Alternative 02</span></div><div data-dc-tpl="245" style="font-size: 16px; color: rgb(138, 136, 134); margin-top: 4px;"><span class="sc-interp">Design agency</span></div></div>
+          </div>
+          <a data-dc-tpl="246" href="#services" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; white-space: nowrap; color: rgb(255, 31, 122); text-transform: uppercase;">→ See the ladder</a>
+        </div>
+      </div>
+      
+      <div data-dc-tpl="237" role="tabpanel" id="alt-panel-3" aria-labelledby="alt-tab-3" tabindex="0" style="display: none;">
+        <p data-dc-tpl="238" style="margin: 0px; font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 500; color: rgb(22, 22, 26);"><span class="sc-interp">A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.</span></p>
+        <div data-dc-tpl="239" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;">
+          <div data-dc-tpl="240" style="display: flex; gap: 20px; align-items: center;">
+            <div data-dc-tpl="241" style="width: 76px; height: 76px; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="242" src="assets/shotRentflow.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div data-dc-tpl="243"><div data-dc-tpl="244" style="font-size: 17px; font-weight: 500;"><span class="sc-interp">Alternative 03</span></div><div data-dc-tpl="245" style="font-size: 16px; color: rgb(138, 136, 134); margin-top: 4px;"><span class="sc-interp">Development shop</span></div></div>
+          </div>
+          <a data-dc-tpl="246" href="#services" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; white-space: nowrap; color: rgb(255, 31, 122); text-transform: uppercase;">→ See the ladder</a>
+        </div>
+      </div>
+      
+      <div data-dc-tpl="237" role="tabpanel" id="alt-panel-4" aria-labelledby="alt-tab-4" tabindex="0" style="display: none;">
+        <p data-dc-tpl="238" style="margin: 0px; font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 500; color: rgb(22, 22, 26);"><span class="sc-interp">A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.</span></p>
+        <div data-dc-tpl="239" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;">
+          <div data-dc-tpl="240" style="display: flex; gap: 20px; align-items: center;">
+            <div data-dc-tpl="241" style="width: 76px; height: 76px; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="242" src="assets/shotNura.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div data-dc-tpl="243"><div data-dc-tpl="244" style="font-size: 17px; font-weight: 500;"><span class="sc-interp">Alternative 04</span></div><div data-dc-tpl="245" style="font-size: 16px; color: rgb(138, 136, 134); margin-top: 4px;"><span class="sc-interp">Hiring in-house</span></div></div>
+          </div>
+          <a data-dc-tpl="246" href="#services" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; white-space: nowrap; color: rgb(255, 31, 122); text-transform: uppercase;">→ See the ladder</a>
+        </div>
+      </div>
+      
+      <div data-dc-tpl="237" role="tabpanel" id="alt-panel-5" aria-labelledby="alt-tab-5" tabindex="0" style="display: flex; flex-direction: column; gap: 80px;">
+        <p data-dc-tpl="238" style="margin: 0px; font-size: clamp(24px, 2.1vw, 34px); line-height: 1.15; letter-spacing: -0.03em; font-weight: 500; color: rgb(22, 22, 26);"><span class="sc-interp">Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.</span></p>
+        <div data-dc-tpl="239" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;">
+          <div data-dc-tpl="240" style="display: flex; gap: 20px; align-items: center;">
+            <div data-dc-tpl="241" style="width: 76px; height: 76px; overflow: hidden; border-radius: 4px;"><img data-dc-tpl="242" src="assets/shotWaste.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div data-dc-tpl="243"><div data-dc-tpl="244" style="font-size: 17px; font-weight: 500;"><span class="sc-interp">Alternative 05</span></div><div data-dc-tpl="245" style="font-size: 16px; color: rgb(138, 136, 134); margin-top: 4px;"><span class="sc-interp">Doing nothing</span></div></div>
+          </div>
+          <a data-dc-tpl="246" href="#services" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; white-space: nowrap; color: rgb(255, 31, 122); text-transform: uppercase;">→ See the ladder</a>
+        </div>
+      </div>
+      
+      <a data-dc-tpl="247" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; width: 190px;"><span data-dc-tpl="248" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="249">→</span></a>
+    </div>
+  </div></section><section data-dc-tpl="250" id="why" data-screen-label="Why work with us" style="position: relative; overflow: hidden; background: rgb(22, 22, 26); color: rgb(245, 246, 248); padding: 120px 32px;">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: -10%; top: -20%; width: 55vw; height: 55vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.22) 0%, transparent 65%); filter: blur(60px); animation: 30s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div><div style="position: absolute; left: 55%; top: 10%; width: 45vw; height: 45vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.16) 0%, transparent 65%); filter: blur(60px); animation: 38s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div></div>
+  <div data-dc-tpl="251" style="position: relative; max-width: 1400px; margin: 0px auto;">
+    <div data-dc-tpl="252" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end;">
+      <div data-dc-tpl="253">
+        <div data-dc-tpl="254" style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: rgb(255, 122, 18); text-transform: uppercase;">Why work with us</div>
+        <h2 data-dc-tpl="255" data-reveal="1" style="margin: 20px 0px 0px; font-size: clamp(44px, 5vw, 88px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600;">Designers who<br data-dc-tpl="256">answer to the <span data-dc-tpl="257" style="color: rgb(255, 31, 122);">build.</span></h2>
+      </div>
+      <p data-dc-tpl="258" data-reveal="2" style="margin: 0px; max-width: 380px; font-size: 17px; line-height: 1.4; color: rgb(201, 202, 209); justify-self: end;">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
+    </div>
+    <div data-dc-tpl="259" style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 16px; margin-top: 80px;">
+      
+        <div data-dc-tpl="261" data-reveal="1" class="scp6" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 28px 28px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 36px; min-height: 340px; border-top: 4px solid rgb(255, 31, 122); transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+          <div data-dc-tpl="262" style="display: flex; justify-content: space-between; align-items: center;"><span data-dc-tpl="263" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgb(106, 107, 115);"><span class="sc-interp">01</span></span><span data-dc-tpl="264" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.06em; color: rgb(255, 122, 18); text-transform: uppercase;"><span class="sc-interp">One roof</span></span></div>
+          <div data-dc-tpl="265" style="font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; align-self: end;"><span class="sc-interp">Designed and built under one roof</span></div>
+          <p data-dc-tpl="266" style="margin: 0px; font-size: 15px; line-height: 1.4; color: rgb(58, 59, 65); border-top: 1px solid rgb(220, 222, 227); padding-top: 16px;"><span class="sc-interp">Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.</span></p>
+        </div>
+      
+        <div data-dc-tpl="261" data-reveal="2" class="scp6" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 28px 28px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 36px; min-height: 340px; border-top: 4px solid rgb(255, 31, 122); transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+          <div data-dc-tpl="262" style="display: flex; justify-content: space-between; align-items: center;"><span data-dc-tpl="263" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgb(106, 107, 115);"><span class="sc-interp">02</span></span><span data-dc-tpl="264" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.06em; color: rgb(255, 122, 18); text-transform: uppercase;"><span class="sc-interp">Published</span></span></div>
+          <div data-dc-tpl="265" style="font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; align-self: end;"><span class="sc-interp">Published prices. Fixed after the Teardown.</span></div>
+          <p data-dc-tpl="266" style="margin: 0px; font-size: 15px; line-height: 1.4; color: rgb(58, 59, 65); border-top: 1px solid rgb(220, 222, 227); padding-top: 16px;"><span class="sc-interp">Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.</span></p>
+        </div>
+      
+        <div data-dc-tpl="261" data-reveal="3" class="scp6" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 28px 28px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 36px; min-height: 340px; border-top: 4px solid rgb(255, 31, 122); transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+          <div data-dc-tpl="262" style="display: flex; justify-content: space-between; align-items: center;"><span data-dc-tpl="263" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgb(106, 107, 115);"><span class="sc-interp">03</span></span><span data-dc-tpl="264" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.06em; color: rgb(255, 122, 18); text-transform: uppercase;"><span class="sc-interp">Senior</span></span></div>
+          <div data-dc-tpl="265" style="font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; align-self: end;"><span class="sc-interp">Senior eyes on every screen</span></div>
+          <p data-dc-tpl="266" style="margin: 0px; font-size: 15px; line-height: 1.4; color: rgb(58, 59, 65); border-top: 1px solid rgb(220, 222, 227); padding-top: 16px;"><span class="sc-interp">One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.</span></p>
+        </div>
+      
+        <div data-dc-tpl="261" data-reveal="4" class="scp6" style="background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 28px 28px 32px; display: grid; grid-template-rows: auto 1fr auto; gap: 36px; min-height: 340px; border-top: 4px solid rgb(255, 31, 122); transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.5s;">
+          <div data-dc-tpl="262" style="display: flex; justify-content: space-between; align-items: center;"><span data-dc-tpl="263" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgb(106, 107, 115);"><span class="sc-interp">04</span></span><span data-dc-tpl="264" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.06em; color: rgb(255, 122, 18); text-transform: uppercase;"><span class="sc-interp">Evidence</span></span></div>
+          <div data-dc-tpl="265" style="font-size: clamp(22px, 1.8vw, 28px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 600; align-self: end;"><span class="sc-interp">Evidence before opinion</span></div>
+          <p data-dc-tpl="266" style="margin: 0px; font-size: 15px; line-height: 1.4; color: rgb(58, 59, 65); border-top: 1px solid rgb(220, 222, 227); padding-top: 16px;"><span class="sc-interp">We map what users actually do before we redesign anything, and every case study names the service it proves.</span></p>
+        </div>
+      
+    </div>
+    <div data-dc-tpl="267" data-reveal="1" style="margin-top: 64px; display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 32px;">
+      <div data-dc-tpl="268" style="width: 64px; height: 64px; overflow: hidden; border-radius: 2px; background: rgb(38, 38, 45);"><img data-dc-tpl="269" src="assets/asset-09.jpg" alt="" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1);"></div>
+      <div data-dc-tpl="270" style="min-width: 0px;">
+        <div data-dc-tpl="271" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgb(154, 155, 163); text-transform: uppercase;">Practice lead</div>
+        <div data-dc-tpl="272" style="font-size: 17px; margin-top: 6px; line-height: 1.35;"><span data-dc-tpl="273" style="font-weight: 600;">Sphamandla Xaba</span>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</div>
+      </div>
+      <div data-dc-tpl="274" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end;">
+        <span data-dc-tpl="275" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.04em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 12px; color: rgb(201, 202, 209); text-transform: uppercase;">Enterprise SaaS</span>
+        <span data-dc-tpl="276" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.04em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 12px; color: rgb(201, 202, 209); text-transform: uppercase;">Fintech</span>
+        <span data-dc-tpl="277" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.04em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 12px; color: rgb(201, 202, 209); text-transform: uppercase;">Operations</span>
+      </div>
+    </div>
+  </div></section><section data-dc-tpl="278" id="enquire" data-screen-label="Enquiry form" style="position: relative; overflow: hidden; background: rgb(245, 246, 248); color: rgb(22, 22, 26); padding: 120px 32px;">
+  <div style="position: absolute; inset: 0px; pointer-events: none; overflow: hidden;"><div style="position: absolute; left: -10%; top: -30%; width: 50vw; height: 50vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 31, 122, 0.14) 0%, transparent 65%); filter: blur(80px); animation: 36s ease-in-out 0s infinite normal none running driftA; will-change: transform;"></div><div style="position: absolute; left: 60%; top: 30%; width: 40vw; height: 40vw; border-radius: 50%; background: radial-gradient(circle, rgba(255, 122, 18, 0.12) 0%, transparent 65%); filter: blur(80px); animation: 44s ease-in-out 0s infinite normal none running driftB; will-change: transform;"></div></div>
+  <div data-dc-tpl="279" style="position: relative; max-width: 1400px; margin: 0px auto; display: grid; grid-template-columns: minmax(0px, 5fr) minmax(0px, 7fr); gap: clamp(32px, 5vw, 96px); align-items: start;">
+    <div data-dc-tpl="280" style="position: sticky; top: 120px;">
+      <div data-dc-tpl="281" style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: rgb(255, 122, 18); text-transform: uppercase;">Start here</div>
+      <h2 data-dc-tpl="282" data-reveal="1" style="margin: 20px 0px 0px; font-size: clamp(44px, 4.6vw, 80px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600;">Tell us what<br data-dc-tpl="283">isn't <span data-dc-tpl="284" style="color: rgb(255, 31, 122);">working.</span></h2>
+      <p data-dc-tpl="285" data-reveal="2" style="margin: 28px 0px 0px; max-width: 380px; font-size: 17px; line-height: 1.4; color: rgb(58, 59, 65);">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
+      <div data-dc-tpl="286" style="margin-top: 48px; border-top: 1px solid rgb(22, 22, 26);">
+        <div data-dc-tpl="287" style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px;"><span data-dc-tpl="288" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Reply</span><span data-dc-tpl="289" style="font-weight: 600;">Within 2 working days</span></div>
+        <div data-dc-tpl="290" style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0px; border-bottom: 1px solid rgb(220, 222, 227); font-size: 14px;"><span data-dc-tpl="291" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Start</span><span data-dc-tpl="292" style="font-weight: 600;">Within 3 working days of booking</span></div>
+        <div data-dc-tpl="293" style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0px; font-size: 14px;"><span data-dc-tpl="294" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; color: rgb(106, 107, 115); letter-spacing: 0.04em; text-transform: uppercase;">Direct</span><span data-dc-tpl="295" style="font-weight: 600;">info@gemis.co.za · +27 11 219 5008</span></div>
+      </div>
+    </div>
+    
+    
+      <form data-dc-tpl="303" data-reveal="2" style="background: rgb(255, 255, 255); border: 1px solid rgb(220, 222, 227); padding: clamp(24px, 3.5vw, 48px); display: grid; gap: 28px;">
+        <div data-dc-tpl="304" style="display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 24px;">
+          <label data-dc-tpl="305" style="display: grid; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115);"><span data-dc-tpl="306" style="text-transform: uppercase;">Name</span><input data-dc-tpl="307" name="name" placeholder="Your name" class="scp7" value="" style="font-family: Manrope, sans-serif; font-size: 16px; color: rgb(22, 22, 26); background: transparent; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(22, 22, 26); border-left-color: initial; border-image: initial; padding: 10px 0px; outline: none; transition: border-color 0.3s;"></label>
+          <label data-dc-tpl="308" style="display: grid; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115);"><span data-dc-tpl="309" style="text-transform: uppercase;">Work email</span><input data-dc-tpl="310" name="email" type="email" placeholder="name@company.co.za" class="scp7" value="" style="font-family: Manrope, sans-serif; font-size: 16px; color: rgb(22, 22, 26); background: transparent; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(22, 22, 26); border-left-color: initial; border-image: initial; padding: 10px 0px; outline: none; transition: border-color 0.3s;"></label>
+        </div>
+        <div data-dc-tpl="311" style="display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 24px;">
+          <label data-dc-tpl="312" style="display: grid; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115);"><span data-dc-tpl="313" style="text-transform: uppercase;">Company</span><input data-dc-tpl="314" name="company" placeholder="Company" class="scp7" value="" style="font-family: Manrope, sans-serif; font-size: 16px; color: rgb(22, 22, 26); background: transparent; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(22, 22, 26); border-left-color: initial; border-image: initial; padding: 10px 0px; outline: none; transition: border-color 0.3s;"></label>
+          <label data-dc-tpl="315" style="display: grid; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115);"><span data-dc-tpl="316" style="text-transform: uppercase;">Product URL (optional)</span><input data-dc-tpl="317" name="url" placeholder="https://" class="scp7" value="" style="font-family: Manrope, sans-serif; font-size: 16px; color: rgb(22, 22, 26); background: transparent; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(22, 22, 26); border-left-color: initial; border-image: initial; padding: 10px 0px; outline: none; transition: border-color 0.3s;"></label>
+        </div>
+        <div data-dc-tpl="318" style="display: grid; gap: 12px;">
+          <div data-dc-tpl="319" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115); text-transform: uppercase;">What do you need?</div>
+          <div data-dc-tpl="320" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            
+              <button data-dc-tpl="322" type="button" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; padding: 10px 14px; border-radius: 999px; cursor: pointer; border: 1px solid rgb(22, 22, 26); background: rgb(22, 22, 26); color: rgb(245, 246, 248); transition: 0.3s;"><span class="sc-interp">Not sure yet</span></button>
+            
+              <button data-dc-tpl="322" type="button" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; padding: 10px 14px; border-radius: 999px; cursor: pointer; border: 1px solid rgb(220, 222, 227); background: transparent; color: rgb(22, 22, 26); transition: 0.3s;"><span class="sc-interp">Product Teardown</span></button>
+            
+              <button data-dc-tpl="322" type="button" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; padding: 10px 14px; border-radius: 999px; cursor: pointer; border: 1px solid rgb(220, 222, 227); background: transparent; color: rgb(22, 22, 26); transition: 0.3s;"><span class="sc-interp">Interface Refresh</span></button>
+            
+              <button data-dc-tpl="322" type="button" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; padding: 10px 14px; border-radius: 999px; cursor: pointer; border: 1px solid rgb(220, 222, 227); background: transparent; color: rgb(22, 22, 26); transition: 0.3s;"><span class="sc-interp">Web Experience</span></button>
+            
+              <button data-dc-tpl="322" type="button" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; padding: 10px 14px; border-radius: 999px; cursor: pointer; border: 1px solid rgb(220, 222, 227); background: transparent; color: rgb(22, 22, 26); transition: 0.3s;"><span class="sc-interp">Embedded Designer</span></button>
+            
+          </div>
+        </div>
+        <label data-dc-tpl="323" style="display: grid; gap: 10px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; letter-spacing: 0.04em; color: rgb(106, 107, 115);"><span data-dc-tpl="324" style="text-transform: uppercase;">What's not working?</span><textarea data-dc-tpl="325" name="message" rows="4" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" class="scp7" style="font-family: Manrope, sans-serif; font-size: 16px; line-height: 1.4; color: rgb(22, 22, 26); background: transparent; border-width: 0px 0px 1px; border-top-style: initial; border-right-style: initial; border-bottom-style: solid; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-bottom-color: rgb(22, 22, 26); border-left-color: initial; border-image: initial; padding: 10px 0px; outline: none; resize: vertical; transition: border-color 0.3s;"></textarea></label>
+        <div data-dc-tpl="326" style="display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding-top: 8px;">
+          <span data-dc-tpl="327" style="font-size: 13px; color: rgb(106, 107, 115); max-width: 360px; line-height: 1.4;">Read by the practice lead, not a sales team. We don't share your details.</span>
+          <button data-dc-tpl="328" type="submit" class="scp8" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; letter-spacing: 0.02em; background: rgb(255, 31, 122); color: rgb(255, 255, 255); border: 0px; border-radius: 999px; padding: 16px 28px; cursor: pointer; display: flex; gap: 24px; transition: background 0.3s, transform 0.3s;"><span data-dc-tpl="329" style="text-transform: uppercase;">Send enquiry</span><span data-dc-tpl="330">→</span></button>
         </div>
       </form>
-    </sc-if>
-  </div>
-</section>
-
-<section id="contact" data-screen-label="Contact footer" style="background:#eef0f3;color:#16161a;padding:100px 32px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;gap:100px;position:relative;overflow:hidden">
-  <div style="position:absolute;inset:-4%;pointer-events:none;background:url(&quot;assets/asset-03.jpg&quot;) center/cover no-repeat;animation:kenburns 32s ease-in-out infinite reverse;opacity:.16"></div>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px">
-    <div>
-      <div style="font-size:15px;font-weight:600;color:#ff7a12">ONE ACTION. RESTATED.</div>
-      <h2 data-reveal="1" style="margin:24px 0 0;font-size:clamp(52px,6vw,96px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Ready to find out<br><span style="color:#ff1f7a">what's wrong?</span></h2>
-      <div style="margin-top:80px;font-size:15px;color:#6a6b73">©GEMIS® STUDIO 2026</div>
-      <div style="margin-top:48px;font-size:15px;font-weight:600">5 DAYS · R6,500 EXCL. VAT · FEE CREDITED WITHIN 60 DAYS.</div>
+    
+  </div></section><section data-dc-tpl="331" id="contact" data-screen-label="Contact footer" style="background: rgb(238, 240, 243); color: rgb(22, 22, 26); padding: 100px 32px 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; gap: 100px; position: relative; overflow: hidden;">
+  <div data-dc-tpl="332" style="position: absolute; inset: -4%; pointer-events: none; background: url(&quot;assets/asset-03.jpg&quot;) center center / cover no-repeat; animation: 32s ease-in-out 0s infinite reverse none running kenburns; opacity: 0.16;"></div>
+  <div data-dc-tpl="333" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px;">
+    <div data-dc-tpl="334">
+      <div data-dc-tpl="335" style="font-size: 15px; font-weight: 600; color: rgb(255, 122, 18); text-transform: uppercase;">One action. Restated.</div>
+      <h2 data-dc-tpl="336" data-reveal="1" style="margin: 24px 0px 0px; font-size: clamp(52px, 6vw, 96px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);">Ready to find out<br data-dc-tpl="337"><span data-dc-tpl="338" style="color: rgb(255, 31, 122);">what's wrong?</span></h2>
+      <div data-dc-tpl="339" style="margin-top: 80px; font-size: 15px; color: rgb(106, 107, 115); text-transform: uppercase;">©GEMIS® Studio 2026</div>
+      <div data-dc-tpl="340" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
-      <div style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
-      <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #16161a;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
-        <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
-<a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span>GEM INFORMATION SYSTEMS</span><span>&#8599;</span></a>
+    <div data-dc-tpl="341" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
+      <div data-dc-tpl="342" aria-hidden="true" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">19:51</span></div>
+      <div data-dc-tpl="343" style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <a data-dc-tpl="344" href="#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="345" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="346">→</span></a><a data-dc-tpl="347" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="348" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="349">↗</span></a>
       </div>
-      <div style="display:grid;grid-template-columns:1fr auto;gap:64px">
-        <div>
-          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px">BUSINESS ENQUIRY</div>
-          <div style="display:grid;grid-template-columns:24px 1fr;row-gap:8px;font-size:17px"><span style="color:#ff1f7a">E.</span><span>info@gemis.co.za</span><span style="color:#ff1f7a">P.</span><span>+27 11 219 5008</span></div>
+      <div data-dc-tpl="350" style="display: grid; grid-template-columns: 1fr auto; gap: 64px;">
+        <div data-dc-tpl="351">
+          <div data-dc-tpl="352" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Business enquiry</div>
+          <div data-dc-tpl="353" style="display: grid; grid-template-columns: 24px 1fr; row-gap: 8px; font-size: 17px;"><span data-dc-tpl="354" style="color: rgb(255, 31, 122);">E.</span><span data-dc-tpl="355">info@gemis.co.za</span><span data-dc-tpl="356" style="color: rgb(255, 31, 122);">P.</span><span data-dc-tpl="357">+27 11 219 5008</span></div>
         </div>
-        <div>
-          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px">SOCIAL</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px"><span>LinkedIn</span><span>Behance</span><span>Dribbble</span><span>Instagram</span></div>
+        <div data-dc-tpl="358">
+          <div data-dc-tpl="359" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Social</div>
+          
+          <div data-dc-tpl="360" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; font-size: 17px;"><a data-dc-tpl="361" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a data-dc-tpl="362" href="#">Behance</a><a data-dc-tpl="363" href="#">Dribbble</a><a data-dc-tpl="364" href="#">Instagram</a></div>
         </div>
       </div>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:24px;align-items:start;opacity:.25">
-    <sc-for list="{{ lines }}" as="col" hint-placeholder-count="8">
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <sc-for list="{{ col }}" as="w" hint-placeholder-count="12"><div style="height:1px;background:#16161a;width:{{ w }}"></div></sc-for>
+  <div data-dc-tpl="365" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; align-items: start; opacity: 0.25;">
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 95%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 38%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div>
       </div>
-    </sc-for>
-  </div>
-</section>
-</x-dc>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 37%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 50%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 63%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 76%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 89%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 32%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 45%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 44%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 57%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 70%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 83%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 96%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 39%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 52%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 46%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 59%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 53%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 66%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 60%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 73%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 86%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 99%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 42%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 55%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 68%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 67%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 80%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 93%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 36%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 49%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 62%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 75%;"></div>
+      </div>
+    
+      <div data-dc-tpl="367" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 74%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 87%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="369" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div>
+      </div>
+    
+  </div></section></main></div></div>
+<script src="assets/dc-template.js"></script>
+<script src="assets/dc-boot.js"></script>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;marqueeSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;partnerSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:15,&quot;max&quot;:90,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
+  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, motionPaused: (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches), form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
   componentDidMount() {
     const tick = () => this.setState({ clock: new Date().toLocaleTimeString('en-ZA',{timeZone:'Africa/Johannesburg',hour:'2-digit',minute:'2-digit'}) });
     tick(); this.t = setInterval(tick, 30000);
     this.onScroll = () => { const el = document.elementsFromPoint(innerWidth / 2, 46).find(x => getComputedStyle(x).position !== 'fixed' && !x.closest('[data-nav]')); let dark = false, n = el; while (n && n !== document.body) { const bg = getComputedStyle(n).backgroundColor; const m = bg && bg.match(/\d+/g); if (m && m.length >= 3 && (m.length < 4 || +m[3] > .5)) { dark = (+m[0] * .299 + +m[1] * .587 + +m[2] * .114) < 128; break; } n = n.parentElement; } if (dark !== this.state.navDark) this.setState({ navDark: dark }); };
     addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
-    this.wt = setInterval(() => this.setState(s => ({ word: (s.word + 1) % 4 })), 2600);
+    this.wt = setInterval(() => { if (this.state.motionPaused) return; this.setState(s => ({ word: (s.word + 1) % 4 })); }, 2600);
     const root = this.rootEl || document;
     this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this.io.unobserve(e.target); } }), { threshold: 0.15 });
     this.observeAll = () => document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => this.io.observe(el));
@@ -783,22 +1031,49 @@ class Component extends DCLogic {
     const lightBg2 = wrap([blob('a','driftC 40s ease-in-out infinite','55vw','50%','-20%','rgba(255,122,18,.12)',80),blob('b','driftA 48s ease-in-out infinite','40vw','-15%','50%','rgba(255,31,122,.10)',80)]);
     const lightBg3 = wrap([blob('a','driftB 38s ease-in-out infinite','50vw','-10%','10%','rgba(255,31,122,.12)',80)]);
     const ladderData = [
-      { num: '01', name: 'Product Teardown', time: '5 DAYS', kicker: 'DIAGNOSE', price: 'R6,500', priceNote: 'FIXED · 5 WORKING DAYS', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'EVIDENCE — WASTEMART', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'BOOK A TEARDOWN' },
-      { num: '02', name: 'Interface Refresh Sprint', time: '2 WEEKS', kicker: 'REFRESH', price: 'R18,000 – R25,000', priceNote: 'FIXED SCOPE · 2 WEEKS', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'EVIDENCE — MANAGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.1 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'START A SPRINT' },
-      { num: '03', name: 'Web Experience', time: '6 – 8 WEEKS', kicker: 'BUILD', price: 'R55,000 – R85,000', priceNote: 'DESIGN + BUILD · 6–8 WEEKS', img: 'assets/img/studio/svc-web.jpg', evidence: 'EVIDENCE — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'SCOPE A WEBSITE' },
-      { num: '04', name: 'Embedded Designer', time: 'ONGOING', kicker: 'EMBED', price: 'R20,000 – R35,000', priceNote: 'PER MONTH · 3-MONTH MINIMUM', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'EVIDENCE — RENTFLOW', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'TALK ABOUT EMBEDDING' }
+      { num: '01', name: 'Product Teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown' },
+      { num: '02', name: 'Interface Refresh Sprint', time: '2 weeks', kicker: 'Refresh', price: 'R18,000 – R25,000', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGem', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '03', name: 'Web Experience', time: '6 – 8 weeks', kicker: 'Build', price: 'R55,000 – R85,000', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '04', name: 'Embedded Designer', time: 'Ongoing', kicker: 'Embed', price: 'R20,000 – R35,000/month', priceNote: 'Per month · 3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Book a teardown' }
     ];
     ladderData.forEach(l => { l.deliverables = l.deliverables.map((t, i) => typeof t === 'string' ? { n: '0' + (i + 1), t } : t); });
     const si = this.state.step, sn = ladderData.length;
+    const tabId = (i) => 'ladder-tab-' + (i + 1);
+    const panelId = (i) => 'ladder-panel-' + (i + 1);
     const ladder = ladderData.map((l, i) => ({
       ...l, select: () => this.setState({ step: i }),
+      tabId: tabId(i), panelId: panelId(i),
+      selected: i === si ? 'true' : 'false', tabIndex: i === si ? '0' : '-1',
       numColor: i === si ? '#ff1f7a' : '#9a9ba3',
       style: { display: 'block', width: '100%', background: 'transparent', border: 0, padding: '22px 0', color: i === si ? '#f5f6f8' : '#8d8e97', font: 'inherit', cursor: 'pointer', textAlign: 'left', transition: 'color .4s' },
       barStyle: { position: 'absolute', inset: 0, background: 'linear-gradient(90deg,#ff1f7a,#ff7a12)', transformOrigin: 'left', transform: i === si ? 'scaleX(1)' : 'scaleX(0)', transition: 'transform .7s cubic-bezier(.2,.7,.2,1)' }
     }));
+    /* Every step is in the DOM. The inactive ones are display:none, which is
+       what a tabpanel should be, and the pre-render fallback overrides that so
+       all four read without JavaScript. The fadeUp animation still runs on the
+       step you switch to, because animation goes from none to fadeUp. */
+    const ladderPanels = ladderData.map((l, i) => ({
+      ...l, tabId: tabId(i), panelId: panelId(i),
+      cardStyle: i === si
+        ? { background: '#f5f6f8', color: '#16161a', animation: 'fadeUp .5s cubic-bezier(.2,.7,.2,1) both', display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }
+        // only display differs, so the no-JS fallback — which overrides it —
+        // gets a properly filled card rather than dark-on-dark text
+        : { background: '#f5f6f8', color: '#16161a', display: 'none', gridTemplateRows: 'auto auto auto 1fr auto' }
+    }));
+    const onLadderKey = (e) => {
+      const k = e.key;
+      const moves = { ArrowDown: si + 1, ArrowRight: si + 1, ArrowUp: si - 1, ArrowLeft: si - 1, Home: 0, End: sn - 1 };
+      if (!(k in moves)) return;
+      e.preventDefault();
+      const next = (moves[k] + sn) % sn;
+      this.setState({ step: next }, () => {
+        const el = document.getElementById(tabId(next));
+        if (el) el.focus();
+      });
+    };
     const { mx, my, hover, word } = this.state;
     const rotWords = ['built.', 'used.', 'shipped.', 'trusted.'];
-    const rotator = React.createElement('span', { style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || i === (word + 3) % 4) ? 'visible' : 'hidden' } }, w)));
+    const rotator = React.createElement('span', { 'aria-hidden': 'true', 'data-rotator': '', style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || i === (word + 3) % 4) ? 'visible' : 'hidden' } }, w)));
     const px = (mx - .5), py = (my - .5);
     const heroLayer = (k, src, depth, anim, extra) => React.createElement('div', { key: k, style: Object.assign({ position: 'absolute', inset: '-6%', pointerEvents: 'none', backgroundImage: src, backgroundSize: 'cover', backgroundPosition: 'center', transform: 'translate3d(' + (px * depth) + 'px,' + (py * depth) + 'px,0)', transition: 'transform .9s cubic-bezier(.2,.7,.2,1)', willChange: 'transform' }, extra) }, React.createElement('div', { style: { position: 'absolute', inset: 0, animation: anim, backgroundImage: 'inherit', backgroundSize: 'cover', backgroundPosition: 'center' } }));
     const heroScene = React.createElement('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' } }, [
@@ -813,30 +1088,54 @@ class Component extends DCLogic {
     const heroMove = (e) => { const r = e.currentTarget.getBoundingClientRect(); this.setState({ mx: (e.clientX - r.left) / r.width, my: (e.clientY - r.top) / r.height, hover: true }); };
     const heroLeave = () => this.setState({ hover: false, mx: .5, my: .5 });
     const partnerWords = ['Enterprise SaaS', 'Financial OS', 'Websites', 'Mobile Apps', 'Ops Dashboards', 'Graphic Design', 'Logos & Identity', 'AI Workflows', 'Design Systems', 'Conversational UI', 'E-commerce', 'Internal Tools'];
-    const pItems = []; [...partnerWords, ...partnerWords].forEach((w, i) => { pItems.push(React.createElement('span', { key: 'w' + i, style: { fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: '#16161a', padding: '0 36px', whiteSpace: 'nowrap' } }, w)); pItems.push(React.createElement('span', { key: 'd' + i, style: { width: '6px', height: '6px', borderRadius: '50%', background: i % 2 ? '#ff7a12' : '#ff1f7a', flex: 'none' } })); });
+    const pItems = []; [...partnerWords, ...partnerWords].forEach((w, i) => { pItems.push(React.createElement('span', { key: 'w' + i, 'aria-hidden': i >= partnerWords.length ? 'true' : undefined, style: { fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: '#16161a', padding: '0 36px', whiteSpace: 'nowrap' } }, w)); pItems.push(React.createElement('span', { key: 'd' + i, 'aria-hidden': 'true', style: { width: '6px', height: '6px', borderRadius: '50%', background: i % 2 ? '#ff7a12' : '#ff1f7a', flex: 'none' } })); });
     const partnerMarquee = React.createElement('div', { style: { display: 'inline-flex', alignItems: 'center', animation: (this.props.partnerSpeed ?? 40) + 's marquee linear infinite', willChange: 'transform' } }, pItems);
     const marquee = React.createElement('div', { style: { display: 'inline-flex', alignItems: 'center', animation: (this.props.marqueeSpeed ?? 24) + 's marquee linear infinite', willChange: 'transform' } }, items);
     const clientsData = [
-      { label: 'FREELANCE DESIGNER', quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.', person: 'Alternative 01', role: 'Freelance designer', img: ((window.__resources||{}).shotFinos || 'assets/img/shots/finos.jpg') },
-      { label: 'DESIGN AGENCY', quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
-      { label: 'DEVELOPMENT SHOP', quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.', person: 'Alternative 03', role: 'Development shop', img: ((window.__resources||{}).shotRentflow || 'assets/img/shots/rentflow.jpg') },
-      { label: 'HIRING IN-HOUSE', quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.', person: 'Alternative 04', role: 'Hiring in-house', img: ((window.__resources||{}).shotNura || 'assets/img/shots/nuracoach.jpg') },
-      { label: 'DOING NOTHING', quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.', person: 'Alternative 05', role: 'Doing nothing', img: ((window.__resources||{}).shotWaste || 'assets/img/shots/wastemart-driver.jpg') }
+      { label: 'Freelance designer', quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.', person: 'Alternative 01', role: 'Freelance designer', img: ((window.__resources||{}).shotFinos || 'assets/img/shots/finos.jpg') },
+      { label: 'Design agency', quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
+      { label: 'Development shop', quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.', person: 'Alternative 03', role: 'Development shop', img: ((window.__resources||{}).shotRentflow || 'assets/img/shots/rentflow.jpg') },
+      { label: 'Hiring in-house', quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.', person: 'Alternative 04', role: 'Hiring in-house', img: ((window.__resources||{}).shotNura || 'assets/img/shots/nuracoach.jpg') },
+      { label: 'Doing nothing', quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.', person: 'Alternative 05', role: 'Doing nothing', img: ((window.__resources||{}).shotWaste || 'assets/img/shots/wastemart-driver.jpg') }
     ];
     const n = clientsData.length, ci = this.state.client;
+    const cTabId = (i) => 'alt-tab-' + (i + 1);
+    const cPanelId = (i) => 'alt-panel-' + (i + 1);
     const clients = clientsData.map((c, i) => ({
       label: i === ci ? c.label + '  →' : c.label,
       select: () => this.setState({ client: i }),
-      style: { background: 'transparent', border: 0, padding: 0, textAlign: 'left', font: 'inherit', cursor: 'pointer', letterSpacing: '0.02em', color: i === ci ? '#ff1f7a' : '#9a9ba3' }
+      tabId: cTabId(i), panelId: cPanelId(i),
+      selected: i === ci ? 'true' : 'false', tabIndex: i === ci ? '0' : '-1',
+      style: { background: 'transparent', border: 0, padding: 0, textAlign: 'left', font: 'inherit', cursor: 'pointer', letterSpacing: '0.02em', textTransform: 'uppercase', color: i === ci ? '#ff1f7a' : '#9a9ba3' }
     }));
+    /* Every comparison is in the markup, same as the ladder steps. */
+    const clientPanels = clientsData.map((c, i) => ({
+      ...c, tabId: cTabId(i), panelId: cPanelId(i),
+      panelStyle: i === ci
+        ? { display: 'flex', flexDirection: 'column', gap: '80px' }
+        : { display: 'none' }
+    }));
+    const onClientKey = (e) => {
+      const k = e.key;
+      const moves = { ArrowDown: ci + 1, ArrowRight: ci + 1, ArrowUp: ci - 1, ArrowLeft: ci - 1, Home: 0, End: n - 1 };
+      if (!(k in moves)) return;
+      e.preventDefault();
+      const next = (moves[k] + n) % n;
+      this.setState({ client: next }, () => {
+        const el = document.getElementById(cTabId(next));
+        if (el) el.focus();
+      });
+    };
     const reasons = [
-      { n: '1', num: '01', tag: 'ONE ROOF', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
-      { n: '2', num: '02', tag: 'PUBLISHED', title: 'Fixed scope. Fixed price.', body: 'Every service has a published price and a defined output. No “from”, no discovery-to-quote loop.' },
-      { n: '3', num: '03', tag: 'SENIOR', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
-      { n: '4', num: '04', tag: 'EVIDENCE', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
+      { n: '1', num: '01', tag: 'One roof', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
+      { n: '2', num: '02', tag: 'Published', title: 'Published prices. Fixed after the Teardown.', body: 'Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.' },
+      { n: '3', num: '03', tag: 'Senior', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
+      { n: '4', num: '04', tag: 'Evidence', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
     ];
     const f = this.state.form;
     const setField = (e) => { const k = e.target.name, v = e.target.value; this.setState(s => ({ form: Object.assign({}, s.form, { [k]: v }) })); };
+    // the demoted hero link lands on the same form with the open-ended option already chosen
+    const pickNotSure = () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: 'Not sure yet' }) })); };
     const serviceChips = ['Not sure yet', 'Product Teardown', 'Interface Refresh', 'Web Experience', 'Embedded Designer'].map(label => ({
       label, pick: () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: label }) })); this.forceUpdate(); },
       style: { fontFamily: "'JetBrains Mono',monospace", fontSize: '12px', letterSpacing: '0.04em', padding: '10px 14px', borderRadius: '999px', cursor: 'pointer', border: '1px solid ' + (f.service === label ? '#16161a' : '#dcdee3'), background: f.service === label ? '#16161a' : 'transparent', color: f.service === label ? '#f5f6f8' : '#16161a', transition: 'all .3s' }
@@ -846,14 +1145,18 @@ class Component extends DCLogic {
     const lines = Array.from({ length: 8 }, (_, c) => Array.from({ length: 12 }, (_, r) => (30 + ((c * 7 + r * 13) % 70)) + '%'));
     return {
       menuOpen: this.state.menuOpen, menuLabel: this.state.menuOpen ? 'MENU ×' : 'MENU ≡',
+      menuExpanded: this.state.menuOpen ? 'true' : 'false', menuGlyph: this.state.menuOpen ? '×' : '≡',
+      motionState: this.state.motionPaused ? 'paused' : 'running',
+      motionLabel: this.state.motionPaused ? 'Play motion' : 'Pause motion',
+      toggleMotion: () => this.setState(s => ({ motionPaused: !s.motionPaused })),
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
+      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, ladderPanels, onLadderKey, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
       projects: [
         { name: 'ManaGem', desc: 'Product design · Dashboard UX · Design system. Evidences: Interface Refresh Sprint.', img: ((window.__resources||{}).managem || 'assets/img/work/managem-mock.jpg') },
         { name: 'WasteMart', desc: 'Operations UX · Driver app · Customer portal. Evidences: Product Teardown.', img: ((window.__resources||{}).wastemart || 'assets/img/work/wastemart-mock.jpg') },
         { name: 'FINOS', desc: 'Financial operating system · AI review workflow. Evidences: Embedded Designer.', img: ((window.__resources||{}).finosWide || 'assets/img/portfolio/finos-wide.jpg') }
       ],
-      clients, activeClient: clientsData[ci],
+      clients, clientPanels, onClientKey, activeClient: clientsData[ci],
       prevClient: () => this.setState({ client: (ci + n - 1) % n }),
       nextClient: () => this.setState({ client: (ci + 1) % n }),
       shots: [

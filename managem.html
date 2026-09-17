@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ManaGem — the platform story | GEM Information Systems (GEMIS®)</title>
   <meta name="description" content="ManaGem is an all-in-one management platform from GEMIS — operations, projects, HR, assets, procurement, compliance, reporting, analytics and AI in one secure system." />
+  <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/managem.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GEM Information Systems" />
+  <meta property="og:title" content="ManaGem — the platform story | GEM Information Systems (GEMIS®)" />
+  <meta property="og:description" content="ManaGem is an all-in-one management platform from GEMIS — operations, projects, HR, assets, procurement, compliance, reporting, analytics and AI in one secure system." />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/home/about-band.jpg" />
+  <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/managem.html" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
@@ -22,23 +30,24 @@
 
   <header class="nav" id="nav">
     <div class="shell nav__in">
-      <a class="nav__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
+      <a class="nav__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Products
+            Solutions
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
+
 
         <div class="mega" id="productsMenu" aria-labelledby="productsTrigger">
           <div class="shell mega__in">
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
+              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -78,7 +87,12 @@
           </div>
         </div>
         </li>
-        <li><a href="work.html">Work</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
+             articles exist. See CONTENT-TODO.md. -->
+        <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
 
@@ -306,11 +320,7 @@
           connecting the tools you already run, we'll scope it with you — no obligation.
         </p>
 
-        <form class="cta__form" id="ctaForm" data-reveal style="--d:160ms">
-          <label class="skip-link" for="ctaEmail">Your email address</label>
-          <input id="ctaEmail" name="email" type="email" placeholder="Email Address" required autocomplete="email" />
-          <button type="submit">Get Started</button>
-        </form>
+        <p class="cta__note"><a class="arrow-link" href="index.html#discovery">Book a Discovery Session <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
         <p class="cta__note" data-reveal style="--d:200ms">
           Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>
         </p>
@@ -322,7 +332,7 @@
     <div class="shell">
       <div class="foot__grid">
         <div class="foot__brand">
-          <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" role="img" aria-label="GEMIS — GEM Information Systems"><use href="#gemisLogo"/></svg></a>
+          <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
           <p class="foot__blurb">
             Bringing ideas and innovation to life through technology — secure, scalable
             systems built on the Microsoft Cloud.
@@ -334,29 +344,29 @@
         </div>
 
         <div class="foot__col">
-          <h3>Products</h3>
+          <h2>Products</h2>
           <ul>
-            <li><a href="managem.html">ManaGem</a></li>
+            <li><a href="managem.html" aria-current="page">ManaGem</a></li>
             <li><a href="https://gemis.tech/" target="_blank" rel="noopener">Gemis Tech</a></li>
             <li><a href="studio/">Design Studio</a></li>
           </ul>
         </div>
 
         <div class="foot__col">
-          <h3>About GEMIS</h3>
+          <h2>About GEMIS</h2>
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
-            <li><a href="work.html">Case Studies</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
             <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
 
         <div class="foot__col">
-          <h3>Support &amp; Resources</h3>
+          <h2>Support &amp; Resources</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="services.html#services">Ongoing Support</a></li>
+            <li><a href="solutions.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
