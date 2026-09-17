@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Redirect stubs (services.html, work.html, brand-studio.html) are deliberately
+     excluded: they are noindex and exist only to keep old inbound links working. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/</loc><priority>1.0</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions.html</loc><priority>0.9</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/industries.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/case-studies.html</loc><priority>0.8</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/contact.html</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/managem.html</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/wastemart.html</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/studio/</loc><priority>0.8</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/privacy.html</loc><priority>0.3</priority></url>
+</urlset>

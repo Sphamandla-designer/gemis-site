@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — GEM Information Systems (GEMIS®)</title>
   <meta name="description" content="Talk to GEM Information Systems about replacing a legacy system, launching a digital platform or connecting the tools you already run. Cape Town and Sandton." />
+  <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/contact.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GEM Information Systems" />
+  <meta property="og:title" content="Contact — GEM Information Systems (GEMIS®)" />
+  <meta property="og:description" content="Talk to GEM Information Systems about replacing a legacy system, launching a digital platform or connecting the tools you already run. Cape Town and Sandton." />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/home/about-band.jpg" />
+  <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/contact.html" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
@@ -26,19 +34,20 @@
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Products
+            Solutions
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
+
 
         <div class="mega" id="productsMenu" aria-labelledby="productsTrigger">
           <div class="shell mega__in">
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
+              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -78,7 +87,12 @@
           </div>
         </div>
         </li>
-        <li><a href="work.html">Work</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
+             articles exist. See CONTENT-TODO.md. -->
+        <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
         </ul>
 
@@ -95,16 +109,16 @@
 
     <!-- ═══════════════════ CONTACT ═══════════════════ -->
     <section class="ctc" id="hero">
+      <span id="discovery"></span>
       <div class="shell">
         <div class="ctc__grid">
 
           <div>
             <p class="eyebrow" data-reveal>Contact</p>
-            <h1 class="ctc__title" data-reveal style="--d:80ms">Tell Us What You're Trying To Fix</h1>
+            <h1 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h1>
             <p class="ctc__lede" data-reveal style="--d:140ms">
-              Whether you're replacing a legacy system, launching a new digital platform or
-              connecting the tools you already run, start with a conversation. We'll scope
-              it with you — no obligation.
+              Tell us what you're trying to fix. We'll come back within two working days
+              with a short written view and a time to talk. No obligation.
             </p>
 
             <div class="ctc__block" data-reveal style="--d:200ms">
@@ -145,75 +159,73 @@
             </div>
           </div>
 
-          <form class="form" id="enquiry" novalidate data-reveal style="--d:160ms">
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
             <div class="form__rows">
               <div class="field">
-                <label for="f-name">Your name <em>*</em></label>
-                <input id="f-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required />
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
               </div>
 
               <div class="field">
-                <label for="f-email">Work email <em>*</em></label>
-                <input id="f-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required />
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
               </div>
 
               <div class="field">
-                <label for="f-company">Company</label>
-                <input id="f-company" name="company" type="text" placeholder="Company name" autocomplete="organization" />
-              </div>
-
-              <div class="field">
-                <label for="f-service">Service you're interested in</label>
-                <select id="f-service" name="service">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
                   <option value="">Select one…</option>
-                  <option>Custom software development</option>
-                  <option>Microsoft Cloud solutions</option>
-                  <option>Enterprise SaaS platforms</option>
-                  <option>Mobile application development</option>
-                  <option>Business intelligence &amp; reporting</option>
-                  <option>System integration</option>
-                  <option>UX &amp; system design</option>
-                  <option>Software modernisation</option>
-                  <option>Ongoing support &amp; maintenance</option>
-                  <option>Not sure yet — let's talk</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
                 </select>
               </div>
 
               <div class="field field--wide">
-                <label for="f-budget">Indicative budget</label>
-                <select id="f-budget" name="budget">
-                  <option value="">Prefer not to say</option>
-                  <option>Under R100 000</option>
-                  <option>R100 000 – R250 000</option>
-                  <option>R250 000 – R500 000</option>
-                  <option>R500 000 – R1 000 000</option>
-                  <option>More than R1 000 000</option>
-                  <option>Not established yet</option>
-                </select>
-              </div>
-
-              <div class="field field--wide">
-                <label for="f-message">What are you trying to solve? <em>*</em></label>
-                <textarea id="f-message" name="message" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." required></textarea>
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
               </div>
             </div>
 
             <div class="consent">
-              <input id="f-consent" name="consent" type="checkbox" required />
-              <label for="f-consent">
+              <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
+              <label for="d-consent">
                 I consent to GEM Information Systems processing the information above in
                 order to respond to this enquiry, as described in the
                 <a href="privacy.html">privacy notice</a>. I can withdraw this consent at
                 any time.
               </label>
             </div>
+            <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
 
             <button class="form__send" type="submit">
-              Send enquiry
+              Book a Discovery Session
               <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
             </button>
 
-            <p class="form__note" id="enquiryNote">
+            <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
               This site is static, so sending opens a pre-filled message in your email
               client addressed to info@gemis.co.za — nothing is submitted or stored here.
             </p>
@@ -287,7 +299,7 @@
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
-            <li><a href="work.html">Case Studies</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
             <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
@@ -296,7 +308,7 @@
           <h3>Support &amp; Resources</h3>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="services.html#services">Ongoing Support</a></li>
+            <li><a href="solutions.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>

@@ -27,19 +27,20 @@
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
+        <li><a href="index.html">Home</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Products
+            Solutions
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
+
 
         <div class="mega" id="productsMenu" aria-labelledby="productsTrigger">
           <div class="shell mega__in">
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
+              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -79,7 +80,12 @@
           </div>
         </div>
         </li>
-        <li><a href="work.html">Work</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
+             articles exist. See CONTENT-TODO.md. -->
+        <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
 
@@ -105,8 +111,8 @@
         </p>
         <div class="oops__links" data-reveal style="--d:220ms">
           <a class="arrow-link" href="index.html">Back to the home page <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-          <a class="arrow-link" href="work.html">See our work <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-          <a class="arrow-link" href="index.html#contact">Get in touch <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          <a class="arrow-link" href="case-studies.html">See our work <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          <a class="arrow-link" href="index.html#discovery">Get in touch <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
         </div>
       </div>
     </section>
@@ -141,7 +147,7 @@
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
-            <li><a href="work.html">Case Studies</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
             <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
@@ -150,7 +156,7 @@
           <h3>Support &amp; Resources</h3>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="services.html#services">Ongoing Support</a></li>
+            <li><a href="solutions.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>

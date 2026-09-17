@@ -51,6 +51,17 @@
     });
   }
 
+  /* ── nav: Insights gate ──────────────────────────────────────────────
+        Single switch for the Insights nav item. It stays hidden until real
+        articles exist — see CONTENT-TODO.md. Flip to true to show it. */
+
+  var SHOW_INSIGHTS = false;
+
+  if (SHOW_INSIGHTS) {
+    [].slice.call(document.querySelectorAll('[data-nav="insights"]'))
+      .forEach(function (li) { li.hidden = false; });
+  }
+
   /* ── products mega menu ──────────────────────────────────────────────
         Hover opens it on pointer devices (with a close delay so the cursor can
         travel diagonally into the panel); click and keyboard drive it
@@ -274,6 +285,71 @@
     });
 
     apply('all');
+  }
+
+  /* ── discovery session form ──────────────────────────────────────────
+        Same static-site constraint as the other forms: no endpoint, so this
+        validates in the page and hands off to a pre-filled email. Errors are
+        announced via aria-describedby, the outcome via the note's aria-live. */
+
+  var discovery = document.getElementById('discoveryForm');
+
+  if (discovery) {
+    var dNote = document.getElementById('discoveryNote');
+
+    var showError = function (field, on) {
+      var err = document.getElementById(field.id + '-err');
+      if (err) err.hidden = !on;
+      field.setAttribute('aria-invalid', on ? 'true' : 'false');
+    };
+
+    discovery.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var required = [].slice.call(discovery.querySelectorAll('[required]'));
+      var firstBad = null;
+      required.forEach(function (field) {
+        var ok = field.checkValidity();
+        showError(field, !ok);
+        if (!ok && !firstBad) firstBad = field;
+      });
+      if (firstBad) {
+        firstBad.focus();
+        if (dNote) dNote.textContent = 'Please complete the highlighted fields before sending.';
+        return;
+      }
+
+      var val = function (id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      };
+
+      var body = [
+        'Name: ' + val('d-name'),
+        'Work email: ' + val('d-email'),
+        'Company: ' + val('d-company'),
+        'Looking to do: ' + val('d-goal'),
+        'Rough timeline: ' + (val('d-timeline') || '—'),
+        '',
+        'Anything we should know:',
+        val('d-notes') || '—'
+      ].join('\n');
+
+      window.location.href = 'mailto:info@gemis.co.za'
+        + '?subject=' + encodeURIComponent('Discovery Session request — ' + val('d-company'))
+        + '&body=' + encodeURIComponent(body);
+
+      if (dNote) {
+        dNote.textContent = 'Opening your email client with your details pre-filled. '
+          + 'If nothing happens, email info@gemis.co.za directly.';
+      }
+    });
+
+    // clear an error as soon as the field becomes valid
+    discovery.addEventListener('input', function (e) {
+      var f = e.target;
+      if (f.hasAttribute('required') && f.checkValidity()) showError(f, false);
+    });
   }
 
   /* ── enquiry form → email hand-off ───────────────────────────────────

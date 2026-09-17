@@ -2224,3 +2224,53 @@ h1, h2, h3, h4 {
   }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY ADDITIONS
+   The only CSS added under the no-visual-change constraint: a focus-visible
+   ring in the existing brand accent, a visually-hidden utility, and a
+   reduced-motion block. No colours, type, spacing or components changed.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* visually hidden, still announced */
+.vh {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard focus ring, drawn in the existing --navy accent. Outline only, so
+   it adds nothing to layout and never shows for pointer users. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.hero a:focus-visible,
+.lead a:focus-visible,
+.quote a:focus-visible,
+.cta a:focus-visible,
+.cta button:focus-visible,
+.endnote a:focus-visible,
+.chero a:focus-visible,
+.ihero a:focus-visible {
+  outline-color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mq__track { animation: none !important; }
+  .tile__media img,
+  .story__img,
+  .prod__media img { transition: none !important; }
+}
