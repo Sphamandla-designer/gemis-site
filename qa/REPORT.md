@@ -330,3 +330,94 @@ One fix to the QA tooling itself: the stitched captures pasted each tile at the
 scroll offset requested rather than the one the browser actually landed on, so
 the last tile duplicated a slice of the footer — which is why the earlier
 captures appeared to show the CTA band twice. Both sets are recaptured.
+
+
+---
+
+# Addendum — the studio's mobile layout
+
+The one thing left on `/studio/` that was a defect rather than a decision.
+
+## What was wrong
+
+The page came out of Design Canvas with every rule inline and **no breakpoints
+at all**. Below about 900px its two-, three- and four-column grids kept their
+desktop track sizes, so the services ladder, Selected Work, Alternatives, the
+enquiry form and the contact footer all ran past the right edge and were clipped
+by their own `overflow:hidden` — the content could not be reached. The header
+overlapped itself: the MENU button landed at x=395 in a 390px viewport with the
+"Book a teardown" pill sitting on top of the `GEMIS.CO.ZA` link, which is what
+Lighthouse's `target-size` failure was reporting.
+
+## What it does now
+
+| | ≥901px | 900–701px | ≤700px |
+|---|---|---|---|
+| grids | as designed | one column | one column |
+| sticky asides | sticky | static | static |
+| header | logo · corporate link · pill · menu | unchanged | logo · menu |
+| primary action | pill, top right | pill, top right | a bar across the bottom |
+
+The layer lives at the end of the page's own `<style>` block. Two queries: 900px
+for the grids, 700px for the header.
+
+## The thing that nearly went wrong
+
+The first attempt matched the inline grids by substring —
+`[style*="grid-template-columns:repeat(3,minmax(0,1fr))"]`. Roughly half the
+rules silently never applied. **The browser rewrites an inline style**: what the
+source authors as `repeat(3,minmax(0,1fr))` comes back from the DOM as
+`repeat(3, minmax(0px, 1fr))`, spaces and unit added. The selectors looked
+right, the page looked better in places, and several sections were still broken.
+
+It was rebuilt on `data-m` hooks in the markup, and `tools/build-studio.mjs`
+now checks every hook the stylesheet asks for is actually on the page and
+**fails the build** if one is missing — verified by deleting each kind of hook
+in turn and watching the build refuse. `studio/README.md` has the table of what
+each hook does.
+
+Two other things the build script gained: it no longer writes
+`assets/dc-template.js` before the render succeeds (a failed build used to leave
+the template and the pre-rendered HTML describing different pages), and the hook
+check ignores the stylesheet's own selectors when counting what the markup
+authors, so it cannot pass itself.
+
+## Measured
+
+| | before | after |
+|---|---|---|
+| horizontal overflow, 320–1920px | up to 5028px past the edge | **0px at every width** |
+| overlapping text blocks at 320/390/430/768/900 | several | **0** |
+| Lighthouse accessibility | 93 | **97** |
+| `target-size` | fail | **pass** |
+| page height at 390 | 11055px, most of it unreachable | 15876px, all of it readable |
+| page height at 1440 | 10009px | **10009px — unchanged** |
+
+Verified by touch at 390: the drawer opens, the ladder tabs switch, the
+Alternatives tabs switch, and the bottom bar reaches `#enquire`. No JavaScript
+errors at any width.
+
+Three bugs found along the way and fixed:
+
+- **The rotating headline showed two words on top of each other under reduced
+  motion.** The reduced-motion rule kills the `wordOut` animation, which was the
+  only thing hiding the outgoing word. The visibility test now accounts for the
+  paused state. This affected desktop too.
+- **The enquiry form's aside overlapped the form** on mobile — it is a second
+  `position: sticky` element, which I had missed.
+- **The slide-out menu was cut off on the left.** It sizes itself with
+  `width: min(420px, 100vw - 24px)` but keeps `box-sizing: content-box`, so its
+  32px of side padding pushed it 52px off the left edge of a 390px screen and
+  clipped the first letter of every link.
+
+## Still open on `/studio/`
+
+Performance, at 64. The ceiling is 2.27 MB over 24 requests, **1.83 MB of it
+JPEG**, three images at 3000×2000, most of them CSS backgrounds that cannot be
+lazy-loaded. WebP at quality 82 measures 1.77 MB → 0.97 MB. That replaces the
+uploaded design's assets, so it is a decision, not a fix.
+
+And one contrast failure, the last one on either site: white on `#ff1f7a` in the
+"Book a teardown" pill is 3.67:1 where 13px text needs 4.5:1. `#ea005f` clears
+it, but that is a visibly deeper brand pink. See `CONTENT-TODO.md` entry 9 for
+the alternatives.

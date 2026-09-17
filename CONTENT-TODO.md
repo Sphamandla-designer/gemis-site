@@ -126,22 +126,36 @@ It was left untouched under the "keep the existing submission mechanism" constra
 It needs a decision before launch. On static hosting the options are a `mailto:`
 hand-off (what the corporate Discovery form does), or a third-party form endpoint.
 
-### 9. The studio has no mobile layout ⚠️
+### 9. One contrast failure left on the whole site ⚠️
 
-At 390px the services ladder, Selected Work, Alternatives, the enquiry form and the
-contact footer all run past the right edge of the viewport and are clipped by their
-sections' `overflow:hidden`, so that content cannot be reached at all. The header
-overlaps itself.
+`/studio/`'s "Book a teardown" pill: **white on `#ff1f7a` is 3.67:1**, and 13px
+text needs 4.5:1. It is the last axe violation anywhere on the site — everything
+else, both sites, is clean.
 
-The same measurement against the page as uploaded returns an identical result, so this
-is the design as delivered. Fixing it means writing a responsive layer for the studio.
+`#ea005f` would clear it at 4.51:1. That is a visibly deeper pink, and the pink
+is a brand accent, so it is a decision rather than a fix. Two other routes:
+apply the darker pink **only to this pill** and leave the accent alone
+everywhere else, or take the label to 18.66px bold, at which size 3:1 is the
+bar and the existing pink already passes.
 
-### 10. Colour contrast on the corporate site
+The studio's other accents — `#ff7a12` on `#f5f6f8` at 2.41:1, `#9a9ba3` on
+white at 2.76:1 — are small print rather than controls, and have no
+hue-preserving fix either. See `qa/REPORT.md`.
 
-Every contrast failure traces to one token, `--ink-3: #85868a` — 3.24:1 on `--paper`,
-3.39:1 on `--paper-2`, 2.73:1 behind `.frame__url`. Changing it to **`#626367`** — the
-same hue, darker — clears 4.5:1 on all three and takes Lighthouse Accessibility to 100
-on every corporate page. It is a design decision, so it is waiting for sign-off.
+### 10. Done — no longer outstanding
 
-See `qa/REPORT.md` for the full measurements, including the studio's own contrast
-failures, which have no hue-preserving fix.
+Two earlier entries have been closed:
+
+- **Corporate colour contrast.** `--ink-3` moved from `#85868a` to `#626367`.
+  axe now reports zero violations on all eleven corporate pages, and Lighthouse
+  Accessibility is 100 on all five target pages.
+- **The studio's missing mobile layout.** Built. The page has no horizontal
+  overflow and no overlapping text from 360px to 1920px, and its Lighthouse
+  Accessibility went from 93 to 97. See `studio/README.md` for how the layer
+  works and what to re-apply after a future Design Canvas export.
+
+What is still open on `/studio/` is its **performance ceiling**: 2.27 MB over 24
+requests, 1.83 MB of it JPEG, three images at 3000×2000, most of them CSS
+backgrounds that cannot be lazy-loaded. Converting the set to WebP measures
+1.77 MB → 0.97 MB. That replaces the uploaded design's assets, so it needs
+your call.

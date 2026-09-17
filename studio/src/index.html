@@ -417,6 +417,128 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 [data-marquee]:hover>div,[data-marquee]:focus-within>div{animation-play-state:paused!important}
 [data-motion="paused"] [data-marquee]>div{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){[data-marquee]>div{animation:none!important}[data-rotator] span{animation:none!important}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT
+
+   This page came out of Design Canvas with every rule inline and no
+   breakpoints, so below about 900px its two-, three- and four-column grids
+   kept their desktop track sizes and the content ran off the right edge,
+   clipped by the sections' own overflow:hidden. Whole sections could not be
+   read on a phone.
+
+   The layout hooks are data-m attributes in the markup, not substring
+   matches on the style attribute — the browser rewrites an inline style
+   ("repeat(3,minmax(0,1fr))" becomes "repeat(3, minmax(0px, 1fr))"), so
+   attribute selectors on it look like they work and silently do not.
+   tools/build-studio.mjs checks every hook still appears in the rendered
+   page and fails the build if one goes missing.
+
+   Nothing here touches the desktop layout: every rule is inside a
+   max-width query, and every one needs !important because it overrides an
+   inline style.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── grids ───────────────────────────────────────────────────────────── */
+  [data-m="head"],
+  [data-m="split"],
+  [data-m="cards"],
+  [data-m="fields"],
+  [data-m="about2"] { grid-template-columns: 1fr !important; }
+
+  [data-m="head"] { gap: 20px !important; align-items: start !important; }
+  [data-m="split"] { gap: 36px !important; }
+  [data-m="cards"] { gap: 20px !important; }
+  [data-m="fields"] { gap: 24px !important; }
+  [data-m="about2"] { margin-left: 0 !important; margin-right: 0 !important; gap: 24px !important; }
+  [data-m="rules8"] { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* the spec rows read as label above value */
+  [data-m="spec"] { grid-template-columns: 1fr !important; gap: 4px !important; }
+
+  /* the ladder tab keeps its number and name; the duration drops under them */
+  [data-m="tab"] { grid-template-columns: 30px 1fr !important; gap: 10px !important; }
+  [data-m="tab"] > :last-child { grid-column: 2 !important; }
+
+  /* a rail only sticks when it is beside the panel, not above it */
+  [data-m="rail"] { position: static !important; }
+
+  /* things that were pushed to the right of a column that is now full width */
+  [data-m="rightrow"] { justify-content: flex-start !important; }
+  [data-m="footcol"] { gap: 40px !important; justify-content: flex-start !important; }
+
+  /* the pricing note was placed by absolute coordinates */
+  [data-m="note"] { position: static !important; margin: 0 0 32px !important; }
+
+  /* percentage side padding is far too much at this width */
+  [data-m="wide"] { padding-left: 18px !important; padding-right: 18px !important; }
+  section { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* the hero is a grid too, and its columns have to become rows */
+  #top {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    min-height: 0 !important;
+    padding: 104px 18px 44px !important;
+    gap: 40px !important;
+  }
+
+  /* the wide CTA links held their arrow 48px away from their label */
+  [data-m] a[style*="border-bottom"],
+  a[style*="min-width: 230px"],
+  a[style*="min-width: 200px"],
+  a[style*="width: 190px"] {
+    gap: 16px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  h1, h2, p { overflow-wrap: break-word; }
+}
+
+/* ── header, phones only ───────────────────────────────────────────────
+      Below this the logo, the corporate link, the pill's 150px slot and the
+      menu button no longer fit on one line. The desktop arrangement still
+      fits at tablet width, so it is left alone there. */
+@media (max-width: 700px) {
+  [data-desk] { display: none !important; }   /* the drawer already has both */
+  [data-nav] { padding: 16px 16px !important; }
+
+  /* the single primary action becomes a bar within thumb reach, rather than
+     a pill fighting the menu button for the same corner */
+  [data-cta] {
+    top: auto !important;
+    bottom: 14px !important;
+    left: 14px !important;
+    right: 14px !important;
+    text-align: center !important;
+    padding: 15px 18px !important;
+    box-shadow: 0 14px 34px -12px rgba(0,0,0,.5) !important;
+  }
+  #contact { padding-bottom: 104px !important; }   /* clear of that bar */
+
+  /* the drawer sizes itself with width:min(420px, 100vw - 24px) but keeps the
+     default content-box, so its 32px of side padding pushed it off the left
+     edge of a phone and clipped the first letter of every link. It also
+     reserved 220px at the top for a header that is much shorter here. */
+  [data-m="drawer"] {
+    box-sizing: border-box !important;
+    padding: 84px 22px 26px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+}
+
+@media (max-width: 560px) {
+  /* the rule cards are a fixed 370:455 at desktop; let them be as tall as
+     their content needs once they are full width */
+  [data-m="cards"] > div { aspect-ratio: auto !important; min-height: 340px !important; }
+  /* the contact footer does not need a whole screen to itself here */
+  #contact { min-height: 0 !important; }
+}
+
 </style>
 </helmet>
 
@@ -436,15 +558,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </span>
   </a>
   <div style="display:flex;align-items:center;gap:10px">
-    <a href="../index.html" style="display:flex;align-items:center;gap:7px;height:38px;padding:0 4px;margin-right:4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#fff;opacity:.72;text-decoration:none;white-space:nowrap" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.72">GEMIS.CO.ZA<span aria-hidden="true">&#8599;</span></a><span style="width:150px;height:38px;visibility:hidden"></span>
+    <a href="../index.html" data-desk style="display:flex;align-items:center;gap:7px;height:38px;padding:0 4px;margin-right:4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#fff;opacity:.72;text-decoration:none;white-space:nowrap" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.72">GEMIS.CO.ZA<span aria-hidden="true">&#8599;</span></a><span data-desk style="width:150px;height:38px;visibility:hidden"></span>
     <button sc-camel-on-click="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="studioMenu" style="background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;font-family:inherit;cursor:pointer;text-transform:uppercase">Menu <span aria-hidden="true">{{ menuGlyph }}</span></button>
   </div>
 </div>
-<a href="#enquire" style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
+<a href="#enquire" data-cta style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
 </header>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-<div id="studioMenu" style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div id="studioMenu" data-m="drawer" style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
   <div style="display:flex;flex-direction:column;gap:10px">
     <a href="#work" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
     <a href="#services" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
@@ -503,7 +625,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12;text-transform:uppercase">About</div>
   <h2 data-reveal="1" style="position:relative;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-0.045em;font-weight:500;color:#f5f6f8;text-indent:9%;padding-left:8%">GEMIS Studio is the product and experience design practice of GEM Information Systems — we design the screen and <span style="color:#ff1f7a">build what we design.</span></h2>
   <div style="margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15);position:relative"><span style="position:absolute;left:64%;top:-11px;color:#ff7a12;font-size:16px">×</span></div>
-  <div style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+  <div data-m="about2" style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
     <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">We never sell a stage.<br>Developer handoff in the price.<br>Thirty days of aftercare.</div>
     <div style="display:flex;flex-direction:column;gap:80px;max-width:380px">
       <p style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Support load rising. The team avoiding the internal system. A redesign that stalled after the Figma file. Underneath every one: nobody has mapped what actually happens.</p>
@@ -514,7 +636,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section data-screen-label="Marquee" style="position:relative;z-index:1;padding:140px 0 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
   {{ darkBg2 }}
-  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3;text-transform:uppercase">Published prices.<br>Fixed after the Teardown.</div>
+  <div data-m="note" style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3;text-transform:uppercase">Published prices.<br>Fixed after the Teardown.</div>
   <div data-marquee aria-hidden="true" style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
   <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8;text-transform:uppercase">✦ Diagnose. Refresh. Build. Embed.</div>
 </section>
@@ -524,7 +646,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   {{ lightBg }}
   <h2 data-reveal="1" style="position:relative;margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;color:#16161a">Every engagement</h2>
   <p style="margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:#5a5b63">Three rules, in every price.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative">
+  <div data-m="cards" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative">
     <div data-reveal="1" style="background:#16161a;color:#f5f6f8;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.6)">
       <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Developer handoff</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-01.jpg" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
@@ -549,11 +671,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section id="work" data-screen-label="Selected work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:100px 32px 120px">
   {{ lightBg2 }}
-  <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto">
+  <div data-m="head" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto">
     <h2 data-reveal="1" style="margin:0;font-size:clamp(44px,4.5vw,80px);line-height:1;letter-spacing:-0.045em;font-weight:600;color:#16161a">Selected work<br>&amp; <span style="color:#ff1f7a">evidence</span></h2>
     <p data-reveal="2" style="margin:0;font-size:clamp(20px,1.6vw,26px);line-height:1.25;letter-spacing:-0.02em;font-weight:500;max-width:380px;color:#16161a;justify-self:end;border-left:1px solid #dcdee3;padding-left:32px">Every case study evidences a named service — never the studio in general.</p>
   </div>
-  <div style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">
+  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">
     <sc-for list="{{ projects }}" as="w" hint-placeholder-count="3">
       <div style="display:flex;flex-direction:column;gap:20px">
         <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="{{ w.img }}" alt="{{ w.name }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
@@ -574,7 +696,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
   {{ darkBg3 }}
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Our services</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h2>
@@ -582,12 +704,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start">
-      <div style="position:sticky;top:96px;display:flex;flex-direction:column">
+    <div data-m="split" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start">
+      <div data-m="rail" style="position:sticky;top:96px;display:flex;flex-direction:column">
         <div role="tablist" aria-label="Service ladder" aria-orientation="vertical" sc-camel-on-key-down="{{ onLadderKey }}" style="display:flex;flex-direction:column">
           <sc-for list="{{ ladder }}" as="l" hint-placeholder-count="4">
             <button role="tab" id="{{ l.tabId }}" aria-selected="{{ l.selected }}" aria-controls="{{ l.panelId }}" tabindex="{{ l.tabIndex }}" sc-camel-on-click="{{ l.select }}" sc-camel-on-mouse-enter="{{ l.select }}" style="{{ l.style }}">
-              <span style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;width:100%">
+              <span data-m="tab" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;width:100%">
                 <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ l.numColor }}">{{ l.num }}</span>
                 <span style="font-size:clamp(20px,1.9vw,28px);letter-spacing:-0.03em;font-weight:600;text-align:left">{{ l.name }}</span>
                 <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;white-space:nowrap;text-transform:uppercase">{{ l.time }}</span>
@@ -616,10 +738,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
           <div style="padding:24px clamp(24px,3vw,40px) 0">
             <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">{{ s.desc }}</p>
             <div style="margin-top:28px;border-top:1px solid #16161a">
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">{{ s.priceNote }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase">{{ s.evidence }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">{{ s.credit }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">{{ s.priceNote }}</span></div>
+              <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase">{{ s.evidence }}</span></div>
+              <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">{{ s.credit }}</span></div>
+              <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
                 <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
                   <sc-for list="{{ s.deliverables }}" as="d" hint-placeholder-count="4">
                     <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">{{ d.n }}</span><span style="font-weight:500">{{ d.t }}</span></li>
@@ -644,14 +766,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<section data-screen-label="Alternatives" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:90px 10% 120px">
+<section data-screen-label="Alternatives" data-m="wide" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:90px 10% 120px">
   {{ lightBg3 }}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
+  <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
     <h2 data-reveal="1" style="margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;line-height:1;color:#16161a">Alternatives</h2>
     <p style="margin:0;font-size:16px;line-height:1.3;max-width:200px">Honest comparison, including doing nothing.</p>
   </div>
   <div style="border-top:1px solid #dcdee3;margin-top:80px;position:relative"><span style="position:absolute;left:50%;top:-12px;font-size:20px;color:#ff7a12">+</span></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:80px">
+  <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:80px">
     <div style="display:flex;flex-direction:column;justify-content:space-between;gap:120px">
       <div role="tablist" aria-label="Alternatives to the studio" aria-orientation="vertical" sc-camel-on-key-down="{{ onClientKey }}" style="display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600;letter-spacing:0.02em">
         <sc-for list="{{ clients }}" as="c" hint-placeholder-count="5">
@@ -684,14 +806,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <section id="why" data-screen-label="Why work with us" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   {{ darkBg }}
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Why work with us</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Designers who<br>answer to the <span style="color:#ff1f7a">build.</span></h2>
       </div>
       <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
+    <div data-m="cards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
       <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4">
         <div data-reveal="{{ r.n }}" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:340px;border-top:4px solid #ff1f7a;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)">
           <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">{{ r.tag }}</span></div>
@@ -700,7 +822,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         </div>
       </sc-for>
     </div>
-    <div data-reveal="1" style="margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:32px">
+    <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:32px">
       <div style="width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d"><img src="assets/asset-09.jpg" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)"></div>
       <div style="min-width:0">
         <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">Practice lead</div>
@@ -718,15 +840,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section id="enquire" data-screen-label="Enquiry form" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:120px 32px">
   {{ lightBg }}
-  <div style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
-    <div style="position:sticky;top:120px">
+  <div data-m="split" style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
+    <div data-m="rail" style="position:sticky;top:120px">
       <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Start here</div>
       <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,4.6vw,80px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Tell us what<br>isn't <span style="color:#ff1f7a">working.</span></h2>
       <p data-reveal="2" style="margin:28px 0 0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
       <div style="margin-top:48px;border-top:1px solid #16161a">
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Reply</span><span style="font-weight:600">Within 2 working days</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Start</span><span style="font-weight:600">Within 3 working days of booking</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Direct</span><span style="font-weight:600">info@gemis.co.za · +27 11 219 5008</span></div>
+        <div data-m="spec" style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Reply</span><span style="font-weight:600">Within 2 working days</span></div>
+        <div data-m="spec" style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Start</span><span style="font-weight:600">Within 3 working days of booking</span></div>
+        <div data-m="spec" style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Direct</span><span style="font-weight:600">info@gemis.co.za · +27 11 219 5008</span></div>
       </div>
     </div>
     <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
@@ -738,11 +860,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </sc-if>
     <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
       <form sc-camel-on-submit="{{ submitForm }}" data-reveal="2" style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+        <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input name="name" required="" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" placeholder="Your name" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input name="email" type="email" required="" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" placeholder="name@company.co.za" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+        <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Company</span><input name="company" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
         </div>
@@ -766,20 +888,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section id="contact" data-screen-label="Contact footer" style="background:#eef0f3;color:#16161a;padding:100px 32px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;gap:100px;position:relative;overflow:hidden">
   <div style="position:absolute;inset:-4%;pointer-events:none;background:url(&quot;assets/asset-03.jpg&quot;) center/cover no-repeat;animation:kenburns 32s ease-in-out infinite reverse;opacity:.16"></div>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px">
+  <div data-m="split" style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px">
     <div>
       <div style="font-size:15px;font-weight:600;color:#ff7a12;text-transform:uppercase">One action. Restated.</div>
       <h2 data-reveal="1" style="margin:24px 0 0;font-size:clamp(52px,6vw,96px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Ready to find out<br><span style="color:#ff1f7a">what's wrong?</span></h2>
       <div style="margin-top:80px;font-size:15px;color:#6a6b73;text-transform:uppercase">©GEMIS® Studio 2026</div>
       <div style="margin-top:48px;font-size:15px;font-weight:600;text-transform:uppercase">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
-      <div aria-hidden="true" style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
+    <div data-m="footcol" style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
+      <div aria-hidden="true" data-m="rightrow" style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
       <div style="display:flex;gap:24px;flex-wrap:wrap">
         <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
 <a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">GEM Information Systems</span><span>&#8599;</span></a>
       </div>
-      <div style="display:grid;grid-template-columns:1fr auto;gap:64px">
+      <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:64px">
         <div>
           <div style="font-size:15px;color:#6a6b73;margin-bottom:16px;text-transform:uppercase">Business enquiry</div>
           <div style="display:grid;grid-template-columns:24px 1fr;row-gap:8px;font-size:17px"><span style="color:#ff1f7a">E.</span><span>info@gemis.co.za</span><span style="color:#ff1f7a">P.</span><span>+27 11 219 5008</span></div>
@@ -796,7 +918,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:24px;align-items:start;opacity:.25">
+  <div data-m="rules8" style="display:grid;grid-template-columns:repeat(8,1fr);gap:24px;align-items:start;opacity:.25">
     <sc-for list="{{ lines }}" as="col" hint-placeholder-count="8">
       <div style="display:flex;flex-direction:column;gap:14px">
         <sc-for list="{{ col }}" as="w" hint-placeholder-count="12"><div style="height:1px;background:#16161a;width:{{ w }}"></div></sc-for>
@@ -880,7 +1002,7 @@ class Component extends DCLogic {
     };
     const { mx, my, hover, word } = this.state;
     const rotWords = ['built.', 'used.', 'shipped.', 'trusted.'];
-    const rotator = React.createElement('span', { 'aria-hidden': 'true', 'data-rotator': '', style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || i === (word + 3) % 4) ? 'visible' : 'hidden' } }, w)));
+    const rotator = React.createElement('span', { 'aria-hidden': 'true', 'data-rotator': '', style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || (!this.state.motionPaused && i === (word + 3) % 4)) ? 'visible' : 'hidden' } }, w)));
     const px = (mx - .5), py = (my - .5);
     const heroLayer = (k, src, depth, anim, extra) => React.createElement('div', { key: k, style: Object.assign({ position: 'absolute', inset: '-6%', pointerEvents: 'none', backgroundImage: src, backgroundSize: 'cover', backgroundPosition: 'center', transform: 'translate3d(' + (px * depth) + 'px,' + (py * depth) + 'px,0)', transition: 'transform .9s cubic-bezier(.2,.7,.2,1)', willChange: 'transform' }, extra) }, React.createElement('div', { style: { position: 'absolute', inset: 0, animation: anim, backgroundImage: 'inherit', backgroundSize: 'cover', backgroundPosition: 'center' } }));
     const heroScene = React.createElement('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' } }, [

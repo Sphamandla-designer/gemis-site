@@ -46,6 +46,41 @@ panels at once, since without JavaScript there is nothing to switch between
 them. That stylesheet only ever applies inside `#dc-prerender`, which is gone
 before anything is painted when scripts do run.
 
+## The mobile layout
+
+The export had no breakpoints, so below about 900px its two-, three- and
+four-column grids kept their desktop track sizes and whole sections ran off the
+right edge, clipped by their own `overflow:hidden`. The layer that fixes that
+lives at the end of the page's `<style>` block in `src/index.html`, in two
+queries: **900px** for the grids and **700px** for the header.
+
+It hangs off `data-m` hooks in the markup, **not** substring matches on the
+`style` attribute. That matters: the browser rewrites an inline style — what you
+author as `repeat(3,minmax(0,1fr))` comes back as
+`repeat(3, minmax(0px, 1fr))` — so `[style*="…"]` selectors look correct and
+silently never match.
+
+| hook | what it is | at ≤900px |
+|---|---|---|
+| `head` | two-column section headings | one column |
+| `split` | the ladder, Alternatives, the enquiry form, the footer | one column |
+| `cards` | the three rule cards, the work grid, the four reasons | one column |
+| `fields` | the form's paired inputs | one column |
+| `spec` | the label/value rows in a ladder panel | label above value |
+| `tab` | a ladder tab's number / name / duration | duration wraps under |
+| `rail` | the two sticky asides | static |
+| `about2` | the About split, which had `margin: 80px 8%` | full width |
+| `wide` | the Alternatives section's 10% side padding | 18px |
+| `note` | the pricing note placed at `left:180px; top:160px` | in flow |
+| `rightrow`, `footcol` | things aligned to the right of a column | aligned left |
+| `rules8` | the eight decorative footer columns | four |
+| `data-desk` | the corporate link and the pill's 150px slot | hidden at ≤700 |
+| `data-cta` | the fixed "Book a teardown" pill | a bar across the bottom, at ≤700 |
+
+`tools/build-studio.mjs` checks every hook the stylesheet asks for is present in
+the rendered page and **fails the build** if one is missing, so an export that
+drops them cannot ship a broken phone layout quietly.
+
 ## After a new Design Canvas export
 
 A new export overwrites `src/index.html` and will drop the accessibility work
@@ -65,3 +100,5 @@ that lives in that file. Re-apply, then rebuild:
 - `aria-expanded` / `aria-controls` on the menu button, `aria-hidden` on the
   clock and on the decorative marquee
 - capitals written as sentence case with `text-transform: uppercase`
+- the mobile layer and its `data-m` hooks — the build will tell you which are
+  missing, and the table above says where each one goes
