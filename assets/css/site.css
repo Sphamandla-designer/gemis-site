@@ -22,7 +22,9 @@
   --white:        #ffffff;
   --ink:          #16181b;
   --ink-2:        #55565a;
-  --ink-3:        #85868a;
+  /* was #85868a, which is 3.24:1 on --paper and below AA. This is the same
+     hue a shade darker, and clears 4.5:1 on all five section grounds. */
+  --ink-3:        #626367;
   --navy:         #1f2557;
   --navy-deep:    #161b40;
   --cta-navy:     #2e3358;
@@ -2280,3 +2282,106 @@ summary:focus-visible,
   .story__img,
   .prod__media img { transition: none !important; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SECTION RHYTHM AND BANDS
+
+   Sections used to carry padding on their top edge only, and every one of
+   them was transparent — so a page read as one unbroken white sheet with
+   its blocks pressed together. Padding is symmetric now, and consecutive
+   sections alternate across four light grounds, with one dark band and one
+   full-bleed photographic strip breaking the run on the longer pages.
+   ══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --sec-y: clamp(80px, 8.4vw, 124px);
+  --wash: #eceef4;   /* the brand navy, at a whisper */
+  --warm: #f0efeb;   /* the paper, warmed */
+}
+
+/* ── rhythm: space on both edges, not just the top ───────────────────── */
+.sec,
+.about,
+.what,
+.values,
+.work,
+.chap { padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
+
+.sec--last { padding-bottom: var(--sec-y); }
+.sec--tight { padding-bottom: calc(var(--sec-y) * .62); }
+
+/* the first band under a hero needs a little less, the hero already breathes */
+.hero + .band,
+.shero + .band,
+.ihero + .band,
+.whero + .band,
+.chero + .band { padding-top: calc(var(--sec-y) * .86); }
+
+/* ── grounds ─────────────────────────────────────────────────────────── */
+.band { position: relative; }
+.band-tint { background-color: var(--paper-2); }
+.band-wash { background-color: var(--wash); }
+.band-warm { background-color: var(--warm); }
+
+/* a hairline wherever two sections share a ground, so the seam still reads */
+.band-rule { border-top: 1px solid var(--rule-soft); }
+
+
+/* ── one dark band per long page, so the scroll is not all light ─────── */
+.band-ink { background: var(--navy-deep); color: #fff; }
+.band-ink .eyebrow { color: rgba(255,255,255,.72); }
+.band-ink .display,
+.band-ink h2,
+.band-ink h3 { color: #fff; }
+.band-ink p,
+.band-ink .lede { color: rgba(255,255,255,.82); }
+.band-ink .stat { border-color: rgba(255,255,255,.18); }
+.band-ink .stat__n { color: #fff; }
+.band-ink .stat__l { color: rgba(255,255,255,.72); }
+.band-ink a { color: #fff; }
+.band-ink .dotgrid {
+  background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+}
+
+/* ── a full-bleed photographic strip, to break a long light run ──────── */
+.strip {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: grid;
+  align-items: end;
+  min-height: clamp(280px, 32vw, 440px);
+  background: var(--navy-deep);
+}
+.strip__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.strip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(10,16,40,.22) 0%, rgba(10,16,40,.44) 46%, rgba(10,16,40,.78) 100%);
+}
+.strip .shell { padding-block: clamp(34px, 4.4vw, 58px); }
+.strip__k {
+  margin: 0;
+  max-width: 24ch;
+  color: #fff;
+  font-size: clamp(22px, 2.4vw, 36px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+.strip__sub {
+  margin: clamp(10px, 1.2vw, 16px) 0 0;
+  max-width: 50ch;
+  color: rgba(255,255,255,.82);
+  font-size: clamp(13.5px, 1vw, 15.5px);
+}
+.strip a:focus-visible { outline-color: #fff; }

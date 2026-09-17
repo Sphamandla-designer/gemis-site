@@ -217,3 +217,116 @@ Two existing rules were also corrected rather than restyled: `.sec` now uses
 actually stick, and `.nav--solid` gained the specificity to survive `.is-stuck`.
 `.foot__col h3` became `.foot__col h2` with the markup; every property in that
 rule is set explicitly, so nothing moved.
+
+
+---
+
+# Addendum — second round
+
+Three follow-up changes: section rhythm and background variety, a nav split, and
+every placeholder filled in. Measured the same way as everything above.
+
+## Lighthouse, mobile — after
+
+| page | performance | accessibility | best practices | SEO |
+|---|---|---|---|---|
+| `index.html` | 97 | **100** | **100** | **100** |
+| `services.html` | 96 | **100** | **100** | **100** |
+| `industries.html` | 97 | **100** | **100** | **100** |
+| `case-studies.html` | 97 | **100** | **100** | **100** |
+| `contact.html` | 99 | **100** | **100** | **100** |
+| `/studio/` | 64 | 93 | **100** | **100** |
+
+**Every target in the brief is now met on the corporate site**: Accessibility 100,
+SEO 100, Performance 96–99.
+
+## axe — zero violations
+
+All eleven corporate pages, WCAG 2.0/2.1/2.2 A + AA plus best-practice, at 1440
+and 390: **0 violations of any type**. It was 1 type (colour contrast) on every
+page.
+
+The single change that did it: `--ink-3` went from `#85868a` to **`#626367`** —
+the same hue, a shade darker. The earlier report recommended this and left it for
+sign-off under the no-colour-change rule; that rule was lifted with the request
+for colour on the page, so it is applied. It clears 4.5:1 on all five section
+grounds:
+
+| ground | | ratio |
+|---|---|---|
+| `--paper` | `#f2f2f1` | 5.36:1 |
+| `--paper-2` | `#f7f7f6` | 5.60:1 |
+| `--wash` | `#eceef4` | 5.17:1 |
+| `--warm` | `#f0efeb` | 5.21:1 |
+| `.frame__url` | `#dedfe3` | 4.51:1 |
+
+`/studio/` still has its own contrast failures — the two brand accents on light
+grounds, with no hue-preserving fix. Unchanged, still reported above.
+
+## Rhythm and bands
+
+Sections carried padding on their top edge only, and every one of them was
+transparent, so a page read as a single unbroken white sheet with its blocks
+pressed together. Now:
+
+- padding is symmetric, on a `--sec-y` scale of `clamp(80px, 8.4vw, 124px)`, so
+  the gap between two blocks is roughly 240px at 1440 instead of 122px
+- consecutive sections alternate across four light grounds — `--paper`,
+  `--paper-2`, a soft navy `--wash`, a warmed `--warm` — with no two adjacent
+  sections sharing one, and a hairline where two plain grounds would meet
+- `index.html`'s stats band is dark (`band-ink`, white on `--navy-deep`, 14.9:1)
+- a full-bleed photographic `strip` breaks the light run on the seven longer
+  pages, using imagery already in the repo
+
+Page heights, a rough measure of the extra breathing room:
+
+| page | 1440 | 390 |
+|---|---|---|
+| index | 6834 → 8621 | 7801 → 9766 |
+| services | 5738 → 6506 | 6627 → 7139 |
+| case-studies | 11176 → 11808 | 13033 → 13438 |
+| about | 6858 → 7746 | 9397 → 9998 |
+| managem | 6699 → 7774 | 7099 → 7811 |
+| wastemart | 5973 → 7048 | 6506 → 7218 |
+
+One thing tried and reverted: a photographic wash *behind* the text of a section,
+at 90–95% scrim. Under dense rows it fought the type — the bright panels in the
+photo read as boxes behind the copy. The full-bleed strip does the same job
+without competing with anything.
+
+## Navigation
+
+`Solutions` was doing two jobs — a page link and the mega-menu trigger. Split:
+
+Home · **Services** · **Products ▾** · Industries · Case Studies · *Insights* ·
+About · Contact
+
+`services.html` is the canonical page again and `solutions.html` is now the
+redirect stub, so the URL matches the label. Every internal link, the footer and
+`sitemap.xml` follow. The footer gained Services and Industries.
+
+Verified: the Products mega opens on keyboard focus, Tab walks all three product
+links, Enter toggles, and **Escape now actually closes it** — it used to reopen,
+because closing returns focus to the trigger and focus is what opens the panel.
+
+## Placeholders
+
+All filled. `CONTENT-TODO.md` was rewritten: it now lists what is **provisional**
+rather than what is missing, with the two unmeasured figures called out first.
+Nothing invented a client, a testimonial or an industry the site could not
+already evidence — the homepage client row reuses names already published on the
+case studies page, and the fourth industry comes from a capability already listed
+on the About page.
+
+## Still true from the first round
+
+- 229 internal links and anchors across 14 pages, **0 broken**
+- zero horizontal overflow and zero JavaScript errors on all 24 captures
+- `/studio/` has no mobile layout, and its performance ceiling is 1.83 MB of
+  JPEGs — both unchanged, both in `CONTENT-TODO.md`
+- the studio enquiry form still discards what visitors type
+
+One fix to the QA tooling itself: the stitched captures pasted each tile at the
+scroll offset requested rather than the one the browser actually landed on, so
+the last tile duplicated a slice of the footer — which is why the earlier
+captures appeared to show the CTA band twice. Both sets are recaptured.

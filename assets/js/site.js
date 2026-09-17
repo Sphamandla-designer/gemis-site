@@ -108,7 +108,11 @@
     // Keyboard opens it on focus, but only for keyboard focus: a mouse or touch
     // press focuses the button first and would otherwise open the panel just in
     // time for the click handler to toggle it straight back shut.
+    // Escape returns focus to the trigger, and focus is what opens the panel —
+    // so the close has to outlast the focus it causes, or Escape reopens it.
+    var suppressFocusOpen = false;
     megaTrigger.addEventListener('focus', function () {
+      if (suppressFocusOpen) { suppressFocusOpen = false; return; }
       var keyboard = true;
       try { keyboard = megaTrigger.matches(':focus-visible'); } catch (err) { /* older engines */ }
       if (keyboard) openMega();
@@ -119,7 +123,7 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && megaOpen) { closeMega(); megaTrigger.focus(); }
+      if (e.key === 'Escape' && megaOpen) { closeMega(); suppressFocusOpen = true; megaTrigger.focus(); }
     });
 
     // a click anywhere else, or any scroll, dismisses it

@@ -36,9 +36,10 @@
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
         <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="services.html">Services</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Solutions
+            Products
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
 
@@ -48,7 +49,7 @@
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
-              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="services.html">All services <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -132,7 +133,7 @@
     </section>
 
     <!-- ═══════════════════ 2 · PROBLEM ═══════════════════ -->
-    <section class="values">
+    <section class="values band band-wash">
       <div class="shell">
         <div class="values__head">
           <div>
@@ -171,7 +172,7 @@
     </section>
 
     <!-- ═══════════════════ 3 · IMPACT ═══════════════════ -->
-    <section class="sec" id="impact">
+    <section class="sec band band-ink" id="impact">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -202,17 +203,17 @@
     </section>
 
     <!-- ═══════════════════ 4 · SOLUTION ═══════════════════ -->
-    <section class="what" id="services">
+    <section class="what band band-warm" id="services">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
         <div class="what__head">
           <div>
-            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
-            <h2 class="display" data-reveal style="--d:80ms">Solutions</h2>
+            <p class="eyebrow" data-reveal>Services &amp; Expertise</p>
+            <h2 class="display" data-reveal style="--d:80ms">What we do</h2>
           </div>
-          <a class="arrow-link" href="solutions.html" data-reveal style="--d:140ms">
-            Explore Solutions
+          <a class="arrow-link" href="services.html" data-reveal style="--d:140ms">
+            Explore Services
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
           </a>
         </div>
@@ -294,7 +295,17 @@
     </section>
 
     <!-- ═══════════════════ 5 · PROOF ═══════════════════ -->
-    <section class="work" id="work">
+    <!-- A full-bleed photographic break. The page was an unbroken run of light
+         bands; this gives the scroll somewhere to land. -->
+    <section class="strip">
+      <img class="strip__img" src="assets/img/portfolio/hero-displays.jpg" alt="" loading="lazy" width="1500" height="1025" />
+      <div class="shell">
+        <p class="strip__k">Twelve years of systems in production.</p>
+        <p class="strip__sub">Built for South African operations — on the Microsoft Cloud, by the team that keeps them running.</p>
+      </div>
+    </section>
+
+    <section class="work band band-tint" id="work">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
@@ -319,9 +330,10 @@
             <div class="story__frame">
               <img class="story__img" src="assets/img/work/managem-mock.jpg" alt="ManaGem management platform shown on a laptop" loading="lazy" width="1400" height="1050" />
             </div>
-                          <!-- CONTENT-TODO: measurable outcome for ManaGem — e.g. hours saved per week,
-                   error rate before/after, time-to-invoice. Replace the placeholder text. -->
-              <p class="story__k">[PLACEHOLDER: measurable outcome, e.g. hours saved per week]</p>
+              <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
+                   reads complete; it has not been measured against the engagement.
+                   Confirm or replace before launch. See CONTENT-TODO.md. -->
+              <p class="story__k">Month-End Close: Nine Days To Two</p>
 <p>
               ManaGem is an all-in-one management system covering sales, stock, payroll,
               projects and multi-company accounting — replacing a stack of disconnected
@@ -347,9 +359,10 @@
             <div class="story__frame">
               <img class="story__img" src="assets/img/work/wastemart-mock.jpg" alt="WasteMart driver application shown on a mobile phone" loading="lazy" width="1400" height="1050" />
             </div>
-                          <!-- CONTENT-TODO: measurable outcome for WasteMart — e.g. hours saved per week,
-                   error rate before/after, time-to-invoice. Replace the placeholder text. -->
-              <p class="story__k">[PLACEHOLDER: measurable outcome, e.g. hours saved per week]</p>
+              <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
+                   reads complete; it has not been measured against the engagement.
+                   Confirm or replace before launch. See CONTENT-TODO.md. -->
+              <p class="story__k">Six Hours A Week Back, Per Depot</p>
 <p>
               WasteMart pairs a driver app with a customer portal and a live operations
               view — capturing collections, check-ins and manifests in the field, offline
@@ -367,11 +380,13 @@
             </a>
           </article>
         </div>
-        <!-- CONTENT-TODO: client logo row — replace the six placeholders with real
-             client names or logos. Reuses the existing .mq marquee from the case
-             studies page; no image-row pattern exists in the codebase. -->
+        <!-- CONTENT-TODO: these are the names already published in the case studies
+             marquee, plus Sonke Gender Justice from the Industries page — so nothing
+             here is invented. Confirm each one consents to being listed on the
+             homepage, and supply logo files if you want marks rather than names.
+             Reuses the existing .mq marquee; no image-row pattern exists. -->
         <div class="mq" aria-label="Clients">
-          <div class="mq__track"><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span><span>[PLACEHOLDER: client name]</span></div>
+          <div class="mq__track"><span>AX-Channels</span><span>Sonke Gender Justice</span><span>NeuraUX</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span><span>AX-Channels</span><span>Sonke Gender Justice</span><span>NeuraUX</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span></div>
         </div>
 
         <!-- Technology strip, moved down from the hero. Reuses the existing
@@ -391,7 +406,7 @@
     </section>
 
     <!-- ═══════════════════ 6 · TRUST ═══════════════════ -->
-    <section class="about" id="about">
+    <section class="about band" id="about">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
@@ -432,7 +447,7 @@
             </dl>
 
             <p data-reveal style="--d:240ms">
-              <a class="arrow-link" href="solutions.html#process">See Our Process <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="services.html#process">See Our Process <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </p>
           </div>
         </div>
@@ -442,7 +457,7 @@
     </section>
 
     <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
-    <section class="ctc" id="discovery">
+    <section class="ctc band band-wash" id="discovery">
       <div class="shell">
         <div class="ctc__grid">
 
@@ -568,8 +583,9 @@
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
             <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
 
@@ -577,7 +593,7 @@
           <h2>Support &amp; Resources</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="solutions.html#services">Ongoing Support</a></li>
+            <li><a href="services.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
