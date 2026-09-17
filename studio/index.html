@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="en"><head>
 <meta charset="utf-8">
 
 
@@ -392,9 +392,36 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
 [data-word]{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}[data-word]>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .in [data-word]>span{transform:none}.in [data-word]{overflow:visible}
 @media (prefers-reduced-motion:reduce){[data-reveal],[data-word]>span{opacity:1;transform:none;transition:none}}
+
+/* ── accessibility ────────────────────────────────────────────────────────
+   Added for WCAG 2.2 AA. Nothing here changes a colour, a size or a position
+   of anything that was already on the page. */
+
+/* visually hidden, still announced */
+.dc-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* skip link — off-screen until it takes focus, then in the studio's own style */
+.dc-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#16161a;color:#f5f6f8;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em}
+.dc-skip:focus{left:12px;top:12px}
+
+/* the header is fixed, so a fragment jump would land its target underneath it */
+html{scroll-padding-top:110px}
+
+/* visible keyboard focus, in the studio's existing accent */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #ff1f7a;outline-offset:3px}
+
+/* marquees stop on hover, on focus, on the motion toggle and under reduced motion */
+/* the marquee elements set the animation shorthand inline, which resets
+   play-state, so these have to win */
+[data-marquee]:hover>div,[data-marquee]:focus-within>div{animation-play-state:paused!important}
+[data-motion="paused"] [data-marquee]>div{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){[data-marquee]>div{animation:none!important}[data-rotator] span{animation:none!important}}
 </style>
 </helmet>
 
+<a class="dc-skip" href="#main">Skip to content</a>
+
+<header>
 <div data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:28px 32px;color:#fff;mix-blend-mode:difference">
   <a href="#top" aria-label="GEMIS Studio" style="display:flex;align-items:center;gap:12px;color:#fff">
     <span style="display:grid;gap:3px;width:22px">
@@ -409,13 +436,14 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   </a>
   <div style="display:flex;align-items:center;gap:10px">
     <a href="../index.html" style="display:flex;align-items:center;gap:7px;height:38px;padding:0 4px;margin-right:4px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#fff;opacity:.72;text-decoration:none;white-space:nowrap" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.72">GEMIS.CO.ZA<span aria-hidden="true">&#8599;</span></a><span style="width:150px;height:38px;visibility:hidden"></span>
-    <button sc-camel-on-click="{{ toggleMenu }}" style="background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;font-family:inherit;cursor:pointer">{{ menuLabel }}</button>
+    <button sc-camel-on-click="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="studioMenu" style="background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;font-family:inherit;cursor:pointer;text-transform:uppercase">Menu <span aria-hidden="true">{{ menuGlyph }}</span></button>
   </div>
 </div>
-<a href="#enquire" style="{{ ctaStyle }}">BOOK A TEARDOWN</a>
+<a href="#enquire" style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
+</header>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-<div style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
+<div id="studioMenu" style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
   <div style="display:flex;flex-direction:column;gap:10px">
     <a href="#work" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
     <a href="#services" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
@@ -426,36 +454,43 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   </div>
   <div style="display:flex;flex-direction:column;gap:28px">
     <div>
-      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px">BUSINESS ENQUIRY</div>
+      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px;text-transform:uppercase">Business enquiry</div>
       <div style="display:grid;grid-template-columns:24px 1fr;row-gap:6px;font-size:17px"><span style="color:#8a8886">E.</span><span>info@gemis.co.za</span><span style="color:#8a8886">P.</span><span>+27 11 219 5008</span></div>
     </div>
     <div>
-      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px">SOCIAL</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px"><span>LinkedIn</span><span>Dribbble</span><span>Behance</span><span>Instagram</span></div>
+      <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px;text-transform:uppercase">Social</div>
+      <!-- CONTENT-TODO: studio social profiles. Only the LinkedIn URL exists in the
+     repo (it is the one the corporate footer already links to). Dribbble,
+     Behance and Instagram are href="#" placeholders until real profile URLs
+     are supplied. target="_blank" is deliberately NOT set on the placeholders:
+     it would open a blank second copy of this page. See CONTENT-TODO.md. -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">Dribbble</a><a href="#">Behance</a><a href="#">Instagram</a></div>
     </div>
   </div>
 </div>
 </sc-if>
 
+<main id="main" data-motion="{{ motionState }}">
 <div style="position:relative;overflow:hidden">
 <section id="top" data-screen-label="Hero" style="position:relative;min-height:100vh;padding:140px 32px 48px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;gap:32px;overflow:hidden;background:#eef0f3">
   <div sc-camel-on-mouse-move="{{ heroMove }}" sc-camel-on-mouse-leave="{{ heroLeave }}" style="position:absolute;inset:0;z-index:0"></div>
   {{ heroScene }}
   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;pointer-events:none">
-    <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br>{{ rotator }}</h1>
+    <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br><span class="dc-vh">built.</span>{{ rotator }}</h1>
     <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
-      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
-      <a href="#enquire" sc-camel-on-click="{{ pickNotSure }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
+      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      <a href="#enquire" sc-camel-on-click="{{ pickNotSure }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Discuss your project</span><span>→</span></a>
+      <button type="button" sc-camel-on-click="{{ toggleMotion }}" style="align-self:flex-end;padding:0 0 10px;border:0;background:transparent;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;text-transform:uppercase;color:#6a6b73">{{ motionLabel }}</button>
     </div>
   </div>
   <div style="grid-column:1 / -1;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:24px">
-  <div style="flex:1;text-align:center;font-size:15px;font-weight:600;letter-spacing:0.01em;color:#16161a;min-width:240px;align-self:flex-end">SENIOR EYES ON EVERY SCREEN.<br><span style="font-weight:500">DESIGNED AND BUILT UNDER ONE ROOF.</span></div>
+  <div style="flex:1;text-align:center;font-size:15px;font-weight:600;letter-spacing:0.01em;color:#16161a;min-width:240px;align-self:flex-end;text-transform:uppercase">Senior eyes on every screen.<br><span style="font-weight:500">Designed and built under one roof.</span></div>
   <div style="width:250px;display:flex;flex-direction:column;gap:24px">
     <div style="display:grid;grid-template-columns:96px 1fr;border:1px solid rgba(22,22,26,.25);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);color:#16161a">
-      <div style="padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:0.04em"><div style="width:32px;height:32px;border:1.5px solid #ff7a12;border-radius:50%;margin:0 auto 10px"></div>SANDTON, JHB</div>
-      <div style="padding:20px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;line-height:1.4">THE DESIGN PRACTICE OF GEM INFORMATION SYSTEMS.</div>
+      <div style="padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:0.04em;text-transform:uppercase"><div style="width:32px;height:32px;border:1.5px solid #ff7a12;border-radius:50%;margin:0 auto 10px"></div>Sandton, JHB</div>
+      <div style="padding:20px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;line-height:1.4;text-transform:uppercase">The design practice of GEM Information Systems.</div>
     </div>
     <p style="margin:0;font-size:17px;line-height:1.35;color:#16161a;text-align:justify;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:14px 16px">Product, interface and web design for South African companies. Designed and built under one roof.</p>
   </div>
@@ -464,23 +499,23 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
 
 <section id="about" data-screen-label="About" style="position:relative;z-index:1;padding:140px 32px 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
   {{ darkBg }}
-  <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12">ABOUT</div>
+  <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12;text-transform:uppercase">About</div>
   <h2 data-reveal="1" style="position:relative;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-0.045em;font-weight:500;color:#f5f6f8;text-indent:9%;padding-left:8%">GEMIS Studio is the product and experience design practice of GEM Information Systems — we design the screen and <span style="color:#ff1f7a">build what we design.</span></h2>
   <div style="margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15);position:relative"><span style="position:absolute;left:64%;top:-11px;color:#ff7a12;font-size:16px">×</span></div>
   <div style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
-    <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px">WE NEVER SELL A STAGE.<br>DEVELOPER HANDOFF IN THE PRICE.<br>THIRTY DAYS OF AFTERCARE.</div>
+    <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">We never sell a stage.<br>Developer handoff in the price.<br>Thirty days of aftercare.</div>
     <div style="display:flex;flex-direction:column;gap:80px;max-width:380px">
       <p style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Support load rising. The team avoiding the internal system. A redesign that stalled after the Figma file. Underneath every one: nobody has mapped what actually happens.</p>
-      <a href="#about" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid #ff7a12;padding-bottom:10px;width:190px"><span>ABOUT THE STUDIO</span><span>→</span></a>
+      <a href="#about" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid #ff7a12;padding-bottom:10px;width:190px"><span style="text-transform:uppercase">About the studio</span><span>→</span></a>
     </div>
   </div>
 </section>
 
 <section data-screen-label="Marquee" style="position:relative;z-index:1;padding:140px 0 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
   {{ darkBg2 }}
-  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3">PUBLISHED PRICES.<br>FIXED AFTER THE TEARDOWN.</div>
-  <div style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
-  <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8">✦ DIAGNOSE. REFRESH. BUILD. EMBED.</div>
+  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3;text-transform:uppercase">Published prices.<br>Fixed after the Teardown.</div>
+  <div data-marquee aria-hidden="true" style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
+  <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8;text-transform:uppercase">✦ Diagnose. Refresh. Build. Embed.</div>
 </section>
 </div>
 
@@ -490,24 +525,24 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   <p style="margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:#5a5b63">Three rules, in every price.</p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative">
     <div data-reveal="1" style="background:#16161a;color:#f5f6f8;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.6)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">DEVELOPER HANDOFF</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Developer handoff</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-01.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#c9cad1">Component spec, tokens and a handoff session with your developers.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">1<sup style="font-size:20px;font-weight:500;color:#ff7a12">session</sup></div></div>
     </div>
     <div data-reveal="2" style="background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)">
       <div style="position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);background-size:250% 100%;animation:shimmer 5s ease-in-out infinite;pointer-events:none"></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;position:relative"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em">FEE CREDITED</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.8">02</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;position:relative"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase">Fee credited</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.8">02</div></div>
       <div style="display:flex;align-items:center;justify-content:center;position:relative"><div style="width:min(186px,70%);aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,3.6vw,56px);letter-spacing:-0.04em;color:#ff1f7a;font-weight:600;box-shadow:0 20px 50px -20px rgba(22,22,26,.5);transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06) rotate(-4deg)">60<sup style="font-size:18px;font-weight:500">days</sup></div></div>
       <div style="font-size:15px;line-height:1.3;position:relative">The Teardown fee is credited in full against any engagement booked within 60 days.</div>
     </div>
     <div data-reveal="3" style="background:#ffffff;color:#16161a;border:1px solid #dcdee3;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.35)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff1f7a">AFTERCARE</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">03</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff1f7a;text-transform:uppercase">Aftercare</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">03</div></div>
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-05.jpg" alt="Embedded designer at work" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Thirty days of aftercare after every engagement.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#ff1f7a">days</sup></div></div>
     </div>
   </div>
-  <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#ff7a12">SYSTEMS WE HAVE DESIGNED</div>
-  <div style="margin-top:40px;overflow:hidden;white-space:nowrap;position:relative;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">{{ partnerMarquee }}
+  <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#ff7a12;text-transform:uppercase">Systems we have designed</div>
+  <div data-marquee style="margin-top:40px;overflow:hidden;white-space:nowrap;position:relative;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">{{ partnerMarquee }}
   </div>
 </section>
 
@@ -524,13 +559,13 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
         <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">{{ w.name }}</div>
         <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
           <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">{{ w.desc }}</p>
-          <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span>EXPLORE PROJECT</span><span>→</span></a>
+          <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
         </div>
       </div>
     </sc-for>
   </div>
   <div style="position:relative;display:flex;justify-content:center;margin-top:88px">
-    <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>VIEW ALL PROJECTS</span><span>→</span></a>
+    <a href="#work" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span style="text-transform:uppercase">View all projects</span><span>→</span></a>
   </div>
 </section>
 
@@ -540,7 +575,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   <div style="position:relative;max-width:1400px;margin:0 auto">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
       <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">OUR SERVICES</div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Our services</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h2>
       </div>
       <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
@@ -553,7 +588,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
             <span style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;width:100%">
               <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ l.numColor }}">{{ l.num }}</span>
               <span style="font-size:clamp(20px,1.9vw,28px);letter-spacing:-0.03em;font-weight:600;text-align:left">{{ l.name }}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;white-space:nowrap">{{ l.time }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;white-space:nowrap;text-transform:uppercase">{{ l.time }}</span>
             </span>
             <span style="display:block;height:2px;background:rgba(255,255,255,.08);margin-top:18px;position:relative;overflow:hidden"><span style="{{ l.barStyle }}"></span></span>
           </button>
@@ -567,8 +602,8 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
       <div style="position:relative;min-height:560px">
         <div key="{{ activeStep.num }}" style="background:#f5f6f8;color:#16161a;animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both;display:grid;grid-template-rows:auto auto auto 1fr auto">
           <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
-            <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px">{{ activeStep.num }} — {{ activeStep.kicker }}</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">{{ activeStep.time }}</span>
+            <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">{{ activeStep.num }} — {{ activeStep.kicker }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">{{ activeStep.time }}</span>
           </div>
           <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
             <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">{{ activeStep.name }}</div>
@@ -577,10 +612,10 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
           <div style="padding:24px clamp(24px,3vw,40px) 0">
             <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">{{ activeStep.desc }}</p>
             <div style="margin-top:28px;border-top:1px solid #16161a">
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">TIMELINE</span><span style="font-weight:600">{{ activeStep.priceNote }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">EVIDENCE</span><span style="font-weight:600">{{ activeStep.evidence }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">CREDIT</span><span style="color:#3a3b41">{{ activeStep.credit }}</span></div>
-              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">YOU GET</span>
+              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">{{ activeStep.priceNote }}</span></div>
+              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase">{{ activeStep.evidence }}</span></div>
+              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">{{ activeStep.credit }}</span></div>
+              <div style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
                 <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
                   <sc-for list="{{ activeStep.deliverables }}" as="d" hint-placeholder-count="4">
                     <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">{{ d.n }}</span><span style="font-weight:500">{{ d.t }}</span></li>
@@ -591,15 +626,15 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
           </div>
           <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
             <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
-            <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span>{{ activeStep.cta }}</span><span>→</span></a>
+            <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">{{ activeStep.cta }}</span><span>→</span></a>
           </div>
         </div>
       </div>
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:100px;gap:24px;flex-wrap:wrap">
-      <div style="font-size:15px;font-weight:600">✦ DEVELOPER HANDOFF · WCAG 2.1 AA · 30 DAYS AFTERCARE — IN EVERY PRICE.</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">ALL PRICES EXCL. VAT</div>
+      <div style="font-size:15px;font-weight:600;text-transform:uppercase">✦ Developer handoff · WCAG 2.2 AA · 30 days aftercare — in every price.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;text-transform:uppercase">All prices excl. VAT</div>
     </div>
   </div>
 </section>
@@ -631,10 +666,10 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
             <div style="width:76px;height:76px;overflow:hidden;border-radius:4px"><img src="{{ activeClient.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>
             <div><div style="font-size:17px;font-weight:500">{{ activeClient.person }}</div><div style="font-size:16px;color:#8a8886;margin-top:4px">{{ activeClient.role }}</div></div>
           </div>
-          <a href="#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#ff1f7a">→ SEE THE LADDER</a>
+          <a href="#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#ff1f7a;text-transform:uppercase">→ See the ladder</a>
         </div>
       </div>
-      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>BOOK A TEARDOWN</span><span>→</span></a>
+      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
     </div>
   </div>
 </section>
@@ -644,7 +679,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   <div style="position:relative;max-width:1400px;margin:0 auto">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
       <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">WHY WORK WITH US</div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Why work with us</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Designers who<br>answer to the <span style="color:#ff1f7a">build.</span></h2>
       </div>
       <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
@@ -652,7 +687,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
       <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4">
         <div data-reveal="{{ r.n }}" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:340px;border-top:4px solid #ff1f7a;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)">
-          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12">{{ r.tag }}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">{{ r.tag }}</span></div>
           <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">{{ r.title }}</div>
           <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">{{ r.body }}</p>
         </div>
@@ -661,13 +696,13 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     <div data-reveal="1" style="margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:32px">
       <div style="width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d"><img src="assets/asset-09.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)"></div>
       <div style="min-width:0">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3">PRACTICE LEAD</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">Practice lead</div>
         <div style="font-size:17px;margin-top:6px;line-height:1.35"><span style="font-weight:600">Sphamandla Xaba</span>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">ENTERPRISE SAAS</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">FINTECH</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1">OPERATIONS</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Enterprise SaaS</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Fintech</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Operations</span>
       </div>
     </div>
   </div>
@@ -678,44 +713,44 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   {{ lightBg }}
   <div style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
     <div style="position:sticky;top:120px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">START HERE</div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Start here</div>
       <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,4.6vw,80px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Tell us what<br>isn't <span style="color:#ff1f7a">working.</span></h2>
       <p data-reveal="2" style="margin:28px 0 0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
       <div style="margin-top:48px;border-top:1px solid #16161a">
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">REPLY</span><span style="font-weight:600">Within 2 working days</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">START</span><span style="font-weight:600">Within 3 working days of booking</span></div>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em">DIRECT</span><span style="font-weight:600">info@gemis.co.za · +27 11 219 5008</span></div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Reply</span><span style="font-weight:600">Within 2 working days</span></div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Start</span><span style="font-weight:600">Within 3 working days of booking</span></div>
+        <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;font-size:14px"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Direct</span><span style="font-weight:600">info@gemis.co.za · +27 11 219 5008</span></div>
       </div>
     </div>
     <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
       <div style="background:#16161a;color:#f5f6f8;padding:clamp(32px,4vw,56px);min-height:420px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">RECEIVED</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Received</div>
         <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600">Thanks, {{ formName }}.<br>You'll hear from us within two working days.</div>
-        <button sc-camel-on-click="{{ resetForm }}" style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:13px;background:transparent;border:0;border-bottom:2px solid #ff7a12;padding:0 0 8px;color:#f5f6f8;cursor:pointer">SEND ANOTHER →</button>
+        <button sc-camel-on-click="{{ resetForm }}" style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:13px;background:transparent;border:0;border-bottom:2px solid #ff7a12;padding:0 0 8px;color:#f5f6f8;cursor:pointer;text-transform:uppercase">Send another →</button>
       </div>
     </sc-if>
     <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
       <form sc-camel-on-submit="{{ submitForm }}" data-reveal="2" style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">NAME<input name="name" required="" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" placeholder="Your name" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WORK EMAIL<input name="email" type="email" required="" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" placeholder="name@company.co.za" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input name="name" required="" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" placeholder="Your name" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input name="email" type="email" required="" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" placeholder="name@company.co.za" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
         </div>
         <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">COMPANY<input name="company" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">PRODUCT URL (OPTIONAL)<input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Company</span><input name="company" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
         </div>
         <div style="display:grid;gap:12px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHAT DO YOU NEED?</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">What do you need?</div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <sc-for list="{{ serviceChips }}" as="c" hint-placeholder-count="5">
               <button type="button" sc-camel-on-click="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
             </sc-for>
           </div>
         </div>
-        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHAT'S NOT WORKING?<textarea name="message" required="" rows="4" value="{{ form.message }}" sc-camel-on-change="{{ setField }}" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.4;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;resize:vertical;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></textarea></label>
+        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">What's not working?</span><textarea name="message" required="" rows="4" value="{{ form.message }}" sc-camel-on-change="{{ setField }}" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.4;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;resize:vertical;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></textarea></label>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:8px">
           <span style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4">Read by the practice lead, not a sales team. We don't share your details.</span>
-          <button type="submit" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#fff;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s" style-hover="background:#16161a;transform:translateY(-2px)"><span>SEND ENQUIRY</span><span>→</span></button>
+          <button type="submit" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#fff;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s" style-hover="background:#16161a;transform:translateY(-2px)"><span style="text-transform:uppercase">Send enquiry</span><span>→</span></button>
         </div>
       </form>
     </sc-if>
@@ -726,25 +761,30 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
   <div style="position:absolute;inset:-4%;pointer-events:none;background:url(&quot;assets/asset-03.jpg&quot;) center/cover no-repeat;animation:kenburns 32s ease-in-out infinite reverse;opacity:.16"></div>
   <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px">
     <div>
-      <div style="font-size:15px;font-weight:600;color:#ff7a12">ONE ACTION. RESTATED.</div>
+      <div style="font-size:15px;font-weight:600;color:#ff7a12;text-transform:uppercase">One action. Restated.</div>
       <h2 data-reveal="1" style="margin:24px 0 0;font-size:clamp(52px,6vw,96px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Ready to find out<br><span style="color:#ff1f7a">what's wrong?</span></h2>
-      <div style="margin-top:80px;font-size:15px;color:#6a6b73">©GEMIS® STUDIO 2026</div>
-      <div style="margin-top:48px;font-size:15px;font-weight:600">5 DAYS · R6,500 EXCL. VAT · FEE CREDITED WITHIN 60 DAYS.</div>
+      <div style="margin-top:80px;font-size:15px;color:#6a6b73;text-transform:uppercase">©GEMIS® Studio 2026</div>
+      <div style="margin-top:48px;font-size:15px;font-weight:600;text-transform:uppercase">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
-      <div style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
+      <div aria-hidden="true" style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
       <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
-<a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span>GEM INFORMATION SYSTEMS</span><span>&#8599;</span></a>
+        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+<a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">GEM Information Systems</span><span>&#8599;</span></a>
       </div>
       <div style="display:grid;grid-template-columns:1fr auto;gap:64px">
         <div>
-          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px">BUSINESS ENQUIRY</div>
+          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px;text-transform:uppercase">Business enquiry</div>
           <div style="display:grid;grid-template-columns:24px 1fr;row-gap:8px;font-size:17px"><span style="color:#ff1f7a">E.</span><span>info@gemis.co.za</span><span style="color:#ff1f7a">P.</span><span>+27 11 219 5008</span></div>
         </div>
         <div>
-          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px">SOCIAL</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px"><span>LinkedIn</span><span>Behance</span><span>Dribbble</span><span>Instagram</span></div>
+          <div style="font-size:15px;color:#6a6b73;margin-bottom:16px;text-transform:uppercase">Social</div>
+          <!-- CONTENT-TODO: studio social profiles. Only the LinkedIn URL exists in the
+     repo (it is the one the corporate footer already links to). Dribbble,
+     Behance and Instagram are href="#" placeholders until real profile URLs
+     are supplied. target="_blank" is deliberately NOT set on the placeholders:
+     it would open a blank second copy of this page. See CONTENT-TODO.md. -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">Behance</a><a href="#">Dribbble</a><a href="#">Instagram</a></div>
         </div>
       </div>
     </div>
@@ -757,16 +797,17 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     </sc-for>
   </div>
 </section>
+</main>
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;marqueeSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;partnerSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:15,&quot;max&quot;:90,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
+  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, motionPaused: (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches), form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
   componentDidMount() {
     const tick = () => this.setState({ clock: new Date().toLocaleTimeString('en-ZA',{timeZone:'Africa/Johannesburg',hour:'2-digit',minute:'2-digit'}) });
     tick(); this.t = setInterval(tick, 30000);
     this.onScroll = () => { const el = document.elementsFromPoint(innerWidth / 2, 46).find(x => getComputedStyle(x).position !== 'fixed' && !x.closest('[data-nav]')); let dark = false, n = el; while (n && n !== document.body) { const bg = getComputedStyle(n).backgroundColor; const m = bg && bg.match(/\d+/g); if (m && m.length >= 3 && (m.length < 4 || +m[3] > .5)) { dark = (+m[0] * .299 + +m[1] * .587 + +m[2] * .114) < 128; break; } n = n.parentElement; } if (dark !== this.state.navDark) this.setState({ navDark: dark }); };
     addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
-    this.wt = setInterval(() => this.setState(s => ({ word: (s.word + 1) % 4 })), 2600);
+    this.wt = setInterval(() => { if (this.state.motionPaused) return; this.setState(s => ({ word: (s.word + 1) % 4 })); }, 2600);
     const root = this.rootEl || document;
     this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this.io.unobserve(e.target); } }), { threshold: 0.15 });
     this.observeAll = () => document.querySelectorAll('[data-reveal]:not(.in)').forEach(el => this.io.observe(el));
@@ -790,10 +831,10 @@ class Component extends DCLogic {
     const lightBg2 = wrap([blob('a','driftC 40s ease-in-out infinite','55vw','50%','-20%','rgba(255,122,18,.12)',80),blob('b','driftA 48s ease-in-out infinite','40vw','-15%','50%','rgba(255,31,122,.10)',80)]);
     const lightBg3 = wrap([blob('a','driftB 38s ease-in-out infinite','50vw','-10%','10%','rgba(255,31,122,.12)',80)]);
     const ladderData = [
-      { num: '01', name: 'Product Teardown', time: '5 DAYS', kicker: 'DIAGNOSE', price: 'R6,500', priceNote: 'FIXED · 5 WORKING DAYS', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'EVIDENCE — WASTEMART', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'BOOK A TEARDOWN' },
-      { num: '02', name: 'Interface Refresh Sprint', time: '2 WEEKS', kicker: 'REFRESH', price: 'R18,000 – R25,000', priceNote: 'FIXED SCOPE · 2 WEEKS', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'EVIDENCE — MANAGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.1 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'BOOK A TEARDOWN' },
-      { num: '03', name: 'Web Experience', time: '6 – 8 WEEKS', kicker: 'BUILD', price: 'R55,000 – R85,000', priceNote: 'DESIGN + BUILD · 6–8 WEEKS', img: 'assets/img/studio/svc-web.jpg', evidence: 'EVIDENCE — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'BOOK A TEARDOWN' },
-      { num: '04', name: 'Embedded Designer', time: 'ONGOING', kicker: 'EMBED', price: 'R20,000 – R35,000/month', priceNote: 'PER MONTH · 3-MONTH MINIMUM', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'EVIDENCE — RENTFLOW', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'BOOK A TEARDOWN' }
+      { num: '01', name: 'Product Teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown' },
+      { num: '02', name: 'Interface Refresh Sprint', time: '2 weeks', kicker: 'Refresh', price: 'R18,000 – R25,000', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGem', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '03', name: 'Web Experience', time: '6 – 8 weeks', kicker: 'Build', price: 'R55,000 – R85,000', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '04', name: 'Embedded Designer', time: 'Ongoing', kicker: 'Embed', price: 'R20,000 – R35,000/month', priceNote: 'Per month · 3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Book a teardown' }
     ];
     ladderData.forEach(l => { l.deliverables = l.deliverables.map((t, i) => typeof t === 'string' ? { n: '0' + (i + 1), t } : t); });
     const si = this.state.step, sn = ladderData.length;
@@ -805,7 +846,7 @@ class Component extends DCLogic {
     }));
     const { mx, my, hover, word } = this.state;
     const rotWords = ['built.', 'used.', 'shipped.', 'trusted.'];
-    const rotator = React.createElement('span', { style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || i === (word + 3) % 4) ? 'visible' : 'hidden' } }, w)));
+    const rotator = React.createElement('span', { 'aria-hidden': 'true', 'data-rotator': '', style: { display: 'inline-grid', color: '#ff1f7a', perspective: '600px' } }, rotWords.map((w, i) => React.createElement('span', { key: w, style: { gridArea: '1 / 1', display: 'inline-block', animation: i === word ? 'wordIn .7s cubic-bezier(.2,.8,.2,1) both' : 'wordOut .5s cubic-bezier(.6,0,.8,.4) both', pointerEvents: 'none', visibility: (i === word || i === (word + 3) % 4) ? 'visible' : 'hidden' } }, w)));
     const px = (mx - .5), py = (my - .5);
     const heroLayer = (k, src, depth, anim, extra) => React.createElement('div', { key: k, style: Object.assign({ position: 'absolute', inset: '-6%', pointerEvents: 'none', backgroundImage: src, backgroundSize: 'cover', backgroundPosition: 'center', transform: 'translate3d(' + (px * depth) + 'px,' + (py * depth) + 'px,0)', transition: 'transform .9s cubic-bezier(.2,.7,.2,1)', willChange: 'transform' }, extra) }, React.createElement('div', { style: { position: 'absolute', inset: 0, animation: anim, backgroundImage: 'inherit', backgroundSize: 'cover', backgroundPosition: 'center' } }));
     const heroScene = React.createElement('div', { style: { position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' } }, [
@@ -820,27 +861,27 @@ class Component extends DCLogic {
     const heroMove = (e) => { const r = e.currentTarget.getBoundingClientRect(); this.setState({ mx: (e.clientX - r.left) / r.width, my: (e.clientY - r.top) / r.height, hover: true }); };
     const heroLeave = () => this.setState({ hover: false, mx: .5, my: .5 });
     const partnerWords = ['Enterprise SaaS', 'Financial OS', 'Websites', 'Mobile Apps', 'Ops Dashboards', 'Graphic Design', 'Logos & Identity', 'AI Workflows', 'Design Systems', 'Conversational UI', 'E-commerce', 'Internal Tools'];
-    const pItems = []; [...partnerWords, ...partnerWords].forEach((w, i) => { pItems.push(React.createElement('span', { key: 'w' + i, style: { fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: '#16161a', padding: '0 36px', whiteSpace: 'nowrap' } }, w)); pItems.push(React.createElement('span', { key: 'd' + i, style: { width: '6px', height: '6px', borderRadius: '50%', background: i % 2 ? '#ff7a12' : '#ff1f7a', flex: 'none' } })); });
+    const pItems = []; [...partnerWords, ...partnerWords].forEach((w, i) => { pItems.push(React.createElement('span', { key: 'w' + i, 'aria-hidden': i >= partnerWords.length ? 'true' : undefined, style: { fontSize: '22px', fontWeight: 700, letterSpacing: '-0.02em', color: '#16161a', padding: '0 36px', whiteSpace: 'nowrap' } }, w)); pItems.push(React.createElement('span', { key: 'd' + i, 'aria-hidden': 'true', style: { width: '6px', height: '6px', borderRadius: '50%', background: i % 2 ? '#ff7a12' : '#ff1f7a', flex: 'none' } })); });
     const partnerMarquee = React.createElement('div', { style: { display: 'inline-flex', alignItems: 'center', animation: (this.props.partnerSpeed ?? 40) + 's marquee linear infinite', willChange: 'transform' } }, pItems);
     const marquee = React.createElement('div', { style: { display: 'inline-flex', alignItems: 'center', animation: (this.props.marqueeSpeed ?? 24) + 's marquee linear infinite', willChange: 'transform' } }, items);
     const clientsData = [
-      { label: 'FREELANCE DESIGNER', quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.', person: 'Alternative 01', role: 'Freelance designer', img: ((window.__resources||{}).shotFinos || 'assets/img/shots/finos.jpg') },
-      { label: 'DESIGN AGENCY', quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
-      { label: 'DEVELOPMENT SHOP', quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.', person: 'Alternative 03', role: 'Development shop', img: ((window.__resources||{}).shotRentflow || 'assets/img/shots/rentflow.jpg') },
-      { label: 'HIRING IN-HOUSE', quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.', person: 'Alternative 04', role: 'Hiring in-house', img: ((window.__resources||{}).shotNura || 'assets/img/shots/nuracoach.jpg') },
-      { label: 'DOING NOTHING', quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.', person: 'Alternative 05', role: 'Doing nothing', img: ((window.__resources||{}).shotWaste || 'assets/img/shots/wastemart-driver.jpg') }
+      { label: 'Freelance designer', quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.', person: 'Alternative 01', role: 'Freelance designer', img: ((window.__resources||{}).shotFinos || 'assets/img/shots/finos.jpg') },
+      { label: 'Design agency', quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
+      { label: 'Development shop', quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.', person: 'Alternative 03', role: 'Development shop', img: ((window.__resources||{}).shotRentflow || 'assets/img/shots/rentflow.jpg') },
+      { label: 'Hiring in-house', quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.', person: 'Alternative 04', role: 'Hiring in-house', img: ((window.__resources||{}).shotNura || 'assets/img/shots/nuracoach.jpg') },
+      { label: 'Doing nothing', quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.', person: 'Alternative 05', role: 'Doing nothing', img: ((window.__resources||{}).shotWaste || 'assets/img/shots/wastemart-driver.jpg') }
     ];
     const n = clientsData.length, ci = this.state.client;
     const clients = clientsData.map((c, i) => ({
       label: i === ci ? c.label + '  →' : c.label,
       select: () => this.setState({ client: i }),
-      style: { background: 'transparent', border: 0, padding: 0, textAlign: 'left', font: 'inherit', cursor: 'pointer', letterSpacing: '0.02em', color: i === ci ? '#ff1f7a' : '#9a9ba3' }
+      style: { background: 'transparent', border: 0, padding: 0, textAlign: 'left', font: 'inherit', cursor: 'pointer', letterSpacing: '0.02em', textTransform: 'uppercase', color: i === ci ? '#ff1f7a' : '#9a9ba3' }
     }));
     const reasons = [
-      { n: '1', num: '01', tag: 'ONE ROOF', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
-      { n: '2', num: '02', tag: 'PUBLISHED', title: 'Published prices. Fixed after the Teardown.', body: 'Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.' },
-      { n: '3', num: '03', tag: 'SENIOR', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
-      { n: '4', num: '04', tag: 'EVIDENCE', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
+      { n: '1', num: '01', tag: 'One roof', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
+      { n: '2', num: '02', tag: 'Published', title: 'Published prices. Fixed after the Teardown.', body: 'Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.' },
+      { n: '3', num: '03', tag: 'Senior', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
+      { n: '4', num: '04', tag: 'Evidence', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
     ];
     const f = this.state.form;
     const setField = (e) => { const k = e.target.name, v = e.target.value; this.setState(s => ({ form: Object.assign({}, s.form, { [k]: v }) })); };
@@ -855,6 +896,10 @@ class Component extends DCLogic {
     const lines = Array.from({ length: 8 }, (_, c) => Array.from({ length: 12 }, (_, r) => (30 + ((c * 7 + r * 13) % 70)) + '%'));
     return {
       menuOpen: this.state.menuOpen, menuLabel: this.state.menuOpen ? 'MENU ×' : 'MENU ≡',
+      menuExpanded: this.state.menuOpen ? 'true' : 'false', menuGlyph: this.state.menuOpen ? '×' : '≡',
+      motionState: this.state.motionPaused ? 'paused' : 'running',
+      motionLabel: this.state.motionPaused ? 'Play motion' : 'Pause motion',
+      toggleMotion: () => this.setState(s => ({ motionPaused: !s.motionPaused })),
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
       ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
       projects: [
