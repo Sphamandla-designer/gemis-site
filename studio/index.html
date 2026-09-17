@@ -10,1066 +10,889 @@
 <meta property="og:description" content="Start with a Product Teardown — a five-day diagnosis of what your users actually do. R6,500 excl. VAT, credited in full against anything booked within 60 days.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gemis.co.za/studio/">
-<meta name="theme-color" content="#07102A">
+<meta name="theme-color" content="#16161a">
 <link rel="icon" href="../assets/img/favicon.svg">
 
-<link rel="preload" href="../assets/fonts/quicksand-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="../assets/img/studio/hero-finos.jpg" fetchpriority="high">
+<link rel="preload" href="../assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="../assets/img/studio/hero-facets.jpg" fetchpriority="high">
 
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    GEMIS Studio — home
-   Visual system follows the studio design reference supplied in the repo
-   (Screenshot 2026-09-16 115151–115404 + screen recording): a light field
-   with a rounded sheet, a floating pill navigator, a full-bleed brand
-   hero, photographic service cards, dark bento panels and a rounded
-   footer slab. Content and structure follow the GEMIS Studio
-   Implementation Brief.
+   Implements the "Studio Landing" design exported from Claude Design:
+   light field (#eef0f3 / #f5f6f8) alternating with ink (#16161a) sections,
+   pink/orange accents, Manrope display + JetBrains Mono utility, ambient
+   drifting light blobs behind every section and a cursor-reactive hero.
    ═══════════════════════════════════════════════════════════════════════ */
 
-@font-face{font-family:'Quicksand Var';src:url('../assets/fonts/quicksand-latin-wght-normal.woff2') format('woff2-variations');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Inter Var';src:url('../assets/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Manrope Var';src:url('../assets/fonts/manrope-latin-wght-normal.woff2') format('woff2-variations');font-weight:200 800;font-display:swap}
+@font-face{font-family:'JetBrains Mono Var';src:url('../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');font-weight:100 800;font-display:swap}
 
 :root{
-  /* light field + sheet */
-  --field:#EBEAE7;
-  --surface:#FFFFFF;
-  --panel:#F5F4F2;
-  --ink:#241F1C;          /* warm near-black, 14.8:1 on surface */
-  --body:#4B4744;         /* 8.5:1 */
-  --soft:#6E6A65;         /* 5.2:1 */
-  --line:#E7E4E0;
-  --line-2:#CFCBC5;
+  --field:#eef0f3;       /* base light ground */
+  --panel:#f5f6f8;       /* second light ground */
+  --surface:#ffffff;
+  --ink:#16161a;         /* near-black ground + text */
+  --body:#3a3b41;
+  --soft:#5a5b63;
+  --mute:#6a6b73;
+  --line:#dcdee3;
+  --pink:#ff1f7a;
+  --orange:#ff7a12;
+  --on-ink:#f5f6f8;
+  --on-ink-soft:#c9cad1;
+  --on-ink-mute:#9a9ba3;
 
-  /* brand — GEM Information Systems blue */
-  --brand:#1A56A0;
-  --brand-lift:#3D82DC;
-  --navy:#0E2050;
-  --navy-deep:#070F26;
-  --ember:#D9793A;        /* accent stroke only, never as text on light */
+  --sans:'Manrope Var','Manrope',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono Var','JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 
-  /* dark surfaces */
-  --dark:#12110F;
-  --dark-2:#1B1A17;
-  --on-dark:#FFFFFF;
-  --on-dark-soft:#A7A39C;
-
-  --r-xl:30px; --r:22px; --r-md:16px; --r-sm:10px; --pill:9999px;
-
-  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
-  --s7:48px; --s8:64px; --s9:96px; --s10:128px;
-
-  --shell:1260px;
-  --gutter:clamp(18px,4vw,44px);
-
-  --f:'Inter Var',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
-  --fd:'Quicksand Var','Trebuchet MS','Inter Var',sans-serif;
-
-  --ease:cubic-bezier(.22,.61,.36,1);
-  --t-hover:140ms; --t-acc:220ms; --t-open:420ms;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --gut:32px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px}
-body{
-  margin:0;background:var(--field);color:var(--body);
-  font-family:var(--f);font-size:1.0625rem;line-height:1.66;font-weight:400;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-img{display:block;max-width:100%}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--field);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0}
-h1,h2,h3,h4{margin:0;font-family:var(--fd);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.1}
-p{margin:0}
-ul{margin:0;padding:0;list-style:none}
-[hidden]{display:none!important}
-:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:4px}
-.tnum{font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1}
+a:hover{color:var(--pink)}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 
-.skip{position:absolute;left:-9999px;top:0;z-index:200}
-.skip:focus{left:var(--s4);top:var(--s4);background:var(--ink);color:#fff;padding:12px 18px;border-radius:var(--pill)}
+/* ─── motion keyframes ─────────────────────────────────────────────── */
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes driftA{0%{transform:translate(-10%,-5%) scale(1)}50%{transform:translate(25%,20%) scale(1.25)}100%{transform:translate(-10%,-5%) scale(1)}}
+@keyframes driftB{0%{transform:translate(20%,30%) scale(1.1)}50%{transform:translate(-15%,-10%) scale(.9)}100%{transform:translate(20%,30%) scale(1.1)}}
+@keyframes driftC{0%{transform:translate(0,40%) scale(1)}50%{transform:translate(10%,-20%) scale(1.3)}100%{transform:translate(0,40%) scale(1)}}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(-1.5%,1%)}100%{transform:scale(1) translate(0,0)}}
+@keyframes hueShift{0%,100%{filter:hue-rotate(0deg) saturate(1)}50%{filter:hue-rotate(-14deg) saturate(1.15)}}
+@keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(18px,-26px,0) rotate(6deg)}}
+@keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-22px,18px,0) rotate(-5deg)}}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes wordIn{0%{opacity:0;transform:translateY(60%) rotateX(-40deg)}100%{opacity:1;transform:none}}
+@keyframes wordOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-60%) rotateX(40deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
-/* ── sheet ───────────────────────────────────────────────────────── */
-.sheet{background:var(--surface);border-radius:var(--r-xl);margin:0 clamp(0px,1.1vw,16px) clamp(0px,1.1vw,16px);overflow:clip}
-.wrap{width:100%;max-width:var(--shell);margin:0 auto;padding:0 var(--gutter)}
+/* ─── scroll reveal ────────────────────────────────────────────────── */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="2"]{transition-delay:.12s}
+[data-reveal="3"]{transition-delay:.24s}
+[data-reveal="4"]{transition-delay:.36s}
+.word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+.word>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.in .word>span{transform:none}
+.in .word{overflow:visible}
 
-/* ── type ─────────────────────────────────────────────────────────── */
-.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
-.h-display{font-family:var(--fd);font-weight:600;font-size:clamp(2.35rem,5.6vw,4.1rem);line-height:1.04;letter-spacing:-.022em}
-.h2{font-size:clamp(2rem,4.4vw,3.15rem);line-height:1.06}
-.h3{font-size:clamp(1.25rem,2vw,1.5rem);line-height:1.18}
-.lede{font-size:clamp(1.02rem,1.25vw,1.14rem);line-height:1.62;color:var(--body);max-width:60ch}
-.sub{color:var(--soft);max-width:54ch;margin:var(--s5) auto 0;font-size:1.03rem;line-height:1.62}
-.strap{font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+/* ─── ambient blob field ───────────────────────────────────────────── */
+.amb{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.amb i{position:absolute;border-radius:50%;display:block;will-change:transform}
 
-.head{text-align:center;max-width:780px;margin:0 auto}
-.head .h2{margin-top:var(--s4)}
-.sec{padding:clamp(70px,9.5vw,128px) 0}
+/* ─── nav ──────────────────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:28px var(--gut);color:#fff;mix-blend-mode:difference}
+.nav__brand{display:flex;align-items:center;gap:12px;color:#fff}
+.nav__brand:hover{color:#fff}
+.nav__mark{display:grid;gap:3px;width:22px}
+.nav__mark span{display:block;height:4px;background:#fff}
+.nav__mark span:nth-child(1){width:22px}
+.nav__mark span:nth-child(2){width:15px}
+.nav__mark span:nth-child(3){width:8px}
+.nav__word{display:flex;flex-direction:column;line-height:1}
+.nav__word b{font-weight:700;letter-spacing:.08em;font-size:14px}
+.nav__word i{font-family:var(--mono);font-style:normal;font-weight:400;letter-spacing:.16em;font-size:9px;margin-top:3px;opacity:.85}
+.nav__right{display:flex;align-items:center;gap:10px}
+.nav__spacer{width:150px;height:38px;visibility:hidden}
+.nav__menu{background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;
+  font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer}
 
-/* ── buttons ──────────────────────────────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:var(--pill);
-  background:var(--ink);color:#fff;font-weight:600;font-size:.95rem;line-height:1;
-  transition:background var(--t-hover) var(--ease),transform var(--t-hover) var(--ease)}
-.btn:hover{background:#3A332E;transform:translateY(-1px)}
-.btn__ico{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.16)}
-.btn--light{background:#fff;color:var(--navy-deep)}
-.btn--light:hover{background:#EEF3FB}
-.btn--ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55)}
-.btn--ghost:hover{background:rgba(255,255,255,.1)}
-.btn--out{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line-2)}
-.btn--out:hover{background:var(--panel)}
-.btn--grad{position:relative;background:var(--surface);color:var(--ink);padding:19px 40px;font-size:.84rem;
-  letter-spacing:.16em;text-transform:uppercase;font-weight:700}
-.btn--grad::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.8px;
-  background:linear-gradient(96deg,var(--brand),var(--brand-lift) 45%,var(--ember));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
-.btn--grad:hover{background:#FBFAF8;transform:translateY(-1px)}
+/* CTA lives outside the blended layer so it can hold a real pink */
+.cta-fixed{position:fixed;top:28px;right:calc(42px + 86px);z-index:51;background:var(--pink);color:#fff;
+  border-radius:999px;padding:10px 18px;font-size:13px;font-weight:600;letter-spacing:.02em;line-height:1.4;
+  transition:background .4s,color .4s}
+.cta-fixed:hover{color:#fff}
+body.on-ink .cta-fixed{background:#fff;color:var(--ink)}
+body.on-ink .cta-fixed:hover{color:var(--ink)}
 
-.link-arrow{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:var(--ink);font-size:.95rem;
-  border-bottom:1.5px solid var(--line-2);padding-bottom:2px;transition:border-color var(--t-hover) var(--ease)}
-.link-arrow:hover{border-color:var(--ink)}
-.link-arrow i{font-style:normal;transition:transform var(--t-hover) var(--ease)}
-.link-arrow:hover i{transform:translate(2px,-2px)}
+/* ─── drawer ───────────────────────────────────────────────────────── */
+.drawer{position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:var(--ink);
+  color:var(--on-ink);z-index:40;padding:220px var(--gut) 40px;display:flex;flex-direction:column;
+  justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.drawer[hidden]{display:none}
+.drawer__links{display:flex;flex-direction:column;gap:10px}
+.drawer__links a{font-size:34px;font-weight:500}
+.drawer__meta{display:flex;flex-direction:column;gap:28px}
+.drawer__label{font-size:13px;color:#8a8886;letter-spacing:.04em;margin-bottom:12px}
+.drawer__pairs{display:grid;grid-template-columns:24px 1fr;row-gap:6px;font-size:17px}
+.drawer__pairs span:nth-child(odd){color:#8a8886}
+.drawer__social{display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px}
 
-/* ── sparkle accent ───────────────────────────────────────────────── */
-.spark{position:absolute;width:15px;height:15px;color:var(--ink);opacity:.5;pointer-events:none}
+/* ─── shared section furniture ─────────────────────────────────────── */
+section{position:relative;overflow:hidden}
+.sec-in{position:relative;z-index:1;max-width:1400px;margin:0 auto}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--orange)}
+.rule-link{font-family:var(--mono);font-size:13px;letter-spacing:.02em;display:flex;justify-content:space-between;
+  gap:48px;border-bottom:2px solid var(--orange);padding-bottom:10px;min-width:230px;color:var(--ink)}
+.rule-link--ink{border-bottom-color:var(--ink)}
+.rule-link--thin{border-bottom-width:1px;gap:0;width:190px;min-width:0}
+.rule-link--onink{color:var(--on-ink)}
 
-/* ═══ floating pill navigator ═════════════════════════════════════ */
-.hd{position:fixed;top:12px;left:0;right:0;z-index:70;display:flex;justify-content:center;
-  padding:0 var(--gutter);pointer-events:none}
-.hd__in{pointer-events:auto;display:flex;align-items:center;gap:var(--s2);max-width:1080px;width:100%;
-  padding:7px 7px 7px 7px;border-radius:var(--pill);
-  background:rgba(255,255,255,.62);
-  -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
-  box-shadow:0 1px 2px rgba(20,18,16,.05),0 18px 40px -18px rgba(20,18,16,.3),inset 0 0 0 1px rgba(255,255,255,.5);
-  transition:background var(--t-acc) var(--ease),box-shadow var(--t-acc) var(--ease)}
-.hd.is-compact .hd__in{background:rgba(255,255,255,.9);
-  box-shadow:0 1px 2px rgba(20,18,16,.06),0 14px 30px -16px rgba(20,18,16,.34),inset 0 0 0 1px rgba(255,255,255,.7)}
+/* ─── hero ─────────────────────────────────────────────────────────── */
+.hero{min-height:100vh;padding:140px var(--gut) 48px;display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr auto;gap:var(--gut);background:var(--field)}
+.hero__probe{position:absolute;inset:0;z-index:0}
+.hero__scene{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.hero__layer{position:absolute;inset:-6%;pointer-events:none;background-image:url('../assets/img/studio/hero-facets.jpg');
+  background-size:cover;background-position:center;transition:transform .9s var(--ease);will-change:transform;
+  transform:translate3d(calc(var(--px,0) * var(--depth)),calc(var(--py,0) * var(--depth)),0)}
+.hero__layer>i{position:absolute;inset:0;display:block;background-image:inherit;background-size:cover;background-position:center}
+.hero__layer--base{--depth:-18px}
+.hero__layer--base>i{animation:kenburns 28s ease-in-out infinite,hueShift 18s ease-in-out infinite}
+.hero__layer--a{--depth:34px;opacity:.95;
+  -webkit-mask-image:radial-gradient(circle at 72% 30%,#000 0 12vw,transparent 15vw);
+  mask-image:radial-gradient(circle at 72% 30%,#000 0 12vw,transparent 15vw)}
+.hero__layer--a>i{animation:floatA 14s ease-in-out infinite}
+.hero__layer--b{--depth:56px;opacity:.95;
+  -webkit-mask-image:radial-gradient(circle at 86% 68%,#000 0 9vw,transparent 12vw);
+  mask-image:radial-gradient(circle at 86% 68%,#000 0 9vw,transparent 12vw)}
+.hero__layer--b>i{animation:floatB 18s ease-in-out infinite}
 
-.brandchip{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;flex:0 0 auto;
-  background:linear-gradient(150deg,var(--brand-lift),var(--brand) 52%,var(--navy));color:#fff;
-  box-shadow:0 6px 14px -6px rgba(26,86,160,.7)}
-.brandchip svg{width:21px;height:21px;display:block}
+.hero__glow{position:absolute;left:var(--mx,50%);top:var(--my,50%);width:46vw;height:46vw;margin:-23vw 0 0 -23vw;
+  border-radius:50%;filter:blur(30px);mix-blend-mode:screen;animation:driftA 22s ease-in-out infinite;
+  background:radial-gradient(circle,rgba(255,31,122,.3) 0%,rgba(255,122,18,.18) 30%,transparent 62%);
+  transition:left 1.4s ease,top 1.4s ease,background .8s}
+.hero__trail{position:absolute;left:var(--mx,50%);top:var(--my,50%);width:32vw;height:3px;margin-top:-1px;
+  transform-origin:right center;transform:translateX(-100%) rotate(var(--ang,0deg));filter:blur(1.2px);
+  mix-blend-mode:screen;background:linear-gradient(90deg,transparent,rgba(255,255,255,0),rgba(255,31,122,0));
+  transition:left .35s var(--ease),top .35s var(--ease),background .6s,transform .5s}
+.hero__spark{position:absolute;left:var(--mx,50%);top:var(--my,50%);width:14px;height:14px;margin:-7px;border-radius:50%;
+  background:#fff;box-shadow:0 0 24px 8px rgba(255,255,255,.9),0 0 60px 20px rgba(255,31,122,.7);opacity:0;
+  transition:left .35s var(--ease),top .35s var(--ease),opacity .4s}
+.hero.is-live .hero__glow{animation:none;
+  background:radial-gradient(circle,rgba(255,31,122,.5) 0%,rgba(255,122,18,.18) 30%,transparent 62%);
+  transition:left .35s var(--ease),top .35s var(--ease),background .4s}
+.hero.is-live .hero__trail{background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),rgba(255,31,122,.9))}
+.hero.is-live .hero__spark{opacity:1}
 
-.hd__name{display:none;margin-left:11px;font-family:var(--fd);font-weight:700;font-size:1.05rem;color:var(--ink);letter-spacing:-.01em}
-.hd__name span{font-weight:400;color:var(--soft)}
-.nav{display:flex;align-items:center;gap:2px;margin-left:var(--s3)}
-.nav a,.drop>button{display:inline-flex;align-items:center;gap:6px;padding:9px 13px;border-radius:var(--pill);
-  font-size:.93rem;font-weight:500;color:var(--ink);white-space:nowrap;cursor:pointer;
-  transition:background var(--t-hover) var(--ease)}
-.nav a:hover,.drop>button:hover{background:rgba(36,31,28,.07)}
-.drop{position:relative}
-.drop>button svg{transition:transform var(--t-acc) var(--ease)}
-.drop.is-open>button svg{transform:rotate(180deg)}
-.drop__panel{position:absolute;top:calc(100% + 12px);left:0;min-width:306px;background:var(--surface);
-  border-radius:var(--r-md);box-shadow:0 1px 2px rgba(20,18,16,.06),0 26px 54px -20px rgba(20,18,16,.34);
-  padding:var(--s2);opacity:0;visibility:hidden;transform:translateY(-6px);
-  transition:opacity var(--t-acc) var(--ease),transform var(--t-acc) var(--ease),visibility var(--t-acc)}
-.drop.is-open .drop__panel{opacity:1;visibility:visible;transform:none}
-.drop__item{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);
-  padding:11px 13px;border-radius:var(--r-sm);transition:background var(--t-hover) var(--ease)}
-.drop__item:hover{background:var(--panel)}
-.drop__item b{font-weight:600;color:var(--ink);font-size:.93rem}
-.drop__item span{font-size:.8rem;color:var(--soft)}
+.hero__veil{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)}
+.hero__copy{position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;pointer-events:none}
+.hero__title{font-size:clamp(56px,7vw,110px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.hero__lede{max-width:520px;font-size:17px;line-height:1.4;color:var(--body);text-wrap:pretty}
+.hero__links{display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto}
+.rotator{display:inline-grid;color:var(--pink);perspective:600px}
+.rotator span{grid-area:1/1;display:inline-block;visibility:hidden;pointer-events:none}
+.rotator span.is-in{visibility:visible;animation:wordIn .7s cubic-bezier(.2,.8,.2,1) both}
+.rotator span.is-out{visibility:visible;animation:wordOut .5s cubic-bezier(.6,0,.8,.4) both}
 
-.hd__act{display:flex;align-items:center;gap:6px;margin-left:auto}
-.icb{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;flex:0 0 auto;
-  background:var(--ink);color:#fff;cursor:pointer;
-  transition:background var(--t-hover) var(--ease),transform var(--t-hover) var(--ease)}
-.icb:hover{background:#3A332E;transform:translateY(-1px)}
-.icb svg{width:16px;height:16px}
-.icb--menu{display:none}
-.burger i,.burger i::before,.burger i::after{display:block;width:15px;height:1.7px;background:currentColor;border-radius:2px}
-.burger i{position:relative}
-.burger i::before,.burger i::after{content:'';position:absolute;left:0}
-.burger i::before{top:-5px}.burger i::after{top:5px}
-.drawerclose i::before{top:0;transform:rotate(45deg)}
-.drawerclose i::after{top:0;transform:rotate(-45deg)}
-.drawerclose i{background:transparent}
+.hero__foot{grid-column:1/-1;position:relative;z-index:1;display:flex;justify-content:space-between;
+  align-items:flex-end;gap:var(--gut);flex-wrap:wrap;margin-top:24px}
+.hero__claim{flex:1;text-align:center;font-size:15px;font-weight:600;letter-spacing:.01em;min-width:240px;align-self:flex-end}
+.hero__claim span{font-weight:500}
+.hero__aside{width:250px;display:flex;flex-direction:column;gap:24px}
+.hero__nap{display:grid;grid-template-columns:96px 1fr;border:1px solid rgba(22,22,26,.25);
+  background:rgba(255,255,255,.75);backdrop-filter:blur(8px)}
+.hero__nap-l{padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:.04em}
+.hero__nap-l b{display:block;width:32px;height:32px;border:1.5px solid var(--orange);border-radius:50%;margin:0 auto 10px}
+.hero__nap-r{padding:20px 14px;font-size:11px;font-weight:600;letter-spacing:.04em;line-height:1.4}
+.hero__note{font-size:17px;line-height:1.35;text-align:justify;background:rgba(255,255,255,.75);
+  backdrop-filter:blur(8px);padding:14px 16px}
 
-/* ── mobile drawer ───────────────────────────────────────────────── */
-.drawer{position:fixed;inset:0;z-index:90;background:var(--surface);display:flex;flex-direction:column;
-  padding:var(--s5) var(--gutter) var(--s7);overflow-y:auto;opacity:0;transform:translateY(-8px);
-  transition:opacity var(--t-acc) var(--ease),transform var(--t-acc) var(--ease)}
-.drawer.is-open{opacity:1;transform:none}
-.drawer__top{display:flex;align-items:center;gap:var(--s3)}
-.drawer__top .icb{margin-left:auto}
-.drawer__body{margin-top:var(--s7);display:flex;flex-direction:column;gap:var(--s2)}
-.drawer__body>a{font-family:var(--fd);font-weight:600;font-size:1.6rem;color:var(--ink);padding:9px 0}
-.drawer__svc{margin-top:var(--s6);border-top:1px solid var(--line);padding-top:var(--s5)}
-.drawer__svc a{display:flex;justify-content:space-between;gap:var(--s4);padding:11px 0;font-size:.98rem;color:var(--ink)}
-.drawer__svc a span{color:var(--soft);font-size:.85rem}
-.drawer__foot{margin-top:auto;padding-top:var(--s7);display:flex;flex-direction:column;gap:var(--s3);align-items:flex-start}
-.drawer__foot .small{color:var(--soft);font-size:.9rem}
+/* ─── about ────────────────────────────────────────────────────────── */
+.about{padding:140px var(--gut) 120px;background:var(--ink);color:var(--on-ink)}
+.about .eyebrow{position:relative;z-index:1;margin-bottom:40px}
+.about__statement{position:relative;z-index:1;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);
+  line-height:1.02;letter-spacing:-.045em;font-weight:500;text-indent:9%;padding-left:8%}
+.about__statement em{font-style:normal;color:var(--pink)}
+.about__rule{position:relative;z-index:1;margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15)}
+.about__rule span{position:absolute;left:64%;top:-11px;color:var(--orange);font-size:16px}
+.about__grid{position:relative;z-index:1;margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut)}
+.about__rules{font-size:13px;font-weight:600;letter-spacing:.02em;line-height:1.35;max-width:260px}
+.about__side{display:flex;flex-direction:column;gap:80px;max-width:380px}
+.about__side p{font-size:17px;line-height:1.4;color:var(--on-ink-soft)}
 
-/* ═══ hero — full-bleed brand panel ══════════════════════════════ */
-.hero{padding:76px var(--gutter) 0}
-.hero__panel{position:relative;max-width:1400px;margin:0 auto;border-radius:var(--r-xl);overflow:hidden;
-  background:
-    radial-gradient(64% 52% at 70% 26%,rgba(72,140,240,.55),transparent 64%),
-    radial-gradient(130% 116% at 84% 44%,#173B87 0%,#0D1F4E 44%,#07102A 100%);
-  color:#fff;isolation:isolate}
-.hero__media{position:absolute;top:0;right:0;bottom:0;left:38%;z-index:-2;opacity:.95;
-  background:url('../assets/img/studio/hero-finos.jpg') 54% 48%/cover no-repeat;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 26%);mask-image:linear-gradient(90deg,transparent,#000 26%)}
-.hero__scrim{position:absolute;inset:0;z-index:-1;
-  background:
-    linear-gradient(97deg,#07102A 0%,#07102A 30%,rgba(9,20,52,.82) 46%,rgba(7,16,42,.42) 64%,rgba(7,16,42,.3) 82%,rgba(7,16,42,.72) 100%),
-    radial-gradient(52% 44% at 73% 30%,rgba(84,152,250,.3),transparent 72%),
-    linear-gradient(180deg,rgba(7,16,42,.7) 0%,transparent 24%,transparent 58%,rgba(7,16,42,.86) 100%)}
-.hero__in{position:relative;padding:clamp(88px,10.5vw,132px) clamp(26px,5vw,72px) clamp(28px,3.4vw,44px)}
-.hero__wm{display:flex;align-items:center;gap:11px;font-family:var(--fd);font-weight:700;font-size:1.3rem;
-  letter-spacing:-.01em;color:#fff}
-.hero__wm span{font-weight:400;color:rgba(255,255,255,.72)}
-.hero__wm .brandchip{width:36px;height:36px;box-shadow:none;background:rgba(255,255,255,.14);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.hero__wm .brandchip svg{width:19px;height:19px}
-.hero__col{max-width:min(620px,54%)}
-.hero h1{color:#fff;margin-top:clamp(22px,3vw,34px);font-size:clamp(2.2rem,4.5vw,3.4rem)}
-.hero__lede{margin-top:var(--s5);max-width:46ch;color:rgba(255,255,255,.8);font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.6}
-.hero__strap{margin-top:var(--s6);color:rgba(255,255,255,.64)}
-.hero__act{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
-.hero__note{margin-top:var(--s5);font-size:.84rem;color:rgba(255,255,255,.62);max-width:46ch}
+/* ─── marquee band ─────────────────────────────────────────────────── */
+.band{padding:140px 0 120px;background:var(--ink);color:var(--on-ink)}
+.band__note{position:absolute;left:180px;top:160px;z-index:1;font-size:15px;font-weight:600;color:var(--orange);line-height:1.3}
+.band__track{position:relative;z-index:1;margin-top:120px;overflow:hidden;white-space:nowrap}
+.band__foot{position:relative;z-index:1;text-align:center;margin-top:100px;font-size:15px;font-weight:600}
+.mq{display:inline-flex;align-items:center;will-change:transform;animation:marquee var(--speed,24s) linear infinite}
+.mq__w{font-size:clamp(72px,8vw,150px);letter-spacing:-.03em;font-weight:500;line-height:1;color:var(--on-ink)}
+.mq__w--pink{color:var(--pink)}
+.mq__p{font-size:40px;color:var(--orange);margin:0 56px;font-weight:300}
 
-/* ladder — glass strip inside the hero */
-.ladder{margin-top:clamp(44px,5.4vw,72px);display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.rung{display:flex;flex-direction:column;gap:9px;padding:16px 17px 17px;border-radius:var(--r-md);
-  background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
-  transition:background var(--t-hover) var(--ease),transform var(--t-hover) var(--ease),box-shadow var(--t-hover) var(--ease)}
-.rung:hover{background:rgba(255,255,255,.15);transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
-.rung__slot{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.68)}
-.rung--1 .rung__slot{color:#8FC0FF}
-.rung__quote{font-size:.92rem;line-height:1.42;color:rgba(255,255,255,.9);font-style:italic}
-.rung__row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px;
-  margin-top:auto;padding-top:9px;border-top:1px solid rgba(255,255,255,.16)}
-.rung__name{font-family:var(--fd);font-weight:600;font-size:.97rem;color:#fff}
-.rung__price{font-weight:700;color:#fff;font-size:.9rem}
-.rung__dur{color:rgba(255,255,255,.6);font-size:.8rem}
-.tbc{font-size:.76rem;color:rgba(255,255,255,.66);letter-spacing:.01em}
+/* ─── every engagement ─────────────────────────────────────────────── */
+.rules{background:var(--panel);padding:100px var(--gut) 60px;text-align:center}
+.rules__h{position:relative;z-index:1;font-size:clamp(48px,5vw,88px);letter-spacing:-.045em;font-weight:600}
+.rules__lede{position:relative;z-index:1;margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:var(--soft)}
+.rules__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative;z-index:1}
+.rcard{aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;
+  overflow:hidden;position:relative;transition:transform .5s var(--ease),box-shadow .5s}
+.rcard__top{display:flex;justify-content:space-between;align-items:center;position:relative}
+.rcard__tag{font-size:14px;font-weight:600;letter-spacing:.04em}
+.rcard__n{font-family:var(--mono);font-size:12px;color:var(--on-ink-mute)}
+.rcard__media{min-height:0;overflow:hidden;position:relative}
+.rcard__media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.rcard:hover .rcard__media img{transform:scale(1.06)}
+.rcard__scrim{position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))}
+.rcard__foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.rcard__foot p{font-size:15px;line-height:1.3;max-width:170px}
+.rcard__big{font-size:clamp(44px,4vw,60px);letter-spacing:-.04em;line-height:1;font-weight:600}
+.rcard__big sup{font-size:20px;font-weight:500}
 
-/* ═══ proof marquee ═══════════════════════════════════════════════ */
-.proof{padding:clamp(44px,5vw,64px) 0 clamp(30px,4vw,48px);overflow:hidden}
-.proof__h{text-align:center}
-.proof__track{margin-top:var(--s6);position:relative;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.proof__run{display:flex;gap:12px;width:max-content;animation:run 42s linear infinite}
-.proof__track:hover .proof__run{animation-play-state:paused}
-@keyframes run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.chip{display:inline-flex;align-items:center;gap:10px;padding:13px 20px 13px 14px;border-radius:var(--pill);
-  background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap;
-  font-size:.94rem;font-weight:500;color:var(--ink)}
-.chip em{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--panel);
-  color:var(--brand);font-style:normal}
-.chip em svg{width:15px;height:15px}
+.rcard--ink{background:var(--ink);color:var(--on-ink)}
+.rcard--ink:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.6)}
+.rcard--ink .rcard__tag{color:var(--orange)}
+.rcard--ink .rcard__foot p{color:var(--on-ink-soft)}
+.rcard--ink .rcard__big sup{color:var(--orange)}
 
-/* ═══ light cards grid ════════════════════════════════════════════ */
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
-.tile{padding:26px 24px 28px;border-radius:var(--r);background:var(--panel);
-  box-shadow:inset 0 0 0 1px var(--line);transition:transform var(--t-acc) var(--ease),box-shadow var(--t-acc) var(--ease)}
-.tile:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line-2),0 18px 34px -22px rgba(20,18,16,.4)}
-.tile__n{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--surface);
-  color:var(--brand);font-size:.74rem;font-weight:700;letter-spacing:.04em;box-shadow:inset 0 0 0 1px var(--line)}
-.tile p{margin-top:var(--s4);font-size:.98rem;line-height:1.6;color:var(--body)}
+.rcard--grad{background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff}
+.rcard--grad:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)}
+.rcard--grad .rcard__n{color:#fff;opacity:.8}
+.rcard__shimmer{position:absolute;inset:0;pointer-events:none;background-size:250% 100%;
+  background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);
+  animation:shimmer 5s ease-in-out infinite}
+.rcard__disc{display:flex;align-items:center;justify-content:center;position:relative}
+.rcard__disc b{width:min(186px,70%);aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:clamp(40px,3.6vw,56px);letter-spacing:-.04em;color:var(--pink);font-weight:600;
+  box-shadow:0 20px 50px -20px rgba(22,22,26,.5);transition:transform .6s var(--ease)}
+.rcard__disc b sup{font-size:18px;font-weight:500}
+.rcard--grad:hover .rcard__disc b{transform:scale(1.06) rotate(-4deg)}
+.rcard__say{font-size:15px;line-height:1.3;position:relative}
 
-/* pull-quote */
-.pull{margin:clamp(56px,7vw,96px) auto 0;max-width:860px;text-align:center}
-.pull q{quotes:none;font-family:var(--fd);font-weight:500;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.2;
-  color:var(--ink);letter-spacing:-.015em;display:block;max-width:none}
-.pull strong{font-weight:700}
-.rule{display:flex;align-items:center;gap:var(--s4);justify-content:center;margin-top:var(--s7);
-  max-width:520px;margin-left:auto;margin-right:auto}
-.rule::before,.rule::after{content:'';height:1px;flex:1;background:var(--line)}
-.rule span{font-size:.66rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.rcard--paper{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.rcard--paper:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.35)}
+.rcard--paper .rcard__tag{color:var(--pink)}
+.rcard--paper .rcard__foot p{color:var(--soft)}
+.rcard--paper .rcard__big sup{color:var(--pink)}
 
-/* stat cards */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:var(--s7)}
-.stat{padding:30px 26px 32px;border-radius:var(--r);background:var(--surface);
-  box-shadow:inset 0 0 0 1px var(--line),0 14px 30px -24px rgba(20,18,16,.5)}
-.stat b{display:block;font-family:var(--fd);font-weight:600;font-size:clamp(2.1rem,3.6vw,2.7rem);
-  line-height:1;color:var(--ink);letter-spacing:-.02em}
-.stat p{margin-top:var(--s4);font-size:.95rem;line-height:1.55;color:var(--soft)}
-.stat p strong{color:var(--ink);font-weight:600}
+.rules__label{position:relative;z-index:1;margin-top:110px;font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--orange)}
+.rules__strip{position:relative;z-index:1;margin-top:40px;overflow:hidden;white-space:nowrap;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.strip__w{font-size:22px;font-weight:700;letter-spacing:-.02em;padding:0 36px;white-space:nowrap}
+.strip__d{width:6px;height:6px;border-radius:50%;flex:none}
 
-/* ═══ services — photographic cards ═══════════════════════════════ */
-.svcrow{display:flex;gap:14px;margin-top:clamp(40px,5vw,64px)}
-.svc{position:relative;flex:1 1 0;min-width:0;height:clamp(430px,44vw,540px);border-radius:var(--r);
-  overflow:hidden;background:var(--dark);isolation:isolate;
-  transition:flex-grow var(--t-open) var(--ease)}
-.svc:hover,.svc:focus-within,.svc.is-open{flex-grow:2.05}
-.svc__img{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;
-  filter:saturate(.9) brightness(.88);transform:scale(1.03);transition:transform 640ms var(--ease)}
-.svc:hover .svc__img,.svc.is-open .svc__img{transform:scale(1.08)}
-.svc__scrim{position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(9,10,14,.58) 0%,rgba(9,10,14,.24) 26%,rgba(9,10,14,.66) 52%,rgba(9,10,14,.9) 76%,rgba(9,10,14,.97) 100%)}
-.svc__top{position:absolute;top:16px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between;gap:var(--s3)}
-.glass{display:grid;place-items:center;border-radius:var(--pill);background:rgba(255,255,255,.16);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.26);color:#fff}
-.svc__ico{width:42px;height:42px;border-radius:50%}
-.svc__ico svg{width:19px;height:19px}
-.svc__no{padding:8px 15px;font-size:.68rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.9)}
-.svc__foot{position:absolute;left:0;right:0;bottom:0;padding:24px 22px 24px;color:#fff}
-.svc__quote{font-size:.66rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78);
-  text-shadow:0 1px 10px rgba(9,10,14,.8)}
-.svc h3{color:#fff;margin-top:10px;font-size:clamp(1.3rem,1.9vw,1.62rem)}
-.svc__more{overflow:hidden;max-height:0;opacity:0;
-  transition:max-height var(--t-open) var(--ease),opacity var(--t-acc) var(--ease),margin var(--t-open) var(--ease)}
-.svc:hover .svc__more,.svc:focus-within .svc__more,.svc.is-open .svc__more{max-height:340px;opacity:1;margin-top:var(--s4)}
-.svc__out{font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.82);max-width:42ch}
-.svc__meta{margin-top:var(--s4);font-size:.86rem;color:rgba(255,255,255,.7)}
-.svc__meta b{color:#fff;font-weight:700;font-size:.98rem}
-.svc__del{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:7px}
-.svc__del li{font-size:.76rem;padding:6px 12px;border-radius:var(--pill);color:rgba(255,255,255,.88);
-  background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
-.svc__go{position:absolute;right:20px;bottom:22px;width:44px;height:44px;border-radius:50%;
-  opacity:0;transform:translateY(6px);transition:opacity var(--t-acc) var(--ease),transform var(--t-acc) var(--ease),background var(--t-hover) var(--ease)}
-.svc:hover .svc__go,.svc:focus-within .svc__go,.svc.is-open .svc__go{opacity:1;transform:none}
-.svc__go:hover{background:rgba(255,255,255,.3)}
-.svc__go svg{width:15px;height:15px}
-.svc__link{position:absolute;inset:0;z-index:3}
-.svcnav{display:flex;gap:9px;justify-content:flex-end;margin-top:var(--s5)}
-.navb{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;cursor:pointer;
-  box-shadow:inset 0 0 0 1.4px var(--line-2);color:var(--ink);transition:background var(--t-hover) var(--ease)}
-.navb:hover{background:var(--panel)}
-.navb svg{width:15px;height:15px}
+/* ─── selected work ────────────────────────────────────────────────── */
+.work{background:var(--field);padding:100px var(--gut) 120px}
+.work__head{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto}
+.work__h{font-size:clamp(44px,4.5vw,80px);line-height:1;letter-spacing:-.045em;font-weight:600}
+.work__h em{font-style:normal;color:var(--pink)}
+.work__claim{font-size:clamp(20px,1.6vw,26px);line-height:1.25;letter-spacing:-.02em;font-weight:500;max-width:380px;
+  justify-self:end;border-left:1px solid var(--line);padding-left:var(--gut)}
+.work__grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px}
+.wcard{display:flex;flex-direction:column;gap:20px}
+.wcard__media{aspect-ratio:16/11;overflow:hidden;border-radius:4px}
+.wcard__media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.wcard:hover .wcard__media img{transform:scale(1.05)}
+.wcard__name{font-size:28px;letter-spacing:-.03em;font-weight:600}
+.wcard__foot{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}
+.wcard__foot p{font-size:16px;line-height:1.35;max-width:300px;color:var(--soft)}
+.wcard__cta{font-family:var(--mono);font-size:13px;display:flex;justify-content:space-between;gap:40px;
+  border-bottom:2px solid var(--orange);padding-bottom:8px;white-space:nowrap}
+.work__more{position:relative;z-index:1;display:flex;justify-content:center;margin-top:88px}
 
-/* ═══ selector ════════════════════════════════════════════════════ */
-.sel{margin-top:clamp(40px,5vw,64px);padding:clamp(30px,4.4vw,52px);border-radius:var(--r);
-  background:var(--panel);box-shadow:inset 0 0 0 1px var(--line);text-align:center}
-.sel__q{margin-top:var(--s6)}
-.sel__prog{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
-.sel__qh{margin-top:var(--s3);font-family:var(--fd);font-weight:600;font-size:clamp(1.25rem,2.1vw,1.55rem);color:var(--ink)}
-.sel__opts{margin-top:var(--s5);display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
-.sel__opt{padding:13px 20px;border-radius:var(--pill);background:var(--surface);color:var(--ink);
-  box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;font-size:.95rem;
-  transition:box-shadow var(--t-hover) var(--ease),transform var(--t-hover) var(--ease)}
-.sel__opt:hover{box-shadow:inset 0 0 0 1.6px var(--ink);transform:translateY(-1px)}
-.sel__opt[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
-.sel__restart{margin-top:var(--s4);font-size:.9rem;color:var(--soft);cursor:pointer;border-bottom:1px solid var(--line-2)}
-.sel__restart:hover{color:var(--ink)}
-.sel__answers{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.sel__ans{display:inline-flex;align-items:baseline;gap:7px;padding:9px 15px;border-radius:var(--pill);
-  background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;font-size:.84rem}
-.sel__ans:hover{box-shadow:inset 0 0 0 1.4px var(--line-2)}
-.sel__ans em{font-style:normal;color:var(--soft)}
-.sel__ans u{text-decoration:none;color:var(--ink);font-weight:600}
-.sel__res{margin-top:var(--s6);padding-top:var(--s6);border-top:1px solid var(--line)}
-.sel__resname{font-family:var(--fd);font-weight:600;font-size:clamp(1.6rem,3vw,2.15rem);color:var(--ink);letter-spacing:-.015em}
-.sel__why{margin:var(--s4) auto 0;max-width:56ch;color:var(--body);font-size:.99rem;line-height:1.6}
-.sel__acts{margin-top:var(--s6);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:center}
-.sel__acts .sel__restart{margin-top:0}
-.sel__alt{margin-top:var(--s5);font-size:.9rem;color:var(--soft)}
-.sel__alt a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--line-2)}
-.sel .tbc{color:var(--soft)}
+/* ─── services ladder ──────────────────────────────────────────────── */
+.svc{background:var(--ink);color:var(--on-ink);padding:120px var(--gut)}
+.svc__wash{position:absolute;inset:-6%;pointer-events:none;z-index:0;opacity:.08;filter:invert(1);
+  background:url('../assets/img/studio/services-facets.jpg') center/cover no-repeat;animation:kenburns 40s ease-in-out infinite}
+.svc__head{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);align-items:end}
+.svc__h{margin-top:20px;font-size:clamp(44px,5vw,88px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.svc__h em{font-style:normal;color:var(--pink)}
+.svc__lede{max-width:380px;font-size:17px;line-height:1.4;color:var(--on-ink-soft);justify-self:end}
+.svc__body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start}
+.svc__rail{position:sticky;top:96px;display:flex;flex-direction:column}
+.step{display:block;width:100%;background:transparent;border:0;padding:22px 0;color:#8d8e97;font:inherit;
+  cursor:pointer;text-align:left;transition:color .4s}
+.step[aria-selected="true"]{color:var(--on-ink)}
+.step__row{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;width:100%}
+.step__n{font-family:var(--mono);font-size:13px;color:var(--on-ink-mute);transition:color .4s}
+.step[aria-selected="true"] .step__n{color:var(--pink)}
+.step__name{font-size:clamp(20px,1.9vw,28px);letter-spacing:-.03em;font-weight:600;text-align:left}
+.step__t{font-family:var(--mono);font-size:12px;color:var(--on-ink-mute);white-space:nowrap}
+.step__bar{display:block;height:2px;background:rgba(255,255,255,.08);margin-top:18px;position:relative;overflow:hidden}
+.step__bar i{position:absolute;inset:0;background:linear-gradient(90deg,var(--pink),var(--orange));transform-origin:left;
+  transform:scaleX(0);transition:transform .7s var(--ease)}
+.step[aria-selected="true"] .step__bar i{transform:scaleX(1)}
+.svc__nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;font-family:var(--mono);
+  font-size:12px;color:var(--on-ink-mute)}
+.svc__nav div{display:flex;gap:8px}
+.svc__nav button{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);background:transparent;
+  color:var(--on-ink);cursor:pointer;font-size:16px;transition:background .3s}
+.svc__nav button:hover{background:rgba(255,255,255,.1)}
 
-/* ═══ dark bento ══════════════════════════════════════════════════ */
-.dark{background:var(--dark);color:var(--on-dark);border-radius:var(--r-xl);margin:0 var(--gutter);
-  padding:clamp(56px,7.5vw,104px) 0}
-.dark .wrap{max-width:calc(var(--shell) - 2 * var(--gutter))}
-.dark .h2,.dark h3{color:#fff}
-.dark .eyebrow{color:var(--on-dark-soft)}
-.dark .sub{color:var(--on-dark-soft)}
-.bento{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(40px,5vw,64px)}
-.bcard{position:relative;border-radius:var(--r);background:var(--dark-2);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden;padding:28px 26px 30px;
-  transition:box-shadow var(--t-acc) var(--ease),transform var(--t-acc) var(--ease)}
-.bcard:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);transform:translateY(-3px)}
-.bcard--tall{grid-row:span 2;display:flex;flex-direction:column;padding-bottom:0}
-.bcard__hd{display:flex;align-items:center;gap:11px}
-.bcard__hd em{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;
-  background:rgba(255,255,255,.1);color:#9DC4FF;font-style:normal;flex:0 0 auto}
-.bcard__hd em svg{width:14px;height:14px}
-.bcard h3{font-size:1.1rem}
-.bcard p{margin-top:var(--s4);font-size:.93rem;line-height:1.6;color:var(--on-dark-soft);max-width:44ch}
-.bcard__img{margin-top:auto;height:230px;background-size:cover;background-position:center;
-  border-radius:var(--r-md) var(--r-md) 0 0;margin-left:-26px;margin-right:-26px;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
-.bcard--img{display:grid;grid-template-columns:minmax(190px,.82fr) 1.5fr;gap:0 clamp(24px,3.4vw,48px);
-  align-items:center;padding:0 clamp(24px,3vw,34px) 0 0}
-.bcard--img .bcard__top{grid-row:1 / 3;align-self:stretch;min-height:240px;margin:0;position:relative;
-  background-size:cover;background-position:52% 42%}
-.bcard--img .bcard__top::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(18,17,15,.2) 0%,rgba(18,17,15,.05) 50%,var(--dark-2) 98%)}
-.bcard--img .bcard__hd{align-self:end;padding-top:clamp(24px,3vw,34px)}
-.bcard--img p{align-self:start;padding-bottom:clamp(24px,3vw,34px);max-width:56ch}
+.svc__panel{position:relative;min-height:560px}
+.sheet{background:var(--panel);color:var(--ink);display:grid;grid-template-rows:auto auto auto 1fr auto;
+  animation:fadeUp .5s var(--ease) both}
+.sheet__top{display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0}
+.sheet__chip{background:var(--ink);color:var(--on-ink);font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:10px 14px}
+.sheet__time{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mute)}
+.sheet__title{padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.sheet__name{font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-.04em;font-weight:600;min-width:0}
+.sheet__price{font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-.04em;font-weight:600;color:var(--pink);white-space:nowrap}
+.sheet__main{padding:24px clamp(24px,3vw,40px) 0}
+.sheet__desc{font-size:17px;line-height:1.4;color:var(--body);max-width:620px}
+.sheet__table{margin-top:28px;border-top:1px solid var(--ink)}
+.sheet__row{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.35}
+.sheet__row:last-child{border-bottom:0}
+.sheet__k{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.04em}
+.sheet__v{font-weight:600}
+.sheet__v--soft{font-weight:400;color:var(--body)}
+.sheet__list{padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px}
+.sheet__list li{display:flex;gap:10px;align-items:baseline}
+.sheet__list b{font-family:var(--mono);font-size:11px;color:var(--orange);font-weight:400}
+.sheet__list span{font-weight:500}
+.sheet__foot{margin-top:32px;background:var(--ink);color:var(--on-ink);padding:22px clamp(24px,3vw,40px);
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.sheet__foot small{font-size:14px;color:var(--on-ink-mute)}
+.svc__foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:100px;gap:24px;flex-wrap:wrap}
+.svc__foot b{font-size:15px;font-weight:600}
+.svc__foot span{font-family:var(--mono);font-size:12px;color:var(--on-ink-mute)}
 
-/* ═══ alternatives ════════════════════════════════════════════════ */
-.alt{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
-.altrow{display:grid;grid-template-columns:minmax(200px,.8fr) 2fr;gap:var(--s5) var(--s7);
-  padding:26px 0;border-bottom:1px solid var(--line);align-items:start;
-  transition:background var(--t-hover) var(--ease)}
-.altrow:hover{background:var(--panel)}
-.altrow h3{font-size:1.12rem}
-.altrow p{font-size:.97rem;line-height:1.62;color:var(--body);max-width:62ch}
-.altrow--last h3{color:var(--brand)}
+/* ─── alternatives ─────────────────────────────────────────────────── */
+.alt{background:var(--panel);padding:90px 10% 120px}
+.alt__head{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);align-items:start}
+.alt__h{font-size:clamp(48px,5vw,88px);letter-spacing:-.045em;font-weight:600;line-height:1}
+.alt__head p{font-size:16px;line-height:1.3;max-width:200px}
+.alt__rule{position:relative;z-index:1;border-top:1px solid var(--line);margin-top:80px}
+.alt__rule span{position:absolute;left:50%;top:-12px;font-size:20px;color:var(--orange)}
+.alt__grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);margin-top:80px}
+.alt__left{display:flex;flex-direction:column;justify-content:space-between;gap:120px}
+.alt__list{display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600;letter-spacing:.02em;align-items:flex-start}
+.alt__btn{background:transparent;border:0;padding:0;text-align:left;font:inherit;cursor:pointer;color:var(--on-ink-mute);transition:color .3s}
+.alt__btn[aria-selected="true"]{color:var(--pink)}
+.alt__arrows{display:flex;border:1px solid var(--ink);width:148px}
+.alt__arrows button{flex:1;height:72px;background:transparent;border:0;font-size:18px;cursor:pointer;color:var(--ink);transition:background .3s}
+.alt__arrows button:first-child{border-right:1px solid var(--ink)}
+.alt__arrows button:hover{background:rgba(22,22,26,.06)}
+.alt__right{display:flex;flex-direction:column;justify-content:space-between;gap:80px}
+.alt__panel{display:flex;flex-direction:column;gap:80px}
+.alt__quote{font-size:clamp(24px,2.1vw,34px);line-height:1.15;letter-spacing:-.03em;font-weight:500}
+.alt__by{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.alt__who{display:flex;gap:20px;align-items:center}
+.alt__who figure{width:76px;height:76px;overflow:hidden;border-radius:4px;flex:none}
+.alt__who img{width:100%;height:100%;object-fit:cover}
+.alt__name{font-size:17px;font-weight:500}
+.alt__role{font-size:16px;color:#8a8886;margin-top:4px}
+.alt__see{font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--pink)}
 
-/* ═══ how we work ═════════════════════════════════════════════════ */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
-.step{padding:26px 22px 28px;border-radius:var(--r);background:var(--surface);
-  box-shadow:inset 0 0 0 1px var(--line);transition:transform var(--t-acc) var(--ease),box-shadow var(--t-acc) var(--ease)}
-.step:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line-2),0 18px 34px -24px rgba(20,18,16,.44)}
-.step__n{font-family:var(--fd);font-weight:700;font-size:1.5rem;color:var(--brand);letter-spacing:-.02em}
-.step h3{margin-top:var(--s4);font-size:1.02rem;line-height:1.3}
-.step p{margin-top:var(--s3);font-size:.92rem;line-height:1.58;color:var(--soft)}
+/* ─── why us ───────────────────────────────────────────────────────── */
+.why{background:var(--ink);color:var(--on-ink);padding:120px var(--gut)}
+.why__head{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);align-items:end}
+.why__h{margin-top:20px;font-size:clamp(44px,5vw,88px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.why__h em{font-style:normal;color:var(--pink)}
+.why__lede{max-width:380px;font-size:17px;line-height:1.4;color:var(--on-ink-soft);justify-self:end}
+.why__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px}
+.ycard{background:var(--panel);color:var(--ink);padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;
+  gap:36px;min-height:340px;border-top:4px solid var(--pink);transition:transform .5s var(--ease),box-shadow .5s}
+.ycard:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
+.ycard__top{display:flex;justify-content:space-between;align-items:center}
+.ycard__n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mute)}
+.ycard__tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--orange)}
+.ycard__h{font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-.03em;font-weight:600;align-self:end}
+.ycard p{font-size:15px;line-height:1.4;color:var(--body);border-top:1px solid var(--line);padding-top:16px}
+.lead{margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:var(--gut);align-items:center;
+  border-top:1px solid rgba(255,255,255,.12);padding-top:var(--gut)}
+.lead figure{width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d;flex:none}
+.lead img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.lead__k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--on-ink-mute)}
+.lead__t{font-size:17px;margin-top:6px;line-height:1.35}
+.lead__t b{font-weight:600}
+.lead__tags{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.lead__tags span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;border:1px solid rgba(255,255,255,.2);
+  padding:8px 12px;color:var(--on-ink-soft)}
 
-/* ═══ faq ═════════════════════════════════════════════════════════ */
-.faq__list{margin-top:clamp(40px,5vw,64px);max-width:840px;margin-left:auto;margin-right:auto;
-  border-top:1px solid var(--line)}
-.faq__list details{border-bottom:1px solid var(--line)}
-.faq__list summary{display:flex;align-items:center;justify-content:space-between;gap:var(--s5);
-  padding:22px 0;cursor:pointer;list-style:none;font-family:var(--fd);font-weight:600;
-  font-size:clamp(1.02rem,1.5vw,1.14rem);color:var(--ink)}
-.faq__list summary::-webkit-details-marker{display:none}
-.faq__list summary::after{content:'';flex:0 0 auto;width:26px;height:26px;border-radius:50%;
-  box-shadow:inset 0 0 0 1.4px var(--line-2);
-  background:linear-gradient(currentColor,currentColor) center/9px 1.5px no-repeat,
-             linear-gradient(currentColor,currentColor) center/1.5px 9px no-repeat;
-  transition:transform var(--t-acc) var(--ease)}
-.faq__list details[open] summary::after{transform:rotate(45deg)}
-.faq__a{padding:0 0 24px;max-width:70ch}
-.faq__a p{font-size:.97rem;line-height:1.64;color:var(--body)}
+/* ─── enquiry ──────────────────────────────────────────────────────── */
+.enq{background:var(--panel);padding:120px var(--gut)}
+.enq__in{position:relative;z-index:1;max-width:1400px;margin:0 auto;display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start}
+.enq__side{position:sticky;top:120px}
+.enq__h{margin-top:20px;font-size:clamp(44px,4.6vw,80px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.enq__h em{font-style:normal;color:var(--pink)}
+.enq__lede{margin-top:28px;max-width:380px;font-size:17px;line-height:1.4;color:var(--body)}
+.enq__facts{margin-top:48px;border-top:1px solid var(--ink)}
+.enq__row{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.enq__row:last-child{border-bottom:0}
+.enq__k{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.04em}
+.enq__v{font-weight:600}
 
-/* ═══ closing cta ═════════════════════════════════════════════════ */
-.book{text-align:center;padding:clamp(80px,10vw,140px) 0 clamp(60px,7vw,96px);position:relative}
-.book h2{margin-top:var(--s4);max-width:21ch;margin-left:auto;margin-right:auto}
-.book .sub{margin-top:var(--s5)}
-.book__act{margin-top:var(--s7);display:flex;justify-content:center}
-.book__list{margin:var(--s7) auto 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:820px}
-.book__list li{font-size:.83rem;padding:8px 15px;border-radius:var(--pill);color:var(--body);
-  box-shadow:inset 0 0 0 1px var(--line)}
-.book__row{margin-top:var(--s8);display:flex;flex-wrap:wrap;gap:var(--s4) var(--s7);justify-content:center}
-.book__row a,.book__row span{display:inline-flex;align-items:center;gap:9px;font-size:.96rem;color:var(--ink)}
-.book__row svg{width:16px;height:16px;color:var(--brand);flex:0 0 auto}
-.book__row a{transition:color var(--t-hover) var(--ease)}
-.book__row a:hover{color:var(--brand)}
-.book__addr{margin-top:var(--s5);font-size:.88rem;color:var(--soft);display:inline-flex;align-items:center;gap:8px}
-.book__addr svg{width:14px;height:14px;color:var(--soft)}
-.book__vat{margin-top:var(--s8);font-size:.8rem;color:var(--soft)}
+.form{background:var(--surface);border:1px solid var(--line);padding:clamp(24px,3.5vw,48px);display:grid;gap:28px}
+.form__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.field{display:grid;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mute)}
+.field input,.field textarea{font-family:var(--sans);font-size:16px;line-height:1.4;color:var(--ink);background:transparent;
+  border:0;border-bottom:1px solid var(--ink);padding:10px 0;outline:none;transition:border-color .3s;width:100%}
+.field textarea{resize:vertical}
+.field input:focus,.field textarea:focus{border-bottom-color:var(--pink)}
+.form__chips{display:grid;gap:12px}
+.form__chips>div:last-child{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:10px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .3s,color .3s,border-color .3s}
+.chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--on-ink)}
+.form__send{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:8px}
+.form__send>span{font-size:13px;color:var(--mute);max-width:360px;line-height:1.4}
+.form__btn{font-family:var(--mono);font-size:13px;letter-spacing:.02em;background:var(--pink);color:#fff;border:0;
+  border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s}
+.form__btn:hover{background:var(--ink);transform:translateY(-2px)}
+.sent{background:var(--ink);color:var(--on-ink);padding:clamp(32px,4vw,56px);min-height:420px;display:flex;
+  flex-direction:column;justify-content:space-between;gap:40px;animation:fadeUp .5s var(--ease) both}
+.sent[hidden],.form[hidden]{display:none}
+.sent__k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--orange)}
+.sent__h{font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-.04em;font-weight:600}
+.sent__again{align-self:flex-start;font-family:var(--mono);font-size:13px;background:transparent;border:0;
+  border-bottom:2px solid var(--orange);padding:0 0 8px;color:var(--on-ink);cursor:pointer}
 
-/* ═══ footer ══════════════════════════════════════════════════════ */
-.ft{background:var(--dark);color:var(--on-dark);border-radius:var(--r-xl);
-  margin:0 var(--gutter) var(--gutter);padding:clamp(48px,6vw,76px) 0 clamp(30px,3.4vw,44px)}
-.ft .wrap{max-width:calc(var(--shell) - 2 * var(--gutter))}
-.ft__grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:var(--s8) var(--s6)}
-.ft__brand h2{font-family:var(--fd);font-weight:700;font-size:1.7rem;color:#fff;letter-spacing:-.015em}
-.ft__brand h2 span{font-weight:400;color:var(--on-dark-soft)}
-.ft__brand p{margin-top:var(--s4);font-size:.93rem;line-height:1.6;color:var(--on-dark-soft);max-width:38ch}
-.ft__col p{font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-soft)}
-.ft__col ul{margin-top:var(--s5);display:flex;flex-direction:column;gap:11px}
-.ft__col a{font-size:.94rem;color:rgba(255,255,255,.86);transition:color var(--t-hover) var(--ease)}
-.ft__col a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.ft__bar{margin-top:clamp(40px,5vw,64px);padding-top:var(--s5);border-top:1px solid rgba(255,255,255,.12);
-  display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:space-between;font-size:.82rem;color:var(--on-dark-soft)}
+/* ─── contact footer ───────────────────────────────────────────────── */
+.foot{position:relative;overflow:hidden;background:var(--field);padding:100px var(--gut) 60px;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;gap:100px}
+.foot__wash{position:absolute;inset:-4%;pointer-events:none;z-index:0;opacity:.16;
+  background:url('../assets/img/studio/footer-facets.jpg') center/cover no-repeat;animation:kenburns 32s ease-in-out infinite reverse}
+.foot__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:48px}
+.foot__k{font-size:15px;font-weight:600;color:var(--orange)}
+.foot__h{margin-top:24px;font-size:clamp(52px,6vw,96px);line-height:.95;letter-spacing:-.045em;font-weight:600}
+.foot__h em{font-style:normal;color:var(--pink)}
+.foot__c{margin-top:80px;font-size:15px;color:var(--mute)}
+.foot__price{margin-top:48px;font-size:15px;font-weight:600}
+.foot__right{display:flex;flex-direction:column;gap:80px;justify-content:flex-end}
+.foot__clock{display:flex;justify-content:flex-end;font-size:15px;color:var(--mute);font-variant-numeric:tabular-nums}
+.foot__links{display:flex;gap:24px;flex-wrap:wrap}
+.foot__cols{display:grid;grid-template-columns:1fr auto;gap:64px}
+.foot__label{font-size:15px;color:var(--mute);margin-bottom:16px}
+.foot__pairs{display:grid;grid-template-columns:24px 1fr;row-gap:8px;font-size:17px}
+.foot__pairs span:nth-child(odd){color:var(--pink)}
+.foot__social{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px}
+.foot__lines{position:relative;z-index:1;display:grid;grid-template-columns:repeat(8,1fr);gap:24px;align-items:start;opacity:.25}
+.foot__lines div{display:flex;flex-direction:column;gap:14px}
+.foot__lines i{height:1px;background:var(--ink);display:block}
 
-/* ═══ reveals ═════════════════════════════════════════════════════ */
-.rv{opacity:0;transform:translateY(16px)}
-body.js-rv .rv{transition:opacity 620ms var(--ease),transform 620ms var(--ease);transition-delay:var(--d,0ms)}
-body:not(.js-rv) .rv{opacity:1;transform:none}
-.rv.is-in{opacity:1;transform:none}
-@media print{.rv,.settle{opacity:1!important;transform:none!important}}
-
-/* hero settle */
-body.js-settle .settle{opacity:0;transform:translateY(14px)}
-body.js-settle.is-settled .settle{opacity:1;transform:none;
-  transition:opacity 520ms var(--ease),transform 520ms var(--ease);transition-delay:var(--sd,0ms)}
+/* ─── responsive ───────────────────────────────────────────────────── */
+@media (max-width:1100px){
+  .rules__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .work__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gut)}
+  .why__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc__body,.enq__in{grid-template-columns:minmax(0,1fr)}
+  .svc__rail{position:static}
+  .enq__side{position:static}
+  .band__note{position:static;margin:0 var(--gut)}
+  .band__track{margin-top:60px}
+}
+@media (max-width:860px){
+  :root{--gut:20px}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0;padding:120px var(--gut) 48px}
+  .hero__veil{background:linear-gradient(180deg,rgba(238,240,243,.95) 0%,rgba(238,240,243,.86) 62%,rgba(238,240,243,.55) 100%)}
+  .hero__foot{flex-direction:column;align-items:stretch}
+  .hero__claim{text-align:left;align-self:stretch}
+  .hero__aside{width:100%}
+  .about__statement{text-indent:0;padding-left:0}
+  .about__grid,.work__head,.alt__head,.alt__grid,.svc__head,.why__head,.foot__grid{grid-template-columns:minmax(0,1fr)}
+  .work__claim{justify-self:start;border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}
+  .svc__lede,.why__lede{justify-self:start}
+  .alt__left{gap:48px}
+  .alt{padding:90px var(--gut) 100px}
+  .foot{min-height:0}
+  .foot__right{gap:48px}
+  .drawer{padding:120px var(--gut) 32px}
+  .drawer__links a{font-size:28px}
+  .cta-fixed{display:none}
+  .nav__spacer{display:none}
+  .foot__lines{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:620px){
+  .rules__grid,.work__grid,.why__grid,.form__pair,.foot__cols{grid-template-columns:minmax(0,1fr)}
+  .rcard{aspect-ratio:auto;min-height:420px}
+  .sheet__row,.enq__row{grid-template-columns:minmax(0,1fr);gap:6px}
+  .step__row{grid-template-columns:32px 1fr;row-gap:6px}
+  .step__t{grid-column:2}
+  .mq__p{margin:0 28px}
+  .wcard__foot{flex-direction:column;align-items:flex-start;gap:16px}
+  .lead{grid-template-columns:minmax(0,1fr);gap:20px}
+  .lead__tags{justify-content:flex-start}
+  .alt__by{flex-direction:column;align-items:flex-start}
+  .rule-link{min-width:0;width:100%;gap:24px}
+}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .rv,.settle{opacity:1!important;transform:none!important}
-  .proof__run{animation:none;width:auto;flex-wrap:wrap;justify-content:center}
-  .proof__track{-webkit-mask-image:none;mask-image:none}
-}
-
-/* ═══ responsive ══════════════════════════════════════════════════ */
-@media (max-width:1100px){
-  .nav a[data-opt]{display:none}
-}
-@media (max-width:1024px){
-  .ladder{grid-template-columns:repeat(2,1fr)}
-  .svcrow{display:grid;grid-auto-flow:column;grid-auto-columns:min(86vw,400px);gap:14px;
-    overflow-x:auto;scroll-snap-type:x mandatory;
-    padding-bottom:var(--s4);margin-left:calc(var(--gutter) * -1);margin-right:calc(var(--gutter) * -1);
-    padding-left:var(--gutter);padding-right:var(--gutter);scrollbar-width:none}
-  .svcrow::-webkit-scrollbar{display:none}
-  .svc{scroll-snap-align:center;height:auto;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end}
-  .svc__foot{position:static;padding:clamp(150px,34vw,210px) 22px 82px}
-  .svc__scrim{background:linear-gradient(180deg,rgba(9,10,14,.5) 0%,rgba(9,10,14,.3) 18%,rgba(9,10,14,.78) 44%,rgba(9,10,14,.94) 66%,rgba(9,10,14,.98) 100%)}
-  .svc__more{max-height:none;opacity:1;margin-top:var(--s4)}
-  .svc__go{opacity:1;transform:none;bottom:24px}
-  .bento{grid-template-columns:1fr}
-  .bcard--tall{grid-row:auto}
-  .bcard--img{grid-column:span 1!important;grid-template-columns:1fr;padding:0 26px 0}
-  .bcard--img .bcard__top{grid-row:auto;min-height:190px;margin:0 -26px var(--s5)}
-  .bcard--img .bcard__top::after{background:linear-gradient(180deg,rgba(18,17,15,.2),var(--dark-2) 96%)}
-  .bcard--img .bcard__hd{padding-top:0}
-  .bcard--img p{padding-bottom:30px}
-  .ft__grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:860px){
-  .nav,.hd__act .icb--call{display:none}
-  .icb--menu{display:grid}
-  .hd__name{display:block}
-  .altrow{grid-template-columns:1fr;gap:var(--s3)}
-  .hero__col{max-width:none}
-}
-@media (max-width:620px){
-  html{scroll-padding-top:88px}
-  .hero{padding-top:64px}
-  .ladder{grid-template-columns:1fr}
-  .ft__grid{grid-template-columns:1fr}
-  .book__row{flex-direction:column;align-items:center;gap:var(--s4)}
-  .sheet{border-radius:var(--r);margin:0}
-  .dark,.ft{margin-left:12px;margin-right:12px;border-radius:var(--r)}
-}
-@media (max-width:420px){
-  .hero__act .btn{width:100%;justify-content:center}
+  [data-reveal],.word>span{opacity:1;transform:none;transition:none}
+  .mq,.amb i,.hero__layer>i,.svc__wash,.foot__wash,.rcard__shimmer,.hero__glow{animation:none!important}
+  .hero__layer{transform:none!important}
+  .rotator span{animation:none!important}
+  .rotator span.is-out{visibility:hidden}
+  .sheet{animation:none}
 }
 </style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="i-ne" viewBox="0 0 16 16"><path d="M4 12L12 4M12 4H6.5M12 4v5.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 16 16"><path d="M5.6 2.6 6.9 5 5.7 6.5c.7 1.5 1.9 2.7 3.4 3.4L10.6 8.7 13 10v2.2c0 .7-.6 1.3-1.3 1.2C6.2 13 3 9.8 2.6 4.3 2.5 3.6 3.1 3 3.8 3l1.8-.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 16 16"><rect x="2" y="3.5" width="12" height="9" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m2.6 4.6 5.4 4 5.4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.2 8h11.6M8 2.1c3.2 3.4 3.2 8.4 0 11.8-3.2-3.4-3.2-8.4 0-11.8Z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 14s4.6-4 4.6-7.3A4.6 4.6 0 0 0 3.4 6.7C3.4 10 8 14 8 14Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="6.6" r="1.7" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-    <symbol id="i-chev" viewBox="0 0 10 7"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-left" viewBox="0 0 16 16"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-right" viewBox="0 0 16 16"><path d="M6.5 3.5 11 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-scope" viewBox="0 0 16 16"><circle cx="7.3" cy="7.3" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 10.8 14 14M7.3 5v4.6M5 7.3h4.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-    <symbol id="i-layers" viewBox="0 0 16 16"><path d="M8 2 14 5.3 8 8.6 2 5.3 8 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m2.6 8.8 5.4 3 5.4-3M2.6 11.7l5.4 3 5.4-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-frame" viewBox="0 0 16 16"><rect x="2" y="2.6" width="12" height="10.8" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h12M5 2.8V6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-    <symbol id="i-team" viewBox="0 0 16 16"><circle cx="6.2" cy="5.6" r="2.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.8 13.4c0-2.4 2-3.8 4.4-3.8s4.4 1.4 4.4 3.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.1 3.6a2.4 2.4 0 0 1 .3 4.2M12.2 9.9c1.3.5 2.2 1.6 2.2 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
-    <symbol id="i-bolt" viewBox="0 0 16 16"><path d="M8.8 1.8 3.6 9.1h3.6l-.9 5.1 5.2-7.3H7.9l.9-5.1Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 16 16"><path d="M8 1.9 13.2 4v4c0 3-2.2 5.2-5.2 6.1C5 13.2 2.8 11 2.8 8V4L8 1.9Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 16 16"><path d="M2.2 13.8h11.6M4.4 11.4V7.6M7.4 11.4V4.2M10.4 11.4V8.9M13.4 11.4V5.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
-    <symbol id="i-hand" viewBox="0 0 16 16"><path d="M2.4 8.3V4.9a1.2 1.2 0 0 1 2.4 0v2.4M4.8 7.3V3.3a1.2 1.2 0 0 1 2.4 0v4M7.2 7.3V4.1a1.2 1.2 0 0 1 2.4 0v3.2M9.6 7.5V5.7a1.2 1.2 0 0 1 2.4 0v4.1c0 2.3-1.7 4.1-4 4.1s-4.2-1.4-4.6-3.4L2.9 9.2a1.2 1.2 0 0 1 2-1.2l.8 1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-map" viewBox="0 0 16 16"><path d="M2 4.2 6 2.6l4 1.6 4-1.6v9.2l-4 1.6-4-1.6-4 1.6V4.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 2.6v10.8M10 4.2V15" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-    <symbol id="i-spark" viewBox="0 0 16 16"><path d="M8 0c.5 4.6 3 7 7.4 8-4.4 1-6.9 3.4-7.4 8-.5-4.6-3-7-7.4-8C5 7 7.5 4.6 8 0Z" fill="currentColor"/></symbol>
-  </defs>
-</svg>
-
-<div class="sheet">
-
-<header class="hd" id="hd">
-  <div class="hd__in">
-    <a class="brandchip" href="./" aria-label="GEMIS Studio — home">
-      <svg viewBox="4 8 18.5 19" aria-hidden="true"><path fill="currentColor" opacity=".34" d="M12.9,26.2C12.3,26.1 12,25.9 11.6,25.6C11.3,25.4 10.9,25.1 10.6,25C10.4,24.8 10.1,24.6 10,24.5C9.9,24.4 9.6,24.3 9.3,24.1C9,24 8.6,23.7 8.4,23.5C8.1,23.4 7.7,23.1 7.5,23.1C7.2,23 6.7,22.6 6.2,22.3C5,21.3 5,21.4 5,17.5L5,14.4L5.3,13.9C5.5,13.4 5.6,13.3 6.3,13C6.6,12.8 7.1,12.5 7.3,12.4C7.5,12.2 7.9,12 8.1,11.9C8.3,11.8 8.7,11.6 8.8,11.4C9,11.3 9.3,11.1 9.6,11C9.8,10.9 10.2,10.6 10.5,10.4C10.7,10.2 11.1,10 11.3,9.9C11.6,9.9 12,9.6 12.2,9.4C12.9,8.8 13.6,8.8 14.4,9.4C14.7,9.6 15.1,9.9 15.4,10C15.6,10.2 15.9,10.4 16,10.5C16.1,10.6 16.4,10.7 16.7,10.9C17,11 17.4,11.3 17.6,11.5C17.9,11.6 18.3,11.9 18.5,11.9C18.8,12 19.2,12.2 19.4,12.4C19.7,12.6 20.1,12.9 20.3,13C20.7,13.2 20.9,13.5 21.1,13.8L21.3,14.3L21.3,17.8C21.3,21.8 21.3,21.7 20.5,22.1C20.3,22.2 19.8,22.5 19.6,22.7C19.4,22.9 19,23.1 18.8,23.2C18.6,23.2 18.3,23.4 18.2,23.5C18,23.7 17.7,23.9 17.4,24C17.2,24.1 16.8,24.3 16.6,24.5C16.3,24.7 15.9,25 15.6,25.1C15.3,25.2 14.9,25.5 14.7,25.7C14.4,25.9 13.4,26.4 13.4,26.3C13.4,26.3 13.2,26.2 12.9,26.2Z"/>
-<path fill="currentColor" d="M12.1,21.5C11.9,21.4 11.5,21.1 11.3,21C11,20.9 10.6,20.7 10.4,20.5C10.1,20.4 9.8,20.2 9.6,20.1C9,19.9 8.1,19.2 8,18.7C7.8,18.3 7.9,15.8 8.1,15.5C8.3,15.2 8.3,15.1 9,15C9.2,14.9 9.6,14.7 9.8,14.5C10,14.3 10.4,14.1 10.7,14C10.9,13.8 11.4,13.6 11.7,13.4C12.6,12.8 13.3,12.8 14.1,13.4C14.3,13.5 14.8,13.8 15.1,14C15.3,14.1 15.7,14.4 15.9,14.5C16.1,14.7 16.3,14.8 16.3,14.8C16.4,14.8 16.7,14.9 17,15C17.8,15.4 17.9,15.8 17.9,17.4L17.9,18.7L17.5,19.1C17.3,19.4 16.8,19.7 16.5,19.9C16.1,20.1 15.7,20.4 15.4,20.6C15.2,20.8 14.8,21 14.6,21C14.3,21.1 13.9,21.3 13.7,21.5C13.1,21.9 12.6,21.9 12.1,21.5ZM13.4,19C13.8,18.8 14.3,18 14.4,17.3C14.5,16.5 13.7,15.3 13,15.1C12,14.8 10.5,16 10.5,17.1C10.5,17.6 11.1,18.8 11.4,19C11.7,19.1 13,19.1 13.4,19Z"/></svg>
-    </a>
-
-    <span class="hd__name" aria-hidden="true">GEMIS <span>Studio</span></span>
-
-    <nav class="nav" aria-label="Primary">
-      <div class="drop" id="drop">
-        <button type="button" id="dropBtn" aria-expanded="false" aria-controls="dropPanel">
-          Services <svg width="10" height="7" aria-hidden="true"><use href="#i-chev"/></svg>
-        </button>
-        <div class="drop__panel" id="dropPanel">
-          <a class="drop__item" href="#service-teardown"><b>Product Teardown</b><span class="tnum">R6,500 · 5 days</span></a>
-          <a class="drop__item" href="#service-refresh"><b>Interface Refresh Sprint</b><span>Price pending</span></a>
-          <a class="drop__item" href="#service-web"><b>Web Experience</b><span>Price pending</span></a>
-          <a class="drop__item" href="#service-embedded"><b>Embedded Designer</b><span>Price pending</span></a>
-        </div>
-      </div>
-      <a href="#situation">The situation</a>
-      <a href="#selector" data-opt>Which one fits</a>
-      <a href="#how">How we work</a>
-      <a href="#faq" data-opt>Questions</a>
-      <a href="#book">Contact</a>
-    </nav>
-
-    <div class="hd__act">
-      <a class="icb" href="#book" aria-label="Book a Teardown" data-ev="cta_click" data-loc="header">
-        <svg aria-hidden="true"><use href="#i-ne"/></svg>
-      </a>
-      <a class="icb icb--call" href="tel:+27814182518" aria-label="Call the studio on +27 81 418 2518" data-ev="contact_click" data-method="phone">
-        <svg aria-hidden="true"><use href="#i-phone"/></svg>
-      </a>
-      <button class="icb icb--menu burger" type="button" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
-        <i aria-hidden="true"></i>
-      </button>
-    </div>
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="GEMIS Studio — top of page">
+    <span class="nav__mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="nav__word"><b>GEMIS</b><i>STUDIO</i></span>
+  </a>
+  <div class="nav__right">
+    <span class="nav__spacer" aria-hidden="true"></span>
+    <button class="nav__menu" type="button" id="menuBtn" aria-expanded="false" aria-controls="drawer">MENU ≡</button>
   </div>
 </header>
+<a class="cta-fixed" href="#enquire">BOOK A TEARDOWN</a>
 
-<div class="drawer" id="drawer" hidden aria-label="Menu">
-  <div class="drawer__top">
-    <span class="brandchip" aria-hidden="true"><svg viewBox="4 8 18.5 19"><path fill="currentColor" opacity=".34" d="M12.9,26.2C12.3,26.1 12,25.9 11.6,25.6C11.3,25.4 10.9,25.1 10.6,25C10.4,24.8 10.1,24.6 10,24.5C9.9,24.4 9.6,24.3 9.3,24.1C9,24 8.6,23.7 8.4,23.5C8.1,23.4 7.7,23.1 7.5,23.1C7.2,23 6.7,22.6 6.2,22.3C5,21.3 5,21.4 5,17.5L5,14.4L5.3,13.9C5.5,13.4 5.6,13.3 6.3,13C6.6,12.8 7.1,12.5 7.3,12.4C7.5,12.2 7.9,12 8.1,11.9C8.3,11.8 8.7,11.6 8.8,11.4C9,11.3 9.3,11.1 9.6,11C9.8,10.9 10.2,10.6 10.5,10.4C10.7,10.2 11.1,10 11.3,9.9C11.6,9.9 12,9.6 12.2,9.4C12.9,8.8 13.6,8.8 14.4,9.4C14.7,9.6 15.1,9.9 15.4,10C15.6,10.2 15.9,10.4 16,10.5C16.1,10.6 16.4,10.7 16.7,10.9C17,11 17.4,11.3 17.6,11.5C17.9,11.6 18.3,11.9 18.5,11.9C18.8,12 19.2,12.2 19.4,12.4C19.7,12.6 20.1,12.9 20.3,13C20.7,13.2 20.9,13.5 21.1,13.8L21.3,14.3L21.3,17.8C21.3,21.8 21.3,21.7 20.5,22.1C20.3,22.2 19.8,22.5 19.6,22.7C19.4,22.9 19,23.1 18.8,23.2C18.6,23.2 18.3,23.4 18.2,23.5C18,23.7 17.7,23.9 17.4,24C17.2,24.1 16.8,24.3 16.6,24.5C16.3,24.7 15.9,25 15.6,25.1C15.3,25.2 14.9,25.5 14.7,25.7C14.4,25.9 13.4,26.4 13.4,26.3C13.4,26.3 13.2,26.2 12.9,26.2Z"/>
-<path fill="currentColor" d="M12.1,21.5C11.9,21.4 11.5,21.1 11.3,21C11,20.9 10.6,20.7 10.4,20.5C10.1,20.4 9.8,20.2 9.6,20.1C9,19.9 8.1,19.2 8,18.7C7.8,18.3 7.9,15.8 8.1,15.5C8.3,15.2 8.3,15.1 9,15C9.2,14.9 9.6,14.7 9.8,14.5C10,14.3 10.4,14.1 10.7,14C10.9,13.8 11.4,13.6 11.7,13.4C12.6,12.8 13.3,12.8 14.1,13.4C14.3,13.5 14.8,13.8 15.1,14C15.3,14.1 15.7,14.4 15.9,14.5C16.1,14.7 16.3,14.8 16.3,14.8C16.4,14.8 16.7,14.9 17,15C17.8,15.4 17.9,15.8 17.9,17.4L17.9,18.7L17.5,19.1C17.3,19.4 16.8,19.7 16.5,19.9C16.1,20.1 15.7,20.4 15.4,20.6C15.2,20.8 14.8,21 14.6,21C14.3,21.1 13.9,21.3 13.7,21.5C13.1,21.9 12.6,21.9 12.1,21.5ZM13.4,19C13.8,18.8 14.3,18 14.4,17.3C14.5,16.5 13.7,15.3 13,15.1C12,14.8 10.5,16 10.5,17.1C10.5,17.6 11.1,18.8 11.4,19C11.7,19.1 13,19.1 13.4,19Z"/></svg></span>
-    <strong style="font-family:var(--fd);font-size:1.15rem;color:var(--ink)">GEMIS <span style="font-weight:400;color:var(--soft)">Studio</span></strong>
-    <button class="icb burger drawerclose" type="button" id="drawerClose" aria-label="Close menu"><i aria-hidden="true"></i></button>
+<nav class="drawer" id="drawer" aria-label="Site" hidden>
+  <div class="drawer__links">
+    <a href="#work" data-close>Work</a>
+    <a href="#services" data-close>Services</a>
+    <a href="#about" data-close>About</a>
+    <a href="#why" data-close>Why us</a>
+    <a href="#contact" data-close>Contact</a>
+    <a href="../index.html">GEMIS home</a>
   </div>
-  <div class="drawer__body">
-    <a href="#situation">The situation</a>
-    <a href="#services">Services</a>
-    <a href="#selector">Which one fits</a>
-    <a href="#how">How we work</a>
-    <a href="#faq">Questions</a>
-    <a href="#book">Contact</a>
-    <div class="drawer__svc">
-      <p class="eyebrow">Services</p>
-      <a href="#service-teardown">Product Teardown <span class="tnum">R6,500</span></a>
-      <a href="#service-refresh">Interface Refresh Sprint <span>Price pending</span></a>
-      <a href="#service-web">Web Experience <span>Price pending</span></a>
-      <a href="#service-embedded">Embedded Designer <span>Price pending</span></a>
+  <div class="drawer__meta">
+    <div>
+      <div class="drawer__label">BUSINESS ENQUIRY</div>
+      <div class="drawer__pairs"><span>E.</span><span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></span><span>P.</span><span><a href="tel:+27112195008">+27 11 219 5008</a></span></div>
+    </div>
+    <div>
+      <div class="drawer__label">SOCIAL</div>
+      <div class="drawer__social"><span>LinkedIn</span><span>Dribbble</span><span>Behance</span><span>Instagram</span></div>
     </div>
   </div>
-  <div class="drawer__foot">
-    <a class="btn" href="#book" data-ev="cta_click" data-loc="drawer">
-      Book a Teardown <span class="btn__ico" aria-hidden="true"><svg width="12" height="12"><use href="#i-ne"/></svg></span>
-    </a>
-    <a class="small" href="mailto:info@gemis.co.za">info@gemis.co.za</a>
-    <a class="small" href="tel:+27814182518">+27 81 418 2518</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="top">
+  <div class="hero__scene" id="heroScene" aria-hidden="true">
+    <div class="hero__layer hero__layer--base"><i></i></div>
+    <div class="hero__glow"></div>
+    <div class="hero__trail"></div>
+    <div class="hero__spark"></div>
+    <div class="hero__layer hero__layer--a"><i></i></div>
+    <div class="hero__layer hero__layer--b"><i></i></div>
   </div>
-</div>
+  <div class="hero__probe" id="heroProbe" aria-hidden="true"></div>
+  <div class="hero__veil" aria-hidden="true"></div>
 
-<main id="main">
+  <div class="hero__copy">
+    <h1 class="hero__title" data-reveal="1">
+      <span class="word"><span>Designed</span></span> <span class="word"><span>to</span></span> <span class="word"><span>be</span></span><br>
+      <span class="rotator" id="rotator"><span class="is-in">built.</span><span>used.</span><span>shipped.</span><span>trusted.</span></span>
+    </h1>
+    <p class="hero__lede" data-reveal="2">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
+    <div class="hero__links">
+      <a class="rule-link rule-link--ink" href="#enquire"><span>DISCUSS YOUR PROJECT</span><span aria-hidden="true">→</span></a>
+      <a class="rule-link" href="#contact"><span>BOOK A TEARDOWN</span><span aria-hidden="true">→</span></a>
+    </div>
+  </div>
 
-<!-- ═══ 1 · HERO ═══════════════════════════════════════════════ -->
-<section class="hero" id="hero">
-  <div class="hero__panel">
-    <div class="hero__media" aria-hidden="true"></div>
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <div class="hero__in" id="heroCol">
-      <div class="hero__col">
-      <p class="hero__wm settle" style="--sd:0ms">
-        <span class="brandchip" aria-hidden="true"><svg viewBox="4 8 18.5 19"><path fill="currentColor" opacity=".34" d="M12.9,26.2C12.3,26.1 12,25.9 11.6,25.6C11.3,25.4 10.9,25.1 10.6,25C10.4,24.8 10.1,24.6 10,24.5C9.9,24.4 9.6,24.3 9.3,24.1C9,24 8.6,23.7 8.4,23.5C8.1,23.4 7.7,23.1 7.5,23.1C7.2,23 6.7,22.6 6.2,22.3C5,21.3 5,21.4 5,17.5L5,14.4L5.3,13.9C5.5,13.4 5.6,13.3 6.3,13C6.6,12.8 7.1,12.5 7.3,12.4C7.5,12.2 7.9,12 8.1,11.9C8.3,11.8 8.7,11.6 8.8,11.4C9,11.3 9.3,11.1 9.6,11C9.8,10.9 10.2,10.6 10.5,10.4C10.7,10.2 11.1,10 11.3,9.9C11.6,9.9 12,9.6 12.2,9.4C12.9,8.8 13.6,8.8 14.4,9.4C14.7,9.6 15.1,9.9 15.4,10C15.6,10.2 15.9,10.4 16,10.5C16.1,10.6 16.4,10.7 16.7,10.9C17,11 17.4,11.3 17.6,11.5C17.9,11.6 18.3,11.9 18.5,11.9C18.8,12 19.2,12.2 19.4,12.4C19.7,12.6 20.1,12.9 20.3,13C20.7,13.2 20.9,13.5 21.1,13.8L21.3,14.3L21.3,17.8C21.3,21.8 21.3,21.7 20.5,22.1C20.3,22.2 19.8,22.5 19.6,22.7C19.4,22.9 19,23.1 18.8,23.2C18.6,23.2 18.3,23.4 18.2,23.5C18,23.7 17.7,23.9 17.4,24C17.2,24.1 16.8,24.3 16.6,24.5C16.3,24.7 15.9,25 15.6,25.1C15.3,25.2 14.9,25.5 14.7,25.7C14.4,25.9 13.4,26.4 13.4,26.3C13.4,26.3 13.2,26.2 12.9,26.2Z"/>
-<path fill="currentColor" d="M12.1,21.5C11.9,21.4 11.5,21.1 11.3,21C11,20.9 10.6,20.7 10.4,20.5C10.1,20.4 9.8,20.2 9.6,20.1C9,19.9 8.1,19.2 8,18.7C7.8,18.3 7.9,15.8 8.1,15.5C8.3,15.2 8.3,15.1 9,15C9.2,14.9 9.6,14.7 9.8,14.5C10,14.3 10.4,14.1 10.7,14C10.9,13.8 11.4,13.6 11.7,13.4C12.6,12.8 13.3,12.8 14.1,13.4C14.3,13.5 14.8,13.8 15.1,14C15.3,14.1 15.7,14.4 15.9,14.5C16.1,14.7 16.3,14.8 16.3,14.8C16.4,14.8 16.7,14.9 17,15C17.8,15.4 17.9,15.8 17.9,17.4L17.9,18.7L17.5,19.1C17.3,19.4 16.8,19.7 16.5,19.9C16.1,20.1 15.7,20.4 15.4,20.6C15.2,20.8 14.8,21 14.6,21C14.3,21.1 13.9,21.3 13.7,21.5C13.1,21.9 12.6,21.9 12.1,21.5ZM13.4,19C13.8,18.8 14.3,18 14.4,17.3C14.5,16.5 13.7,15.3 13,15.1C12,14.8 10.5,16 10.5,17.1C10.5,17.6 11.1,18.8 11.4,19C11.7,19.1 13,19.1 13.4,19Z"/></svg></span>
-        GEMIS <span>Studio</span>
-      </p>
-      <h1 class="h-display settle" style="--sd:60ms">We design the product, and we build it.</h1>
-      <p class="hero__lede settle" style="--sd:120ms">GEMIS Studio designs products, interfaces and the systems behind them — not logos. We work out what your users actually do, redesign it, and hand it to your developers, or build it ourselves in the same company.</p>
-      <p class="strap hero__strap settle" style="--sd:170ms">The design practice of GEM Information Systems · Sandton</p>
-      <div class="hero__act settle" style="--sd:220ms">
-        <a class="btn btn--light" href="#book" data-ev="cta_click" data-loc="hero">
-          Book a Teardown — <span class="tnum">R6,500</span>
-          <span class="btn__ico" aria-hidden="true" style="background:rgba(7,16,42,.1)"><svg width="12" height="12"><use href="#i-ne"/></svg></span>
-        </a>
-        <a class="btn btn--ghost" href="#services">See the four services</a>
+  <div class="hero__foot">
+    <p class="hero__claim">SENIOR EYES ON EVERY SCREEN.<br><span>DESIGNED AND BUILT UNDER ONE ROOF.</span></p>
+    <div class="hero__aside">
+      <div class="hero__nap">
+        <div class="hero__nap-l"><b aria-hidden="true"></b>SANDTON, JHB</div>
+        <div class="hero__nap-r">THE DESIGN PRACTICE OF GEM INFORMATION SYSTEMS.</div>
       </div>
-      <p class="hero__note settle" style="--sd:270ms">The fee is credited in full against any engagement you book within 60 days. Prices exclude VAT.</p>
-      </div>
-
-      <div class="ladder settle" style="--sd:330ms">
-        <a class="rung rung--1" href="#service-teardown" data-ev="ladder_step_click" data-svc="product-teardown" data-pos="1">
-          <span class="rung__slot">01 · Start here</span>
-          <span class="rung__quote">“Users complain and we don't know why”</span>
-          <span class="rung__row">
-            <span class="rung__name">Product Teardown</span>
-            <span><span class="rung__price tnum">R6,500</span> <span class="rung__dur">· 5 days</span></span>
-          </span>
-        </a>
-        <a class="rung" href="#service-refresh" data-ev="ladder_step_click" data-svc="interface-refresh" data-pos="2">
-          <span class="rung__slot">02 · Then</span>
-          <span class="rung__quote">“It works, it just looks like 2011”</span>
-          <span class="rung__row">
-            <span class="rung__name">Interface Refresh Sprint</span>
-            <span class="tbc">Price pending sign-off</span>
-          </span>
-        </a>
-        <a class="rung" href="#service-web" data-ev="ladder_step_click" data-svc="web-experience" data-pos="3">
-          <span class="rung__slot">03 · Or</span>
-          <span class="rung__quote">“Our site doesn't convert”</span>
-          <span class="rung__row">
-            <span class="rung__name">Web Experience</span>
-            <span class="tbc">Price pending sign-off</span>
-          </span>
-        </a>
-        <a class="rung" href="#service-embedded" data-ev="ladder_step_click" data-svc="embedded-designer" data-pos="4">
-          <span class="rung__slot">04 · Ongoing</span>
-          <span class="rung__quote">“We need design capacity, not a hire”</span>
-          <span class="rung__row">
-            <span class="rung__name">Embedded Designer</span>
-            <span class="tbc">Price pending sign-off</span>
-          </span>
-        </a>
-      </div>
+      <p class="hero__note">Product, interface and web design for South African companies. Designed and built under one roof.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ 2 · PROOF ══════════════════════════════════════════════ -->
-<section class="proof" aria-labelledby="proof-h">
-  <div class="wrap">
-    <p class="eyebrow proof__h rv" id="proof-h">Systems we have designed</p>
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section class="about" id="about">
+  <div class="amb" aria-hidden="true">
+    <i style="left:-10%;top:-20%;width:55vw;height:55vw;background:radial-gradient(circle,rgba(255,31,122,.22) 0%,transparent 65%);filter:blur(60px);animation:driftA 30s ease-in-out infinite"></i>
+    <i style="left:55%;top:10%;width:45vw;height:45vw;background:radial-gradient(circle,rgba(255,122,18,.16) 0%,transparent 65%);filter:blur(60px);animation:driftB 38s ease-in-out infinite"></i>
   </div>
-  <div class="proof__track rv" style="--d:80ms">
-    <ul class="proof__run">
-      <li class="chip"><em aria-hidden="true"><svg><use href="#i-layers"/></svg></em>Enterprise SaaS platforms</li>
-      <li class="chip"><em aria-hidden="true"><svg><use href="#i-chart"/></svg></em>Financial operating systems</li>
-      <li class="chip"><em aria-hidden="true"><svg><use href="#i-frame"/></svg></em>Operational dashboards</li>
-      <li class="chip"><em aria-hidden="true"><svg><use href="#i-bolt"/></svg></em>AI-assisted review workflows</li>
-      <li class="chip"><em aria-hidden="true"><svg><use href="#i-team"/></svg></em>Conversational interfaces</li>
-      <li class="chip" aria-hidden="true"><em><svg><use href="#i-layers"/></svg></em>Enterprise SaaS platforms</li>
-      <li class="chip" aria-hidden="true"><em><svg><use href="#i-chart"/></svg></em>Financial operating systems</li>
-      <li class="chip" aria-hidden="true"><em><svg><use href="#i-frame"/></svg></em>Operational dashboards</li>
-      <li class="chip" aria-hidden="true"><em><svg><use href="#i-bolt"/></svg></em>AI-assisted review workflows</li>
-      <li class="chip" aria-hidden="true"><em><svg><use href="#i-team"/></svg></em>Conversational interfaces</li>
-    </ul>
+  <p class="eyebrow">ABOUT</p>
+  <h2 class="about__statement" data-reveal="1">GEMIS Studio is the product and experience design practice of GEM Information Systems — we design the screen and <em>build what we design.</em></h2>
+  <div class="about__rule"><span aria-hidden="true">×</span></div>
+  <div class="about__grid">
+    <p class="about__rules">WE NEVER SELL A STAGE.<br>DEVELOPER HANDOFF IN THE PRICE.<br>THIRTY DAYS OF AFTERCARE.</p>
+    <div class="about__side">
+      <p>Support load rising. The team avoiding the internal system. A redesign that stalled after the Figma file. Underneath every one: nobody has mapped what actually happens.</p>
+      <a class="rule-link rule-link--thin rule-link--onink" href="#why"><span>ABOUT THE STUDIO</span><span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- ═══ 3 · THE SITUATION ══════════════════════════════════════ -->
-<section class="sec" id="situation" aria-labelledby="sit-h">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">The situation</p>
-      <h2 class="h2 rv" id="sit-h" style="--d:60ms">You already know something is wrong.</h2>
-      <p class="sub rv" style="--d:110ms">Four things we hear in almost every first conversation. If more than one of them sounds like your product, the problem is not a mystery — it is just unmeasured.</p>
-    </div>
+<!-- ═══════════════════ MARQUEE BAND ═══════════════════ -->
+<section class="band" aria-label="What we do">
+  <div class="amb" aria-hidden="true">
+    <i style="left:30%;top:-30%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(255,122,18,.18) 0%,transparent 65%);filter:blur(60px);animation:driftC 34s ease-in-out infinite"></i>
+    <i style="left:-5%;top:40%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,31,122,.16) 0%,transparent 65%);filter:blur(60px);animation:driftA 42s ease-in-out infinite"></i>
+  </div>
+  <p class="band__note">FIXED SCOPE.<br>FIXED PRICE.</p>
+  <div class="band__track"><div class="mq" id="bandMq" style="--speed:24s" aria-hidden="true"></div></div>
+  <p class="band__foot">✦ DIAGNOSE. REFRESH. BUILD. EMBED.</p>
+</section>
 
-    <div class="grid4">
-      <div class="tile rv"><span class="tile__n">01</span><p>Support load keeps climbing and nobody can say which screen is causing it.</p></div>
-      <div class="tile rv" style="--d:70ms"><span class="tile__n">02</span><p>The team quietly avoids the internal system and works around it in spreadsheets.</p></div>
-      <div class="tile rv" style="--d:140ms"><span class="tile__n">03</span><p>The redesign stalled after the Figma file and never reached a developer.</p></div>
-      <div class="tile rv" style="--d:210ms"><span class="tile__n">04</span><p>Users drop out at a step nobody has actually watched them use.</p></div>
-    </div>
+<!-- ═══════════════════ EVERY ENGAGEMENT ═══════════════════ -->
+<section class="rules" aria-labelledby="rulesH">
+  <div class="amb" aria-hidden="true">
+    <i style="left:-10%;top:-30%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(255,31,122,.14) 0%,transparent 65%);filter:blur(80px);animation:driftA 36s ease-in-out infinite"></i>
+    <i style="left:60%;top:30%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,122,18,.12) 0%,transparent 65%);filter:blur(80px);animation:driftB 44s ease-in-out infinite"></i>
+  </div>
+  <h2 class="rules__h" id="rulesH" data-reveal="1">Every engagement</h2>
+  <p class="rules__lede">Four rules, in every price.</p>
 
-    <div class="pull rv" style="--d:80ms">
-      <q>Every one of these has the same root: <strong>nobody has mapped what actually happens</strong> — only what was supposed to.</q>
-    </div>
-    <p class="rule rv" style="--d:140ms"><span>The common root</span></p>
+  <div class="rules__grid">
+    <article class="rcard rcard--ink" data-reveal="1">
+      <div class="rcard__top"><div class="rcard__tag">PRODUCT TEARDOWN</div><div class="rcard__n">01</div></div>
+      <div class="rcard__media">
+        <img src="../assets/img/studio/svc-teardown.jpg" alt="A product teardown session in progress" loading="lazy" width="740" height="560">
+        <span class="rcard__scrim" aria-hidden="true"></span>
+      </div>
+      <div class="rcard__foot">
+        <p>Ranked findings, five screens, a roadmap.</p>
+        <div class="rcard__big">5<sup>days</sup></div>
+      </div>
+    </article>
+
+    <article class="rcard rcard--grad" data-reveal="2">
+      <span class="rcard__shimmer" aria-hidden="true"></span>
+      <div class="rcard__top"><div class="rcard__tag">FEE CREDITED</div><div class="rcard__n">02</div></div>
+      <div class="rcard__disc"><b>60<sup>days</sup></b></div>
+      <p class="rcard__say">The Teardown fee is credited in full against any engagement booked within 60 days.</p>
+    </article>
+
+    <article class="rcard rcard--paper" data-reveal="3">
+      <div class="rcard__top"><div class="rcard__tag">AFTERCARE</div><div class="rcard__n">03</div></div>
+      <div class="rcard__media">
+        <img src="../assets/img/studio/svc-embedded.jpg" alt="An embedded designer working alongside a client team" loading="lazy" width="740" height="560">
+      </div>
+      <div class="rcard__foot">
+        <p>Developer handoff in the price.</p>
+        <div class="rcard__big">30<sup>days</sup></div>
+      </div>
+    </article>
+  </div>
+
+  <p class="rules__label">SYSTEMS WE HAVE DESIGNED</p>
+  <div class="rules__strip"><div class="mq" id="stripMq" style="--speed:40s" aria-hidden="true"></div></div>
+</section>
+
+<!-- ═══════════════════ SELECTED WORK ═══════════════════ -->
+<section class="work" id="work" aria-labelledby="workH">
+  <div class="amb" aria-hidden="true">
+    <i style="left:50%;top:-20%;width:55vw;height:55vw;background:radial-gradient(circle,rgba(255,122,18,.12) 0%,transparent 65%);filter:blur(80px);animation:driftC 40s ease-in-out infinite"></i>
+    <i style="left:-15%;top:50%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,31,122,.10) 0%,transparent 65%);filter:blur(80px);animation:driftA 48s ease-in-out infinite"></i>
+  </div>
+  <div class="work__head">
+    <h2 class="work__h" id="workH" data-reveal="1">Selected work<br>&amp; <em>evidence</em></h2>
+    <p class="work__claim" data-reveal="2">Every case study evidences a named service — never the studio in general.</p>
+  </div>
+  <div class="work__grid">
+    <article class="wcard">
+      <div class="wcard__media"><img src="../assets/img/work/managem-mock.jpg" alt="ManaGem dashboard screens" loading="lazy" width="800" height="550"></div>
+      <h3 class="wcard__name">ManaGem</h3>
+      <div class="wcard__foot">
+        <p>Product design · Dashboard UX · Design system. Evidences: Interface Refresh Sprint.</p>
+        <a class="wcard__cta" href="../managem.html"><span>EXPLORE PROJECT</span><span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="wcard">
+      <div class="wcard__media"><img src="../assets/img/work/wastemart-mock.jpg" alt="WasteMart driver app and customer portal" loading="lazy" width="800" height="550"></div>
+      <h3 class="wcard__name">WasteMart</h3>
+      <div class="wcard__foot">
+        <p>Operations UX · Driver app · Customer portal. Evidences: Product Teardown.</p>
+        <a class="wcard__cta" href="../wastemart.html"><span>EXPLORE PROJECT</span><span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    <article class="wcard">
+      <div class="wcard__media"><img src="../assets/img/portfolio/finos-wide.jpg" alt="FINOS financial operating system interface" loading="lazy" width="800" height="550"></div>
+      <h3 class="wcard__name">FINOS</h3>
+      <div class="wcard__foot">
+        <p>Financial operating system · AI review workflow. Evidences: Embedded Designer.</p>
+        <a class="wcard__cta" href="../work.html"><span>EXPLORE PROJECT</span><span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+  <div class="work__more">
+    <a class="rule-link rule-link--thin" href="../work.html"><span>VIEW ALL PROJECTS</span><span aria-hidden="true">→</span></a>
   </div>
 </section>
 
-<!-- ═══ 4 · THE FOUR SERVICES ══════════════════════════════════ -->
-<section class="sec" id="services" aria-labelledby="svc-h" style="padding-top:0">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">What you can buy</p>
-      <h2 class="h2 rv" id="svc-h" style="--d:60ms">Four services. Published prices. No proposal required.</h2>
-      <p class="sub rv" style="--d:110ms">Each one is a finished outcome, not a stage of one. Developer handoff and thirty days of aftercare are in every price.</p>
+<!-- ═══════════════════ SERVICES LADDER ═══════════════════ -->
+<section class="svc" id="services" aria-labelledby="svcH">
+  <div class="svc__wash" aria-hidden="true"></div>
+  <div class="amb" aria-hidden="true">
+    <i style="left:50%;top:-20%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(255,31,122,.18) 0%,transparent 65%);filter:blur(60px);animation:driftB 36s ease-in-out infinite"></i>
+    <i style="left:-10%;top:50%;width:45vw;height:45vw;background:radial-gradient(circle,rgba(255,122,18,.14) 0%,transparent 65%);filter:blur(60px);animation:driftC 44s ease-in-out infinite"></i>
+  </div>
+  <div class="sec-in">
+    <div class="svc__head">
+      <div>
+        <p class="eyebrow">OUR SERVICES</p>
+        <h2 class="svc__h" id="svcH" data-reveal="1">One ladder.<br>Four <em>fixed</em> steps.</h2>
+      </div>
+      <p class="svc__lede" data-reveal="2">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. No “from”. Fee credited when you climb.</p>
     </div>
 
-    <div class="svcrow rv" id="svcRow" style="--d:60ms">
-
-      <article class="svc is-open" id="service-teardown">
-        <div class="svc__img" style="background-image:url('../assets/img/studio/svc-teardown.jpg')" aria-hidden="true"></div>
-        <div class="svc__scrim" aria-hidden="true"></div>
-        <div class="svc__top">
-          <span class="glass svc__ico" aria-hidden="true"><svg><use href="#i-scope"/></svg></span>
-          <span class="glass svc__no tnum" aria-hidden="true">01 / 04</span>
-        </div>
-        <div class="svc__foot">
-          <p class="svc__quote">“Users complain and we don't know why”</p>
-          <h3>Product Teardown</h3>
-          <div class="svc__more">
-            <p class="svc__out">A ranked, evidenced account of what is actually going wrong in your product — and the first five screens redrawn so you can see the fix, not just read about it.</p>
-            <p class="svc__meta"><b class="tnum">R6,500</b> excl. VAT · 5 days</p>
-            <ul class="svc__del">
-              <li>Ranked issue list</li><li>Five redesigned screens</li><li>12-month roadmap</li>
-            </ul>
-          </div>
-        </div>
-        <span class="glass svc__go" aria-hidden="true"><svg><use href="#i-ne"/></svg></span>
-        <a class="svc__link" href="#book" data-ev="cta_click" data-loc="service-card-teardown"><span class="skip">Product Teardown — book a Teardown</span></a>
-      </article>
-
-      <article class="svc" id="service-refresh">
-        <div class="svc__img" style="background-image:url('../assets/img/studio/svc-refresh.jpg')" aria-hidden="true"></div>
-        <div class="svc__scrim" aria-hidden="true"></div>
-        <div class="svc__top">
-          <span class="glass svc__ico" aria-hidden="true"><svg><use href="#i-frame"/></svg></span>
-          <span class="glass svc__no tnum" aria-hidden="true">02 / 04</span>
-        </div>
-        <div class="svc__foot">
-          <p class="svc__quote">“It works, it just looks like 2011”</p>
-          <h3>Interface Refresh Sprint</h3>
-          <div class="svc__more">
-            <p class="svc__out">A fixed-scope, fixed-price visual and interaction refresh of a product that functions but no longer looks like it does — delivered developer-ready.</p>
-            <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
-            <ul class="svc__del">
-              <li>Before and after screens</li><li>WCAG 2.1 AA contrast pass</li><li>Developer-ready handoff</li>
-            </ul>
-          </div>
-        </div>
-        <span class="glass svc__go" aria-hidden="true"><svg><use href="#i-ne"/></svg></span>
-        <a class="svc__link" href="#book" data-ev="cta_click" data-loc="service-card-refresh"><span class="skip">Interface Refresh Sprint — enquire</span></a>
-      </article>
-
-      <article class="svc" id="service-web">
-        <div class="svc__img" style="background-image:url('../assets/img/studio/svc-web.jpg')" aria-hidden="true"></div>
-        <div class="svc__scrim" aria-hidden="true"></div>
-        <div class="svc__top">
-          <span class="glass svc__ico" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
-          <span class="glass svc__no tnum" aria-hidden="true">03 / 04</span>
-        </div>
-        <div class="svc__foot">
-          <p class="svc__quote">“Our site doesn't convert”</p>
-          <h3>Web Experience</h3>
-          <div class="svc__more">
-            <p class="svc__out">A website designed and built by the same company, so nothing is lost between the design file and the thing your customers actually load.</p>
-            <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
-            <ul class="svc__del">
-              <li>Designed and built end to end</li><li>Design-only handoff available</li><li>Brand Foundation <span class="tnum">+R15,000</span></li>
-            </ul>
-          </div>
-        </div>
-        <span class="glass svc__go" aria-hidden="true"><svg><use href="#i-ne"/></svg></span>
-        <a class="svc__link" href="#book" data-ev="cta_click" data-loc="service-card-web"><span class="skip">Web Experience — enquire</span></a>
-      </article>
-
-      <article class="svc" id="service-embedded">
-        <div class="svc__img" style="background-image:url('../assets/img/studio/svc-embedded.jpg')" aria-hidden="true"></div>
-        <div class="svc__scrim" aria-hidden="true"></div>
-        <div class="svc__top">
-          <span class="glass svc__ico" aria-hidden="true"><svg><use href="#i-team"/></svg></span>
-          <span class="glass svc__no tnum" aria-hidden="true">04 / 04</span>
-        </div>
-        <div class="svc__foot">
-          <p class="svc__quote">“We need design capacity, not a hire”</p>
-          <h3>Embedded Designer</h3>
-          <div class="svc__more">
-            <p class="svc__out">A designer inside your team on a monthly retainer — the capacity of a hire, without the salary, the recruitment or the single point of failure.</p>
-            <p class="svc__meta"><span class="tbc">Price pending sign-off</span></p>
-            <ul class="svc__del">
-              <li>20, 40 or 60 hours a month</li><li>Unused hours roll over</li><li>Three-month minimum</li>
-            </ul>
-          </div>
-        </div>
-        <span class="glass svc__go" aria-hidden="true"><svg><use href="#i-ne"/></svg></span>
-        <a class="svc__link" href="#book" data-ev="cta_click" data-loc="service-card-embedded"><span class="skip">Embedded Designer — enquire</span></a>
-      </article>
-
+    <div class="svc__body">
+      <div class="svc__rail" role="tablist" aria-label="Services" id="svcRail"></div>
+      <div class="svc__panel"><div id="svcSheet"></div></div>
     </div>
 
-    <div class="svcnav" id="svcNav" hidden>
-      <button class="navb" type="button" data-dir="-1" aria-label="Previous service"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
-      <button class="navb" type="button" data-dir="1" aria-label="Next service"><svg aria-hidden="true"><use href="#i-right"/></svg></button>
+    <div class="svc__foot">
+      <b>✦ DEVELOPER HANDOFF · WCAG 2.1 AA · 30 DAYS AFTERCARE — IN EVERY PRICE.</b>
+      <span>ALL PRICES EXCL. VAT</span>
     </div>
+  </div>
+</section>
 
-    <!-- ═══ 5 · SERVICE SELECTOR ═══ -->
-    <div class="sel rv" id="selector">
-      <p class="eyebrow">Not sure which one you need?</p>
-      <h3 class="h3" style="margin-top:var(--s4)">Three questions. No email required.</h3>
-      <div id="selLive" aria-live="polite" class="sel__q">
-        <noscript>
-          <p style="margin-top:var(--s4)">The guide needs JavaScript. If you're not sure which service fits, start with the <a href="#service-teardown" style="color:var(--ink);font-weight:600">Product Teardown</a> — it exists for exactly that.</p>
-        </noscript>
+<!-- ═══════════════════ ALTERNATIVES ═══════════════════ -->
+<section class="alt" aria-labelledby="altH">
+  <div class="amb" aria-hidden="true">
+    <i style="left:-10%;top:10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(255,31,122,.12) 0%,transparent 65%);filter:blur(80px);animation:driftB 38s ease-in-out infinite"></i>
+  </div>
+  <div class="alt__head">
+    <h2 class="alt__h" id="altH" data-reveal="1">Alternatives</h2>
+    <p>Honest comparison, including doing nothing.</p>
+  </div>
+  <div class="alt__rule"><span aria-hidden="true">+</span></div>
+  <div class="alt__grid">
+    <div class="alt__left">
+      <div class="alt__list" role="tablist" aria-label="Alternatives" id="altList"></div>
+      <div class="alt__arrows">
+        <button type="button" id="altPrev" aria-label="Previous alternative">←</button>
+        <button type="button" id="altNext" aria-label="Next alternative">→</button>
       </div>
     </div>
+    <div class="alt__right">
+      <div class="alt__panel" id="altPanel"></div>
+      <a class="rule-link rule-link--thin" href="#enquire"><span>BECOME A CLIENT</span><span aria-hidden="true">→</span></a>
+    </div>
   </div>
 </section>
 
-<!-- ═══ 6 · IN EVERY ENGAGEMENT ════════════════════════════════ -->
-<section class="dark" aria-labelledby="eng-h">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">In every engagement</p>
-      <h2 class="h2 rv" id="eng-h" style="--d:60ms">Four things you never have to negotiate.</h2>
-      <p class="sub rv" style="--d:110ms">They are not upgrades and they are not line items. They are the reason our prices can be published at all.</p>
+<!-- ═══════════════════ WHY WORK WITH US ═══════════════════ -->
+<section class="why" id="why" aria-labelledby="whyH">
+  <div class="amb" aria-hidden="true">
+    <i style="left:-10%;top:-20%;width:55vw;height:55vw;background:radial-gradient(circle,rgba(255,31,122,.22) 0%,transparent 65%);filter:blur(60px);animation:driftA 30s ease-in-out infinite"></i>
+    <i style="left:55%;top:10%;width:45vw;height:45vw;background:radial-gradient(circle,rgba(255,122,18,.16) 0%,transparent 65%);filter:blur(60px);animation:driftB 38s ease-in-out infinite"></i>
+  </div>
+  <div class="sec-in">
+    <div class="why__head">
+      <div>
+        <p class="eyebrow">WHY WORK WITH US</p>
+        <h2 class="why__h" id="whyH" data-reveal="1">Designers who<br>answer to the <em>build.</em></h2>
+      </div>
+      <p class="why__lede" data-reveal="2">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
     </div>
 
-    <div class="bento">
-      <article class="bcard bcard--tall rv">
-        <div class="bcard__hd"><em aria-hidden="true"><svg><use href="#i-hand"/></svg></em><h3>We never sell a stage</h3></div>
-        <p>You buy an outcome, not a phase of one. No engagement ends at a handover that leaves you needing another supplier to finish it — because design and build sit in the same company.</p>
-        <div class="bcard__img" style="background-image:url('../assets/img/studio/bento-displays.jpg')" aria-hidden="true"></div>
+    <div class="why__grid">
+      <article class="ycard" data-reveal="1">
+        <div class="ycard__top"><span class="ycard__n">01</span><span class="ycard__tag">ONE ROOF</span></div>
+        <h3 class="ycard__h">Designed and built under one roof</h3>
+        <p>Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.</p>
       </article>
-
-      <article class="bcard rv" style="--d:70ms">
-        <div class="bcard__hd"><em aria-hidden="true"><svg><use href="#i-layers"/></svg></em><h3>Developer handoff is in the price</h3></div>
-        <p>Specifications, states and assets your developers can build from — included, not quoted separately after the fact.</p>
+      <article class="ycard" data-reveal="2">
+        <div class="ycard__top"><span class="ycard__n">02</span><span class="ycard__tag">PUBLISHED</span></div>
+        <h3 class="ycard__h">Fixed scope. Fixed price.</h3>
+        <p>Every service has a published price and a defined output. No “from”, no discovery-to-quote loop.</p>
       </article>
-
-      <article class="bcard rv" style="--d:140ms">
-        <div class="bcard__hd"><em aria-hidden="true"><svg><use href="#i-shield"/></svg></em><h3>Thirty days of aftercare</h3></div>
-        <p>For a month after delivery we answer questions and fix what we got wrong, at no additional cost.</p>
+      <article class="ycard" data-reveal="3">
+        <div class="ycard__top"><span class="ycard__n">03</span><span class="ycard__tag">SENIOR</span></div>
+        <h3 class="ycard__h">Senior eyes on every screen</h3>
+        <p>One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.</p>
       </article>
-
-      <article class="bcard bcard--img rv" style="--d:210ms;grid-column:span 2">
-        <div class="bcard__top" style="background-image:url('../assets/img/studio/bento-finos.jpg')" aria-hidden="true"></div>
-        <div class="bcard__hd"><em aria-hidden="true"><svg><use href="#i-map"/></svg></em><h3>You see the roadmap first</h3></div>
-        <p>Every engagement produces a twelve-month view, so you can see what comes next before you decide whether to buy it. Nothing about the sequence is a surprise, and nothing about it is compulsory.</p>
+      <article class="ycard" data-reveal="4">
+        <div class="ycard__top"><span class="ycard__n">04</span><span class="ycard__tag">EVIDENCE</span></div>
+        <h3 class="ycard__h">Evidence before opinion</h3>
+        <p>We map what users actually do before we redesign anything, and every case study names the service it proves.</p>
       </article>
     </div>
-  </div>
-</section>
 
-<!-- ═══ 7 · SELECTED WORK — hidden until four case studies clear publication rights (brief §6, §25) ═══ -->
-<section id="work" hidden data-staging-only>
-  <div class="wrap">
-    <p class="eyebrow">Selected work</p>
-    <h2 class="h2">Four case studies, one per service.</h2>
-  </div>
-</section>
-
-<!-- ═══ 8 · HOW WE WORK ════════════════════════════════════════ -->
-<section class="sec" id="how" aria-labelledby="how-h">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">How we work</p>
-      <h2 class="h2 rv" id="how-h" style="--d:60ms">What happens after you book.</h2>
-      <p class="sub rv" style="--d:110ms">Five steps, five days, one fixed price. You know the shape of it before you pay for it.</p>
-    </div>
-
-    <div class="steps">
-      <div class="step rv"><p class="step__n tnum">01</p><h3>You book</h3><p>You tell us what to take apart — the product, the internal system or the website — and what people complain about.</p></div>
-      <div class="step rv" style="--d:60ms"><p class="step__n tnum">02</p><h3>We meet within three working days</h3><p>A 45-minute session. You walk us through the product and what you already suspect. We listen more than we talk.</p></div>
-      <div class="step rv" style="--d:120ms"><p class="step__n tnum">03</p><h3>We evaluate</h3><p>We work through the product the way your users do, and record what actually happens rather than what was intended.</p></div>
-      <div class="step rv" style="--d:180ms"><p class="step__n tnum">04</p><h3>You receive the findings</h3><p>A ranked issue list, five redesigned screens and a twelve-month roadmap — in your hands, whether or not you continue.</p></div>
-      <div class="step rv" style="--d:240ms"><p class="step__n tnum">05</p><h3>We walk you through it</h3><p>We take you and your team through the findings, so the reasoning stays in the building after we leave.</p></div>
-    </div>
-
-    <p class="rule rv" style="--d:80ms"><span>What that commits us to</span></p>
-
-    <div class="stats">
-      <div class="stat rv"><b class="tnum">5 days</b><p>from booking to findings in your hands — <strong>ranked, evidenced and redrawn</strong>.</p></div>
-      <div class="stat rv" style="--d:70ms"><b class="tnum">3 days</b><p>maximum wait for your first session, counted in <strong>working days from booking</strong>.</p></div>
-      <div class="stat rv" style="--d:140ms"><b class="tnum">30 days</b><p>of aftercare after delivery, <strong>included in every engagement</strong>.</p></div>
+    <div class="lead" data-reveal="1">
+      <figure><img src="../assets/img/shots/lungelo.jpg" alt="" loading="lazy" width="128" height="128"></figure>
+      <div>
+        <div class="lead__k">PRACTICE LEAD</div>
+        <p class="lead__t"><b>Sphamandla Xaba</b>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</p>
+      </div>
+      <div class="lead__tags"><span>ENTERPRISE SAAS</span><span>FINTECH</span><span>OPERATIONS</span></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ 9 · ALTERNATIVES ═══════════════════════════════════════ -->
-<section class="sec" aria-labelledby="alt-h" style="padding-top:0">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">Your alternatives</p>
-      <h2 class="h2 rv" id="alt-h" style="--d:60ms">You have five options. Four of them aren't us.</h2>
-      <p class="sub rv" style="--d:110ms">We would rather you chose the right one than the nearest one. Here is the honest version.</p>
-    </div>
-
-    <div class="alt">
-      <div class="altrow rv"><h3>A freelance designer</h3><p>Often excellent, and usually cheaper. You carry the risk of availability, and the work stops at the design file unless you have developers waiting.</p></div>
-      <div class="altrow rv" style="--d:50ms"><h3>A design agency</h3><p>Deeper bench and a broader brand offer. Expect a proposal process, a larger minimum, and a separate conversation with whoever builds it.</p></div>
-      <div class="altrow rv" style="--d:100ms"><h3>A development shop</h3><p>They will build exactly what you specify. The question they can't answer is whether what you specified is what your users needed.</p></div>
-      <div class="altrow rv" style="--d:150ms"><h3>Hiring in-house</h3><p>The right answer once there is enough design work to fill a full week, every week. Until then it is roughly R600,000 a year and a recruitment cycle ahead of the work.</p></div>
-      <div class="altrow altrow--last rv" style="--d:200ms"><h3>Doing nothing</h3><p>Entirely reasonable — provided you know what it costs. The support load, the workarounds and the churn continue, and they compound quietly. A Teardown at R6,500 is the cheapest way to find out whether they are worth fixing.</p></div>
-    </div>
+<!-- ═══════════════════ ENQUIRY ═══════════════════ -->
+<section class="enq" id="enquire" aria-labelledby="enqH">
+  <div class="amb" aria-hidden="true">
+    <i style="left:-10%;top:-30%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(255,31,122,.14) 0%,transparent 65%);filter:blur(80px);animation:driftA 36s ease-in-out infinite"></i>
+    <i style="left:60%;top:30%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,122,18,.12) 0%,transparent 65%);filter:blur(80px);animation:driftB 44s ease-in-out infinite"></i>
   </div>
-</section>
-
-<!-- ═══ 10 · FAQ ═══════════════════════════════════════════════ -->
-<section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow rv">Questions</p>
-      <h2 class="h2 rv" id="faq-h" style="--d:60ms">Before you ask us.</h2>
+  <div class="enq__in">
+    <div class="enq__side">
+      <p class="eyebrow">START HERE</p>
+      <h2 class="enq__h" id="enqH" data-reveal="1">Tell us what<br>isn't <em>working.</em></h2>
+      <p class="enq__lede" data-reveal="2">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
+      <div class="enq__facts">
+        <div class="enq__row"><span class="enq__k">REPLY</span><span class="enq__v">Within 2 working days</span></div>
+        <div class="enq__row"><span class="enq__k">START</span><span class="enq__v">Within 3 working days of booking</span></div>
+        <div class="enq__row"><span class="enq__k">DIRECT</span><span class="enq__v"><a href="mailto:info@gemis.co.za">info@gemis.co.za</a> · <a href="tel:+27112195008">+27 11 219 5008</a></span></div>
+      </div>
     </div>
 
-    <div class="faq__list rv" style="--d:60ms">
-      <details>
-        <summary>Are prices excluding VAT?</summary>
-        <div class="faq__a"><p>Yes. GEM Information Systems is a registered VAT vendor, and every price published on this site excludes VAT. The VAT amount is shown on your invoice.</p></div>
-      </details>
-      <details>
-        <summary>What if we already have a developer?</summary>
-        <div class="faq__a"><p>That is the normal case, and nothing changes. Developer handoff is included in every engagement — specifications, states and assets your team can build from. We are equally happy handing over as building.</p></div>
-      </details>
-      <details>
-        <summary>Who owns the files and the IP?</summary>
-        <div class="faq__a"><p>Ownership of the design files and the work delivered transfers to you. The specific terms — including revision rounds and scope boundaries — are set out in the engagement terms, which you receive before you commit to anything.</p></div>
-      </details>
-      <details>
-        <summary>What if the Teardown says we don't need a redesign?</summary>
-        <div class="faq__a"><p>Then that is the finding, and it is a useful one. You keep the ranked issue list, the five redesigned screens and the roadmap, and you have spent R6,500 instead of committing to a project you did not need.</p></div>
-      </details>
-      <details>
-        <summary>Can you build as well as design, and does that cost extra?</summary>
-        <div class="faq__a"><p>Yes. GEMIS Studio is the design practice of GEM Information Systems, a software company — so design and build sit under one roof. Build is scoped and priced separately from design, but the handoff between them costs you nothing, because there isn't one.</p></div>
-      </details>
-      <details>
-        <summary>How quickly can you start?</summary>
-        <div class="faq__a"><p>The Teardown session is held within three working days of booking, and findings follow five days from that point. Larger engagements are scheduled against current capacity, which we tell you before you commit.</p></div>
-      </details>
-      <details>
-        <summary>Do you work outside South Africa?</summary>
-        <div class="faq__a"><p>Yes. The work is remote by default and the sessions are held online. Pricing is published in South African Rand and invoiced in Rand.</p></div>
-      </details>
-      <details>
-        <summary>What happens after the 30 days of aftercare?</summary>
-        <div class="faq__a"><p>Nothing expires that you depend on — the work is yours. If you want continuing design capacity after that month, the Embedded Designer retainer is built for it; otherwise we are available for a further engagement when you need one.</p></div>
-      </details>
+    <form class="form" id="enqForm" action="mailto:info@gemis.co.za" method="post" enctype="text/plain" data-reveal="2">
+      <div class="form__pair">
+        <label class="field" for="fName">NAME<input id="fName" name="name" required placeholder="Your name" autocomplete="name"></label>
+        <label class="field" for="fEmail">WORK EMAIL<input id="fEmail" name="email" type="email" required placeholder="name@company.co.za" autocomplete="email"></label>
+      </div>
+      <div class="form__pair">
+        <label class="field" for="fCompany">COMPANY<input id="fCompany" name="company" placeholder="Company" autocomplete="organization"></label>
+        <label class="field" for="fUrl">PRODUCT URL (OPTIONAL)<input id="fUrl" name="url" placeholder="https://" inputmode="url"></label>
+      </div>
+      <div class="form__chips">
+        <div class="enq__k" id="ladderLabel">WHERE ARE YOU ON THE LADDER?</div>
+        <div role="group" aria-labelledby="ladderLabel" id="chips"></div>
+        <input type="hidden" name="service" id="fService" value="Not sure yet">
+      </div>
+      <label class="field" for="fMsg">WHAT'S NOT WORKING?<textarea id="fMsg" name="message" required rows="4" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…"></textarea></label>
+      <div class="form__send">
+        <span>Read by the practice lead, not a sales team. We don't share your details.</span>
+        <button class="form__btn" type="submit"><span>SEND ENQUIRY</span><span aria-hidden="true">→</span></button>
+      </div>
+    </form>
+
+    <div class="sent" id="enqSent" hidden>
+      <div class="sent__k">RECEIVED</div>
+      <p class="sent__h">Thanks, <span id="sentName">there</span>.<br>You'll hear from us within two working days.</p>
+      <button class="sent__again" type="button" id="sendAnother">SEND ANOTHER →</button>
     </div>
-  </div>
-</section>
-
-<!-- ═══ 11 · CLOSING CTA ═══════════════════════════════════════ -->
-<section class="book" id="book" aria-labelledby="book-h">
-  <svg class="spark" style="left:12%;top:22%" aria-hidden="true"><use href="#i-spark"/></svg>
-  <svg class="spark" style="right:14%;top:58%;width:11px;height:11px;opacity:.35" aria-hidden="true"><use href="#i-spark"/></svg>
-  <div class="wrap">
-    <p class="eyebrow rv">Start here</p>
-    <h2 class="h2 rv" id="book-h" style="--d:60ms">Ready to find out what's actually wrong?</h2>
-    <p class="sub rv" style="--d:110ms">Five days. <span class="tnum">R6,500</span> excl. VAT. A ranked account of what is going wrong, five screens redrawn, and a twelve-month roadmap — and the fee comes off anything you book with us in the next 60 days.</p>
-
-    <div class="book__act rv" style="--d:160ms">
-      <a class="btn btn--grad" href="mailto:info@gemis.co.za?subject=Book%20a%20Product%20Teardown&amp;body=What%20should%20we%20take%20apart%3F%20(the%20product%2C%20the%20internal%20system%20or%20the%20website)%20%E2%80%94%20and%20what%20do%20users%20complain%20about%3F%0A%0AName%3A%0ACompany%3A%0APhone%3A" data-ev="cta_click" data-loc="closing">Book a Teardown — <span class="tnum">R6,500</span></a>
-    </div>
-
-    <ul class="book__list rv" style="--d:200ms">
-      <li>45-minute session within three working days</li>
-      <li>Ranked issue list, each finding carrying its cost</li>
-      <li>Five redesigned screens</li>
-      <li>Twelve-month roadmap</li>
-      <li>Walkthrough with you and your team</li>
-    </ul>
-
-    <div class="book__row rv" style="--d:240ms">
-      <a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email"><svg aria-hidden="true"><use href="#i-mail"/></svg>info@gemis.co.za</a>
-      <a href="tel:+27814182518" data-ev="contact_click" data-method="phone"><svg aria-hidden="true"><use href="#i-phone"/></svg><span class="tnum">+27 81 418 2518</span></a>
-      <a href="../index.html"><svg aria-hidden="true"><use href="#i-globe"/></svg>gemis.co.za</a>
-    </div>
-    <p class="book__addr rv" style="--d:280ms"><svg aria-hidden="true"><use href="#i-pin"/></svg>66 Park Lane, Sandown, Sandton, 2196, South Africa</p>
-    <p class="book__vat rv" style="--d:320ms">All prices exclude VAT · GEM Information Systems (Pty) Ltd</p>
   </div>
 </section>
 
 </main>
 
-<footer class="ft" id="studio">
-  <div class="wrap">
-    <div class="ft__grid">
-      <div class="ft__brand">
-        <h2>GEMIS <span>Studio</span></h2>
-        <p>The product and experience design practice of GEM Information Systems. We design what your users actually use — and build it in the same company.</p>
-      </div>
-      <div class="ft__col">
-        <p>Services</p>
-        <ul>
-          <li><a href="#service-teardown">Product Teardown</a></li>
-          <li><a href="#service-refresh">Interface Refresh Sprint</a></li>
-          <li><a href="#service-web">Web Experience</a></li>
-          <li><a href="#service-embedded">Embedded Designer</a></li>
-        </ul>
-      </div>
-      <div class="ft__col">
-        <p>Studio</p>
-        <ul>
-          <li><a href="#situation">The situation</a></li>
-          <li><a href="#selector">Which service fits</a></li>
-          <li><a href="#how">How we work</a></li>
-          <li><a href="../privacy.html">Privacy notice</a></li>
-        </ul>
-      </div>
-      <div class="ft__col">
-        <p>Contact</p>
-        <ul>
-          <li><a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email">info@gemis.co.za</a></li>
-          <li><a href="tel:+27814182518" data-ev="contact_click" data-method="phone">+27 81 418 2518</a></li>
-          <li><a href="../index.html">GEM Information Systems</a></li>
-        </ul>
-      </div>
+<!-- ═══════════════════ CONTACT FOOTER ═══════════════════ -->
+<footer class="foot" id="contact">
+  <div class="foot__wash" aria-hidden="true"></div>
+  <div class="foot__grid">
+    <div>
+      <p class="foot__k">ONE ACTION. RESTATED.</p>
+      <h2 class="foot__h" data-reveal="1">Ready to find out<br><em>what's wrong?</em></h2>
+      <p class="foot__c">©GEMIS® STUDIO 2026</p>
+      <p class="foot__price">5 DAYS · R6,500 EXCL. VAT · FEE CREDITED WITHIN 60 DAYS.</p>
     </div>
-    <div class="ft__bar">
-      <span>© 2026 GEM Information Systems (Pty) Ltd. All prices exclude VAT.</span>
-      <span>Sandton, South Africa</span>
+    <div class="foot__right">
+      <div class="foot__clock">SAST → <span id="clock">--:--</span></div>
+      <div class="foot__links">
+        <a class="rule-link rule-link--ink" href="#enquire"><span>DISCUSS YOUR PROJECT</span><span aria-hidden="true">→</span></a>
+        <a class="rule-link" href="#enquire"><span>BOOK A TEARDOWN</span><span aria-hidden="true">→</span></a>
+      </div>
+      <div class="foot__cols">
+        <div>
+          <div class="foot__label">BUSINESS ENQUIRY</div>
+          <div class="foot__pairs"><span>E.</span><span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></span><span>P.</span><span><a href="tel:+27112195008">+27 11 219 5008</a></span></div>
+        </div>
+        <div>
+          <div class="foot__label">SOCIAL</div>
+          <div class="foot__social"><span>LinkedIn</span><span>Behance</span><span>Dribbble</span><span>Instagram</span></div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="foot__lines" id="footLines" aria-hidden="true"></div>
 </footer>
 
-</div><!-- /sheet -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -1078,7 +901,7 @@ body.js-settle.is-settled .settle{opacity:1;transform:none;
   "description":"Product and experience design practice of GEM Information Systems. Product teardowns, interface refresh sprints, web experience design and build, and embedded design retainers.",
   "url":"https://gemis.co.za/studio/",
   "email":"info@gemis.co.za",
-  "telephone":"+27814182518",
+  "telephone":"+27112195008",
   "parentOrganization":{"@type":"Organization","name":"GEM Information Systems (Pty) Ltd"},
   "address":{"@type":"PostalAddress","streetAddress":"66 Park Lane, Sandown","addressLocality":"Sandton","postalCode":"2196","addressCountry":"ZA"},
   "areaServed":"ZA",
@@ -1090,393 +913,347 @@ body.js-settle.is-settled .settle{opacity:1;transform:none;
   }
 }
 </script>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org","@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Are prices excluding VAT?","acceptedAnswer":{"@type":"Answer","text":"Yes. GEM Information Systems is a registered VAT vendor, and every price published on this site excludes VAT."}},
-    {"@type":"Question","name":"What if we already have a developer?","acceptedAnswer":{"@type":"Answer","text":"Developer handoff is included in every engagement — specifications, states and assets your team can build from."}},
-    {"@type":"Question","name":"Who owns the files and the IP?","acceptedAnswer":{"@type":"Answer","text":"Ownership of the design files and the work delivered transfers to you. Specific terms are set out in the engagement terms, provided before you commit."}},
-    {"@type":"Question","name":"What if the Teardown says we don't need a redesign?","acceptedAnswer":{"@type":"Answer","text":"That is the finding. You keep the ranked issue list, the five redesigned screens and the roadmap."}},
-    {"@type":"Question","name":"Can you build as well as design, and does that cost extra?","acceptedAnswer":{"@type":"Answer","text":"Yes. GEMIS Studio is the design practice of a software company. Build is scoped separately from design, but the handoff between them costs nothing."}},
-    {"@type":"Question","name":"How quickly can you start?","acceptedAnswer":{"@type":"Answer","text":"The Teardown session is held within three working days of booking, with findings five days from that point."}},
-    {"@type":"Question","name":"Do you work outside South Africa?","acceptedAnswer":{"@type":"Answer","text":"Yes. Work is remote by default and priced in South African Rand."}},
-    {"@type":"Question","name":"What happens after the 30 days of aftercare?","acceptedAnswer":{"@type":"Answer","text":"The work is yours. Continuing design capacity is available on the Embedded Designer retainer."}}
-  ]
-}
-</script>
 
 <script>
 (function () {
   'use strict';
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
 
-  /* ── analytics (§19) — pushes to dataLayer, no third-party script ── */
-  function track(name, params) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(Object.assign({ event: name }, params || {}));
+  /* ─── drawer ───────────────────────────────────────────────────── */
+  var menuBtn = $('#menuBtn'), drawer = $('#drawer');
+  function setMenu(open) {
+    drawer.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.textContent = open ? 'MENU ×' : 'MENU ≡';
   }
-  document.addEventListener('click', function (e) {
-    var el = e.target.closest('[data-ev]');
-    if (!el) { return; }
-    var ev = el.dataset.ev;
-    if (ev === 'cta_click') { track(ev, { location: el.dataset.loc, label: el.textContent.trim().slice(0, 40), page: 'home' }); }
-    else if (ev === 'ladder_step_click') { track(ev, { service: el.dataset.svc, position: Number(el.dataset.pos) }); }
-    else if (ev === 'contact_click') { track(ev, { method: el.dataset.method, page: 'home' }); }
+  menuBtn.addEventListener('click', function () { setMenu(drawer.hidden); });
+  drawer.querySelectorAll('[data-close]').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
   });
+  addEventListener('keydown', function (e) { if (e.key === 'Escape' && !drawer.hidden) setMenu(false); });
 
-  /* ── header: compact after 80px (§5) ── */
-  var hd = document.getElementById('hd'), ticking = false;
-  function onScroll() {
-    if (ticking) { return; }
-    ticking = true;
-    requestAnimationFrame(function () {
-      hd.classList.toggle('is-compact', window.scrollY > 80);
-      ticking = false;
+  /* ─── nav inversion: the CTA sits outside the blend layer, so it ──
+     needs to know whether the strip under the nav is dark or light. */
+  var darkSections = [];
+  function measure() {
+    darkSections = [].map.call(document.querySelectorAll('section, footer'), function (el) {
+      var bg = getComputedStyle(el).backgroundColor.match(/\d+(\.\d+)?/g) || [];
+      var dark = bg.length >= 3 && (bg[0] * .299 + bg[1] * .587 + bg[2] * .114) < 128;
+      var box = el.getBoundingClientRect();
+      return { top: box.top + scrollY, bottom: box.bottom + scrollY, dark: dark };
     });
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* ── services dropdown ── */
-  var drop = document.getElementById('drop'), dropBtn = document.getElementById('dropBtn');
-  function closeDrop() { drop.classList.remove('is-open'); dropBtn.setAttribute('aria-expanded', 'false'); }
-  dropBtn.addEventListener('click', function () {
-    var open = drop.classList.toggle('is-open');
-    dropBtn.setAttribute('aria-expanded', String(open));
-  });
-  drop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeDrop(); dropBtn.focus(); } });
-  document.addEventListener('click', function (e) { if (!drop.contains(e.target)) { closeDrop(); } });
-  drop.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget)) { closeDrop(); } });
-
-  /* ── mobile drawer: focus trapped, Escape closes (§12) ── */
-  var drawer = document.getElementById('drawer'),
-      burger = document.getElementById('burger'),
-      drawerClose = document.getElementById('drawerClose'),
-      lastFocus = null;
-  function openDrawer() {
-    lastFocus = document.activeElement;
-    drawer.hidden = false;
-    requestAnimationFrame(function () { drawer.classList.add('is-open'); });
-    document.body.style.overflow = 'hidden';
-    document.body.classList.add('is-drawer');
-    burger.setAttribute('aria-expanded', 'true');
-    drawerClose.focus();
+  function syncNav() {
+    var probe = scrollY + 46, onInk = false;
+    for (var i = 0; i < darkSections.length; i++) {
+      var s = darkSections[i];
+      if (probe >= s.top && probe < s.bottom) { onInk = s.dark; break; }
+    }
+    document.body.classList.toggle('on-ink', onInk);
   }
-  function closeDrawer() {
-    drawer.classList.remove('is-open');
-    document.body.style.overflow = '';
-    document.body.classList.remove('is-drawer');
-    burger.setAttribute('aria-expanded', 'false');
-    var delay = reduced ? 0 : 240;
-    setTimeout(function () { drawer.hidden = true; }, delay);
-    if (lastFocus) { lastFocus.focus(); }
-  }
-  burger.addEventListener('click', function () {
-    if (drawer.classList.contains('is-open')) { closeDrawer(); } else { openDrawer(); }
-  });
-  drawerClose.addEventListener('click', closeDrawer);
-  drawer.addEventListener('click', function (e) { if (e.target.closest('a')) { closeDrawer(); } });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && drawer.classList.contains('is-open')) { closeDrawer(); return; }
-    if (e.key !== 'Tab' || !drawer.classList.contains('is-open')) { return; }
-    var f = drawer.querySelectorAll('a[href],button:not([disabled])');
-    if (!f.length) { return; }
-    var first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
+  addEventListener('scroll', syncNav, { passive: true });
+  addEventListener('resize', function () { measure(); syncNav(); });
+  addEventListener('load', function () { measure(); syncNav(); });
 
-  /* ── hero settle: one orchestrated moment, first load only (§14) ── */
-  var heroCol = document.getElementById('heroCol');
-  if (!reduced && !sessionStorage.getItem('gemis-studio-settled')) {
-    document.body.classList.add('js-settle');
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        document.body.classList.add('is-settled');
-        try { sessionStorage.setItem('gemis-studio-settled', '1'); } catch (err) {}
-      });
-    });
-  }
-
-  /* ═══ service selector (§10) ═══════════════════════════════
-     Three questions, adaptive second question, no email gate,
-     answers editable in place, keyboard operable, announced. */
-  var SERVICES = {
-    teardown: { id: 'product-teardown', name: 'Product Teardown', price: 'R6,500', dur: '5 days', href: '#service-teardown' },
-    refresh:  { id: 'interface-refresh', name: 'Interface Refresh Sprint', price: null, dur: null, href: '#service-refresh' },
-    web:      { id: 'web-experience', name: 'Web Experience', price: null, dur: null, href: '#service-web' },
-    embedded: { id: 'embedded-designer', name: 'Embedded Designer', price: null, dur: null, href: '#service-embedded' }
-  };
-
-  var Q1 = {
-    key: 'subject', label: 'What are you working with?',
-    opts: [
-      { v: 'product',  t: 'A product or platform our customers use' },
-      { v: 'internal', t: 'An internal system our staff use' },
-      { v: 'website',  t: 'Our website' },
-      { v: 'unsure',   t: "We're not sure yet" }
-    ]
-  };
-  var Q2 = {
-    product: { key: 'situation', label: "What's the situation?", opts: [
-      { v: 'confusing', t: "It's confusing and we don't know why" },
-      { v: 'dated',     t: 'It works but looks dated' },
-      { v: 'ongoing',   t: 'We need ongoing design help' }
-    ]},
-    website: { key: 'situation', label: "What's the situation?", opts: [
-      { v: 'noenq',   t: "It doesn't generate enquiries" },
-      { v: 'old',     t: "It's out of date" },
-      { v: 'none',    t: "We don't have one yet" }
-    ]}
-  };
-  Q2.internal = Q2.product;
-  Q2.unsure = { key: 'situation', label: "What's the situation?", opts: [
-    { v: 'confusing', t: "Something isn't working and we can't name it" },
-    { v: 'dated',     t: 'It all looks older than it should' },
-    { v: 'ongoing',   t: 'We need design help in general' }
-  ]};
-  var Q3 = {
-    key: 'timeframe', label: "What's your timeframe?",
-    opts: [
-      { v: 'month',     t: 'This month' },
-      { v: 'quarter',   t: 'This quarter' },
-      { v: 'exploring', t: 'Exploring' }
-    ]
-  };
-
-  function recommend(a) {
-    /* "not sure" and "exploring" always resolve to the Teardown (§10) */
-    if (a.subject === 'unsure' || a.timeframe === 'exploring') {
-      return { svc: SERVICES.teardown, why: "You told us you're still working out what the problem is — which is exactly what the Teardown is for. It ends with a ranked account of what's wrong, and the fee comes off whatever you do next." };
-    }
-    if (a.situation === 'confusing') {
-      return { svc: SERVICES.teardown, why: 'Something is going wrong and the cause is not yet named. Diagnosis has to come before redesign, or you pay to rebuild the wrong thing.' };
-    }
-    if (a.situation === 'ongoing') {
-      return { svc: SERVICES.embedded, why: 'You need design capacity over time rather than a single piece of work, so a monthly retainer costs less and keeps the context in the room.' };
-    }
-    if (a.subject === 'website') {
-      return { svc: SERVICES.web, why: 'A website that needs to earn its keep is a design and build problem, not a design-only one — so it is worth having both under one roof.' };
-    }
-    if (a.situation === 'dated') {
-      return { svc: SERVICES.refresh, why: 'The product works; it is the surface that has aged. A fixed-scope sprint deals with that without reopening the whole product.' };
-    }
-    return { svc: SERVICES.teardown, why: 'Your answers do not point cleanly at one service, so the honest first step is a diagnosis rather than a guess.' };
-  }
-
-  var live = document.getElementById('selLive');
-  if (live) {
-    var answers = {}, step = 0, started = false;
-
-    function qFor(i) {
-      if (i === 0) { return Q1; }
-      if (i === 1) { return Q2[answers.subject] || Q2.product; }
-      return Q3;
-    }
-    function labelFor(key, value) {
-      var qs = [Q1, Q2[answers.subject] || Q2.product, Q3];
-      for (var i = 0; i < qs.length; i++) {
-        if (qs[i].key !== key) { continue; }
-        for (var j = 0; j < qs[i].opts.length; j++) {
-          if (qs[i].opts[j].v === value) { return qs[i].opts[j].t; }
-        }
-      }
-      return value;
-    }
-
-    function render() {
-      live.innerHTML = '';
-      var wrap = document.createElement('div');
-      wrap.className = 'sel__step';
-
-      if (step < 3) {
-        var q = qFor(step);
-        var prog = document.createElement('p');
-        prog.className = 'sel__prog';
-        prog.textContent = 'Question ' + (step + 1) + ' of 3';
-        wrap.appendChild(prog);
-
-        var h = document.createElement('p');
-        h.className = 'sel__qh';
-        h.textContent = q.label;
-        wrap.appendChild(h);
-
-        var opts = document.createElement('div');
-        opts.className = 'sel__opts';
-        opts.setAttribute('role', 'group');
-        opts.setAttribute('aria-label', q.label);
-        q.opts.forEach(function (o) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'sel__opt';
-          b.textContent = o.t;
-          b.setAttribute('aria-pressed', String(answers[q.key] === o.v));
-          b.addEventListener('click', function () {
-            if (!started) { started = true; track('selector_start', {}); }
-            answers[q.key] = o.v;
-            track('selector_answer', { question: q.key, value: o.v });
-            step = Math.min(step + 1, 3);
-            render();
-          });
-          opts.appendChild(b);
-        });
-        wrap.appendChild(opts);
-
-        if (step > 0) {
-          var back = document.createElement('button');
-          back.type = 'button';
-          back.className = 'sel__restart';
-          back.textContent = '← Back';
-          back.style.marginTop = 'var(--s4)';
-          back.addEventListener('click', function () { step--; render(); });
-          wrap.appendChild(back);
-        }
-      } else {
-        var r = recommend(answers);
-        track('selector_complete', { recommended_service: r.svc.id });
-
-        var chips = document.createElement('div');
-        chips.className = 'sel__answers';
-        [['subject', 'Working with'], ['situation', 'Situation'], ['timeframe', 'Timeframe']].forEach(function (pair, i) {
-          var b = document.createElement('button');
-          b.type = 'button';
-          b.className = 'sel__ans';
-          b.innerHTML = '<em>' + pair[1] + '</em> <u></u>';
-          b.querySelector('u').textContent = labelFor(pair[0], answers[pair[0]]);
-          b.setAttribute('aria-label', 'Change ' + pair[1].toLowerCase() + ': ' + labelFor(pair[0], answers[pair[0]]));
-          b.addEventListener('click', function () { step = i; render(); });
-          chips.appendChild(b);
-        });
-        wrap.appendChild(chips);
-
-        var res = document.createElement('div');
-        res.className = 'sel__res';
-        var nm = document.createElement('p');
-        nm.className = 'sel__resname';
-        nm.textContent = r.svc.name;
-        res.appendChild(nm);
-
-        var meta = document.createElement('p');
-        meta.className = 'small soft';
-        meta.style.marginTop = '6px';
-        meta.innerHTML = r.svc.price
-          ? '<span class="tnum">' + r.svc.price + '</span> excl. VAT · ' + r.svc.dur
-          : '<span class="tbc">Price pending sign-off</span>';
-        res.appendChild(meta);
-
-        var why = document.createElement('p');
-        why.className = 'sel__why';
-        why.textContent = r.why;
-        res.appendChild(why);
-
-        var acts = document.createElement('div');
-        acts.className = 'sel__acts';
-        var go = document.createElement('a');
-        go.className = 'btn';
-        go.href = r.svc.href;
-        go.innerHTML = 'See ' + r.svc.name + ' <span class="btn__ico" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>';
-        acts.appendChild(go);
-        var again = document.createElement('button');
-        again.type = 'button';
-        again.className = 'sel__restart';
-        again.textContent = 'Start again';
-        again.addEventListener('click', function () { answers = {}; step = 0; render(); });
-        acts.appendChild(again);
-        res.appendChild(acts);
-
-        if (r.svc.id !== 'product-teardown') {
-          var alt = document.createElement('p');
-          alt.className = 'sel__alt';
-          alt.innerHTML = 'Or start with a Teardown and find out properly — <a href="#service-teardown" class="tnum">R6,500</a>.';
-          res.appendChild(alt);
-        }
-        wrap.appendChild(res);
-      }
-
-      live.appendChild(wrap);
-
-      /* keyboard: arrows move between options, Enter selects, Escape goes back */
-      var btns = Array.prototype.slice.call(wrap.querySelectorAll('.sel__opt'));
-      btns.forEach(function (b, i) {
-        b.addEventListener('keydown', function (e) {
-          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); btns[(i + 1) % btns.length].focus(); }
-          else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); btns[(i - 1 + btns.length) % btns.length].focus(); }
-          else if (e.key === 'Escape' && step > 0) { e.preventDefault(); step--; render(); }
-        });
-      });
-    }
-
-    /* abandonment: report the last question reached */
-    window.addEventListener('pagehide', function () {
-      if (started && step < 3) { track('selector_abandon', { last_question: step + 1 }); }
-    });
-
-    render();
-  }
-})();
-</script>
-
-<script>
-(function () {
-  'use strict';
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── scroll reveals (design reference) — opacity + 16px rise, once ── */
-  if (!reduced && 'IntersectionObserver' in window) {
-    document.body.classList.add('js-rv');
+  /* ─── scroll reveal ────────────────────────────────────────────── */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) { return; }
-        en.target.classList.add('is-in');
-        io.unobserve(en.target);
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+    }, { threshold: .15 });
+    reveals.forEach(function (el) { io.observe(el); });
+    // anything already on screen at load reveals without waiting for a scroll
+    setTimeout(function () {
+      reveals.forEach(function (el) {
+        if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in');
+      });
+    }, 300);
+  }
 
-    /* safety net: anything at or above the fold is shown without waiting for
-       an intersection callback, so nothing can be stranded invisible. */
-    window.addEventListener('load', function () {
-      document.querySelectorAll('.rv:not(.is-in)').forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight) { el.classList.add('is-in'); }
-      });
+  /* ─── hero: word rotator ───────────────────────────────────────── */
+  var rot = $('#rotator'), rotWords = rot ? [].slice.call(rot.children) : [], rotAt = 0;
+  if (rotWords.length && !reduce) {
+    setInterval(function () {
+      var prev = rotWords[rotAt];
+      rotAt = (rotAt + 1) % rotWords.length;
+      prev.className = 'is-out';
+      rotWords[rotAt].className = 'is-in';
+    }, 2600);
+  }
+
+  /* ─── hero: cursor glow, trail and parallax ────────────────────── */
+  var hero = $('.hero'), probe = $('#heroProbe');
+  if (hero && probe && !reduce) {
+    probe.addEventListener('mousemove', function (e) {
+      var r = probe.getBoundingClientRect();
+      var mx = (e.clientX - r.left) / r.width, my = (e.clientY - r.top) / r.height;
+      var px = mx - .5, py = my - .5;
+      hero.classList.add('is-live');
+      hero.style.setProperty('--mx', (mx * 100) + '%');
+      hero.style.setProperty('--my', (my * 100) + '%');
+      hero.style.setProperty('--px', px.toFixed(4));
+      hero.style.setProperty('--py', py.toFixed(4));
+      hero.style.setProperty('--ang', (Math.atan2(py, px) * 180 / Math.PI).toFixed(2) + 'deg');
+    });
+    probe.addEventListener('mouseleave', function () {
+      hero.classList.remove('is-live');
+      hero.style.setProperty('--mx', '50%');
+      hero.style.setProperty('--my', '50%');
+      hero.style.setProperty('--px', '0');
+      hero.style.setProperty('--py', '0');
     });
   }
 
-  /* ── service cards: one open at a time on pointer devices ── */
-  var row = document.getElementById('svcRow');
-  if (row) {
-    var cards = Array.prototype.slice.call(row.querySelectorAll('.svc'));
-    var fine = window.matchMedia('(hover: hover) and (min-width: 1025px)');
-
-    cards.forEach(function (c) {
-      c.addEventListener('mouseenter', function () {
-        if (!fine.matches) { return; }
-        cards.forEach(function (o) { o.classList.remove('is-open'); });
-      });
-      c.addEventListener('mouseleave', function () {
-        if (!fine.matches) { return; }
-        if (!row.querySelector('.svc:hover')) { cards[0].classList.add('is-open'); }
-      });
+  /* ─── marquees ─────────────────────────────────────────────────── */
+  function fillMarquee(host, build) {
+    if (!host) return;
+    var once = document.createDocumentFragment();
+    build(once);
+    host.appendChild(once.cloneNode(true));
+    host.appendChild(once);
+  }
+  fillMarquee($('#bandMq'), function (frag) {
+    ['DIAGNOSE', 'REFRESH', 'BUILD'].forEach(function (w, i) {
+      var s = document.createElement('span');
+      s.className = 'mq__w' + (i === 1 ? ' mq__w--pink' : '');
+      s.textContent = w;
+      frag.appendChild(s);
+      var p = document.createElement('span');
+      p.className = 'mq__p';
+      p.textContent = '+';
+      frag.appendChild(p);
     });
+  });
+  fillMarquee($('#stripMq'), function (frag) {
+    var words = ['Enterprise SaaS', 'Financial OS', 'Websites', 'Mobile Apps', 'Ops Dashboards',
+      'Graphic Design', 'Logos & Identity', 'AI Workflows', 'Design Systems', 'Conversational UI',
+      'E-commerce', 'Internal Tools'];
+    words.forEach(function (w, i) {
+      var s = document.createElement('span');
+      s.className = 'strip__w';
+      s.textContent = w;
+      frag.appendChild(s);
+      var d = document.createElement('span');
+      d.className = 'strip__d';
+      d.style.background = i % 2 ? '#ff7a12' : '#ff1f7a';
+      frag.appendChild(d);
+    });
+  });
 
-    /* carousel arrows — shown only while the row actually scrolls */
-    var nav = document.getElementById('svcNav');
-    function syncNav() {
-      var scrolls = row.scrollWidth - row.clientWidth > 8;
-      nav.hidden = !scrolls;
+  /* ─── services ladder ──────────────────────────────────────────── */
+  var LADDER = [
+    { num: '01', name: 'Product Teardown', time: '5 DAYS', kicker: 'DIAGNOSE', price: 'R6,500',
+      priceNote: 'FIXED · 5 WORKING DAYS', evidence: 'EVIDENCE — WASTEMART',
+      desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.',
+      deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'],
+      credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'BOOK A TEARDOWN' },
+    { num: '02', name: 'Interface Refresh Sprint', time: '2 WEEKS', kicker: 'REFRESH', price: 'R18,000 – R25,000',
+      priceNote: 'FIXED SCOPE · 2 WEEKS', evidence: 'EVIDENCE — MANAGEM',
+      desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.',
+      deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.1 AA contrast pass', 'Developer handoff session'],
+      credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'START A SPRINT' },
+    { num: '03', name: 'Web Experience', time: '6 – 8 WEEKS', kicker: 'BUILD', price: 'R55,000 – R85,000',
+      priceNote: 'DESIGN + BUILD · 6–8 WEEKS', evidence: 'EVIDENCE — FINOS',
+      desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.',
+      deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'],
+      credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'SCOPE A WEBSITE' },
+    { num: '04', name: 'Embedded Designer', time: 'ONGOING', kicker: 'EMBED', price: 'R20,000 – R35,000',
+      priceNote: 'PER MONTH · 3-MONTH MINIMUM', evidence: 'EVIDENCE — RENTFLOW',
+      desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.',
+      deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'],
+      credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'TALK ABOUT EMBEDDING' }
+  ];
+  var rail = $('#svcRail'), sheet = $('#svcSheet'), stepAt = 0, stepBtns = [];
+
+  LADDER.forEach(function (l, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'step';
+    b.setAttribute('role', 'tab');
+    b.id = 'step-' + l.num;
+    b.setAttribute('aria-controls', 'sheet-panel');
+    b.innerHTML =
+      '<span class="step__row">' +
+        '<span class="step__n">' + l.num + '</span>' +
+        '<span class="step__name"></span>' +
+        '<span class="step__t">' + l.time + '</span>' +
+      '</span>' +
+      '<span class="step__bar"><i></i></span>';
+    $('.step__name', b).textContent = l.name;
+    b.addEventListener('click', function () { selectStep(i); });
+    b.addEventListener('mouseenter', function () { selectStep(i); });
+    rail.appendChild(b);
+    stepBtns.push(b);
+  });
+
+  var svcNav = document.createElement('div');
+  svcNav.className = 'svc__nav';
+  svcNav.innerHTML = '<span id="stepCount">01 / 04</span><div>' +
+    '<button type="button" id="stepPrev" aria-label="Previous service">←</button>' +
+    '<button type="button" id="stepNext" aria-label="Next service">→</button></div>';
+  rail.appendChild(svcNav);
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  function renderSheet() {
+    var l = LADDER[stepAt];
+    var items = l.deliverables.map(function (t, i) {
+      return '<li><b>0' + (i + 1) + '</b><span>' + esc(t) + '</span></li>';
+    }).join('');
+    sheet.innerHTML =
+      '<div class="sheet" id="sheet-panel" role="tabpanel" aria-labelledby="step-' + l.num + '">' +
+        '<div class="sheet__top">' +
+          '<span class="sheet__chip">' + l.num + ' — ' + l.kicker + '</span>' +
+          '<span class="sheet__time">' + l.time + '</span>' +
+        '</div>' +
+        '<div class="sheet__title">' +
+          '<h3 class="sheet__name">' + esc(l.name) + '</h3>' +
+          '<div class="sheet__price">' + esc(l.price) + '</div>' +
+        '</div>' +
+        '<div class="sheet__main">' +
+          '<p class="sheet__desc">' + esc(l.desc) + '</p>' +
+          '<div class="sheet__table">' +
+            '<div class="sheet__row"><span class="sheet__k">TIMELINE</span><span class="sheet__v">' + esc(l.priceNote) + '</span></div>' +
+            '<div class="sheet__row"><span class="sheet__k">EVIDENCE</span><span class="sheet__v">' + esc(l.evidence) + '</span></div>' +
+            '<div class="sheet__row"><span class="sheet__k">CREDIT</span><span class="sheet__v sheet__v--soft">' + esc(l.credit) + '</span></div>' +
+            '<div class="sheet__row"><span class="sheet__k">YOU GET</span><ol class="sheet__list">' + items + '</ol></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="sheet__foot">' +
+          '<small>Excl. VAT · developer handoff and 30 days aftercare included</small>' +
+          '<a class="rule-link rule-link--onink" href="#enquire"><span>' + l.cta + '</span><span aria-hidden="true">→</span></a>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function selectStep(i) {
+    stepAt = (i + LADDER.length) % LADDER.length;
+    stepBtns.forEach(function (b, n) {
+      b.setAttribute('aria-selected', String(n === stepAt));
+      b.tabIndex = n === stepAt ? 0 : -1;
+    });
+    $('#stepCount').textContent = LADDER[stepAt].num + ' / 04';
+    renderSheet();
+  }
+  $('#stepPrev').addEventListener('click', function () { selectStep(stepAt - 1); });
+  $('#stepNext').addEventListener('click', function () { selectStep(stepAt + 1); });
+  rail.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); selectStep(stepAt + 1); stepBtns[stepAt].focus(); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); selectStep(stepAt - 1); stepBtns[stepAt].focus(); }
+  });
+  selectStep(0);
+
+  /* ─── alternatives ─────────────────────────────────────────────── */
+  var ALTS = [
+    { label: 'FREELANCE DESIGNER', role: 'Freelance designer', person: 'Alternative 01', img: '../assets/img/shots/finos.jpg',
+      quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.' },
+    { label: 'DESIGN AGENCY', role: 'Design agency', person: 'Alternative 02', img: '../assets/img/shots/managem-desk.jpg',
+      quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.' },
+    { label: 'DEVELOPMENT SHOP', role: 'Development shop', person: 'Alternative 03', img: '../assets/img/shots/rentflow.jpg',
+      quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.' },
+    { label: 'HIRING IN-HOUSE', role: 'Hiring in-house', person: 'Alternative 04', img: '../assets/img/shots/nuracoach.jpg',
+      quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.' },
+    { label: 'DOING NOTHING', role: 'Doing nothing', person: 'Alternative 05', img: '../assets/img/shots/wastemart-driver.jpg',
+      quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.' }
+  ];
+  var altList = $('#altList'), altPanel = $('#altPanel'), altAt = 4, altBtns = [];
+  ALTS.forEach(function (a, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'alt__btn';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-controls', 'alt-panel');
+    b.addEventListener('click', function () { selectAlt(i); });
+    altList.appendChild(b);
+    altBtns.push(b);
+  });
+  function renderAlt() {
+    var a = ALTS[altAt];
+    altPanel.innerHTML =
+      '<p class="alt__quote" id="alt-panel">' + esc(a.quote) + '</p>' +
+      '<div class="alt__by">' +
+        '<div class="alt__who">' +
+          '<figure><img src="' + a.img + '" alt="" loading="lazy" width="152" height="152"></figure>' +
+          '<div><div class="alt__name">' + esc(a.person) + '</div><div class="alt__role">' + esc(a.role) + '</div></div>' +
+        '</div>' +
+        '<a class="alt__see" href="#services">→ SEE THE LADDER</a>' +
+      '</div>';
+  }
+  function selectAlt(i) {
+    altAt = (i + ALTS.length) % ALTS.length;
+    altBtns.forEach(function (b, n) {
+      b.setAttribute('aria-selected', String(n === altAt));
+      b.tabIndex = n === altAt ? 0 : -1;
+      b.textContent = n === altAt ? ALTS[n].label + '  →' : ALTS[n].label;
+    });
+    renderAlt();
+  }
+  $('#altPrev').addEventListener('click', function () { selectAlt(altAt - 1); });
+  $('#altNext').addEventListener('click', function () { selectAlt(altAt + 1); });
+  selectAlt(4);
+
+  /* ─── enquiry form ─────────────────────────────────────────────── */
+  var CHIPS = ['Not sure yet', 'Product Teardown', 'Interface Refresh', 'Web Experience', 'Embedded Designer'];
+  var chipHost = $('#chips'), serviceInput = $('#fService'), chipBtns = [];
+  CHIPS.forEach(function (label, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = label;
+    b.setAttribute('aria-pressed', String(i === 0));
+    b.addEventListener('click', function () {
+      serviceInput.value = label;
+      chipBtns.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+    });
+    chipHost.appendChild(b);
+    chipBtns.push(b);
+  });
+
+  var form = $('#enqForm'), sentBox = $('#enqSent');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    $('#sentName').textContent = ($('#fName').value || '').trim() || 'there';
+    form.hidden = true;
+    sentBox.hidden = false;
+    sentBox.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+  });
+  $('#sendAnother').addEventListener('click', function () {
+    form.reset();
+    serviceInput.value = 'Not sure yet';
+    chipBtns.forEach(function (o, i) { o.setAttribute('aria-pressed', String(i === 0)); });
+    sentBox.hidden = true;
+    form.hidden = false;
+    $('#fName').focus();
+  });
+
+  /* ─── SAST clock ───────────────────────────────────────────────── */
+  var clock = $('#clock');
+  function tick() {
+    clock.textContent = new Date().toLocaleTimeString('en-ZA', {
+      timeZone: 'Africa/Johannesburg', hour: '2-digit', minute: '2-digit', hour12: false
+    });
+  }
+  tick(); setInterval(tick, 30000);
+
+  /* ─── footer line field ────────────────────────────────────────── */
+  var lines = $('#footLines');
+  for (var c = 0; c < 8; c++) {
+    var col = document.createElement('div');
+    for (var r = 0; r < 12; r++) {
+      var i2 = document.createElement('i');
+      i2.style.width = (30 + ((c * 7 + r * 13) % 70)) + '%';
+      col.appendChild(i2);
     }
-    nav.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-dir]');
-      if (!b) { return; }
-      var step = row.clientWidth * 0.8 * Number(b.dataset.dir);
-      row.scrollBy({ left: step, behavior: reduced ? 'auto' : 'smooth' });
-    });
-    window.addEventListener('resize', syncNav, { passive: true });
-    syncNav();
+    lines.appendChild(col);
   }
+
+  measure(); syncNav();
 })();
 </script>
-
 </body>
 </html>
