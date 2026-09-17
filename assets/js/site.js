@@ -172,6 +172,12 @@
     counters = [];
   }
 
+  /* The real figure is in the markup, so it is what a reader without
+     JavaScript — or with reduced motion — sees. Only when we are actually
+     going to animate do we reset to zero, and that happens before first
+     paint because this script is deferred and the stats sit below the fold. */
+  if (!reduced) counters.forEach(function (el) { paint(el, 0); });
+
   if (reduced) {
     showAll();
   } else {
