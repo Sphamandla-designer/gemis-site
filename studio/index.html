@@ -446,8 +446,8 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br>{{ rotator }}</h1>
     <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
-      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #16161a;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
-      <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
+      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
+      <a href="#enquire" sc-camel-on-click="{{ pickNotSure }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
     </div>
   </div>
   <div style="grid-column:1 / -1;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:24px">
@@ -478,7 +478,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
 
 <section data-screen-label="Marquee" style="position:relative;z-index:1;padding:140px 0 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
   {{ darkBg2 }}
-  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3">FIXED SCOPE.<br>FIXED PRICE.</div>
+  <div style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3">PUBLISHED PRICES.<br>FIXED AFTER THE TEARDOWN.</div>
   <div style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
   <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8">✦ DIAGNOSE. REFRESH. BUILD. EMBED.</div>
 </section>
@@ -487,12 +487,12 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
 <section data-screen-label="Every engagement" style="position:relative;overflow:hidden;background:#f5f6f8;color:#16161a;padding:100px 32px 60px;text-align:center">
   {{ lightBg }}
   <h2 data-reveal="1" style="position:relative;margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;color:#16161a">Every engagement</h2>
-  <p style="margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:#5a5b63">Four rules, in every price.</p>
+  <p style="margin:20px auto 0;font-size:17px;line-height:1.3;max-width:200px;color:#5a5b63">Three rules, in every price.</p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1160px;margin:80px auto 0;position:relative">
     <div data-reveal="1" style="background:#16161a;color:#f5f6f8;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.6)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">PRODUCT TEARDOWN</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
-      <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-01.jpg" alt="Product Teardown" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#c9cad1">Ranked findings, five screens, a roadmap.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">5<sup style="font-size:20px;font-weight:500;color:#ff7a12">days</sup></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">DEVELOPER HANDOFF</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">01</div></div>
+      <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-01.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#c9cad1">Component spec, tokens and a handoff session with your developers.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">1<sup style="font-size:20px;font-weight:500;color:#ff7a12">session</sup></div></div>
     </div>
     <div data-reveal="2" style="background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)">
       <div style="position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);background-size:250% 100%;animation:shimmer 5s ease-in-out infinite;pointer-events:none"></div>
@@ -503,7 +503,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     <div data-reveal="3" style="background:#ffffff;color:#16161a;border:1px solid #dcdee3;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.35)">
       <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff1f7a">AFTERCARE</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">03</div></div>
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/asset-05.jpg" alt="Embedded designer at work" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Developer handoff in the price.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#ff1f7a">days</sup></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Thirty days of aftercare after every engagement.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#ff1f7a">days</sup></div></div>
     </div>
   </div>
   <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#ff7a12">SYSTEMS WE HAVE DESIGNED</div>
@@ -543,7 +543,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12">OUR SERVICES</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h2>
       </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. No “from”. Fee credited when you climb.</p>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start">
@@ -591,7 +591,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
           </div>
           <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
             <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
-            <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span>{{ activeStep.cta }}</span><span>→</span></a>
+            <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span>{{ activeStep.cta }}</span><span>→</span></a>
           </div>
         </div>
       </div>
@@ -631,10 +631,10 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
             <div style="width:76px;height:76px;overflow:hidden;border-radius:4px"><img src="{{ activeClient.img }}" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>
             <div><div style="font-size:17px;font-weight:500">{{ activeClient.person }}</div><div style="font-size:16px;color:#8a8886;margin-top:4px">{{ activeClient.role }}</div></div>
           </div>
-          <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#ff1f7a">→ SEE THE LADDER</a>
+          <a href="#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;white-space:nowrap;color:#ff1f7a">→ SEE THE LADDER</a>
         </div>
       </div>
-      <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>BECOME A CLIENT</span><span>→</span></a>
+      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:2px solid #ff7a12;padding-bottom:10px;width:190px"><span>BOOK A TEARDOWN</span><span>→</span></a>
     </div>
   </div>
 </section>
@@ -705,7 +705,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">PRODUCT URL (OPTIONAL)<input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
         </div>
         <div style="display:grid;gap:12px">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHERE ARE YOU ON THE LADDER?</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73">WHAT DO YOU NEED?</div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
             <sc-for list="{{ serviceChips }}" as="c" hint-placeholder-count="5">
               <button type="button" sc-camel-on-click="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
@@ -734,8 +734,7 @@ a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
     <div style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
       <div style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
       <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #16161a;padding-bottom:10px;min-width:230px;color:#16161a"><span>DISCUSS YOUR PROJECT</span><span>→</span></a>
-        <a href="#contact" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
+        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span>BOOK A TEARDOWN</span><span>→</span></a>
 <a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span>GEM INFORMATION SYSTEMS</span><span>&#8599;</span></a>
       </div>
       <div style="display:grid;grid-template-columns:1fr auto;gap:64px">
@@ -792,9 +791,9 @@ class Component extends DCLogic {
     const lightBg3 = wrap([blob('a','driftB 38s ease-in-out infinite','50vw','-10%','10%','rgba(255,31,122,.12)',80)]);
     const ladderData = [
       { num: '01', name: 'Product Teardown', time: '5 DAYS', kicker: 'DIAGNOSE', price: 'R6,500', priceNote: 'FIXED · 5 WORKING DAYS', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'EVIDENCE — WASTEMART', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'BOOK A TEARDOWN' },
-      { num: '02', name: 'Interface Refresh Sprint', time: '2 WEEKS', kicker: 'REFRESH', price: 'R18,000 – R25,000', priceNote: 'FIXED SCOPE · 2 WEEKS', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'EVIDENCE — MANAGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.1 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'START A SPRINT' },
-      { num: '03', name: 'Web Experience', time: '6 – 8 WEEKS', kicker: 'BUILD', price: 'R55,000 – R85,000', priceNote: 'DESIGN + BUILD · 6–8 WEEKS', img: 'assets/img/studio/svc-web.jpg', evidence: 'EVIDENCE — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'SCOPE A WEBSITE' },
-      { num: '04', name: 'Embedded Designer', time: 'ONGOING', kicker: 'EMBED', price: 'R20,000 – R35,000', priceNote: 'PER MONTH · 3-MONTH MINIMUM', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'EVIDENCE — RENTFLOW', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'TALK ABOUT EMBEDDING' }
+      { num: '02', name: 'Interface Refresh Sprint', time: '2 WEEKS', kicker: 'REFRESH', price: 'R18,000 – R25,000', priceNote: 'FIXED SCOPE · 2 WEEKS', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'EVIDENCE — MANAGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.1 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'BOOK A TEARDOWN' },
+      { num: '03', name: 'Web Experience', time: '6 – 8 WEEKS', kicker: 'BUILD', price: 'R55,000 – R85,000', priceNote: 'DESIGN + BUILD · 6–8 WEEKS', img: 'assets/img/studio/svc-web.jpg', evidence: 'EVIDENCE — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'BOOK A TEARDOWN' },
+      { num: '04', name: 'Embedded Designer', time: 'ONGOING', kicker: 'EMBED', price: 'R20,000 – R35,000/month', priceNote: 'PER MONTH · 3-MONTH MINIMUM', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'EVIDENCE — RENTFLOW', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'BOOK A TEARDOWN' }
     ];
     ladderData.forEach(l => { l.deliverables = l.deliverables.map((t, i) => typeof t === 'string' ? { n: '0' + (i + 1), t } : t); });
     const si = this.state.step, sn = ladderData.length;
@@ -839,12 +838,14 @@ class Component extends DCLogic {
     }));
     const reasons = [
       { n: '1', num: '01', tag: 'ONE ROOF', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
-      { n: '2', num: '02', tag: 'PUBLISHED', title: 'Fixed scope. Fixed price.', body: 'Every service has a published price and a defined output. No “from”, no discovery-to-quote loop.' },
+      { n: '2', num: '02', tag: 'PUBLISHED', title: 'Published prices. Fixed after the Teardown.', body: 'Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.' },
       { n: '3', num: '03', tag: 'SENIOR', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
       { n: '4', num: '04', tag: 'EVIDENCE', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
     ];
     const f = this.state.form;
     const setField = (e) => { const k = e.target.name, v = e.target.value; this.setState(s => ({ form: Object.assign({}, s.form, { [k]: v }) })); };
+    // the demoted hero link lands on the same form with the open-ended option already chosen
+    const pickNotSure = () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: 'Not sure yet' }) })); };
     const serviceChips = ['Not sure yet', 'Product Teardown', 'Interface Refresh', 'Web Experience', 'Embedded Designer'].map(label => ({
       label, pick: () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: label }) })); this.forceUpdate(); },
       style: { fontFamily: "'JetBrains Mono',monospace", fontSize: '12px', letterSpacing: '0.04em', padding: '10px 14px', borderRadius: '999px', cursor: 'pointer', border: '1px solid ' + (f.service === label ? '#16161a' : '#dcdee3'), background: f.service === label ? '#16161a' : 'transparent', color: f.service === label ? '#f5f6f8' : '#16161a', transition: 'all .3s' }
@@ -855,7 +856,7 @@ class Component extends DCLogic {
     return {
       menuOpen: this.state.menuOpen, menuLabel: this.state.menuOpen ? 'MENU ×' : 'MENU ≡',
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
+      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
       projects: [
         { name: 'ManaGem', desc: 'Product design · Dashboard UX · Design system. Evidences: Interface Refresh Sprint.', img: ((window.__resources||{}).managem || 'assets/img/work/managem-mock.jpg') },
         { name: 'WasteMart', desc: 'Operations UX · Driver app · Customer portal. Evidences: Product Teardown.', img: ((window.__resources||{}).wastemart || 'assets/img/work/wastemart-mock.jpg') },
