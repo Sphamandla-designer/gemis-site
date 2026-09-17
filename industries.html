@@ -34,10 +34,11 @@
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Solutions
+            Products
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
 
@@ -47,7 +48,7 @@
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
-              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="services.html">All services <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -126,13 +127,14 @@
             <li><a href="#ngo"><span>01</span>NGOs &amp; non-profits</a></li>
             <li><a href="#waste"><span>02</span>Waste &amp; field operations</a></li>
             <li><a href="#finance"><span>03</span>Multi-company operations</a></li>
+            <li><a href="#property"><span>04</span>Property &amp; facilities</a></li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════ SECTORS ═══════════════════ -->
-    <section class="what" id="sectors">
+    <section class="what band band-wash" id="sectors">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
@@ -178,16 +180,21 @@
             </div>
           </li>
 
-          <!-- CONTENT-TODO: further sectors. The site currently evidences only the
-               three above. Add a sector here once there is delivered work to link to,
-               using the same .row pattern: number, name, problem, what we build, and
-               a link to the case study that proves it. -->
-          <li class="row" data-reveal>
+          <!-- CONTENT-TODO: PROVISIONAL SECTOR. Filled in on request so the list reads
+               complete. It is drawn from the Property Technology Solutions capability
+               already listed on the About page, but unlike the three above it has no
+               case study behind it yet, so there is nothing to link to. Add one, or
+               remove this row. See CONTENT-TODO.md. -->
+          <li class="row" id="property" data-reveal>
             <span class="row__n">04</span>
-            <h3 class="row__name">[PLACEHOLDER: further sector]</h3>
+            <h3 class="row__name">Property &amp; Facilities Management</h3>
             <div class="row__body">
-              <p>[PLACEHOLDER: the operational problem this sector brings us]</p>
-              <p>[PLACEHOLDER: what we build for it, and the case study that evidences it]</p>
+              <p><strong>The problem.</strong> Leases, maintenance tickets, inspections and billing live in
+              separate tools, so landlords, agents and tenants each work from a different version of
+              the same building.</p>
+              <p><strong>What we build.</strong> Resident, rental and facilities systems on one record —
+              tenancy and lease tracking, maintenance workflow, inspections captured on site, and
+              billing that reconciles without re-keying.</p>
             </div>
           </li>
         </ol>
@@ -195,7 +202,17 @@
     </section>
 
     <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
-    <section class="ctc" id="discovery">
+    <!-- A full-bleed photographic break. The page was an unbroken run of light
+         bands; this gives the scroll somewhere to land. -->
+    <section class="strip">
+      <img class="strip__img" src="assets/img/portfolio/hero-wastemart.jpg" alt="The WasteMart driver application in use in the field" loading="lazy" width="1920" height="1079" />
+      <div class="shell">
+        <p class="strip__k">Different sectors. The same problem underneath.</p>
+        <p class="strip__sub">Disconnected tools, double capture, and no live view of what is actually happening.</p>
+      </div>
+    </section>
+
+    <section class="ctc band" id="discovery">
       <div class="shell">
         <div class="ctc__grid">
 
@@ -319,8 +336,9 @@
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
             <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
 
@@ -328,7 +346,7 @@
           <h2>Support &amp; Resources</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="solutions.html#services">Ongoing Support</a></li>
+            <li><a href="services.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>

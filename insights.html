@@ -34,10 +34,11 @@
 
       <div class="nav__drawer" id="navDrawer">
         <ul class="nav__links" id="navLinks">
-        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
         <li class="nav__item nav__item--mega" data-mega>
           <button class="nav__trigger" id="productsTrigger" aria-expanded="false" aria-controls="productsMenu">
-            Solutions
+            Products
             <svg class="nav__chev" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5 5 5 9 1.5"/></svg>
           </button>
 
@@ -47,7 +48,7 @@
             <div class="mega__head">
               <p class="eyebrow">Our Products</p>
               <p class="mega__lede">Three ways we work with you — a platform to run your business on, an engineering team to build what doesn't exist yet, and a studio to design it.</p>
-              <a class="arrow-link" href="solutions.html">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="services.html">All services <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
 
             <div class="mega__grid">
@@ -91,7 +92,7 @@
         <li><a href="case-studies.html">Case Studies</a></li>
         <!-- Insights is gated by SHOW_INSIGHTS in assets/js/site.js; hidden until real
              articles exist. See CONTENT-TODO.md. -->
-        <li data-nav="insights" hidden><a href="insights.html">Insights</a></li>
+        <li data-nav="insights" hidden><a href="insights.html" aria-current="page">Insights</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -123,7 +124,7 @@
     </section>
 
     <!-- ═══════════════════ ARTICLES ═══════════════════ -->
-    <section class="sec sec--last" id="articles">
+    <section class="sec sec--last band band-wash" id="articles">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -131,10 +132,13 @@
             <h2 class="display" data-reveal style="--d:80ms">Articles</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
-            <!-- CONTENT-TODO: this page is a placeholder shell. It is hidden from the
-                 nav by SHOW_INSIGHTS in assets/js/site.js until real articles exist.
-                 Replace the three cards below, then flip the flag to true. -->
-            [PLACEHOLDER: intro line for the insights index]
+            <!-- CONTENT-TODO: PROVISIONAL ARTICLES. Filled in on request so the page
+                 reads complete. Nothing below has been written or published — the
+                 cards are outlines, not articles. The page stays hidden from the nav
+                 behind SHOW_INSIGHTS in assets/js/site.js until the pieces exist.
+                 See CONTENT-TODO.md. -->
+            What we have learned building systems people actually use — written for the
+            operations and finance leads who have to live with the result.
           </p>
         </div>
 
@@ -142,42 +146,42 @@
           <article class="story" data-reveal>
             <div class="story__top">
               <span class="story__plus" aria-hidden="true">+</span>
-              <span class="story__k">[PLACEHOLDER: topic]</span>
+              <span class="story__k">Legacy systems</span>
             </div>
             <div class="story__frame">
               <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
             </div>
-            <p>[PLACEHOLDER: article 1 standfirst — one or two sentences on what the piece argues.]</p>
-            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+            <p>When to replace a system you have outgrown, and when to leave it alone. Most legacy software is not the problem; the workarounds that grew around it are. A short test for telling the two apart.</p>
+            <ul class="chips"><li>Legacy migration</li><li>Operations</li></ul>
           </article>
           <article class="story" data-reveal style="--d:100ms">
             <div class="story__top">
               <span class="story__plus" aria-hidden="true">+</span>
-              <span class="story__k">[PLACEHOLDER: topic]</span>
+              <span class="story__k">Microsoft Cloud</span>
             </div>
             <div class="story__frame">
-              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
+              <img class="story__img" src="assets/img/work/managem-mock.jpg" alt="" loading="lazy" width="1400" height="1050" />
             </div>
-            <p>[PLACEHOLDER: article 2 standfirst — one or two sentences on what the piece argues.]</p>
-            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+            <p>What a single source of truth actually costs. Consolidating sales, stock, payroll and projects is less about the platform than about who owns each number — and that decision has to be made before anyone writes code.</p>
+            <ul class="chips"><li>Azure</li><li>Data</li></ul>
           </article>
           <article class="story" data-reveal style="--d:200ms">
             <div class="story__top">
               <span class="story__plus" aria-hidden="true">+</span>
-              <span class="story__k">[PLACEHOLDER: topic]</span>
+              <span class="story__k">Field operations</span>
             </div>
             <div class="story__frame">
-              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
+              <img class="story__img" src="assets/img/work/wastemart-mock.jpg" alt="" loading="lazy" width="1400" height="1050" />
             </div>
-            <p>[PLACEHOLDER: article 3 standfirst — one or two sentences on what the piece argues.]</p>
-            <ul class="chips"><li>[PLACEHOLDER: tag]</li></ul>
+            <p>Offline-first is a business decision, not a technical one. What changes when your team can capture work without signal, and why the sync strategy belongs in the scoping conversation.</p>
+            <ul class="chips"><li>Mobile</li><li>Field work</li></ul>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
-    <section class="ctc" id="discovery">
+    <section class="ctc band" id="discovery">
       <div class="shell">
         <div class="ctc__grid">
 
@@ -301,8 +305,9 @@
           <ul>
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="about.html#story">Our Philosophy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
             <li><a href="case-studies.html">Case Studies</a></li>
-            <li><a href="wastemart.html">WasteMart</a></li>
           </ul>
         </div>
 
@@ -310,7 +315,7 @@
           <h2>Support &amp; Resources</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="solutions.html#services">Ongoing Support</a></li>
+            <li><a href="services.html#services">Ongoing Support</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
         </div>
