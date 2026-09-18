@@ -601,7 +601,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;pointer-events:none">
     <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br><span class="dc-vh">built.</span>{{ rotator }}</h1>
-    <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof in Sandton.</p>
+    <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
       <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
       <a href="#enquire" sc-camel-on-click="{{ pickNotSure }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Discuss your project</span><span>→</span></a>
@@ -612,7 +612,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="flex:1;text-align:center;font-size:15px;font-weight:600;letter-spacing:0.01em;color:#16161a;min-width:240px;align-self:flex-end;text-transform:uppercase">Senior eyes on every screen.<br><span style="font-weight:500">Designed and built under one roof.</span></div>
   <div style="width:250px;display:flex;flex-direction:column;gap:24px">
     <div style="display:grid;grid-template-columns:96px 1fr;border:1px solid rgba(22,22,26,.25);background:rgba(255,255,255,.75);backdrop-filter:blur(8px);color:#16161a">
-      <div style="padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:0.04em;text-transform:uppercase"><div style="width:32px;height:32px;border:1.5px solid #ff7a12;border-radius:50%;margin:0 auto 10px"></div>Sandton, JHB</div>
+      <div style="padding:20px 12px;border-right:1px solid rgba(22,22,26,.25);text-align:center;font-size:11px;letter-spacing:0.04em;text-transform:uppercase"><div style="width:32px;height:32px;border:1.5px solid #ff7a12;border-radius:50%;margin:0 auto 10px"></div>South Africa</div>
       <div style="padding:20px 14px;font-size:11px;font-weight:600;letter-spacing:0.04em;line-height:1.4;text-transform:uppercase">The design practice of GEM Information Systems.</div>
     </div>
     <p style="margin:0;font-size:17px;line-height:1.35;color:#16161a;text-align:justify;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:14px 16px">Product, interface and web design for South African companies. Designed and built under one roof.</p>
@@ -932,7 +932,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 class Component extends DCLogic {
   state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, motionPaused: (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches), form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
   componentDidMount() {
-    const tick = () => this.setState({ clock: new Date().toLocaleTimeString('en-ZA',{timeZone:'Africa/Johannesburg',hour:'2-digit',minute:'2-digit'}) });
+    // SAST is UTC+2 all year, so the offset is exact and needs no zone name
+    const tick = () => {
+      const t = new Date(Date.now() + 2 * 60 * 60 * 1000);
+      const pad = (n) => String(n).padStart(2, '0');
+      this.setState({ clock: pad(t.getUTCHours()) + ':' + pad(t.getUTCMinutes()) });
+    };
     tick(); this.t = setInterval(tick, 30000);
     this.onScroll = () => { const el = document.elementsFromPoint(innerWidth / 2, 46).find(x => getComputedStyle(x).position !== 'fixed' && !x.closest('[data-nav]')); let dark = false, n = el; while (n && n !== document.body) { const bg = getComputedStyle(n).backgroundColor; const m = bg && bg.match(/\d+/g); if (m && m.length >= 3 && (m.length < 4 || +m[3] > .5)) { dark = (+m[0] * .299 + +m[1] * .587 + +m[2] * .114) < 128; break; } n = n.parentElement; } if (dark !== this.state.navDark) this.setState({ navDark: dark }); };
     addEventListener('scroll', this.onScroll, { passive: true }); this.onScroll();
