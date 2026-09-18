@@ -4,8 +4,10 @@
 
 | File | What it is |
 |---|---|
-| `src/index.html` | The authored page. This is the Design Canvas export, with the `<x-dc>` template and the component script. **Edit this.** |
-| `index.html` | Generated. The fully rendered page, served to visitors. Contains no `{{ }}`. |
+| `src/index.html` | The authored homepage. This is the Design Canvas export, with the `<x-dc>` template and the component script. **Edit this.** |
+| `src/work.html` | The authored listing page — its own content plus slots the build fills from the homepage. **Edit this.** |
+| `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |
+| `work.html` | Generated. The listing page. No runtime, no `{{ }}`. |
 | `assets/dc-template.js` | Generated. The `<x-dc>` template, as a JavaScript string. |
 | `assets/dc-boot.js` | Hand-written. Hands the template back to the runtime at load time. |
 | `assets/dc-runtime.js`, `react.js`, `react-dom.js` | The Design Canvas runtime, unmodified. |
@@ -16,8 +18,8 @@
 node tools/build-studio.mjs
 ```
 
-Run it after **any** edit to `src/index.html`, and after any new export from
-Design Canvas. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
+Run it after **any** edit to `src/index.html` or `src/work.html`, and after any
+new export from Design Canvas. It writes both pages, or neither. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
 Playwright is not at the default path in the script.
 
 The script fails rather than writing a broken page if a binding does not
@@ -45,6 +47,36 @@ scroll-reveal elements and shows all four ladder steps and all five comparison
 panels at once, since without JavaScript there is nothing to switch between
 them. That stylesheet only ever applies inside `#dc-prerender`, which is gone
 before anything is painted when scripts do run.
+
+## studio/work.html
+
+The listing page behind "View all projects". It carries **no runtime at all** —
+no React, no dc-runtime — which is why it scores 100 on Lighthouse performance
+where the homepage scores 64.
+
+`src/work.html` holds only what is unique to it: the head, the page heading, the
+three projects the homepage does not carry, and twenty lines of script for the
+menu. Everything else is slotted in at build time out of the homepage that was
+just rendered, so the two cannot drift:
+
+| slot | filled with |
+|---|---|
+| `<!--#studio-css-->` | the homepage's `<style>` blocks — fonts, keyframes, the mobile layer |
+| `<!--#header-->` | the rendered `<header>`, including the fixed action pill |
+| `<!--#drawer-->` | the rendered `#studioMenu`, captured open and then shut |
+| `<!--#contact-->` | the rendered closing band |
+| `<!--#cards-->` | one work card per project, in the homepage's own card markup |
+
+The three projects on the homepage carousel are read out of that carousel, not
+copied — change a name or a description in `src/index.html` and the listing
+follows on the next build. The other three live in the `extra-projects` JSON at
+the foot of `src/work.html`, each with a `source` field saying where its content
+came from.
+
+Every in-page link in the lifted chrome is rewritten from `#enquire` to
+`index.html#enquire`, since on this page those sections are elsewhere. The build
+fails if a slot is left unfilled, if a lifted part is missing, if the header
+stops having exactly one button, or if the drawer stops being shuttable.
 
 ## The mobile layout
 

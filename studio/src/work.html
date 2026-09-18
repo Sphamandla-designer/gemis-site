@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — GEMIS® Studio</title>
+<meta name="description" content="Every project GEMIS® Studio has shipped, and the service each one evidences — products, operations systems and interfaces built for South African companies.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/work.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:title" content="Work — GEMIS® Studio">
+<meta property="og:description" content="Every project GEMIS® Studio has shipped, and the service each one evidences — products, operations systems and interfaces built for South African companies.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/finosWide.jpg">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<!--#studio-css-->
+</head>
+<body>
+
+<a class="dc-skip" href="#work">Skip to content</a>
+
+<!--#header-->   <!-- the <header> already carries the fixed action pill -->
+<!--#drawer-->
+
+<main id="main" data-motion="running">
+<div style="position:relative;overflow:hidden">
+
+<section id="work" data-screen-label="All work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 120px">
+  <div data-m="head" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto">
+    <div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">All work</div>
+      <h1 style="margin:20px 0 0;font-size:clamp(44px,4.5vw,80px);line-height:1;letter-spacing:-0.045em;font-weight:600;color:#16161a">Every project<br>&amp; <span style="color:#ff1f7a">its evidence</span></h1>
+    </div>
+    <p style="margin:0;font-size:clamp(20px,1.6vw,26px);line-height:1.25;letter-spacing:-0.02em;font-weight:500;max-width:380px;color:#16161a;justify-self:end;border-left:1px solid #dcdee3;padding-left:32px">Every case study evidences a named service — never the studio in general.</p>
+  </div>
+  <!--#cards-->
+</section>
+
+</div>
+
+<!-- the closing band is the last section inside main on the homepage too -->
+<!--#contact-->
+</main>
+
+<!-- The homepage's menu button is wired by React. This page carries no runtime,
+     so the same drawer gets the same behaviour from twenty lines of nothing. -->
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('studioMenuBtn');
+  var drawer = document.getElementById('studioMenu');
+  if (!btn || !drawer) return;
+
+  // the runtime wraps the ≡ in markup of its own, so find it by what it says
+  var glyph = [].slice.call(btn.querySelectorAll('span'))
+    .filter(function (s) { return !s.children.length && /^[\u2261\u00d7]$/.test(s.textContent.trim()); })[0];
+  var isOpen = false;
+  function set(open) {
+    isOpen = open;
+    // the drawer carries an inline display:flex, which outranks [hidden]
+    drawer.style.display = open ? 'flex' : 'none';
+    drawer.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (glyph) glyph.textContent = open ? '×' : '≡';
+  }
+  set(false);
+  btn.addEventListener('click', function () { set(!isOpen); });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) set(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); }
+  });
+})();
+</script>
+
+<!-- The projects this page shows beyond the three on the homepage carousel.
+     The homepage three are lifted straight out of its rendered carousel by
+     tools/build-studio.mjs, so they cannot drift from it. Everything below is
+     real content already in this repository — see CONTENT-TODO.md for where
+     each field came from and what still needs confirming. -->
+<script type="application/json" id="extra-projects">
+[
+  {
+    "slug": "rentflow",
+    "name": "RentFlow",
+    "desc": "Property and rent management — bills, insights and payments with an AI assistant on call.",
+    "img": "assets/shotRentflow.jpg",
+    "evidences": "Embedded Designer",
+    "source": "named in the services ladder as the evidence for Embedded Designer; description from case-studies.html"
+  },
+  {
+    "slug": "nuracoach",
+    "name": "NuraCoach",
+    "desc": "AI coaching companion — guidance that reads like a conversation, not a report.",
+    "img": "assets/shotNura.jpg",
+    "evidences": null,
+    "source": "named in the studio's own shots data; description from case-studies.html"
+  },
+  {
+    "slug": "lungelo",
+    "name": "Lungelo",
+    "desc": "Multilingual field-work app — forms and sign-in in eight South African languages.",
+    "img": "../assets/img/shots/lungelo.jpg",
+    "evidences": null,
+    "source": "named in the studio's own shots data; image lives on the corporate side, description from case-studies.html"
+  }
+]
+</script>
+
+</body></html>
