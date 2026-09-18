@@ -142,7 +142,44 @@ The studio's other accents — `#ff7a12` on `#f5f6f8` at 2.41:1, `#9a9ba3` on
 white at 2.76:1 — are small print rather than controls, and have no
 hue-preserving fix either. See `qa/REPORT.md`.
 
-### 10. Done — no longer outstanding
+### 10. The studio work page (`studio/work.html`) ⚠️
+
+The page lists **six projects**, every one of them already in this repository —
+nothing was invented and the grid was not padded.
+
+| project | name from | description from | image | evidences |
+|---|---|---|---|---|
+| ManaGem | studio carousel | studio carousel | `studio/assets/managem.jpg` | Interface Refresh Sprint |
+| WasteMart | studio carousel | studio carousel | `studio/assets/wastemart.jpg` | Product Teardown |
+| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Embedded Designer ⚠️ |
+| RentFlow | services ladder | `case-studies.html` | `studio/assets/shotRentflow.jpg` | Embedded Designer |
+| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | **placeholder** |
+| Lungelo | studio `shots` data | `case-studies.html` | `assets/img/shots/lungelo.jpg` ⚠️ | **placeholder** |
+
+Four things to settle:
+
+1. **FINOS is claimed by two services.** The homepage carousel says it evidences
+   *Embedded Designer*; the services ladder says *Web Experience — Evidence — FINOS*,
+   and gives *Embedded Designer* to RentFlow. Both are in the design as uploaded.
+   The page follows the carousel, because that is where a project's own description
+   lives. Decide which is right and fix it in `studio/src/index.html`.
+2. **NuraCoach and Lungelo evidence nothing yet.** Both render
+   `[PLACEHOLDER: service evidenced]`. The homepage line — "Every case study
+   evidences a named service — never the studio in general" — is the page's own
+   standard, so these two do not meet it until someone names their service.
+3. **Lungelo's image lives on the corporate side**, at
+   `assets/img/shots/lungelo.jpg`; every other project has a copy under
+   `studio/assets/`. It loads fine, but if the studio ever moves it will break.
+4. **No project detail pages exist.** "Explore project" on both the homepage
+   carousel and this page links to the project's own card here
+   (`work.html#managem` and so on). When detail pages exist, point them there —
+   the slug is already the card id.
+
+The three **NuraCoach / Lungelo / RentFlow** descriptions come from
+`case-studies.html`, which is corporate copy about the same products. Confirm the
+studio is happy to describe them that way.
+
+### 11. Done — no longer outstanding
 
 Two earlier entries have been closed:
 

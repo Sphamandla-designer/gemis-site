@@ -421,3 +421,114 @@ And one contrast failure, the last one on either site: white on `#ff1f7a` in the
 "Book a teardown" pill is 3.67:1 where 13px text needs 4.5:1. `#ea005f` clears
 it, but that is a visibly deeper brand pink. See `CONTENT-TODO.md` entry 9 for
 the alternatives.
+
+
+---
+
+# Addendum — Tasks 7 and 8
+
+## Task 7 — the city is out of `/studio/`
+
+A case-insensitive grep for `sandton`, `jhb` or `johannesburg` across `/studio/`
+returns **nothing**. It returned four hits in the source and seven in the built
+files.
+
+| where | was | now |
+|---|---|---|
+| hero sentence | "…under the same roof in Sandton." | "…under the same roof." |
+| location marker | SANDTON, JHB | SOUTH AFRICA — same element, same box |
+| the live clock | `timeZone: 'Africa/Johannesburg'` | UTC+2 added directly |
+
+The marker measures **96×114 before and after**, and its card **250×116 before
+and after**, at 1440 and at 390. Nothing was padded to compensate. Desktop page
+height is 9809px either way; at 390 the page is 24px shorter because the hero
+sentence now wraps one line less, which is what removing three words does.
+
+The clock still reads "SAST → HH:MM" and still agrees with the value it
+replaced — SAST is UTC+2 all year with no daylight saving, so the offset is
+exact.
+
+The studio's meta description, `og:description`, title and `og:url` carry no
+locality and no postal address, and the studio has **no JSON-LD at all**, so
+there was nothing to remove there.
+
+**Flagged, not edited:** the Products mega-menu on all eleven corporate pages
+says "from GEMIS Studio in Sandton". That is inside the mega-menu freeze. It is
+the one place a visitor is still told the studio has a city. `contact.html` and
+`privacy.html` carry the Sandton office address, which is the corporate site's
+own and was to be left alone.
+
+## Task 8 — the project inventory
+
+Asked for before building. Six real projects, every field already in this
+repository:
+
+| project | named in | description from | image | evidences |
+|---|---|---|---|---|
+| ManaGem | studio carousel | studio carousel | `studio/assets/managem.jpg` | Interface Refresh Sprint |
+| WasteMart | studio carousel | studio carousel | `studio/assets/wastemart.jpg` | Product Teardown |
+| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Embedded Designer ⚠️ |
+| RentFlow | the services ladder | `case-studies.html` | `studio/assets/shotRentflow.jpg` | Embedded Designer |
+| NuraCoach | the studio's `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | none |
+| Lungelo | the studio's `shots` data | `case-studies.html` | `assets/img/shots/lungelo.jpg` | none |
+
+Three findings from the inventory itself:
+
+- **The studio's `shots` array is dead data.** Five images are declared in
+  `window.__resources` and listed in the component's props, but nothing in the
+  template ever renders them. That array is the only place NuraCoach and Lungelo
+  are named on the studio side.
+- **FINOS is claimed by two services.** The carousel says it evidences *Embedded
+  Designer*; the ladder gives *Web Experience → Evidence — FINOS* and hands
+  *Embedded Designer* to RentFlow. Both are in the design as uploaded. The page
+  follows the carousel, since that is where a project's own description lives.
+- **Lungelo's image is the only one on the corporate side**, at
+  `assets/img/shots/lungelo.jpg`. Every other project has a copy under
+  `studio/assets/`.
+
+## Task 8 — the page
+
+`studio/work.html`, built from the homepage's own components and **carrying no
+runtime at all**.
+
+| | homepage | work.html |
+|---|---|---|
+| Lighthouse performance | 64 | **100** |
+| accessibility | 97 | 95 † |
+| best practices / SEO | 100 / 100 | **100 / 100** |
+| weight | 2.27 MB, 24 requests | 0.62 MB, 9 requests |
+
+† Both scores are held down by the same axe false positive, below.
+
+What is in the served HTML, with no template syntax and no scripts required:
+all six project names, all six descriptions, all six images, and the service
+each one evidences. Verified with JavaScript disabled — six cards, six images
+loaded, the drawer shut.
+
+The page is assembled at build time from the page that was just rendered: its
+stylesheet, its `<header>` (with the fixed action pill), its slide-out drawer,
+and its closing band are lifted out of the rendered homepage rather than copied
+by hand, so they cannot drift. The three homepage projects are read out of the
+homepage's own carousel for the same reason. Every in-page link in the lifted
+chrome is rewritten from `#enquire` to `index.html#enquire`.
+
+Links, after: **247 checked across 16 pages, 0 broken.** No link on the studio
+targets `#work` as a substitute for a listing page — "View all projects" goes to
+`work.html`, each card's "Explore project" goes to that project's card
+(`work.html#managem`), the header nav "Work" still points at the homepage
+section, and on work.html it points at `index.html#work`.
+
+### One axe false positive, measured
+
+axe reports six contrast failures in the studio header on `work.html` — white on
+`#eef0f3`, 1.14:1. The header carries `mix-blend-mode: difference`, which axe
+does not model. Sampling the actual rendered pixels of the wordmark: the ink
+comes out at `rgb(17, 15, 12)` on `rgb(238, 240, 243)`, a **real contrast of
+16.76:1**. The homepage escapes the same report only because its hero has a
+photograph behind the header, which makes axe return "incomplete" instead.
+
+### Two things the build now refuses to do
+
+- write `work.html` if a slot is unfilled, a lifted part is missing, the studio
+  header stops having exactly one button, or the drawer stops being shuttable
+- write anything at all unless the homepage renders cleanly first

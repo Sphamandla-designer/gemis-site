@@ -29,6 +29,8 @@ const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const SRC = join(ROOT, 'studio/src/index.html');
 const OUT = join(ROOT, 'studio/index.html');
 const TPL_OUT = join(ROOT, 'studio/assets/dc-template.js');
+const WORK_SRC = join(ROOT, 'studio/src/work.html');
+const WORK_OUT = join(ROOT, 'studio/work.html');
 const TMP_REL = 'studio/.prerender.html';
 const TMP = join(ROOT, TMP_REL);
 
@@ -93,6 +95,49 @@ html,body{height:100%;margin:0}
 #dc-prerender [data-rotator] span:first-child{visibility:visible!important;animation:none!important}
 </style>`;
 
+
+/* ── studio/work.html ──────────────────────────────────────────────────────
+   A listing page with no runtime: the chrome is lifted from the rendered
+   homepage so the two cannot drift, and the cards are the homepage's own work
+   card markup with real data written straight into it. Nothing on this page
+   is a template, so there is nothing to resolve at load time and it reads
+   identically with JavaScript disabled. */
+
+const esc = (s) => String(s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/** In-page links in the lifted chrome belong to the homepage, not to this one. */
+const rehomeAnchors = (html) => html.replace(/href="#([a-z][a-z0-9-]*)"/g, (m, id) =>
+  (id === 'main' ? m : `href="index.html#${id}"`));
+
+/** The drawer is captured mid-open. Close it, in a way that survives no-JS. */
+const shutDrawer = (html) => {
+  let out = html.replace(/^<div /, '<div hidden ');
+  const style = /style="([^"]*)"/.exec(out);
+  if (!style) throw new Error('the lifted drawer has no style attribute');
+  if (!/display:\s*flex/.test(style[1])) throw new Error('the lifted drawer no longer sets display:flex — check it still starts shut');
+  out = out.replace(style[0], 'style="' + style[1].replace(/display:\s*flex/, 'display: none') + '"');
+  if (!out.startsWith('<div hidden ')) throw new Error('could not mark the lifted drawer hidden');
+  return out;
+};
+
+/** One card, in the homepage's own markup. `href` is where EXPLORE PROJECT goes. */
+const workCard = (p) => `      <div id="${esc(p.slug)}" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
+        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
+        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">${esc(p.name)}</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences ?? '[PLACEHOLDER: service evidenced]')}</div>
+        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
+          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">${esc(p.desc)}</p>
+          <a href="${esc(p.href)}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">${esc(p.cta)}</span><span>→</span></a>
+        </div>
+      </div>`;
+
+/** "…Evidences: Web Experience." at the end of a homepage card's description. */
+const splitEvidence = (desc) => {
+  const m = /^(.*?)\s*Evidences:\s*([^.]+)\.?\s*$/.exec(desc);
+  return m ? { desc: m[1].trim(), evidences: m[2].trim() } : { desc, evidences: null };
+};
+
 const main = async () => {
   const src = await readFile(SRC, 'utf8');
   const { before, template, after } = sliceTemplate(src);
@@ -107,6 +152,7 @@ const main = async () => {
   const { chromium } = await import(PLAYWRIGHT).then((m) => m.default ?? m);
   const browser = await chromium.launch();
   let rendered;
+  let chrome;
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     const failures = [];
@@ -119,6 +165,37 @@ const main = async () => {
     await page.waitForTimeout(1500);
     if (failures.length) throw new Error('the page threw while rendering:\n  ' + failures.join('\n  '));
     rendered = await page.evaluate(() => document.getElementById('dc-root').innerHTML);
+
+    /* studio/work.html carries no runtime of its own. Rather than hand-copying
+       the header, the action pill, the drawer and the closing band — which
+       would drift the first time the homepage changed — take them straight out
+       of the page that was just rendered, and take the three homepage projects
+       out of its own carousel. */
+    chrome = await page.evaluate(() => {
+      const outer = (sel) => { const el = document.querySelector(sel); return el ? el.outerHTML : null; };
+      const cards = [...document.querySelectorAll('#work [data-m="cards"] > div')].map((card) => {
+        const img = card.querySelector('img');
+        return {
+          name: card.children[1]?.textContent.trim() ?? '',
+          desc: card.querySelector('p')?.textContent.trim() ?? '',
+          img: img ? img.getAttribute('src') : '',
+        };
+      });
+      return {
+        css: [...document.head.querySelectorAll('style')].map((s) => s.textContent).join('\n'),
+        header: outer('header'),
+        pill: outer('[data-cta]'),
+        contact: outer('#contact'),
+        cards,
+      };
+    });
+    // the drawer only exists while the menu is open
+    await page.click('#studioMenu ~ *, header button');
+    await page.waitForTimeout(400);
+    chrome.drawer = await page.evaluate(() => {
+      const el = document.getElementById('studioMenu');
+      return el ? el.outerHTML : null;
+    });
   } finally {
     await browser.close();
     server.close();
@@ -169,13 +246,65 @@ const main = async () => {
   const left = out.split('{{').length - 1;
   if (left) throw new Error(`the built page still contains ${left} occurrence(s) of {{`);
 
+  // ── studio/work.html ───────────────────────────────────────────────────
+  for (const part of ['header', 'pill', 'contact', 'drawer']) {
+    if (!chrome[part]) throw new Error(`could not lift the ${part} out of the rendered homepage — work.html would be missing its chrome`);
+  }
+  if (!chrome.cards.length) throw new Error('the homepage carousel rendered no cards, so work.html has nothing to list');
+
+  let work = await readFile(WORK_SRC, 'utf8');
+  const extra = JSON.parse(
+    (/<script type="application\/json" id="extra-projects">([\s\S]*?)<\/script>/.exec(work) || [, '[]'])[1]);
+
+  const projects = [
+    ...chrome.cards.map((c) => {
+      const { desc, evidences } = splitEvidence(c.desc);
+      return { slug: c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), name: c.name, desc, evidences, img: c.img };
+    }),
+    ...extra,
+  ].map((p) => ({
+    ...p,
+    // no project detail pages exist yet, so EXPLORE PROJECT goes to the card
+    href: `work.html#${p.slug}`,
+    cta: 'Explore project',
+  }));
+
+  const cards = '  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">\n'
+    + projects.map(workCard).join('\n') + '\n  </div>';
+
+  // the menu button is the only <button> in the lifted header; assert that,
+  // rather than trusting that it stays the first one in the document
+  if ((chrome.header.match(/<button /g) || []).length !== 1) {
+    throw new Error('the studio header no longer has exactly one button — work.html cannot tell which to wire');
+  }
+  chrome.header = chrome.header.replace('<button ', '<button id="studioMenuBtn" ');
+
+  work = work
+    .replace('<!--#studio-css-->', '<style>' + chrome.css + '</style>')
+    .replace('<!--#header-->', rehomeAnchors(chrome.header))
+    // the drawer is captured open; this page starts with it shut. Its inline
+    // display:flex outranks [hidden], so that has to go too or the drawer sits
+    // over the page for anyone without JavaScript.
+    .replace('<!--#drawer-->', shutDrawer(rehomeAnchors(chrome.drawer)))
+    .replace('<!--#contact-->', rehomeAnchors(chrome.contact))
+    .replace('<!--#cards-->', cards);
+
+  if (!work.includes('id="studioMenuBtn"')) {
+    throw new Error('work.html could not tag the menu button — the studio header markup changed');
+  }
+
+  if (work.includes('{{')) throw new Error('work.html still contains {{ — the chrome was lifted before the runtime resolved it');
+  if (work.includes('<!--#')) throw new Error('work.html still has an unfilled slot: ' + /<!--#[a-z-]+-->/.exec(work)[0]);
+
   await writeFile(TPL_OUT,
     '/* Generated by tools/build-studio.mjs — do not edit.\n'
     + '   Source of truth: studio/src/index.html */\n'
     + 'window.__dcTemplate = ' + JSON.stringify(template) + ';\n', 'utf8');
   await writeFile(OUT, out, 'utf8');
+  await writeFile(WORK_OUT, work, 'utf8');
   console.log(`studio/index.html written — ${(out.length / 1024).toFixed(0)} KB, 0 unresolved bindings`);
   console.log(`studio/assets/dc-template.js written — ${(template.length / 1024).toFixed(0)} KB of template`);
+  console.log(`studio/work.html written — ${(work.length / 1024).toFixed(0)} KB, ${projects.length} projects: ${projects.map((p) => p.name).join(', ')}`);
 };
 
 main().catch((e) => { console.error('build-studio failed:', e.message); process.exit(1); });
