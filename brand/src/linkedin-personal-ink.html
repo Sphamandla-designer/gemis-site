@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<title>GEMIS Studio — LinkedIn profile background, ink 1584x396</title>
+<style>
+/* Ink alternative to the light banner. Uses the site's dark-section
+   treatment: ink ground, drifting pink/orange blobs, faint inverted facets. */
+#c{width:1584px;height:396px}
+#c .facets{background-position:76% 46%;background-size:112% auto;left:42%;
+  /* darkened rather than inverted: invert() flips the brand pink and
+     orange to teal and blue. This keeps the hues, sinks the whites. */
+  opacity:.9;filter:brightness(.30) contrast(1.2) saturate(1.6);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%);
+  mask-image:linear-gradient(90deg,transparent 0%,#000 26%)}
+.blob{position:absolute;border-radius:50%}
+.blob--a{left:-8%;top:-60%;width:640px;height:640px;filter:blur(60px);
+  background:radial-gradient(circle,rgba(255,31,122,.30) 0%,transparent 66%)}
+.blob--b{left:52%;top:10%;width:560px;height:560px;filter:blur(60px);
+  background:radial-gradient(circle,rgba(255,122,18,.24) 0%,transparent 66%)}
+#c .veil{background:linear-gradient(90deg,
+  rgba(22,22,26,1) 0%, rgba(22,22,26,.98) 36%, rgba(22,22,26,.72) 54%,
+  rgba(22,22,26,.3) 74%, rgba(22,22,26,0) 100%)}
+
+.block{position:absolute;left:432px;top:78px;width:760px}
+.lockup{gap:14px}
+.mark{gap:4px;width:26px}
+.mark i{height:5px}
+.mark i:nth-child(1){width:26px}
+.mark i:nth-child(2){width:18px}
+.mark i:nth-child(3){width:9px}
+.lockup__word b{font-size:17px}
+.lockup__word i{font-size:10.5px;margin-top:4px}
+
+.display{font-size:66px;margin-top:38px}
+.support{font-size:19px;margin-top:22px;max-width:620px}
+.meta{font-size:13px;margin-top:34px;gap:14px}
+
+.guide--avatar{left:64px;top:210px;width:268px;height:268px}
+.guide--crop{left:352px;width:880px}
+</style></head>
+<body><div class="canvas canvas--ink" id="c">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+  <div class="facets"></div>
+  <div class="veil"></div>
+
+  <div class="block">
+    <div class="lockup">
+      <span class="mark"><i></i><i></i><i></i></span>
+      <span class="lockup__word"><b>GEMIS</b><i>STUDIO</i></span>
+    </div>
+    <h1 class="display">Designed to be <em>built.</em></h1>
+    <p class="support">Product, interface and web design — the design practice of GEM Information Systems.</p>
+    <p class="meta"><span>SANDTON, JHB</span><s>/</s><span>PRODUCT TEARDOWN — R6,500 EXCL. VAT</span></p>
+  </div>
+
+  <span class="guide guide--avatar"></span>
+  <span class="guide guide--crop"></span>
+</div></body></html>

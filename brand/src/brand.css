@@ -1,0 +1,58 @@
+/* GEMIS Studio — shared tokens for marketing renders.
+   Values are lifted straight from the studio site so every asset matches. */
+
+@font-face{font-family:'Manrope Var';src:url('manrope-latin-wght-normal.woff2') format('woff2-variations');font-weight:200 800}
+@font-face{font-family:'JetBrains Mono Var';src:url('jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');font-weight:100 800}
+
+:root{
+  --field:#eef0f3;
+  --panel:#f5f6f8;
+  --ink:#16161a;
+  --body:#3a3b41;
+  --mute:#6a6b73;
+  --pink:#ff1f7a;
+  --orange:#ff7a12;
+  --on-ink:#f5f6f8;
+  --on-ink-soft:#c9cad1;
+  --on-ink-mute:#9a9ba3;
+  --sans:'Manrope Var',Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono Var',ui-monospace,Menlo,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#8a8a90;font-family:var(--sans);-webkit-font-smoothing:antialiased}
+
+.canvas{position:relative;overflow:hidden;background:var(--field)}
+.canvas--ink{background:var(--ink);color:var(--on-ink)}
+
+/* facet render bleeding in from the right, veiled so copy stays legible */
+.facets{position:absolute;inset:0;background:url('facets.jpg') no-repeat;background-size:cover}
+.veil{position:absolute;inset:0}
+
+/* ladder mark */
+.mark{display:grid}
+.mark i{display:block;background:var(--ink)}
+.canvas--ink .mark i{background:var(--on-ink)}
+
+.lockup{display:flex;align-items:center}
+.lockup__word{display:flex;flex-direction:column;line-height:1}
+.lockup__word b{font-weight:700;letter-spacing:.08em}
+.lockup__word i{font-family:var(--mono);font-style:normal;font-weight:400;letter-spacing:.16em;opacity:.85}
+
+.display{font-weight:600;letter-spacing:-.045em;line-height:.95;color:var(--ink)}
+.canvas--ink .display{color:var(--on-ink)}
+.display em{font-style:normal;color:var(--pink)}
+
+.support{color:var(--body);line-height:1.35}
+.canvas--ink .support{color:var(--on-ink-soft)}
+
+.meta{font-family:var(--mono);letter-spacing:.1em;color:var(--mute);display:flex;align-items:center}
+.canvas--ink .meta{color:var(--on-ink-mute)}
+.meta s{text-decoration:none;color:var(--pink)}
+
+/* safe-area guides — only drawn on the *-guides renders */
+.guide{position:absolute;pointer-events:none;display:none}
+.guides .guide{display:block}
+.guide--avatar{border:2px dashed rgba(255,31,122,.85);border-radius:50%}
+.guide--crop{border-left:2px dashed rgba(255,122,18,.85);border-right:2px dashed rgba(255,122,18,.85);top:0;bottom:0}
+.guide__tag{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:#ff1f7a;background:#fff;padding:2px 6px}
