@@ -3,11 +3,25 @@
 Built from the **ManaGem Landing Page — UI/UX Design Brief v1** (1 Oct 2026).
 A first visual draft for Graeme to react to, not a final page.
 
+**Visual direction:** the Flowzy reference design (`Screenshot 2026-10-01 185927.png`
+at the repo root): centred hero over a lavender sky gradient, the product in a
+browser frame, a highlighted "about" statement with a grey logo row, a
+three-step strip, bento feature cards, a stage list beside a product shot,
+three-card pricing with a segmented Monthly / Yearly toggle, a testimonial grid,
+a two-column numbered FAQ and a soft lavender CTA band. Violet is the one accent.
+
+**Product screenshots are real.** They are exported from the ManaGem prototype
+(`ManaGem.html` at the repo root, signed in, 1440×900 at 2×) into
+`assets/img/managem/`: the dashboard (hero), open enquiries, the enquiry with its
+quote lines, Sage-synced invoices, products & pricing, current jobs, the factory
+pipeline and stock control. The `-content` variants have the sidebar cropped off
+for the feature cards. Re-export them when the prototype changes.
+
 | File | What it is |
 |---|---|
 | `index.html` | The whole long-scroll page, all 13 blocks in the brief's order, plus the signup, demo and setup modals. |
-| `managem.css` | Standalone stylesheet (does not load `site.css`). Tokens follow the GEMIS direction: Archivo, paper, navy. |
-| `managem-standalone.html` | Generated single-file build: the page with the stylesheet, script, fonts and favicon inlined, and site links made absolute. Open or share it on its own. Rebuild it after editing the three source files. |
+| `managem.css` | Standalone stylesheet (does not load `site.css`). Inter, white sheet on a pale grey ground, lavender sky gradients, violet accent. |
+| `managem-standalone.html` | Generated single-file build: the page with the stylesheet, script, font, favicon and screenshots inlined, and site links made absolute. Open or share it on its own. Rebuild with `node tools/build-managem-standalone.mjs` after editing the sources. |
 | `managem.js` | Header state, mobile menu, flow stages and scroll pulse, industry tabs, pricing toggle, modals, forms, CTA tracking. No dependencies. |
 
 The page is static. Open it through any file server from the repo root
@@ -24,9 +38,10 @@ them on the page. Remove the pill, the `data-assume` attributes and the
 
 ## What v2 replaces
 
-- **Product visuals.** The hero, flow panels, before/after and setup strip
-  are mock UIs drawn in HTML so they stay crisp and are easy to edit. Real
-  screenshots drop into the same frames (`.browser`, `.phone`, `.screen`).
+- **Product visuals.** Real prototype screenshots are already in place. The
+  customer-side "Accept quote" phone, the acceptance confirmation and the
+  setup strip are mock UIs drawn in HTML, since the prototype has no customer
+  view or onboarding screens yet.
 - **Industry photos.** The four `.photo` panels are labelled placeholders,
   not stock photos. Real South African workshop photography goes here.
 - **Testimonials, stats, team line.** Clearly labelled placeholders.

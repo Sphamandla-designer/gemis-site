@@ -67,7 +67,6 @@
     const tabs = $$('.stage__btn', flow);
     const panels = $$('.shot', flow);
     const stages = $$('.stage', flow);
-    const line = $('.flow__line', flow);
     let hoverTimer = null;
 
     function select(n, focus) {
@@ -98,23 +97,6 @@
       });
     });
 
-    /* pulse travels along the line as the section scrolls through the viewport;
-       each stage lights up as the pulse passes it */
-    function pulse() {
-      const r = flow.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height * 0.9 + vh * 0.35)));
-      line.style.setProperty('--p', p.toFixed(3));
-      stages.forEach((s, i) => s.classList.toggle('is-lit', p >= (i + 0.5) / stages.length - 0.08));
-    }
-    if (reduced) {
-      line.style.setProperty('--p', '1');
-      stages.forEach((s) => s.classList.add('is-lit'));
-    } else {
-      pulse();
-      window.addEventListener('scroll', pulse, { passive: true });
-      window.addEventListener('resize', pulse);
-    }
   }
 
   /* ── who it's for: tabs ──────────────────────────────────────────────── */
@@ -139,21 +121,18 @@
   });
   $$('[data-who-link]').forEach((a) => a.addEventListener('click', () => selectWho(Number(a.dataset.whoLink) - 1)));
 
-  /* ── pricing toggle ──────────────────────────────────────────────────── */
-  const sw = $('#billing');
-  if (sw) {
+  /* ── pricing toggle (Monthly | Yearly segments) ───────────────────── */
+  const segs = $$('.toggle__seg');
+  if (segs.length) {
     const amts = $$('.plan__price .amt');
     const pers = $$('.plan__price .per');
-    sw.addEventListener('click', () => {
-      const annual = sw.getAttribute('aria-checked') !== 'true';
-      sw.setAttribute('aria-checked', String(annual));
-      sw.setAttribute('aria-label', annual ? 'Switch to monthly pricing' : 'Switch to annual pricing');
-      $('#tg-monthly').classList.toggle('is-on', !annual);
-      $('#tg-annual').classList.toggle('is-on', annual);
+    segs.forEach((seg) => seg.addEventListener('click', () => {
+      const annual = seg.dataset.billing === 'annual';
+      segs.forEach((s2) => { const on = s2 === seg; s2.classList.toggle('is-on', on); s2.setAttribute('aria-pressed', String(on)); });
       amts.forEach((a) => { a.textContent = annual ? a.dataset.annual : a.dataset.monthly; });
       pers.forEach((p) => { p.textContent = annual ? '/month, billed yearly' : '/month'; });
       track('pricing-toggle', { billing: annual ? 'annual' : 'monthly' });
-    });
+    }));
   }
 
   /* ── modals (signup, demo, setup) ────────────────────────────────────── */

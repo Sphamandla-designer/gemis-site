@@ -10,18 +10,22 @@
   <meta property="og:site_name" content="ManaGem by GEMIS" />
   <meta property="og:title" content="ManaGem — from enquiry to invoice to job card, without retyping a thing" />
   <meta property="og:description" content="Quotes your customers accept online, jobs that track themselves, and profit you can see on every job. Works with your Xero or Sage. Built in South Africa." />
-  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/work/managem-mock.jpg" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/managem/dashboard.jpg" />
   <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/managem/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#1f2557" />
+  <meta name="theme-color" content="#6d4ef5" />
   <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg" />
-  <link rel="preload" href="../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="managem.css?v=1" />
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important} .flow__detail{display:block!important}</style></noscript>
+  <link rel="stylesheet" href="managem.css?v=2" />
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important} .shot{display:grid!important}</style></noscript>
 
   <!--
     ManaGem landing page — v1 draft (UI/UX Design Brief v1, 1 Oct 2026).
+    Visual direction: the Flowzy reference design (centered hero over a
+    lavender gradient, product shot in a browser frame, step strip, bento
+    feature cards, pricing, testimonial grid, two-column FAQ, soft CTA band).
+    Product screenshots are exported from the ManaGem prototype (ManaGem.html
+    at the repo root) into ../assets/img/managem/.
     Anything marked data-assume="A#" (and the [A#] comments) is an unconfirmed
     assumption from section 12 of the brief. Real copy, numbers and
     screenshots replace these in v2. The "Draft v1" pill in the footer
@@ -103,27 +107,72 @@
     <symbol id="i-chev" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
-  <!-- ═══════════════ 6.0 HEADER ═══════════════ -->
-  <header class="hdr" id="hdr">
-    <div class="wrap hdr__in">
-      <a class="brand" href="./" aria-label="ManaGem by GEMIS — home">
-        <span class="brand__mark"><svg><use href="#i-gem"/></svg></span>
-        <span class="brand__text"><span class="brand__name">ManaGem</span><span class="brand__by" data-assume="A1" title="Assumption A1: product presented as ManaGem by GEMIS">by GEMIS</span></span>
-      </a>
-      <nav class="hdr__nav" aria-label="Page sections">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#who">Who it's for</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <div class="hdr__actions">
-        <a class="hdr__login" href="https://app.managem.co.za/" data-assume="A9" title="Assumption A9: app login URL">Log in</a>
-        <a class="btn btn--primary btn--sm" href="#signup" data-modal="signup" data-track="cta-trial-header">Start free trial</a>
-        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+  <div class="page">
+
+  <!-- ═══════════════ 6.1 HERO (with the 6.0 header floating inside it) ═══════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero__sky" aria-hidden="true"><i class="cloud cloud--1"></i><i class="cloud cloud--2"></i><i class="cloud cloud--3"></i></div>
+
+    <!-- ═══════════════ 6.0 HEADER ═══════════════ -->
+    <header class="hdr" id="hdr">
+      <div class="hdr__bar">
+        <a class="brand" href="./" aria-label="ManaGem by GEMIS — home">
+          <span class="brand__mark"><svg><use href="#i-gem"/></svg></span>
+          <span class="brand__text"><span class="brand__name">ManaGem</span><span class="brand__by" data-assume="A1" title="Assumption A1: product presented as ManaGem by GEMIS">by GEMIS</span></span>
+        </a>
+        <nav class="hdr__nav" aria-label="Page sections">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#who">Who it's for</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div class="hdr__actions">
+          <a class="hdr__login" href="https://app.managem.co.za/" data-assume="A9" title="Assumption A9: app login URL">Log in</a>
+          <a class="btn btn--primary btn--sm" href="#signup" data-modal="signup" data-track="cta-trial-header">Start free trial</a>
+          <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero__in">
+      <p class="pill" data-reveal><i class="pill__tag">New</i> Business software for South African makers, installers and contractors</p>
+      <h1 class="hero__h1" data-reveal style="--d:60ms">From enquiry to invoice to job&nbsp;card, <em class="hl">without retyping a&nbsp;thing.</em></h1>
+      <p class="hero__sub" data-reveal style="--d:120ms">Quotes your customers accept online, jobs that track themselves, and profit you can see on every job. Works with your Xero or Sage.</p>
+      <div class="hero__cta" data-reveal style="--d:180ms">
+        <a class="btn btn--primary" href="#signup" data-modal="signup" data-track="cta-trial-hero">Start free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--white" href="#demo" data-modal="demo" data-track="cta-demo-hero">Book a 20-min demo</a>
+      </div>
+      <p class="micro" data-reveal style="--d:240ms" data-assume="A6" title="Assumption A6: trial terms">30 days free · No card needed · Set up from your own documents</p>
+    </div>
+
+    <!-- Product shot: the real ManaGem dashboard from the prototype, in a browser
+         frame. The phone (customer's Accept quote screen) and the floating card
+         overlap it, in the order of the chain. -->
+    <div class="hero__stage" aria-hidden="true">
+      <div class="browser" data-enter="1">
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">app.managem.co.za/dashboard</span></div>
+        <img src="../assets/img/managem/dashboard.jpg" alt="" width="1600" height="1000" fetchpriority="high" />
+      </div>
+      <div class="phone" data-enter="2">
+        <div class="phone__screen">
+          <div class="phone__top"><span>Vantage Aluminium &amp; Glass</span><em>Quote #1042</em></div>
+          <div class="phone__body">
+            <p class="phone__hi">Hi Lerato, your quote is ready.</p>
+            <div class="phone__row"><span>6 × aluminium sliding doors, charcoal</span><b>R41 913</b></div>
+            <div class="phone__row"><span>Installation, Centurion</span><b>R6 287</b></div>
+            <div class="phone__total"><span>Total incl. VAT</span><b>R48 200</b></div>
+            <div class="phone__btn">Accept quote</div>
+            <div class="phone__link">Ask a question</div>
+          </div>
+        </div>
+      </div>
+      <div class="toast" data-enter="3">
+        <span class="toast__ok"><svg><use href="#i-check"/></svg></span>
+        <div><strong>Quote #1042 accepted</strong><span>Invoice INV-0871 created · Job card J-0512 opened</span></div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- mobile full-screen menu -->
   <div class="mmenu" id="mmenu" hidden>
@@ -137,7 +186,7 @@
       </nav>
       <div class="mmenu__cta">
         <a class="btn btn--primary btn--block" href="#signup" data-modal="signup" data-track="cta-trial-menu">Start free trial</a>
-        <a class="btn btn--ghost btn--block" href="#demo" data-modal="demo" data-track="cta-demo-menu">Book a 20-min demo</a>
+        <a class="btn btn--white btn--block" href="#demo" data-modal="demo" data-track="cta-demo-menu">Book a 20-min demo</a>
         <a class="mmenu__login" href="https://app.managem.co.za/" data-assume="A9">Log in to ManaGem</a>
       </div>
       <p class="mmenu__foot">ManaGem by GEMIS · Built in South Africa since 2014</p>
@@ -146,95 +195,21 @@
 
   <main id="main">
 
-  <!-- ═══════════════ 6.1 HERO ═══════════════ -->
-  <section class="hero" id="hero">
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="wrap hero__in">
-      <div class="hero__copy">
-        <p class="eyebrow" data-reveal>Business software for South African makers, installers and contractors</p>
-        <h1 class="hero__h1" data-reveal style="--d:60ms">From enquiry to invoice to job&nbsp;card, <span class="hl">without retyping a&nbsp;thing.</span></h1>
-        <p class="hero__sub" data-reveal style="--d:120ms">Quotes your customers accept online, jobs that track themselves, and profit you can see on every job. Works with your Xero or Sage.</p>
-        <div class="hero__cta" data-reveal style="--d:180ms">
-          <a class="btn btn--primary btn--lg" href="#signup" data-modal="signup" data-track="cta-trial-hero">Start free trial</a>
-          <a class="btn btn--ghost btn--lg" href="#demo" data-modal="demo" data-track="cta-demo-hero">Book a 20-min demo</a>
+  <!-- ═══════════════ 6.2 ABOUT STATEMENT + TRUST ROW ═══════════════ -->
+  <section class="about" aria-label="About ManaGem">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--left" data-reveal><i></i> About</p>
+      <p class="about__t" data-reveal style="--d:60ms">ManaGem takes a job from the <b>first enquiry</b> to the <b>final invoice</b> and the <b>profit report</b>, <span>without anyone retyping it. Built in South Africa for businesses that sell, make, install or deliver.</span></p>
+      <div class="trust" data-reveal style="--d:120ms">
+        <div class="trust__item trust__item--logos">
+          <span>Integrates with</span>
+          <span class="wordmark wordmark--xero" aria-label="Xero">xero</span>
+          <span class="wordmark wordmark--sage" aria-label="Sage">sage</span>
         </div>
-        <p class="micro" data-reveal style="--d:240ms" data-assume="A6" title="Assumption A6: trial terms">30 days free · No card needed · Set up from your own documents</p>
+        <div class="trust__item"><svg><use href="#i-za"/></svg> Built in South Africa since 2014</div>
+        <div class="trust__item" data-assume="A10" title="Assumption A10: POPIA / security wording"><svg><use href="#i-shield"/></svg> POPIA-aligned, secure cloud</div>
+        <div class="trust__item" data-assume="A11" title="Assumption A11: customer count"><svg><use href="#i-people"/></svg> Trusted by 40+ businesses</div>
       </div>
-
-      <!-- Layered product composition. Mock UI drawn in HTML so it stays
-           crisp; swap for real screenshots in v2 (same frames, same sizes). -->
-      <div class="hero__stage" aria-hidden="true">
-        <div class="browser stage__browser" data-enter="1">
-          <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url">app.managem.co.za/jobs</span></div>
-          <div class="app">
-            <aside class="app__side">
-              <div class="app__logo"><svg><use href="#i-gem"/></svg> ManaGem</div>
-              <ul>
-                <li>Dashboard</li><li>Enquiries</li><li class="is-on">Pipeline</li><li>Quotes</li><li>Invoices</li><li>Projects</li><li>Factory</li><li>Stock</li>
-              </ul>
-            </aside>
-            <div class="app__main">
-              <div class="app__top"><strong>Pipeline</strong><span>Vantage Aluminium &amp; Glass · October</span></div>
-              <div class="board">
-                <div class="board__col">
-                  <h6>New enquiry <b>4</b></h6>
-                  <div class="card"><em>Sliding doors ×6</em><span>Mokoena residence, Centurion</span><i>R48 200</i></div>
-                  <div class="card"><em>Shopfront glazing</em><span>Khumalo Retail, Menlyn</span><i>R112 500</i></div>
-                  <div class="card"><em>Garage window set</em><span>WhatsApp enquiry</span><i>—</i></div>
-                </div>
-                <div class="board__col">
-                  <h6>Quoted <b>6</b></h6>
-                  <div class="card"><em>Stacking doors</em><span>Van der Berg, Midstream</span><i>R64 900</i></div>
-                  <div class="card card--sent"><em>Balustrades, 18 m</em><span>Pillay Builders</span><i>R31 400</i><u>Sent · SMS + email</u></div>
-                </div>
-                <div class="board__col">
-                  <h6>Accepted <b>3</b></h6>
-                  <div class="card card--ok"><em>Quote #1042 · Sliding doors</em><span>Mokoena residence</span><i>R48 200</i><u>Invoice created</u></div>
-                  <div class="card"><em>Office partitions</em><span>Delta Fabrication</span><i>R22 750</i></div>
-                </div>
-                <div class="board__col">
-                  <h6>Production <b>5</b></h6>
-                  <div class="card"><em>J-0508 · Casement ×12</em><span>Cut · Assemble · <b>Glaze</b></span><i>62%</i></div>
-                  <div class="card"><em>J-0511 · Shopfront</em><span>Powder coat · Charcoal</span><i>30%</i></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="phone stage__phone" data-enter="2">
-          <div class="phone__screen">
-            <div class="phone__top"><span>Vantage Aluminium &amp; Glass</span><em>Quote #1042</em></div>
-            <div class="phone__body">
-              <p class="phone__hi">Hi Lerato, your quote is ready.</p>
-              <div class="phone__row"><span>6 × aluminium sliding doors, charcoal</span><b>R41 913</b></div>
-              <div class="phone__row"><span>Installation, Centurion</span><b>R6 287</b></div>
-              <div class="phone__total"><span>Total incl. VAT</span><b>R48 200</b></div>
-              <div class="phone__btn">Accept quote</div>
-              <div class="phone__link">Ask a question</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="toast stage__toast" data-enter="3">
-          <span class="toast__ok"><svg><use href="#i-check"/></svg></span>
-          <div><strong>Quote #1042 accepted</strong><span>Invoice INV-0871 created · Job card J-0512 opened</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ 6.2 TRUST STRIP ═══════════════ -->
-  <section class="trust" aria-label="Trust">
-    <div class="wrap trust__in">
-      <div class="trust__item trust__item--logos">
-        <span>Integrates with</span>
-        <span class="wordmark wordmark--xero" aria-label="Xero">xero</span>
-        <span class="wordmark wordmark--sage" aria-label="Sage">sage</span>
-      </div>
-      <div class="trust__item"><svg><use href="#i-za"/></svg> Built in South Africa since 2014</div>
-      <div class="trust__item" data-assume="A10" title="Assumption A10: POPIA / security wording"><svg><use href="#i-shield"/></svg> POPIA-aligned, secure cloud</div>
-      <div class="trust__item" data-assume="A11" title="Assumption A11: customer count"><svg><use href="#i-people"/></svg> Trusted by 40+ businesses</div>
     </div>
   </section>
 
@@ -242,50 +217,26 @@
   <section class="sec problem" id="problem">
     <div class="wrap">
       <div class="sec__head" data-reveal>
-        <p class="eyebrow">Sound familiar?</p>
+        <p class="eyebrow"><i></i> Sound familiar?</p>
         <h2 class="h2">Growing on spreadsheets gets expensive.</h2>
+        <p class="sub">Three things every owner we speak to says in the first five minutes.</p>
       </div>
       <div class="pain">
         <article class="pain__card" data-reveal>
           <span class="pain__ico"><svg><use href="#i-inbox"/></svg></span>
+          <h3>Leads go cold</h3>
           <p>Leads sit in inboxes and WhatsApp. Some never get a quote.</p>
         </article>
         <article class="pain__card" data-reveal style="--d:80ms">
           <span class="pain__ico"><svg><use href="#i-retype"/></svg></span>
+          <h3>Everything typed four times</h3>
           <p>The same job gets typed into the quote, the invoice, the job card and the spreadsheet.</p>
         </article>
         <article class="pain__card" data-reveal style="--d:160ms">
           <span class="pain__ico"><svg><use href="#i-late"/></svg></span>
+          <h3>Profit is a surprise</h3>
           <p>You only find out whether a job made money weeks later, if at all.</p>
         </article>
-      </div>
-
-      <!-- static before / after split (motion version optional for v2) -->
-      <div class="split" data-reveal aria-hidden="true">
-        <div class="split__before">
-          <span class="split__tag">Before</span>
-          <div class="mess">
-            <div class="mess__tab" style="--r:-6deg;--x:4%;--y:10%">Quotes_2026_FINAL_v3.xlsx</div>
-            <div class="mess__tab" style="--r:4deg;--x:38%;--y:4%">Job tracker (Michelle).xlsx</div>
-            <div class="mess__tab" style="--r:-2deg;--x:12%;--y:44%">Price list OLD.xlsx</div>
-            <div class="mess__note" style="--r:7deg;--x:58%;--y:36%">Call Pillay re balustrade quote??</div>
-            <div class="mess__note mess__note--b" style="--r:-5deg;--x:28%;--y:66%">Stock count – Thurs</div>
-            <div class="mess__chat" style="--r:2deg;--x:62%;--y:68%">WhatsApp · Lerato: "Did you get my drawings?"</div>
-          </div>
-        </div>
-        <div class="split__arrow"><svg><use href="#i-arrow"/></svg></div>
-        <div class="split__after">
-          <span class="split__tag split__tag--ok">After</span>
-          <div class="mini">
-            <div class="mini__top"><b>Job J-0512 · Mokoena residence</b><span>On track</span></div>
-            <div class="mini__grid">
-              <div><small>Quote</small><b>R48 200</b><i>Accepted online</i></div>
-              <div><small>Invoice</small><b>INV-0871</b><i>Synced to Xero</i></div>
-              <div><small>Job card</small><b>Glaze 4/6</b><i>Due Fri</i></div>
-              <div><small>Profit so far</small><b>R16 750</b><i>34.8% margin</i></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -293,208 +244,126 @@
   <!-- ═══════════════ 6.4 THE FLOW (signature section) ═══════════════ -->
   <section class="sec flow" id="how">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">How it works</p>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> How it works</p>
         <h2 class="h2">One job. One system. Start to finish.</h2>
-        <p class="lede">Hover or tap a stage. Each one hands straight to the next, so nobody types the job in twice.</p>
+        <p class="sub">Each stage hands straight to the next, so nobody types the job in twice. Hover or tap a stage.</p>
       </div>
-
-      <div class="flow__wrap" id="flow">
-        <div class="flow__line" aria-hidden="true"><span class="flow__pulse"></span><span class="flow__fill"></span></div>
-        <ol class="flow__stages" role="tablist" aria-label="The ManaGem job flow">
+      <div class="flow__grid" id="flow">
+        <ol class="flow__stages" role="tablist" aria-label="The ManaGem job flow" data-reveal>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-1" aria-controls="stage-p1" aria-selected="true" data-stage="1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-lead"/></svg></span>
-              <span class="stage__label">Enquiry</span>
-              <span class="thumb thumb--enquiry" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="stage__text"><span class="stage__label">Enquiry</span><span class="stage__cap">Every lead lands in one list, whether it came from your website, a phone call or a WhatsApp. Nothing sits in an inbox.</span></span>
             </button>
           </li>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-2" aria-controls="stage-p2" aria-selected="false" data-stage="2" tabindex="-1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-quote"/></svg></span>
-              <span class="stage__label">Quote</span>
-              <span class="thumb thumb--quote" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
-              <span class="badge"><svg><use href="#i-sms"/></svg> SMS + email to customer</span>
+              <span class="stage__text"><span class="stage__label">Quote <span class="badge"><svg><use href="#i-sms"/></svg> SMS + email to customer</span></span><span class="stage__cap">Pick products, let your price rules do the maths, and send a branded quote in minutes. The customer gets it by email and SMS.</span></span>
             </button>
           </li>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-3" aria-controls="stage-p3" aria-selected="false" data-stage="3" tabindex="-1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-accept"/></svg></span>
-              <span class="stage__label">Accepted online</span>
-              <span class="thumb thumb--accept" aria-hidden="true"><i></i><b></b></span>
-              <span class="badge"><svg><use href="#i-sms"/></svg> SMS + email to customer</span>
+              <span class="stage__text"><span class="stage__label">Accepted online <span class="badge"><svg><use href="#i-sms"/></svg> SMS + email to customer</span></span><span class="stage__cap">Your customer clicks Accept. ManaGem creates the invoice and opens the job, and tells your customer what happens next.</span></span>
             </button>
           </li>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-4" aria-controls="stage-p4" aria-selected="false" data-stage="4" tabindex="-1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-invoice"/></svg></span>
-              <span class="stage__label">Invoice</span>
-              <span class="thumb thumb--invoice" aria-hidden="true"><i></i><i></i><i></i><b></b></span>
-              <span class="badge"><svg><use href="#i-sync"/></svg> Syncs to Xero / Sage</span>
+              <span class="stage__text"><span class="stage__label">Invoice <span class="badge"><svg><use href="#i-sync"/></svg> Syncs to Xero / Sage</span></span><span class="stage__cap">The accepted quote becomes the invoice, line for line. It syncs to Xero or Sage, so your accountant sees it without anyone retyping it.</span></span>
             </button>
           </li>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-5" aria-controls="stage-p5" aria-selected="false" data-stage="5" tabindex="-1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-job"/></svg></span>
-              <span class="stage__label">Job card</span>
-              <span class="thumb thumb--job" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-              <span class="badge"><svg><use href="#i-stock"/></svg> Uses live stock</span>
+              <span class="stage__text"><span class="stage__label">Job card <span class="badge"><svg><use href="#i-stock"/></svg> Uses live stock</span></span><span class="stage__cap">The job opens with the quoted items on it. Your floor moves it through each phase on a phone or tablet; stock is drawn as it is used.</span></span>
             </button>
           </li>
           <li class="stage" role="presentation">
             <button class="stage__btn" role="tab" id="stage-6" aria-controls="stage-p6" aria-selected="false" data-stage="6" tabindex="-1">
-              <span class="stage__dot"></span>
               <span class="stage__ico"><svg><use href="#i-profit"/></svg></span>
-              <span class="stage__label">Profit</span>
-              <span class="thumb thumb--profit" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <span class="stage__text"><span class="stage__label">Profit</span><span class="stage__cap">Costs land on the job as they happen, so you see the margin while the job runs, not weeks after it is done.</span></span>
             </button>
           </li>
         </ol>
 
-        <!-- Detail panels: caption + larger mock screen for the active stage -->
-        <div class="flow__detail">
+        <div class="flow__shot" data-reveal style="--d:100ms">
           <div class="shot" role="tabpanel" id="stage-p1" aria-labelledby="stage-1">
-            <p class="shot__cap"><b>Enquiry:</b> every lead lands in one list, whether it came from your website, a phone call or a WhatsApp. Nothing sits in an inbox.</p>
-            <div class="screen">
-              <div class="screen__bar">Enquiries · 4 new today</div>
-              <div class="screen__list">
-                <div class="row"><span class="src src--web">Web</span><b>Lerato Mokoena</b><span>6 sliding doors, Centurion · drawings attached</span><em>2 min ago</em></div>
-                <div class="row"><span class="src src--wa">WA</span><b>Sipho Khumalo</b><span>Shopfront glazing, Menlyn</span><em>41 min ago</em></div>
-                <div class="row"><span class="src src--tel">Call</span><b>A. van der Berg</b><span>Stacking doors, Midstream · site visit Thu</span><em>Today 09:10</em></div>
-                <div class="row row--dim"><span class="src src--web">Web</span><b>Pillay Builders</b><span>Balustrades, 18 m · assigned to Riaan</span><em>Yesterday</em></div>
-              </div>
-              <div class="screen__foot"><span class="pill pill--ok">Assigned: Riaan</span><span class="pill">Reply by SMS</span><span class="pill">Create quote →</span></div>
-            </div>
+            <img src="../assets/img/managem/open-enquiries-content.jpg" alt="ManaGem open enquiries list with lead status, quoted value and sales rep per enquiry" width="1400" height="1050" loading="lazy" />
+            <span class="shot__tag">Open enquiries</span>
           </div>
           <div class="shot" role="tabpanel" id="stage-p2" aria-labelledby="stage-2" hidden>
-            <p class="shot__cap"><b>Quote:</b> pick products, let your price rules do the maths, and send a branded quote in minutes. The customer gets it by email and SMS.</p>
-            <div class="screen screen--doc">
-              <div class="doc__head"><div><b>Vantage Aluminium &amp; Glass</b><span>Quote #1042 · 1 Oct 2026 · valid 14 days</span></div><div class="doc__to">To: Lerato Mokoena<br>Mokoena residence, Centurion</div></div>
-              <table class="doc__t"><thead><tr><th>Item</th><th>Qty</th><th>Each</th><th>Total</th></tr></thead>
-                <tbody><tr><td>Sliding door 2400×2100, charcoal, 6.38 lam</td><td>6</td><td>R6 985.50</td><td>R41 913.00</td></tr>
-                <tr><td>Installation, Centurion (price rule: 15% of goods)</td><td>1</td><td>R6 287.00</td><td>R6 287.00</td></tr></tbody>
-                <tfoot><tr><td colspan="3">Total incl. VAT</td><td>R48 200.00</td></tr></tfoot></table>
-              <div class="screen__foot"><span class="pill pill--ok">Margin 34.8%</span><span class="pill">Send by email + SMS</span></div>
-            </div>
+            <img src="../assets/img/managem/enquiry-detail-content.jpg" alt="ManaGem enquiry with quote line items, totals and the Send to Customer action" width="1400" height="1050" loading="lazy" />
+            <span class="shot__tag">Quote Q-2603 · Send to customer</span>
           </div>
-          <div class="shot" role="tabpanel" id="stage-p3" aria-labelledby="stage-3" hidden>
-            <p class="shot__cap"><b>Accepted online:</b> your customer clicks Accept. ManaGem creates the invoice and opens the job, and tells your customer what happens next.</p>
-            <div class="screen screen--accept">
-              <div class="accept__card">
-                <div class="accept__tick"><svg><use href="#i-check"/></svg></div>
-                <b>Quote #1042 accepted</b>
-                <span>Lerato Mokoena · 1 Oct 2026, 14:32 · IP recorded</span>
-                <ul class="accept__chain">
-                  <li><svg><use href="#i-check"/></svg> Invoice INV-0871 created</li>
-                  <li><svg><use href="#i-check"/></svg> Job card J-0512 opened</li>
-                  <li><svg><use href="#i-check"/></svg> Customer SMS: "Thanks Lerato, your deposit invoice is on its way."</li>
-                </ul>
-              </div>
+          <div class="shot shot--accept" role="tabpanel" id="stage-p3" aria-labelledby="stage-3" hidden>
+            <img src="../assets/img/managem/enquiry-detail-content.jpg" alt="" width="1400" height="1050" loading="lazy" />
+            <div class="accept">
+              <span class="accept__tick"><svg><use href="#i-check"/></svg></span>
+              <b>Quote #1042 accepted</b>
+              <span>Lerato Mokoena · 1 Oct 2026, 14:32</span>
+              <ul>
+                <li><svg><use href="#i-check"/></svg> Invoice INV-0871 created</li>
+                <li><svg><use href="#i-check"/></svg> Job card J-0512 opened</li>
+                <li><svg><use href="#i-check"/></svg> Customer SMS: "Thanks Lerato, your deposit invoice is on its way."</li>
+              </ul>
             </div>
           </div>
           <div class="shot" role="tabpanel" id="stage-p4" aria-labelledby="stage-4" hidden>
-            <p class="shot__cap"><b>Invoice:</b> the accepted quote becomes the invoice, line for line. It syncs to Xero or Sage, so your accountant sees it without anyone retyping it.</p>
-            <div class="screen screen--doc">
-              <div class="doc__head"><div><b>Tax invoice INV-0871</b><span>From quote #1042 · Deposit 50% · due 8 Oct 2026</span></div><div class="doc__to"><span class="pill pill--ok"><svg><use href="#i-sync"/></svg> Synced to Xero 14:33</span></div></div>
-              <table class="doc__t"><tbody><tr><td>Deposit, 6 × sliding doors + installation</td><td>50%</td><td></td><td>R24 100.00</td></tr></tbody>
-                <tfoot><tr><td colspan="3">Due now incl. VAT</td><td>R24 100.00</td></tr></tfoot></table>
-              <div class="screen__foot"><span class="pill">Paid: R0.00</span><span class="pill">Reminder in 7 days</span></div>
-            </div>
+            <img src="../assets/img/managem/sage-invoices-content.jpg" alt="ManaGem invoices synchronised with Sage accounting, showing synced status per invoice" width="1400" height="1050" loading="lazy" />
+            <span class="shot__tag">Invoices · synced to Sage</span>
           </div>
           <div class="shot" role="tabpanel" id="stage-p5" aria-labelledby="stage-5" hidden>
-            <p class="shot__cap"><b>Job card:</b> the job opens with the quoted items on it. Your floor moves it through each phase on a phone or tablet; stock is drawn as it is used.</p>
-            <div class="screen">
-              <div class="screen__bar">Job card J-0512 · Mokoena residence · due 10 Oct</div>
-              <ol class="phases">
-                <li class="is-done">Cut</li><li class="is-done">Assemble</li><li class="is-now">Glaze <small>4 of 6</small></li><li>Powder coat</li><li>QC</li><li>Dispatch</li>
-              </ol>
-              <div class="screen__list">
-                <div class="row"><b>Profile 38×1.4 charcoal</b><span>Drawn 86 m of 90 m quoted · Warehouse A</span><em class="ok">Stock ok</em></div>
-                <div class="row"><b>Glass 6.38 lam clear</b><span>Drawn 18 of 24 panes</span><em class="ok">Stock ok</em></div>
-                <div class="row"><b>Rollers, heavy duty</b><span>12 of 24 · 10 left in stock</span><em class="warn">Reorder</em></div>
-              </div>
-            </div>
+            <img src="../assets/img/managem/factory-content.jpg" alt="ManaGem factory module with the production pipeline from pending to invoiced" width="1400" height="1050" loading="lazy" />
+            <span class="shot__tag">Factory · production pipeline</span>
           </div>
           <div class="shot" role="tabpanel" id="stage-p6" aria-labelledby="stage-6" hidden>
-            <p class="shot__cap"><b>Profit:</b> costs land on the job as they happen, so you see the margin while the job runs, not weeks after it is done.</p>
-            <div class="screen screen--profit">
-              <div class="profit__kpis">
-                <div><small>Quoted</small><b>R48 200</b></div>
-                <div><small>Cost to date</small><b>R31 450</b></div>
-                <div><small>Profit</small><b class="ok">R16 750</b><i>34.8%</i></div>
-              </div>
-              <div class="bars">
-                <div class="bar"><span>Materials</span><div><i style="--w:58%"></i><em style="--w:52%"></em></div><b>R18 300 of R20 100</b></div>
-                <div class="bar"><span>Labour</span><div><i style="--w:40%"></i><em style="--w:36%"></em></div><b>R8 950 of R10 400</b></div>
-                <div class="bar"><span>Installation</span><div><i style="--w:28%"></i><em style="--w:20%"></em></div><b>R4 200 of R6 287</b></div>
-              </div>
-              <div class="screen__foot"><span class="pill"><i class="sw sw--b"></i> Budget</span><span class="pill"><i class="sw sw--a"></i> Actual</span></div>
-            </div>
+            <img src="../assets/img/managem/projects-module-content.jpg" alt="ManaGem current jobs with progress per job" width="1400" height="1050" loading="lazy" />
+            <span class="shot__tag">Projects · budget vs actual</span>
           </div>
         </div>
       </div>
-
       <div class="sec__cta" data-reveal>
-        <a class="btn btn--primary btn--lg" href="#signup" data-modal="signup" data-track="cta-trial-flow">Start free trial</a>
+        <a class="btn btn--primary" href="#signup" data-modal="signup" data-track="cta-trial-flow">Start free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
         <p class="micro" data-assume="A6">30 days free · No card needed · Cancel anytime</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ 6.5 FEATURES ═══════════════ -->
+  <!-- ═══════════════ 6.5 FEATURES (bento) ═══════════════ -->
   <section class="sec features" id="features">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">Features</p>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> Features</p>
         <h2 class="h2">Everything your business runs on, connected.</h2>
+        <p class="sub">Find the part you care about. Every module shares the same customers, jobs and stock.</p>
       </div>
-      <div class="fgrid">
+      <div class="bento">
         <article class="fcard" data-reveal>
-          <span class="fcard__ico"><svg><use href="#i-lead"/></svg></span>
-          <h3>Never lose a lead</h3>
-          <p>Every enquiry tracked from first contact to won, across your whole sales team.</p>
-          <a class="more" href="#" data-feature="sales-pipeline">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Sales pipeline</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/open-enquiries-content.jpg" alt="Open enquiries pipeline" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Sales pipeline</small><h3>Never lose a lead</h3><p>Every enquiry tracked from first contact to won, across your whole sales team.</p><a class="more" href="#" data-feature="sales-pipeline">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="fcard" data-reveal style="--d:60ms">
-          <span class="fcard__ico"><svg><use href="#i-price"/></svg></span>
-          <h3>Quote in minutes, not hours</h3>
-          <p>Build products from components and let your price rules do the maths.</p>
-          <a class="more" href="#" data-feature="products-pricing">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Products &amp; pricing</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/products-pricing-content.jpg" alt="Products and pricing catalogue" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Products &amp; pricing</small><h3>Quote in minutes, not hours</h3><p>Build products from components and let your price rules do the maths.</p><a class="more" href="#" data-feature="products-pricing">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="fcard" data-reveal style="--d:120ms">
-          <span class="fcard__ico"><svg><use href="#i-accept"/></svg></span>
-          <h3>Get to yes, and paid, faster</h3>
-          <p>Branded quotes your customers accept online. Acceptance becomes an invoice.</p>
-          <a class="more" href="#" data-feature="quotes-invoicing">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Quotes &amp; invoicing</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/enquiry-detail-content.jpg" alt="Quote with line items and Send to Customer action" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Quotes &amp; invoicing</small><h3>Get to yes, and paid, faster</h3><p>Branded quotes your customers accept online. Acceptance becomes an invoice.</p><a class="more" href="#" data-feature="quotes-invoicing">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="fcard" data-reveal style="--d:180ms">
-          <span class="fcard__ico"><svg><use href="#i-profit"/></svg></span>
-          <h3>See profit on every job</h3>
-          <p>Track daily activity and costs against budget while the job runs.</p>
-          <a class="more" href="#" data-feature="projects">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Projects</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/projects-module-content.jpg" alt="Current jobs with progress" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Projects</small><h3>See profit on every job</h3><p>Track daily activity and costs against budget while the job runs.</p><a class="more" href="#" data-feature="projects">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="fcard" data-reveal style="--d:240ms">
-          <span class="fcard__ico"><svg><use href="#i-factory"/></svg></span>
-          <h3>Your floor at a glance</h3>
-          <p>Job cards, production stages and a live dashboard. Build stock from raw materials.</p>
-          <a class="more" href="#" data-feature="factory">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Factory</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/factory-content.jpg" alt="Factory production pipeline" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Factory</small><h3>Your floor at a glance</h3><p>Job cards, production stages and a live dashboard. Build stock from raw materials.</p><a class="more" href="#" data-feature="factory">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
         <article class="fcard" data-reveal style="--d:300ms">
-          <span class="fcard__ico"><svg><use href="#i-stock"/></svg></span>
-          <h3>Stock you can trust</h3>
-          <p>Track stock across warehouses and use it in jobs and sales.</p>
-          <a class="more" href="#" data-feature="stock-control">See more <svg><use href="#i-arrow"/></svg></a>
-          <small class="fcard__name">Stock control</small>
+          <div class="fcard__vis"><img src="../assets/img/managem/stock-control-content.jpg" alt="Stock control overview with warehouse capacity and low-stock alerts" width="1400" height="1050" loading="lazy" /></div>
+          <div class="fcard__body"><small>Stock control</small><h3>Stock you can trust</h3><p>Track stock across warehouses and use it in jobs and sales.</p><a class="more" href="#" data-feature="stock-control">See more <svg><use href="#i-arrow"/></svg></a></div>
         </article>
       </div>
       <p class="also" data-reveal>
@@ -505,17 +374,19 @@
     </div>
   </section>
 
-  <!-- ═══════════════ 6.6 AI-ASSISTED SETUP ═══════════════ -->
+  <!-- ═══════════════ 6.6 AI-ASSISTED SETUP (three simple steps) ═══════════════ -->
   <section class="sec setup" id="setup">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">Switching is the easy part</p>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> 3 simple steps</p>
         <h2 class="h2">Set up from the documents you already have.</h2>
-        <p class="lede">Upload a few quotes, your price list and your customer list. ManaGem learns how you work and sets up your account. You check it, adjust it, and you're running.</p>
+        <p class="sub">Upload a few quotes, your price list and your customer list. ManaGem learns how you work and sets up your account. You check it, adjust it, and you're running.</p>
       </div>
       <div class="steps">
         <div class="step" data-reveal>
           <span class="step__n">1</span>
+          <h3>Upload</h3>
+          <p>A few old quotes, your price list, your customer list. Whatever you have, in whatever format.</p>
           <div class="step__vis">
             <div class="drop">
               <svg class="drop__ico"><use href="#i-upload"/></svg>
@@ -528,11 +399,11 @@
               </div>
             </div>
           </div>
-          <h3>Upload</h3>
-          <p>A few old quotes, your price list, your customer list. Whatever you have, in whatever format.</p>
         </div>
         <div class="step" data-reveal style="--d:80ms">
           <span class="step__n">2</span>
+          <h3>We set up</h3>
+          <p>ManaGem builds your products, price rules, customers and quote template from them.</p>
           <div class="step__vis">
             <div class="progress">
               <div class="progress__head"><b>Setting up Vantage Aluminium &amp; Glass</b><span>2 of 3 done</span></div>
@@ -545,24 +416,16 @@
               </ul>
             </div>
           </div>
-          <h3>We set up</h3>
-          <p>ManaGem builds your products, price rules, customers and quote template from them.</p>
         </div>
         <div class="step" data-reveal style="--d:160ms">
           <span class="step__n">3</span>
-          <div class="step__vis">
-            <div class="dash">
-              <div class="dash__top"><b>Dashboard</b><span>Good morning, Thabo</span></div>
-              <div class="dash__kpis"><div><small>Enquiries</small><b>41</b></div><div><small>Quotes out</small><b>R3.3m</b></div><div><small>Sales</small><b>R955k</b></div></div>
-              <div class="dash__chart"><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:70%"></i><i style="--h:62%"></i><i style="--h:84%"></i><i style="--h:76%"></i></div>
-            </div>
-          </div>
           <h3>You're running</h3>
           <p>Check what we found, change what you like, and send your first quote the same day.</p>
+          <div class="step__vis step__vis--shot"><img src="../assets/img/managem/dashboard-content.jpg" alt="ManaGem dashboard" width="1400" height="1050" loading="lazy" /></div>
         </div>
       </div>
       <div class="setup__foot" data-reveal>
-        <button class="btn btn--ghost" type="button" data-modal="setup" data-track="cta-setup-video"><svg class="btn__ico"><use href="#i-play"/></svg> See how setup works</button>
+        <button class="btn btn--white" type="button" data-modal="setup" data-track="cta-setup-video"><svg class="btn__ico"><use href="#i-play"/></svg> See how setup works</button>
         <p class="micro" data-assume="A12" title="Assumption A12: assisted setup offer">Prefer a hand? Our team will do the setup with you.</p>
       </div>
     </div>
@@ -571,8 +434,8 @@
   <!-- ═══════════════ 6.7 WHO IT'S FOR ═══════════════ -->
   <section class="sec who" id="who">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">Who it's for</p>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> Who it's for</p>
         <h2 class="h2">Made for businesses that make, install and deliver.</h2>
       </div>
       <div class="who__tabs" role="tablist" aria-label="Industries" data-reveal data-assume="A3" title="Assumption A3: priority verticals and bullets">
@@ -582,10 +445,9 @@
         <button class="chip" role="tab" id="who-t4" aria-controls="who-p4" aria-selected="false" data-who="4" tabindex="-1">Contractors &amp; installers</button>
       </div>
       <div class="who__panels" data-reveal>
-        <!-- Photography: real South African workshops and teams go here in v2.
-             These are labelled placeholders, not stock photos. -->
+        <!-- Photography: real South African workshops and teams go here in v2. Labelled placeholders, not stock photos. -->
         <div class="who__panel" role="tabpanel" id="who-p1" aria-labelledby="who-t1">
-          <div class="photo photo--alu" data-assume="A3" title="Placeholder: photo of an aluminium window and door workshop">
+          <div class="photo" data-assume="A3" title="Placeholder: photo of an aluminium window and door workshop">
             <svg viewBox="0 0 160 100" aria-hidden="true"><rect x="16" y="14" width="56" height="72" rx="2"/><rect x="24" y="22" width="40" height="56"/><rect x="88" y="14" width="56" height="72" rx="2"/><path d="M88 50h56M116 14v72"/></svg>
             <span>Photo: aluminium window &amp; door workshop, Gauteng</span>
           </div>
@@ -600,7 +462,7 @@
           </div>
         </div>
         <div class="who__panel" role="tabpanel" id="who-p2" aria-labelledby="who-t2" hidden>
-          <div class="photo photo--pc" data-assume="A3" title="Placeholder: photo of a powder-coating line">
+          <div class="photo" data-assume="A3" title="Placeholder: photo of a powder-coating line">
             <svg viewBox="0 0 160 100" aria-hidden="true"><path d="M10 20h140M30 20v16M60 20v22M90 20v16M120 20v22"/><rect x="18" y="36" width="24" height="44" rx="3"/><rect x="48" y="42" width="24" height="38" rx="3"/><rect x="78" y="36" width="24" height="44" rx="3"/><rect x="108" y="42" width="24" height="38" rx="3"/></svg>
             <span>Photo: powder-coating line, racks and oven</span>
           </div>
@@ -615,7 +477,7 @@
           </div>
         </div>
         <div class="who__panel" role="tabpanel" id="who-p3" aria-labelledby="who-t3" hidden>
-          <div class="photo photo--mfg" data-assume="A3" title="Placeholder: photo of a general fabrication shop">
+          <div class="photo" data-assume="A3" title="Placeholder: photo of a general fabrication shop">
             <svg viewBox="0 0 160 100" aria-hidden="true"><circle cx="50" cy="52" r="22"/><circle cx="50" cy="52" r="8"/><path d="M50 22v8M50 74v8M20 52h8M72 52h8M29 31l6 6M65 67l6 6M71 31l-6 6M35 67l-6 6"/><rect x="96" y="30" width="48" height="44" rx="3"/><path d="M104 44h32M104 54h32M104 64h20"/></svg>
             <span>Photo: fabrication shop floor and team</span>
           </div>
@@ -630,7 +492,7 @@
           </div>
         </div>
         <div class="who__panel" role="tabpanel" id="who-p4" aria-labelledby="who-t4" hidden>
-          <div class="photo photo--con" data-assume="A3" title="Placeholder: photo of an installation crew on site">
+          <div class="photo" data-assume="A3" title="Placeholder: photo of an installation crew on site">
             <svg viewBox="0 0 160 100" aria-hidden="true"><path d="M20 80h120M30 80V40l25-18 25 18v40M55 80V60h-10v20"/><rect x="92" y="34" width="48" height="46" rx="3"/><path d="M100 46h32M100 56h32M100 66h32"/></svg>
             <span>Photo: installation crew on site (shopfitting, signage, solar, HVAC)</span>
           </div>
@@ -653,9 +515,9 @@
     <div class="wrap">
       <div class="why__grid">
         <div class="why__copy" data-reveal>
-          <p class="eyebrow eyebrow--light">Why ManaGem</p>
+          <p class="eyebrow eyebrow--left"><i></i> Why ManaGem</p>
           <h2 class="h2">Built here. Built around you.</h2>
-          <p class="lede lede--light">Generic CRMs stop at the sale. Spreadsheets stop at the first mistake. ManaGem runs the quote, the job card, the floor and the stock, and bends to how you work.</p>
+          <p class="sub sub--left">Generic CRMs stop at the sale. Spreadsheets stop at the first mistake. ManaGem runs the quote, the job card, the floor and the stock, and bends to how you work.</p>
           <ul class="why__points">
             <li><span class="why__ico"><svg><use href="#i-za"/></svg></span><div><b>Made for South Africa</b><span>Rand, VAT, SMS updates, and local support in your time zone.</span></div></li>
             <li><span class="why__ico"><svg><use href="#i-shape"/></svg></span><div><b>Shaped to how you work</b><span>We customise it on request, with faster turnaround than an ERP.</span></div></li>
@@ -685,27 +547,42 @@
   <!-- ═══════════════ 6.9 TEAM AND PROOF ═══════════════ -->
   <section class="sec proof" id="proof">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">From the people using it</p>
-        <h2 class="h2">A serious team, and businesses that run on it.</h2>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> Testimonials</p>
+        <h2 class="h2">Trusted by businesses across South Africa.</h2>
+        <p class="sub">Owners and managers who moved off spreadsheets. Quotes are placeholders until the real ones are confirmed.</p>
       </div>
-
       <!-- Testimonials: clearly marked placeholders [A11]. Replace with real quotes, names and photos in v2. -->
       <div class="quotes" data-assume="A11" title="Assumption A11: testimonials are placeholders">
         <figure class="quote" data-reveal>
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
           <blockquote>"We used to lose a day a week to quoting. Now a quote goes out before I leave site, and the job card is waiting when the customer says yes."</blockquote>
           <figcaption><span class="avatar">TM</span><div><b>Placeholder · owner</b><span>Aluminium window &amp; door fabricator, Gauteng</span></div></figcaption>
-          <small class="ph">Placeholder quote, to be replaced</small>
         </figure>
-        <figure class="quote" data-reveal style="--d:80ms">
+        <figure class="quote" data-reveal style="--d:60ms">
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
           <blockquote>"I stopped phoning the floor for status. The dashboard tells me, and customers get an SMS when their batch is out of the oven."</blockquote>
           <figcaption><span class="avatar">MO</span><div><b>Placeholder · operations manager</b><span>Powder-coating company, KwaZulu-Natal</span></div></figcaption>
-          <small class="ph">Placeholder quote, to be replaced</small>
         </figure>
-        <figure class="quote" data-reveal style="--d:160ms">
+        <figure class="quote" data-reveal style="--d:120ms">
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
           <blockquote>"Six reps, one pipeline, one set of pricing rules. Our quotes finally look the same no matter who sends them, and Xero just matches."</blockquote>
           <figcaption><span class="avatar">RC</span><div><b>Placeholder · managing director</b><span>Installation contractor, Western Cape</span></div></figcaption>
-          <small class="ph">Placeholder quote, to be replaced</small>
+        </figure>
+        <figure class="quote" data-reveal style="--d:180ms">
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
+          <blockquote>"Setup took an afternoon. We uploaded our old quotes and the price list, and it had our products and customers in before we'd finished coffee."</blockquote>
+          <figcaption><span class="avatar">NP</span><div><b>Placeholder · owner</b><span>Signage and shopfitting, Gauteng</span></div></figcaption>
+        </figure>
+        <figure class="quote" data-reveal style="--d:240ms">
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
+          <blockquote>"For the first time I know which jobs made money while they're still running, not at month end when it's too late to fix anything."</blockquote>
+          <figcaption><span class="avatar">JS</span><div><b>Placeholder · financial manager</b><span>Steel fabricator, Free State</span></div></figcaption>
+        </figure>
+        <figure class="quote" data-reveal style="--d:300ms">
+          <span class="stars" aria-label="5 out of 5">★★★★★</span>
+          <blockquote>"Stock surprises are gone. The job draws what it uses, and the low-stock alert goes to purchasing before the floor runs out."</blockquote>
+          <figcaption><span class="avatar">AD</span><div><b>Placeholder · operations manager</b><span>Solar installer, Western Cape</span></div></figcaption>
         </figure>
       </div>
 
@@ -726,9 +603,9 @@
       </div>
 
       <dl class="stats" data-reveal data-assume="A11" title="Assumption A11: only confirmed numbers ship in v2">
-        <div><dt>Years in operation</dt><dd>12</dd></div>
-        <div><dt>Businesses on ManaGem</dt><dd>40+</dd></div>
-        <div><dt>Quotes processed</dt><dd>12 000+</dd></div>
+        <div><dd>12</dd><dt>Years in operation</dt></div>
+        <div><dd>40+</dd><dt>Businesses on ManaGem</dt></div>
+        <div><dd>12 000+</dd><dt>Quotes processed</dt></div>
       </dl>
     </div>
   </section>
@@ -736,26 +613,26 @@
   <!-- ═══════════════ 6.10 PRICING ═══════════════ -->
   <section class="sec pricing" id="pricing">
     <div class="wrap">
-      <div class="sec__head sec__head--c" data-reveal>
-        <p class="eyebrow">Pricing</p>
+      <div class="sec__head" data-reveal>
+        <p class="eyebrow"><i></i> Pricing</p>
         <h2 class="h2">Simple pricing. Founding customers lock it in for 3 years.</h2>
-        <p class="lede">Prices exclude VAT. Every plan starts with 30 days free, no card needed.</p>
+        <p class="sub">Prices exclude VAT. Every plan starts with 30 days free, no card needed.</p>
       </div>
 
       <div class="toggle" data-reveal data-assume="A13" title="Assumption A13: annual discount">
-        <span class="toggle__l is-on" id="tg-monthly">Monthly</span>
-        <button class="toggle__sw" type="button" role="switch" aria-checked="false" aria-label="Switch to annual pricing" id="billing"><i></i></button>
-        <span class="toggle__l" id="tg-annual">Annual <em>2 months free</em></span>
+        <button class="toggle__seg is-on" type="button" id="tg-monthly" data-billing="monthly" aria-pressed="true">Monthly</button>
+        <button class="toggle__seg" type="button" id="tg-annual" data-billing="annual" aria-pressed="false">Yearly <em>2 months free</em></button>
       </div>
 
-      <!-- Every price is an assumption [A13]. Numbers and names live in
-           data-attributes and the text, nowhere else, so they are easy to swap. -->
+      <!-- Every price is an assumption [A13]. Numbers live in data-attributes and the text, nowhere else. -->
       <div class="plans" data-assume="A13" title="Assumption A13: all prices and plan names">
         <article class="plan" data-reveal>
-          <h3 class="plan__name">Sales</h3>
+          <p class="plan__name">Sales</p>
           <p class="plan__for">For teams that need to quote fast and get paid.</p>
           <p class="plan__price"><span class="cur">R</span><span class="amt" data-monthly="990" data-annual="825">990</span><span class="per">/month</span></p>
+          <a class="btn btn--white btn--block" href="#signup" data-modal="signup" data-plan="Sales" data-track="cta-trial-plan-sales">Start free trial</a>
           <p class="plan__users">Up to 5 users</p>
+          <p class="plan__inc">What's included</p>
           <ul class="ticks ticks--sm">
             <li>Sales pipeline</li>
             <li>Products &amp; pricing rules</li>
@@ -763,14 +640,15 @@
             <li>Invoicing</li>
             <li>Xero / Sage sync</li>
           </ul>
-          <a class="btn btn--ghost btn--block" href="#signup" data-modal="signup" data-plan="Sales" data-track="cta-trial-plan-sales">Start free trial</a>
         </article>
         <article class="plan plan--hot" data-reveal style="--d:80ms">
           <span class="plan__flag">Most popular</span>
-          <h3 class="plan__name">Projects</h3>
+          <p class="plan__name">Projects</p>
           <p class="plan__for">For businesses that need to know what every job made.</p>
           <p class="plan__price"><span class="cur">R</span><span class="amt" data-monthly="1 690" data-annual="1 408">1 690</span><span class="per">/month</span></p>
+          <a class="btn btn--primary btn--block" href="#signup" data-modal="signup" data-plan="Projects" data-track="cta-trial-plan-projects">Start free trial</a>
           <p class="plan__users">Up to 10 users</p>
+          <p class="plan__inc">What's included</p>
           <ul class="ticks ticks--sm">
             <li><b>Everything in Sales, plus</b></li>
             <li>Projects and daily activity</li>
@@ -778,13 +656,14 @@
             <li>Stock control across warehouses</li>
             <li>Documents per customer and job</li>
           </ul>
-          <a class="btn btn--primary btn--block" href="#signup" data-modal="signup" data-plan="Projects" data-track="cta-trial-plan-projects">Start free trial</a>
         </article>
         <article class="plan" data-reveal style="--d:160ms">
-          <h3 class="plan__name">Production</h3>
+          <p class="plan__name">Production</p>
           <p class="plan__for">For factories and workshops with a floor to run.</p>
           <p class="plan__price"><span class="cur">R</span><span class="amt" data-monthly="2 490" data-annual="2 075">2 490</span><span class="per">/month</span></p>
+          <a class="btn btn--white btn--block" href="#signup" data-modal="signup" data-plan="Production" data-track="cta-trial-plan-production">Start free trial</a>
           <p class="plan__users">Up to 10 users</p>
+          <p class="plan__inc">What's included</p>
           <ul class="ticks ticks--sm">
             <li><b>Everything in Projects, plus</b></li>
             <li>Factory module and phase tracking</li>
@@ -792,7 +671,6 @@
             <li>Live floor dashboard</li>
             <li>Build stock from raw materials</li>
           </ul>
-          <a class="btn btn--ghost btn--block" href="#signup" data-modal="signup" data-plan="Production" data-track="cta-trial-plan-production">Start free trial</a>
         </article>
       </div>
 
@@ -810,49 +688,53 @@
   <section class="sec faq" id="faq">
     <div class="wrap faq__in">
       <div class="faq__head" data-reveal>
-        <p class="eyebrow">FAQ</p>
-        <h2 class="h2">Questions owners ask us.</h2>
-        <p class="lede">Something else? <a href="https://wa.me/27112195008?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20ManaGem%20for%20my%20business." data-track="cta-wa-faq" data-assume="A15" title="Assumption A15: WhatsApp number" target="_blank" rel="noopener">Ask us on WhatsApp</a>.</p>
+        <p class="eyebrow eyebrow--left"><i></i> FAQ</p>
+        <h2 class="h2">Frequently asked questions</h2>
+        <div class="faq__ask">
+          <b>Still have a question?</b>
+          <span>Ask us on WhatsApp or book a 20-minute demo. Real people, South African hours.</span>
+          <a class="btn btn--primary btn--sm" href="https://wa.me/27112195008?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20ManaGem%20for%20my%20business." data-track="cta-wa-faq" data-assume="A15" title="Assumption A15: WhatsApp number" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
       </div>
       <div class="acc" data-reveal>
         <details class="acc__item" open>
-          <summary>Does ManaGem work with Xero and Sage?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">01</span><span class="acc__q">Does ManaGem work with Xero and Sage?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Yes. ManaGem syncs invoices, customers and payments with Xero and Sage cloud accounting. You keep your accounting system and your accountant keeps their workflow; ManaGem runs everything before the invoice.</p></div>
         </details>
         <details class="acc__item">
-          <summary>How long does setup take?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">02</span><span class="acc__q">How long does setup take?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Most businesses are quoting from ManaGem within a week. Upload your existing quotes, price list and customer list, and ManaGem builds your products, price rules and customers for you to check. If you would rather have a hand, our team does the setup with you.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Can I move my data from spreadsheets?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">03</span><span class="acc__q">Can I move my data from spreadsheets?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Yes. Customer lists, price lists and product sheets in Excel or CSV import directly. Old quotes in PDF or Word can be uploaded so ManaGem can learn your products and pricing from them.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Can ManaGem be customised for my business?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">04</span><span class="acc__q">Can ManaGem be customised for my business?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Yes. ManaGem is built and supported in South Africa, so changes to workflows, documents and reports are quoted and delivered by the same team, usually in weeks rather than the months a traditional ERP takes.</p></div>
         </details>
         <details class="acc__item">
-          <summary>What happens after the free trial?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">05</span><span class="acc__q">What happens after the free trial?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>After 30 days you choose a plan and carry on; everything you set up during the trial stays. If you do not continue, your account closes and you can export your data. No card is needed to start.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Where is my data stored, and is it secure?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">06</span><span class="acc__q">Where is my data stored, and is it secure?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p data-assume="A10">Your data is stored in secure, backed-up cloud infrastructure, encrypted in transit and at rest, with access controlled per user. ManaGem is run in line with POPIA.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Can my factory staff use it on a phone or tablet?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">07</span><span class="acc__q">Can my factory staff use it on a phone or tablet?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Yes. Job cards, phase updates and the floor dashboard work on any phone or tablet browser. Shop-floor users are priced separately so you can give everyone on the floor a login.</p></div>
         </details>
         <details class="acc__item">
-          <summary>How do SMS credits work?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">08</span><span class="acc__q">How do SMS credits work?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Customer updates by SMS use credits that you top up from your dashboard. Email updates are included in every plan.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Is there a contract?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">09</span><span class="acc__q">Is there a contract?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>No lock-in. Plans are month to month and you can cancel any time. Annual plans are paid up front in exchange for two months free. Founding customers who choose to lock their price keep it for three years.</p></div>
         </details>
         <details class="acc__item">
-          <summary>Do you offer training and support?<svg><use href="#i-chev"/></svg></summary>
+          <summary><span class="acc__n">10</span><span class="acc__q">Do you offer training and support?</span><span class="acc__pm" aria-hidden="true"></span></summary>
           <div class="acc__body"><p>Yes. Every plan includes onboarding, help articles and support by email, phone and WhatsApp during South African business hours from a team you can actually call.</p></div>
         </details>
       </div>
@@ -861,12 +743,13 @@
 
   <!-- ═══════════════ 6.12 FINAL CTA ═══════════════ -->
   <section class="final" id="start">
-    <div class="wrap final__in" data-reveal>
+    <div class="final__sky" aria-hidden="true"><i class="cloud cloud--1"></i><i class="cloud cloud--2"></i></div>
+    <div class="final__in" data-reveal>
       <h2 class="final__h2">Run your next job in ManaGem.</h2>
       <p class="final__sub">30 days free. Set up from your own documents. Keep your accounting.</p>
       <div class="final__cta">
-        <a class="btn btn--white btn--lg" href="#signup" data-modal="signup" data-track="cta-trial-final">Start free trial</a>
-        <a class="btn btn--outline btn--lg" href="#demo" data-modal="demo" data-track="cta-demo-final">Book a demo</a>
+        <a class="btn btn--primary" href="#signup" data-modal="signup" data-track="cta-trial-final">Start free trial</a>
+        <a class="btn btn--white" href="#demo" data-modal="demo" data-track="cta-demo-final">Book a demo</a>
       </div>
       <a class="final__wa" href="https://wa.me/27112195008?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20ManaGem%20for%20my%20business." target="_blank" rel="noopener" data-track="cta-wa-final" data-assume="A15"><svg><use href="#i-wa"/></svg> Or chat to us on WhatsApp</a>
     </div>
@@ -879,7 +762,7 @@
     <div class="wrap">
       <div class="foot__grid">
         <div class="foot__brand">
-          <a class="brand brand--foot" href="./"><span class="brand__mark"><svg><use href="#i-gem"/></svg></span><span class="brand__text"><span class="brand__name">ManaGem</span><span class="brand__by">by GEMIS</span></span></a>
+          <a class="brand" href="./"><span class="brand__mark"><svg><use href="#i-gem"/></svg></span><span class="brand__text"><span class="brand__name">ManaGem</span><span class="brand__by">by GEMIS</span></span></a>
           <p>The quote-to-cash system for South African businesses that make, install or deliver. From enquiry to invoice to job card to profit, without retyping.</p>
           <ul class="foot__contact" data-assume="A15" title="Assumption A15: ManaGem contact details and address">
             <li><svg><use href="#i-mail"/></svg><a href="mailto:hello@managem.co.za">hello@managem.co.za</a></li>
@@ -923,6 +806,8 @@
     </div>
   </footer>
 
+  </div><!-- /.page -->
+
   <!-- floating WhatsApp (mobile) -->
   <a class="wafab" href="https://wa.me/27112195008?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20ManaGem%20for%20my%20business." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" data-track="cta-wa-fab" data-assume="A15"><svg><use href="#i-wa"/></svg></a>
 
@@ -960,7 +845,7 @@
         <span class="toast__ok"><svg><use href="#i-check"/></svg></span>
         <h3 class="h3">You're in.</h3>
         <p>Check your email and SMS for your login. Upload a few quotes and your price list when you first sign in and we'll do the rest.</p>
-        <button class="btn btn--ghost" type="button" data-close>Close</button>
+        <button class="btn btn--white" type="button" data-close>Close</button>
       </div>
     </div>
   </div>
@@ -992,7 +877,7 @@
         <span class="toast__ok"><svg><use href="#i-check"/></svg></span>
         <h3 class="h3">Booked, pending confirmation.</h3>
         <p>We'll confirm your slot by SMS within one business day.</p>
-        <button class="btn btn--ghost" type="button" data-close>Close</button>
+        <button class="btn btn--white" type="button" data-close>Close</button>
       </div>
     </div>
   </div>
@@ -1015,6 +900,6 @@
     </div>
   </div>
 
-  <script src="managem.js?v=1" defer></script>
+  <script src="managem.js?v=2" defer></script>
 </body>
 </html>
