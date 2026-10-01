@@ -7,6 +7,7 @@ A first visual draft for Graeme to react to, not a final page.
 |---|---|
 | `index.html` | The whole long-scroll page, all 13 blocks in the brief's order, plus the signup, demo and setup modals. |
 | `managem.css` | Standalone stylesheet (does not load `site.css`). Tokens follow the GEMIS direction: Archivo, paper, navy. |
+| `managem-standalone.html` | Generated single-file build: the page with the stylesheet, script, fonts and favicon inlined, and site links made absolute. Open or share it on its own. Rebuild it after editing the three source files. |
 | `managem.js` | Header state, mobile menu, flow stages and scroll pulse, industry tabs, pricing toggle, modals, forms, CTA tracking. No dependencies. |
 
 The page is static. Open it through any file server from the repo root
