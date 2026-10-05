@@ -3,18 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Product &amp; interface design, designed and built | GEMIS Studio</title>
-<meta name="description" content="GEMIS Studio is the product and experience design practice of GEM Information Systems. Start with a Product Teardown — a five-day diagnosis of what your users actually do, R6,500 excl. VAT.">
+<title>Product &amp; interface design, built by the same team | GEMIS Studio</title>
+<meta name="description" content="GEMIS Studio is the product and experience design practice of GEM Information Systems. Start with a Product Teardown — R6,500 excl. VAT, findings within five working days of booking. The other services are priced after the Teardown.">
 <link rel="canonical" href="https://gemis.co.za/studio/">
-<meta property="og:title" content="Product &amp; interface design, designed and built | GEMIS Studio">
-<meta property="og:description" content="Start with a Product Teardown — a five-day diagnosis of what your users actually do. R6,500 excl. VAT, credited in full against anything booked within 60 days.">
+<meta property="og:title" content="Product &amp; interface design, built by the same team | GEMIS Studio">
+<meta property="og:description" content="Start with a Product Teardown — R6,500 excl. VAT, findings within five working days of booking, credited in full against anything booked within 60 days. The other services are priced after the Teardown.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gemis.co.za/studio/">
+<meta property="og:site_name" content="GEMIS Studio">
+<meta property="og:locale" content="en_ZA">
+<meta property="og:image" content="https://gemis.co.za/studio/assets/og-studio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GEMIS Studio — We design the product, and we build it.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="/studio/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#0C0C0C">
-<link rel="icon" href="../assets/img/favicon.svg">
+<link rel="preload" href="/studio/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/studio/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwYjBiMGMiLz4KICA8cGF0aCBkPSJNMzIgMTAgTDUwIDI0IEw0NCA1MCBMMjAgNTAgTDE0IDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBGNENGRiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzNCIgcj0iNiIgZmlsbD0iIzBGNENGRiIvPgo8L3N2Zz4K">
 
-<link rel="preload" href="../assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
 /* ══════════════════════════════════════════════════════════════════════
@@ -33,9 +41,9 @@
    Copy, links and imagery are existing GEMIS content from this repo.
    ══════════════════════════════════════════════════════════════════════ */
 
-@font-face{font-family:'Inter Tight Var';src:url('../assets/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');font-weight:300 700;font-display:swap}
-@font-face{font-family:'Inter Var';src:url('../assets/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');font-weight:400 700;font-display:swap}
-@font-face{font-family:'JetBrains Mono';src:url('../assets/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter Tight Var';src:url('/studio/assets/fonts/inter-tight-var.woff2') format('woff2-variations');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Inter Var';src:url('/studio/assets/fonts/inter-var.woff2') format('woff2-variations');font-weight:400 700;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url('/studio/assets/fonts/jetbrains-mono.woff2') format('woff2');font-weight:400;font-display:swap}
 
 :root{
   /* fields, in scroll order */
@@ -86,6 +94,7 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 h1,h2,h3,h4{margin:0;font-family:var(--fd);font-weight:400;letter-spacing:-.035em;line-height:.94}
+h1,h2{text-wrap:balance}
 p{margin:0}
 ul{margin:0;padding:0;list-style:none}
 :focus-visible{outline:2px solid currentColor;outline-offset:3px}
@@ -125,7 +134,7 @@ ul{margin:0;padding:0;list-style:none}
 .wordmark{display:inline-flex;align-items:center;gap:9px;font-family:var(--fd);font-weight:600;
   font-size:1.12rem;letter-spacing:-.01em;line-height:1}
 .wordmark svg{width:26px;height:26px;display:block}
-.wordmark sup{font-size:.5em;vertical-align:super;font-weight:400}
+.wordmark sup{font-size:.62em;margin-left:1px;vertical-align:super;font-weight:400}
 .hdr__r{display:flex;align-items:center;gap:10px}
 .icb{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;
   background:rgba(255,255,255,.09);color:inherit;transition:background var(--t) var(--ease)}
@@ -150,6 +159,16 @@ ul{margin:0;padding:0;list-style:none}
 .pill__burger::before{top:0}.pill__burger::after{top:7.6px}
 .menu-open .pill__burger::before{top:3.8px;transform:rotate(45deg)}
 .menu-open .pill__burger::after{top:3.8px;transform:rotate(-45deg)}
+.menu-open .hdr__r{color:var(--on-light)}
+.menu-open .hdr__r .icb{background:rgba(0,0,0,.07)}
+.menu-open .hdr__r .icb:hover{background:rgba(0,0,0,.13)}
+.menu-open .hdr__r .pill--solid{background:#111;color:#F2F2F2}
+.menu-open .hdr__r .pill--solid:hover{background:#000}
+.menu-open .hdr__r .pill--ghost{border-color:rgba(0,0,0,.35)}
+.menu-open .hdr__r .pill--ghost:hover{background:rgba(0,0,0,.06)}
+@media (max-width:430px){
+  .menu-open .wordmark{color:var(--on-light)}
+}
 
 /* ── menu panel ──────────────────────────────────────────────────── */
 .menu{position:fixed;top:0;right:0;bottom:0;z-index:110;width:min(430px,100%);
@@ -200,7 +219,7 @@ ul{margin:0;padding:0;list-style:none}
 .badge__a span{font-size:.84rem;color:var(--on-dark);white-space:nowrap}
 .badge__b{padding:16px 18px;display:flex;align-items:center;text-align:left;
   font-family:var(--fd);font-weight:500;font-size:.85rem;line-height:1.28;text-transform:uppercase;color:var(--on-dark)}
-.hero__aside p{margin-top:24px;font-size:1rem;line-height:1.38;color:var(--on-dark);text-align:justify}
+.hero__aside p{margin-top:24px;font-size:1rem;line-height:1.38;color:var(--on-dark);text-align:left}
 .hero__note{position:absolute;left:0;right:0;bottom:26px;z-index:2;text-align:center;color:var(--on-dark-3)}
 .scrolldot{position:absolute;left:var(--gutter);bottom:26px;z-index:2;display:grid;place-items:center;
   width:26px;height:26px;border-radius:50%;border:1px solid var(--rule-dark);color:var(--on-dark-3)}
@@ -208,7 +227,7 @@ ul{margin:0;padding:0;list-style:none}
 
 /* ══ 02 · ABOUT ══════════════════════════════════════════════════ */
 .about{position:relative;background:var(--black);padding:clamp(90px,11vw,170px) 0;overflow:hidden}
-.about__label{position:absolute;left:var(--gutter);top:clamp(90px,11vw,170px);color:var(--on-dark-3);z-index:2}
+.about__label{position:static;display:block;margin:0 0 clamp(20px,2.4vw,36px);color:var(--on-dark-3)}
 .about__in{position:relative;z-index:2}
 .about h2{color:var(--on-dark);max-width:none}
 .about__rule{margin-top:clamp(56px,6vw,96px);height:1px;background:var(--rule-dark);position:relative}
@@ -269,17 +288,23 @@ ul{margin:0;padding:0;list-style:none}
 .partners li{padding:0 clamp(22px,3vw,46px);border-left:1px solid var(--rule-light);
   display:grid;place-items:center;min-height:42px}
 .partners li:first-child{border-left:0}
-.partners img{max-height:26px;width:auto;opacity:.78;filter:grayscale(1) contrast(.9)}
+.partners li span{font-family:var(--fd);font-weight:500;text-transform:uppercase;color:var(--on-light-2);font-size:1rem;letter-spacing:-.005em;line-height:1}
 
 /* ══ 05 · SELECTED WORK — sticky title, horizontal rail ══════════ */
 .work{background:linear-gradient(180deg,var(--f-work-a),var(--f-work-b));color:var(--on-light);
   padding:clamp(70px,8vw,110px) 0 clamp(70px,8vw,110px);position:relative;overflow:hidden}
-@media (min-width:1181px){.work{min-height:min(160vh,1500px);display:flex;align-items:center}}
 .work__grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center}
 .work__l{position:relative;min-width:0;display:flex;flex-direction:column;justify-content:center;
   padding-right:clamp(30px,4vw,70px)}
 .work__l h2{color:var(--on-light);max-width:11ch}
 .work__l .mcta{margin-top:clamp(30px,3.4vw,52px);align-self:flex-start;margin-left:clamp(0px,6vw,116px)}
+.wnav{margin-top:clamp(30px,3.4vw,52px);display:flex;align-self:flex-start;margin-left:clamp(0px,6vw,116px)}
+.wnav button{width:74px;height:74px;display:grid;place-items:center;border:1px solid var(--rule-light);
+  color:var(--on-light);transition:background var(--t) var(--ease)}
+.wnav button+button{border-left:0}
+.wnav button:hover:not([disabled]){background:rgba(0,0,0,.05)}
+.wnav button[disabled]{opacity:.4;cursor:default}
+.wnav svg{width:16px;height:16px}
 .work__r{position:relative;min-width:0;border-left:1px solid var(--rule-light);padding-left:clamp(30px,4vw,74px)}
 .work__r::before{content:'+';position:absolute;left:-7px;top:-42px;color:var(--on-light-3);font-size:.9rem;line-height:1}
 .wrail{display:grid;grid-auto-flow:column;grid-auto-columns:min(800px,74vw);gap:clamp(40px,5vw,86px);
@@ -297,7 +322,7 @@ ul{margin:0;padding:0;list-style:none}
 .svc{position:relative;background:var(--black);color:var(--on-dark);overflow:hidden;
   padding:clamp(70px,8vw,116px) 0 clamp(60px,7vw,96px)}
 .svc__lab{position:relative;z-index:3;text-align:center;font-family:var(--fd);font-weight:500;
-  font-size:.9rem;text-transform:uppercase;color:var(--on-dark)}
+  font-size:.9rem;letter-spacing:-.005em;line-height:1.5;text-transform:uppercase;color:var(--on-dark)}
 .svc__smoke{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(58% 48% at 50% 44%,rgba(120,124,132,.26),transparent 68%),
              radial-gradient(90% 70% at 22% 12%,rgba(96,100,108,.14),transparent 70%),
@@ -411,9 +436,11 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 
 /* ══ responsive ══════════════════════════════════════════════════ */
 @media (max-width:1180px){
-  .work__grid{grid-template-columns:1fr}
-  .work__l{padding-right:0}
+  .work__grid{display:flex;flex-direction:column}
+  .work__l{display:contents}
   .work__l .mcta{margin-left:0}
+  .work__r{order:2}
+  .wnav{order:3;margin-left:0;margin-top:clamp(28px,4vw,44px)}
   .work__r{border-left:0;padding-left:0;margin-top:clamp(40px,5vw,64px)}
   .work__r::before{display:none}
   .wrail{grid-auto-columns:min(680px,84vw)}
@@ -447,6 +474,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
   .mcta{min-width:min(280px,100%)}
   .hero__note{display:none}
   .scrolldot{display:none}
+  .values{min-height:min(64svh,560px)}
   .svc__cards{grid-template-columns:1fr}
   .svc__stone{display:none}
   .egrid{grid-template-columns:1fr}
@@ -466,7 +494,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 <symbol id="i-arr" viewBox="0 0 14 14"><path d="M1.5 7h11M8 2.5 12.5 7 8 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-arl" viewBox="0 0 14 14"><path d="M12.5 7h-11M6 2.5 1.5 7 6 11.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-down" viewBox="0 0 14 14"><path d="M7 1.5v11M2.5 8 7 12.5 11.5 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-<symbol id="i-sound" viewBox="0 0 16 16"><path d="M2.5 6.2h2.3L8 3.4v9.2L4.8 9.8H2.5V6.2Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M10.4 6.1a2.7 2.7 0 0 1 0 3.8M12.4 4.3a5.4 5.4 0 0 1 0 7.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+<symbol id="i-phone" viewBox="0 0 16 16"><path d="M3.6 2.5h2.2l1.1 2.8-1.4 1a7.6 7.6 0 0 0 3.6 3.6l1-1.4 2.8 1.1v2.2a1 1 0 0 1-1.1 1A10.6 10.6 0 0 1 2.5 3.6a1 1 0 0 1 1.1-1.1Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
 <symbol id="i-globe" viewBox="0 0 32 32"><ellipse cx="16" cy="16" rx="13" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="16" r="8.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M16 7.6v16.8" fill="none" stroke="currentColor" stroke-width="1.2"/></symbol>
 <symbol id="i-quote" viewBox="0 0 26 26"><path d="M3 15.5c0-5 2.8-8.6 7.4-10.2l.9 2.3C8.6 8.8 7 10.7 6.7 13h3.6v8H3v-5.5Zm12.4 0c0-5 2.8-8.6 7.4-10.2l.9 2.3c-3.7 1.2-5.3 3.1-5.6 5.4h3.6v8h-6.3v-5.5Z" fill="currentColor"/></symbol>
 <symbol id="i-mark" viewBox="4 8 18.5 19"><path fill="currentColor" opacity=".34" d="M12.9,26.2C12.3,26.1 12,25.9 11.6,25.6C11.3,25.4 10.9,25.1 10.6,25C10.4,24.8 10.1,24.6 10,24.5C9.9,24.4 9.6,24.3 9.3,24.1C9,24 8.6,23.7 8.4,23.5C8.1,23.4 7.7,23.1 7.5,23.1C7.2,23 6.7,22.6 6.2,22.3C5,21.3 5,21.4 5,17.5L5,14.4L5.3,13.9C5.5,13.4 5.6,13.3 6.3,13C6.6,12.8 7.1,12.5 7.3,12.4C7.5,12.2 7.9,12 8.1,11.9C8.3,11.8 8.7,11.6 8.8,11.4C9,11.3 9.3,11.1 9.6,11C9.8,10.9 10.2,10.6 10.5,10.4C10.7,10.2 11.1,10 11.3,9.9C11.6,9.9 12,9.6 12.2,9.4C12.9,8.8 13.6,8.8 14.4,9.4C14.7,9.6 15.1,9.9 15.4,10C15.6,10.2 15.9,10.4 16,10.5C16.1,10.6 16.4,10.7 16.7,10.9C17,11 17.4,11.3 17.6,11.5C17.9,11.6 18.3,11.9 18.5,11.9C18.8,12 19.2,12.2 19.4,12.4C19.7,12.6 20.1,12.9 20.3,13C20.7,13.2 20.9,13.5 21.1,13.8L21.3,14.3L21.3,17.8C21.3,21.8 21.3,21.7 20.5,22.1C20.3,22.2 19.8,22.5 19.6,22.7C19.4,22.9 19,23.1 18.8,23.2C18.6,23.2 18.3,23.4 18.2,23.5C18,23.7 17.7,23.9 17.4,24C17.2,24.1 16.8,24.3 16.6,24.5C16.3,24.7 15.9,25 15.6,25.1C15.3,25.2 14.9,25.5 14.7,25.7C14.4,25.9 13.4,26.4 13.4,26.3C13.4,26.3 13.2,26.2 12.9,26.2Z"/>
@@ -474,15 +502,15 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 </defs></svg>
 
 <header class="hdr" id="hdr">
-  <a class="wordmark" href="./" aria-label="GEMIS Studio — home">
+  <a class="wordmark" href="https://gemis.co.za/studio/" aria-label="GEMIS Studio — home">
     <svg viewBox="4 8 18.5 19" aria-hidden="true"><use href="#i-mark" x="4" y="8" width="18.5" height="19"/></svg>
     GEMIS<sup>®</sup>
   </a>
   <div class="hdr__r">
-    <a class="icb" href="tel:+27814182518" aria-label="Call the studio on +27 81 418 2518" data-ev="contact_click" data-method="phone">
-      <svg aria-hidden="true"><use href="#i-sound"/></svg>
+    <a class="icb" href="tel:+27814182518" aria-label="Call the studio on +27 81 418 2518">
+      <svg aria-hidden="true"><use href="#i-phone"/></svg>
     </a>
-    <a class="pill pill--solid" href="#book" data-ev="cta_click" data-loc="header">Let's talk</a>
+    <a class="pill pill--solid" href="#book">Let's talk</a>
     <button class="pill pill--ghost" type="button" id="menuBtn" aria-expanded="false" aria-controls="menu">
       Menu <span class="pill__burger" aria-hidden="true"></span>
     </button>
@@ -498,21 +526,21 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     <a href="#about">About</a>
     <a href="#book">Contact</a>
   </div>
-  <a class="menu__tag" href="../about.html">✦ The GEMIS story</a>
+  <a class="menu__tag" href="https://gemis.co.za/about.html">✦ The GEMIS story</a>
   <div class="menu__foot">
     <p>Business enquiry</p>
     <div class="menu__rows">
-      <a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email"><em>E.</em>info@gemis.co.za</a>
-      <a href="tel:+27814182518" data-ev="contact_click" data-method="phone"><em>P.</em>+27 81 418 2518</a>
+      <a href="mailto:info@gemis.co.za"><em>E.</em>info@gemis.co.za</a>
+      <a href="tel:+27814182518"><em>P.</em>+27 81 418 2518</a>
       <span><em>A.</em>66 Park Lane, Sandown, Sandton, 2196</span>
     </div>
     <div class="menu__soc">
       <p>Elsewhere</p>
       <ul>
-        <li><a href="https://www.linkedin.com/company/gem-information-systems" rel="noopener">Linkedin</a></li>
-        <li><a href="../index.html">GEMIS</a></li>
-        <li><a href="../work.html">Work</a></li>
-        <li><a href="../services.html">Services</a></li>
+        <li><a href="https://www.linkedin.com/company/gem-information-systems" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
+        <li><a href="https://gemis.co.za/">GEMIS</a></li>
+        <li><a href="https://gemis.co.za/work.html">Work</a></li>
+        <li><a href="https://gemis.co.za/services.html">Services</a></li>
       </ul>
     </div>
   </div>
@@ -545,7 +573,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
   <div class="hero__in">
     <h1 class="d1 rv">We design the product, and we build it.</h1>
     <div class="hero__ctas rv" style="--d:80ms">
-      <a class="mcta" href="#book" data-ev="cta_click" data-loc="hero">Book a Teardown — R6,500 <i aria-hidden="true">→</i></a>
+      <a class="mcta" href="#book">Book a Teardown — R6,500 <i aria-hidden="true">→</i></a>
       <a class="mcta" href="#services">See the four services <i aria-hidden="true">→</i></a>
     </div>
   </div>
@@ -561,21 +589,21 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     <p>GEMIS Studio designs products, interfaces and the systems behind them — not logos.</p>
   </div>
 
-  <p class="mono hero__note">Published prices · No proposal required · Prices exclude VAT</p>
+  <p class="mono hero__note">Teardown price published · No proposal required · Prices exclude VAT</p>
   <a class="scrolldot" href="#about" aria-label="Scroll to About"><svg aria-hidden="true"><use href="#i-down"/></svg></a>
 </section>
 
 <!-- ═══ 02 · ABOUT ═════════════════════════════════════════════ -->
 <section class="about" id="about" aria-labelledby="about-h">
-  <p class="mono about__label">About</p>
   <div class="rail about__in">
+    <p class="mono about__label">About</p>
     <h2 class="d2 rv" id="about-h">GEMIS Studio is the product and experience design practice of GEM Information Systems.</h2>
     <div class="about__rule rv" style="--d:80ms" aria-hidden="true"></div>
     <div class="about__cols">
       <p class="label rv">We never sell a stage.<br>Developer handoff is in the price.<br>Thirty days of aftercare.</p>
       <div class="rv" style="--d:80ms">
         <p>We work out what your users actually do, redesign it, and hand it to your developers, or build it ourselves in the same company.</p>
-        <a class="mcta" href="../about.html">More about us <i aria-hidden="true">→</i></a>
+        <a class="mcta" href="https://gemis.co.za/about.html">More about us <i aria-hidden="true">→</i></a>
       </div>
     </div>
   </div>
@@ -584,7 +612,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 <!-- ═══ 03 · VALUES ════════════════════════════════════════════ -->
 <section class="values" aria-labelledby="val-h">
   <h2 class="sr" id="val-h">How we work</h2>
-  <p class="label values__top">Published prices.<br>No proposal required.</p>
+  <p class="label values__top">One published price.<br>No proposal required.</p>
   <div class="vmarq" aria-hidden="true">
     <div class="vmarq__run">
       <span>Diagnose</span><i>+</i><span>Design</span><i>+</i><span>Build</span><i>+</i>
@@ -603,11 +631,11 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 
     <div class="kf">
       <article class="kfc kfc--dark rv">
-        <img src="../assets/img/studio/kf-1.jpg" alt="" width="742" height="920" loading="lazy" decoding="async">
+        <img src="/studio/assets/img/keyfacts-findings.webp" alt="" width="742" height="920" loading="lazy" decoding="async">
         <p class="kfc__lab">Time to findings</p>
         <div class="kfc__foot">
-          <p>From booking to a ranked, evidenced account of what is going wrong.</p>
-          <p class="kfc__n">5<em>days</em></p>
+          <p>Findings are delivered within five working days of booking — ranked, evidenced and redrawn.</p>
+          <p class="kfc__n">5<em>working days</em></p>
         </div>
       </article>
 
@@ -618,7 +646,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
       </article>
 
       <article class="kfc kfc--dark rv" style="--d:140ms">
-        <img src="../assets/img/studio/kf-3.jpg" alt="" width="742" height="920" loading="lazy" decoding="async">
+        <img src="/studio/assets/img/keyfacts-aftercare.webp" alt="" width="742" height="920" loading="lazy" decoding="async">
         <p class="kfc__lab">Aftercare included</p>
         <div class="kfc__foot">
           <p>We answer questions and fix what we got wrong, at no additional cost.</p>
@@ -630,10 +658,8 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     <div class="partners rv">
       <p>Clients we have designed for</p>
       <ul>
-        <li><img src="../assets/img/logos/ax-channels.png" alt="AX Channels" loading="lazy" decoding="async"></li>
-        <li><img src="../assets/img/logos/neuraux.png" alt="Neuraux" loading="lazy" decoding="async"></li>
-        <li><img src="../assets/img/logos/kiy-trucking.png" alt="KIY Trucking" loading="lazy" decoding="async"></li>
-        <li><img src="../assets/img/logos/cmaxx.png" alt="CMAXX" loading="lazy" decoding="async"></li>
+        <li><span>KIY Trucking</span></li>
+        <li><span>CMAXX</span></li>
       </ul>
     </div>
   </div>
@@ -644,51 +670,55 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
   <div class="rail work__grid">
     <div class="work__l">
       <h2 class="d3 rv" id="work-h">Selected work &amp; explorations</h2>
-      <a class="mcta rv" style="--d:70ms" href="../work.html">View all projects <i aria-hidden="true">→</i></a>
+      <a class="mcta rv" style="--d:70ms" href="https://gemis.co.za/work.html">View all projects <i aria-hidden="true">→</i></a>
+      <div class="wnav">
+        <button type="button" id="wPrev" aria-label="Previous project"><svg aria-hidden="true"><use href="#i-arl"/></svg></button>
+        <button type="button" id="wNext" aria-label="Next project"><svg aria-hidden="true"><use href="#i-arr"/></svg></button>
+      </div>
     </div>
 
     <div class="work__r">
-      <div class="wrail" id="wrail">
+      <div class="wrail" id="wrail" tabindex="0" role="region" aria-label="Selected projects">
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-finos.jpg" alt="FINOS interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/finos-device.webp" alt="FINOS interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>FINOS</h3><p>AI financial operating system — a command centre that reviews, matches and explains before anyone approves.</p></div>
-            <a class="mcta mcta--light" href="../work.html">Explore project <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://gemis.co.za/work.html">Explore project <i aria-hidden="true">→</i></a>
           </div>
         </article>
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-managem.jpg" alt="ManaGem interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/managem-device.webp" alt="ManaGem interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>ManaGem</h3><p>Business management platform — quotes, jobs, stock and invoicing in one working system.</p></div>
-            <a class="mcta mcta--light" href="../managem.html">Explore project <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://gemis.co.za/managem.html">Explore project <i aria-hidden="true">→</i></a>
           </div>
         </article>
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-wastemart.jpg" alt="WasteMart interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/wastemart-device.webp" alt="WasteMart interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>WasteMart</h3><p>Recycling operations system — routes, pickups and manifests from depot to doorstep.</p></div>
-            <a class="mcta mcta--light" href="../wastemart.html">Explore project <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://gemis.co.za/wastemart.html">Explore project <i aria-hidden="true">→</i></a>
           </div>
         </article>
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-smartstart.jpg" alt="SmartStart interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/smartstart-device.webp" alt="SmartStart interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>SmartStart</h3><p>Early-learning training platform — courses and franchise operations for practitioners.</p></div>
-            <a class="mcta mcta--light" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener">Visit site <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://smartstart.org.za/" target="_blank" rel="noopener noreferrer">Visit site <i aria-hidden="true">→</i></a>
           </div>
         </article>
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-sonke.jpg" alt="Sonke Gender Justice interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/sonke-device.webp" alt="Sonke Gender Justice interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>Sonke Gender Justice</h3><p>Programme management system — programmes, court cases and resource mobilisation in one place.</p></div>
-            <a class="mcta mcta--light" href="../work.html">Explore project <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://gemis.co.za/work.html">Explore project <i aria-hidden="true">→</i></a>
           </div>
         </article>
         <article class="wcard">
-          <div class="wcard__img"><img src="../assets/img/studio/w-rentflow.jpg" alt="RentFlow interface shown on a device" width="1000" height="688" loading="lazy" decoding="async"></div>
+          <div class="wcard__img"><img src="/studio/assets/img/rentflow-device.webp" alt="RentFlow app screens shown on two phones" width="1000" height="688" loading="lazy" decoding="async"></div>
           <div class="wcard__row">
             <div><h3>RentFlow</h3><p>Property and rent management — bills, insights and payments with an AI assistant on call.</p></div>
-            <a class="mcta mcta--light" href="../work.html">Explore project <i aria-hidden="true">→</i></a>
+            <a class="mcta mcta--light" href="https://gemis.co.za/work.html">Explore project <i aria-hidden="true">→</i></a>
           </div>
         </article>
       </div>
@@ -709,7 +739,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     </svg>
   </div>
 
-  <p class="svc__lab" id="svc-h">Our services</p>
+  <h2 class="svc__lab" id="svc-h">Our services</h2>
 
   <div class="rail svc__stack rv" aria-hidden="true">
     <span>Teardown</span><span>Refresh</span><span>Web</span><span>Embedded</span>
@@ -721,7 +751,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
         <h3>Product Teardown</h3>
         <span class="scard__deco" aria-hidden="true"><svg viewBox="0 0 74 56"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M4 6v44M12 6v44M20 6v44M28 6v44M36 6v44M44 6v44M52 6v44M60 6v44M68 6v44"/></g></svg></span>
       </div>
-      <p>A ranked, evidenced account of what is actually going wrong in your product — and the first five screens redrawn so you can see the fix.</p>
+      <p>A ranked, evidenced account of what is actually going wrong in your product — the first five screens redrawn so you can see the fix, and a twelve-month roadmap.</p>
       <p class="scard__price">R6,500 excl. VAT · 5 days</p>
     </article>
 
@@ -731,7 +761,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
         <span class="scard__deco" aria-hidden="true"><svg viewBox="0 0 74 56"><g fill="none" stroke="currentColor" stroke-width="1"><circle cx="37" cy="28" r="6"/><circle cx="37" cy="28" r="12"/><circle cx="37" cy="28" r="18"/><circle cx="37" cy="28" r="24"/></g></svg></span>
       </div>
       <p>A fixed-scope, fixed-price visual and interaction refresh of a product that functions but no longer looks like it does — delivered developer-ready.</p>
-      <p class="scard__price">Price pending sign-off</p>
+      <p class="scard__price">Priced after the Teardown</p>
     </article>
 
     <article class="scard rv" style="--d:140ms" id="service-web">
@@ -740,7 +770,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
         <span class="scard__deco" aria-hidden="true"><svg viewBox="0 0 74 56"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M30 4a26 26 0 0 0 0 48M24 10a20 20 0 0 0 0 36M18 16a14 14 0 0 0 0 24M44 4a26 26 0 0 1 0 48M50 10a20 20 0 0 1 0 36M56 16a14 14 0 0 1 0 24"/></g></svg></span>
       </div>
       <p>A website designed and built by the same company, so nothing is lost between the design file and the thing your customers actually load.</p>
-      <p class="scard__price">Price pending sign-off · Brand Foundation +R15,000</p>
+      <p class="scard__price">Priced after the Teardown</p>
     </article>
 
     <article class="scard rv" style="--d:210ms" id="service-embedded">
@@ -749,13 +779,13 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
         <span class="scard__deco" aria-hidden="true"><svg viewBox="0 0 74 56"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M6 28h62M6 20h62M6 36h62"/><circle cx="37" cy="28" r="10"/></g></svg></span>
       </div>
       <p>A designer inside your team on a monthly retainer — the capacity of a hire, without the salary, the recruitment or the single point of failure.</p>
-      <p class="scard__price">20, 40 or 60 hours a month · Price pending sign-off</p>
+      <p class="scard__price">20, 40 or 60 hours a month · Priced after the Teardown</p>
     </article>
   </div>
 
   <div class="rail svc__foot">
-    <p class="label">✦ Four services. Published prices.</p>
-    <a class="mcta" href="../services.html">View services <i aria-hidden="true">→</i></a>
+    <p class="label">✦ Four services. Start with the Teardown.</p>
+    <a class="mcta" href="https://gemis.co.za/services.html">View services <i aria-hidden="true">→</i></a>
   </div>
 </section>
 
@@ -769,7 +799,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     <div class="qa__rule" aria-hidden="true"></div>
 
     <div class="qa__body">
-      <div class="qa__list" id="qaList" role="tablist" aria-label="Questions">
+      <div class="qa__list" id="qaList" role="tablist" aria-orientation="vertical" aria-label="Questions">
         <button type="button" role="tab" aria-selected="true"  aria-controls="qa-p0" id="qa-t0">Excluding VAT? <i aria-hidden="true">→</i></button>
         <button type="button" role="tab" aria-selected="false" aria-controls="qa-p0" id="qa-t1">We already have a developer <i aria-hidden="true">→</i></button>
         <button type="button" role="tab" aria-selected="false" aria-controls="qa-p0" id="qa-t2">Who owns the files <i aria-hidden="true">→</i></button>
@@ -795,7 +825,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
           <button type="button" id="qaNext" aria-label="Next question"><svg aria-hidden="true"><use href="#i-arr"/></svg></button>
         </div>
         <div class="qa__cta">
-          <a class="mcta mcta--light" href="#book" data-ev="cta_click" data-loc="faq">Become a client <i aria-hidden="true">→</i></a>
+          <a class="mcta mcta--light" href="#book">Become a client <i aria-hidden="true">→</i></a>
         </div>
       </div>
     </div>
@@ -807,17 +837,17 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
   <h2 class="sr" id="ex-h">Explorations</h2>
   <div class="rail-cards">
     <div class="egrid">
-      <figure class="rv"><img src="../assets/img/studio/e-1.jpg" alt="NuraCoach interface shown on a device" width="780" height="600" loading="lazy" decoding="async"></figure>
-      <figure class="rv" style="--d:50ms"><img src="../assets/img/studio/e-2.jpg" alt="Lungelo interface shown on a device" width="780" height="600" loading="lazy" decoding="async"></figure>
-      <figure class="rv" style="--d:100ms"><img src="../assets/img/studio/e-3.jpg" alt="ManaGem shown on a desktop workstation" width="780" height="600" loading="lazy" decoding="async"></figure>
-      <figure class="rv" style="--d:150ms"><img src="../assets/img/studio/e-4.jpg" alt="WasteMart driver app shown on a phone" width="780" height="600" loading="lazy" decoding="async"></figure>
-      <figure class="rv" style="--d:200ms"><img src="../assets/img/studio/e-5.jpg" alt="GEMIS Tech site shown on a monitor" width="780" height="600" loading="lazy" decoding="async"></figure>
-      <figure class="rv" style="--d:250ms"><img src="../assets/img/studio/e-6.jpg" alt="Interface work shown on two displays" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv"><img src="/studio/assets/img/nuracoach-device.webp" alt="NuraCoach interface shown on a device" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv" style="--d:50ms"><img src="/studio/assets/img/lungelo-device.webp" alt="Lungelo interface shown on a device" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv" style="--d:100ms"><img src="/studio/assets/img/managem-desk.webp" alt="ManaGem shown on a desktop workstation" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv" style="--d:150ms"><img src="/studio/assets/img/wastemart-driver.webp" alt="WasteMart driver app shown on a phone" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv" style="--d:200ms"><img src="/studio/assets/img/rentflow-phones-set.webp" alt="RentFlow app screens on two phones, purple studio set" width="780" height="600" loading="lazy" decoding="async"></figure>
+      <figure class="rv" style="--d:250ms"><img src="/studio/assets/img/display-studio.webp" alt="Interface work shown on two displays" width="780" height="600" loading="lazy" decoding="async"></figure>
     </div>
   </div>
   <div class="bleed expl__foot">
     <p class="rv">Concepts, explorations, and interface experiments shared openly as part of our design practice.</p>
-    <a class="mcta mcta--light rv" style="--d:60ms" href="../work.html">View the full portfolio <i aria-hidden="true">→</i></a>
+    <a class="mcta mcta--light rv" style="--d:60ms" href="https://gemis.co.za/work.html">View the full portfolio <i aria-hidden="true">→</i></a>
   </div>
 </section>
 
@@ -847,8 +877,8 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     <div class="fcta__mid">
       <span></span>
       <div class="fcta__ctas rv" style="--d:70ms">
-        <a class="mcta" href="mailto:info@gemis.co.za?subject=Book%20a%20Product%20Teardown&amp;body=What%20should%20we%20take%20apart%3F%20(the%20product%2C%20the%20internal%20system%20or%20the%20website)%20%E2%80%94%20and%20what%20do%20users%20complain%20about%3F%0A%0AName%3A%0ACompany%3A%0APhone%3A" data-ev="cta_click" data-loc="closing">Book a Teardown — R6,500 <i aria-hidden="true">→</i></a>
-        <a class="mcta" href="tel:+27814182518" data-ev="contact_click" data-method="phone">Call the studio <i aria-hidden="true">→</i></a>
+        <a class="mcta" href="mailto:info@gemis.co.za?subject=Book%20a%20Product%20Teardown&amp;body=What%20should%20we%20take%20apart%3F%20(the%20product%2C%20the%20internal%20system%20or%20the%20website)%20%E2%80%94%20and%20what%20do%20users%20complain%20about%3F%0A%0AName%3A%0ACompany%3A%0APhone%3A">Book a Teardown — R6,500 <i aria-hidden="true">→</i></a>
+        <a class="mcta" href="tel:+27814182518">Call the studio <i aria-hidden="true">→</i></a>
       </div>
     </div>
 
@@ -860,17 +890,17 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
       <div class="fcta__col">
         <p>Business enquiry</p>
         <div class="fcta__rows">
-          <a href="mailto:info@gemis.co.za" data-ev="contact_click" data-method="email"><em>E.</em>info@gemis.co.za</a>
-          <a href="tel:+27814182518" data-ev="contact_click" data-method="phone"><em>P.</em>+27 81 418 2518</a>
+          <a href="mailto:info@gemis.co.za"><em>E.</em>info@gemis.co.za</a>
+          <a href="tel:+27814182518"><em>P.</em>+27 81 418 2518</a>
         </div>
       </div>
       <div class="fcta__col">
         <p>Elsewhere</p>
         <div class="fcta__soc">
-          <a href="https://www.linkedin.com/company/gem-information-systems" rel="noopener">Linkedin</a>
-          <a href="../index.html">GEMIS</a>
-          <a href="../work.html">Work</a>
-          <a href="../privacy.html">Privacy</a>
+          <a href="https://www.linkedin.com/company/gem-information-systems" target="_blank" rel="noopener noreferrer">Linkedin</a>
+          <a href="https://gemis.co.za/">GEMIS</a>
+          <a href="https://gemis.co.za/work.html">Work</a>
+          <a href="https://gemis.co.za/privacy.html">Privacy</a>
         </div>
       </div>
     </div>
@@ -890,7 +920,7 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
   "address":{"@type":"PostalAddress","streetAddress":"66 Park Lane, Sandown","addressLocality":"Sandton","postalCode":"2196","addressCountry":"ZA"},
   "areaServed":"ZA",
   "makesOffer":{"@type":"Offer",
-    "itemOffered":{"@type":"Service","name":"Product Teardown","description":"Five-day UX diagnosis: ranked issue list, five redesigned screens and a twelve-month roadmap."},
+    "itemOffered":{"@type":"Service","name":"Product Teardown","description":"Product Teardown: findings delivered within five working days of booking — a ranked issue list, five redesigned screens and a twelve-month roadmap."},
     "price":"6500","priceCurrency":"ZAR",
     "description":"Excludes VAT. Credited in full against any engagement booked within 60 days."}
 }
@@ -900,19 +930,6 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
 (function () {
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── analytics — dataLayer only, no third-party script ── */
-  function track(name, params) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(Object.assign({ event: name }, params || {}));
-  }
-  document.addEventListener('click', function (e) {
-    var el = e.target.closest('[data-ev]');
-    if (!el) { return; }
-    var ev = el.dataset.ev;
-    if (ev === 'cta_click') { track(ev, { location: el.dataset.loc, label: el.textContent.trim().slice(0, 40), page: 'home' }); }
-    else if (ev === 'contact_click') { track(ev, { method: el.dataset.method, page: 'home' }); }
-  });
 
   /* ── header ink follows the field it is sitting over ── */
   var hdr = document.getElementById('hdr'),
@@ -966,9 +983,10 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     if (!menu.classList.contains('is-open')) { return; }
     if (e.key === 'Escape') { closeMenu(); return; }
     if (e.key !== 'Tab') { return; }
-    var f = menu.querySelectorAll('a[href],button:not([disabled])');
-    if (!f.length) { return; }
-    var first = f[0], last = f[f.length - 1];
+    /* the cycle is: menu button → menu links → menu button */
+    var f = [menuBtn].concat(Array.prototype.slice.call(menu.querySelectorAll('a[href],button:not([disabled])')));
+    var first = f[0], last = f[f.length - 1], idx = f.indexOf(document.activeElement);
+    if (idx === -1) { e.preventDefault(); (e.shiftKey ? last : first).focus(); return; }
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
@@ -991,31 +1009,29 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     });
   }
 
-  /* ── selected work: the rail advances as the section passes, as the
-     design shows. It stays a plain horizontal scroller without JS, under
-     reduced motion, and for keyboard and touch. ── */
+  /* ── selected work: previous / next step the rail one card at a time ── */
   var wrail = document.getElementById('wrail'),
-      worksec = document.getElementById('work');
-  if (wrail && worksec && !reduced) {
-    var wTicking = false, userScrolled = false;
-    wrail.addEventListener('pointerdown', function () { userScrolled = true; });
-    wrail.addEventListener('keydown', function () { userScrolled = true; });
-    function syncRail() {
-      wTicking = false;
-      if (userScrolled) { return; }
-      var max = wrail.scrollWidth - wrail.clientWidth;
-      if (max <= 0) { return; }
-      var r = worksec.getBoundingClientRect(), vh = window.innerHeight;
-      if (r.bottom < 0 || r.top > vh) { return; }
-      /* 0 while the first card is settling into view, 1 before the section leaves */
-      var t = -r.top / (r.height * 0.85);
-      wrail.scrollLeft = max * Math.min(1, Math.max(0, t));
+      wPrev = document.getElementById('wPrev'), wNext = document.getElementById('wNext');
+  if (wrail && wPrev && wNext) {
+    var railTicking = false;
+    function railStep() {
+      var card = wrail.querySelector('.wcard');
+      var gap = parseFloat(getComputedStyle(wrail).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : wrail.clientWidth;
     }
-    window.addEventListener('scroll', function () {
-      if (!wTicking) { wTicking = true; requestAnimationFrame(syncRail); }
+    function syncRailNav() {
+      railTicking = false;
+      var max = wrail.scrollWidth - wrail.clientWidth;
+      wPrev.disabled = wrail.scrollLeft <= 2;
+      wNext.disabled = wrail.scrollLeft >= max - 2;
+    }
+    wPrev.addEventListener('click', function () { wrail.scrollBy({ left: -railStep(), behavior: reduced ? 'auto' : 'smooth' }); });
+    wNext.addEventListener('click', function () { wrail.scrollBy({ left: railStep(), behavior: reduced ? 'auto' : 'smooth' }); });
+    wrail.addEventListener('scroll', function () {
+      if (!railTicking) { railTicking = true; requestAnimationFrame(syncRailNav); }
     }, { passive: true });
-    window.addEventListener('resize', syncRail, { passive: true });
-    syncRail();
+    window.addEventListener('resize', syncRailNav, { passive: true });
+    syncRailNav();
   }
 
   /* ── questions: the list selects the answer shown beside it ── */
@@ -1023,9 +1039,9 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
     ['Are prices excluding VAT?', 'Yes. GEM Information Systems is a registered VAT vendor, and every price published on this site excludes VAT. The VAT amount is shown on your invoice.'],
     ['What if we already have a developer?', 'That is the normal case, and nothing changes. Developer handoff is included in every engagement — specifications, states and assets your team can build from. We are equally happy handing over as building.'],
     ['Who owns the files and the IP?', 'Ownership of the design files and the work delivered transfers to you. The specific terms — including revision rounds and scope boundaries — are set out in the engagement terms, which you receive before you commit to anything.'],
-    ["What if the Teardown says we don't need a redesign?", 'Then that is the finding, and it is a useful one. You keep the ranked issue list, the five redesigned screens and the roadmap, and you have spent R6,500 instead of committing to a project you did not need.'],
+    ["What if the Teardown says we don't need a redesign?", 'Then that is the finding, and it is a useful one. You keep the ranked issue list, the five redesigned screens and the twelve-month roadmap, and you have spent R6,500 instead of committing to a project you did not need.'],
     ['Can you build as well as design, and does that cost extra?', 'Yes. GEMIS Studio is the design practice of GEM Information Systems, a software company — so design and build sit under one roof. Build is scoped and priced separately from design, but the handoff between them costs you nothing, because there isn’t one.'],
-    ['How quickly can you start?', 'The Teardown session is held within three working days of booking, and findings follow five days from that point. Larger engagements are scheduled against current capacity, which we tell you before you commit.'],
+    ['How quickly can you start?', 'Findings are delivered within five working days of booking. Larger engagements are scheduled against current capacity, which we tell you before you commit.'],
     ['Do you work outside South Africa?', 'Yes. The work is remote by default and the sessions are held online. Pricing is published in South African Rand and invoiced in Rand.'],
     ['What happens after the 30 days of aftercare?', 'Nothing expires that you depend on — the work is yours. If you want continuing design capacity after that month, the Embedded Designer retainer is built for it; otherwise we are available for a further engagement when you need one.']
   ];
@@ -1037,7 +1053,10 @@ body:not(.js-rv) .rv{opacity:1;transform:none}
         active = 0;
     function show(i) {
       active = (i + QA.length) % QA.length;
-      tabs.forEach(function (t, n) { t.setAttribute('aria-selected', String(n === active)); });
+      tabs.forEach(function (t, n) {
+        t.setAttribute('aria-selected', String(n === active));
+        t.setAttribute('tabindex', n === active ? '0' : '-1');
+      });
       answer.textContent = QA[active][1];
       who.textContent = QA[active][0];
       document.getElementById('qa-p0').setAttribute('aria-labelledby', 'qa-t' + active);
