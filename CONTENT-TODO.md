@@ -68,7 +68,7 @@ outlines in the main navigation would be worse than no Insights page at all.
 
 | Profile | Href |
 |---|---|
-| LinkedIn | `https://www.linkedin.com/in/sphamandla-xaba-ba1602287/` — the URL the corporate footer already uses |
+| LinkedIn | `https://www.linkedin.com/showcase/gemis-design-studio` — the studio's showcase page |
 | Dribbble | `#` placeholder |
 | Behance | `#` placeholder |
 | Instagram | `#` placeholder |
@@ -183,8 +183,8 @@ owner approval pending**, and they stay provisional here:
 
 Each is marked in `studio/src/about.html` with a `<!-- CONTENT-TODO -->` comment.
 Everything else is lifted from the live homepage, the services ladder, or the
-corporate site: the mission line, the four values and the three company figures
-(12+ years, 50+ systems, 5+ sectors) are the corporate homepage's own, and the 2014
+corporate site: the mission line and the four values are the corporate homepage's
+own, and the 2014
 timeline and the six-person team are the corporate `about.html`'s. No street
 address is shown anywhere on the studio pages any more. Edit
 `studio/src/about.html`, then run `node tools/build-studio.mjs`.

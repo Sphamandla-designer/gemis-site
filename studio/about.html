@@ -578,7 +578,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
    inline style, hence the !important. */
 [data-a="facts"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(22,22,26,.25);border:1px solid rgba(22,22,26,.25)}
 [data-a="facts"]>div{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:22px 20px;min-height:0}
-[data-a="stats"]{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
 [data-a="four"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 [data-a="three"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 [data-a="chips"]{display:flex;gap:10px;flex-wrap:wrap}
@@ -587,9 +586,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .about-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
 .about-img img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .about-img:hover img{transform:scale(1.04)}
-@media (max-width:1100px){
-  [data-a="stats"]{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-}
 @media (max-width:900px){
   /* the hero is a grid like the homepage's, and its columns become rows */
   #about{grid-template-columns:1fr!important;grid-template-rows:auto auto!important;min-height:0!important;padding:104px 18px 44px!important;gap:40px!important}
@@ -601,7 +597,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 @media (max-width:560px){
   [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr!important}
-  [data-a="stats"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media (prefers-reduced-motion:reduce){.about-card,.about-img img{transition:none}}
 </style>
@@ -642,7 +637,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <div data-dc-tpl="41">
       <div data-dc-tpl="42" style="font-size: 13px; color: rgb(138, 136, 134); letter-spacing: 0.04em; margin-bottom: 12px; text-transform: uppercase;">Social</div>
       
-      <div data-dc-tpl="43" style="display: grid; grid-template-columns: 1fr 1fr; row-gap: 6px; font-size: 17px;"><a data-dc-tpl="44" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div data-dc-tpl="43" style="display: grid; grid-template-columns: 1fr 1fr; row-gap: 6px; font-size: 17px;"><a data-dc-tpl="44" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
   </div></div>
 
@@ -691,28 +686,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ── 03 · in numbers ──────────────────────────────────────────────────── -->
-<section id="stats" data-screen-label="In numbers" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:100px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">In numbers</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">A systems company<br>with a <span style="color:#ff1f7a">design practice.</span></h2>
-      </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">The first three figures are GEM Information Systems'. The rest are the terms every studio engagement is sold on.</p>
-    </div>
-    <div data-reveal="3" data-a="stats" style="margin-top:64px">
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff1f7a;display:grid;gap:14px"><span data-count="12" data-sup="+" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">12+</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Years building mission-critical systems</span></div>
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff1f7a;display:grid;gap:14px"><span data-count="50" data-sup="+" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">50+</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Systems delivered into production</span></div>
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff1f7a;display:grid;gap:14px"><span data-count="5" data-sup="+" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">5+</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Sectors served nationally</span></div>
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff7a12;display:grid;gap:14px"><span data-count="4" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">4</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Services, each with a published price</span></div>
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff7a12;display:grid;gap:14px"><span data-count="30" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">30</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Days of aftercare on every engagement</span></div>
-      <div style="background:#fff;padding:28px 24px 26px;border-top:4px solid #ff7a12;display:grid;gap:14px"><span data-count="60" style="font-size:clamp(44px,4vw,64px);line-height:1;letter-spacing:-0.04em;font-weight:600">60</span><span style="font-size:14px;line-height:1.35;color:#3a3b41">Days in which the Teardown fee is credited in full</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 04 · our values ──────────────────────────────────────────────────── -->
+<!-- ── 03 · our values ──────────────────────────────────────────────────── -->
 <section id="values" data-screen-label="Our values" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
     <div style="position:absolute;left:50%;top:-20%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.18) 0%,transparent 65%);filter:blur(60px);animation:driftB 36s ease-in-out infinite;will-change:transform"></div>
@@ -751,7 +725,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ── 05 · how we work ─────────────────────────────────────────────────── -->
+<!-- ── 04 · how we work ─────────────────────────────────────────────────── -->
 <section id="how" data-screen-label="How we work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
@@ -794,7 +768,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ── 06 · the people ──────────────────────────────────────────────────── -->
+<!-- ── 05 · the people ──────────────────────────────────────────────────── -->
 <section id="people" data-screen-label="The people" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
     <div style="position:absolute;left:30%;top:-30%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.18) 0%,transparent 65%);filter:blur(60px);animation:driftC 34s ease-in-out infinite;will-change:transform"></div>
@@ -860,7 +834,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ── 07 · how the work arrives ────────────────────────────────────────── -->
+<!-- ── 06 · how the work arrives ────────────────────────────────────────── -->
 <section id="instruments" data-screen-label="Instruments" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
@@ -907,7 +881,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </section>
 
-<!-- ── 08 · the company behind the studio ───────────────────────────────── -->
+<!-- ── 07 · the company behind the studio ───────────────────────────────── -->
 <section id="company" data-screen-label="The company behind the studio" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
   <div style="position:relative;max-width:1400px;margin:0 auto">
@@ -961,7 +935,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div data-dc-tpl="339" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-dc-tpl="340" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
-      <div data-dc-tpl="341" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">18:57</span></div>
+      <div data-dc-tpl="341" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">21:32</span></div>
       <div data-dc-tpl="342" style="display: flex; gap: 24px; flex-wrap: wrap;">
         <a data-dc-tpl="343" href="index.html#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="344" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="345">→</span></a><a data-dc-tpl="346" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="347" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="348">↗</span></a>
       </div>
@@ -973,7 +947,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <div data-dc-tpl="357">
           <div data-dc-tpl="358" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Social</div>
           
-          <div data-dc-tpl="359" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; font-size: 17px;"><a data-dc-tpl="360" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div data-dc-tpl="359" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; font-size: 17px;"><a data-dc-tpl="360" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
     </div>
@@ -1066,33 +1040,5 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 })();
 </script>
 
-<!-- The figures count up once they scroll into view, the way the corporate
-     homepage's do. The markup already holds the final value, so without
-     JavaScript — or with reduced motion — the number is simply there. -->
-<script>
-(function () {
-  'use strict';
-  var els = [].slice.call(document.querySelectorAll('[data-count]'));
-  if (!els.length) return;
-  var still = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function run(el) {
-    var end = parseInt(el.getAttribute('data-count'), 10), sup = el.getAttribute('data-sup') || '';
-    if (still || isNaN(end)) return;
-    var t0 = null;
-    function step(t) {
-      if (t0 === null) t0 = t;
-      var p = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(end * e) + sup;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
-  }, { threshold: 0.4 });
-  els.forEach(function (el) { io.observe(el); });
-})();
-</script>
 
 </body></html>
