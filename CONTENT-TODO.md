@@ -73,11 +73,9 @@ outlines in the main navigation would be worse than no Insights page at all.
 | Behance | `#` placeholder |
 | Instagram | `#` placeholder |
 
-**Needs the three real profile URLs.** Until then those three links go nowhere.
-
-The placeholders deliberately do **not** carry `target="_blank"` — on an `href="#"`
-that opens a blank second copy of the studio page. Add `target="_blank" rel="noopener"`
-at the same time as the real URLs; the LinkedIn link already has both.
+**Needs the three real profile URLs.** The `#` placeholders have been removed from
+the drawer and the footer, so only LinkedIn shows until they are supplied. Add
+each back with `target="_blank" rel="noopener"`, like the LinkedIn link.
 
 Edit `studio/src/index.html`, then run `node tools/build-studio.mjs`.
 
@@ -111,20 +109,14 @@ it would contradict the published notice.
 
 Remove it only if the privacy notice is changed to match.
 
-### 8. The studio enquiry form does not submit anywhere ⚠️
+### 8. The studio enquiry form — now a `mailto:` hand-off
 
-`submitForm` in `studio/src/index.html` is:
-
-```js
-const submitForm = (e) => { e.preventDefault(); this.setState({ sent: true }); };
-```
-
-It shows the visitor a success state — "Received. Reply within 2 working days" — and
-**discards what they typed**. Nobody at GEMIS ever sees it.
-
-It was left untouched under the "keep the existing submission mechanism" constraint.
-It needs a decision before launch. On static hosting the options are a `mailto:`
-hand-off (what the corporate Discovery form does), or a third-party form endpoint.
+`submitForm` in `studio/src/index.html` used to show a success state and discard
+what the visitor typed. It now does what the corporate Discovery form does on
+static hosting: opens a pre-addressed message to info@gemis.co.za with every
+field filled in, then shows the success state with a fallback address. A
+third-party form endpoint would remove the dependency on the visitor's email
+client; that is still a decision to make.
 
 ### 9. One contrast failure left on the whole site ⚠️
 
@@ -194,10 +186,11 @@ owner approval pending**, and they stay provisional here:
 
 Each is marked in `studio/src/about.html` with a `<!-- CONTENT-TODO -->` comment.
 Everything else is lifted from the live homepage, the services ladder, or the
-corporate `about.html` (the 2014 timeline and the six-person team). The studio
-address, 66 Park Lane, Sandown, Sandton, is the NAP in `studio-content.js`;
-confirm it is the address you want shown. Edit `studio/src/about.html`, then run
-`node tools/build-studio.mjs`.
+corporate site: the mission line, the four values and the three company figures
+(12+ years, 50+ systems, 5+ sectors) are the corporate homepage's own, and the 2014
+timeline and the six-person team are the corporate `about.html`'s. No street
+address is shown anywhere on the studio pages any more. Edit
+`studio/src/about.html`, then run `node tools/build-studio.mjs`.
 
 ### 11. Done — no longer outstanding
 

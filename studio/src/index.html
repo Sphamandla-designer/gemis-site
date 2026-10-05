@@ -570,7 +570,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="display:flex;flex-direction:column;gap:10px">
     <a href="#work" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
     <a href="#services" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
-    <a href="#about" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">About</a>
+    <a href="about.html" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">About</a>
     <a href="#why" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Why us</a>
     <a href="#contact" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Contact</a>
 <a href="../index.html" style="font-size:34px;font-weight:500;opacity:.6">GEM Information Systems<span aria-hidden="true"> &#8599;</span></a>
@@ -583,11 +583,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <div>
       <div style="font-size:13px;color:#8a8886;letter-spacing:0.04em;margin-bottom:12px;text-transform:uppercase">Social</div>
       <!-- CONTENT-TODO: studio social profiles. Only the LinkedIn URL exists in the
-     repo (it is the one the corporate footer already links to). Dribbble,
-     Behance and Instagram are href="#" placeholders until real profile URLs
-     are supplied. target="_blank" is deliberately NOT set on the placeholders:
-     it would open a blank second copy of this page. See CONTENT-TODO.md. -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">Dribbble</a><a href="#">Behance</a><a href="#">Instagram</a></div>
+     repo. Dribbble, Behance and Instagram were dead href="#" links and have been
+     removed; add them back here once the real profile URLs are supplied, with
+     target="_blank" rel="noopener" like the LinkedIn link. See CONTENT-TODO.md. -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;row-gap:6px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
   </div>
 </div>
@@ -854,7 +853,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
       <div style="background:#16161a;color:#f5f6f8;padding:clamp(32px,4vw,56px);min-height:420px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both">
         <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Received</div>
-        <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600">Thanks, {{ formName }}.<br>You'll hear from us within two working days.</div>
+        <div style="font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600">Thanks, {{ formName }}.<br>Your email app should now be open with the enquiry filled in. Send it, and you'll hear from us within two working days.</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#c9cad1">If nothing opened, write to <a href="mailto:info@gemis.co.za" style="color:#f5f6f8;border-bottom:1px solid #ff7a12">info@gemis.co.za</a>.</p>
         <button sc-camel-on-click="{{ resetForm }}" style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:13px;background:transparent;border:0;border-bottom:2px solid #ff7a12;padding:0 0 8px;color:#f5f6f8;cursor:pointer;text-transform:uppercase">Send another →</button>
       </div>
     </sc-if>
@@ -909,11 +909,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <div>
           <div style="font-size:15px;color:#6a6b73;margin-bottom:16px;text-transform:uppercase">Social</div>
           <!-- CONTENT-TODO: studio social profiles. Only the LinkedIn URL exists in the
-     repo (it is the one the corporate footer already links to). Dribbble,
-     Behance and Instagram are href="#" placeholders until real profile URLs
-     are supplied. target="_blank" is deliberately NOT set on the placeholders:
-     it would open a blank second copy of this page. See CONTENT-TODO.md. -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">Behance</a><a href="#">Dribbble</a><a href="#">Instagram</a></div>
+     repo. Dribbble, Behance and Instagram were dead href="#" links and have been
+     removed; add them back here once the real profile URLs are supplied, with
+     target="_blank" rel="noopener" like the LinkedIn link. See CONTENT-TODO.md. -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:48px;row-gap:8px;font-size:17px"><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a></div>
         </div>
       </div>
     </div>
@@ -1074,7 +1073,15 @@ class Component extends DCLogic {
       label, pick: () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: label }) })); this.forceUpdate(); },
       style: { fontFamily: "'JetBrains Mono',monospace", fontSize: '12px', letterSpacing: '0.04em', padding: '10px 14px', borderRadius: '999px', cursor: 'pointer', border: '1px solid ' + (f.service === label ? '#16161a' : '#dcdee3'), background: f.service === label ? '#16161a' : 'transparent', color: f.service === label ? '#f5f6f8' : '#16161a', transition: 'all .3s' }
     }));
-    const submitForm = (e) => { e.preventDefault(); this.setState({ sent: true }); };
+    const submitForm = (e) => {
+      e.preventDefault();
+      // the site is static, so there is no endpoint to post to: open a pre-addressed,
+      // pre-filled message instead, the way the corporate site's forms do
+      const fm = this.state.form;
+      const body = ['Name: ' + fm.name, 'Work email: ' + fm.email, 'Company: ' + (fm.company || '—'), 'Product URL: ' + (fm.url || '—'), 'Service: ' + fm.service, '', "What's not working:", fm.message].join('\n');
+      window.location.href = 'mailto:info@gemis.co.za?subject=' + encodeURIComponent('Studio enquiry from ' + (fm.company || fm.name)) + '&body=' + encodeURIComponent(body);
+      this.setState({ sent: true });
+    };
     const resetForm = () => this.setState({ sent: false, form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' } });
     const lines = Array.from({ length: 8 }, (_, c) => Array.from({ length: 12 }, (_, r) => (30 + ((c * 7 + r * 13) % 70)) + '%'));
     return {
