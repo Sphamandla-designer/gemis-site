@@ -10,7 +10,8 @@ them. Two flat shapes, so it survives 16px, single-colour print and a favicon.
 | `mark-colour.svg` · `mark-ink.svg` · `mark-white.svg` | the stone alone: favicons, avatars, UI |
 | `logo-colour-on-light.svg` · `logo-colour-on-dark.svg` | the horizontal lock-up, mark + GEMIS / STUDIO |
 | `logo-ink.svg` · `logo-white.svg` | single-colour lock-ups for print and photography |
-| `avatar-400.svg` | square profile picture (LinkedIn and the like), on ink |
+| `avatar-400.svg` · `.png` · `.jpg` | square profile picture (LinkedIn and the like), on ink |
+| `*.png` · `*.jpg` beside each SVG | the same mark and lock-ups rasterised: PNG with a transparent background (marks 1024 px, lock-ups 1408 × 256), JPEG on the background each is meant for. `gemis-studio-logos.zip` bundles them all |
 | `linkedin-banner.png` · `linkedin-banner.jpg` | the LinkedIn showcase cover at exactly 1128 × 191 px, from the hero facets image (PNG 117 KB, JPEG 37 KB; LinkedIn allows up to 3 MB). Source: `banner.html` |
 | `linkedin-banner@2x.png` | the same cover at 2256 × 382, for anywhere that wants a sharper copy |
 | `linkedin-cover-1584x396.png` · `.jpg` | an alternative cover at the 1584 × 396 Company Page size, with a different, hairline composition. Source: `linkedin-cover-1584.html` |
