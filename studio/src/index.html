@@ -506,6 +506,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 @media (max-width: 700px) {
   [data-desk] { display: none !important; }   /* the drawer already has both */
   [data-nav] { padding: 16px 16px !important; }
+  [data-mark] { height: 70px !important; padding-left: 16px !important; }
 
   /* the single primary action becomes a bar within thumb reach, rather than
      a pill fighting the menu button for the same corner */
@@ -548,7 +549,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <header>
 <div data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:28px 32px;color:#fff;mix-blend-mode:difference">
   <a href="#top" aria-label="GEMIS Studio" style="display:flex;align-items:center;gap:12px;color:#fff">
-    <img src="assets/mark-white.svg" width="26" height="26" alt="" style="display:block;width:26px;height:26px">
+    <span aria-hidden="true" style="display:block;width:26px;height:26px"></span>
     <span style="display:flex;flex-direction:column;line-height:1">
       <span style="font-weight:700;letter-spacing:0.08em;font-size:14px">GEMIS</span>
       <span style="font-family:'JetBrains Mono',monospace;font-weight:400;letter-spacing:0.16em;font-size:9px;margin-top:3px;opacity:.85">STUDIO</span>
@@ -560,6 +561,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div>
 </div>
 <a href="#enquire" data-cta style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
+<a href="#top" data-mark aria-label="GEMIS Studio" style="position:fixed;top:0;left:0;z-index:52;height:94px;padding-left:32px;display:flex;align-items:center"><img src="assets/mark-colour.svg" width="26" height="26" alt="" style="display:block;width:26px;height:26px"></a>
 </header>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">

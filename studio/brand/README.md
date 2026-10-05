@@ -26,7 +26,7 @@ square logo over it, and keeps the message centre-left so phones, which show the
 middle of the cover, still read it. `banner.html` and `sheet.html` are the
 sources; `render.mjs` re-exports the PNGs with Chromium.
 
-On the site the stone sits in the header of every studio page (white, inside the
-header's difference blend, so it reads ink on light sections and white on dark),
-in the hero's country card, beside the copyright in the closing band, and as the
+On the site the stone sits in the header of every studio page, in colour, on a
+layer of its own beside the blended wordmark (which keeps flipping ink / white
+over the sections), in the hero's country card, beside the copyright in the closing band, and as the
 tab icon and touch icon. The copies the pages use live in `studio/assets/`.
