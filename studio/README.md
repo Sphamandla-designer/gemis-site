@@ -159,3 +159,15 @@ Both sibling pages reveal their `[data-reveal]` elements from a short inline
 script, because the stylesheet lifted from the homepage starts them at
 opacity 0 and the React component that would have revealed them is not on
 these pages.
+
+## Single-file copies
+
+Three files at the repository root carry the studio with every script, font and
+image inlined, for sharing or opening offline. They are generated from the built
+pages and go stale the moment a page is rebuilt, so regenerate them with each build:
+
+| file | holds |
+|---|---|
+| `gemis-studio-standalone.html` | the whole studio — home, Work and About in one file, each page in its own frame, links between them switching frames |
+| `studio-standalone.html` | the home page alone |
+| `studio-about-standalone.html` | the About page alone |

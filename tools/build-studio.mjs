@@ -129,8 +129,8 @@ const shutDrawer = (html) => {
 const workCard = (p) => `      <div id="${esc(p.slug)}" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
         <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
         <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">${esc(p.name)}</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences ?? '[PLACEHOLDER: service evidenced]')}</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
+${p.evidences ? `        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences)}</div>
+` : ''}        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
           <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">${esc(p.desc)}</p>
           <a href="${esc(p.href)}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">${esc(p.cta)}</span><span>→</span></a>
         </div>
@@ -308,7 +308,7 @@ const main = async () => {
   // each one proves, straight out of the carousel, so it cannot drift either.
   const evidence = '<div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">\n'
     + '      <div style="display:flex;gap:16px 48px;flex-wrap:wrap">\n'
-    + homeProjects.map((p) => `        <a href="work.html#${esc(p.slug)}" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">${esc(p.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences ?? '[PLACEHOLDER: service evidenced]')}</span></a>`).join('\n')
+    + homeProjects.map((p) => `        <a href="work.html#${esc(p.slug)}" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">${esc(p.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">${p.evidences ? 'Evidences: ' + esc(p.evidences) : 'Case study'}</span></a>`).join('\n')
     + '\n      </div>\n'
     + '      <a href="work.html" style="font-family:\'JetBrains Mono\',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">View all projects</span><span>→</span></a>\n'
     + '    </div>';

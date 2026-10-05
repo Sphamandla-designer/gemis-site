@@ -143,29 +143,26 @@ nothing was invented and the grid was not padded.
 |---|---|---|---|---|
 | ManaGem | studio carousel | studio carousel | `studio/assets/managem.jpg` | Interface Refresh Sprint |
 | WasteMart | studio carousel | studio carousel | `studio/assets/wastemart.jpg` | Product Teardown |
-| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Embedded Designer ⚠️ |
+| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Web Experience |
 | RentFlow | services ladder | `case-studies.html` | `studio/assets/shotRentflow.jpg` | Embedded Designer |
-| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | **placeholder** |
-| Lungelo | studio `shots` data | `case-studies.html` | `assets/img/shots/lungelo.jpg` ⚠️ | **placeholder** |
+| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | none named yet |
+| Lungelo | studio `shots` data | `case-studies.html` | `studio/assets/lungelo.jpg` | none named yet |
 
-Four things to settle:
+Two things to settle:
 
-1. **FINOS is claimed by two services.** The homepage carousel says it evidences
-   *Embedded Designer*; the services ladder says *Web Experience — Evidence — FINOS*,
-   and gives *Embedded Designer* to RentFlow. Both are in the design as uploaded.
-   The page follows the carousel, because that is where a project's own description
-   lives. Decide which is right and fix it in `studio/src/index.html`.
-2. **NuraCoach and Lungelo evidence nothing yet.** Both render
-   `[PLACEHOLDER: service evidenced]`. The homepage line — "Every case study
-   evidences a named service — never the studio in general" — is the page's own
-   standard, so these two do not meet it until someone names their service.
-3. **Lungelo's image lives on the corporate side**, at
-   `assets/img/shots/lungelo.jpg`; every other project has a copy under
-   `studio/assets/`. It loads fine, but if the studio ever moves it will break.
-4. **No project detail pages exist.** "Explore project" on both the homepage
+1. **NuraCoach and Lungelo evidence nothing yet.** Their cards carry no
+   "Evidences:" line (the old `[PLACEHOLDER]` text is gone from the live page).
+   The homepage line — "Every case study evidences a named service — never the
+   studio in general" — is the page's own standard, so these two do not meet it
+   until someone names their service in `studio/src/work.html`.
+2. **No project detail pages exist.** "Explore project" on both the homepage
    carousel and this page links to the project's own card here
    (`work.html#managem` and so on). When detail pages exist, point them there —
    the slug is already the card id.
+
+Settled: FINOS now evidences *Web Experience* everywhere, matching the services
+ladder (RentFlow evidences *Embedded Designer*), and Lungelo's image has moved
+under `studio/assets/` with the others.
 
 The three **NuraCoach / Lungelo / RentFlow** descriptions come from
 `case-studies.html`, which is corporate copy about the same products. Confirm the
