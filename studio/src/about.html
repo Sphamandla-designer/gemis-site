@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — GEMIS® Studio</title>
+<meta name="description" content="GEMIS® Studio is the product and experience design practice of GEM Information Systems — one senior designer on every engagement, developers two desks away, and published prices fixed after the Teardown.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:title" content="About — GEMIS® Studio">
+<meta property="og:description" content="GEMIS® Studio is the product and experience design practice of GEM Information Systems — one senior designer on every engagement, developers two desks away, and published prices fixed after the Teardown.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/asset-05.jpg">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/about.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<!--#studio-css-->
+<style>
+/* This page's own grids. The homepage's data-m hooks cover the shared layouts
+   (head, split, cards, about2, rules8); these are the ones only this page has.
+   Every rule overrides an inline style, hence the !important. */
+[data-a="facts"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(22,22,26,.25);border:1px solid rgba(22,22,26,.25)}
+[data-a="facts"]>div{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:22px 20px;min-height:0}
+[data-a="four"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+[data-a="three"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+[data-a="chips"]{display:flex;gap:10px;flex-wrap:wrap}
+[data-a="lead"]{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+.about-card{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.about-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
+.about-img img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.about-img:hover img{transform:scale(1.04)}
+@media (max-width:900px){
+  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr 1fr!important}
+  [data-a="lead"]{grid-template-columns:auto 1fr!important}
+  [data-a="lead"]>:last-child{grid-column:1 / -1!important;justify-content:flex-start!important}
+  [data-a="hero-img"]{aspect-ratio:4/3!important}
+  [data-a="four"]>div{min-height:0!important;gap:24px!important}
+  [data-a="chips"]{justify-content:flex-start!important}
+}
+@media (max-width:560px){
+  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr!important}
+}
+@media (prefers-reduced-motion:reduce){.about-card,.about-img img{transition:none}}
+</style>
+</head>
+<body>
+
+<a class="dc-skip" href="#about">Skip to content</a>
+
+<!--#header-->   <!-- the <header> already carries the fixed action pill -->
+<!--#drawer-->
+
+<main id="main" data-motion="running">
+<div style="position:relative;overflow:hidden">
+
+<!-- ── 01 · who we are ──────────────────────────────────────────────────── -->
+<section id="about" data-screen-label="About the studio" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 100px">
+  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;opacity:.12;animation:kenburns 40s ease-in-out infinite"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">About the studio</div>
+        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5.5vw,96px);line-height:0.98;letter-spacing:-0.045em;font-weight:600;color:#16161a">The design practice of<br><span style="color:#ff1f7a">GEM Information Systems.</span></h1>
+      </div>
+      <p data-reveal="2" style="margin:0;font-size:clamp(18px,1.4vw,22px);line-height:1.35;letter-spacing:-0.01em;font-weight:500;max-width:420px;color:#16161a;justify-self:end;border-left:1px solid #dcdee3;padding-left:32px;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
+    </div>
+
+    <div data-reveal="3" data-a="hero-img" class="about-img" style="margin-top:72px;aspect-ratio:16/7;overflow:hidden;border-radius:4px;background:#dcdee3"><img src="assets/asset-05.jpg" alt="A ManaGem dashboard on a desk monitor in the studio" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+
+    <div data-reveal="4" data-a="facts" style="margin-top:32px;color:#16161a">
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Based in</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">Sandton, Johannesburg</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">66 Park Lane, Sandown, 2196</div></div>
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Part of</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">GEM Information Systems</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Building software since 2014</div></div>
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Practice lead</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">Sphamandla Xaba</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Product UX Designer</div></div>
+      <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Engagements start at</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">R6,500 excl. VAT</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Product Teardown · 5 working days</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 · what we are ─────────────────────────────────────────────────── -->
+<section id="practice" data-screen-label="What we are" style="position:relative;z-index:1;padding:140px 32px 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
+    <div style="position:absolute;left:-10%;top:-20%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.22) 0%,transparent 65%);filter:blur(60px);animation:driftA 30s ease-in-out infinite;will-change:transform"></div>
+    <div style="position:absolute;left:55%;top:10%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.16) 0%,transparent 65%);filter:blur(60px);animation:driftB 38s ease-in-out infinite;will-change:transform"></div>
+  </div>
+  <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12;text-transform:uppercase">What we are</div>
+  <h2 data-reveal="1" style="position:relative;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-0.045em;font-weight:500;color:#f5f6f8;text-indent:9%;padding-left:8%">Senior eyes on every screen. Designed and built <span style="color:#ff1f7a">under one roof.</span></h2>
+  <div style="margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15);position:relative"><span style="position:absolute;left:64%;top:-11px;color:#ff7a12;font-size:16px">×</span></div>
+  <div data-m="about2" style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">We never sell a stage.<br>Developer handoff in the price.<br>Thirty days of aftercare.</div>
+    <div style="display:flex;flex-direction:column;gap:40px;max-width:420px">
+      <p data-reveal="1" style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
+      <!-- CONTENT-TODO: draft copy from assets/js/studio-content.js (leadership.statement), owner approval pending. -->
+      <p data-reveal="2" style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Every engagement is led by a senior product designer — the same person who scopes the work reviews every screen that leaves the studio. No handoffs to juniors, no account layer between you and the person designing your product.</p>
+      <a href="index.html#why" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid #ff7a12;padding-bottom:10px;width:190px"><span style="text-transform:uppercase">Why work with us</span><span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 · how we work ─────────────────────────────────────────────────── -->
+<section id="how" data-screen-label="How we work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">How we work</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Diagnose. Refresh.<br><span style="color:#ff1f7a">Build.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.</p>
+    </div>
+    <div data-m="cards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
+      <a href="index.html#services" data-reveal="1" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">01</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Diagnose</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Product Teardown</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R6,500 · 5 days</div>
+      </a>
+      <a href="index.html#services" data-reveal="2" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Refresh</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Interface Refresh Sprint</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R18,000 – R25,000 · 2 weeks</div>
+      </a>
+      <a href="index.html#services" data-reveal="3" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Build</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Web Experience</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R55,000 – R85,000 · 6 – 8 weeks</div>
+      </a>
+      <a href="index.html#services" data-reveal="4" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">04</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Embed</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Embedded Designer</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R20,000 – R35,000 / month</div>
+      </a>
+    </div>
+    <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">
+      <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:640px">Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff. Teardown fee credited in full against any engagement booked within 60 days.</p>
+      <a href="index.html#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See every service</span><span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 · the people ──────────────────────────────────────────────────── -->
+<section id="people" data-screen-label="The people" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
+    <div style="position:absolute;left:30%;top:-30%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.18) 0%,transparent 65%);filter:blur(60px);animation:driftC 34s ease-in-out infinite;will-change:transform"></div>
+    <div style="position:absolute;left:-5%;top:40%;width:40vw;height:40vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.16) 0%,transparent 65%);filter:blur(60px);animation:driftA 42s ease-in-out infinite;will-change:transform"></div>
+  </div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">The people</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">One lead, accountable<br><span style="color:#ff1f7a">end to end.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.</p>
+    </div>
+
+    <div data-reveal="1" data-a="lead" style="margin-top:72px;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:32px 0">
+      <div style="width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d"><img src="assets/asset-09.jpg" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)"></div>
+      <div style="min-width:0">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">Practice lead</div>
+        <div style="font-size:17px;margin-top:6px;line-height:1.35"><span style="font-weight:600">Sphamandla Xaba</span>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Enterprise SaaS</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Fintech</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Operations</span>
+      </div>
+    </div>
+
+    <!-- CONTENT-TODO: the four disciplines, their lines, the closing line and the
+         specialism chips are draft copy from assets/js/studio-content.js
+         (staffing, leadership.specialisms) — owner approval pending. -->
+    <div data-a="four" style="margin-top:48px">
+      <div data-reveal="1" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">01</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Product design</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Flows, screens and states, specified to build.</p></div>
+      </div>
+      <div data-reveal="2" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">02</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Design systems</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Tokens, components and rules your team can keep.</p></div>
+      </div>
+      <div data-reveal="3" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">03</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Research &amp; content</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Interviews, audits and the words on the screen.</p></div>
+      </div>
+      <div data-reveal="4" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">04</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Engineering</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">The developers beside us who build what we design.</p></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" data-m="head" style="margin-top:48px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center">
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">Sized to the work —<br>never a bench you're paying for.</div>
+      <div data-a="chips" style="justify-content:flex-end">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Product strategy</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Interface design</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Design systems</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">UX research</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Dashboard &amp; data UX</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Service design</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Accessibility</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Developer handoff</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 · how the work arrives ────────────────────────────────────────── -->
+<section id="instruments" data-screen-label="Instruments" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Instruments</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Evidence before<br><span style="color:#ff1f7a">opinion.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">We map what users actually do before we redesign anything, and every case study names the service it proves.</p>
+    </div>
+    <!-- CONTENT-TODO: both lists are draft copy from assets/js/studio-content.js
+         (instruments.methods, instruments.delivery) — owner approval pending. -->
+    <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:72px">
+      <div data-reveal="1" style="background:#fff;padding:36px 32px 40px;border-top:4px solid #ff1f7a">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">How we find out</div>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0">
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">01</span><span>Heuristic evaluation</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">02</span><span>Journey mapping</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">03</span><span>Usability testing</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">04</span><span>Analytics review</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">05</span><span>Contrast auditing</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">06</span><span>Content audits</span></li>
+        </ol>
+      </div>
+      <div data-reveal="2" style="background:#fff;padding:36px 32px 40px;border-top:4px solid #ff7a12">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">What you receive</div>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0">
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">01</span><span>Figma</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">02</span><span>Design tokens</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">03</span><span>Annotated handoff</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">04</span><span>Interaction specs</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">05</span><span>Recorded walkthroughs</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">06</span><span>30-day support channel</span></li>
+        </ol>
+      </div>
+    </div>
+    <!--#evidence-->
+  </div>
+</section>
+
+<!-- ── 06 · the company behind the studio ───────────────────────────────── -->
+<section id="company" data-screen-label="The company behind the studio" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">The company behind the studio</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">A decade of systems<br><span style="color:#ff1f7a">that matter.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">For over a decade, GEM Information Systems has partnered with businesses, NGOs and enterprise organisations to design, build and support software that solves complex operational challenges — secure, scalable digital ecosystems built on Microsoft Cloud.</p>
+    </div>
+
+    <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:80px;align-items:start">
+      <div data-reveal="1" class="about-img" style="aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:#26262d"><img src="assets/shotFinos.jpg" alt="FINOS, the financial operating system built by GEM Information Systems, on a laptop" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <ol data-reveal="2" style="list-style:none;margin:0;padding:0;display:grid;gap:0">
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">2014</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Founded in Cape Town</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">GEM Information Systems opens its doors, building affordable tools for SMEs and non-profits.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Then</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Into the Microsoft Cloud</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Azure, Azure SQL and C# become the backbone — enterprise infrastructure for mission-critical work.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Since</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Platforms at national scale</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">ERP, learning, waste, property and community systems serving organisations nationally and abroad.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Today</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">A long-term partner</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Discovery through continuous improvement — we stay with the systems we ship.</p></div></li>
+      </ol>
+    </div>
+
+    <div style="margin-top:72px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">The developers beside us</div>
+      <div data-a="three" style="margin-top:24px">
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">GM</span><div><div style="font-size:17px;font-weight:600">Graeme Mehl</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">CEO — strategic leadership &amp; quality assurance</div></div></div>
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">LS</span><div><div style="font-size:17px;font-weight:600">Leon Small</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Business development — client liaison &amp; system scoping</div></div></div>
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">BT</span><div><div style="font-size:17px;font-weight:600">Byron Thompson</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Senior developer — architecture &amp; coding standards</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">SV</span><div><div style="font-size:17px;font-weight:600">Sebastian Vries</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Senior developer — C#, Azure SQL &amp; SaaS systems</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">VD</span><div><div style="font-size:17px;font-weight:600">Vanessa Davis</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Testing, data validation &amp; user support</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">SX</span><div><div style="font-size:17px;font-weight:600">Sphamandla Xaba</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">UI/UX designer — head of GEMIS Studio</div></div></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" data-m="rightrow" style="margin-top:56px;display:flex;gap:24px;flex-wrap:wrap">
+      <a href="../about.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#f5f6f8"><span style="text-transform:uppercase">The company story</span><span>→</span></a>
+      <a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#f5f6f8"><span style="text-transform:uppercase">GEM Information Systems</span><span>&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- the closing band is the last section inside main on the homepage too -->
+<!--#contact-->
+</main>
+
+<!-- The homepage's menu button is wired by React. This page carries no runtime,
+     so the same drawer gets the same behaviour from twenty lines of nothing. -->
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('studioMenuBtn');
+  var drawer = document.getElementById('studioMenu');
+  if (!btn || !drawer) return;
+
+  // the runtime wraps the ≡ in markup of its own, so find it by what it says
+  var glyph = [].slice.call(btn.querySelectorAll('span'))
+    .filter(function (s) { return !s.children.length && /^[≡×]$/.test(s.textContent.trim()); })[0];
+  var isOpen = false;
+  function set(open) {
+    isOpen = open;
+    // the drawer carries an inline display:flex, which outranks [hidden]
+    drawer.style.display = open ? 'flex' : 'none';
+    drawer.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (glyph) glyph.textContent = open ? '×' : '≡';
+  }
+  set(false);
+  btn.addEventListener('click', function () { set(!isOpen); });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) set(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); }
+  });
+})();
+</script>
+
+<!-- The homepage reveals [data-reveal] elements from React. This page has no
+     runtime, so the same stylesheet gets its .in class from here instead;
+     without this the lifted closing band's heading stays at opacity 0. -->
+<script>
+(function () {
+  'use strict';
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  }, 1500);
+})();
+</script>
+
+</body></html>
