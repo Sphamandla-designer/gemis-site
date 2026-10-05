@@ -8,6 +8,8 @@
  *                                   Canvas export replaces wholesale
  * Writes  studio/index.html       — served; fully rendered, no {{ }}
  *         studio/assets/dc-template.js — the template, as a JS string
+ *         studio/work.html, studio/about.html — the sibling pages, with the
+ *                                   homepage's chrome lifted into their slots
  *
  * How it works: the source page is served as-is to a headless Chromium, which
  * runs dc-runtime and React exactly as a visitor's browser would. The rendered
@@ -31,6 +33,8 @@ const OUT = join(ROOT, 'studio/index.html');
 const TPL_OUT = join(ROOT, 'studio/assets/dc-template.js');
 const WORK_SRC = join(ROOT, 'studio/src/work.html');
 const WORK_OUT = join(ROOT, 'studio/work.html');
+const ABOUT_SRC = join(ROOT, 'studio/src/about.html');
+const ABOUT_OUT = join(ROOT, 'studio/about.html');
 const TMP_REL = 'studio/.prerender.html';
 const TMP = join(ROOT, TMP_REL);
 
@@ -125,8 +129,8 @@ const shutDrawer = (html) => {
 const workCard = (p) => `      <div id="${esc(p.slug)}" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
         <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
         <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">${esc(p.name)}</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences ?? '[PLACEHOLDER: service evidenced]')}</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
+${p.evidences ? `        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences)}</div>
+` : ''}        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
           <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">${esc(p.desc)}</p>
           <a href="${esc(p.href)}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">${esc(p.cta)}</span><span>→</span></a>
         </div>
@@ -246,23 +250,48 @@ const main = async () => {
   const left = out.split('{{').length - 1;
   if (left) throw new Error(`the built page still contains ${left} occurrence(s) of {{`);
 
-  // ── studio/work.html ───────────────────────────────────────────────────
+  // ── sibling pages: studio/work.html and studio/about.html ─────────────
   for (const part of ['header', 'pill', 'contact', 'drawer']) {
-    if (!chrome[part]) throw new Error(`could not lift the ${part} out of the rendered homepage — work.html would be missing its chrome`);
+    if (!chrome[part]) throw new Error(`could not lift the ${part} out of the rendered homepage — the sibling pages would be missing their chrome`);
   }
   if (!chrome.cards.length) throw new Error('the homepage carousel rendered no cards, so work.html has nothing to list');
 
-  let work = await readFile(WORK_SRC, 'utf8');
-  const extra = JSON.parse(
-    (/<script type="application\/json" id="extra-projects">([\s\S]*?)<\/script>/.exec(work) || [, '[]'])[1]);
+  // the menu button is the only <button> in the lifted header; assert that,
+  // rather than trusting that it stays the first one in the document
+  if ((chrome.header.match(/<button /g) || []).length !== 1) {
+    throw new Error('the studio header no longer has exactly one button — the sibling pages cannot tell which to wire');
+  }
+  chrome.header = chrome.header.replace('<button ', '<button id="studioMenuBtn" ');
 
-  const projects = [
-    ...chrome.cards.map((c) => {
-      const { desc, evidences } = splitEvidence(c.desc);
-      return { slug: c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), name: c.name, desc, evidences, img: c.img };
-    }),
-    ...extra,
-  ].map((p) => ({
+  /** Fill the slots every sibling page shares, then the page's own. */
+  const siblingPage = (name, src, own) => {
+    let page = src
+      .replace('<!--#studio-css-->', '<style>' + chrome.css + '</style>')
+      .replace('<!--#header-->', rehomeAnchors(chrome.header))
+      // the drawer is captured open; these pages start with it shut. Its inline
+      // display:flex outranks [hidden], so that has to go too or the drawer sits
+      // over the page for anyone without JavaScript.
+      .replace('<!--#drawer-->', shutDrawer(rehomeAnchors(chrome.drawer)))
+      .replace('<!--#contact-->', rehomeAnchors(chrome.contact));
+    for (const [slot, html] of Object.entries(own)) page = page.replace(`<!--#${slot}-->`, html);
+    if (!page.includes('id="studioMenuBtn"')) throw new Error(`${name} could not tag the menu button — the studio header markup changed`);
+    if (page.includes('{{')) throw new Error(`${name} still contains {{ — the chrome was lifted before the runtime resolved it`);
+    if (page.includes('<!--#')) throw new Error(`${name} still has an unfilled slot: ` + /<!--#[a-z-]+-->/.exec(page)[0]);
+    return page;
+  };
+
+  // the three homepage projects, read out of its own carousel
+  const homeProjects = chrome.cards.map((c) => {
+    const { desc, evidences } = splitEvidence(c.desc);
+    return { slug: c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), name: c.name, desc, evidences, img: c.img };
+  });
+
+  // ── studio/work.html ───────────────────────────────────────────────────
+  const workSrc = await readFile(WORK_SRC, 'utf8');
+  const extra = JSON.parse(
+    (/<script type="application\/json" id="extra-projects">([\s\S]*?)<\/script>/.exec(workSrc) || [, '[]'])[1]);
+
+  const projects = [...homeProjects, ...extra].map((p) => ({
     ...p,
     // no project detail pages exist yet, so EXPLORE PROJECT goes to the card
     href: `work.html#${p.slug}`,
@@ -272,29 +301,19 @@ const main = async () => {
   const cards = '  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">\n'
     + projects.map(workCard).join('\n') + '\n  </div>';
 
-  // the menu button is the only <button> in the lifted header; assert that,
-  // rather than trusting that it stays the first one in the document
-  if ((chrome.header.match(/<button /g) || []).length !== 1) {
-    throw new Error('the studio header no longer has exactly one button — work.html cannot tell which to wire');
-  }
-  chrome.header = chrome.header.replace('<button ', '<button id="studioMenuBtn" ');
+  const work = siblingPage('work.html', workSrc, { cards });
 
-  work = work
-    .replace('<!--#studio-css-->', '<style>' + chrome.css + '</style>')
-    .replace('<!--#header-->', rehomeAnchors(chrome.header))
-    // the drawer is captured open; this page starts with it shut. Its inline
-    // display:flex outranks [hidden], so that has to go too or the drawer sits
-    // over the page for anyone without JavaScript.
-    .replace('<!--#drawer-->', shutDrawer(rehomeAnchors(chrome.drawer)))
-    .replace('<!--#contact-->', rehomeAnchors(chrome.contact))
-    .replace('<!--#cards-->', cards);
+  // ── studio/about.html ──────────────────────────────────────────────────
+  // The evidence strip names the homepage's own three projects and the service
+  // each one proves, straight out of the carousel, so it cannot drift either.
+  const evidence = '<div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">\n'
+    + '      <div style="display:flex;gap:16px 48px;flex-wrap:wrap">\n'
+    + homeProjects.map((p) => `        <a href="work.html#${esc(p.slug)}" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">${esc(p.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">${p.evidences ? 'Evidences: ' + esc(p.evidences) : 'Case study'}</span></a>`).join('\n')
+    + '\n      </div>\n'
+    + '      <a href="work.html" style="font-family:\'JetBrains Mono\',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">View all projects</span><span>→</span></a>\n'
+    + '    </div>';
 
-  if (!work.includes('id="studioMenuBtn"')) {
-    throw new Error('work.html could not tag the menu button — the studio header markup changed');
-  }
-
-  if (work.includes('{{')) throw new Error('work.html still contains {{ — the chrome was lifted before the runtime resolved it');
-  if (work.includes('<!--#')) throw new Error('work.html still has an unfilled slot: ' + /<!--#[a-z-]+-->/.exec(work)[0]);
+  const about = siblingPage('about.html', await readFile(ABOUT_SRC, 'utf8'), { evidence });
 
   await writeFile(TPL_OUT,
     '/* Generated by tools/build-studio.mjs — do not edit.\n'
@@ -302,9 +321,11 @@ const main = async () => {
     + 'window.__dcTemplate = ' + JSON.stringify(template) + ';\n', 'utf8');
   await writeFile(OUT, out, 'utf8');
   await writeFile(WORK_OUT, work, 'utf8');
+  await writeFile(ABOUT_OUT, about, 'utf8');
   console.log(`studio/index.html written — ${(out.length / 1024).toFixed(0)} KB, 0 unresolved bindings`);
   console.log(`studio/assets/dc-template.js written — ${(template.length / 1024).toFixed(0)} KB of template`);
   console.log(`studio/work.html written — ${(work.length / 1024).toFixed(0)} KB, ${projects.length} projects: ${projects.map((p) => p.name).join(', ')}`);
+  console.log(`studio/about.html written — ${(about.length / 1024).toFixed(0)} KB, evidence: ${homeProjects.map((p) => p.name).join(', ')}`);
 };
 
 main().catch((e) => { console.error('build-studio failed:', e.message); process.exit(1); });

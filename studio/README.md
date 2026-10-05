@@ -6,8 +6,10 @@
 |---|---|
 | `src/index.html` | The authored homepage. This is the Design Canvas export, with the `<x-dc>` template and the component script. **Edit this.** |
 | `src/work.html` | The authored listing page — its own content plus slots the build fills from the homepage. **Edit this.** |
+| `src/about.html` | The authored About page — its own content plus the same slots. **Edit this.** |
 | `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |
 | `work.html` | Generated. The listing page. No runtime, no `{{ }}`. |
+| `about.html` | Generated. The About page. No runtime, no `{{ }}`. |
 | `assets/dc-template.js` | Generated. The `<x-dc>` template, as a JavaScript string. |
 | `assets/dc-boot.js` | Hand-written. Hands the template back to the runtime at load time. |
 | `assets/dc-runtime.js`, `react.js`, `react-dom.js` | The Design Canvas runtime, unmodified. |
@@ -18,8 +20,8 @@
 node tools/build-studio.mjs
 ```
 
-Run it after **any** edit to `src/index.html` or `src/work.html`, and after any
-new export from Design Canvas. It writes both pages, or neither. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
+Run it after **any** edit to `src/index.html`, `src/work.html` or `src/about.html`,
+and after any new export from Design Canvas. It writes all three pages, or none. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
 Playwright is not at the default path in the script.
 
 The script fails rather than writing a broken page if a binding does not
@@ -134,3 +136,38 @@ that lives in that file. Re-apply, then rebuild:
 - capitals written as sentence case with `text-transform: uppercase`
 - the mobile layer and its `data-m` hooks — the build will tell you which are
   missing, and the table above says where each one goes
+
+## studio/about.html
+
+The page behind "About the studio" on the homepage's About section. Like
+`work.html` it carries **no runtime**: the header, drawer and closing band are
+the same slots, lifted from the homepage that was just rendered, and one slot
+of its own:
+
+| slot | filled with |
+|---|---|
+| `<!--#evidence-->` | the three homepage carousel projects and the service each one evidences, linking to their cards on `work.html` |
+
+Everything else on the page is authored in `src/about.html`, and all of it is
+copy that already exists in this repository: the homepage's hero, About and
+Why-us sections, the services ladder, `assets/js/studio-content.js` and the
+corporate `about.html`. Where a block came from draft copy in
+`studio-content.js` it is marked `<!-- CONTENT-TODO -->` in the source; see
+CONTENT-TODO.md §12.
+
+Both sibling pages reveal their `[data-reveal]` elements from a short inline
+script, because the stylesheet lifted from the homepage starts them at
+opacity 0 and the React component that would have revealed them is not on
+these pages.
+
+## Single-file copies
+
+Three files at the repository root carry the studio with every script, font and
+image inlined, for sharing or opening offline. They are generated from the built
+pages and go stale the moment a page is rebuilt, so regenerate them with each build:
+
+| file | holds |
+|---|---|
+| `gemis-studio-standalone.html` | the whole studio — home, Work and About in one file, each page in its own frame, links between them switching frames |
+| `studio-standalone.html` | the home page alone |
+| `studio-about-standalone.html` | the About page alone |

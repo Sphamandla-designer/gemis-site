@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — GEMIS® Studio</title>
+<meta name="description" content="GEMIS® Studio is the product and experience design practice of GEM Information Systems — one senior designer on every engagement, developers two desks away, and published prices fixed after the Teardown.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:title" content="About — GEMIS® Studio">
+<meta property="og:description" content="GEMIS® Studio is the product and experience design practice of GEM Information Systems — one senior designer on every engagement, developers two desks away, and published prices fixed after the Teardown.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/heroBg.jpg">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/about.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  
+x-dc{display:none!important}
+
+html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-07.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-12.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-08.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-11.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-14.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-16.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-07.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-12.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-08.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-11.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-14.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-16.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+body{margin:0;background:#eef0f3;color:#16161a;font-family:'Manrope',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes driftA{0%{transform:translate(-10%,-5%) scale(1)}50%{transform:translate(25%,20%) scale(1.25)}100%{transform:translate(-10%,-5%) scale(1)}}
+@keyframes driftB{0%{transform:translate(20%,30%) scale(1.1)}50%{transform:translate(-15%,-10%) scale(0.9)}100%{transform:translate(20%,30%) scale(1.1)}}
+@keyframes driftC{0%{transform:translate(0,40%) scale(1)}50%{transform:translate(10%,-20%) scale(1.3)}100%{transform:translate(0,40%) scale(1)}}
+@keyframes sweep{from{background-position:0 0}to{background-position:1400px 800px}}
+@keyframes grain{0%,100%{opacity:.35}50%{opacity:.55}}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(-1.5%,1%)}100%{transform:scale(1) translate(0,0)}}
+@keyframes hueShift{0%,100%{filter:hue-rotate(0deg) saturate(1)}50%{filter:hue-rotate(-14deg) saturate(1.15)}}
+@keyframes railPulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(18px,-26px,0) rotate(6deg)}}
+@keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-22px,18px,0) rotate(-5deg)}}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes wordIn{0%{opacity:0;transform:translateY(60%) rotateX(-40deg)}100%{opacity:1;transform:none}}
+@keyframes wordOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-60%) rotateX(40deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="2"]{transition-delay:.12s}[data-reveal="3"]{transition-delay:.24s}[data-reveal="4"]{transition-delay:.36s}
+[data-word]{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}[data-word]>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.in [data-word]>span{transform:none}.in [data-word]{overflow:visible}
+@media (prefers-reduced-motion:reduce){[data-reveal],[data-word]>span{opacity:1;transform:none;transition:none}}
+
+/* ── accessibility ────────────────────────────────────────────────────────
+   Added for WCAG 2.2 AA. Nothing here changes a colour, a size or a position
+   of anything that was already on the page. */
+
+/* visually hidden, still announced */
+.dc-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* skip link — off-screen until it takes focus, then in the studio's own style */
+.dc-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#16161a;color:#f5f6f8;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em}
+.dc-skip:focus{left:12px;top:12px}
+
+/* the header is fixed, so a fragment jump would land its target underneath it */
+html{scroll-padding-top:110px}
+
+/* visible keyboard focus, in the studio's existing accent */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #ff1f7a;outline-offset:3px}
+
+/* marquees stop on hover, on focus, on the motion toggle and under reduced motion */
+/* the marquee elements set the animation shorthand inline, which resets
+   play-state, so these have to win */
+[data-marquee]:hover>div,[data-marquee]:focus-within>div{animation-play-state:paused!important}
+[data-motion="paused"] [data-marquee]>div{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){[data-marquee]>div{animation:none!important}[data-rotator] span{animation:none!important}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT
+
+   This page came out of Design Canvas with every rule inline and no
+   breakpoints, so below about 900px its two-, three- and four-column grids
+   kept their desktop track sizes and the content ran off the right edge,
+   clipped by the sections' own overflow:hidden. Whole sections could not be
+   read on a phone.
+
+   The layout hooks are data-m attributes in the markup, not substring
+   matches on the style attribute — the browser rewrites an inline style
+   ("repeat(3,minmax(0,1fr))" becomes "repeat(3, minmax(0px, 1fr))"), so
+   attribute selectors on it look like they work and silently do not.
+   tools/build-studio.mjs checks every hook still appears in the rendered
+   page and fails the build if one goes missing.
+
+   Nothing here touches the desktop layout: every rule is inside a
+   max-width query, and every one needs !important because it overrides an
+   inline style.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── grids ───────────────────────────────────────────────────────────── */
+  [data-m="head"],
+  [data-m="split"],
+  [data-m="cards"],
+  [data-m="fields"],
+  [data-m="about2"] { grid-template-columns: 1fr !important; }
+
+  [data-m="head"] { gap: 20px !important; align-items: start !important; }
+  [data-m="split"] { gap: 36px !important; }
+  [data-m="cards"] { gap: 20px !important; }
+  [data-m="fields"] { gap: 24px !important; }
+  [data-m="about2"] { margin-left: 0 !important; margin-right: 0 !important; gap: 24px !important; }
+  [data-m="rules8"] { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* the spec rows read as label above value */
+  [data-m="spec"] { grid-template-columns: 1fr !important; gap: 4px !important; }
+
+  /* the ladder tab keeps its number and name; the duration drops under them */
+  [data-m="tab"] { grid-template-columns: 30px 1fr !important; gap: 10px !important; }
+  [data-m="tab"] > :last-child { grid-column: 2 !important; }
+
+  /* a rail only sticks when it is beside the panel, not above it */
+  [data-m="rail"] { position: static !important; }
+
+  /* things that were pushed to the right of a column that is now full width */
+  [data-m="rightrow"] { justify-content: flex-start !important; }
+  [data-m="footcol"] { gap: 40px !important; justify-content: flex-start !important; }
+
+  /* the pricing note was placed by absolute coordinates */
+  [data-m="note"] { position: static !important; margin: 0 0 32px !important; }
+
+  /* percentage side padding is far too much at this width */
+  [data-m="wide"] { padding-left: 18px !important; padding-right: 18px !important; }
+  section { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* the hero is a grid too, and its columns have to become rows */
+  #top {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    min-height: 0 !important;
+    padding: 104px 18px 44px !important;
+    gap: 40px !important;
+  }
+
+  /* the wide CTA links held their arrow 48px away from their label */
+  [data-m] a[style*="border-bottom"],
+  a[style*="min-width: 230px"],
+  a[style*="min-width: 200px"],
+  a[style*="width: 190px"] {
+    gap: 16px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  h1, h2, p { overflow-wrap: break-word; }
+}
+
+/* ── header, phones only ───────────────────────────────────────────────
+      Below this the logo, the corporate link, the pill's 150px slot and the
+      menu button no longer fit on one line. The desktop arrangement still
+      fits at tablet width, so it is left alone there. */
+@media (max-width: 700px) {
+  [data-desk] { display: none !important; }   /* the drawer already has both */
+  [data-nav] { padding: 16px 16px !important; }
+  [data-mark] { height: 70px !important; padding-left: 16px !important; }
+
+  /* the single primary action becomes a bar within thumb reach, rather than
+     a pill fighting the menu button for the same corner */
+  [data-cta] {
+    top: auto !important;
+    bottom: 14px !important;
+    left: 14px !important;
+    right: 14px !important;
+    text-align: center !important;
+    padding: 15px 18px !important;
+    box-shadow: 0 14px 34px -12px rgba(0,0,0,.5) !important;
+  }
+  #contact { padding-bottom: 104px !important; }   /* clear of that bar */
+
+  /* the drawer sizes itself with width:min(420px, 100vw - 24px) but keeps the
+     default content-box, so its 32px of side padding pushed it off the left
+     edge of a phone and clipped the first letter of every link. It also
+     reserved 220px at the top for a header that is much shorter here. */
+  [data-m="drawer"] {
+    box-sizing: border-box !important;
+    padding: 84px 22px 26px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+}
+
+@media (max-width: 560px) {
+  /* the rule cards are a fixed 370:455 at desktop; let them be as tall as
+     their content needs once they are full width */
+  [data-m="cards"] > div { aspect-ratio: auto !important; min-height: 340px !important; }
+  /* the contact footer does not need a whole screen to itself here */
+  #contact { min-height: 0 !important; }
+}
+
+</style>
+<style>
+/* ── the hero scene ──────────────────────────────────────────────────────
+   The homepage builds this scene in React and steers it with the mouse. This
+   page has no runtime, so the same layers — the facets image under a slow
+   Ken Burns and hue drift, two masked floating cut-outs of it, and a drifting
+   glow — run on their own from the homepage's keyframes. */
+.hero-scene{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-scene>div{position:absolute;inset:-6%;background:url("assets/heroBg.jpg") center/cover no-repeat;will-change:transform}
+.hero-scene>.hs-base{animation:kenburns 28s ease-in-out infinite,hueShift 18s ease-in-out infinite}
+.hero-scene>.hs-glow{inset:auto;left:50%;top:50%;width:46vw;height:46vw;margin:-23vw 0 0 -23vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.3) 0%,rgba(255,122,18,.18) 30%,transparent 62%);filter:blur(30px);mix-blend-mode:screen;animation:driftA 22s ease-in-out infinite}
+.hero-scene>.hs-a{-webkit-mask-image:radial-gradient(circle at 72% 30%,#000 0 12vw,transparent 15vw);mask-image:radial-gradient(circle at 72% 30%,#000 0 12vw,transparent 15vw);animation:floatA 14s ease-in-out infinite;opacity:.95}
+.hero-scene>.hs-b{-webkit-mask-image:radial-gradient(circle at 86% 68%,#000 0 9vw,transparent 12vw);mask-image:radial-gradient(circle at 86% 68%,#000 0 9vw,transparent 12vw);animation:floatB 18s ease-in-out infinite;opacity:.95}
+@media (prefers-reduced-motion:reduce){.hero-scene>div{animation:none!important}}
+
+/* ── this page's own grids ───────────────────────────────────────────────
+   The homepage's data-m hooks cover the shared layouts (head, split, about2,
+   rules8); these are the ones only this page has. Every rule overrides an
+   inline style, hence the !important. */
+[data-a="facts"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(22,22,26,.25);border:1px solid rgba(22,22,26,.25)}
+[data-a="facts"]>div{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:22px 20px;min-height:0}
+[data-a="four"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+[data-a="three"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+[data-a="chips"]{display:flex;gap:10px;flex-wrap:wrap}
+[data-a="lead"]{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+.about-card{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.about-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
+.about-img img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.about-img:hover img{transform:scale(1.04)}
+@media (max-width:900px){
+  /* the hero is a grid like the homepage's, and its columns become rows */
+  #about{grid-template-columns:1fr!important;grid-template-rows:auto auto!important;min-height:0!important;padding:104px 18px 44px!important;gap:40px!important}
+  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr 1fr!important}
+  [data-a="lead"]{grid-template-columns:auto 1fr!important}
+  [data-a="lead"]>:last-child{grid-column:1 / -1!important;justify-content:flex-start!important}
+  [data-a="four"]>div{min-height:0!important;gap:24px!important}
+  [data-a="chips"]{justify-content:flex-start!important}
+}
+@media (max-width:560px){
+  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr!important}
+}
+@media (prefers-reduced-motion:reduce){.about-card,.about-img img{transition:none}}
+</style>
+</head>
+<body>
+
+<a class="dc-skip" href="#about">Skip to content</a>
+
+<header data-dc-tpl="5"><div data-dc-tpl="6" data-nav="" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; color: rgb(255, 255, 255); mix-blend-mode: difference;">
+  <a data-dc-tpl="7" href="index.html#top" aria-label="GEMIS Studio" style="display: flex; align-items: center; gap: 12px; color: rgb(255, 255, 255);">
+    <span data-dc-tpl="8" aria-hidden="true" style="display: block; width: 26px; height: 26px;"></span>
+    <span data-dc-tpl="9" style="display: flex; flex-direction: column; line-height: 1;">
+      <span data-dc-tpl="10" style="font-weight: 700; letter-spacing: 0.08em; font-size: 14px;">GEMIS</span>
+      <span data-dc-tpl="11" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-weight: 400; letter-spacing: 0.16em; font-size: 9px; margin-top: 3px; opacity: 0.85;">STUDIO</span>
+    </span>
+  </a>
+  <div data-dc-tpl="12" style="display: flex; align-items: center; gap: 10px;">
+    <a data-dc-tpl="13" href="../index.html" data-desk="" style="display: flex; align-items: center; gap: 7px; height: 38px; padding: 0px 4px; margin-right: 4px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.12em; color: rgb(255, 255, 255); opacity: 0.72; text-decoration: none; white-space: nowrap;">GEMIS.CO.ZA<span data-dc-tpl="14" aria-hidden="true">↗</span></a><span data-dc-tpl="15" data-desk="" style="width: 150px; height: 38px; visibility: hidden;"></span>
+    <button id="studioMenuBtn" data-dc-tpl="16" aria-expanded="false" aria-controls="studioMenu" style="background: transparent; color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); border-radius: 999px; padding: 9px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; font-family: inherit; cursor: pointer; text-transform: uppercase;">Menu <span data-dc-tpl="17" aria-hidden="true"><span class="sc-interp">≡</span></span></button>
+  </div></div><a data-dc-tpl="18" href="index.html#enquire" data-cta="" style="position: fixed; top: 28px; right: calc(128px); z-index: 51; background: rgb(255, 31, 122); color: rgb(255, 255, 255); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: background 0.4s, color 0.4s; line-height: 1.4;"><span data-dc-tpl="19" style="text-transform: uppercase;">Book a teardown</span></a><a data-dc-tpl="20" href="index.html#top" data-mark="" aria-label="GEMIS Studio" style="position: fixed; top: 0px; left: 0px; z-index: 52; height: 94px; padding-left: 32px; display: flex; align-items: center;"><img data-dc-tpl="21" src="assets/mark-colour.svg" width="26" height="26" alt="" style="display: block; width: 26px; height: 26px;"></a></header>   <!-- the <header> already carries the fixed action pill -->
+<div hidden data-dc-tpl="23" id="studioMenu" data-m="drawer" style="position: fixed; top: 12px; right: 12px; bottom: 12px; width: min(420px, -24px + 100vw); background: rgb(22, 22, 26); color: rgb(245, 246, 248); z-index: 40; padding: 220px 32px 40px; display: none; flex-direction: column; justify-content: space-between; box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 60px;">
+  <div data-dc-tpl="24" style="display: flex; flex-direction: column; gap: 10px;">
+    <a data-dc-tpl="25" href="index.html#work" style="font-size: 34px; font-weight: 500;">Work</a>
+    <a data-dc-tpl="26" href="index.html#services" style="font-size: 34px; font-weight: 500;">Services</a>
+    <a data-dc-tpl="27" href="about.html" style="font-size: 34px; font-weight: 500;">About</a>
+    <a data-dc-tpl="28" href="index.html#why" style="font-size: 34px; font-weight: 500;">Why us</a>
+    <a data-dc-tpl="29" href="index.html#contact" style="font-size: 34px; font-weight: 500;">Contact</a><a data-dc-tpl="30" href="../index.html" style="font-size: 34px; font-weight: 500; opacity: 0.6;">GEM Information Systems<span data-dc-tpl="31" aria-hidden="true"> ↗</span></a>
+  </div>
+  <div data-dc-tpl="32" style="display: flex; flex-direction: column; gap: 28px;">
+    <div data-dc-tpl="33">
+      <div data-dc-tpl="34" style="font-size: 13px; color: rgb(138, 136, 134); letter-spacing: 0.04em; margin-bottom: 12px; text-transform: uppercase;">Business enquiry</div>
+      <div data-dc-tpl="35" style="display: grid; grid-template-columns: 24px 1fr; row-gap: 6px; font-size: 17px;"><span data-dc-tpl="36" style="color: rgb(138, 136, 134);">E.</span><span data-dc-tpl="37">info@gemis.co.za</span><span data-dc-tpl="38" style="color: rgb(138, 136, 134);">P.</span><span data-dc-tpl="39">+27 11 219 5008</span></div>
+    </div>
+    <div data-dc-tpl="40">
+      <div data-dc-tpl="41" style="font-size: 13px; color: rgb(138, 136, 134); letter-spacing: 0.04em; margin-bottom: 12px; text-transform: uppercase;">Social</div>
+      
+      <div data-dc-tpl="42" style="display: grid; grid-template-columns: 1fr 1fr; row-gap: 6px; font-size: 17px;"><a data-dc-tpl="43" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
+    </div>
+  </div></div>
+
+<main id="main" data-motion="running">
+<div style="position:relative;overflow:hidden">
+
+<!-- ── 01 · who we are ──────────────────────────────────────────────────── -->
+<section id="about" data-screen-label="About the studio" style="position:relative;min-height:100vh;padding:140px 32px 48px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto;gap:32px;overflow:hidden;background:#eef0f3;color:#16161a">
+  <div class="hero-scene" aria-hidden="true"><div class="hs-base"></div><div class="hs-glow"></div><div class="hs-a"></div><div class="hs-b"></div></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:40px">
+    <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">About the studio</div>
+    <h1 data-reveal="1" style="margin:0;font-size:clamp(48px,6vw,100px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">The design practice of <span style="color:#ff1f7a">GEM Information Systems.</span></h1>
+    <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <a href="index.html#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      <a href="work.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See the work</span><span>→</span></a>
+    </div>
+  </div>
+  <div data-reveal="3" data-a="facts" style="grid-column:1 / -1;position:relative;z-index:1;color:#16161a">
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Based in</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">South Africa</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Working with organisations nationally and abroad</div></div>
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Part of</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">GEM Information Systems</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Building software since 2014</div></div>
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Practice lead</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">Sphamandla Xaba</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Product UX Designer</div></div>
+    <div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">Engagements start at</div><div style="margin-top:10px;font-size:17px;font-weight:600;line-height:1.3">R6,500 excl. VAT</div><div style="margin-top:4px;font-size:14px;color:#6a6b73;line-height:1.4">Product Teardown · 5 working days</div></div>
+  </div>
+</section>
+
+<!-- ── 02 · our mission ─────────────────────────────────────────────────── -->
+<section id="mission" data-screen-label="Our mission" style="position:relative;z-index:1;padding:140px 32px 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
+    <div style="position:absolute;left:-10%;top:-20%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.22) 0%,transparent 65%);filter:blur(60px);animation:driftA 30s ease-in-out infinite;will-change:transform"></div>
+    <div style="position:absolute;left:55%;top:10%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.16) 0%,transparent 65%);filter:blur(60px);animation:driftB 38s ease-in-out infinite;will-change:transform"></div>
+  </div>
+  <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;margin-bottom:40px;color:#ff7a12;text-transform:uppercase">Our mission</div>
+  <h2 data-reveal="1" style="position:relative;margin:0 auto;max-width:1560px;font-size:clamp(40px,5vw,84px);line-height:1.02;letter-spacing:-0.045em;font-weight:500;color:#f5f6f8;text-indent:9%;padding-left:8%">Technology should move your business forward — so we design the screen and <span style="color:#ff1f7a">build what we design.</span></h2>
+  <div style="margin:100px 8% 0;border-top:1px solid rgba(255,255,255,.15);position:relative"><span style="position:absolute;left:64%;top:-11px;color:#ff7a12;font-size:16px">×</span></div>
+  <div data-m="about2" style="margin:80px 8% 0;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">We never sell a stage.<br>Developer handoff in the price.<br>Thirty days of aftercare.</div>
+    <div style="display:flex;flex-direction:column;gap:40px;max-width:420px">
+      <p data-reveal="1" style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Technology should never become another problem to manage. It should simplify operations, empower your teams, eliminate inefficiencies and give leaders the insight to decide with confidence.</p>
+      <p data-reveal="2" style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
+      <!-- CONTENT-TODO: draft copy from assets/js/studio-content.js (leadership.statement), owner approval pending. -->
+      <p data-reveal="3" style="margin:0;font-size:17px;line-height:1.4;color:#c9cad1">Every engagement is led by a senior product designer — the same person who scopes the work reviews every screen that leaves the studio. No handoffs to juniors, no account layer between you and the person designing your product.</p>
+      <a href="index.html#why" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px solid #ff7a12;padding-bottom:10px;width:190px"><span style="text-transform:uppercase">Why work with us</span><span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 · our values ──────────────────────────────────────────────────── -->
+<section id="values" data-screen-label="Our values" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
+    <div style="position:absolute;left:50%;top:-20%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.18) 0%,transparent 65%);filter:blur(60px);animation:driftB 36s ease-in-out infinite;will-change:transform"></div>
+    <div style="position:absolute;left:-10%;top:50%;width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.14) 0%,transparent 65%);filter:blur(60px);animation:driftC 44s ease-in-out infinite;will-change:transform"></div>
+  </div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Our values</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">The foundation of<br><span style="color:#ff1f7a">every build.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Great software begins with understanding people. These four principles shape how we scope, build and support every system we put into production — and why our clients stay with us long after go-live.</p>
+    </div>
+    <div data-a="four" style="margin-top:80px">
+      <div data-reveal="1" class="about-card" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:320px;border-top:4px solid #ff1f7a">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">01</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">People</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">Built around people</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">Before a single line of code, we learn your workflows, processes and goals — so the result is software people actually enjoy using.</p>
+      </div>
+      <div data-reveal="2" class="about-card" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:320px;border-top:4px solid #ff1f7a">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Scale</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">Built for scale</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">Businesses evolve, and your software should evolve with them — growth without rebuilding the systems you rely on every day.</p>
+      </div>
+      <div data-reveal="3" class="about-card" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:320px;border-top:4px solid #ff1f7a">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Reliability</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">Built for reliability</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">Mission-critical systems cannot fail. Our architecture prioritises stability, security, performance and maintainability.</p>
+      </div>
+      <div data-reveal="4" class="about-card" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:320px;border-top:4px solid #ff1f7a">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">04</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Partnership</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">Built for partnership</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">The relationship doesn't end at go-live — support, enhancement and optimisation continue. Software is a journey, not a destination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 · how we work ─────────────────────────────────────────────────── -->
+<section id="how" data-screen-label="How we work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">How we work</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Diagnose. Refresh.<br><span style="color:#ff1f7a">Build.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.</p>
+    </div>
+    <div data-m="cards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
+      <a href="index.html#services" data-reveal="1" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">01</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Diagnose</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Product Teardown</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R6,500 · 5 days</div>
+      </a>
+      <a href="index.html#services" data-reveal="2" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Refresh</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Interface Refresh Sprint</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R18,000 – R25,000 · 2 weeks</div>
+      </a>
+      <a href="index.html#services" data-reveal="3" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Build</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Web Experience</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R55,000 – R85,000 · 6 – 8 weeks</div>
+      </a>
+      <a href="index.html#services" data-reveal="4" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">04</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Embed</span></div>
+        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Embedded Designer</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R20,000 – R35,000 / month</div>
+      </a>
+    </div>
+    <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">
+      <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:640px">Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff. Teardown fee credited in full against any engagement booked within 60 days.</p>
+      <a href="index.html#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See every service</span><span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 05 · the people ──────────────────────────────────────────────────── -->
+<section id="people" data-screen-label="The people" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true">
+    <div style="position:absolute;left:30%;top:-30%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(255,122,18,.18) 0%,transparent 65%);filter:blur(60px);animation:driftC 34s ease-in-out infinite;will-change:transform"></div>
+    <div style="position:absolute;left:-5%;top:40%;width:40vw;height:40vw;border-radius:50%;background:radial-gradient(circle,rgba(255,31,122,.16) 0%,transparent 65%);filter:blur(60px);animation:driftA 42s ease-in-out infinite;will-change:transform"></div>
+  </div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">The people</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">One lead, accountable<br><span style="color:#ff1f7a">end to end.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.</p>
+    </div>
+
+    <div data-reveal="1" data-a="lead" style="margin-top:72px;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);padding:32px 0">
+      <div style="width:64px;height:64px;overflow:hidden;border-radius:2px;background:#26262d"><img src="assets/asset-09.jpg" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)"></div>
+      <div style="min-width:0">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">Practice lead</div>
+        <div style="font-size:17px;margin-top:6px;line-height:1.35"><span style="font-weight:600">Sphamandla Xaba</span>, Product UX Designer — every engagement is scoped, reviewed and signed off by the same senior designer, from Teardown to handoff.</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Enterprise SaaS</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Fintech</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Operations</span>
+      </div>
+    </div>
+
+    <!-- CONTENT-TODO: the four disciplines, their lines, the closing line and the
+         specialism chips are draft copy from assets/js/studio-content.js
+         (staffing, leadership.specialisms) — owner approval pending. -->
+    <div data-a="four" style="margin-top:48px">
+      <div data-reveal="1" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">01</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Product design</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Flows, screens and states, specified to build.</p></div>
+      </div>
+      <div data-reveal="2" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">02</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Design systems</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Tokens, components and rules your team can keep.</p></div>
+      </div>
+      <div data-reveal="3" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">03</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Research &amp; content</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Interviews, audits and the words on the screen.</p></div>
+      </div>
+      <div data-reveal="4" style="border:1px solid rgba(255,255,255,.15);padding:28px;display:grid;grid-template-rows:auto 1fr;gap:40px;min-height:220px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12">04</span>
+        <div style="align-self:end"><div style="font-size:clamp(20px,1.6vw,24px);line-height:1.1;letter-spacing:-0.02em;font-weight:600">Engineering</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">The developers beside us who build what we design.</p></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" data-m="head" style="margin-top:48px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center">
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.02em;line-height:1.35;max-width:260px;text-transform:uppercase">Sized to the work —<br>never a bench you're paying for.</div>
+      <div data-a="chips" style="justify-content:flex-end">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Product strategy</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Interface design</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Design systems</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">UX research</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Dashboard &amp; data UX</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Service design</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Accessibility</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;border:1px solid rgba(255,255,255,.2);padding:8px 12px;color:#c9cad1;text-transform:uppercase">Developer handoff</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 06 · how the work arrives ────────────────────────────────────────── -->
+<section id="instruments" data-screen-label="Instruments" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Instruments</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Evidence before<br><span style="color:#ff1f7a">opinion.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">We map what users actually do before we redesign anything, and every case study names the service it proves.</p>
+    </div>
+    <!-- CONTENT-TODO: both lists are draft copy from assets/js/studio-content.js
+         (instruments.methods, instruments.delivery) — owner approval pending. -->
+    <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:72px">
+      <div data-reveal="1" style="background:#fff;padding:36px 32px 40px;border-top:4px solid #ff1f7a">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">How we find out</div>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0">
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">01</span><span>Heuristic evaluation</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">02</span><span>Journey mapping</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">03</span><span>Usability testing</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">04</span><span>Analytics review</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">05</span><span>Contrast auditing</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">06</span><span>Content audits</span></li>
+        </ol>
+      </div>
+      <div data-reveal="2" style="background:#fff;padding:36px 32px 40px;border-top:4px solid #ff7a12">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase">What you receive</div>
+        <ol style="list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0">
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">01</span><span>Figma</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">02</span><span>Design tokens</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">03</span><span>Annotated handoff</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">04</span><span>Interaction specs</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">05</span><span>Recorded walkthroughs</span></li>
+          <li style="display:grid;grid-template-columns:40px 1fr;gap:16px;padding:14px 0;border-top:1px solid #dcdee3;font-size:17px;line-height:1.3"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#ff7a12;padding-top:4px">06</span><span>30-day support channel</span></li>
+        </ol>
+      </div>
+    </div>
+    <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">
+      <div style="display:flex;gap:16px 48px;flex-wrap:wrap">
+        <a href="work.html#managem" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">ManaGem</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Interface Refresh Sprint</span></a>
+        <a href="work.html#wastemart" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">WasteMart</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Product Teardown</span></a>
+        <a href="work.html#finos" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">FINOS</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Web Experience</span></a>
+      </div>
+      <a href="work.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">View all projects</span><span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 07 · the company behind the studio ───────────────────────────────── -->
+<section id="company" data-screen-label="The company behind the studio" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">The company behind the studio</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">A decade of systems<br><span style="color:#ff1f7a">that matter.</span></h2>
+      </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">For over a decade, GEM Information Systems has partnered with businesses, NGOs and enterprise organisations to design, build and support software that solves complex operational challenges — secure, scalable digital ecosystems built on Microsoft Cloud.</p>
+    </div>
+
+    <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:80px;align-items:start">
+      <div data-reveal="1" class="about-img" style="aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:#26262d"><img src="assets/shotFinos.jpg" alt="FINOS, the financial operating system built by GEM Information Systems, on a laptop" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <ol data-reveal="2" style="list-style:none;margin:0;padding:0;display:grid;gap:0">
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">2014</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Founded in Cape Town</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">GEM Information Systems opens its doors, building affordable tools for SMEs and non-profits.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Then</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Into the Microsoft Cloud</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Azure, Azure SQL and C# become the backbone — enterprise infrastructure for mission-critical work.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Since</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">Platforms at national scale</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">ERP, learning, waste, property and community systems serving organisations nationally and abroad.</p></div></li>
+        <li style="display:grid;grid-template-columns:96px 1fr;gap:24px;padding:22px 0;border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase;padding-top:5px">Today</span><div><div style="font-size:20px;font-weight:600;letter-spacing:-0.02em;line-height:1.2">A long-term partner</div><p style="margin:8px 0 0;font-size:15px;line-height:1.4;color:#c9cad1">Discovery through continuous improvement — we stay with the systems we ship.</p></div></li>
+      </ol>
+    </div>
+
+    <div style="margin-top:72px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#9a9ba3;text-transform:uppercase">The developers beside us</div>
+      <div data-a="three" style="margin-top:24px">
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">GM</span><div><div style="font-size:17px;font-weight:600">Graeme Mehl</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">CEO — strategic leadership &amp; quality assurance</div></div></div>
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">LS</span><div><div style="font-size:17px;font-weight:600">Leon Small</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Business development — client liaison &amp; system scoping</div></div></div>
+        <div data-reveal="1" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">BT</span><div><div style="font-size:17px;font-weight:600">Byron Thompson</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Senior developer — architecture &amp; coding standards</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">SV</span><div><div style="font-size:17px;font-weight:600">Sebastian Vries</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Senior developer — C#, Azure SQL &amp; SaaS systems</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">VD</span><div><div style="font-size:17px;font-weight:600">Vanessa Davis</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">Testing, data validation &amp; user support</div></div></div>
+        <div data-reveal="2" style="display:flex;gap:16px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:20px 0"><span aria-hidden="true" style="width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.04em">SX</span><div><div style="font-size:17px;font-weight:600">Sphamandla Xaba</div><div style="font-size:14px;color:#c9cad1;line-height:1.35">UI/UX designer — head of GEMIS Studio</div></div></div>
+      </div>
+    </div>
+
+    <div data-reveal="1" data-m="rightrow" style="margin-top:56px;display:flex;gap:24px;flex-wrap:wrap">
+      <a href="../about.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#f5f6f8"><span style="text-transform:uppercase">The company story</span><span>→</span></a>
+      <a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#f5f6f8"><span style="text-transform:uppercase">GEM Information Systems</span><span>&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- the closing band is the last section inside main on the homepage too -->
+<section data-dc-tpl="329" id="contact" data-screen-label="Contact footer" style="background: rgb(238, 240, 243); color: rgb(22, 22, 26); padding: 100px 32px 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; gap: 100px; position: relative; overflow: hidden;">
+  <div data-dc-tpl="330" style="position: absolute; inset: -4%; pointer-events: none; background: url(&quot;assets/asset-03.jpg&quot;) center center / cover no-repeat; animation: 32s ease-in-out 0s infinite reverse none running kenburns; opacity: 0.16;"></div>
+  <div data-dc-tpl="331" data-m="split" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px;">
+    <div data-dc-tpl="332">
+      <div data-dc-tpl="333" style="font-size: 15px; font-weight: 600; color: rgb(255, 122, 18); text-transform: uppercase;">One action. Restated.</div>
+      <h2 data-dc-tpl="334" data-reveal="1" style="margin: 24px 0px 0px; font-size: clamp(52px, 6vw, 96px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);">Ready to find out<br data-dc-tpl="335"><span data-dc-tpl="336" style="color: rgb(255, 31, 122);">what's wrong?</span></h2>
+      <div data-dc-tpl="337" style="margin-top: 80px; display: flex; align-items: center; gap: 12px;"><img data-dc-tpl="338" src="assets/mark-colour.svg" width="28" height="28" alt="" style="display: block; width: 28px; height: 28px;"><span data-dc-tpl="339" style="font-size: 15px; color: rgb(106, 107, 115); text-transform: uppercase;">©GEMIS® Studio 2026</span></div>
+      <div data-dc-tpl="340" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
+    </div>
+    <div data-dc-tpl="341" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
+      <div data-dc-tpl="342" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">23:16</span></div>
+      <div data-dc-tpl="343" style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <a data-dc-tpl="344" href="index.html#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="345" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="346">→</span></a><a data-dc-tpl="347" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="348" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="349">↗</span></a>
+      </div>
+      <div data-dc-tpl="350" data-m="head" style="display: grid; grid-template-columns: 1fr auto; gap: 64px;">
+        <div data-dc-tpl="351">
+          <div data-dc-tpl="352" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Business enquiry</div>
+          <div data-dc-tpl="353" style="display: grid; grid-template-columns: 24px 1fr; row-gap: 8px; font-size: 17px;"><span data-dc-tpl="354" style="color: rgb(255, 31, 122);">E.</span><span data-dc-tpl="355">info@gemis.co.za</span><span data-dc-tpl="356" style="color: rgb(255, 31, 122);">P.</span><span data-dc-tpl="357">+27 11 219 5008</span></div>
+        </div>
+        <div data-dc-tpl="358">
+          <div data-dc-tpl="359" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Social</div>
+          
+          <div data-dc-tpl="360" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; font-size: 17px;"><a data-dc-tpl="361" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dc-tpl="362" data-m="rules8" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; align-items: start; opacity: 0.25;">
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 95%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 38%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 37%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 50%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 63%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 76%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 89%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 32%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 45%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 44%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 57%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 70%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 83%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 96%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 39%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 52%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 46%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 59%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 53%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 66%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 60%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 73%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 86%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 99%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 42%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 55%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 68%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 67%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 80%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 93%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 36%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 49%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 62%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 75%;"></div>
+      </div>
+    
+      <div data-dc-tpl="364" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 74%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 87%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="366" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div>
+      </div>
+    
+  </div></section>
+</main>
+
+<!-- The homepage's menu button is wired by React. This page carries no runtime,
+     so the same drawer gets the same behaviour from twenty lines of nothing. -->
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('studioMenuBtn');
+  var drawer = document.getElementById('studioMenu');
+  if (!btn || !drawer) return;
+
+  // the runtime wraps the ≡ in markup of its own, so find it by what it says
+  var glyph = [].slice.call(btn.querySelectorAll('span'))
+    .filter(function (s) { return !s.children.length && /^[≡×]$/.test(s.textContent.trim()); })[0];
+  var isOpen = false;
+  function set(open) {
+    isOpen = open;
+    // the drawer carries an inline display:flex, which outranks [hidden]
+    drawer.style.display = open ? 'flex' : 'none';
+    drawer.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (glyph) glyph.textContent = open ? '×' : '≡';
+  }
+  set(false);
+  btn.addEventListener('click', function () { set(!isOpen); });
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) set(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); }
+  });
+})();
+</script>
+
+<!-- The homepage reveals [data-reveal] elements from React. This page has no
+     runtime, so the same stylesheet gets its .in class from here instead;
+     without this the lifted closing band's heading stays at opacity 0. -->
+<script>
+(function () {
+  'use strict';
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  }, 1500);
+})();
+</script>
+
+
+</body></html>

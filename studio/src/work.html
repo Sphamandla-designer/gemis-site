@@ -12,7 +12,8 @@
 <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/finosWide.jpg">
 <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <!--#studio-css-->
 </head>
 <body>
@@ -74,6 +75,25 @@
 })();
 </script>
 
+<!-- The homepage reveals [data-reveal] elements from React. This page has no
+     runtime, so the same stylesheet gets its .in class from here instead;
+     without this the lifted closing band's heading stays at opacity 0. -->
+<script>
+(function () {
+  'use strict';
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  }, 1500);
+})();
+</script>
+
 <!-- The projects this page shows beyond the three on the homepage carousel.
      The homepage three are lifted straight out of its rendered carousel by
      tools/build-studio.mjs, so they cannot drift from it. Everything below is
@@ -101,9 +121,9 @@
     "slug": "lungelo",
     "name": "Lungelo",
     "desc": "Multilingual field-work app — forms and sign-in in eight South African languages.",
-    "img": "../assets/img/shots/lungelo.jpg",
+    "img": "assets/lungelo.jpg",
     "evidences": null,
-    "source": "named in the studio's own shots data; image lives on the corporate side, description from case-studies.html"
+    "source": "named in the studio's own shots data; description from case-studies.html"
   }
 ]
 </script>

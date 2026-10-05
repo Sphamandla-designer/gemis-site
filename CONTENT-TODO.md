@@ -68,16 +68,14 @@ outlines in the main navigation would be worse than no Insights page at all.
 
 | Profile | Href |
 |---|---|
-| LinkedIn | `https://www.linkedin.com/in/sphamandla-xaba-ba1602287/` — the URL the corporate footer already uses |
+| LinkedIn | `https://www.linkedin.com/showcase/gemis-design-studio` — the studio's showcase page |
 | Dribbble | `#` placeholder |
 | Behance | `#` placeholder |
 | Instagram | `#` placeholder |
 
-**Needs the three real profile URLs.** Until then those three links go nowhere.
-
-The placeholders deliberately do **not** carry `target="_blank"` — on an `href="#"`
-that opens a blank second copy of the studio page. Add `target="_blank" rel="noopener"`
-at the same time as the real URLs; the LinkedIn link already has both.
+**Needs the three real profile URLs.** The `#` placeholders have been removed from
+the drawer and the footer, so only LinkedIn shows until they are supplied. Add
+each back with `target="_blank" rel="noopener"`, like the LinkedIn link.
 
 Edit `studio/src/index.html`, then run `node tools/build-studio.mjs`.
 
@@ -111,20 +109,14 @@ it would contradict the published notice.
 
 Remove it only if the privacy notice is changed to match.
 
-### 8. The studio enquiry form does not submit anywhere ⚠️
+### 8. The studio enquiry form — now a `mailto:` hand-off
 
-`submitForm` in `studio/src/index.html` is:
-
-```js
-const submitForm = (e) => { e.preventDefault(); this.setState({ sent: true }); };
-```
-
-It shows the visitor a success state — "Received. Reply within 2 working days" — and
-**discards what they typed**. Nobody at GEMIS ever sees it.
-
-It was left untouched under the "keep the existing submission mechanism" constraint.
-It needs a decision before launch. On static hosting the options are a `mailto:`
-hand-off (what the corporate Discovery form does), or a third-party form endpoint.
+`submitForm` in `studio/src/index.html` used to show a success state and discard
+what the visitor typed. It now does what the corporate Discovery form does on
+static hosting: opens a pre-addressed message to info@gemis.co.za with every
+field filled in, then shows the success state with a fallback address. A
+third-party form endpoint would remove the dependency on the visitor's email
+client; that is still a decision to make.
 
 ### 9. One contrast failure left on the whole site ⚠️
 
@@ -151,33 +143,51 @@ nothing was invented and the grid was not padded.
 |---|---|---|---|---|
 | ManaGem | studio carousel | studio carousel | `studio/assets/managem.jpg` | Interface Refresh Sprint |
 | WasteMart | studio carousel | studio carousel | `studio/assets/wastemart.jpg` | Product Teardown |
-| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Embedded Designer ⚠️ |
+| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Web Experience |
 | RentFlow | services ladder | `case-studies.html` | `studio/assets/shotRentflow.jpg` | Embedded Designer |
-| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | **placeholder** |
-| Lungelo | studio `shots` data | `case-studies.html` | `assets/img/shots/lungelo.jpg` ⚠️ | **placeholder** |
+| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | none named yet |
+| Lungelo | studio `shots` data | `case-studies.html` | `studio/assets/lungelo.jpg` | none named yet |
 
-Four things to settle:
+Two things to settle:
 
-1. **FINOS is claimed by two services.** The homepage carousel says it evidences
-   *Embedded Designer*; the services ladder says *Web Experience — Evidence — FINOS*,
-   and gives *Embedded Designer* to RentFlow. Both are in the design as uploaded.
-   The page follows the carousel, because that is where a project's own description
-   lives. Decide which is right and fix it in `studio/src/index.html`.
-2. **NuraCoach and Lungelo evidence nothing yet.** Both render
-   `[PLACEHOLDER: service evidenced]`. The homepage line — "Every case study
-   evidences a named service — never the studio in general" — is the page's own
-   standard, so these two do not meet it until someone names their service.
-3. **Lungelo's image lives on the corporate side**, at
-   `assets/img/shots/lungelo.jpg`; every other project has a copy under
-   `studio/assets/`. It loads fine, but if the studio ever moves it will break.
-4. **No project detail pages exist.** "Explore project" on both the homepage
+1. **NuraCoach and Lungelo evidence nothing yet.** Their cards carry no
+   "Evidences:" line (the old `[PLACEHOLDER]` text is gone from the live page).
+   The homepage line — "Every case study evidences a named service — never the
+   studio in general" — is the page's own standard, so these two do not meet it
+   until someone names their service in `studio/src/work.html`.
+2. **No project detail pages exist.** "Explore project" on both the homepage
    carousel and this page links to the project's own card here
    (`work.html#managem` and so on). When detail pages exist, point them there —
    the slug is already the card id.
 
+Settled: FINOS now evidences *Web Experience* everywhere, matching the services
+ladder (RentFlow evidences *Embedded Designer*), and Lungelo's image has moved
+under `studio/assets/` with the others.
+
 The three **NuraCoach / Lungelo / RentFlow** descriptions come from
 `case-studies.html`, which is corporate copy about the same products. Confirm the
 studio is happy to describe them that way.
+
+### 12. The studio About page (`studio/about.html`) ⚠️
+
+Built from copy already in the repository — nothing new was written. Three
+blocks come from `assets/js/studio-content.js`, where they are marked **DRAFT —
+owner approval pending**, and they stay provisional here:
+
+| block on the page | source |
+|---|---|
+| "Every engagement is led by a senior product designer…" (What we are) | `leadership.statement` |
+| The four disciplines and "Sized to the work — never a bench you're paying for." (The people) | `staffing` |
+| The eight specialism chips (The people) | `leadership.specialisms` |
+| "How we find out" and "What you receive" lists (Instruments) | `instruments.methods`, `instruments.delivery` |
+
+Each is marked in `studio/src/about.html` with a `<!-- CONTENT-TODO -->` comment.
+Everything else is lifted from the live homepage, the services ladder, or the
+corporate site: the mission line and the four values are the corporate homepage's
+own, and the 2014
+timeline and the six-person team are the corporate `about.html`'s. No street
+address is shown anywhere on the studio pages any more. Edit
+`studio/src/about.html`, then run `node tools/build-studio.mjs`.
 
 ### 11. Done — no longer outstanding
 

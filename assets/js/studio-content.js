@@ -13,15 +13,15 @@
 window.STUDIO_CONTENT = {
 
   meta: {
-    title: "UI/UX & Product Design Studio in Johannesburg | GEMIS® Studio",
+    title: "UI/UX & Product Design Studio in South Africa | GEMIS® Studio",
     description:
       "Product, interface and web design for South African companies. " +
-      "Fixed pricing from R6,500. Designed and built under one roof — Sandton, Johannesburg.",
+      "Fixed pricing from R6,500. Designed and built under one roof — South Africa.",
   },
 
   nap: {
     /* Exact NAP — must match schema + Google Business Profile everywhere. */
-    address: "66 Park Lane, Sandown, Sandton, 2196",
+    address: "",   /* no street address is published */
     phone: "+27 11 219 5008",
     email: "info@gemis.co.za",
   },
@@ -29,7 +29,7 @@ window.STUDIO_CONTENT = {
   /* Per project brief §9 (content governance): unverified counts are no
      longer displayed. The former numbers block is replaced by the
      Measured Outcomes block below. */
-  heroMeta: "GEM INFORMATION SYSTEMS · SANDTON, JOHANNESBURG — 26.1076°S 28.0567°E",
+  heroMeta: "GEM INFORMATION SYSTEMS · SOUTH AFRICA",
 
   /* ── Block 05b · Design leadership — DRAFT copy, owner approval pending.
      OD-06 unresolved → role only, no personal name shown. ─────────────── */
