@@ -13,6 +13,7 @@
 | `assets/dc-template.js` | Generated. The `<x-dc>` template, as a JavaScript string. |
 | `assets/dc-boot.js` | Hand-written. Hands the template back to the runtime at load time. |
 | `assets/dc-runtime.js`, `react.js`, `react-dom.js` | The Design Canvas runtime, unmodified. |
+| `assets/mark-white.svg`, `mark-colour.svg`, `favicon.svg`, `apple-touch-icon.png` | The studio mark, copied from `studio/brand/`. |
 
 ## Rebuilding
 
