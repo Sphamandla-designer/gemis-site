@@ -11,8 +11,9 @@ them. Two flat shapes, so it survives 16px, single-colour print and a favicon.
 | `logo-colour-on-light.svg` · `logo-colour-on-dark.svg` | the horizontal lock-up, mark + GEMIS / STUDIO |
 | `logo-ink.svg` · `logo-white.svg` | single-colour lock-ups for print and photography |
 | `avatar-400.svg` | square profile picture (LinkedIn and the like), on ink |
-| `linkedin-cover-1584x396.png` · `.jpg` | the LinkedIn Company Page cover, exactly 1584 × 396: the three lines of copy on the left, a hairline design-system composition on the right, everything inside the 120 / 45 px safe area and clear of the lower-left profile-image overlap. Source: `linkedin-cover-1584.html` |
-| `linkedin-banner.png` · `linkedin-banner@2x.png` | the earlier 1128 × 191 cover from the hero facets image |
+| `linkedin-banner.png` · `linkedin-banner.jpg` | the LinkedIn showcase cover at exactly 1128 × 191 px, from the hero facets image (PNG 117 KB, JPEG 37 KB; LinkedIn allows up to 3 MB). Source: `banner.html` |
+| `linkedin-banner@2x.png` | the same cover at 2256 × 382, for anywhere that wants a sharper copy |
+| `linkedin-cover-1584x396.png` · `.jpg` | an alternative cover at the 1584 × 396 Company Page size, with a different, hairline composition. Source: `linkedin-cover-1584.html` |
 | `logo-sheet.png` | one image of every variant, for review |
 
 Type in the lock-ups is the site's own: Manrope 700 tracked for GEMIS, JetBrains
