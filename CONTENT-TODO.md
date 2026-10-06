@@ -114,7 +114,9 @@ Remove it only if the privacy notice is changed to match.
 `submitForm` in `studio/src/index.html` used to show a success state and discard
 what the visitor typed. It now does what the corporate Discovery form does on
 static hosting: opens a pre-addressed message to info@gemis.co.za with every
-field filled in, then shows the success state with a fallback address. A
+field filled in, then shows the success state with a fallback address. The
+Contact page (`studio/src/contact.html`) carries the same form in plain HTML
+with the same hand-off; every "Book a teardown" button on the studio lands there. A
 third-party form endpoint would remove the dependency on the visitor's email
 client; that is still a decision to make.
 

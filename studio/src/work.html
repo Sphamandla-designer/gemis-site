@@ -43,56 +43,7 @@
 <!--#contact-->
 </main>
 
-<!-- The homepage's menu button is wired by React. This page carries no runtime,
-     so the same drawer gets the same behaviour from twenty lines of nothing. -->
-<script>
-(function () {
-  'use strict';
-  var btn = document.getElementById('studioMenuBtn');
-  var drawer = document.getElementById('studioMenu');
-  if (!btn || !drawer) return;
-
-  // the runtime wraps the ≡ in markup of its own, so find it by what it says
-  var glyph = [].slice.call(btn.querySelectorAll('span'))
-    .filter(function (s) { return !s.children.length && /^[\u2261\u00d7]$/.test(s.textContent.trim()); })[0];
-  var isOpen = false;
-  function set(open) {
-    isOpen = open;
-    // the drawer carries an inline display:flex, which outranks [hidden]
-    drawer.style.display = open ? 'flex' : 'none';
-    drawer.hidden = !open;
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (glyph) glyph.textContent = open ? '×' : '≡';
-  }
-  set(false);
-  btn.addEventListener('click', function () { set(!isOpen); });
-  drawer.addEventListener('click', function (e) {
-    if (e.target.closest('a')) set(false);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); }
-  });
-})();
-</script>
-
-<!-- The homepage reveals [data-reveal] elements from React. This page has no
-     runtime, so the same stylesheet gets its .in class from here instead;
-     without this the lifted closing band's heading stays at opacity 0. -->
-<script>
-(function () {
-  'use strict';
-  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
-  if (!els.length) return;
-  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  els.forEach(function (el) { io.observe(el); });
-  setTimeout(function () {
-    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
-  }, 1500);
-})();
-</script>
+<!--#sibling-js-->
 
 <!-- The projects this page shows beyond the three on the homepage carousel.
      The homepage three are lifted straight out of its rendered carousel by

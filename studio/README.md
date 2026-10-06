@@ -7,9 +7,13 @@
 | `src/index.html` | The authored homepage. This is the Design Canvas export, with the `<x-dc>` template and the component script. **Edit this.** |
 | `src/work.html` | The authored listing page — its own content plus slots the build fills from the homepage. **Edit this.** |
 | `src/about.html` | The authored About page — its own content plus the same slots. **Edit this.** |
+| `src/services.html` | The authored Services page — its own content plus the same slots; the four steps are filled from the homepage ladder. **Edit this.** |
+| `src/contact.html` | The authored Contact page — the enquiry form, direct details, the same slots. **Edit this.** |
 | `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |
 | `work.html` | Generated. The listing page. No runtime, no `{{ }}`. |
 | `about.html` | Generated. The About page. No runtime, no `{{ }}`. |
+| `services.html` | Generated. The Services page. No runtime, no `{{ }}`. |
+| `contact.html` | Generated. The Contact page. No runtime, no `{{ }}`. |
 | `assets/dc-template.js` | Generated. The `<x-dc>` template, as a JavaScript string. |
 | `assets/dc-boot.js` | Hand-written. Hands the template back to the runtime at load time. |
 | `assets/dc-runtime.js`, `react.js`, `react-dom.js` | The Design Canvas runtime, unmodified. |
@@ -20,8 +24,8 @@
 node tools/build-studio.mjs
 ```
 
-Run it after **any** edit to `src/index.html`, `src/work.html` or `src/about.html`,
-and after any new export from Design Canvas. It writes all three pages, or none. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
+Run it after **any** edit to a file in `src/`, and after any new export from
+Design Canvas. It writes all five pages, or none. It needs Playwright's Chromium; set `PLAYWRIGHT_MODULE` if
 Playwright is not at the default path in the script.
 
 The script fails rather than writing a broken page if a binding does not
@@ -137,7 +141,41 @@ that lives in that file. Re-apply, then rebuild:
 - the mobile layer and its `data-m` hooks — the build will tell you which are
   missing, and the table above says where each one goes
 
-## studio/about.html
+## The sibling pages: work, about, services, contact
+
+All four carry **no runtime**. The build lifts the rendered homepage's header
+(with the fixed action pill), the drawer and the closing band into the same
+four slots on each, and fills `<!--#sibling-js-->` with one script that opens
+and shuts the drawer and reveals `[data-reveal]` elements on scroll. Each page
+then has slots of its own:
+
+| page | slot | filled with |
+|---|---|---|
+| `work.html` | `<!--#cards-->` | one card per project: the three homepage carousel projects plus the `extra-projects` JSON in its source |
+| `about.html` | `<!--#evidence-->` | the three homepage projects and the service each one evidences, linking to their cards on `work.html` |
+| `services.html` | `<!--#ladder-->` | the four steps as a jump list, name · duration · price |
+| `services.html` | `<!--#services-->` | the four steps in full — badge, price, description, timeline, evidence (linking to the project on `work.html`), credit, deliverables, call to action — read out of the homepage's rendered ladder panels, so they cannot drift from it |
+| `contact.html` | — | the enquiry form is authored in `src/contact.html`; its service chips double as anchors, so `contact.html#teardown` arrives with Product Teardown selected |
+
+The build fails if a slot is left unfilled, if a lifted part is missing, if the
+header stops having exactly one button, if the drawer stops being shuttable, or
+if the homepage ladder renders anything other than four steps.
+
+## Where every call to action goes
+
+| button | target |
+|---|---|
+| "Book a teardown" — header pill, hero, ladder steps, closing band, About, Services | `contact.html#teardown` (each ladder step: its own anchor, `#refresh`, `#web`, `#embedded`) |
+| "Discuss your project", "Not sure where to start?" | `contact.html#not-sure` |
+| Menu: Work · Services · About · Why us · Contact | `work.html` · `services.html` · `about.html` · `index.html#why` · `contact.html` |
+| "View all projects", "See the work", "Explore project" | `work.html`, `work.html#<project>` |
+| "See the services", "See every service", "→ See the ladder" | `services.html`, `index.html#services` |
+| "GEM Information Systems", "The company story" | the corporate site |
+
+`tools/build-studio.mjs` cannot check these for you; the link audit in the
+pull request did. Re-run it after moving a section.
+
+## About page notes
 
 The page behind "About the studio" on the homepage's About section. Like
 `work.html` it carries **no runtime**: the header, drawer and closing band are
