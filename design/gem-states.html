@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Gem states — render harness</title>
+<meta name="robots" content="noindex">
+<style>html,body{margin:0;background:#161b40}canvas{display:block;width:1200px;height:900px}#label{position:fixed;left:12px;top:12px;color:#cfe0f0;font:12px monospace}</style>
+</head><body>
+<canvas id="gem" width="1200" height="900"></canvas><div id="label"></div>
+<script type="module">
+  import { mountGem } from '../assets/js/gem.js';
+  const canvas = document.getElementById('gem');
+  const gem = await mountGem(canvas, { pointer: false, maxDpr: 1 });
+  const states = {
+    whole:       () => gem.renderState('whole', 0, 0, 1.1),
+    fractured:   () => gem.renderState('fractured', 1, 1, 1.1),
+    legacy:      () => gem.renderState('fractured', 1, 2, 1.1),
+    blind:       () => gem.renderState('fractured', 1, 3, 1.1),
+    reassembled: () => gem.renderState('whole', 0, 0, 2.3),
+    small:       () => gem.renderState('small', 0, 0, .4),
+    missing:     () => { gem.setMissing(2); gem.renderState('whole', 0, 0, 1.1); gem.setMissing(-1); },
+  };
+  window.showState = (name) => { states[name](); document.getElementById('label').textContent = name; return gem.snapshot(); };
+  window.gemReady = true;
+</script>
+</body></html>

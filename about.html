@@ -15,7 +15,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important}</style></noscript>
 </head>
@@ -112,7 +114,7 @@
     <section class="shero" id="hero">
       <div class="shero__type">
         <p class="eyebrow" data-reveal>About GEM Information Systems</p>
-        <h1 class="shero__title" data-reveal style="--d:80ms">Technology should move your business forward</h1>
+        <h1 class="shero__title" data-lines>Technology should move your business forward</h1>
         <p class="shero__copy" data-reveal style="--d:160ms">
           Technology should never become another problem to manage. It should simplify
           operations, empower your teams, eliminate inefficiencies and give leaders the
@@ -142,7 +144,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Our Story</p>
-            <h2 class="display" data-reveal style="--d:80ms">A decade of systems that matter</h2>
+            <h2 class="display" data-lines>A decade of systems that matter</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             For over a decade, GEM Information Systems has partnered with businesses, NGOs
@@ -152,6 +154,7 @@
           </p>
         </div>
 
+        <div class="tl__gem" aria-hidden="true"><img class="gem-still" src="assets/img/gem/small.png" alt="" width="400" height="400" loading="lazy" /><canvas class="gem" data-small></canvas></div>
         <ol class="tl">
           <li class="tl__item" data-reveal>
             <span class="tl__year">2014</span>
@@ -182,7 +185,7 @@
       <div class="shell stik">
         <div class="stik__aside">
           <p class="eyebrow" data-reveal>What We Build</p>
-          <h2 class="display" data-reveal style="--d:80ms">Eight solution domains</h2>
+          <h2 class="display" data-lines>Eight solution domains</h2>
           <p data-reveal style="--d:140ms">
             Different sectors, one engineering standard. Each of these started as a problem
             a client could not solve with anything off the shelf.
@@ -235,7 +238,7 @@
       <div class="shell stik">
         <div class="stik__aside">
           <p class="eyebrow" data-reveal>Our Approach</p>
-          <h2 class="display" data-reveal style="--d:80ms">Five disciplines, every project</h2>
+          <h2 class="display" data-lines>Five disciplines, every project</h2>
           <p data-reveal style="--d:140ms">
             The same sequence carries every engagement from first conversation to lasting
             value — so you always know where a project stands and what comes next.
@@ -258,7 +261,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Powered By Microsoft Cloud</p>
-            <h2 class="display" data-reveal style="--d:80ms">Enterprise software needs enterprise infrastructure</h2>
+            <h2 class="display" data-lines>Enterprise software needs enterprise infrastructure</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             Security, reliability, compliance and scale — the foundations underneath every
@@ -295,7 +298,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>The People</p>
-            <h2 class="display" data-reveal style="--d:80ms">Faces behind GEMIS</h2>
+            <h2 class="display" data-lines>Faces behind GEMIS</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             Leadership, engineering and design — one accountable team that stays with your
@@ -345,7 +348,7 @@
       <span class="dotgrid dotgrid--r" aria-hidden="true"></span>
 
       <div class="shell">
-        <h2 class="cta__t" data-reveal>Ready to modernise your operations?</h2>
+        <h2 class="cta__t" data-lines>Ready to modernise your operations?</h2>
         <p class="cta__s" data-reveal style="--d:80ms">
           Whether you're replacing a legacy system, launching a new digital platform or
           connecting the tools you already run, we'll scope it with you — no obligation.
@@ -362,6 +365,7 @@
 
   <footer class="foot">
     <div class="shell">
+      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -419,9 +423,11 @@
           </a>
         </div>
       </div>
+      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911e" defer></script>
+  <script src="assets/js/site.js?v=20261006" defer></script>
+  <script type="module" src="assets/js/page.js?v=20261006"></script>
 </body>
 </html>

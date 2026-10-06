@@ -8,7 +8,9 @@
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
@@ -103,9 +105,10 @@
 
     <!-- ═══════════════════ 404 ═══════════════════ -->
     <section class="oops" id="hero">
-      <div class="shell">
-        <p class="oops__code" data-reveal>404 — not found</p>
-        <h1 class="oops__title" data-reveal style="--d:80ms">This screen doesn't exist.</h1>
+      <div class="shell oops__grid">
+        <div>
+        <p class="oops__code" data-reveal>404 — a facet is missing</p>
+        <h1 class="oops__title" data-lines>This screen doesn't exist.</h1>
         <p data-reveal style="--d:160ms">
           The page you were looking for has moved or never shipped. The home page is the
           best place to start.
@@ -115,12 +118,18 @@
           <a class="arrow-link" href="case-studies.html">See our work <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
           <a class="arrow-link" href="index.html#discovery">Get in touch <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
         </div>
+        </div>
+        <div class="oops__gem" aria-hidden="true">
+          <img class="gem-still" src="assets/img/gem/missing.png" alt="" width="800" height="800" />
+          <canvas class="gem" id="gem404"></canvas>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="foot">
     <div class="shell">
+      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -178,9 +187,11 @@
           </a>
         </div>
       </div>
+      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911e" defer></script>
+  <script src="assets/js/site.js?v=20261006" defer></script>
+  <script type="module" src="assets/js/page.js?v=20261006"></script>
 </body>
 </html>

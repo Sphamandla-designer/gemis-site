@@ -4,8 +4,8 @@ R=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT=sys.argv[1] if len(sys.argv)>1 else R+'/gemis-site-standalone.html'   # python3 tools/build-site-standalone.py
 LIVE='https://sphamandla-designer.github.io/gemis-site/'
 PAGES=['index','about','services','industries','case-studies','contact','managem','wastemart','insights','privacy','404']
-mime={'.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff'}
-pat=re.compile(r'assets/(?:img|fonts)/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
+mime={'.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff','.js':'text/javascript'}
+pat=re.compile(r'assets/(?:img|fonts)/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)|assets/js/(?:gsap|ScrollTrigger|lenis)\.min\.js')
 A={}
 def asset(path):
     if path not in A:
@@ -13,9 +13,30 @@ def asset(path):
         if not os.path.exists(f): raise SystemExit('missing asset '+path)
         A[path]='data:'+mime[os.path.splitext(f)[1]]+';base64,'+base64.b64encode(open(f,'rb').read()).decode()
     return path
+tokens=open(R+'/assets/css/tokens.css',encoding='utf8').read()
+tokens=re.sub(r"url\(\s*['\"]?\.\./(img|fonts)/([^'\")]+)['\"]?\s*\)", lambda m: 'url("'+asset('assets/'+m.group(1)+'/'+m.group(2))+'")', tokens)
 css=open(R+'/assets/css/site.css',encoding='utf8').read()
 css=re.sub(r"url\(\s*['\"]?\.\./(img|fonts)/([^'\")]+)['\"]?\s*\)", lambda m: 'url("'+asset('assets/'+m.group(1)+'/'+m.group(2))+'")', css)
 js=open(R+'/assets/js/site.js',encoding='utf8').read(); assert '</script' not in js
+
+def bundle(entry):
+    """The page's ES modules as one classic script: motion → common → the page, imports and exports stripped.
+       No three.js in the single file; common.js sees window.__SINGLE_FILE and shows the stills instead."""
+    out=[]
+    for name in ['motion','common',entry]:
+        src=open(f'{R}/assets/js/{name}.js',encoding='utf8').read()
+        src=re.sub(r"^import .*?;\n", '', src, flags=re.M)
+        src=re.sub(r"^export \{[^}]*\};?\n", '', src, flags=re.M)
+        src=re.sub(r"^export (async function|function|const|let)", r"\1", src, flags=re.M)
+        src=src.replace("({ mountGem } = await import('./gem.js'))", "(() => { throw new Error('no gem in the single-file build'); })()")
+        assert 'import ' not in re.sub(r"//.*|/\*.*?\*/", '', src, flags=re.S).replace("import(", ''), (name, 'an import survived')
+        out.append(f'/* ── {name}.js ── */\n'+src)
+    code='window.__SINGLE_FILE = true;\n(function () {\n'+'\n'.join(out)+'\n})();'
+    assert '</script' not in code
+    return code
+bundles={'index':bundle('home')}
+for p_ in PAGES:
+    if p_!='index': bundles[p_]=bundle('page')
 PAGE_RE=re.compile(r'^(?:'+'|'.join(re.escape(p) for p in PAGES)+r')\.html(?:#.*)?$')
 BRIDGE = """<script>
 /* Bridge to the enclosing single-file document: links to the other pages switch frames there;
@@ -41,16 +62,20 @@ pages={}; titles={}
 for p in PAGES:
     h=open(f'{R}/{p}.html',encoding='utf8').read()
     titles[p+'.html']=H.unescape(re.search(r'<title>(.*?)</title>',h,flags=re.S).group(1).strip())
+    h,k=re.subn(r'<link rel="stylesheet" href="assets/css/tokens\.css[^"]*"\s*/?>', lambda m: '<style>\n'+tokens+'\n</style>', h); assert k==1, (p,'tokens')
     h,k=re.subn(r'<link rel="stylesheet" href="assets/css/site\.css[^"]*"\s*/?>', lambda m: '<style>\n'+css+'\n</style>', h); assert k==1, (p,'css')
+    h=re.sub(r'\s*<link rel="modulepreload"[^>]*>', '', h)
+    h=re.sub(r'\s*<link rel="preload" as="image"[^>]*>', '', h)
     h,k=re.subn(r'<script src="assets/js/site\.js[^"]*" defer></script>', '', h); assert k==1, (p,'js')
-    h=h.replace('</body>', '<script>\n'+js+'\n</script>\n'+BRIDGE+'</body>')
+    h,k=re.subn(r'\s*<script type="module" src="assets/js/(?:home|page)\.js[^"]*"></script>', '', h); assert k==1, (p,'module')
+    h=h.replace('</body>', '<script>\n'+js+'\n</script>\n'+BRIDGE+'<script>\n'+bundles[p]+'\n</script>\n</body>')
     # the studio and anything else outside these pages goes to the live site
     h=re.sub(r'href="studio/([^"]*)"', lambda m: f'href="{LIVE}studio/{m.group(1)}"', h)
     h=re.sub(r'href="(brand-studio|solutions|work|wastemart-driver)\.html([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}.html{m.group(2)}"', h)
     # every asset path becomes a token, filled from the shared map at load time
     for m in set(pat.findall(h)): asset(m)
     h=h.replace('href="assets/img/favicon.svg"','href="'+A['assets/img/favicon.svg']+'"')
-    left=[x for x in re.findall(r'(?:src|href)="([^"]+)"',h) if not (x.startswith(('data:','#','https://','http://','mailto:','tel:','assets/')) or PAGE_RE.match(x))]
+    left=[x for x in re.findall(r'(?<![\w-])(?:src|href)="([^"]+)"',h) if not (x.startswith(('data:','#','https://','http://','mailto:','tel:','assets/')) or PAGE_RE.match(x))]
     assert not left, (p,left)
     pages[p+'.html']=h
 fav=A['assets/img/favicon.svg']

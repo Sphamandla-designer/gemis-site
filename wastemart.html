@@ -15,7 +15,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
@@ -115,7 +117,7 @@
 
       <div class="shell">
         <p class="chero__kicker" data-reveal>WasteMart — a transformation story</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Every city depends on efficient waste collection</h1>
+        <h1 class="chero__title" data-lines>Every city depends on efficient waste collection</h1>
         <p class="chero__copy" data-reveal style="--d:160ms">
           Thousands of collections, drivers, schedules and communities rely on operations
           running with precision. Behind every successful collection is an intricate
@@ -131,8 +133,39 @@
       </div>
     </section>
 
-    <div class="shell cshot" data-reveal>
-      <img src="assets/img/work/wastemart-mock.jpg" alt="WasteMart" width="1400" height="1050" />
+    <div class="shell cshot cshot--live" data-reveal>
+      <div class="pair-devices loop" role="img" aria-label="WasteMart: a recreation of the operations view and the driver app">
+                <div class="device device--desktop">
+                  <div class="ui-bar"><i></i><i></i><i></i><span class="url">wastemart — Operations</span></div>
+                  <div class="ops">
+                    <div class="ops__map">
+                      <svg viewBox="0 0 320 150" width="100%" height="100%" aria-hidden="true">
+                        <path class="ops__route" d="M 20 110 C 60 40, 120 150, 180 60 S 260 90, 300 40"/>
+                        <circle class="ops__pin is-done" cx="20" cy="110" r="5"/>
+                        <circle class="ops__pin ops__pin--1" cx="180" cy="60" r="5"/>
+                        <circle class="ops__pin" cx="300" cy="40" r="5"/>
+                      </svg>
+                      <svg class="ops__truck" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><rect x="1" y="3" width="7" height="6" rx="1"/><rect x="8" y="5" width="3" height="4" rx=".5"/></svg>
+                    </div>
+                    <ul class="ops__list">
+                      <li class="is-done"><span>Depot A · 06:40 check-in</span><b>DONE</b></li>
+                      <li><span>Site 14 · collection + manifest</span><b>EN ROUTE</b></li>
+                      <li><span>Site 22 · collection</span><b>QUEUED</b></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="device device--phone">
+                  <div class="screen">
+                    <div class="ph__top"><span>09:41</span><span class="ph__badge is-on">● Online</span></div>
+                    <div class="ph__h">Collection · Site 14</div>
+                    <div class="ph__field"><span>Container</span><b>6 m³</b></div>
+                    <div class="ph__field"><span>Weight</span><b>1.2 t</b></div>
+                    <div class="ph__field"><span>Manifest</span><b>Signed</b></div>
+                    <div class="ph__btn">Save collection</div>
+                    <div class="ph__queue"><span>Waiting to sync</span><b>3</b></div>
+                  </div>
+                </div>
+              </div>
     </div>
 
     <section class="chap band band-wash">
@@ -140,7 +173,7 @@
         <div class="chap__head">
           <p class="chap__label" data-reveal>Chapter 01 — Discovering the challenge</p>
           <div>
-            <h2 class="chap__title" data-reveal style="--d:80ms">Growth created complexity</h2>
+            <h2 class="chap__title" data-lines>Growth created complexity</h2>
             <p class="chap__body" data-reveal style="--d:140ms">As operations expanded, manual processes could no longer keep pace. Critical information became fragmented across disconnected tools, reducing visibility and slowing decision-making — a missed bin found out about at 7am, two crews assigned one vehicle, and no sight of truck 07 since 09:40.</p>
             <p class="chap__note">This is where discovery begins.</p>
           </div>
@@ -153,7 +186,7 @@
         <div class="chap__head">
           <p class="chap__label" data-reveal>Chapter 02 — GEMIS discovers a better way</p>
           <div>
-            <h2 class="chap__title" data-reveal style="--d:80ms">Every transformation starts with understanding</h2>
+            <h2 class="chap__title" data-lines>Every transformation starts with understanding</h2>
             <p class="chap__body" data-reveal style="--d:140ms">We begin by understanding how people work, where friction exists and how technology can remove barriers — mapping the operations journey across dispatcher, driver, manager and customer, through wireframes to a working prototype, before a single line of production code is written.</p>
             <p class="chap__note">Business analysis · UX research · UX/UI design · Solution architecture · Software engineering · Quality assurance · AI &amp; automation · Continuous improvement</p>
           </div>
@@ -166,7 +199,7 @@
         <div class="chap__head">
           <p class="chap__label" data-reveal>Chapter 03 — Engineering the platform</p>
           <div>
-            <h2 class="chap__title" data-reveal style="--d:80ms">Software engineered around real operations</h2>
+            <h2 class="chap__title" data-lines>Software engineered around real operations</h2>
             <p class="chap__body" data-reveal style="--d:140ms">Every workflow, interface and integration was designed around the people responsible for keeping cities moving — the dispatcher assigning the route, the driver confirming the collection, the manager answering for the day.</p>
           </div>
         </div>
@@ -230,7 +263,7 @@
         <div class="chap__head">
           <p class="chap__label" data-reveal>Chapter 04 — Transforming operations</p>
           <div>
-            <h2 class="chap__title" data-reveal style="--d:80ms">The difference wasn't simply better software. It was a better way of working.</h2>
+            <h2 class="chap__title" data-lines>The difference wasn't simply better software. It was a better way of working.</h2>
             <p class="chap__body" data-reveal style="--d:140ms">By connecting people, operations and information into one intelligent platform, WasteMart gained greater visibility, consistency and confidence across its daily operations.</p>
           </div>
         </div>
@@ -249,7 +282,7 @@
         <div class="chap__head">
           <p class="chap__label" data-reveal>Chapter 05 — Ready for tomorrow</p>
           <div>
-            <h2 class="chap__title" data-reveal style="--d:80ms">Built for today. Ready for tomorrow.</h2>
+            <h2 class="chap__title" data-lines>Built for today. Ready for tomorrow.</h2>
             <p class="chap__body" data-reveal style="--d:140ms">A scalable digital platform designed to support operational excellence, future growth and continuous innovation.</p>
           </div>
         </div>
@@ -299,7 +332,7 @@
       <span class="dotgrid dotgrid--r" aria-hidden="true"></span>
 
       <div class="shell">
-        <h2 class="cta__t" data-reveal>Ready to modernise your operations?</h2>
+        <h2 class="cta__t" data-lines>Ready to modernise your operations?</h2>
         <p class="cta__s" data-reveal style="--d:80ms">
           Whether you're replacing a legacy system, launching a new digital platform or
           connecting the tools you already run, we'll scope it with you — no obligation.
@@ -315,6 +348,7 @@
 
   <footer class="foot">
     <div class="shell">
+      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -372,9 +406,11 @@
           </a>
         </div>
       </div>
+      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911e" defer></script>
+  <script src="assets/js/site.js?v=20261006" defer></script>
+  <script type="module" src="assets/js/page.js?v=20261006"></script>
 </body>
 </html>

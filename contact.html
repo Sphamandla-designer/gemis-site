@@ -15,7 +15,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
@@ -116,7 +118,7 @@
 
           <div>
             <p class="eyebrow" data-reveal>Contact</p>
-            <h1 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h1>
+            <h1 class="ctc__title" data-lines>Book a Discovery Session</h1>
             <p class="ctc__lede" data-reveal style="--d:140ms">
               Tell us what you're trying to fix. We'll come back within two working days
               with a short written view and a time to talk. No obligation.
@@ -141,6 +143,22 @@
               </address>
             </div>
 
+            <div class="ctc__block" data-reveal style="--d:400ms">
+              <h2>Where we are</h2>
+              <!-- A schematic, not a map tile: no third-party service, nothing loaded from elsewhere. -->
+              <svg class="map" viewBox="0 0 400 300" role="img" aria-label="Schematic of Edgemead, Cape Town, with our office marked">
+                <g class="grid"><path d="M0 50 H400 M0 100 H400 M0 150 H400 M0 200 H400 M0 250 H400 M50 0 V300 M100 0 V300 M150 0 V300 M200 0 V300 M250 0 V300 M300 0 V300 M350 0 V300"/></g>
+                <path class="road road--main" d="M0 230 C 80 210, 140 120, 400 90"/>
+                <path class="road" d="M60 0 C 90 90, 150 160, 230 300"/>
+                <path class="road" d="M0 120 C 120 140, 200 170, 400 220"/>
+                <path class="road" d="M300 0 C 280 80, 290 160, 340 300"/>
+                <circle class="ring" cx="212" cy="152" r="12"/>
+                <circle class="pin" cx="212" cy="152" r="6"/>
+                <text class="lbl" x="226" y="148">9 Tapiola Way</text><text x="226" y="166">EDGEMEAD · CAPE TOWN</text>
+                <text x="16" y="286">N7 ↑</text><text x="330" y="24">CBD →</text>
+              </svg>
+              <p class="map__note">A schematic, not a navigation map. Use the address above for directions.</p>
+            </div>
             <div class="ctc__block" data-reveal style="--d:360ms">
               <h2>Elsewhere</h2>
               <p>
@@ -233,7 +251,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>What Happens Next</p>
-            <h2 class="display" data-reveal style="--d:80ms">Three steps, no obligation</h2>
+            <h2 class="display" data-lines>Three steps, no obligation</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             We don't put a proposal in front of you before we understand the problem.
@@ -264,6 +282,7 @@
 
   <footer class="foot">
     <div class="shell">
+      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -321,9 +340,11 @@
           </a>
         </div>
       </div>
+      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20260911e" defer></script>
+  <script src="assets/js/site.js?v=20261006" defer></script>
+  <script type="module" src="assets/js/page.js?v=20261006"></script>
 </body>
 </html>
