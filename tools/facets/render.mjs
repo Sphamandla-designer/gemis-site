@@ -1,4 +1,5 @@
-const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || '/opt/node22/lib/node_modules/playwright/index.js');
+const pw = await import(process.env.PLAYWRIGHT_MODULE || '/opt/node22/lib/node_modules/playwright/index.js');
+const { chromium } = pw.default ?? pw;
 import fs from 'node:fs';
 const OUT = new URL('./', import.meta.url).pathname;
 const IMG = new URL('../../assets/img/', import.meta.url).pathname;
