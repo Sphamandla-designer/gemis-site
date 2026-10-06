@@ -560,18 +560,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <button sc-camel-on-click="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="studioMenu" style="background:transparent;color:#fff;border:1px solid #fff;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;font-family:inherit;cursor:pointer;text-transform:uppercase">Menu <span aria-hidden="true">{{ menuGlyph }}</span></button>
   </div>
 </div>
-<a href="#enquire" data-cta style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
+<a href="contact.html#teardown" data-cta style="{{ ctaStyle }}"><span style="text-transform:uppercase">Book a teardown</span></a>
 <a href="#top" data-mark aria-label="GEMIS Studio" style="position:fixed;top:0;left:0;z-index:52;height:94px;padding-left:32px;display:flex;align-items:center"><img src="assets/mark-colour.svg" width="26" height="26" alt="" style="display:block;width:26px;height:26px"></a>
 </header>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
 <div id="studioMenu" data-m="drawer" style="position:fixed;top:12px;right:12px;bottom:12px;width:min(420px,calc(100vw - 24px));background:#16161a;color:#f5f6f8;z-index:40;padding:220px 32px 40px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.4)">
   <div style="display:flex;flex-direction:column;gap:10px">
-    <a href="#work" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
-    <a href="#services" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
+    <a href="work.html" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Work</a>
+    <a href="services.html" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Services</a>
     <a href="about.html" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">About</a>
     <a href="#why" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Why us</a>
-    <a href="#contact" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Contact</a>
+    <a href="contact.html" sc-camel-on-click="{{ toggleMenu }}" style="font-size:34px;font-weight:500">Contact</a>
 <a href="../index.html" style="font-size:34px;font-weight:500;opacity:.6">GEM Information Systems<span aria-hidden="true"> &#8599;</span></a>
   </div>
   <div style="display:flex;flex-direction:column;gap:28px">
@@ -601,8 +601,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br><span class="dc-vh">built.</span>{{ rotator }}</h1>
     <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
-      <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
-      <a href="#enquire" sc-camel-on-click="{{ pickNotSure }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Discuss your project</span><span>→</span></a>
+      <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      <a href="contact.html#not-sure" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Discuss your project</span><span>→</span></a>
       <button type="button" sc-camel-on-click="{{ toggleMotion }}" style="align-self:flex-end;padding:0 0 10px;border:0;background:transparent;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;text-transform:uppercase;color:#6a6b73">{{ motionLabel }}</button>
     </div>
   </div>
@@ -750,7 +750,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
           </div>
           <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
             <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
-            <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">{{ s.cta }}</span><span>→</span></a>
+            <a href="{{ s.ctaHref }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">{{ s.cta }}</span><span>→</span></a>
           </div>
         </div>
         </sc-for>
@@ -897,7 +897,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <div data-m="footcol" style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
       <div aria-hidden="true" data-m="rightrow" style="display:flex;justify-content:flex-end;font-size:15px;color:#6a6b73">SAST → {{ clock }}</div>
       <div style="display:flex;gap:24px;flex-wrap:wrap">
-        <a href="#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
 <a href="../index.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">GEM Information Systems</span><span>&#8599;</span></a>
       </div>
       <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:64px">
@@ -963,10 +963,10 @@ class Component extends DCLogic {
     const lightBg2 = wrap([blob('a','driftC 40s ease-in-out infinite','55vw','50%','-20%','rgba(255,122,18,.12)',80),blob('b','driftA 48s ease-in-out infinite','40vw','-15%','50%','rgba(255,31,122,.10)',80)]);
     const lightBg3 = wrap([blob('a','driftB 38s ease-in-out infinite','50vw','-10%','10%','rgba(255,31,122,.12)',80)]);
     const ladderData = [
-      { num: '01', name: 'Product Teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown' },
-      { num: '02', name: 'Interface Refresh Sprint', time: '2 weeks', kicker: 'Refresh', price: 'R18,000 – R25,000', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGem', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
-      { num: '03', name: 'Web Experience', time: '6 – 8 weeks', kicker: 'Build', price: 'R55,000 – R85,000', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
-      { num: '04', name: 'Embedded Designer', time: 'Ongoing', kicker: 'Embed', price: 'R20,000 – R35,000/month', priceNote: 'Per month · 3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Book a teardown' }
+      { num: '01', name: 'Product Teardown', slug: 'teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown' },
+      { num: '02', name: 'Interface Refresh Sprint', slug: 'refresh', time: '2 weeks', kicker: 'Refresh', price: 'R18,000 – R25,000', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGem', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '03', name: 'Web Experience', slug: 'web', time: '6 – 8 weeks', kicker: 'Build', price: 'R55,000 – R85,000', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
+      { num: '04', name: 'Embedded Designer', slug: 'embedded', time: 'Ongoing', kicker: 'Embed', price: 'R20,000 – R35,000/month', priceNote: 'Per month · 3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Book a teardown' }
     ];
     ladderData.forEach(l => { l.deliverables = l.deliverables.map((t, i) => typeof t === 'string' ? { n: '0' + (i + 1), t } : t); });
     const si = this.state.step, sn = ladderData.length;
@@ -985,7 +985,7 @@ class Component extends DCLogic {
        all four read without JavaScript. The fadeUp animation still runs on the
        step you switch to, because animation goes from none to fadeUp. */
     const ladderPanels = ladderData.map((l, i) => ({
-      ...l, tabId: tabId(i), panelId: panelId(i),
+      ...l, tabId: tabId(i), panelId: panelId(i), ctaHref: 'contact.html#' + l.slug,
       cardStyle: i === si
         ? { background: '#f5f6f8', color: '#16161a', animation: 'fadeUp .5s cubic-bezier(.2,.7,.2,1) both', display: 'grid', gridTemplateRows: 'auto auto auto 1fr auto' }
         // only display differs, so the no-JS fallback — which overrides it —

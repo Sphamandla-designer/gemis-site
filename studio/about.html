@@ -582,23 +582,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 [data-a="facts"]>div{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);padding:22px 20px;min-height:0}
 [data-a="four"]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 [data-a="three"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+[data-a="five"]{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
 [data-a="chips"]{display:flex;gap:10px;flex-wrap:wrap}
 [data-a="lead"]{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
 .about-card{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
 .about-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)}
 .about-img img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .about-img:hover img{transform:scale(1.04)}
+@media (max-width:1100px){
+  [data-a="five"]{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
 @media (max-width:900px){
   /* the hero is a grid like the homepage's, and its columns become rows */
   #about{grid-template-columns:1fr!important;grid-template-rows:auto auto!important;min-height:0!important;padding:104px 18px 44px!important;gap:40px!important}
-  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr 1fr!important}
+  [data-a="facts"],[data-a="four"],[data-a="three"],[data-a="five"]{grid-template-columns:1fr 1fr!important}
   [data-a="lead"]{grid-template-columns:auto 1fr!important}
   [data-a="lead"]>:last-child{grid-column:1 / -1!important;justify-content:flex-start!important}
-  [data-a="four"]>div{min-height:0!important;gap:24px!important}
+  [data-a="four"]>div,[data-a="five"]>div{min-height:0!important;gap:20px!important}
   [data-a="chips"]{justify-content:flex-start!important}
 }
 @media (max-width:560px){
-  [data-a="facts"],[data-a="four"],[data-a="three"]{grid-template-columns:1fr!important}
+  [data-a="facts"],[data-a="four"],[data-a="three"],[data-a="five"]{grid-template-columns:1fr!important}
 }
 @media (prefers-reduced-motion:reduce){.about-card,.about-img img{transition:none}}
 </style>
@@ -618,14 +622,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div data-dc-tpl="12" style="display: flex; align-items: center; gap: 10px;">
     <a data-dc-tpl="13" href="../index.html" data-desk="" style="display: flex; align-items: center; gap: 7px; height: 38px; padding: 0px 4px; margin-right: 4px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.12em; color: rgb(255, 255, 255); opacity: 0.72; text-decoration: none; white-space: nowrap;">GEMIS.CO.ZA<span data-dc-tpl="14" aria-hidden="true">↗</span></a><span data-dc-tpl="15" data-desk="" style="width: 150px; height: 38px; visibility: hidden;"></span>
     <button id="studioMenuBtn" data-dc-tpl="16" aria-expanded="false" aria-controls="studioMenu" style="background: transparent; color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); border-radius: 999px; padding: 9px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; font-family: inherit; cursor: pointer; text-transform: uppercase;">Menu <span data-dc-tpl="17" aria-hidden="true"><span class="sc-interp">≡</span></span></button>
-  </div></div><a data-dc-tpl="18" href="index.html#enquire" data-cta="" style="position: fixed; top: 28px; right: calc(128px); z-index: 51; background: rgb(255, 31, 122); color: rgb(255, 255, 255); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: background 0.4s, color 0.4s; line-height: 1.4;"><span data-dc-tpl="19" style="text-transform: uppercase;">Book a teardown</span></a><a data-dc-tpl="20" href="index.html#top" data-mark="" aria-label="GEMIS Studio" style="position: fixed; top: 0px; left: 0px; z-index: 52; height: 94px; padding-left: 32px; display: flex; align-items: center;"><img data-dc-tpl="21" src="assets/mark-colour.svg" width="26" height="26" alt="" style="display: block; width: 26px; height: 26px;"></a></header>   <!-- the <header> already carries the fixed action pill -->
+  </div></div><a data-dc-tpl="18" href="contact.html#teardown" data-cta="" style="position: fixed; top: 28px; right: calc(128px); z-index: 51; background: rgb(255, 31, 122); color: rgb(255, 255, 255); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: background 0.4s, color 0.4s; line-height: 1.4;"><span data-dc-tpl="19" style="text-transform: uppercase;">Book a teardown</span></a><a data-dc-tpl="20" href="index.html#top" data-mark="" aria-label="GEMIS Studio" style="position: fixed; top: 0px; left: 0px; z-index: 52; height: 94px; padding-left: 32px; display: flex; align-items: center;"><img data-dc-tpl="21" src="assets/mark-colour.svg" width="26" height="26" alt="" style="display: block; width: 26px; height: 26px;"></a></header>   <!-- the <header> already carries the fixed action pill -->
 <div hidden data-dc-tpl="23" id="studioMenu" data-m="drawer" style="position: fixed; top: 12px; right: 12px; bottom: 12px; width: min(420px, -24px + 100vw); background: rgb(22, 22, 26); color: rgb(245, 246, 248); z-index: 40; padding: 220px 32px 40px; display: none; flex-direction: column; justify-content: space-between; box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 60px;">
   <div data-dc-tpl="24" style="display: flex; flex-direction: column; gap: 10px;">
-    <a data-dc-tpl="25" href="index.html#work" style="font-size: 34px; font-weight: 500;">Work</a>
-    <a data-dc-tpl="26" href="index.html#services" style="font-size: 34px; font-weight: 500;">Services</a>
+    <a data-dc-tpl="25" href="work.html" style="font-size: 34px; font-weight: 500;">Work</a>
+    <a data-dc-tpl="26" href="services.html" style="font-size: 34px; font-weight: 500;">Services</a>
     <a data-dc-tpl="27" href="about.html" style="font-size: 34px; font-weight: 500;">About</a>
     <a data-dc-tpl="28" href="index.html#why" style="font-size: 34px; font-weight: 500;">Why us</a>
-    <a data-dc-tpl="29" href="index.html#contact" style="font-size: 34px; font-weight: 500;">Contact</a><a data-dc-tpl="30" href="../index.html" style="font-size: 34px; font-weight: 500; opacity: 0.6;">GEM Information Systems<span data-dc-tpl="31" aria-hidden="true"> ↗</span></a>
+    <a data-dc-tpl="29" href="contact.html" style="font-size: 34px; font-weight: 500;">Contact</a><a data-dc-tpl="30" href="../index.html" style="font-size: 34px; font-weight: 500; opacity: 0.6;">GEM Information Systems<span data-dc-tpl="31" aria-hidden="true"> ↗</span></a>
   </div>
   <div data-dc-tpl="32" style="display: flex; flex-direction: column; gap: 28px;">
     <div data-dc-tpl="33">
@@ -651,7 +655,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <h1 data-reveal="1" style="margin:0;font-size:clamp(48px,6vw,100px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">The design practice of <span style="color:#ff1f7a">GEM Information Systems.</span></h1>
     <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap">
-      <a href="index.html#enquire" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
       <a href="work.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See the work</span><span>→</span></a>
     </div>
   </div>
@@ -731,37 +735,46 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">How we work</div>
         <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Diagnose. Refresh.<br><span style="color:#ff1f7a">Build.</span></h2>
       </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.</p>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">Five steps, the same on every engagement. You always know where the work stands, what it costs, and what comes next.</p>
     </div>
-    <div data-m="cards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
-      <a href="index.html#services" data-reveal="1" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
+    <div data-a="five" style="margin-top:80px">
+      <div data-reveal="1" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px;min-height:320px;border-top:4px solid #ff1f7a">
         <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">01</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Diagnose</span></div>
-        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Product Teardown</div>
+        <div style="font-size:clamp(22px,1.7vw,26px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">We look before we draw</div>
         <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.</p>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R6,500 · 5 days</div>
-      </a>
-      <a href="index.html#services" data-reveal="2" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Refresh</span></div>
-        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Interface Refresh Sprint</div>
-        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.</p>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R18,000 – R25,000 · 2 weeks</div>
-      </a>
-      <a href="index.html#services" data-reveal="3" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Build</span></div>
-        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Web Experience</div>
-        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.</p>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R55,000 – R85,000 · 6 – 8 weeks</div>
-      </a>
-      <a href="index.html#services" data-reveal="4" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px;min-height:340px;border-top:4px solid #ff1f7a;border-radius:0">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">04</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Embed</span></div>
-        <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Embedded Designer</div>
-        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.</p>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#16161a;border-top:1px solid #dcdee3;padding-top:16px;text-transform:uppercase">R20,000 – R35,000 / month</div>
-      </a>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;border-top:1px solid #dcdee3;padding-top:14px;text-transform:uppercase;line-height:1.5">Product Teardown · findings within 5 working days</div>
+      </div>
+      <div data-reveal="2" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px;min-height:320px;border-top:4px solid #ff7a12">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Fix the scope</span></div>
+        <div style="font-size:clamp(22px,1.7vw,26px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Scope and price in writing</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;border-top:1px solid #dcdee3;padding-top:14px;text-transform:uppercase;line-height:1.5">Published prices · no proposal cycle</div>
+      </div>
+      <div data-reveal="3" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px;min-height:320px;border-top:4px solid #ff1f7a">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Design</span></div>
+        <div style="font-size:clamp(22px,1.7vw,26px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">The screens that matter</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">We map what users actually do before we redesign anything, then redesign the screens that matter to a developer-ready standard your team can build the following Monday.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;border-top:1px solid #dcdee3;padding-top:14px;text-transform:uppercase;line-height:1.5">Up to 12 screens · components and tokens</div>
+      </div>
+      <div data-reveal="4" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px;min-height:320px;border-top:4px solid #ff7a12">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">04</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Build or hand off</span></div>
+        <div style="font-size:clamp(22px,1.7vw,26px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Nothing dies in handoff</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Our developers sit two desks away. What we draw, they ship. Or we hand your developers something they can build — the handoff session is in the price.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;border-top:1px solid #dcdee3;padding-top:14px;text-transform:uppercase;line-height:1.5">Developer handoff in every price</div>
+      </div>
+      <div data-reveal="4" class="about-card" style="background:#fff;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px;min-height:320px;border-top:4px solid #ff7a12">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">05</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">Aftercare</span></div>
+        <div style="font-size:clamp(22px,1.7vw,26px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">We stay for thirty days</div>
+        <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41">Thirty days of aftercare and a support channel after every engagement, and the Teardown fee credited in full against any engagement booked within 60 days.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;border-top:1px solid #dcdee3;padding-top:14px;text-transform:uppercase;line-height:1.5">30 days aftercare · 60-day credit</div>
+      </div>
     </div>
     <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">
-      <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:640px">Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff. Teardown fee credited in full against any engagement booked within 60 days.</p>
-      <a href="index.html#services" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See every service</span><span>→</span></a>
+      <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:640px">Every engagement starts with a diagnosis and climbs only as far as you need: four services, each with a published price and a defined output.</p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="services.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">See the services</span><span>→</span></a>
+        <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -933,9 +946,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div data-dc-tpl="340" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-dc-tpl="341" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
-      <div data-dc-tpl="342" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">23:16</span></div>
+      <div data-dc-tpl="342" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">09:00</span></div>
       <div data-dc-tpl="343" style="display: flex; gap: 24px; flex-wrap: wrap;">
-        <a data-dc-tpl="344" href="index.html#enquire" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="345" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="346">→</span></a><a data-dc-tpl="347" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="348" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="349">↗</span></a>
+        <a data-dc-tpl="344" href="contact.html#teardown" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="345" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="346">→</span></a><a data-dc-tpl="347" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="348" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="349">↗</span></a>
       </div>
       <div data-dc-tpl="350" data-m="head" style="display: grid; grid-template-columns: 1fr auto; gap: 64px;">
         <div data-dc-tpl="351">
@@ -987,44 +1000,29 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   </div></section>
 </main>
 
-<!-- The homepage's menu button is wired by React. This page carries no runtime,
-     so the same drawer gets the same behaviour from twenty lines of nothing. -->
 <script>
 (function () {
   'use strict';
   var btn = document.getElementById('studioMenuBtn');
   var drawer = document.getElementById('studioMenu');
-  if (!btn || !drawer) return;
-
-  // the runtime wraps the ≡ in markup of its own, so find it by what it says
-  var glyph = [].slice.call(btn.querySelectorAll('span'))
-    .filter(function (s) { return !s.children.length && /^[≡×]$/.test(s.textContent.trim()); })[0];
-  var isOpen = false;
-  function set(open) {
-    isOpen = open;
-    // the drawer carries an inline display:flex, which outranks [hidden]
-    drawer.style.display = open ? 'flex' : 'none';
-    drawer.hidden = !open;
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (glyph) glyph.textContent = open ? '×' : '≡';
+  if (btn && drawer) {
+    // the runtime wraps the ≡ in markup of its own, so find it by what it says
+    var glyph = [].slice.call(btn.querySelectorAll('span'))
+      .filter(function (s) { return !s.children.length && /^[\u2261\u00d7]$/.test(s.textContent.trim()); })[0];
+    var isOpen = false;
+    var set = function (open) {
+      isOpen = open;
+      // the drawer carries an inline display:flex, which outranks [hidden]
+      drawer.style.display = open ? 'flex' : 'none';
+      drawer.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (glyph) glyph.textContent = open ? '×' : '≡';
+    };
+    set(false);
+    btn.addEventListener('click', function () { set(!isOpen); });
+    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); } });
   }
-  set(false);
-  btn.addEventListener('click', function () { set(!isOpen); });
-  drawer.addEventListener('click', function (e) {
-    if (e.target.closest('a')) set(false);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); }
-  });
-})();
-</script>
-
-<!-- The homepage reveals [data-reveal] elements from React. This page has no
-     runtime, so the same stylesheet gets its .in class from here instead;
-     without this the lifted closing band's heading stays at opacity 0. -->
-<script>
-(function () {
-  'use strict';
   var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
   if (!els.length) return;
   if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }

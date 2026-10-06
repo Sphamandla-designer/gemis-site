@@ -8,8 +8,9 @@
  *                                   Canvas export replaces wholesale
  * Writes  studio/index.html       — served; fully rendered, no {{ }}
  *         studio/assets/dc-template.js — the template, as a JS string
- *         studio/work.html, studio/about.html — the sibling pages, with the
- *                                   homepage's chrome lifted into their slots
+ *         studio/work.html, about.html, services.html, contact.html — the
+ *                                   sibling pages, with the homepage's chrome
+ *                                   lifted into their slots
  *
  * How it works: the source page is served as-is to a headless Chromium, which
  * runs dc-runtime and React exactly as a visitor's browser would. The rendered
@@ -35,6 +36,10 @@ const WORK_SRC = join(ROOT, 'studio/src/work.html');
 const WORK_OUT = join(ROOT, 'studio/work.html');
 const ABOUT_SRC = join(ROOT, 'studio/src/about.html');
 const ABOUT_OUT = join(ROOT, 'studio/about.html');
+const SERVICES_SRC = join(ROOT, 'studio/src/services.html');
+const SERVICES_OUT = join(ROOT, 'studio/services.html');
+const CONTACT_SRC = join(ROOT, 'studio/src/contact.html');
+const CONTACT_OUT = join(ROOT, 'studio/contact.html');
 const TMP_REL = 'studio/.prerender.html';
 const TMP = join(ROOT, TMP_REL);
 
@@ -109,6 +114,48 @@ html,body{height:100%;margin:0}
 
 const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/* The homepage's menu button and [data-reveal] elements are driven by React.
+   The sibling pages carry no runtime, so they get the same behaviour from here:
+   the drawer opens and shuts, and the reveal class arrives on scroll. */
+const SIBLING_JS = `<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('studioMenuBtn');
+  var drawer = document.getElementById('studioMenu');
+  if (btn && drawer) {
+    // the runtime wraps the ≡ in markup of its own, so find it by what it says
+    var glyph = [].slice.call(btn.querySelectorAll('span'))
+      .filter(function (s) { return !s.children.length && /^[\\u2261\\u00d7]$/.test(s.textContent.trim()); })[0];
+    var isOpen = false;
+    var set = function (open) {
+      isOpen = open;
+      // the drawer carries an inline display:flex, which outranks [hidden]
+      drawer.style.display = open ? 'flex' : 'none';
+      drawer.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (glyph) glyph.textContent = open ? '×' : '≡';
+    };
+    set(false);
+    btn.addEventListener('click', function () { set(!isOpen); });
+    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); } });
+  }
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  }, 1500);
+})();
+</script>`;
+
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const SERVICE_ID = { 'Product Teardown': 'teardown', 'Interface Refresh Sprint': 'refresh', 'Web Experience': 'web', 'Embedded Designer': 'embedded' };
 
 /** In-page links in the lifted chrome belong to the homepage, not to this one. */
 const rehomeAnchors = (html) => html.replace(/href="#([a-z][a-z0-9-]*)"/g, (m, id) =>
@@ -191,6 +238,20 @@ const main = async () => {
         pill: outer('[data-cta]'),
         contact: outer('#contact'),
         cards,
+        // the four ladder steps, read out of the rendered panels so services.html cannot drift from the homepage
+        services: [...document.querySelectorAll('#services [role="tabpanel"]')].map((p) => {
+          const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+          const [head, title, body, foot] = p.children;
+          const specs = [...body.querySelectorAll('[data-m="spec"]')];
+          return {
+            badge: t(head.children[0]), time: t(head.children[1]),
+            name: t(title.children[0]), price: t(title.children[1]),
+            desc: t(body.querySelector('p')),
+            priceNote: t(specs[0].children[1]), evidence: t(specs[1].children[1]), credit: t(specs[2].children[1]),
+            deliverables: [...specs[3].querySelectorAll('li')].map((li) => t(li.children[1])),
+            note: t(foot.children[0]), cta: t(foot.querySelector('a span')),
+          };
+        }),
       };
     });
     // the drawer only exists while the menu is open
@@ -272,7 +333,8 @@ const main = async () => {
       // display:flex outranks [hidden], so that has to go too or the drawer sits
       // over the page for anyone without JavaScript.
       .replace('<!--#drawer-->', shutDrawer(rehomeAnchors(chrome.drawer)))
-      .replace('<!--#contact-->', rehomeAnchors(chrome.contact));
+      .replace('<!--#contact-->', rehomeAnchors(chrome.contact))
+      .replace('<!--#sibling-js-->', SIBLING_JS);
     for (const [slot, html] of Object.entries(own)) page = page.replace(`<!--#${slot}-->`, html);
     if (!page.includes('id="studioMenuBtn"')) throw new Error(`${name} could not tag the menu button — the studio header markup changed`);
     if (page.includes('{{')) throw new Error(`${name} still contains {{ — the chrome was lifted before the runtime resolved it`);
@@ -315,6 +377,49 @@ const main = async () => {
 
   const about = siblingPage('about.html', await readFile(ABOUT_SRC, 'utf8'), { evidence });
 
+  // ── studio/services.html ───────────────────────────────────────────────
+  if (chrome.services.length !== 4) throw new Error(`the homepage ladder rendered ${chrome.services.length} steps, not 4 — services.html would be wrong`);
+  const services = chrome.services.map((s) => {
+    const [num, kicker] = s.badge.split('—').map((x) => x.trim());
+    const project = s.evidence.replace(/^Evidence\s*—\s*/i, '').trim();
+    const id = SERVICE_ID[s.name] || slug(s.name);
+    if (!num || !kicker || !project) throw new Error(`could not read the ladder step "${s.name}" off the homepage`);
+    return { ...s, num, kicker, id, project, projectSlug: slug(project) };
+  });
+  const ladder = services.map((s) => `        <a class="svc-row" href="#${s.id}" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(22,22,26,.15);color:#16161a"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff1f7a">${esc(s.num)}</span><span style="font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.03em;font-weight:600">${esc(s.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;white-space:nowrap;text-transform:uppercase">${esc(s.time)} · ${esc(s.price)}</span></a>`).join('\n');
+  const spec = (label, value) => `            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">${label}</span>${value}</div>`;
+  const stepCards = services.map((s, i) => `      <section id="${s.id}" class="svc-card" aria-labelledby="${s.id}-name" style="scroll-margin-top:120px;background:#f5f6f8;color:#16161a;display:grid;grid-template-rows:auto auto 1fr auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
+          <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">${esc(s.num)} — ${esc(s.kicker)}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">${esc(s.time)}</span>
+        </div>
+        <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <h3 id="${s.id}-name" style="margin:0;font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">${esc(s.name)}</h3>
+          <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">${esc(s.price)}</div>
+        </div>
+        <div style="padding:24px clamp(24px,3vw,40px) 0">
+          <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">${esc(s.desc)}</p>
+          <div style="margin-top:28px;border-top:1px solid #16161a">
+${spec('Timeline', `<span style="font-weight:600;text-transform:uppercase">${esc(s.priceNote)}</span>`)}
+${spec('Evidence', `<span style="font-weight:600;text-transform:uppercase"><a href="work.html#${esc(s.projectSlug)}" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">${esc(s.project)}</a></span>`)}
+${spec('Credit', `<span style="color:#3a3b41">${esc(s.credit)}</span>`)}
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
+${s.deliverables.map((d, j) => `                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">0${j + 1}</span><span style="font-weight:500">${esc(d)}</span></li>`).join('\n')}
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-size:14px;color:#9a9ba3">${esc(s.note)}</span>
+          <a href="contact.html#${s.id}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">${esc(s.cta)}</span><span>→</span></a>
+        </div>
+      </section>`).join('\n');
+  const servicesPage = siblingPage('services.html', await readFile(SERVICES_SRC, 'utf8'), { ladder, services: stepCards });
+
+  // ── studio/contact.html ────────────────────────────────────────────────
+  const contact = siblingPage('contact.html', await readFile(CONTACT_SRC, 'utf8'), {});
+
   await writeFile(TPL_OUT,
     '/* Generated by tools/build-studio.mjs — do not edit.\n'
     + '   Source of truth: studio/src/index.html */\n'
@@ -322,10 +427,14 @@ const main = async () => {
   await writeFile(OUT, out, 'utf8');
   await writeFile(WORK_OUT, work, 'utf8');
   await writeFile(ABOUT_OUT, about, 'utf8');
+  await writeFile(SERVICES_OUT, servicesPage, 'utf8');
+  await writeFile(CONTACT_OUT, contact, 'utf8');
   console.log(`studio/index.html written — ${(out.length / 1024).toFixed(0)} KB, 0 unresolved bindings`);
   console.log(`studio/assets/dc-template.js written — ${(template.length / 1024).toFixed(0)} KB of template`);
   console.log(`studio/work.html written — ${(work.length / 1024).toFixed(0)} KB, ${projects.length} projects: ${projects.map((p) => p.name).join(', ')}`);
   console.log(`studio/about.html written — ${(about.length / 1024).toFixed(0)} KB, evidence: ${homeProjects.map((p) => p.name).join(', ')}`);
+  console.log(`studio/services.html written — ${(servicesPage.length / 1024).toFixed(0)} KB, steps: ${services.map((s) => s.name + ' ' + s.price).join(', ')}`);
+  console.log(`studio/contact.html written — ${(contact.length / 1024).toFixed(0)} KB`);
 };
 
 main().catch((e) => { console.error('build-studio failed:', e.message); process.exit(1); });

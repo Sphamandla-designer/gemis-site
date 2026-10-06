@@ -2,15 +2,15 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work — GEMIS® Studio</title>
-<meta name="description" content="Every project GEMIS® Studio has shipped, and the service each one evidences — products, operations systems and interfaces built for South African companies.">
-<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/work.html">
+<title>Services — GEMIS® Studio</title>
+<meta name="description" content="Four services with published prices: Product Teardown, Interface Refresh Sprint, Web Experience and Embedded Designer. Scope and price fixed in writing after the Teardown; developer handoff and 30 days of aftercare in every price.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/services.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GEMIS® Studio">
-<meta property="og:title" content="Work — GEMIS® Studio">
-<meta property="og:description" content="Every project GEMIS® Studio has shipped, and the service each one evidences — products, operations systems and interfaces built for South African companies.">
-<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/finosWide.jpg">
-<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work.html">
+<meta property="og:title" content="Services — GEMIS® Studio">
+<meta property="og:description" content="Four services with published prices: Product Teardown, Interface Refresh Sprint, Web Experience and Embedded Designer. Scope and price fixed in writing after the Teardown; developer handoff and 30 days of aftercare in every price.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/heroBg.jpg">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/services.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -560,10 +560,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 
 </style>
+<style>
+/* This page's own layout hooks. Every rule overrides an inline style, hence the !important. */
+[data-s="ladder"]{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end}
+[data-s="steps"]{display:grid;gap:24px;max-width:1000px;margin:0 auto}
+[data-s="three"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc-card{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.svc-row{transition:color .3s}
+.svc-row:hover{color:#ff1f7a}
+@media (max-width:900px){
+  [data-s="ladder"]{grid-template-columns:1fr!important;gap:36px!important}
+  [data-s="three"]{grid-template-columns:1fr!important}
+}
+@media (prefers-reduced-motion:reduce){.svc-card,.svc-row{transition:none}}
+</style>
 </head>
 <body>
 
-<a class="dc-skip" href="#work">Skip to content</a>
+<a class="dc-skip" href="#services">Skip to content</a>
 
 <header data-dc-tpl="5"><div data-dc-tpl="6" data-nav="" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; color: rgb(255, 255, 255); mix-blend-mode: difference;">
   <a data-dc-tpl="7" href="index.html#top" aria-label="GEMIS Studio" style="display: flex; align-items: center; gap: 12px; color: rgb(255, 255, 255);">
@@ -600,67 +614,202 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <main id="main" data-motion="running">
 <div style="position:relative;overflow:hidden">
 
-<section id="work" data-screen-label="All work" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 120px">
-  <div data-m="head" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;max-width:1400px;margin:0 auto">
-    <div>
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">All work</div>
-      <h1 style="margin:20px 0 0;font-size:clamp(44px,4.5vw,80px);line-height:1;letter-spacing:-0.045em;font-weight:600;color:#16161a">Every project<br>&amp; <span style="color:#ff1f7a">its evidence</span></h1>
+<!-- ── 01 · the ladder ──────────────────────────────────────────────────── -->
+<section id="services" data-screen-label="Services" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 100px">
+  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;opacity:.12;animation:kenburns 40s ease-in-out infinite"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-s="ladder">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Our services</div>
+        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5.5vw,96px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h1>
+        <p data-reveal="2" style="margin:28px 0 0;max-width:460px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:40px">
+          <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+          <a href="contact.html#not-sure" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Not sure where to start?</span><span>→</span></a>
+        </div>
+      </div>
+      <div data-reveal="3" style="background:rgba(255,255,255,.75);backdrop-filter:blur(8px);border:1px solid rgba(22,22,26,.25);padding:8px 28px 4px">
+                <a class="svc-row" href="#teardown" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(22,22,26,.15);color:#16161a"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff1f7a">01</span><span style="font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.03em;font-weight:600">Product Teardown</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;white-space:nowrap;text-transform:uppercase">5 days · R6,500</span></a>
+        <a class="svc-row" href="#refresh" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(22,22,26,.15);color:#16161a"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff1f7a">02</span><span style="font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.03em;font-weight:600">Interface Refresh Sprint</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;white-space:nowrap;text-transform:uppercase">2 weeks · R18,000 – R25,000</span></a>
+        <a class="svc-row" href="#web" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(22,22,26,.15);color:#16161a"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff1f7a">03</span><span style="font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.03em;font-weight:600">Web Experience</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;white-space:nowrap;text-transform:uppercase">6 – 8 weeks · R55,000 – R85,000</span></a>
+        <a class="svc-row" href="#embedded" style="display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(22,22,26,.15);color:#16161a"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ff1f7a">04</span><span style="font-size:clamp(18px,1.6vw,24px);letter-spacing:-0.03em;font-weight:600">Embedded Designer</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;white-space:nowrap;text-transform:uppercase">Ongoing · R20,000 – R35,000/month</span></a>
+      </div>
     </div>
-    <p style="margin:0;font-size:clamp(20px,1.6vw,26px);line-height:1.25;letter-spacing:-0.02em;font-weight:500;max-width:380px;color:#16161a;justify-self:end;border-left:1px solid #dcdee3;padding-left:32px">Every case study evidences a named service — never the studio in general.</p>
   </div>
-    <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">
-      <div id="managem" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/managem.jpg" alt="ManaGem" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">ManaGem</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Interface Refresh Sprint</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">Product design · Dashboard UX · Design system.</p>
-          <a href="work.html#managem" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
-        </div>
+</section>
+
+<!-- ── 02 · each step in full ───────────────────────────────────────────── -->
+<section id="steps" data-screen-label="The four steps" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/asset-04.jpg&quot;) center/cover no-repeat;opacity:.08;animation:kenburns 40s ease-in-out infinite;filter:invert(1)"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:72px">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">The four steps</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">What each one<br><span style="color:#ff1f7a">costs and delivers.</span></h2>
       </div>
-      <div id="wastemart" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/wastemart.jpg" alt="WasteMart" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">WasteMart</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Product Teardown</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">Operations UX · Driver app · Customer portal.</p>
-          <a href="work.html#wastemart" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every service has a published price and a defined output. Every case study evidences a named service — never the studio in general.</p>
+    </div>
+    <div data-s="steps">
+            <section id="teardown" class="svc-card" aria-labelledby="teardown-name" style="scroll-margin-top:120px;background:#f5f6f8;color:#16161a;display:grid;grid-template-rows:auto auto 1fr auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
+          <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">01 — Diagnose</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">5 days</span>
         </div>
-      </div>
-      <div id="finos" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/finosWide.jpg" alt="FINOS" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">FINOS</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Web Experience</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">Financial operating system · AI review workflow.</p>
-          <a href="work.html#finos" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
+        <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <h3 id="teardown-name" style="margin:0;font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">Product Teardown</h3>
+          <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">R6,500</div>
         </div>
-      </div>
-      <div id="rentflow" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/shotRentflow.jpg" alt="RentFlow" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">RentFlow</div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: Embedded Designer</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">Property and rent management — bills, insights and payments with an AI assistant on call.</p>
-          <a href="work.html#rentflow" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
+        <div style="padding:24px clamp(24px,3vw,40px) 0">
+          <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.</p>
+          <div style="margin-top:28px;border-top:1px solid #16161a">
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">Fixed · 5 working days</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase"><a href="work.html#wastemart" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">WasteMart</a></span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">Fee credited in full against any engagement booked within 60 days.</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">01</span><span style="font-weight:500">45-minute discovery session</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">02</span><span style="font-weight:500">Ranked issue list with severity</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">03</span><span style="font-weight:500">Five screens redesigned</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">04</span><span style="font-weight:500">12-month product roadmap</span></li>
+              </ol>
+            </div>
+          </div>
         </div>
-      </div>
-      <div id="nuracoach" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/shotNura.jpg" alt="NuraCoach" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">NuraCoach</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">AI coaching companion — guidance that reads like a conversation, not a report.</p>
-          <a href="work.html#nuracoach" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
+        <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
+          <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
         </div>
-      </div>
-      <div id="lungelo" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="assets/lungelo.jpg" alt="Lungelo" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
-        <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">Lungelo</div>
-        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">Multilingual field-work app — forms and sign-in in eight South African languages.</p>
-          <a href="work.html#lungelo" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">Explore project</span><span>→</span></a>
+      </section>
+      <section id="refresh" class="svc-card" aria-labelledby="refresh-name" style="scroll-margin-top:120px;background:#f5f6f8;color:#16161a;display:grid;grid-template-rows:auto auto 1fr auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
+          <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">02 — Refresh</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">2 weeks</span>
         </div>
+        <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <h3 id="refresh-name" style="margin:0;font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">Interface Refresh Sprint</h3>
+          <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">R18,000 – R25,000</div>
+        </div>
+        <div style="padding:24px clamp(24px,3vw,40px) 0">
+          <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.</p>
+          <div style="margin-top:28px;border-top:1px solid #16161a">
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">Fixed scope · 2 weeks</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase"><a href="work.html#managem" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">ManaGem</a></span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">Teardown fee credited. Thirty days of aftercare included.</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">01</span><span style="font-weight:500">Up to 12 screens redesigned</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">02</span><span style="font-weight:500">Component spec and tokens</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">03</span><span style="font-weight:500">WCAG 2.2 AA contrast pass</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">04</span><span style="font-weight:500">Developer handoff session</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
+          <a href="contact.html#refresh" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        </div>
+      </section>
+      <section id="web" class="svc-card" aria-labelledby="web-name" style="scroll-margin-top:120px;background:#f5f6f8;color:#16161a;display:grid;grid-template-rows:auto auto 1fr auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
+          <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">03 — Build</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">6 – 8 weeks</span>
+        </div>
+        <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <h3 id="web-name" style="margin:0;font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">Web Experience</h3>
+          <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">R55,000 – R85,000</div>
+        </div>
+        <div style="padding:24px clamp(24px,3vw,40px) 0">
+          <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.</p>
+          <div style="margin-top:28px;border-top:1px solid #16161a">
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">Design + build · 6–8 weeks</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase"><a href="work.html#finos" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">FINOS</a></span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">Teardown fee credited. Thirty days of aftercare included.</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">01</span><span style="font-weight:500">Content and structure map</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">02</span><span style="font-weight:500">Full responsive design system</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">03</span><span style="font-weight:500">WordPress build and CMS training</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">04</span><span style="font-weight:500">Performance and SEO baseline</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
+          <a href="contact.html#web" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        </div>
+      </section>
+      <section id="embedded" class="svc-card" aria-labelledby="embedded-name" style="scroll-margin-top:120px;background:#f5f6f8;color:#16161a;display:grid;grid-template-rows:auto auto 1fr auto">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:clamp(20px,2.5vw,32px) clamp(24px,3vw,40px) 0">
+          <span style="background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;padding:10px 14px;text-transform:uppercase">04 — Embed</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Ongoing</span>
+        </div>
+        <div style="padding:28px clamp(24px,3vw,40px) 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <h3 id="embedded-name" style="margin:0;font-size:clamp(30px,3vw,46px);line-height:1;letter-spacing:-0.04em;font-weight:600;min-width:0">Embedded Designer</h3>
+          <div style="font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-0.04em;font-weight:600;color:#ff1f7a;white-space:nowrap">R20,000 – R35,000/month</div>
+        </div>
+        <div style="padding:24px clamp(24px,3vw,40px) 0">
+          <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.</p>
+          <div style="margin-top:28px;border-top:1px solid #16161a">
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Timeline</span><span style="font-weight:600;text-transform:uppercase">Per month · 3-month minimum</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Evidence</span><span style="font-weight:600;text-transform:uppercase"><a href="work.html#rentflow" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">RentFlow</a></span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid #dcdee3;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">Credit</span><span style="color:#3a3b41">Three-month minimum. Scale the band up or down monthly.</span></div>
+            <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
+              <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">01</span><span style="font-weight:500">20 / 40 / 60 hour bands</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">02</span><span style="font-weight:500">Weekly planning with your PM</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">03</span><span style="font-weight:500">Design system ownership</span></li>
+                <li style="display:flex;gap:10px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff7a12">04</span><span style="font-weight:500">Direct line to our developers</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
+          <a href="contact.html#embedded" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        </div>
+      </section>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:72px;gap:24px;flex-wrap:wrap">
+      <div style="font-size:15px;font-weight:600;text-transform:uppercase">✦ Developer handoff · WCAG 2.2 AA · 30 days aftercare — in every price.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;text-transform:uppercase">All prices excl. VAT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 · in every price ──────────────────────────────────────────────── -->
+<section id="included" data-screen-label="In every price" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">In every price</div>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">We never sell<br><span style="color:#ff1f7a">a stage.</span></h2>
       </div>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">Most studios hand over a file and leave. We sit inside a systems company, so what we design has to survive engineering, procurement and the first month of real users.</p>
+    </div>
+    <div data-s="three" style="margin-top:64px">
+      <div data-reveal="1" class="svc-card" style="background:#fff;padding:28px 28px 32px;border-top:4px solid #ff1f7a;display:grid;grid-template-rows:auto 1fr;gap:36px;min-height:260px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">01</span>
+        <div style="align-self:end"><div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Developer handoff in the price</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#3a3b41">Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff. Or we hand your developers something they can build.</p></div>
+      </div>
+      <div data-reveal="2" class="svc-card" style="background:#fff;padding:28px 28px 32px;border-top:4px solid #ff1f7a;display:grid;grid-template-rows:auto 1fr;gap:36px;min-height:260px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">02</span>
+        <div style="align-self:end"><div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">Thirty days of aftercare</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#3a3b41">A 30-day support channel after every engagement, with a WCAG 2.2 AA contrast pass on what we ship.</p></div>
+      </div>
+      <div data-reveal="3" class="svc-card" style="background:#fff;padding:28px 28px 32px;border-top:4px solid #ff7a12;display:grid;grid-template-rows:auto 1fr;gap:36px;min-height:260px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">03</span>
+        <div style="align-self:end"><div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600">The Teardown fee, credited</div><p style="margin:12px 0 0;font-size:15px;line-height:1.4;color:#3a3b41">The Teardown fixes your scope and price in writing before any build begins, and its fee is credited in full against any engagement booked within 60 days.</p></div>
+      </div>
+    </div>
+    <div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">
+      <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:640px">Not sure which step you need? Start with a Teardown: two working days to a written reply from the practice lead, and findings within five working days of booking.</p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="about.html#how" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">How we work</span><span>→</span></a>
+        <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -765,40 +914,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
   }, 1500);
 })();
-</script>
-
-<!-- The projects this page shows beyond the three on the homepage carousel.
-     The homepage three are lifted straight out of its rendered carousel by
-     tools/build-studio.mjs, so they cannot drift from it. Everything below is
-     real content already in this repository — see CONTENT-TODO.md for where
-     each field came from and what still needs confirming. -->
-<script type="application/json" id="extra-projects">
-[
-  {
-    "slug": "rentflow",
-    "name": "RentFlow",
-    "desc": "Property and rent management — bills, insights and payments with an AI assistant on call.",
-    "img": "assets/shotRentflow.jpg",
-    "evidences": "Embedded Designer",
-    "source": "named in the services ladder as the evidence for Embedded Designer; description from case-studies.html"
-  },
-  {
-    "slug": "nuracoach",
-    "name": "NuraCoach",
-    "desc": "AI coaching companion — guidance that reads like a conversation, not a report.",
-    "img": "assets/shotNura.jpg",
-    "evidences": null,
-    "source": "named in the studio's own shots data; description from case-studies.html"
-  },
-  {
-    "slug": "lungelo",
-    "name": "Lungelo",
-    "desc": "Multilingual field-work app — forms and sign-in in eight South African languages.",
-    "img": "assets/lungelo.jpg",
-    "evidences": null,
-    "source": "named in the studio's own shots data; description from case-studies.html"
-  }
-]
 </script>
 
 </body></html>
