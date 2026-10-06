@@ -1,65 +1,48 @@
-# GEMIS® — corporate site
+# GEMIS® — Software Development Studio
 
-The public site of GEM Information Systems, built around one object: a procedural
-cut stone that is whole when a business runs on one system and fractures into four
-shards when it does not. Static HTML, CSS and ES modules — no framework, no build
-step, no analytics, nothing loaded from a third party.
+An animation-rich, single-page studio site inspired by modern award-winning
+agency websites. Fully static and self-contained — no build step, no CDN
+dependencies, no audio.
 
-The design studio's site lives in `studio/` and has its own `README.md`.
+## Highlights
 
-## Run it
+- **Preloader** — percentage counter, progress bar, masked wordmark reveal,
+  full-screen curtain wipe into the hero.
+- **WebGL hero** — real-time chrome torus knot (Three.js) lit by a procedural
+  studio environment, with pointer parallax and scroll-linked rotation.
+- **Smooth scrolling** — Lenis + GSAP ScrollTrigger orchestration.
+- **Scroll choreography** — staggered character reveals, word-by-word
+  manifesto scrub, line-mask section titles, parallax work cards,
+  scroll-velocity-reactive marquees, animated stat counters.
+- **Live work-card visuals** — four procedural canvas animations (liquid
+  chrome, neural constellation, silk waves, emerald grid) that run only
+  while on screen.
+- **Section theme morphing** — the page background cross-fades between dark
+  and bone as sections enter.
+- **Custom cursor** — lerped dot + ring with contextual "View" label,
+  magnetic buttons, full-screen overlay menu.
+- **Accessibility** — `prefers-reduced-motion` disables heavy animation,
+  semantic markup, keyboard-closable menu.
 
-Any static file server from the repository root:
+## Running locally
+
+Any static file server works:
 
 ```bash
-python3 -m http.server 8080
-# open http://localhost:8080/
+python3 -m http.server 8000
+# then open http://localhost:8000
 ```
-
-The ES modules need `http://`, not `file://`. Everything degrades: with scripts
-off or `prefers-reduced-motion` set, every page is complete and still, and the
-gem is shown as a still image.
 
 ## Structure
 
 ```
-index.html, about.html, …       the pages, one file each
-assets/css/tokens.css           colour, type scale, rhythm, motion — loaded before site.css on every page
-assets/css/site.css             every component, including the gem system (search "THE GEM SYSTEM")
-assets/js/site.js               nav, mega menu, reveals, accordion, filters, form hand-off (classic script)
-assets/js/motion.js             shared easings, line splitting, reveals, magnetic buttons, spine, page wipe
-assets/js/common.js             behaviours every page shares; mounts the gem only when WebGL and motion are allowed
-assets/js/home.js               the home page: fracture, estimator, reassembly, services stage, form
-assets/js/page.js               every other page's signature moment (timeline, services stage, module tour, …)
-assets/js/gem.js                the stone: three.js, procedural, four wedges, whole / fractured / small / missing
-assets/js/three.module.min.js   three r185 (+ three.core.min.js), gsap.min.js, ScrollTrigger.min.js, lenis.min.js — vendored
-assets/img/gem/*.png            the gem's stills: the reduced-motion and no-WebGL fallbacks, and the first paint on phones
-assets/img/**                   brand facet images (generated, see tools/facets)
-assets/fonts/                   Archivo (width axis) and JetBrains Mono, self-hosted
-design/art-direction.html       palette, type scale, the gem's key frames, sitemap with each page's signature moment
-design/gem-states.html          harness that renders the gem's states; used by tools/gem-stills.mjs
-tools/                          generators (below)
+index.html              # single page, all sections
+assets/css/style.css    # design tokens + all styling
+assets/js/main.js       # GSAP/Lenis interaction & scroll choreography
+assets/js/hero3d.js     # Three.js hero centerpiece (ES module)
+assets/js/cards.js      # procedural canvas visuals for work cards
+assets/js/*.min.js      # vendored gsap, ScrollTrigger, lenis, three
+assets/fonts/           # vendored variable fonts (Archivo, Space Grotesk, JetBrains Mono)
 ```
 
-## Regenerate things
-
-| What | Command |
-| --- | --- |
-| Gem stills (`assets/img/gem/*.png`) | `python3 -m http.server 8079 --bind 127.0.0.1` in one shell, then `node tools/gem-stills.mjs` (Playwright Chromium + Python Pillow) |
-| Brand facet images | `python3 tools/facets/gen.py && node tools/facets/render.mjs` |
-| The whole corporate site as one HTML file | `python3 tools/build-site-standalone.py` → `gemis-site-standalone.html` |
-| The studio site | `node tools/build-studio.mjs` |
-
-The single-file build carries every page, stylesheet, script, font and image in one
-document. It does not carry three.js: the gem is shown as its stills there.
-
-## Conventions
-
-- Colour, type and spacing come from `tokens.css`. Components never invent a value.
-- One blue, `--signal`, means "live": the active thing, focus, the packet of data.
-- Motion is scroll-driven or state-driven; nothing loops forever, and every loop
-  pauses when out of view. `prefers-reduced-motion` turns it all off.
-- Nothing on the site is invented: no clients, figures, testimonials or
-  certifications that are not in the repository already. Provisional content is
-  marked `CONTENT-TODO` in the markup and listed in `CONTENT-TODO.md`; the product
-  recreations are marked `TODO: validate against the live product`.
+Libraries: [GSAP](https://gsap.com) + ScrollTrigger, [Lenis](https://lenis.darkroom.engineering), [Three.js](https://threejs.org).

@@ -15,9 +15,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260917a" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
 </head>
@@ -114,7 +112,7 @@
     <section class="whero" id="hero">
       <div class="shell">
         <p class="eyebrow" data-reveal>Insights</p>
-        <h1 class="whero__title" data-lines>Notes from building systems that have to work</h1>
+        <h1 class="whero__title" data-reveal style="--d:80ms">Notes from building systems that have to work</h1>
 
         <div class="whero__row">
           <p data-reveal style="--d:160ms">
@@ -131,7 +129,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Latest</p>
-            <h2 class="display" data-lines>Articles</h2>
+            <h2 class="display" data-reveal style="--d:80ms">Articles</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             <!-- CONTENT-TODO: PROVISIONAL ARTICLES. Filled in on request so the page
@@ -151,7 +149,7 @@
               <span class="story__k">Legacy systems</span>
             </div>
             <div class="story__frame">
-              <svg class="cover" viewBox="0 0 480 300" role="img" aria-label="Legacy systems"><polygon class="facet" points="300,60 372,104 348,196 276,208 236,124"/><polygon class="facet facet--dim" points="352,120 420,140 404,210 350,200"/><text x="32" y="48">01 · LEGACY SYSTEMS</text><text class="cover__t" x="32" y="248">Replace it, or leave it alone?</text></svg>
+              <img class="story__img" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" />
             </div>
             <p>When to replace a system you have outgrown, and when to leave it alone. Most legacy software is not the problem; the workarounds that grew around it are. A short test for telling the two apart.</p>
             <ul class="chips"><li>Legacy migration</li><li>Operations</li></ul>
@@ -162,7 +160,7 @@
               <span class="story__k">Microsoft Cloud</span>
             </div>
             <div class="story__frame">
-              <svg class="cover" viewBox="0 0 480 300" role="img" aria-label="Microsoft Cloud"><polygon class="facet" points="300,70 364,114 340,186 268,196 236,126"/><polygon class="facet" points="372,60 420,90 404,150 358,136"/><polygon class="facet" points="318,196 372,210 360,262 302,250"/><text x="32" y="48">02 · MICROSOFT CLOUD</text><text class="cover__t" x="32" y="248">What one source of truth costs</text></svg>
+              <img class="story__img" src="assets/img/work/managem-mock.jpg" alt="ManaGem" loading="lazy" width="1400" height="1050" />
             </div>
             <p>What a single source of truth actually costs. Consolidating sales, stock, payroll and projects is less about the platform than about who owns each number — and that decision has to be made before anyone writes code.</p>
             <ul class="chips"><li>Azure</li><li>Data</li></ul>
@@ -173,7 +171,7 @@
               <span class="story__k">Field operations</span>
             </div>
             <div class="story__frame">
-              <svg class="cover" viewBox="0 0 480 300" role="img" aria-label="Field operations"><polygon class="facet" points="300,70 364,114 340,186 268,196 236,126"/><polygon class="facet facet--out" points="372,80 426,110 408,172 356,160"/><circle cx="352" cy="140" r="4" fill="var(--signal)"/><text x="32" y="48">03 · FIELD OPERATIONS</text><text class="cover__t" x="32" y="248">Offline-first is a business decision</text></svg>
+              <img class="story__img" src="assets/img/work/wastemart-mock.jpg" alt="WasteMart" loading="lazy" width="1400" height="1050" />
             </div>
             <p>Offline-first is a business decision, not a technical one. What changes when your team can capture work without signal, and why the sync strategy belongs in the scoping conversation.</p>
             <ul class="chips"><li>Mobile</li><li>Field work</li></ul>
@@ -189,7 +187,7 @@
 
           <div>
             <p class="eyebrow" data-reveal>Get started</p>
-            <h2 class="ctc__title" data-lines>Book a Discovery Session</h2>
+            <h2 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h2>
             <p class="ctc__lede" data-reveal style="--d:140ms">
               Tell us what you're trying to fix. We'll come back within two working days
               with a short written view and a time to talk. No obligation.
@@ -280,7 +278,6 @@
 
   <footer class="foot">
     <div class="shell">
-      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -338,11 +335,9 @@
           </a>
         </div>
       </div>
-      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20261006" defer></script>
-  <script type="module" src="assets/js/page.js?v=20261006"></script>
+  <script src="assets/js/site.js?v=20260917a" defer></script>
 </body>
 </html>

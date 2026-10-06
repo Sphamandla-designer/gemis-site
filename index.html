@@ -15,12 +15,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" as="image" href="assets/img/gem/whole.png" />
-  <link rel="modulepreload" href="assets/js/home.js" />
-  <script>document.documentElement.classList.add('js')</script>
-  <link rel="stylesheet" href="assets/css/tokens.css?v=20261006" />
-  <link rel="stylesheet" href="assets/css/site.css?v=20261006" />
-  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}.fcard{opacity:1!important}</style></noscript>
+  <link rel="preload" as="image" href="assets/img/home/hero-bg.jpg" />
+  <link rel="stylesheet" href="assets/css/site.css?v=20260911e" />
+  <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -57,17 +54,9 @@
 
             <div class="mega__grid">
               <article class="prod">
-                <div class="prod__media prod__media--live" aria-hidden="true">
-                  <svg class="mini" viewBox="0 0 220 100" aria-hidden="true">
-                    <g class="ledger ledger--a"><rect x="30" y="18" width="52" height="8" fill="none"/><line x1="30" y1="22" x2="82" y2="22"/><line x1="30" y1="30" x2="70" y2="30"/></g>
-                    <g class="ledger ledger--b"><line x1="30" y1="48" x2="82" y2="48"/><line x1="30" y1="56" x2="74" y2="56"/></g>
-                    <g class="ledger ledger--c"><line x1="30" y1="74" x2="82" y2="74"/><line x1="30" y1="82" x2="66" y2="82"/></g>
-                    <path class="ledger" d="M90 22 H 120 Q 134 22 134 36 V 50 M 90 48 H 134 M 90 74 H 120 Q 134 74 134 60 V 50" fill="none"/>
-                    <rect x="134" y="38" width="56" height="24" fill="none" stroke="var(--navy)" stroke-width="1.4"/>
-                    <text x="162" y="53" text-anchor="middle">ONE LEDGER</text>
-                    <g class="ok"><circle cx="190" cy="38" r="6" fill="var(--signal)"/><path d="M187 38 l2 2 4-4" fill="none" stroke="#fff" stroke-width="1.4"/></g>
-                  </svg>
-                </div>
+                <a class="prod__media" href="managem.html" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/managem.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
                 <div class="prod__body">
                   <h3 class="prod__name">ManaGem</h3>
                   <p class="prod__desc">An all-in-one management platform covering sales, stock, payroll, projects and multi-company accounting — one source of truth your finance and operations teams share.</p>
@@ -76,13 +65,9 @@
               </article>
 
               <article class="prod">
-                <div class="prod__media prod__media--live" aria-hidden="true">
-                  <svg class="mini" viewBox="0 0 220 100" aria-hidden="true">
-                    <polyline points="24,78 60,70 90,60 120,44 150,36 196,22" fill="none" stroke="var(--rule)" stroke-width="1.4"/>
-                    <polyline class="pulse" points="24,78 60,70 90,60 120,44 150,36 196,22"/>
-                    <text x="24" y="92">TEAM CAPABILITY</text><text x="196" y="14" text-anchor="end">WITH AI</text>
-                  </svg>
-                </div>
+                <a class="prod__media" href="https://gemis.tech/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/gemis-tech.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
                 <div class="prod__body">
                   <h3 class="prod__name">Gemis Tech</h3>
                   <p class="prod__desc">AI training and enablement — a platform that helps professionals and teams stay ahead of how AI is changing their work.</p>
@@ -91,14 +76,9 @@
               </article>
 
               <article class="prod">
-                <div class="prod__media prod__media--live" aria-hidden="true">
-                  <svg class="mini" viewBox="0 0 220 100" aria-hidden="true">
-                    <rect class="wire" x="40" y="18" width="140" height="64" rx="3"/>
-                    <rect class="wire" x="52" y="30" width="60" height="8"/><rect class="wire" x="52" y="46" width="90" height="6"/><rect class="wire" x="52" y="62" width="40" height="10" rx="5"/>
-                    <rect class="card-fill" x="52" y="62" width="40" height="10" rx="5"/>
-                    <text x="110" y="94" text-anchor="middle">WIREFRAME → PRODUCT</text>
-                  </svg>
-                </div>
+                <a class="prod__media" href="studio/" tabindex="-1" aria-hidden="true">
+                  <img src="assets/img/menu/design-studio.jpg" alt="" loading="lazy" width="760" height="475" />
+                </a>
                 <div class="prod__body">
                   <h3 class="prod__name">Design Studio</h3>
                   <p class="prod__desc">Product, interface and web design from GEMIS Studio — research, prototypes and design systems, by the studio that can also build it.</p>
@@ -129,442 +109,210 @@
 
   <main>
 
-    <!-- ═══════════════════ 1 · HERO — the whole gem ═══════════════════ -->
-    <section class="hero hero--gem" id="hero" data-spine="Start">
+    <!-- ═══════════════════ 1 · HERO ═══════════════════ -->
+    <section class="hero" id="hero">
+      <img class="hero__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" />
+
       <div class="shell hero__in">
-        <div class="hero__grid">
+        <p class="eyebrow eyebrow--light" data-reveal>Microsoft-powered digital transformation partner</p>
+        <h1 class="hero__title" data-reveal style="--d:80ms">Systems your operation can run on — not work around.</h1>
+        <p class="hero__copy" data-reveal style="--d:160ms">
+          We replace disconnected tools, legacy systems and manual capture with secure
+          platforms on the Microsoft Cloud, designed around how your organisation
+          actually works.
+        </p>
+        <a class="arrow-link" href="#discovery" data-reveal style="--d:240ms">
+          Book a Discovery Session
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+        </a>
+
+        <div class="hero__partners" data-reveal style="--d:320ms">
+          <span>Trusted since 2014</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 2 · PROBLEM ═══════════════════ -->
+    <section class="values band band-wash">
+      <div class="shell">
+        <div class="values__head">
           <div>
-            <p class="eyebrow eyebrow--light" data-reveal>Microsoft-powered digital transformation partner</p>
-            <h1 class="hero__title" data-lines>Systems your operation can run on — not work around.</h1>
-            <p class="hero__copy" data-reveal style="--d:160ms">
-              We replace disconnected tools, legacy systems and manual capture with secure
-              platforms on the Microsoft Cloud, designed around how your organisation
-              actually works.
-            </p>
-            <div class="hero__actions" data-reveal style="--d:240ms">
-              <a class="btn" href="#discovery">
-                Book a Discovery Session
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-              </a>
-              <a class="arrow-link" href="#fracture">
-                See what a workaround costs
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-              </a>
-            </div>
+            <p class="eyebrow" data-reveal>Sound familiar?</p>
+            <h2 class="display" data-reveal style="--d:80ms">The cost of systems that don't fit</h2>
           </div>
-
-          <div class="hero__gem" aria-hidden="true">
-            <svg class="hero__lines" viewBox="0 0 100 100" preserveAspectRatio="none"><line x1="0" y1="50" x2="100" y2="50"/><line x1="50" y1="0" x2="50" y2="100"/><line x1="0" y1="0" x2="100" y2="100"/><line x1="100" y1="0" x2="0" y2="100"/></svg>
-            <img class="gem-still" src="assets/img/gem/whole.png" alt="" width="800" height="800" fetchpriority="high" />
-            <canvas class="gem" id="gemHero"></canvas>
-          </div>
+          <p class="lede" data-reveal style="--d:140ms">
+            Most organisations we meet are not short of software. They are short of
+            software that agrees with itself.
+          </p>
         </div>
 
-        <div class="hero__foot" data-reveal style="--d:320ms">
-          <span>Trusted since 2014 · Cape Town, South Africa</span>
-          <a class="scroll-cue" href="#fracture"><i aria-hidden="true"></i> Scroll</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ 2 · THE FRACTURE — four problems, one stone ═══════════════════ -->
-    <section class="fracture" id="fracture" data-spine="The problem" aria-labelledby="fractureTitle">
-      <div class="fracture__track">
-        <div class="shell fracture__stage">
-          <div class="fracture__copy">
-            <p class="eyebrow eyebrow--light" data-reveal>Sound familiar?</p>
-            <h2 class="display" id="fractureTitle" data-lines>The cost of systems that don't fit</h2>
-            <p class="lede" data-reveal style="--d:120ms">
-              Most organisations we meet are not short of software. They are short of
-              software that agrees with itself.
-            </p>
-
-            <ol class="fcards" id="fcards">
-              <li class="fcard is-active" data-problem="0">
-                <span class="fcard__n">01</span>
-                <div>
-                  <h3>Disconnected tools</h3>
-                  <p>Sales, stock, payroll and projects in separate systems, with no single source of truth.</p>
-                  <svg class="fcard__viz" viewBox="0 0 320 96" aria-hidden="true">
-                    <g class="drift"><polygon class="shard" points="150,8 180,30 170,60 130,60 120,30"/></g>
-                    <g class="drift--r drift"><polygon class="shard" points="200,36 232,52 222,88 190,84"/></g>
-                    <polygon class="shard" points="96,40 120,66 104,92 72,88 66,58"/>
-                    <polygon class="shard" points="236,8 262,22 254,46 226,40"/>
-                  </svg>
-                </div>
-              </li>
-              <li class="fcard" data-problem="1">
-                <span class="fcard__n">02</span>
-                <div>
-                  <h3>Double capture</h3>
-                  <p>The same data typed in twice, and hand-offs that break between the two.</p>
-                  <svg class="fcard__viz" viewBox="0 0 320 96" aria-hidden="true">
-                    <polygon class="shard" points="80,12 120,34 108,80 56,76 46,38"/>
-                    <polygon class="shard" points="236,12 276,34 264,80 212,76 202,38"/>
-                    <circle class="pkt" cx="124" cy="46" r="4"/><circle class="pkt pkt--b" cx="124" cy="58" r="4"/>
-                  </svg>
-                </div>
-              </li>
-              <li class="fcard" data-problem="2">
-                <span class="fcard__n">03</span>
-                <div>
-                  <h3>Legacy systems</h3>
-                  <p>Software the business has outgrown but can't switch off.</p>
-                  <svg class="fcard__viz" viewBox="0 0 320 96" aria-hidden="true">
-                    <polygon class="shard" points="130,8 170,8 192,40 160,88 128,88 100,40"/>
-                    <polygon class="shard shard--dim" points="196,12 240,20 254,52 236,86 198,80"/>
-                    <polygon class="shard" points="60,30 92,22 110,54 86,84 54,70"/>
-                  </svg>
-                </div>
-              </li>
-              <li class="fcard" data-problem="3">
-                <span class="fcard__n">04</span>
-                <div>
-                  <h3>Blind spots</h3>
-                  <p>Data scattered across tools, so decisions wait for reports.</p>
-                  <svg class="fcard__viz" viewBox="0 0 320 96" aria-hidden="true">
-                    <polygon class="shard" points="130,8 170,8 192,40 160,88 128,88 100,40"/>
-                    <polygon class="shard shard--out" points="196,12 240,20 254,52 236,86 198,80"/>
-                    <polygon class="shard" points="60,30 92,22 110,54 86,84 54,70"/>
-                  </svg>
-                </div>
-              </li>
-            </ol>
-          </div>
-
-          <div class="fracture__scene" id="fractureScene" aria-hidden="true">
-            <img class="gem-still" src="assets/img/gem/fractured.png" alt="" width="800" height="800" loading="lazy" />
-            <canvas class="gem" id="gemFracture"></canvas>
-            <span class="shard-label shard-label--0">Sales</span>
-            <span class="shard-label shard-label--1">Stock</span>
-            <span class="shard-label shard-label--2">Payroll</span>
-            <span class="shard-label shard-label--3">Projects</span>
-            <span class="packet packet--a"></span><span class="packet packet--b"></span>
-          </div>
+        <div class="cards">
+          <article class="card" data-reveal>
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="7" rx="1.4"/><rect x="14" y="13" width="7" height="7" rx="1.4"/><path d="M10 7.5h4M7.5 11v4"/></svg></span>
+            <h3 class="card__t">Disconnected tools</h3>
+            <p>Sales, stock, payroll and projects in separate systems, with no single source of truth.</p>
+          </article>
+          <article class="card" data-reveal style="--d:80ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="11" height="13" rx="1.4"/><path d="M9 20.5h11V7.5"/></svg></span>
+            <h3 class="card__t">Double capture</h3>
+            <p>The same data typed in twice, and hand-offs that break.</p>
+          </article>
+          <article class="card" data-reveal style="--d:160ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5C4 6 7.6 4.8 12 4.8s8 1.2 8 2.7-3.6 2.7-8 2.7-8-1.2-8-2.7Z"/><path d="M4 7.5v9c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7v-9"/><path d="M4 12c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7"/></svg></span>
+            <h3 class="card__t">Legacy systems</h3>
+            <p>Software the business has outgrown but can't switch off.</p>
+          </article>
+          <article class="card" data-reveal style="--d:240ms">
+            <span class="card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z"/><path d="m5 19 14-14"/></svg></span>
+            <h3 class="card__t">Blind spots</h3>
+            <p>Data scattered across tools, so decisions wait for reports.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ 3 · THE RUNNING COST — an estimator from your own numbers ═══════════════════ -->
-    <section class="sec band band-wash" id="impact" data-spine="The cost">
+    <!-- ═══════════════════ 3 · IMPACT ═══════════════════ -->
+    <section class="sec band band-ink" id="impact">
       <div class="shell">
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Why it matters</p>
-            <h2 class="display" data-lines>Every workaround has a running cost</h2>
+            <h2 class="display" data-reveal style="--d:80ms">Every workaround has a running cost</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
-            Re-keying, reconciling, chasing a report. None of it is in a budget line, and
-            all of it compounds. Put your own numbers in.
+            Every workaround costs time, accuracy and visibility, and the cost grows as
+            you do.
           </p>
         </div>
 
-        <div class="est" id="estimator" data-reveal>
-          <form class="est__inputs" aria-label="Workaround cost estimator" onsubmit="return false">
-            <div class="est__row">
-              <label for="est-people">People who touch the workaround <output id="est-people-out" for="est-people">25</output></label>
-              <input id="est-people" type="range" min="1" max="250" step="1" value="25" />
-            </div>
-            <div class="est__row">
-              <label for="est-hours">Hours each loses a week <output id="est-hours-out" for="est-hours">3.0 h</output></label>
-              <input id="est-hours" type="range" min="0.5" max="12" step="0.5" value="3" />
-            </div>
-            <div class="est__row">
-              <label for="est-rate">Fully loaded hourly cost <output id="est-rate-out" for="est-rate">R 350</output></label>
-              <input id="est-rate" type="range" min="80" max="1500" step="10" value="350" />
-            </div>
-          </form>
-
-          <div class="est__result" role="status" aria-live="polite">
-            <p class="est__k">Estimated cost of the workaround, per year</p>
-            <p class="est__total"><span id="est-total">R 1 260 000</span></p>
-            <p class="est__sum" id="est-sum">That is 3 600 hours a year, or 90 working weeks of your team's time spent moving data between systems.</p>
-            <p class="est__note">An estimate from your own inputs, assuming 48 working weeks a year. It is not a GEMIS claim, and it is not stored anywhere.</p>
-            <p class="est__cta">
-              <a class="arrow-link" href="#discovery" id="estCta">
-                Bring these numbers to a Discovery Session
-                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════ 4 · THE REASSEMBLY — one source of truth ═══════════════════ -->
-    <section class="reassembly" id="reassembly" data-spine="One system" aria-labelledby="reassemblyTitle">
-      <div class="reassembly__track">
-        <div class="shell reassembly__stage">
-          <div class="reassembly__scene" id="reassemblyScene" aria-hidden="true">
-            <img class="gem-still" src="assets/img/gem/reassembled.png" alt="" width="800" height="800" loading="lazy" />
-            <canvas class="gem" id="gemReassembly"></canvas>
-          </div>
-
-          <div class="reassembly__copy">
-            <p class="eyebrow eyebrow--light">One source of truth</p>
-            <h2 class="display" id="reassemblyTitle" data-lines>The same four modules. One system.</h2>
-            <p>Sales, stock, payroll and projects, sharing one set of numbers that finance and operations both trust.</p>
-          </div>
-
-          <div class="reassembly__product" id="reassemblyProduct">
-            <!-- ManaGem, recreated in HTML/CSS. TODO: validate layout, labels and module names against the live ManaGem UI before launch. -->
-            <div class="device device--desktop loop" aria-label="ManaGem: a recreation of the dashboard" role="img">
-              <div class="ui-bar"><i></i><i></i><i></i><span class="url">app.managem — Dashboard</span></div>
-              <div class="ui">
-                <aside class="ui__side">
-                  <div class="ui__brand"><i></i>ManaGem</div>
-                  <ul class="ui__nav">
-                    <li class="is-on">Dashboard</li>
-                    <li>Sales <span class="tag">live</span></li>
-                    <li>Stock</li>
-                    <li>Payroll</li>
-                    <li>Projects</li>
-                    <li>Accounting</li>
-                    <li>Companies</li>
-                  </ul>
-                </aside>
-                <div class="ui__main">
-                  <div class="ui__top"><span class="ui__sel">All companies</span><span class="status is-run"><i></i>Syncing</span></div>
-                  <div class="panel">
-                    <p class="ui-h">Month-end close</p>
-                    <ul class="check">
-                      <li class="is-done"><i>✓</i>Sales posted</li>
-                      <li><i>✓</i>Stock reconciled</li>
-                      <li><i>✓</i>Payroll journal</li>
-                      <li><i>✓</i>Project costs allocated</li>
-                    </ul>
-                  </div>
-                  <div class="panel">
-                    <p class="ui-h">Stock on hand</p>
-                    <div class="bars" aria-hidden="true"><i style="height:62%"></i><i style="height:80%"></i><i class="is-live" style="height:92%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:56%"></i></div>
-                  </div>
-                  <div class="panel">
-                    <p class="ui-h">Payroll</p>
-                    <div class="kv"><span>Next run</span><b>25th</b><span>Employees</span><b>—</b><span>Status</span><b>Approved</b></div>
-                  </div>
-                  <div class="panel">
-                    <p class="ui-h">Projects</p>
-                    <div class="kv"><span>Active</span><b>—</b><span>Over budget</span><b>0</b><span>Invoiced this month</span><b>—</b></div>
-                  </div>
-                  <ul class="feed">
-                    <li class="is-on"><b>09:41</b><span>Sales order posted · stock reserved · project cost allocated</span></li>
-                    <li><b>09:42</b><span>Payroll journal approved for Company B</span></li>
-                    <li><b>09:44</b><span>Consolidated report refreshed for all companies</span></li>
-                  </ul>
-                </div>
+        <div class="stats">
+              <div class="stat" data-reveal style="--d:180ms">
+                <span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span>
+                <span class="stat__l">Years building mission-critical systems</span>
+              </div>
+              <div class="stat" data-reveal style="--d:240ms">
+                <span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span>
+                <span class="stat__l">Systems delivered into production</span>
+              </div>
+              <div class="stat" data-reveal style="--d:300ms">
+                <span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span>
+                <span class="stat__l">Sectors served nationally</span>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ 5 · WHAT WE DO — a stage that changes with the row ═══════════════════ -->
-    <section class="what what--stage band band-warm" id="services" data-spine="What we do">
+    <!-- ═══════════════════ 4 · SOLUTION ═══════════════════ -->
+    <section class="what band band-warm" id="services">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
         <div class="what__head">
           <div>
-            <p class="eyebrow" data-reveal>Services &amp; expertise</p>
-            <h2 class="display" data-lines>What we do</h2>
+            <p class="eyebrow" data-reveal>Services &amp; Expertise</p>
+            <h2 class="display" data-reveal style="--d:80ms">What we do</h2>
           </div>
           <a class="arrow-link" href="services.html" data-reveal style="--d:140ms">
-            Explore services
+            Explore Services
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
           </a>
         </div>
 
-        <div class="what__grid">
-          <ol class="rows rows--stage" id="svcRows">
-            <li class="row is-active" data-reveal data-svc="0">
-              <span class="row__n">01</span>
-              <h3 class="row__name">Custom software development</h3>
-              <div class="row__body">
-                <p>
-                  When off-the-shelf software holds you back, we design and build solutions
-                  around your exact processes, people and goals — software that fits your
-                  business, not the other way around.
-                </p>
-                <ul class="chips">
-                  <li>Enterprise applications</li>
-                  <li>Workflow automation</li>
-                  <li>Customer portals</li>
-                  <li>Operations platforms</li>
-                </ul>
-              </div>
-              <div class="row__viz" aria-hidden="true">
-                <svg class="diagram" viewBox="0 0 400 300">
-                  <g class="layer">
-                    <rect class="box" x="24" y="40" width="88" height="34"/><text x="68" y="61" text-anchor="middle">SPREADSHEET</text>
-                    <rect class="box" x="24" y="132" width="88" height="34"/><text x="68" y="153" text-anchor="middle">EMAIL</text>
-                    <rect class="box" x="24" y="224" width="88" height="34"/><text x="68" y="245" text-anchor="middle">LEGACY APP</text>
-                  </g>
-                  <path class="link link--tangle" d="M112 57 C 170 57, 150 149, 200 149 S 250 241, 300 241"/>
-                  <path class="link link--tangle" d="M112 149 C 170 149, 160 57, 200 57 S 250 149, 300 149"/>
-                  <path class="link link--tangle" d="M112 241 C 170 241, 150 57, 200 57 S 260 241, 300 57"/>
-                  <g class="layer layer--2">
-                    <rect class="box box--navy" x="268" y="106" width="108" height="88"/>
-                    <text class="on-navy lbl" x="322" y="140" text-anchor="middle">Your system</text>
-                    <text class="on-navy" x="322" y="162" text-anchor="middle">ONE PROCESS</text>
-                  </g>
-                  <path class="link link--clean draw" d="M112 57 H 190 Q 220 57 236 100 L 268 128"/>
-                  <path class="link link--clean draw draw--2" d="M112 149 H 268"/>
-                  <path class="link link--clean draw draw--3" d="M112 241 H 190 Q 220 241 236 200 L 268 170"/>
-                  <circle class="dot layer layer--3" cx="322" cy="118" r="3"/>
-                </svg>
-              </div>
-            </li>
+        <ol class="rows">
+          <li class="row" data-reveal>
+            <span class="row__n">01</span>
+            <h3 class="row__name">Custom software development</h3>
+            <div class="row__body">
+              <p>
+                When off-the-shelf software holds you back, we design and build solutions
+                around your exact processes, people and goals — software that fits your
+                business, not the other way around.
+              </p>
+              <ul class="chips">
+                <li>Enterprise applications</li>
+                <li>Workflow automation</li>
+                <li>Customer portals</li>
+                <li>Operations platforms</li>
+              </ul>
+            </div>
+          </li>
 
-            <li class="row" data-reveal data-svc="1">
-              <span class="row__n">02</span>
-              <h3 class="row__name">Microsoft Cloud solutions</h3>
-              <div class="row__body">
-                <p>
-                  We architect, deploy and manage solutions on the Microsoft Cloud — the same
-                  platform trusted by enterprises worldwide for security, reliability and
-                  scale, with identity, integration and recovery designed in from day one.
-                </p>
-                <ul class="chips">
-                  <li>Microsoft Azure</li>
-                  <li>Azure SQL</li>
-                  <li>Identity management</li>
-                  <li>Disaster recovery</li>
-                </ul>
-              </div>
-              <div class="row__viz" aria-hidden="true">
-                <svg class="diagram" viewBox="0 0 400 300">
-                  <g class="layer"><rect class="box" x="60" y="222" width="280" height="40"/><text x="200" y="246" text-anchor="middle">AZURE · REGION A</text></g>
-                  <g class="layer layer--2"><rect class="box" x="60" y="168" width="280" height="40"/><text x="200" y="192" text-anchor="middle">AZURE SQL · BACKED UP</text></g>
-                  <g class="layer layer--3"><rect class="box" x="60" y="114" width="280" height="40"/><text x="200" y="138" text-anchor="middle">APPLICATION · APIS</text></g>
-                  <g class="layer layer--4"><rect class="box box--navy" x="60" y="60" width="280" height="40"/><text class="on-navy" x="200" y="84" text-anchor="middle">IDENTITY · ENTRA ID</text></g>
-                  <path class="failover" d="M340 242 H 372 V 36 H 28 V 242 H 60"/>
-                  <text x="372" y="26" text-anchor="end">RECOVERY PATH</text>
-                </svg>
-              </div>
-            </li>
+          <li class="row" data-reveal>
+            <span class="row__n">02</span>
+            <h3 class="row__name">Microsoft Cloud solutions</h3>
+            <div class="row__body">
+              <p>
+                We architect, deploy and manage solutions on the Microsoft Cloud — the same
+                platform trusted by enterprises worldwide for security, reliability and
+                scale, with identity, integration and recovery designed in from day one.
+              </p>
+              <ul class="chips">
+                <li>Microsoft Azure</li>
+                <li>Azure SQL</li>
+                <li>Identity management</li>
+                <li>Disaster recovery</li>
+              </ul>
+            </div>
+          </li>
 
-            <li class="row" data-reveal data-svc="2">
-              <span class="row__n">03</span>
-              <h3 class="row__name">Enterprise SaaS &amp; mobile</h3>
-              <div class="row__body">
-                <p>
-                  Multi-tenant platforms engineered to serve thousands of users, extended by
-                  mobile apps that capture work where it happens — in the field, online or
-                  offline, always in sync.
-                </p>
-                <ul class="chips">
-                  <li>Multi-tenant platforms</li>
-                  <li>Field operations</li>
-                  <li>Offline functionality</li>
-                  <li>Real-time synchronisation</li>
-                </ul>
-              </div>
-              <div class="row__viz" aria-hidden="true">
-                <svg class="diagram" viewBox="0 0 400 300">
-                  <text x="40" y="40">TENANTS</text>
-                  <rect class="box box--navy grow" x="40" y="150" width="34" height="110"/>
-                  <rect class="box box--navy grow grow--2" x="86" y="120" width="34" height="140"/>
-                  <rect class="box box--navy grow grow--3" x="132" y="94" width="34" height="166"/>
-                  <rect class="box box--navy grow grow--4" x="178" y="70" width="34" height="190"/>
-                  <line class="link" x1="40" y1="260" x2="212" y2="260"/>
-                  <g class="layer layer--2">
-                    <rect class="box" x="270" y="60" width="92" height="190" rx="12"/>
-                    <rect x="286" y="84" width="60" height="8" fill="var(--rule)"/>
-                    <rect x="286" y="100" width="60" height="8" fill="var(--rule)"/>
-                    <rect x="286" y="116" width="42" height="8" fill="var(--rule)"/>
-                    <rect x="286" y="214" width="60" height="16" rx="8" fill="var(--navy)"/>
-                    <text x="316" y="72" text-anchor="middle">DRIVER APP</text>
-                  </g>
-                  <g class="signal-off"><rect x="282" y="140" width="68" height="18" rx="9" fill="#fde9d8"/><text x="316" y="153" text-anchor="middle" fill="#8a4a12">OFFLINE · 3 QUEUED</text></g>
-                  <g class="sync"><rect x="282" y="140" width="68" height="18" rx="9" fill="#e3f3ea"/><text x="316" y="153" text-anchor="middle" fill="#1f6b47">SYNCED</text></g>
-                  <path class="stream" d="M270 160 C 240 160, 240 110, 212 110"/>
-                </svg>
-              </div>
-            </li>
+          <li class="row" data-reveal>
+            <span class="row__n">03</span>
+            <h3 class="row__name">Enterprise SaaS &amp; mobile</h3>
+            <div class="row__body">
+              <p>
+                Multi-tenant platforms engineered to serve thousands of users, extended by
+                mobile apps that capture work where it happens — in the field, online or
+                offline, always in sync.
+              </p>
+              <ul class="chips">
+                <li>Multi-tenant platforms</li>
+                <li>Field operations</li>
+                <li>Offline functionality</li>
+                <li>Real-time synchronisation</li>
+              </ul>
+            </div>
+          </li>
 
-            <li class="row" data-reveal data-svc="3">
-              <span class="row__n">04</span>
-              <h3 class="row__name">Business intelligence &amp; integration</h3>
-              <div class="row__body">
-                <p>
-                  Power BI dashboards that turn scattered data into real-time decision-making
-                  tools — and integrations that make your existing systems talk to each other,
-                  eliminating double capture and manual hand-offs.
-                </p>
-                <ul class="chips">
-                  <li>Executive reporting</li>
-                  <li>Operational KPIs</li>
-                  <li>ERP &amp; CRM integration</li>
-                  <li>Third-party APIs</li>
-                </ul>
-              </div>
-              <div class="row__viz" aria-hidden="true">
-                <svg class="diagram" viewBox="0 0 400 300">
-                  <g class="layer">
-                    <rect class="box" x="24" y="48" width="80" height="30"/><text x="64" y="67" text-anchor="middle">ERP</text>
-                    <rect class="box" x="24" y="135" width="80" height="30"/><text x="64" y="154" text-anchor="middle">CRM</text>
-                    <rect class="box" x="24" y="222" width="80" height="30"/><text x="64" y="241" text-anchor="middle">3RD-PARTY API</text>
-                  </g>
-                  <path class="stream" d="M104 63 H 160 Q 180 63 190 100 L 210 135"/>
-                  <path class="stream" d="M104 150 H 210"/>
-                  <path class="stream" d="M104 237 H 160 Q 180 237 190 200 L 210 165"/>
-                  <g class="layer layer--2">
-                    <rect class="box" x="210" y="40" width="166" height="220"/>
-                    <text x="293" y="64" text-anchor="middle">POWER BI · LIVE</text>
-                    <rect class="grow" x="232" y="150" width="20" height="80" fill="var(--navy)"/>
-                    <rect class="grow grow--2" x="262" y="120" width="20" height="110" fill="var(--navy)"/>
-                    <rect class="grow grow--3" x="292" y="170" width="20" height="60" fill="var(--navy)"/>
-                    <rect class="grow grow--4" x="322" y="96" width="20" height="134" fill="var(--signal)"/>
-                    <line class="link" x1="226" y1="230" x2="360" y2="230"/>
-                  </g>
-                  <circle class="dot" cx="332" cy="86" r="3"/>
-                </svg>
-              </div>
-            </li>
-          </ol>
-
-          <div class="svc-stage" id="svcStage" aria-hidden="true"></div>
-        </div>
+          <li class="row" data-reveal>
+            <span class="row__n">04</span>
+            <h3 class="row__name">Business intelligence &amp; integration</h3>
+            <div class="row__body">
+              <p>
+                Power BI dashboards that turn scattered data into real-time decision-making
+                tools — and integrations that make your existing systems talk to each other,
+                eliminating double capture and manual hand-offs.
+              </p>
+              <ul class="chips">
+                <li>Executive reporting</li>
+                <li>Operational KPIs</li>
+                <li>ERP &amp; CRM integration</li>
+                <li>Third-party APIs</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <!-- ═══════════════════ 6 · TRUST — only what is true ═══════════════════ -->
-    <section class="trust" id="trust" aria-label="Trust">
+    <!-- ═══════════════════ 5 · PROOF ═══════════════════ -->
+    <!-- A full-bleed photographic break. The page was an unbroken run of light
+         bands; this gives the scroll somewhere to land. -->
+    <section class="strip">
+      <img class="strip__img" src="assets/img/portfolio/hero-displays.jpg" alt="" loading="lazy" width="1500" height="1025" />
       <div class="shell">
-        <div class="trust__grid" data-reveal>
-          <div>
-            <p class="eyebrow">Since</p>
-            <p class="stat__n tnum">2014</p>
-          </div>
-          <div>
-            <p class="eyebrow">Based in</p>
-            <p class="lede" style="margin:0">Cape Town, South Africa. Working nationally.</p>
-          </div>
-          <div>
-            <p class="eyebrow">Platform</p>
-            <p class="lede" style="margin:0">Microsoft Cloud: Azure, Azure SQL, .NET, Power BI.</p>
-          </div>
-          <div class="marks">
-            <!-- CONTENT-TODO: these names are already published on the case-studies page
-                 and the industries page; nothing here is invented. Confirm each consents to
-                 appearing on the homepage, and supply logo files if you want marks. -->
-            <p class="marks__t">Organisations we have built for</p>
-            <span>AX-Channels</span><span>Sonke Gender Justice</span><span>NeuraUX</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span>
-          </div>
-        </div>
+        <p class="strip__k">Twelve years of systems in production.</p>
+        <p class="strip__sub">Built for South African operations — on the Microsoft Cloud, by the team that keeps them running.</p>
       </div>
     </section>
 
-    <!-- ═══════════════════ 7 · SELECTED WORK — living cards ═══════════════════ -->
-    <section class="work band band-tint" id="work" data-spine="Work">
+    <section class="work band band-tint" id="work">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
         <div class="work__head">
           <div>
-            <p class="eyebrow" data-reveal>Selected work</p>
-            <h2 class="display" data-lines>Systems our clients run on every day</h2>
+            <p class="eyebrow" data-reveal>Selected Work</p>
+            <h2 class="display" data-reveal style="--d:80ms">Systems our clients<br />run on every day</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">
             From all-in-one business management to field operations in the waste industry —
@@ -577,43 +325,16 @@
           <article class="story" data-reveal>
             <div class="story__top">
               <span class="story__plus" aria-hidden="true">+</span>
-              <span class="story__k">One platform for the whole business</span>
+              <span class="story__k">One Platform For The Whole Business</span>
             </div>
-            <div class="story__device">
-              <!-- ManaGem, recreated. TODO: validate against the live ManaGem payroll screen. -->
-              <div class="device device--desktop loop" role="img" aria-label="ManaGem: a recreation of the payroll screen">
-                <div class="ui-bar"><i></i><i></i><i></i><span class="url">app.managem — Payroll</span></div>
-                <div class="ui ui--short">
-                  <aside class="ui__side">
-                    <div class="ui__brand"><i></i>ManaGem</div>
-                    <ul class="ui__nav">
-                      <li>Dashboard</li><li>Sales</li><li>Stock</li><li class="is-on">Payroll <span class="tag">run</span></li><li>Projects</li><li>Accounting</li>
-                    </ul>
-                  </aside>
-                  <div class="ui__main">
-                    <div class="ui__top"><span class="ui__sel">Company B · October</span><span class="status is-ok"><i></i>Posted to ledger</span></div>
-                    <div class="panel">
-                      <p class="ui-h">Payroll run</p>
-                      <ul class="check">
-                        <li class="is-done"><i>✓</i>Timesheets from Projects</li>
-                        <li><i>✓</i>Leave from HR</li>
-                        <li><i>✓</i>Deductions calculated</li>
-                        <li><i>✓</i>Journal to Accounting</li>
-                      </ul>
-                    </div>
-                    <div class="panel">
-                      <p class="ui-h">Cost by project</p>
-                      <div class="bars" aria-hidden="true"><i style="height:70%"></i><i style="height:44%"></i><i class="is-live" style="height:88%"></i><i style="height:58%"></i><i style="height:36%"></i></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="story__frame">
+              <img class="story__img" src="assets/img/work/managem-mock.jpg" alt="ManaGem" loading="lazy" width="1400" height="1050" />
             </div>
-            <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
-                 reads complete; it has not been measured against the engagement.
-                 Confirm or replace before launch. See CONTENT-TODO.md. -->
-            <p class="story__metric">Month-end close: nine days to two</p>
-            <p>
+              <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
+                   reads complete; it has not been measured against the engagement.
+                   Confirm or replace before launch. See CONTENT-TODO.md. -->
+              <p class="story__k">Month-End Close: Nine Days To Two</p>
+<p>
               ManaGem is an all-in-one management system covering sales, stock, payroll,
               projects and multi-company accounting — replacing a stack of disconnected
               tools with a single source of truth that finance and operations share.
@@ -633,48 +354,16 @@
           <article class="story" data-reveal style="--d:100ms">
             <div class="story__top">
               <span class="story__plus" aria-hidden="true">+</span>
-              <span class="story__k">Operations that move with the fleet</span>
+              <span class="story__k">Operations That Move With The Fleet</span>
             </div>
-            <div class="story__device">
-              <!-- WasteMart, recreated. TODO: validate the operations view and driver app against the live product. -->
-              <div class="pair-devices loop" role="img" aria-label="WasteMart: a recreation of the operations view and the driver app">
-                <div class="device device--desktop">
-                  <div class="ui-bar"><i></i><i></i><i></i><span class="url">wastemart — Operations</span></div>
-                  <div class="ops">
-                    <div class="ops__map">
-                      <svg viewBox="0 0 320 150" width="100%" height="100%" aria-hidden="true">
-                        <path class="ops__route" d="M 20 110 C 60 40, 120 150, 180 60 S 260 90, 300 40"/>
-                        <circle class="ops__pin is-done" cx="20" cy="110" r="5"/>
-                        <circle class="ops__pin ops__pin--1" cx="180" cy="60" r="5"/>
-                        <circle class="ops__pin" cx="300" cy="40" r="5"/>
-                      </svg>
-                      <svg class="ops__truck" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><rect x="1" y="3" width="7" height="6" rx="1"/><rect x="8" y="5" width="3" height="4" rx=".5"/></svg>
-                    </div>
-                    <ul class="ops__list">
-                      <li class="is-done"><span>Depot A · 06:40 check-in</span><b>DONE</b></li>
-                      <li><span>Site 14 · collection + manifest</span><b>EN ROUTE</b></li>
-                      <li><span>Site 22 · collection</span><b>QUEUED</b></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="device device--phone">
-                  <div class="screen">
-                    <div class="ph__top"><span>09:41</span><span class="ph__badge is-on">● Online</span></div>
-                    <div class="ph__h">Collection · Site 14</div>
-                    <div class="ph__field"><span>Container</span><b>6 m³</b></div>
-                    <div class="ph__field"><span>Weight</span><b>1.2 t</b></div>
-                    <div class="ph__field"><span>Manifest</span><b>Signed</b></div>
-                    <div class="ph__btn">Save collection</div>
-                    <div class="ph__queue"><span>Waiting to sync</span><b>3</b></div>
-                  </div>
-                </div>
-              </div>
+            <div class="story__frame">
+              <img class="story__img" src="assets/img/work/wastemart-mock.jpg" alt="WasteMart" loading="lazy" width="1400" height="1050" />
             </div>
-            <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
-                 reads complete; it has not been measured against the engagement.
-                 Confirm or replace before launch. See CONTENT-TODO.md. -->
-            <p class="story__metric">Six hours a week back, per depot</p>
-            <p>
+              <!-- CONTENT-TODO: PROVISIONAL FIGURE. Filled in on request so the page
+                   reads complete; it has not been measured against the engagement.
+                   Confirm or replace before launch. See CONTENT-TODO.md. -->
+              <p class="story__k">Six Hours A Week Back, Per Depot</p>
+<p>
               WasteMart pairs a driver app with a customer portal and a live operations
               view — capturing collections, check-ins and manifests in the field, offline
               when signal drops, and syncing the moment it returns.
@@ -691,24 +380,53 @@
             </a>
           </article>
         </div>
+        <!-- CONTENT-TODO: these are the names already published in the case studies
+             marquee, plus Sonke Gender Justice from the Industries page — so nothing
+             here is invented. Confirm each one consents to being listed on the
+             homepage, and supply logo files if you want marks rather than names.
+             Reuses the existing .mq marquee; no image-row pattern exists. -->
+        <div class="mq" aria-label="Clients">
+          <div class="mq__track"><span>AX-Channels</span><span>Sonke Gender Justice</span><span>NeuraUX</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span><span>AX-Channels</span><span>Sonke Gender Justice</span><span>NeuraUX</span><span>KiY Trucking</span><span>CMaxx WiFi Solutions</span><span>Hive Creative Studio</span></div>
+        </div>
+
+        <!-- Technology strip, moved down from the hero. Reuses the existing
+             .group + .chips pattern (about page capability lists) because the
+             hero's .hero__partners styling is white-on-image and unreadable here. -->
+        <div class="group" data-reveal>
+          <h3>Built on the Microsoft Cloud</h3>
+          <ul class="chips">
+            <li>Microsoft Azure</li>
+            <li>Azure SQL</li>
+            <li>C# / .NET</li>
+            <li>Power BI</li>
+            <li>React</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- ═══════════════════ 8 · HOW WE WORK — a loop, not a line ═══════════════════ -->
-    <section class="about about--loop band" id="about" data-spine="How we work">
+    <!-- ═══════════════════ 6 · TRUST ═══════════════════ -->
+    <section class="about band" id="about">
       <span class="dotgrid" aria-hidden="true"></span>
 
       <div class="shell">
         <div class="about__grid">
           <div>
             <p class="eyebrow" data-reveal>How we work</p>
-            <h2 class="display about__title" data-lines>A partner long after go&#8209;live</h2>
+            <h2 class="display about__title" data-reveal style="--d:80ms">A partner long after go-live</h2>
+          </div>
+
+          <div class="about__side">
             <p class="lede" data-reveal style="--d:120ms">
-              Every project starts by understanding how your organisation works — not just
-              what software you need. Discovery comes before development, testing and user
-              acceptance come before production, and support, enhancement and optimisation
-              continue long after launch.
+              For over a decade, GEM Information Systems has partnered with businesses,
+              NGOs and enterprise organisations to design, build and support software that
+              solves complex operational challenges. Every project starts by understanding
+              how your organisation works — not just what software you need. Discovery
+              comes before development, testing and user acceptance come before
+              production, and support, enhancement and optimisation continue long after
+              launch.
             </p>
+
             <dl class="disc" data-reveal style="--d:180ms">
               <div class="disc__row">
                 <dt class="disc__k">Built around people</dt>
@@ -727,36 +445,25 @@
                 <dd class="disc__v">The relationship doesn't end at go-live — it starts there.</dd>
               </div>
             </dl>
+
             <p data-reveal style="--d:240ms">
-              <a class="arrow-link" href="services.html#process">See our process <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="services.html#process">See Our Process <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </p>
           </div>
-
-          <div class="loop-wrap" data-reveal style="--d:160ms">
-            <svg class="loop-svg" id="processLoop" viewBox="0 0 720 460" role="img" aria-labelledby="processLoopTitle">
-              <title id="processLoopTitle">Our process: discovery, design, build, test and user acceptance, go-live, then support and optimisation that feeds back into discovery.</title>
-              <path class="path" d="M 360 60 A 200 160 0 0 1 360 380 A 200 160 0 0 1 360 60 Z"/>
-              <path class="path path--draw" pathLength="1" d="M 360 60 A 200 160 0 0 1 360 380 A 200 160 0 0 1 360 60 Z"/>
-              <g class="n" data-i="0"><circle class="node" cx="360" cy="60" r="9"/><text class="n-i" x="360" y="34" text-anchor="middle">01</text><text class="n-t" x="360" y="92" text-anchor="middle">Discovery</text><text class="n-d" x="360" y="110" text-anchor="middle">How the work actually happens</text></g>
-              <g class="n" data-i="1"><circle class="node" cx="533" cy="140" r="9"/><text class="n-i" x="552" y="128">02</text><text class="n-t" x="552" y="146">Design</text><text class="n-d" x="552" y="164">Processes first, then screens</text></g>
-              <g class="n" data-i="2"><circle class="node" cx="533" cy="300" r="9"/><text class="n-i" x="552" y="288">03</text><text class="n-t" x="552" y="306">Build</text><text class="n-d" x="552" y="324">On the Microsoft Cloud</text></g>
-              <g class="n" data-i="3"><circle class="node" cx="360" cy="380" r="9"/><text class="n-i" x="360" y="412" text-anchor="middle">04</text><text class="n-t" x="360" y="430" text-anchor="middle">Test &amp; user acceptance</text><text class="n-d" x="360" y="448" text-anchor="middle">Before anything reaches production</text></g>
-              <g class="n" data-i="4"><circle class="node" cx="187" cy="300" r="9"/><text class="n-i" x="168" y="288" text-anchor="end">05</text><text class="n-t" x="168" y="306" text-anchor="end">Go-live</text><text class="n-d" x="168" y="324" text-anchor="end">Where the relationship starts</text></g>
-              <g class="n" data-i="5"><circle class="node" cx="187" cy="140" r="9"/><text class="n-i" x="168" y="128" text-anchor="end">06</text><text class="n-t" x="168" y="146" text-anchor="end">Support &amp; optimise</text><text class="n-d" x="168" y="164" text-anchor="end">Feeding the next discovery</text></g>
-            </svg>
-          </div>
         </div>
+
+        <img class="about__band" src="assets/img/home/about-band.jpg" alt="" loading="lazy" width="2000" height="860" data-reveal />
       </div>
     </section>
 
-    <!-- ═══════════════════ 9 · ACTION — the small gem, the form ═══════════════════ -->
-    <section class="ctc ctc--ink band" id="discovery" data-spine="Talk to us">
+    <!-- ═══════════════════ 7 · ACTION ═══════════════════ -->
+    <section class="ctc band band-wash" id="discovery">
       <div class="shell">
         <div class="ctc__grid">
 
           <div>
             <p class="eyebrow" data-reveal>Get started</p>
-            <h2 class="ctc__title" data-lines>Book a Discovery Session</h2>
+            <h2 class="ctc__title" data-reveal style="--d:80ms">Book a Discovery Session</h2>
             <p class="ctc__lede" data-reveal style="--d:140ms">
               Tell us what you're trying to fix. We'll come back within two working days
               with a short written view and a time to talk. No obligation.
@@ -764,72 +471,59 @@
 
             <div class="ctc__block" data-reveal style="--d:200ms">
               <h2>Rather email?</h2>
-              <p>Write to us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
-            </div>
-
-            <div class="ctc__gem" aria-hidden="true">
-              <img class="gem-still" src="assets/img/gem/small.png" alt="" width="400" height="400" loading="lazy" />
-              <canvas class="gem" id="gemSmall"></canvas>
+              <p>Or email us directly at <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
             </div>
           </div>
 
-          <div data-reveal style="--d:160ms">
-          <form class="form" id="discoveryForm" novalidate data-steps="2" data-step="1">
-            <div class="form__steps" aria-live="polite"><span id="formStepLabel">Step 1 of 2 · About you</span><span class="mono">1 / 2</span></div>
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
             <div class="form__rows">
-              <div class="form__group is-on" data-group="1">
-                <div class="field field--float">
-                  <input id="d-name" name="name" type="text" placeholder="Name" autocomplete="name" required aria-describedby="d-name-err" />
-                  <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
-                  <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
-                </div>
-
-                <div class="field field--float">
-                  <input id="d-email" name="email" type="email" placeholder="Work email" autocomplete="email" required aria-describedby="d-email-err" />
-                  <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
-                  <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
-                </div>
-
-                <div class="field field--float field--wide">
-                  <input id="d-company" name="company" type="text" placeholder="Company" autocomplete="organization" required aria-describedby="d-company-err" />
-                  <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
-                  <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
-                </div>
+              <div class="field">
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
               </div>
 
-              <div class="form__group" data-group="2">
-                <div class="field">
-                  <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
-                  <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
-                    <option value="">Select one…</option>
-                    <option>Replace a legacy system</option>
-                    <option>Build a new platform or app</option>
-                    <option>Connect existing systems</option>
-                    <option>Reporting and business intelligence</option>
-                    <option>Not sure yet</option>
-                  </select>
-                  <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
-                </div>
+              <div class="field">
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
 
-                <div class="field">
-                  <label for="d-timeline">Rough timeline</label>
-                  <select id="d-timeline" name="timeline" autocomplete="off">
-                    <option value="">Select one…</option>
-                    <option>Within 3 months</option>
-                    <option>3–6 months</option>
-                    <option>6+ months</option>
-                    <option>Just exploring</option>
-                  </select>
-                </div>
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
+              </div>
 
-                <div class="field field--float field--wide">
-                  <textarea id="d-notes" name="notes" placeholder="Anything we should know?" autocomplete="off"></textarea>
-                  <label for="d-notes">Anything we should know?</label>
-                </div>
+              <div class="field">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
+                  <option value="">Select one…</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
               </div>
             </div>
-
-            <button class="form__next" type="button" id="formNext">Continue to step 2</button>
 
             <div class="consent">
               <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
@@ -852,11 +546,6 @@
               client addressed to info@gemis.co.za — nothing is submitted or stored here.
             </p>
           </form>
-          <div class="form__done" id="formDone" role="status" tabindex="-1">
-            <h3>Thank you. Your message is on its way.</h3>
-            <p>Your email client should now be open with the details pre-filled. Send it, and we will come back within two working days. If nothing opened, write to <a href="mailto:info@gemis.co.za">info@gemis.co.za</a>.</p>
-          </div>
-          </div>
 
         </div>
       </div>
@@ -867,7 +556,6 @@
   <!-- ═══════════════════ FOOTER ═══════════════════ -->
   <footer class="foot">
     <div class="shell">
-      <hr class="facet-rule" aria-hidden="true" />
       <div class="foot__grid">
         <div class="foot__brand">
           <a class="foot__logo" href="index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
@@ -925,11 +613,9 @@
           </a>
         </div>
       </div>
-      <svg class="foot__mark" viewBox="0 0 1200 170" aria-hidden="true" focusable="false"><text x="50%" y="150" text-anchor="middle" textLength="1180" lengthAdjust="spacingAndGlyphs">GEMIS</text></svg>
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=20261006" defer></script>
-  <script type="module" src="assets/js/home.js?v=20261006"></script>
+  <script src="assets/js/site.js?v=20260911e" defer></script>
 </body>
 </html>
