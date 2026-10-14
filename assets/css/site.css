@@ -2391,3 +2391,214 @@ summary:focus-visible,
   font-size: var(--fs-copy);
 }
 .strip a:focus-visible { outline-color: #fff; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHY IT MATTERS — the ledger
+   The band was a flat navy rectangle with three figures floating in it. It
+   keeps the same colours and the same three figures; what is new is depth
+   (one low-contrast glow, the dot grid inverted) and a hairline cell
+   structure that lets the numbers sit on something.
+
+   Everything here is scoped to .impact / .ledger. .stat and .stats are used
+   only by this page, but the scope keeps the intent obvious.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.impact { position: relative; overflow: hidden; }
+
+/* One wide, very low-contrast glow. No new hue — it is the brand navy lifted. */
+.impact__glow {
+  position: absolute;
+  top: -40%;
+  right: -12%;
+  width: min(880px, 70vw);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(92,112,208,.20), rgba(92,112,208,0) 68%);
+}
+
+/* the dot grid the light bands already carry, inverted for the dark one */
+.dotgrid--light { background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1px); }
+.impact .dotgrid {
+  left: 0;
+  bottom: -30px;
+  width: 44%;
+  height: 290px;
+  opacity: .9;
+  -webkit-mask-image: linear-gradient(55deg, #000, transparent 74%);
+          mask-image: linear-gradient(55deg, #000, transparent 74%);
+}
+
+.impact .shell { position: relative; }
+
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: clamp(38px, 4.6vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ledger__item {
+  position: relative;
+  padding: clamp(22px, 2.4vw, 32px) clamp(20px, 2.4vw, 34px) clamp(22px, 2.6vw, 34px);
+  transition: background .5s var(--ease);
+}
+/* the first figure lines up with the heading above it, the last with the edge */
+.ledger__item:first-child { padding-left: 0; }
+.ledger__item:last-child  { padding-right: 0; }
+.ledger__item + .ledger__item { border-left: 1px solid rgba(255,255,255,.15); }
+.ledger__item:hover { background: rgba(255,255,255,.035); }
+
+/* the rule over each cell, and the accent that draws along it */
+.ledger__rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,.2);
+}
+.ledger__rule::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background: #fff;
+  transition: width 1.1s var(--ease);
+  transition-delay: calc(var(--d, 0ms) + 280ms);
+}
+/* .is-in is what the reveal sweep adds; without JS the accent simply never
+   draws and the plain hairline is what remains, which is the point of it. */
+.ledger__item.is-in .ledger__rule::after { width: 34%; }
+.ledger__item:hover .ledger__rule::after { width: 100%; transition-delay: 0ms; }
+
+.ledger__i {
+  display: block;
+  margin-bottom: clamp(22px, 3vw, 40px);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+
+/* the figures carry the section now, so they are allowed to be big */
+.ledger .stat__n {
+  font-size: clamp(46px, 5.6vw, 88px);
+  letter-spacing: -.042em;
+  color: #fff;
+}
+.ledger .stat__l {
+  margin-top: clamp(12px, 1.5vw, 18px);
+  max-width: 21ch;
+  color: rgba(255,255,255,.76);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHAT WE DO — the index
+   Four rows that were a number, a small uppercase name and a paragraph, with
+   two thirds of every row empty. The content is unchanged; the numeral now
+   carries the left column at display size, the name is a title rather than a
+   label, and each rule draws a navy tick on reveal that runs the full row on
+   hover.
+
+   Scoped to .rows--svc: industries.html uses .rows/.row too and is untouched.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.rows--svc .row {
+  position: relative;
+  /* numeral · name and copy · capabilities. The two-column version left the
+     right third of every row empty, which is what the old layout did too. */
+  grid-template-columns: clamp(78px, 8.6vw, 148px) minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 54px);
+  align-items: start;
+  padding: clamp(30px, 3.6vw, 52px) 0;
+  transition: background .5s var(--ease);
+}
+.rows--svc .row:hover { background: rgba(255,255,255,.5); }
+
+/* the navy tick under each rule: a short mark on reveal, the full width on hover */
+.rows--svc .row::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--navy);
+  transition: width 1s var(--ease);
+  transition-delay: calc(var(--d, 0ms) + 220ms);
+}
+.rows--svc .row.is-in::after { width: clamp(54px, 7vw, 116px); }
+.rows--svc .row:hover::after { width: 100%; transition-delay: 0ms; }
+
+/* An outline numeral that fills on hover. text-stroke is not universal, so the
+   solid low-opacity colour is the base and the outline is the enhancement —
+   otherwise an unsupporting browser would paint it transparent on transparent. */
+.rows--svc .row__n {
+  font-size: clamp(38px, 5vw, 84px);
+  line-height: .82;
+  font-weight: 300;
+  letter-spacing: -.04em;
+  color: rgba(31,37,87,.55);
+  transition: color .5s var(--ease);
+}
+@supports (-webkit-text-stroke: 1px #000) {
+  .rows--svc .row__n {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(31,37,87,.55);
+    transition: color .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
+  }
+  .rows--svc .row:hover .row__n { -webkit-text-stroke-color: transparent; }
+}
+.rows--svc .row:hover .row__n { color: var(--navy); }
+
+/* the name was a 13px uppercase label doing a title's job */
+.rows--svc .row__name {
+  margin: 0 0 clamp(10px, 1.3vw, 16px);
+  font-size: var(--fs-title);
+  font-weight: 500;
+  letter-spacing: -.018em;
+  text-transform: none;
+  line-height: 1.22;
+  color: var(--ink);
+}
+.rows--svc .row__body p { margin: 0; max-width: 62ch; }
+
+/* In its own column the capability list can be exactly that — a ruled list,
+   rather than four grey boxes that read as disabled buttons. */
+.rows--svc .chips {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding-top: 3px;
+}
+.rows--svc .chips li {
+  padding: clamp(8px, 1vw, 11px) 0;
+  background: transparent;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-2);
+  white-space: normal;
+  transition: border-color .45s var(--ease), color .45s var(--ease);
+}
+.rows--svc .row:hover .chips li { border-color: #c9cac4; color: var(--ink); }
+
+@media (max-width: 900px) {
+  /* the ledger stacks, so the cell divider has to become a rule above */
+  .ledger { grid-template-columns: 1fr; }
+  .ledger__item { padding: clamp(18px,3vw,24px) 0 clamp(22px,3.4vw,30px); }
+  .ledger__item + .ledger__item { border-left: 0; }
+  .ledger__i { margin-bottom: clamp(14px,2.4vw,20px); }
+  .ledger .stat__l { max-width: 32ch; }
+
+  /* .row drops to 44px 1fr at this width, which the display numeral overflows.
+     The capability list comes back under the copy, and back to wrapped chips —
+     a ruled list reads as a column, and there is no column left to read. */
+  .rows--svc .row { grid-template-columns: clamp(52px,11vw,72px) minmax(0,1fr); row-gap: clamp(14px,2.4vw,20px); }
+  .rows--svc .row__body,
+  .rows--svc .chips { grid-column: 2; }
+  .rows--svc .row__n { font-size: clamp(30px,7vw,48px); }
+  .rows--svc .chips { flex-direction: row; flex-wrap: wrap; gap: 8px; padding-top: 0; }
+  .rows--svc .chips li { padding: 7px 13px; border: 1px solid var(--rule); white-space: nowrap; }
+}

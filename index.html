@@ -115,7 +115,7 @@
 
       <div class="shell hero__in">
         <p class="eyebrow eyebrow--light" data-reveal>Microsoft-powered digital transformation partner</p>
-        <h1 class="hero__title" data-reveal style="--d:80ms">Systems your operation can run on — not work around.</h1>
+        <h1 class="hero__title" data-reveal style="--d:80ms">Systems that outlast your spreadsheets.</h1>
         <p class="hero__copy" data-reveal style="--d:160ms">
           We replace disconnected tools, legacy systems and manual capture with secure
           platforms on the Microsoft Cloud, designed around how your organisation
@@ -172,7 +172,13 @@
     </section>
 
     <!-- ═══════════════════ 3 · IMPACT ═══════════════════ -->
-    <section class="sec band band-ink" id="impact">
+    <section class="sec band band-ink impact" id="impact">
+      <!-- The band was a flat navy rectangle. These two give it depth without
+           adding a colour: one wide, very low-contrast glow and the dot grid the
+           light bands already use, inverted. -->
+      <span class="impact__glow" aria-hidden="true"></span>
+      <span class="dotgrid dotgrid--light" aria-hidden="true"></span>
+
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -185,20 +191,30 @@
           </p>
         </div>
 
-        <div class="stats">
-              <div class="stat" data-reveal style="--d:180ms">
-                <span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span>
-                <span class="stat__l">Years building mission-critical systems</span>
-              </div>
-              <div class="stat" data-reveal style="--d:240ms">
-                <span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span>
-                <span class="stat__l">Systems delivered into production</span>
-              </div>
-              <div class="stat" data-reveal style="--d:300ms">
-                <span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span>
-                <span class="stat__l">Sectors served nationally</span>
-              </div>
-            </div>
+        <!-- The figures read as a ledger: hairline cells, an index, and a rule
+             that draws itself on reveal and runs the full width on hover. The
+             numbering is decoration over a list that has no order, so it is
+             hidden from assistive tech. -->
+        <ul class="ledger">
+          <li class="stat ledger__item" data-reveal style="--d:180ms">
+            <span class="ledger__rule" aria-hidden="true"></span>
+            <span class="ledger__i" aria-hidden="true">01</span>
+            <span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span>
+            <span class="stat__l">Years building mission-critical systems</span>
+          </li>
+          <li class="stat ledger__item" data-reveal style="--d:240ms">
+            <span class="ledger__rule" aria-hidden="true"></span>
+            <span class="ledger__i" aria-hidden="true">02</span>
+            <span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span>
+            <span class="stat__l">Systems delivered into production</span>
+          </li>
+          <li class="stat ledger__item" data-reveal style="--d:300ms">
+            <span class="ledger__rule" aria-hidden="true"></span>
+            <span class="ledger__i" aria-hidden="true">03</span>
+            <span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span>
+            <span class="stat__l">Sectors served nationally</span>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -218,77 +234,77 @@
           </a>
         </div>
 
-        <ol class="rows">
-          <li class="row" data-reveal>
-            <span class="row__n">01</span>
-            <h3 class="row__name">Custom software development</h3>
+        <ol class="rows rows--svc">
+          <li class="row" data-reveal style="--d:60ms">
+            <span class="row__n" aria-hidden="true">01</span>
             <div class="row__body">
+              <h3 class="row__name">Custom software development</h3>
               <p>
                 When off-the-shelf software holds you back, we design and build solutions
                 around your exact processes, people and goals — software that fits your
                 business, not the other way around.
               </p>
-              <ul class="chips">
-                <li>Enterprise applications</li>
-                <li>Workflow automation</li>
-                <li>Customer portals</li>
-                <li>Operations platforms</li>
-              </ul>
             </div>
+            <ul class="chips">
+              <li>Enterprise applications</li>
+              <li>Workflow automation</li>
+              <li>Customer portals</li>
+              <li>Operations platforms</li>
+            </ul>
           </li>
 
-          <li class="row" data-reveal>
-            <span class="row__n">02</span>
-            <h3 class="row__name">Microsoft Cloud solutions</h3>
+          <li class="row" data-reveal style="--d:120ms">
+            <span class="row__n" aria-hidden="true">02</span>
             <div class="row__body">
+              <h3 class="row__name">Microsoft Cloud solutions</h3>
               <p>
                 We architect, deploy and manage solutions on the Microsoft Cloud — the same
                 platform trusted by enterprises worldwide for security, reliability and
                 scale, with identity, integration and recovery designed in from day one.
               </p>
-              <ul class="chips">
-                <li>Microsoft Azure</li>
-                <li>Azure SQL</li>
-                <li>Identity management</li>
-                <li>Disaster recovery</li>
-              </ul>
             </div>
+            <ul class="chips">
+              <li>Microsoft Azure</li>
+              <li>Azure SQL</li>
+              <li>Identity management</li>
+              <li>Disaster recovery</li>
+            </ul>
           </li>
 
-          <li class="row" data-reveal>
-            <span class="row__n">03</span>
-            <h3 class="row__name">Enterprise SaaS &amp; mobile</h3>
+          <li class="row" data-reveal style="--d:180ms">
+            <span class="row__n" aria-hidden="true">03</span>
             <div class="row__body">
+              <h3 class="row__name">Enterprise SaaS &amp; mobile</h3>
               <p>
                 Multi-tenant platforms engineered to serve thousands of users, extended by
                 mobile apps that capture work where it happens — in the field, online or
                 offline, always in sync.
               </p>
-              <ul class="chips">
-                <li>Multi-tenant platforms</li>
-                <li>Field operations</li>
-                <li>Offline functionality</li>
-                <li>Real-time synchronisation</li>
-              </ul>
             </div>
+            <ul class="chips">
+              <li>Multi-tenant platforms</li>
+              <li>Field operations</li>
+              <li>Offline functionality</li>
+              <li>Real-time synchronisation</li>
+            </ul>
           </li>
 
-          <li class="row" data-reveal>
-            <span class="row__n">04</span>
-            <h3 class="row__name">Business intelligence &amp; integration</h3>
+          <li class="row" data-reveal style="--d:240ms">
+            <span class="row__n" aria-hidden="true">04</span>
             <div class="row__body">
+              <h3 class="row__name">Business intelligence &amp; integration</h3>
               <p>
                 Power BI dashboards that turn scattered data into real-time decision-making
                 tools — and integrations that make your existing systems talk to each other,
                 eliminating double capture and manual hand-offs.
               </p>
-              <ul class="chips">
-                <li>Executive reporting</li>
-                <li>Operational KPIs</li>
-                <li>ERP &amp; CRM integration</li>
-                <li>Third-party APIs</li>
-              </ul>
             </div>
+            <ul class="chips">
+              <li>Executive reporting</li>
+              <li>Operational KPIs</li>
+              <li>ERP &amp; CRM integration</li>
+              <li>Third-party APIs</li>
+            </ul>
           </li>
         </ol>
       </div>

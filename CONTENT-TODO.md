@@ -120,6 +120,15 @@ with the same hand-off; every "Book a teardown" button on the studio lands there
 third-party form endpoint would remove the dependency on the visitor's email
 client; that is still a decision to make.
 
+**This now affects a second page.** The "Tell us the project you want built" band
+on `studio/work.html` sends its five service chips and its primary action to
+`mailto:info@gemis.co.za` rather than to `index.html#enquire`, precisely because
+the form on that anchor discards what it collects — funnelling more people into
+it would have made this worse. Once the form submits somewhere real, point that
+band at `#enquire` instead and carry the chosen service through as the form's
+preselected "What do you need?" value. The band's secondary link already goes
+there for the teardown, which is the studio's own named offer.
+
 ### 9. One contrast failure left on the whole site ⚠️
 
 `/studio/`'s "Book a teardown" pill: **white on `#ff1f7a` is 3.67:1**, and 13px
