@@ -3,7 +3,7 @@ import re, base64, os, json, sys, html as H
 R=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT=sys.argv[1] if len(sys.argv)>1 else R+'/gemis-site-standalone.html'   # python3 tools/build-site-standalone.py
 LIVE='https://sphamandla-designer.github.io/gemis-site/'
-PAGES=['index','about','services','industries','case-studies','contact','managem','wastemart','insights','privacy','404']
+PAGES=['index','about','services','industries','case-studies','contact','wastemart','insights','privacy','404']
 mime={'.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.woff':'font/woff'}
 pat=re.compile(r'assets/(?:img|fonts)/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
 A={}
@@ -46,7 +46,7 @@ for p in PAGES:
     h=h.replace('</body>', '<script>\n'+js+'\n</script>\n'+BRIDGE+'</body>')
     # the studio and anything else outside these pages goes to the live site
     h=re.sub(r'href="studio/([^"]*)"', lambda m: f'href="{LIVE}studio/{m.group(1)}"', h)
-    h=re.sub(r'href="(brand-studio|solutions|work|wastemart-driver)\.html([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}.html{m.group(2)}"', h)
+    h=re.sub(r'href="(brand-studio|solutions|work|wastemart-driver|managem)\.html([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}.html{m.group(2)}"', h)
     # every asset path becomes a token, filled from the shared map at load time
     for m in set(pat.findall(h)): asset(m)
     h=h.replace('href="assets/img/favicon.svg"','href="'+A['assets/img/favicon.svg']+'"')

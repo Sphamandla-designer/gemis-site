@@ -2602,3 +2602,103 @@ summary:focus-visible,
   .rows--svc .chips { flex-direction: row; flex-wrap: wrap; gap: 8px; padding-top: 0; }
   .rows--svc .chips li { padding: 7px 13px; border: 1px solid var(--rule); white-space: nowrap; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SERVICES ACCORDION — the homepage index language
+   The nine disciplines keep their accordion, because nine open rows is a
+   very long page and one-at-a-time keeps the list scannable. What changes
+   is the dress: the same display-size outline numeral, title weight, navy
+   tick and ruled capability list as .rows--svc on the home page.
+
+   Scoped to .acc, which only services.html carries, and whose nine .chips
+   lists are the only ones on that page.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.acc__item { position: relative; transition: background .5s var(--ease); }
+.acc__item:hover { background: rgba(255,255,255,.5); }
+
+/* the navy tick: a short mark on reveal, the full rule when open or hovered */
+.acc__item::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--navy);
+  transition: width 1s var(--ease);
+  transition-delay: calc(var(--d, 0ms) + 220ms);
+}
+.acc__item.is-in::after { width: clamp(54px, 7vw, 116px); }
+.acc__item:hover::after,
+.acc__item[data-open]::after { width: 100%; transition-delay: 0ms; }
+
+.acc__btn {
+  grid-template-columns: clamp(78px, 8.6vw, 148px) 1fr 34px;
+  gap: clamp(18px, 3vw, 54px);
+  padding: clamp(24px, 2.8vw, 38px) 0;
+}
+.acc__btn:hover { opacity: 1; }   /* the row wash is the hover state now */
+
+/* Same outline numeral as the home page, built the same way round: the solid
+   colour is the base and the stroke is the enhancement, so a browser without
+   -webkit-text-stroke paints a visible numeral rather than nothing. */
+.acc__n {
+  font-size: clamp(38px, 5vw, 84px);
+  line-height: .82;
+  font-weight: 300;
+  letter-spacing: -.04em;
+  color: rgba(31,37,87,.55);
+  transition: color .5s var(--ease);
+}
+@supports (-webkit-text-stroke: 1px #000) {
+  .acc__n {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(31,37,87,.55);
+    transition: color .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
+  }
+  .acc__item:hover .acc__n,
+  .acc__item[data-open] .acc__n { -webkit-text-stroke-color: transparent; }
+}
+.acc__item:hover .acc__n,
+.acc__item[data-open] .acc__n { color: var(--navy); }
+
+.acc__name { font-weight: 500; letter-spacing: -.018em; line-height: 1.22; }
+
+/* the panel lines its copy up under the title, capabilities in a third column */
+.acc__body {
+  grid-template-columns: clamp(78px, 8.6vw, 148px) minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 54px);
+  padding-bottom: clamp(28px, 3.2vw, 44px);
+}
+.acc__body > div { grid-column: 2; max-width: 62ch; }
+.acc__body > .chips { grid-column: 3; }
+.acc__body p { margin: 0; }
+
+.acc .chips { flex-direction: column; align-items: stretch; gap: 0; padding-top: 3px; }
+.acc .chips li {
+  padding: clamp(8px, 1vw, 11px) 0;
+  background: transparent;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-2);
+  white-space: normal;
+  transition: border-color .45s var(--ease), color .45s var(--ease);
+}
+.acc__item:hover .chips li { border-color: #c9cac4; color: var(--ink); }
+
+@media (max-width: 900px) {
+  .acc__btn { grid-template-columns: clamp(52px,11vw,72px) 1fr 28px; gap: clamp(14px,2.4vw,22px); }
+  .acc__n { font-size: clamp(30px,7vw,48px); }
+  /* the third column has nowhere to go, so capabilities sit under the copy */
+  .acc__body { grid-template-columns: clamp(52px,11vw,72px) minmax(0,1fr); gap: clamp(14px,2.4vw,22px); row-gap: clamp(14px,2.4vw,20px); }
+  .acc__body > div,
+  .acc__body > .chips { grid-column: 2; }
+  .acc .chips { flex-direction: row; flex-wrap: wrap; gap: 8px; padding-top: 0; }
+  .acc .chips li { padding: 7px 13px; border: 1px solid var(--rule); white-space: nowrap; }
+}
+
+@media (max-width: 620px) {
+  .acc__btn { grid-template-columns: clamp(40px,13vw,54px) 1fr 24px; }
+  .acc__body { grid-template-columns: clamp(40px,13vw,54px) minmax(0,1fr); }
+  .acc__n { font-size: clamp(26px,8vw,38px); }
+}
