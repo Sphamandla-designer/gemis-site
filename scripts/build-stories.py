@@ -36,8 +36,28 @@ def esc(t):
 
 
 def tbc(id_, placeholder):
-    """An unconfirmed value: visible, countable, and never mistaken for a fact."""
-    return f'<span class="tbc" data-tbc="{id_}">{placeholder}</span>'
+    """
+    An unconfirmed value.
+
+    On the live build it is not rendered at all — publish-safe mode. Under
+    ?review=1 the dashed underline and TBC pill come back, so a reviewer can
+    still see everything outstanding at a glance. Either way the id stays in
+    the markup for scripts/check-tbc.mjs to count.
+    """
+    return (f'<span class="tbc" data-tbc="{id_}" data-kind="{S.TBC_KIND.get(id_, "hideable")}">'
+            f'{placeholder}</span>')
+
+
+def hideable(id_, markup, fallback=''):
+    """
+    Markup that must disappear cleanly when the fact behind it has not arrived.
+
+    The fallback is what the live build shows in its place — never an empty gap
+    and never the word TBC. Both are in the DOM; CSS picks one, so this works
+    with no JavaScript, and ?review=1 flips it.
+    """
+    return (f'<div class="unconfirmed" data-tbc="{id_}" data-kind="hideable">{markup}</div>'
+            + (f'<div class="confirmed-fallback">{fallback}</div>' if fallback else ''))
 
 
 def period_html(s):
@@ -50,8 +70,32 @@ def since_html(s):
     if s['since']:
         return f"Client since {s['since']}"
     if s['since_tbc']:
-        return 'Client since ' + tbc(s['since_tbc'], '2014–15')
+        # no confirmed year: say the thing the videos do confirm rather than
+        # showing a placeholder, so the live build reads as finished
+        return (hideable(s['since_tbc'],
+                         'Client since ' + tbc(s['since_tbc'], '2014–15'),
+                         'Client for more than ten years'))
     return ''
+
+
+def client_logo(slug, client, wide=False, name_markup=''):
+    """
+    A client's mark.
+
+    No logo files were supplied. Rather than an empty box or the words "Image
+    TBC", the live build sets the client's name as a wordmark in the site's own
+    type — a deliberate-looking fallback that needs no asset. The placeholder
+    block returns under ?review=1.
+    """
+    shape = ' img-tbc--wide' if wide else ''
+    # With a real logo the name is still needed as text beside it. With the
+    # wordmark fallback the name IS the mark, so repeating it would read as a
+    # duplication rather than a design.
+    block = (f'<span class="img-tbc{shape}" role="img" '
+             f'aria-label="{esc(client)} logo to follow">Image TBC</span>' + name_markup)
+    mark = (f'<span class="client-mark client-mark--lg">{esc(client)}</span>'
+            if name_markup else f'<span class="client-mark">{esc(client)}</span>')
+    return hideable(f'logo-{slug}', block, mark)
 
 
 # ── video ────────────────────────────────────────────────────────────────
@@ -85,7 +129,7 @@ def endorsement_html(key, base, since_text=''):
     a quote, and is not turned into one.
     """
     e = S.ENDORSERS[key]
-    return f'''<figure class="endo">
+    card = f'''<figure class="endo">
             <div class="endo__portrait img-tbc img-tbc--square" data-tbc="{e['portrait_tbc']}"
                  role="img" aria-label="Portrait of {esc(e['name'])} to follow">{e['initials']}</div>
             <blockquote class="endo__line">
@@ -98,6 +142,9 @@ def endorsement_html(key, base, since_text=''):
               {f'<span class="endo__since">{since_text}</span>' if since_text else ''}
             </figcaption>
           </figure>'''
+    # no approved line means no card on the live build — the founding card simply
+    # shows its video full width, which is a deliberate layout, not a gap
+    return hideable(e['line_tbc'], card)
 
 
 # ── timeline ─────────────────────────────────────────────────────────────
@@ -154,11 +201,25 @@ def timeline_html(base=''):
 
 
 def fill_slot(path, slot, content):
+    """
+    Fill a slot, and stay fillable.
+
+    The generated region is wrapped in start/end sentinels so a second run
+    replaces it rather than failing on a slot that has already been consumed.
+    Rebuilding has to be repeatable: the facts change and the pages get
+    regenerated more than once.
+    """
     html_text = open(path, encoding='utf-8').read()
-    marker = f'<!--#{slot}-->'
-    if marker not in html_text:
-        raise SystemExit(f'{path}: slot {marker} not found')
-    open(path, 'w', encoding='utf-8').write(html_text.replace(marker, content))
+    start, end = f'<!--#{slot}:start-->', f'<!--#{slot}:end-->'
+    block = f'{start}\n{content}\n{end}'
+    if start in html_text and end in html_text:
+        html_text = re.sub(re.escape(start) + r'.*?' + re.escape(end), lambda _: block,
+                           html_text, count=1, flags=re.S)
+    elif f'<!--#{slot}-->' in html_text:
+        html_text = html_text.replace(f'<!--#{slot}-->', block, 1)
+    else:
+        raise SystemExit(f'{path}: neither slot <!--#{slot}--> nor its sentinels found')
+    open(path, 'w', encoding='utf-8').write(html_text)
 
 
 def main():

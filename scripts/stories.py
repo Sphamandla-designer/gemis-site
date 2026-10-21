@@ -66,8 +66,8 @@ STORIES = [
     dict(
         slug='homeassist', client='HomeAssist', order=2,
         industry='Insurance and home services — plumbing repairs',
-        period='More than ten years', period_tbc=None,
-        since=None, since_tbc='homeassist-start-year',
+        period='Client since 2014', period_tbc=None,
+        since='2014', since_tbc=None,
         headline='Plumbing claims, from report to sign-off',
         challenge='One system for burst-geyser and plumbing jobs: nearest-plumber dispatch, '
                   'SMS and WhatsApp updates, SANS photo evidence, insurer and warranty links',
@@ -89,8 +89,8 @@ STORIES = [
     dict(
         slug='wastemart', client='WasteMart', order=3,
         industry='Waste management and skip hire',
-        period='More than ten years', period_tbc=None,
-        since=None, since_tbc='wastemart-start-year',
+        period='Client since 2013', period_tbc=None,
+        since='2013', since_tbc=None,
         headline='From quote to collection, handled',
         challenge='Automatic quotes with terms, secure payment links, scheduling, '
                   'driver scan confirmation, order tracking',
@@ -108,7 +108,7 @@ STORIES = [
         keywords='automated quoting, online payment links, scheduling, driver mobile app, barcode scan confirmation, order tracking',
         about='WasteMart',
         capability_tags=['field-operations', 'platforms'], industry_tag='waste',
-        legacy_metric=('Six hours a week back, per depot', 'metric-wastemart-depot-hours'),
+        metric='Six hours a week back, per depot',
     ),
     dict(
         slug='trans-hex', client='Trans Hex Group', order=4,
@@ -134,7 +134,7 @@ STORIES = [
     dict(
         slug='sonke', client='Sonke Gender Justice', order=5,
         industry='Non-profit — gender-based violence and HIV prevention',
-        period=None, period_tbc='sonke-year', since=None, since_tbc=None,
+        period='2018', period_tbc=None, since=None, since_tbc=None,
         headline='Monitoring and evaluation across Africa',
         challenge='Offline mobile capture, approval workflow, programme targets and donor '
                   'reporting, for work in 40 countries',
@@ -156,7 +156,7 @@ STORIES = [
     dict(
         slug='tores-foundation', client="Tore's Foundation", order=6,
         industry='Education — schools debating programme',
-        period=None, period_tbc='tores-year', since=None, since_tbc=None,
+        period='2014', period_tbc=None, since=None, since_tbc=None,
         headline='A debating platform for 24 schools',
         challenge='Built for the University of Stellenbosch Business School: competitions, '
                   'live standings, mobile expense and stipend claims for 430+ learners',
@@ -178,7 +178,7 @@ STORIES = [
     dict(
         slug='managem', client='ManaGEM', order=7,
         industry='Business management software — compact ERP',
-        period=None, period_tbc='managem-launch-year', since=None, since_tbc=None,
+        period='Launched 2013 · redesigned 2026', period_tbc=None, since=None, since_tbc=None,
         headline='Born in a real business, built for many',
         challenge='Generalised from the SBS system; about a dozen companies run on it today',
         outcome='About a dozen companies run their day-to-day operations on it',
@@ -215,3 +215,72 @@ BY_SLUG = {s['slug']: s for s in STORIES}
 # The six that get their own story page. ManaGEM is a product, and its page is
 # solutions/managem/, not a client story.
 STORY_PAGES = [s for s in STORIES if not s.get('is_product')]
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# Confirmed in _project/assets-incoming/content/facts.md
+# ──────────────────────────────────────────────────────────────────────────
+CONFIRMED = {
+    'metric_wastemart': 'Six hours a week back, per depot',
+    'metric_managem': 'Month-end close: nine days to two',
+    'stat_systems': '50+',
+    'stat_sectors': '5+',
+    'managem_trial_live': True,
+    'footer_linkedin': 'https://www.linkedin.com/company/gem-information-systems-pty-ltd/',
+}
+
+# ──────────────────────────────────────────────────────────────────────────
+# What is still open, and what kind of open it is.
+#
+#   'blocking' — shipping it would be WRONG, not merely incomplete. The gate
+#                fails on these.
+#   'hideable' — shipping without it is fine. It disappears cleanly from the
+#                live build, leaving a layout that still looks deliberate, and
+#                is visible only under ?review=1. The gate warns on these.
+# ──────────────────────────────────────────────────────────────────────────
+TBC_KIND = {
+    # ── blocking ─────────────────────────────────────────────────────────
+    # facts.md puts WasteMart's relationship at 2013 and ManaGEM's launch at
+    # 2013, but the site states "Operating since 2014" with foundingDate 2014,
+    # and the SBS story — which the timeline tells in order — says SBS got its
+    # own system in 2015 and that system "grew into ManaGEM". Published as-is
+    # the page contradicts itself twice.
+    'chronology-2013': 'blocking',
+    # Tore's Foundation is now 2014, which places it after Trans Hex (2017) and
+    # Sonke (2018) in the brief's running order.
+    'timeline-order': 'blocking',
+    # facts.md confirms the free trial is live but gives no URL, and the
+    # separate ManaGEM site is still "FILL". A trial CTA with nowhere to go is
+    # worse than no CTA.
+    'managem-trial-url': 'blocking',
+
+    # ── hideable ─────────────────────────────────────────────────────────
+    'endorsement-ryan-line': 'hideable',
+    'endorsement-ryan-portrait': 'hideable',
+    'endorsement-ryan-title': 'hideable',
+    'endorsement-kehan-line': 'hideable',
+    'endorsement-kehan-portrait': 'hideable',
+    'endorsement-kehan-title': 'hideable',
+    'endorsement-nazier-line': 'hideable',
+    'endorsement-nazier-portrait': 'hideable',
+    'endorsement-nazier-title': 'hideable',
+    'logo-wastemart': 'hideable',
+    'logo-homeassist': 'hideable',
+    'logo-sbs-waterproofing': 'hideable',
+    'logo-trans-hex': 'hideable',
+    'logo-sonke': 'hideable',
+    'logo-tores-foundation': 'hideable',
+    'then-now-screenshots': 'hideable',
+    'team-photos': 'hideable',
+    'entry-finos-status': 'hideable',
+    'entry-smartstart-status': 'hideable',
+    'entry-rentflow-status': 'hideable',
+    'entry-nuracoach-status': 'hideable',
+    'entry-lungelo-status': 'hideable',
+    'managem-external-site': 'hideable',
+    'eighth-video': 'hideable',
+    'standalone-bundle': 'hideable',
+}
+
+BLOCKING = sorted(k for k, v in TBC_KIND.items() if v == 'blocking')
+HIDEABLE = sorted(k for k, v in TBC_KIND.items() if v == 'hideable')

@@ -174,3 +174,74 @@ Three accessibility defects were found and fixed during this pass, all of them m
 
 `.story__meta` on the dark hero was a fourth, found the same way and fixed against
 the colours `.chero__meta` already used.
+
+---
+
+# Round 2 — confirmed facts and publish-safe mode
+
+## 9. facts.md was not in the repository
+
+It was described as added at `_project/assets-incoming/content/facts.md`, but it
+is on no branch and in no working tree. The supplied PDF,
+`GEMIS_website___confirmed_facts.pdf`, is the only facts source, so it has been
+transcribed verbatim to that path and committed. `scripts/stories.py` applies it.
+
+## 10. Two confirmed facts contradict the site, and are blocking
+
+Applied as given, then registered as blocking rather than published quietly:
+
+- **WasteMart "client since 2013"** against "Operating since 2014",
+  `foundingDate: 2014` and "Business systems partner since 2014" — a client a
+  year before the company.
+- **ManaGEM "launch year 2013"** against the SBS narration the timeline quotes:
+  SBS got its own system *from 2015*, and that system "grew into ManaGEM". A 2013
+  launch predates its own origin, and the contradiction sits two cards apart.
+
+A third followed from the new dates: **Tore's Foundation is 2014**, which places
+it after Trans Hex (2017) and Sonke (2018) in the brief's running order.
+
+These are `chronology-2013` and `timeline-order` in `OPEN_ITEMS.md`.
+
+## 11. Publish-safe mode
+
+Every placeholder is now one of two kinds, declared in `scripts/stories.py` and
+exported to `scripts/tbc-kinds.json` for the gate:
+
+- **blocking** — would be wrong. `check-tbc.mjs` exits 1.
+- **hideable** — merely missing. Absent from the live build, listed as a warning.
+
+The mechanism is CSS, not JavaScript, so the **live** state is correct even with
+no JS — it is the review state that needs it. `.unconfirmed` is `display:none`
+and its `.confirmed-fallback` sibling stands in; `?review=1` adds a class to
+`<html>` and flips the pair, with a banner naming the count.
+
+Fallbacks, chosen so the layout reads as finished rather than unfinished:
+
+| Missing | Live build shows |
+|---|---|
+| Endorsement line | No card. The founding card's video runs full-width — a deliberate layout, not a gap. |
+| Logo | The client's name as a wordmark in the site's own type |
+| Confirmed start year | "Client for more than ten years" (defensive now: all three years are confirmed) |
+| Then/Now screenshots | The block is absent entirely |
+| Unclassified projects | Not listed on Our Work at all |
+
+Two things this pass caught:
+
+- The wordmark fallback **duplicated the client name**, because `.proof__name`
+  and `.wk__fname` were still rendering beside it. With a real logo the text name
+  is needed; with a wordmark the name *is* the mark. The name now lives inside the
+  placeholder branch.
+- The `managem-trial-url` marker was a `.vh` paragraph — visually hidden but still
+  read aloud. An internal note should not reach a screen reader at all, so it is an
+  HTML comment now, which `check-tbc` still counts.
+
+## 12. Verification after the change
+
+| Check | Result |
+|---|---|
+| Brief-palette values introduced | **0** files for `0F2D5E`, `1A56A0`, Cormorant, DM Sans |
+| Live build, 5 pages | **0 visible placeholders, 0 leaked strings** — no "TBC", no "Endorsement to follow", no "Image TBC" |
+| `?review=1` | Placeholders return with the banner |
+| Link check | 34 pages, **913 links, 0 broken** |
+| axe | **0 serious or critical** on 9 pages, except the pre-existing `mailto` contrast on index |
+| Gate | 3 blocking, 25 hideable — exits 1 on the blocking three only |

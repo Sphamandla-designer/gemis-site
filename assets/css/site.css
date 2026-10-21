@@ -3102,3 +3102,65 @@ summary:focus-visible,
 .chero .story__meta dt { color: rgba(255,255,255,.66); }
 .chero .story__meta dd { color: #fff; }
 .chero .story__meta .tbc::after { background: #fff; color: var(--navy-deep); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   PUBLISH-SAFE MODE
+   The live build shows nothing unconfirmed: no "TBC", no "Endorsement to
+   follow", no "Image TBC", and no empty gap where one of them used to be.
+   Each hideable placeholder ships with a fallback that is what visitors
+   actually see, so the layout reads as finished rather than unfinished.
+
+   Adding ?review=1 to any URL flips it: the placeholders come back with
+   their dashed underline and TBC pill, so outstanding items stay visible
+   to reviewers. This is CSS-only, so the live state is correct even with
+   no JavaScript — the review state is the one that needs it.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* live: the placeholder is gone and its fallback stands in */
+.unconfirmed { display: none; }
+.confirmed-fallback { display: contents; }
+
+/* live: an inline unconfirmed value simply is not rendered */
+.tbc { display: none; }
+
+/* review: the placeholders return, the fallbacks step aside */
+.review .unconfirmed { display: block; }
+.review .confirmed-fallback { display: none; }
+.review .tbc { display: inline; }
+
+/* a client's name set as a wordmark, where no logo file exists */
+.client-mark {
+  display: inline-block;
+  font-size: var(--fs-title);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--navy);
+}
+.band-ink .client-mark, .chero .client-mark { color: #fff; }
+
+/* With no endorsement card, a founding card's video takes the full width.
+   That is the default, so the live build needs no JavaScript to look right. */
+.stl__item--founding .stl__media { display: block; }
+.review .stl__item--founding .stl__media {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .review .stl__item--founding .stl__media { grid-template-columns: 1fr; }
+}
+
+/* the review banner, so nobody mistakes a review URL for the live site */
+.review-flag {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding: 7px 16px;
+  background: var(--navy);
+  color: #fff;
+  font-size: var(--fs-small);
+  text-align: center;
+}
+/* the wordmark standing in for a founder-card logo carries that card's heading weight */
+.client-mark--lg { font-size: var(--fs-display); letter-spacing: -.035em; line-height: 1.05; }

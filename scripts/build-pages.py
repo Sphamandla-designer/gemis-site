@@ -101,10 +101,9 @@ def story_page(s):
     caps = '\n'.join(f'            <li>{c}</li>' for c in s['capabilities'])
 
     outcome = f'<p>{esc(s["outcome"])}</p>'
-    if s.get('legacy_metric'):
-        text, tid = s['legacy_metric']
-        outcome += (f'\n          <p class="story__metric">{tbc(tid, esc(text))}'
-                    f'<span class="story__metric-note"> — awaiting client sign-off before publication</span></p>')
+    if s.get('metric'):
+        # confirmed by the client in facts.md, so it publishes plainly
+        outcome += f'\n          <p class="story__metric">{esc(s["metric"])}</p>'
 
     head = shell(
         base,
@@ -220,8 +219,7 @@ def work_page():
                  f'{CANON}work/', extra_head=schema)
 
     founders = '\n'.join(f'''          <article class="wk__founder" data-reveal>
-            <span class="img-tbc img-tbc--wide" data-tbc="logo-{s['slug']}" role="img" aria-label="{esc(s['client'])} logo to follow">Image TBC</span>
-            <h3 class="wk__fname">{esc(s['client'])}</h3>
+            {B.client_logo(s['slug'], s['client'], wide=True, name_markup=f'<h3 class="wk__fname">{esc(s["client"])}</h3>')}
             <p class="wk__fsince">{B.since_html(s)}</p>
             <p class="wk__fline">{esc(s['headline'])}</p>
             <a class="arrow-link" href="{base}work/{s['slug']}/">Read the story {ARROW}</a>
@@ -237,10 +235,13 @@ def work_page():
             <p class="wk__line">{esc(s['headline'])}</p>
           </article>''' for s in S.STORY_PAGES)
 
-    unclassified = '\n'.join(f'''          <article class="wk__card wk__card--unclassified" data-reveal>
+    # Not confirmed as client systems, so they are not on the live build at all.
+    # Listing them with a "to confirm" note would publish our uncertainty.
+    unclassified = '\n'.join(
+        B.hideable(tid, f'''<article class="wk__card wk__card--unclassified">
             <h3 class="wk__name">{name}</h3>
             <p class="wk__line">{tbc(tid, 'Client system or concept — to confirm')}</p>
-          </article>''' for name, tid in UNCLASSIFIED)
+          </article>''') for name, tid in UNCLASSIFIED)
 
     body = f'''
     <section class="chero" id="hero">

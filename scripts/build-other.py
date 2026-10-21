@@ -114,7 +114,7 @@ def solutions_index():
             <a class="arrow-link" href="{link}"{ext}>{esc(cta)} {ARROW}</a>{pl}
           </article>''')
     body = f'''
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Solutions</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">Four ways to work with GEMIS</h1>
@@ -235,7 +235,7 @@ def managem():
     base = '../../'
     s = S.BY_SLUG['managem']
     body = f'''
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>ManaGEM</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">A business management platform, born in a real business</h1>
@@ -276,7 +276,7 @@ def managem():
         <h2 class="display" id="resultsHeading" data-reveal style="--d:80ms">In use today</h2>
         <div class="story__prose" data-reveal style="--d:140ms">
           <p>About a dozen companies run their day-to-day operations on ManaGEM.</p>
-          <p class="story__metric">{tbc('metric-managem-month-end', 'Month-end close: nine days to two')}<span class="story__metric-note"> — awaiting client sign-off before publication</span></p>
+          <p class="story__metric">Month-end close: nine days to two</p>
         </div>
       </div>
     </section>
@@ -285,9 +285,14 @@ def managem():
       <div class="shell">
         <h2 class="display" data-reveal>See whether ManaGEM fits your business.</h2>
         <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
-        <!-- A "Start a free trial" CTA is omitted: nothing confirms a trial is
-             live. Tracked as managem-free-trial. The separate ManaGEM site is
-             not linked here either — tracked as managem-external-site. -->
+        <!-- facts.md confirms the free trial is live, but gives no URL for it and
+             leaves the separate ManaGEM site as "FILL". A trial CTA with nowhere
+             to point is worse than no CTA, so it is held back and the missing URL
+             is a blocking item: managem-trial-url. -->
+        <!-- data-tbc="managem-trial-url" data-kind="blocking"
+             Held back rather than rendered: a visually-hidden note is still read
+             aloud by a screen reader, and this is an internal message. The marker
+             lives in the comment so check-tbc still counts it. -->
       </div>
     </section>
 '''
@@ -315,7 +320,7 @@ def our_story():
           </li>''' for k in S.FOUNDING)
 
     body = f'''
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Our Story</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">Technology changes. Businesses evolve. Good partnerships endure.</h1>
@@ -346,11 +351,11 @@ def our_story():
             <span class="stat__l">Years building mission-critical systems</span>
           </li>
           <li class="stat">
-            <span class="stat__n">{tbc('stat-systems-delivered', '50+')}</span>
+            <span class="stat__n">50<sup>+</sup></span>
             <span class="stat__l">Systems delivered into production</span>
           </li>
           <li class="stat">
-            <span class="stat__n">{tbc('stat-sectors', '5+')}</span>
+            <span class="stat__n">5<sup>+</sup></span>
             <span class="stat__l">Sectors served nationally</span>
           </li>
         </ul>

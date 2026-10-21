@@ -114,7 +114,7 @@
 
   <main>
 
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>ManaGEM</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">A business management platform, born in a real business</h1>
@@ -131,19 +131,19 @@
           <p data-reveal style="--d:180ms"><a class="arrow-link arrow-link--quiet" href="../../work/sbs-waterproofing/">Read the SBS Waterproofing story <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
         </div>
         <div class="origin__aside" data-reveal style="--d:160ms">
-          <figure class="endo">
+          <div class="unconfirmed" data-tbc="endorsement-ryan-line" data-kind="hideable"><figure class="endo">
             <div class="endo__portrait img-tbc img-tbc--square" data-tbc="endorsement-ryan-portrait"
                  role="img" aria-label="Portrait of Ryan Smith to follow">RS</div>
             <blockquote class="endo__line">
-              <p><span class="tbc" data-tbc="endorsement-ryan-line">Endorsement to follow</span></p>
+              <p><span class="tbc" data-tbc="endorsement-ryan-line" data-kind="hideable">Endorsement to follow</span></p>
             </blockquote>
             <figcaption class="endo__by">
               <span class="endo__name">Ryan Smith</span>
-              <span class="endo__title"><span class="tbc" data-tbc="endorsement-ryan-title">Title to confirm</span></span>
+              <span class="endo__title"><span class="tbc" data-tbc="endorsement-ryan-title" data-kind="hideable">Title to confirm</span></span>
               <span class="endo__co">SBS Waterproofing</span>
               <span class="endo__since">Client since 2014</span>
             </figcaption>
-          </figure>
+          </figure></div>
         </div>
       </div>
     </section>
@@ -186,7 +186,7 @@
         <h2 class="display" id="resultsHeading" data-reveal style="--d:80ms">In use today</h2>
         <div class="story__prose" data-reveal style="--d:140ms">
           <p>About a dozen companies run their day-to-day operations on ManaGEM.</p>
-          <p class="story__metric"><span class="tbc" data-tbc="metric-managem-month-end">Month-end close: nine days to two</span><span class="story__metric-note"> — awaiting client sign-off before publication</span></p>
+          <p class="story__metric">Month-end close: nine days to two</p>
         </div>
       </div>
     </section>
@@ -195,9 +195,14 @@
       <div class="shell">
         <h2 class="display" data-reveal>See whether ManaGEM fits your business.</h2>
         <a class="arrow-link" href="../../index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-        <!-- A "Start a free trial" CTA is omitted: nothing confirms a trial is
-             live. Tracked as managem-free-trial. The separate ManaGEM site is
-             not linked here either — tracked as managem-external-site. -->
+        <!-- facts.md confirms the free trial is live, but gives no URL for it and
+             leaves the separate ManaGEM site as "FILL". A trial CTA with nowhere
+             to point is worse than no CTA, so it is held back and the missing URL
+             is a blocking item: managem-trial-url. -->
+        <!-- data-tbc="managem-trial-url" data-kind="blocking"
+             Held back rather than rendered: a visually-hidden note is still read
+             aloud by a screen reader, and this is an internal message. The marker
+             lives in the comment so check-tbc still counts it. -->
       </div>
     </section>
 </main>
@@ -251,7 +256,7 @@
       <div class="foot__bar">
         <p>Copyright © 2026 GEM Information Systems (PTY) LTD. All Rights Reserved.</p>
         <div class="foot__social">
-          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="GEMIS on LinkedIn" data-tbc="footer-linkedin">
+          <a href="https://www.linkedin.com/company/gem-information-systems-pty-ltd/" target="_blank" rel="noopener" aria-label="GEMIS on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.75-1.95C21.4 8.75 22 11.2 22 14.4V21h-4v-5.9c0-1.4-.03-3.2-2-3.2-2 0-2.3 1.53-2.3 3.1V21h-4V9Z"/></svg>
           </a>
           <a href="https://www.gemis.co.za" target="_blank" rel="noopener" aria-label="GEMIS website">
@@ -266,5 +271,6 @@
   </footer>
 
   <script src="../../assets/js/site.js?v=20261014" defer></script>
+  <script src="../../assets/js/review-mode.js" defer></script>
 </body>
 </html>
