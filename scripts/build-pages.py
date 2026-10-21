@@ -90,8 +90,11 @@ def story_page(s):
     since = B.since_html(s)
     endo = ''
     if founding and s['endorser']:
+        # The card inside is hideable, and so is the section around it: until a
+        # line is approved the live page skips the chapter entirely rather than
+        # showing an empty band where it would go. ?review=1 brings both back.
         endo = f'''
-    <section class="chap band band-wash" aria-labelledby="endoHeading-{s['slug']}">
+    <section class="chap band band-wash unconfirmed" data-kind="hideable" aria-labelledby="endoHeading-{s['slug']}">
       <div class="shell">
         <h2 class="vh" id="endoHeading-{s['slug']}">What {esc(s['client'])} says</h2>
         {B.endorsement_html(s['endorser'], base, since)}
@@ -139,7 +142,7 @@ def story_page(s):
       </div>
     </section>
 
-    <section class="chap band band-warm" aria-labelledby="builtHeading">
+    <section class="chap band band-wash" aria-labelledby="builtHeading">
       <div class="shell">
         <p class="eyebrow" data-reveal>What we built</p>
         <h2 class="display" id="builtHeading" data-reveal style="--d:80ms">{esc(s['video_title'].split(':', 1)[-1].strip().capitalize())}</h2>
@@ -156,7 +159,7 @@ def story_page(s):
          screenshot, neither of which has been supplied, and the prompt forbids a
          mock-up in their place. Tracked as then-now-screenshots in OPEN_ITEMS.md. -->
 
-    <section class="chap band band-tint" aria-labelledby="outcomeHeading">
+    <section class="chap band" aria-labelledby="outcomeHeading">
       <div class="shell">
         <p class="eyebrow" data-reveal>Outcome</p>
         <h2 class="display" id="outcomeHeading" data-reveal style="--d:80ms">Where it stands</h2>

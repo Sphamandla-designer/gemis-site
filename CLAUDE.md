@@ -55,6 +55,30 @@ Auditing one in a sandbox reports `document-title` and `html-has-lang` falsely: 
 meta-refresh fires before axe runs, so it measures the failed navigation. Re-run
 against the file's own bytes with the refresh stripped.
 
+## One design system — the tail of `site.css` decides
+
+The stylesheet was written page by page and the layers contradict each other.
+The last block, **TIDY — one system for the whole corporate site**, is where the
+decisions now live; put a change to colour, type or spacing there, not in the
+layer that first introduced the component.
+
+- **Colour** comes from the hero photograph (`assets/img/home/hero-bg.jpg`):
+  `--navy-deep #0b2642`, `--navy #16395e`, `--blue #2a5c8a`, `--wash #e6edf4`.
+  No indigo, no warm grey — `band-warm` is retired and maps to `--paper-2`.
+- **Type** is eight steps: `--fs-hero / display / lead / title / name / copy /
+  small / eyebrow`. Every heading resolves to one; no literal px sizes.
+- **Rhythm** is `--sec-y` on both edges of every section; the proof strip takes
+  `--sec-y-s`. `.endnote` carries no top margin — that margin was the bare strip of
+  page that used to show between sections.
+- **Grounds** alternate paper → wash → paper → tint, one `band-ink` per long page,
+  then the footer. Two washes never touch.
+- **Page heroes** (`.chero`) are the home hero's photograph under the same scrim,
+  type set left. A story page's endorsement chapter is itself `.unconfirmed`, so an
+  unapproved line removes the whole band rather than leaving an empty one.
+
+Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
+font sizes in use and the padding/ground of every section on every page.
+
 ## CSS is shared across pages — scope restyles
 
 Several component classes are used by more than one page. Restyling one page's
@@ -90,9 +114,9 @@ is already set, so never run `playwright install`.
 - the internal link graph — currently 267 links, 0 broken
 - JavaScript off, and reduced motion, on anything that animates
 
-**Known pre-existing violation, not yours:** a `mailto:` link inside a paragraph on
-`index.html`, `industries.html` and `insights.html` fails `link-in-text-block`
-(navy on near-black, 1.23:1 against the surrounding text). Everything else is clean.
+Every page is axe-clean at serious/critical. The `mailto:` link inside a paragraph
+that used to fail `link-in-text-block` is underlined now (`main p > a:not([class])`),
+so a prose link never depends on colour alone — keep it that way.
 
 Measure contrast from rendered pixels when the mark is a stroke rather than a fill
 — a `-webkit-text-stroke` numeral reads as a meaningless 1:1 from its `color`.
