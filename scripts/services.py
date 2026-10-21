@@ -265,7 +265,9 @@ BY_SLUG = {s['slug']: s for s in SERVICES}
 # are the Studio and the Academy.
 PRODUCTS = [
     {
-        'slug': 'managem', 'name': 'ManaGEM', 'href': 'products/managem/',
+        # the live ManaGEM site; the overview at products/managem/ stays reachable
+        # from the stories and the case study
+        'slug': 'managem', 'name': 'ManaGEM', 'href': 'https://sphamandla-designer.github.io/ManaGEM/',
         'image': 'assets/img/menu/managem.jpg',
         'short': 'A proven business management platform, ready to run on.',
         'body': 'Sales, stock, payroll, projects and multi-company accounting in one place. It '

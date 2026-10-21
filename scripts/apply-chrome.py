@@ -128,7 +128,7 @@ FOOTER_COLS = """<div class="foot__col">
         <div class="foot__col">
           <h2>Products</h2>
           <ul>
-            <li><a href="{B}products/managem/">ManaGEM</a></li>
+            <li><a href="https://sphamandla-designer.github.io/ManaGEM/" target="_blank" rel="noopener">ManaGEM</a></li>
             <li><a href="{B}studio/">Design Studio</a></li>
             <li><a href="https://gemis.tech/" target="_blank" rel="noopener">Technical Academy</a></li>
             <li><a href="{B}work/">Case Studies</a></li>
