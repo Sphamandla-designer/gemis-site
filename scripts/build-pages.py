@@ -116,11 +116,11 @@ def story_page(s):
 
     body = f'''
     <!-- ═══════════ {s['client'].upper()} ═══════════ -->
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
-        <p class="eyebrow" data-reveal>{esc(s['industry'])}</p>
+        <p class="chero__kicker" data-reveal>{esc(s['industry'])}</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['client'])}</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">{esc(s['headline'])}</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">{esc(s['headline'])}</p>
         <dl class="story__meta" data-reveal style="--d:200ms">
           <div><dt>Period</dt><dd>{B.period_html(s)}</dd></div>
           {f'<div><dt>Relationship</dt><dd>{since}</dd></div>' if since else ''}
@@ -168,7 +168,7 @@ def story_page(s):
       </div>
     </section>
 
-    <section class="endnote band" aria-labelledby="nextHeading">
+    <section class="endnote" aria-labelledby="nextHeading">
       <div class="shell story__next">
         <div>
           <p class="eyebrow" data-reveal>Next story</p>
@@ -243,11 +243,11 @@ def work_page():
           </article>''' for name, tid in UNCLASSIFIED)
 
     body = f'''
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Our Work</p>
+        <p class="chero__kicker" data-reveal>Our Work</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">Systems in the real world</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">Every project here is a system in production, and many have been running for years.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">Every project here is a system in production, and many have been running for years.</p>
       </div>
     </section>
 
@@ -290,6 +290,7 @@ def work_page():
           </fieldset>
         </div>
 
+        <p class="vh" id="wkCount" role="status" aria-live="polite"></p>
         <div class="wk__grid" data-grid>
 {grid}
         </div>
@@ -304,14 +305,16 @@ def work_page():
       </div>
     </section>
 
-    <section class="endnote band band-warm">
+    <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Tell us what your business needs to do better.</h2>
         <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
       </div>
     </section>
 '''
-    return head[0] + body + head[1]
+    html_out = head[0] + body + head[1]
+    return html_out.replace('</body>',
+        '  <script src="../assets/js/work-filters.js" defer></script>\n</body>')
 
 
 def main():

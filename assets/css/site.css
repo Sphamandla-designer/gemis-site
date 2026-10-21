@@ -3096,3 +3096,9 @@ summary:focus-visible,
 @media (max-width: 620px) {
   .wk__founders, .wk__grid, .hist__clients { grid-template-columns: 1fr; }
 }
+
+/* .story__meta sits on .chero, which is navy-deep — the light-band ink colours
+   it inherited were 1.07:1 there. Matches .chero__meta, which solved this first. */
+.chero .story__meta dt { color: rgba(255,255,255,.66); }
+.chero .story__meta dd { color: #fff; }
+.chero .story__meta .tbc::after { background: #fff; color: var(--navy-deep); }

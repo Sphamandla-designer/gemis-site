@@ -141,3 +141,36 @@ OPEN_ITEMS.md and in the pull request, so it is loud rather than silent — whic
 what the rule in CLAUDE.md is actually for.
 
 The file on this branch therefore shows the **old** site. Do not review it.
+
+## 8. Verification results
+
+Run on the final branch state.
+
+| Check | Result |
+|---|---|
+| `node scripts/check-tbc.mjs` | **27 placeholders**, exits 1 — as expected until Leon confirms the facts. Every id matches `OPEN_ITEMS.md`; nothing is undocumented. |
+| Link check (34 pages) | **896 links and anchors, 0 broken.** |
+| axe-core, WCAG 2.2 AA | **0 serious or critical** across Home, Our Work, all six story pages, Solutions, Bespoke Software, ManaGEM, Our Story and Contact. |
+| Lighthouse (mobile emulation) | **100 / 100 / 100 / 100** on Home, Our Work and the WasteMart story — performance, accessibility, best practices, SEO. |
+| Layout, 375 / 768 / 1280 / 1600 | 5 pages × 4 widths — no horizontal scroll, no clipped cards, no JS errors. |
+| Reduced motion | 0 elements left hidden; nothing animates. |
+| JavaScript off | All 8 timeline entries and all 7 videos present in the DOM. |
+| Keyboard | 29 timeline focusables all reachable, visible focus on first tab stop, Skip-the-story link resolves, filters operable with `aria-pressed` and a live region. |
+| Naming sweep | 0 hits for ManaGem, ManageM, Waste Mart, Home Assist, Tores, testimonial, 15 years. |
+| Autoplay | 0 occurrences anywhere. |
+| Chrome consistency | `apply-chrome.py --check` passes on every page. |
+
+Three accessibility defects were found and fixed during this pass, all of them mine:
+
+1. `.eyebrow` and `.chero__sub` were used inside `.chero`, which is navy-deep. The
+   eyebrow rendered navy on navy at **1.15:1**. The page already had `.chero__kicker`
+   and `.chero__copy` for exactly this band; the generated pages now use them.
+2. `.endnote` sets `color:#fff` and was paired with `band-warm`, giving white text
+   on cream, also 1.15:1. The band classes were removed.
+3. The "See it in production" links were being injected inside `.acc__btn` — a link
+   inside a button, which axe fails as `nested-interactive`. They now sit at the end
+   of each panel. Closing panels are also `inert` now, since `aria-hidden` alone left
+   their links in the tab order.
+
+`.story__meta` on the dark hero was a fourth, found the same way and fixed against
+the colours `.chero__meta` already used.

@@ -116,9 +116,9 @@ def solutions_index():
     body = f'''
     <section class="chero" id="top">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Solutions</p>
+        <p class="chero__kicker" data-reveal>Solutions</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">Four ways to work with GEMIS</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">A system built around your operation, a platform ready to run on, a studio to design it, or training to keep your team ahead.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">A system built around your operation, a platform ready to run on, a studio to design it, or training to keep your team ahead.</p>
       </div>
     </section>
 
@@ -131,7 +131,7 @@ def solutions_index():
       </div>
     </section>
 
-    <section class="endnote band band-warm">
+    <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Not sure which one you need?</h2>
         <p data-reveal style="--d:80ms">Tell us what the business needs to do better and we will come back with a view.</p>
@@ -165,26 +165,35 @@ def bespoke():
     services = rebase(blocks['services'], base)
     process = rebase(blocks['process'], base)
 
-    # "See it in production" under each capability block
+    # "See it in production" goes at the end of each capability's panel, after its
+    # chips list. It must never land inside .acc__btn: a link inside a button is a
+    # nested interactive control, which axe fails outright.
+    PANEL_END = '</ul>\n            </div></div></div>'
+
     def add_proof(m):
-        heading = m.group(0)
+        item = m.group(0)
+        heading = re.search(r'<h3 class="acc__name">([^<]*)</h3>', item)
+        if not heading or PANEL_END not in item:
+            return item
+        name = heading.group(1).lower()
         for key, (slug, label) in PROOF_LINKS.items():
-            if key.lower() in heading.lower():
-                return heading
-        return heading
-    for key, (slug, label) in PROOF_LINKS.items():
-        pat = re.compile(r'(<h3[^>]*>' + re.escape(key.split()[0]) + r'[^<]*</h3>)', re.I)
-        services = pat.sub(
-            lambda m: m.group(1) + f'\n              <p class="svc__proof"><a class="arrow-link arrow-link--quiet" '
-                                   f'href="{base}work/{slug}/">See it in production — {label} {ARROW}</a></p>',
-            services, count=1)
+            if key.split()[0].lower() in name:
+                link = ('\n              <p class="svc__proof">'
+                        f'<a class="arrow-link arrow-link--quiet" href="{base}work/{slug}/">'
+                        f'See it in production — {label} {ARROW}</a></p>')
+                return item.replace(PANEL_END, '</ul>' + link + '\n            </div></div></div>')
+        return item
+
+    # anchored on the item's own indentation: a bare .*?</li> stops at the first
+    # chip's closing tag inside the panel
+    services = re.sub(r'<li class="acc__item".*?\n          </li>', add_proof, services, flags=re.S)
 
     body = f'''
-    <section class="chero" id="top">
+    <section class="chero" id="hero">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Bespoke Software</p>
+        <p class="chero__kicker" data-reveal>Bespoke Software</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">A system built around your operation</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">When off-the-shelf software holds the business back, we design and build around how it actually works — then stay to support it.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">When off-the-shelf software holds the business back, we design and build around how it actually works — then stay to support it.</p>
       </div>
     </section>
 
@@ -208,7 +217,7 @@ def bespoke():
       </div>
     </section>
 
-    <section class="endnote band band-warm">
+    <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Tell us what your business needs to do better.</h2>
         <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
@@ -221,7 +230,6 @@ def bespoke():
          'and integration — designed around how your business works and supported long after go-live.',
          body)
 
-
 # ── ManaGEM ──────────────────────────────────────────────────────────────
 def managem():
     base = '../../'
@@ -229,9 +237,9 @@ def managem():
     body = f'''
     <section class="chero" id="top">
       <div class="shell">
-        <p class="eyebrow" data-reveal>ManaGEM</p>
+        <p class="chero__kicker" data-reveal>ManaGEM</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">A business management platform, born in a real business</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">Sales, stock, payroll, projects and multi-company accounting in one place. About a dozen companies run their day-to-day operations on it.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">Sales, stock, payroll, projects and multi-company accounting in one place. About a dozen companies run their day-to-day operations on it.</p>
       </div>
     </section>
 
@@ -273,7 +281,7 @@ def managem():
       </div>
     </section>
 
-    <section class="endnote band band-warm">
+    <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>See whether ManaGEM fits your business.</h2>
         <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
@@ -309,9 +317,9 @@ def our_story():
     body = f'''
     <section class="chero" id="top">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Our Story</p>
+        <p class="chero__kicker" data-reveal>Our Story</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">Technology changes. Businesses evolve. Good partnerships endure.</h1>
-        <p class="chero__sub" data-reveal style="--d:140ms">GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.</p>
       </div>
     </section>
 
@@ -351,7 +359,7 @@ def our_story():
 
 {team}
 
-    <section class="endnote band band-warm">
+    <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>We learn your business. We build around it. We stay.</h2>
         <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
