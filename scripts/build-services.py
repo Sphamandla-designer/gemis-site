@@ -75,6 +75,25 @@ def services_grid(base=''):
     return '\n'.join(tiles)
 
 
+# ── the services rows, for the homepage: the first six, numbered ─────────
+def services_rows(base='', limit=6):
+    rows = []
+    for i, s in enumerate(SV.SERVICES[:limit]):
+        chips = '\n'.join(f'                <li>{esc(c)}</li>' for c in s['caps'][:4])
+        rows.append(f'''          <li class="srow" data-reveal style="--d:{i * 60}ms">
+            <span class="srow__n" aria-hidden="true">{i + 1:02d}</span>
+            <h3 class="srow__name"><a href="{base}solutions/{s['slug']}/">{esc(s['name'])}</a></h3>
+            <div class="srow__body">
+              <p>{esc(s['intro'])}</p>
+              <ul class="srow__chips">
+{chips}
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="{base}solutions/{s['slug']}/">See details {ARROW}</a>
+            </div>
+          </li>''')
+    return '\n'.join(rows)
+
+
 # ── Solutions (the services page) ────────────────────────────────────────
 def solutions_index():
     base = '../'
@@ -256,17 +275,17 @@ def products_index():
 def post_cards(base='', articles=None):
     cards = []
     for i, a in enumerate(articles or SV.ARTICLES):
+        chips = '\n'.join(f'              <li>{esc(c)}</li>' for c in a.get('chips', [a['tag']]))
         cards.append(f'''          <article class="post" data-reveal style="--d:{i * 80}ms">
+            <h3 class="post__t"><a href="{base}insights/{a['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(a['title'])}</span></a></h3>
             <a class="post__media" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">
               <img src="{base}{a['image']}" alt="" loading="lazy" width="1200" height="675" />
-              <span class="post__tag">{esc(a['tag'])}</span>
             </a>
-            <div class="post__body">
-              <p class="post__meta"><time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']}</p>
-              <h3 class="post__t"><a href="{base}insights/{a['slug']}/">{esc(a['title'])}</a></h3>
-              <p class="post__x">{esc(a['standfirst'])}</p>
-              <a class="arrow-link arrow-link--quiet" href="{base}insights/{a['slug']}/">Read the article {ARROW}</a>
-            </div>
+            <p class="post__meta"><span class="post__tag">{esc(a['tag'])}</span> · <time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']}</p>
+            <p class="post__x">{esc(a['standfirst'])}</p>
+            <ul class="post__chips">
+{chips}
+            </ul>
           </article>''')
     return '\n'.join(cards)
 

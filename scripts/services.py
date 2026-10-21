@@ -325,6 +325,7 @@ TESTIMONIALS = [
 ARTICLES = [
     {
         'slug': 'popia-business-systems-checklist',
+        'chips': ['Compliance', 'Data protection', 'Access control', 'Microsoft Azure'],
         'tag': 'Compliance',
         'title': 'POPIA and your business systems: a practical checklist',
         'standfirst': 'Compliance is not a policy document. It is where your customer data lives, '
@@ -374,6 +375,7 @@ ARTICLES = [
     },
     {
         'slug': 'load-shedding-operations-resilience',
+        'chips': ['Resilience', 'Cloud', 'Offline-first', 'Field operations'],
         'tag': 'Resilience',
         'title': 'Keeping operations running through load-shedding: a systems view',
         'standfirst': 'Generators keep the lights on. They do not keep the business running if the '
@@ -417,6 +419,7 @@ ARTICLES = [
     },
     {
         'slug': 'spreadsheets-to-a-system',
+        'chips': ['Strategy', 'Business systems', 'Cost', 'Migration'],
         'tag': 'Strategy',
         'title': 'From spreadsheets to a system: when to move, and what it really costs',
         'standfirst': 'The spreadsheet is not the problem. The problem is the moment it becomes the '
