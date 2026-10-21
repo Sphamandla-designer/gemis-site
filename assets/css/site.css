@@ -3605,3 +3605,86 @@ a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
 .testi__dot[aria-pressed="true"] { transform: none; }
 .testi__dot[aria-pressed="true"]::before { background: var(--navy); transform: scale(1.3); }
 .testi__track:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   DESIGN REFERENCES — the four screenshots the owner supplied on 21 Oct
+   (kept in qa/design-refs/):
+   the about/stats split, the numbered "What we do" rows, the deep-blue
+   photographic band, and the ruled news features. Same tokens throughout.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the faint plus-grid that sits in a corner of each reference */
+.plusgrid { position: relative; }
+.plusgrid::after {
+  content: '';
+  position: absolute; z-index: 0; pointer-events: none;
+  top: 0; left: 0; width: clamp(160px, 22vw, 300px); height: clamp(220px, 30vw, 380px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 9.5v7M9.5 13h7' stroke='%2316395e' stroke-opacity='.26' stroke-width='1'/%3E%3C/svg%3E");
+  -webkit-mask-image: linear-gradient(135deg, #000 30%, transparent 100%);
+  mask-image: linear-gradient(135deg, #000 30%, transparent 100%);
+}
+.plusgrid--br::after { top: auto; left: auto; right: 0; bottom: 0; -webkit-mask-image: linear-gradient(315deg, #000 30%, transparent 100%); mask-image: linear-gradient(315deg, #000 30%, transparent 100%); }
+.plusgrid--tr::after { left: auto; right: 0; -webkit-mask-image: linear-gradient(225deg, #000 30%, transparent 100%); mask-image: linear-gradient(225deg, #000 30%, transparent 100%); }
+.plusgrid > .shell { position: relative; z-index: 1; }
+
+/* ── 02 about / trust: headline left, copy and figures right ─────────── */
+.trust { text-align: left; }
+.trust__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: end; }
+.trust__lead .display { margin-bottom: 0; max-width: 17ch; }
+.trust__body { display: flex; flex-direction: column; gap: clamp(28px, 3.6vw, 52px); }
+.trust__copy { margin: 0; max-width: 54ch; color: var(--ink-2); }
+.trust__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 34px); margin: 0; max-width: none; }
+.trust__stats .stat { padding-top: 0; border-top: 0; text-align: left; }
+.trust__stats .stat__n { font-size: clamp(34px, 3.4vw, 50px); font-weight: 300; letter-spacing: -.03em; }
+.trust__stats .stat__l { margin: 10px 0 0; max-width: 16ch; font-size: var(--fs-small); color: var(--ink-2); }
+.trust .marquee { margin-top: clamp(40px, 5vw, 72px); padding-top: clamp(22px, 2.8vw, 36px); border-top: 1px solid var(--rule); }
+.trust__line { display: none; }
+@media (max-width: 900px) { .trust__grid { grid-template-columns: 1fr; gap: 22px; } }
+@media (max-width: 560px) { .trust__stats { grid-template-columns: 1fr 1fr; } }
+
+/* ── 03 what we do: numbered rows ────────────────────────────────────── */
+.svcs__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding-bottom: clamp(18px, 2.2vw, 28px); }
+.svcs__head .display { margin-bottom: 0; }
+.srows { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.srow { display: grid; grid-template-columns: 72px minmax(0, .9fr) minmax(0, 1.6fr); gap: clamp(18px, 3vw, 48px); padding: clamp(26px, 3vw, 40px) 0; border-bottom: 1px solid var(--rule); transition: background .4s var(--ease); }
+.srow__n { font-size: var(--fs-copy); font-style: italic; letter-spacing: .02em; color: var(--ink-2); padding-top: 2px; }
+.srow__name { margin: 0; font-size: var(--fs-small); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; line-height: 1.5; color: var(--ink); padding-top: 1px; }
+.srow__name a { position: relative; }
+.srow__name a::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
+.srow:hover .srow__name a::after { transform: scaleX(1); transform-origin: left; }
+.srow__body { display: flex; flex-direction: column; gap: 16px; }
+.srow__body p { margin: 0; max-width: 68ch; color: var(--ink-2); }
+.srow__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.srow__chips li { padding: 6px 11px; background: var(--chip); font-size: var(--fs-small); color: var(--ink-2); white-space: nowrap; }
+.srow__go { align-self: flex-start; }
+@media (max-width: 900px) { .srow { grid-template-columns: 48px minmax(0, 1fr); } .srow__body { grid-column: 2; } }
+@media (max-width: 560px) { .srow { grid-template-columns: 1fr; gap: 10px; } .srow__body { grid-column: 1; } }
+
+/* ── 05 how we work: the deep-blue band with the photograph on the right ─ */
+.led { position: relative; isolation: isolate; overflow: clip; min-height: clamp(480px, 56vw, 640px); display: flex; align-items: center; background: var(--navy-deep); padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
+.led__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 78% 50%; }
+.led::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(95deg, rgba(8,34,62,.96) 0%, rgba(8,34,62,.9) 42%, rgba(8,34,62,.45) 70%, rgba(8,34,62,.2) 100%); }
+.led::after { content: ''; position: absolute; z-index: -1; left: 0; bottom: 0; width: clamp(160px, 22vw, 300px); height: clamp(220px, 30vw, 380px); pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 9.5v7M9.5 13h7' stroke='%23ffffff' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"); -webkit-mask-image: linear-gradient(45deg, #000 30%, transparent 100%); mask-image: linear-gradient(45deg, #000 30%, transparent 100%); }
+.led__in { position: relative; width: 100%; }
+.led .eyebrow { color: rgba(255,255,255,.78); }
+.led .display { color: #fff; max-width: 16ch; margin-bottom: clamp(22px, 2.8vw, 36px); }
+.led__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 44px); max-width: 760px; margin-bottom: clamp(36px, 5vw, 72px); }
+.led__cols p { margin: 0; font-size: var(--fs-copy); line-height: 1.6; color: rgba(255,255,255,.84); }
+.led .arrow-link { color: #fff; }
+@media (max-width: 760px) { .led__cols { grid-template-columns: 1fr; } .led::before { background: linear-gradient(180deg, rgba(8,34,62,.96) 0%, rgba(8,34,62,.9) 70%, rgba(8,34,62,.6) 100%); } }
+
+/* ── 07 news: ruled features ─────────────────────────────────────────── */
+.post { background: none; border: 0; gap: 0; }
+.post:hover { transform: none; box-shadow: none; }
+.post__t { margin: 0; padding: 14px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); font-size: var(--fs-small); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; line-height: 1.45; }
+.post__t a { display: flex; justify-content: space-between; gap: 18px; color: var(--ink); }
+.post__t a > span:last-child { text-align: right; }
+.post__plus { flex: 0 0 auto; font-weight: 400; font-size: var(--fs-name); line-height: 1; color: var(--ink-2); transition: transform .4s var(--ease); }
+.post:hover .post__plus { transform: rotate(90deg); }
+.post__media { margin: clamp(18px, 2.2vw, 28px) 0 clamp(16px, 2vw, 24px); }
+.post__media img { aspect-ratio: 3 / 2; }
+.post__meta { margin: 0 0 10px; font-size: var(--fs-small); color: var(--ink-3); }
+.post__tag { position: static; padding: 0; background: none; color: var(--navy); font-size: inherit; letter-spacing: .04em; }
+.post__x { margin: 0 0 16px; color: var(--ink-2); }
+.post__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: auto 0 0; padding: 0; list-style: none; }
+.post__chips li { padding: 6px 11px; background: var(--chip); font-size: var(--fs-small); color: var(--ink-2); white-space: nowrap; }

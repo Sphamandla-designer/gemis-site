@@ -175,22 +175,34 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ 02 · TRUST ═══════════════════
-         The figures are the ones Our Story carries; the names are every client
-         with a story on the site plus our own product. No logo files have been
-         supplied, so the marquee runs on wordmarks (see OPEN_ITEMS.md). -->
-    <section class="trust band" aria-labelledby="trustHeading">
-      <div class="shell trust__in">
-        <ul class="trust__stats" data-reveal>
-          <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
-          <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
-          <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
-          <li class="stat"><span class="stat__n" data-count="3">3</span><span class="stat__l">Founding clients, still with us</span></li>
-        </ul>
+    <!-- ═══════════════════ 02 · ABOUT / TRUST ═══════════════════
+         The design reference: eyebrow and a two-line headline on the left, a
+         paragraph and three figures on the right, a faint plus-grid top-left.
+         The figures are the ones Our Story carries. Below it, the marquee of
+         every client with a story on the site plus our own product — on
+         wordmarks, since no logo files exist (OPEN_ITEMS.md). -->
+    <section class="trust band plusgrid" aria-labelledby="trustHeading">
+      <div class="shell">
+        <div class="trust__grid">
+          <div class="trust__lead">
+            <p class="eyebrow" data-reveal>About GEMIS</p>
+            <h2 class="display" id="trustHeading" data-reveal style="--d:80ms">Trusted by South African businesses.</h2>
+          </div>
+          <div class="trust__body">
+            <p class="trust__copy" data-reveal style="--d:140ms">
+              GEM Information Systems has been building business systems in South Africa since
+              2014 — and still works with the businesses it started with. We design around how a
+              business actually runs, build on the Microsoft Cloud, and stay after go-live.
+            </p>
+            <ul class="trust__stats" data-reveal style="--d:200ms">
+              <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
+              <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
+              <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
+            </ul>
+          </div>
+        </div>
 
-        <h2 class="trust__line" id="trustHeading" data-reveal style="--d:120ms">Trusted by South African businesses</h2>
-
-        <div class="marquee" data-reveal style="--d:200ms">
+        <div class="marquee" data-reveal style="--d:260ms">
           <ul class="marquee__track">
             <li class="marquee__item"><span class="client-mark">WasteMart</span></li>
             <li class="marquee__item"><span class="client-mark">ManaGEM</span></li>
@@ -214,88 +226,107 @@
     </section>
 
     <!-- ═══════════════════ 03 · SOLUTIONS ═══════════════════
-         Generated from scripts/services.py by scripts/build-home.py. -->
-    <section class="svcs band band-photo band-photo--soft" id="solutions" aria-labelledby="svcsHeading">
+         The design reference: "What we do" with a See-all link on the right,
+         then numbered rows — number, name, description and capability chips —
+         and a plus-grid bottom-right. Six of the nine; the rest are on the
+         Solutions page. Generated from scripts/services.py by build-home.py. -->
+    <section class="svcs band plusgrid plusgrid--br" id="solutions" aria-labelledby="svcsHeading">
       <div class="shell">
-        <div class="sec__head">
+        <div class="svcs__head">
           <div>
-            <p class="eyebrow" data-reveal>Solutions</p>
-            <h2 class="display" id="svcsHeading" data-reveal style="--d:80ms">Nine disciplines. One accountable team.</h2>
+            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
+            <h2 class="display" id="svcsHeading" data-reveal style="--d:80ms">What we do</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">
-            Most businesses aren't short of software. They are short of software that agrees with
-            itself. Every solution below is delivered by the same team, on the Microsoft Cloud, and
-            supported after go-live.
-          </p>
+          <a class="arrow-link" href="solutions/" data-reveal style="--d:140ms">See all nine solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
         </div>
-        <div class="svcs__grid">
+        <ol class="srows">
 <!--#services:start-->
-          <a class="svc svc--lead" href="solutions/custom-software/" data-reveal style="--d:0ms">
-            <span class="svc__n" aria-hidden="true">01</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6"/><path d="M8 20h8M12 18v2M7 9l2.5 2.5L7 14M12 14h5"/></svg></span>
-            <span class="svc__name">Custom software development</span>
-            <span class="svc__line">Systems designed around how your business actually runs.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/microsoft-cloud/" data-reveal style="--d:60ms">
-            <span class="svc__n" aria-hidden="true">02</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8.5a3.75 3.75 0 0 1 .5 7.5H7Z"/></svg></span>
-            <span class="svc__name">Microsoft Cloud solutions</span>
-            <span class="svc__line">Secure, scalable infrastructure on Azure, run for you.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/enterprise-saas/" data-reveal style="--d:120ms">
-            <span class="svc__n" aria-hidden="true">03</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.4"/><rect x="13" y="3" width="8" height="8" rx="1.4"/><rect x="3" y="13" width="8" height="8" rx="1.4"/><rect x="13" y="13" width="8" height="8" rx="1.4"/></svg></span>
-            <span class="svc__name">Enterprise SaaS platforms</span>
-            <span class="svc__line">Multi-tenant platforms built to serve thousands of users.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/mobile-apps/" data-reveal style="--d:180ms">
-            <span class="svc__n" aria-hidden="true">04</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/><path d="M3 9.5v5M21 9.5v5"/></svg></span>
-            <span class="svc__name">Mobile application development</span>
-            <span class="svc__line">Capture work where it happens — online or offline, always in sync.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/business-intelligence/" data-reveal style="--d:240ms">
-            <span class="svc__n" aria-hidden="true">05</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-            <span class="svc__name">Business intelligence &amp; reporting</span>
-            <span class="svc__line">Power BI dashboards that turn scattered data into decisions.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/system-integration/" data-reveal style="--d:300ms">
-            <span class="svc__n" aria-hidden="true">06</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7 11l10-4.2M7 13l10 4.2"/></svg></span>
-            <span class="svc__name">System integration</span>
-            <span class="svc__line">Make your systems talk to each other. End double capture.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/ux-design/" data-reveal style="--d:360ms">
-            <span class="svc__n" aria-hidden="true">07</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4Z"/><path d="M13 7l3 3M17 3l1 1"/></svg></span>
-            <span class="svc__name">UX &amp; system design</span>
-            <span class="svc__line">Enterprise software people actually enjoy using.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/modernisation/" data-reveal style="--d:420ms">
-            <span class="svc__n" aria-hidden="true">08</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/><path d="M12 8v4l3 2"/></svg></span>
-            <span class="svc__name">Software modernisation</span>
-            <span class="svc__line">Move ageing systems forward without stopping the business.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
-          <a class="svc" href="solutions/support/" data-reveal style="--d:480ms">
-            <span class="svc__n" aria-hidden="true">09</span>
-            <span class="svc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.2"/><rect x="17" y="13" width="4" height="6" rx="1.2"/><path d="M19 19a3 3 0 0 1-3 3h-3"/></svg></span>
-            <span class="svc__name">Ongoing support &amp; maintenance</span>
-            <span class="svc__line">We stay after go-live. Some clients have been with us for over a decade.</span>
-            <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
-          </a>
+          <li class="srow" data-reveal style="--d:0ms">
+            <span class="srow__n" aria-hidden="true">01</span>
+            <h3 class="srow__name"><a href="solutions/custom-software/">Custom software development</a></h3>
+            <div class="srow__body">
+              <p>When off-the-shelf software holds you back, we design and build solutions around your exact processes, people and goals — software that fits your business, not the other way around.</p>
+              <ul class="srow__chips">
+                <li>Enterprise applications</li>
+                <li>Business portals</li>
+                <li>Internal management systems</li>
+                <li>Workflow automation</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/custom-software/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
+          <li class="srow" data-reveal style="--d:60ms">
+            <span class="srow__n" aria-hidden="true">02</span>
+            <h3 class="srow__name"><a href="solutions/microsoft-cloud/">Microsoft Cloud solutions</a></h3>
+            <div class="srow__body">
+              <p>We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
+              <ul class="srow__chips">
+                <li>Microsoft Azure</li>
+                <li>Azure SQL</li>
+                <li>Cloud hosting</li>
+                <li>Identity management</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/microsoft-cloud/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
+          <li class="srow" data-reveal style="--d:120ms">
+            <span class="srow__n" aria-hidden="true">03</span>
+            <h3 class="srow__name"><a href="solutions/enterprise-saas/">Enterprise SaaS platforms</a></h3>
+            <div class="srow__body">
+              <p>Multi-tenant platforms engineered to serve thousands of users — built for performance, security and growth from day one.</p>
+              <ul class="srow__chips">
+                <li>Property management</li>
+                <li>Business operations</li>
+                <li>Healthcare</li>
+                <li>Manufacturing</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/enterprise-saas/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
+          <li class="srow" data-reveal style="--d:180ms">
+            <span class="srow__n" aria-hidden="true">04</span>
+            <h3 class="srow__name"><a href="solutions/mobile-apps/">Mobile application development</a></h3>
+            <div class="srow__body">
+              <p>Mobile apps that extend your systems into the field — capturing work where it happens, online or offline, always in sync.</p>
+              <ul class="srow__chips">
+                <li>Field operations</li>
+                <li>Inspections</li>
+                <li>Incident reporting</li>
+                <li>Data collection</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/mobile-apps/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
+          <li class="srow" data-reveal style="--d:240ms">
+            <span class="srow__n" aria-hidden="true">05</span>
+            <h3 class="srow__name"><a href="solutions/business-intelligence/">Business intelligence &amp; reporting</a></h3>
+            <div class="srow__body">
+              <p>Power BI dashboards that turn scattered data into clear, real-time decision-making tools for every level of your organisation.</p>
+              <ul class="srow__chips">
+                <li>Executive reporting</li>
+                <li>Operational KPIs</li>
+                <li>Sales analytics</li>
+                <li>Financial reporting</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/business-intelligence/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
+          <li class="srow" data-reveal style="--d:300ms">
+            <span class="srow__n" aria-hidden="true">06</span>
+            <h3 class="srow__name"><a href="solutions/system-integration/">System integration</a></h3>
+            <div class="srow__body">
+              <p>We make your systems talk to each other — eliminating double capture, disconnected data and manual hand-offs between platforms.</p>
+              <ul class="srow__chips">
+                <li>Accounting systems</li>
+                <li>ERP platforms</li>
+                <li>CRM solutions</li>
+                <li>Third-party APIs</li>
+              </ul>
+              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/system-integration/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </li>
 <!--#services:end-->
-        </div>
-        <p class="svcs__all" data-reveal><a class="arrow-link" href="solutions/">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
+        </ol>
       </div>
     </section>
 
@@ -474,41 +505,28 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ 05 · HOW WE WORK ═══════════════════ -->
-    <section class="engage band" aria-labelledby="engageHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>How we work</p>
-            <h2 class="display" id="engageHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">
-            We start with the business, not the template, and we stay after go-live. Four stages,
-            one team throughout.
+    <!-- ═══════════════════ 05 · HOW WE WORK ═══════════════════
+         The design reference: a deep-blue band with the photograph on the
+         right, eyebrow, headline, two short columns of copy and one link. The
+         photograph is the hero's. -->
+    <section class="led band-ink" aria-labelledby="ledHeading">
+      <img class="led__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
+      <div class="shell led__in">
+        <p class="eyebrow" data-reveal>How we work</p>
+        <h2 class="display" id="ledHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
+        <div class="led__cols">
+          <p data-reveal style="--d:140ms">
+            We learn your business before proposing anything — how the work is actually done,
+            where it breaks, and what a fix is worth. Then we design the system around your people
+            and test it with them before anything is built.
+          </p>
+          <p data-reveal style="--d:200ms">
+            Short, demonstrated sprints on the Microsoft Cloud keep you steering as the system
+            grows. Go-live is the start: we monitor, maintain and keep improving it as the
+            business changes — for some clients, more than a decade on.
           </p>
         </div>
-        <ol class="engage__steps">
-          <li class="engage__step" data-reveal>
-            <span class="engage__n">01</span>
-            <h3 class="engage__t">Understand</h3>
-            <p>We learn your business before proposing anything: how the work is actually done, where it breaks, and what a fix is worth.</p>
-          </li>
-          <li class="engage__step" data-reveal style="--d:80ms">
-            <span class="engage__n">02</span>
-            <h3 class="engage__t">Design</h3>
-            <p>We design the system around your people and your process, and test it with them before anything is built.</p>
-          </li>
-          <li class="engage__step" data-reveal style="--d:160ms">
-            <span class="engage__n">03</span>
-            <h3 class="engage__t">Build</h3>
-            <p>Short, demonstrated sprints on the Microsoft Cloud, so you see the system grow and steer it as it does.</p>
-          </li>
-          <li class="engage__step engage__step--last" data-reveal style="--d:240ms">
-            <span class="engage__n">04</span>
-            <h3 class="engage__t">Evolve</h3>
-            <p>Go-live is the start. We monitor, maintain and keep improving the system as the business changes.</p>
-          </li>
-        </ol>
+        <a class="arrow-link" href="#discovery" data-reveal style="--d:260ms">Get started <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
       </div>
     </section>
 
@@ -591,8 +609,10 @@
     </section>
 
     <!-- ═══════════════════ 07 · NEWS & INSIGHTS ═══════════════════
+         The design reference: headline left, lede right, then each article as
+         a ruled title row with a plus, a wide image, a paragraph and chips.
          Generated from scripts/services.py by scripts/build-home.py. -->
-    <section class="news band" aria-labelledby="newsHeading">
+    <section class="news band plusgrid plusgrid--tr" aria-labelledby="newsHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -607,40 +627,46 @@
         <div class="news__grid">
 <!--#insights:start-->
           <article class="post" data-reveal style="--d:0ms">
+            <h3 class="post__t"><a href="insights/popia-business-systems-checklist/"><span class="post__plus" aria-hidden="true">+</span><span>POPIA and your business systems: a practical checklist</span></a></h3>
             <a class="post__media" href="insights/popia-business-systems-checklist/" tabindex="-1" aria-hidden="true">
               <img src="assets/img/bg/sky-deep.jpg" alt="" loading="lazy" width="1200" height="675" />
-              <span class="post__tag">Compliance</span>
             </a>
-            <div class="post__body">
-              <p class="post__meta"><time datetime="2026-10-21">21 October 2026</time> · 6 min read</p>
-              <h3 class="post__t"><a href="insights/popia-business-systems-checklist/">POPIA and your business systems: a practical checklist</a></h3>
-              <p class="post__x">Compliance is not a policy document. It is where your customer data lives, who can see it, and what happens when someone asks for it back.</p>
-              <a class="arrow-link arrow-link--quiet" href="insights/popia-business-systems-checklist/">Read the article <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
+            <p class="post__meta"><span class="post__tag">Compliance</span> · <time datetime="2026-10-21">21 October 2026</time> · 6 min read</p>
+            <p class="post__x">Compliance is not a policy document. It is where your customer data lives, who can see it, and what happens when someone asks for it back.</p>
+            <ul class="post__chips">
+              <li>Compliance</li>
+              <li>Data protection</li>
+              <li>Access control</li>
+              <li>Microsoft Azure</li>
+            </ul>
           </article>
           <article class="post" data-reveal style="--d:80ms">
+            <h3 class="post__t"><a href="insights/load-shedding-operations-resilience/"><span class="post__plus" aria-hidden="true">+</span><span>Keeping operations running through load-shedding: a systems view</span></a></h3>
             <a class="post__media" href="insights/load-shedding-operations-resilience/" tabindex="-1" aria-hidden="true">
               <img src="assets/img/bg/sky-wide.jpg" alt="" loading="lazy" width="1200" height="675" />
-              <span class="post__tag">Resilience</span>
             </a>
-            <div class="post__body">
-              <p class="post__meta"><time datetime="2026-10-21">21 October 2026</time> · 5 min read</p>
-              <h3 class="post__t"><a href="insights/load-shedding-operations-resilience/">Keeping operations running through load-shedding: a systems view</a></h3>
-              <p class="post__x">Generators keep the lights on. They do not keep the business running if the systems it depends on are sitting in a server room with no power.</p>
-              <a class="arrow-link arrow-link--quiet" href="insights/load-shedding-operations-resilience/">Read the article <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
+            <p class="post__meta"><span class="post__tag">Resilience</span> · <time datetime="2026-10-21">21 October 2026</time> · 5 min read</p>
+            <p class="post__x">Generators keep the lights on. They do not keep the business running if the systems it depends on are sitting in a server room with no power.</p>
+            <ul class="post__chips">
+              <li>Resilience</li>
+              <li>Cloud</li>
+              <li>Offline-first</li>
+              <li>Field operations</li>
+            </ul>
           </article>
           <article class="post" data-reveal style="--d:160ms">
+            <h3 class="post__t"><a href="insights/spreadsheets-to-a-system/"><span class="post__plus" aria-hidden="true">+</span><span>From spreadsheets to a system: when to move, and what it really costs</span></a></h3>
             <a class="post__media" href="insights/spreadsheets-to-a-system/" tabindex="-1" aria-hidden="true">
               <img src="assets/img/bg/sky-flip.jpg" alt="" loading="lazy" width="1200" height="675" />
-              <span class="post__tag">Strategy</span>
             </a>
-            <div class="post__body">
-              <p class="post__meta"><time datetime="2026-10-21">21 October 2026</time> · 7 min read</p>
-              <h3 class="post__t"><a href="insights/spreadsheets-to-a-system/">From spreadsheets to a system: when to move, and what it really costs</a></h3>
-              <p class="post__x">The spreadsheet is not the problem. The problem is the moment it becomes the only person in the business who knows what is going on.</p>
-              <a class="arrow-link arrow-link--quiet" href="insights/spreadsheets-to-a-system/">Read the article <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
+            <p class="post__meta"><span class="post__tag">Strategy</span> · <time datetime="2026-10-21">21 October 2026</time> · 7 min read</p>
+            <p class="post__x">The spreadsheet is not the problem. The problem is the moment it becomes the only person in the business who knows what is going on.</p>
+            <ul class="post__chips">
+              <li>Strategy</li>
+              <li>Business systems</li>
+              <li>Cost</li>
+              <li>Migration</li>
+            </ul>
           </article>
 <!--#insights:end-->
         </div>
