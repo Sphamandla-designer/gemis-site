@@ -100,7 +100,7 @@ window.STUDIO_CONTENT = {
   ],
 
   work: [
-    { id: "01", name: "ManaGem",   disciplines: "Product design · Dashboard UX · Design system",
+    { id: "01", name: "ManaGEM",   disciplines: "Product design · Dashboard UX · Design system",
       outcome: "", metric: null, hue: "gold",
       href: "managem.html",
       status: "UNVERIFIED — confirm publication rights & outcome" },

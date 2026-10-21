@@ -2702,3 +2702,465 @@ summary:focus-visible,
   .acc__body { grid-template-columns: clamp(40px,13vw,54px) minmax(0,1fr); }
   .acc__n { font-size: clamp(26px,8vw,38px); }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   GEMIS STORIES — Phase 1 globals
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Solutions carries four cards where Products carried three. */
+.mega__grid--4 { grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 1.8vw, 28px); }
+.mega__grid--4 .prod__name { font-size: var(--fs-name); }
+.mega__grid--4 .prod__desc { font-size: var(--fs-small); }
+
+@media (max-width: 1080px) {
+  .mega__grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── unconfirmed facts ────────────────────────────────────────────────
+   Every value that is not yet confirmed is wrapped in .tbc so a reviewer can
+   see all of them at a glance, and scripts/check-tbc.mjs can count them. The
+   marker is deliberately visible: this styling is what stops the branch being
+   mistaken for finished work. */
+.tbc {
+  border-bottom: 1px dashed currentColor;
+  text-decoration: none;
+}
+.tbc::after {
+  content: 'TBC';
+  display: inline-block;
+  margin-left: .35em;
+  padding: .12em .42em;
+  border-radius: 3px;
+  background: var(--navy);
+  color: #fff;
+  font-size: .62em;
+  font-weight: 600;
+  letter-spacing: .06em;
+  vertical-align: super;
+  line-height: 1.4;
+}
+.band-ink .tbc::after,
+.strip .tbc::after { background: #fff; color: var(--navy-deep); }
+
+/* A missing image. Never a stock photo and never a generated face. */
+.img-tbc {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--paper-2);
+  border: 1px dashed var(--rule);
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.img-tbc--square { aspect-ratio: 1; }
+.img-tbc--wide { aspect-ratio: 16 / 9; }
+.band-ink .img-tbc {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.22);
+  color: rgba(255,255,255,.72);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   GEMIS STORIES — Phase 2, the homepage sections
+   Built from the tokens already in this file: --navy, --navy-deep, --paper,
+   --rule, the --fs-* scale and the band classes. No new colours or fonts.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* 01 — the hero now carries two actions instead of one */
+.hero__ctas { display: flex; flex-wrap: wrap; gap: clamp(18px, 3vw, 44px); align-items: center; }
+.arrow-link--quiet { opacity: .78; }
+.arrow-link--quiet:hover { opacity: 1; }
+
+/* 02 — proof strip */
+.proof { padding-top: clamp(44px, 5vw, 72px); padding-bottom: clamp(44px, 5vw, 72px); }
+.proof__line {
+  margin: 0 0 clamp(28px, 3.4vw, 44px);
+  font-size: var(--fs-name);
+  font-weight: 500;
+  letter-spacing: .02em;
+  color: var(--ink-2);
+}
+.proof__logos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 48px);
+  margin: 0 0 clamp(30px, 3.6vw, 48px);
+  padding: 0;
+  list-style: none;
+}
+.proof__client { display: flex; flex-direction: column; gap: 12px; }
+.proof__client .img-tbc { max-width: 240px; }
+.proof__name { font-size: var(--fs-title); font-weight: 500; letter-spacing: -.015em; color: var(--ink); }
+.proof__since { font-size: var(--fs-small); color: var(--ink-3); }
+.proof__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(18px, 2.4vw, 34px);
+  margin: 0;
+  padding: clamp(18px, 2.2vw, 26px) 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+.proof__facts li + li { position: relative; }
+.proof__facts li + li::before {
+  content: '·';
+  position: absolute;
+  left: clamp(-11px, -1.2vw, -17px);
+  color: var(--ink-3);
+}
+
+/* 06 — the four routes reuse .card, without the icon slot */
+.cards--ways .card { display: flex; flex-direction: column; gap: 10px; }
+.cards--ways .card .arrow-link { margin-top: auto; padding-top: clamp(14px, 1.8vw, 20px); }
+
+/* 07 — how we engage */
+.engage__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 36px);
+  margin: 0 0 clamp(28px, 3.4vw, 44px);
+  padding: 0;
+  list-style: none;
+}
+.engage__step { padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid var(--rule); }
+.engage__n {
+  display: block;
+  margin-bottom: clamp(14px, 2vw, 22px);
+  font-size: var(--fs-small);
+  color: var(--navy);
+  letter-spacing: .04em;
+}
+.engage__t { margin: 0 0 8px; font-size: var(--fs-title); font-weight: 500; letter-spacing: -.018em; color: var(--ink); }
+.engage__step p { margin: 0; font-size: var(--fs-copy); line-height: 1.5; color: var(--ink-2); }
+/* Evolve carries the weight: the relationship starts at go-live */
+.engage__step--last { border-top-color: var(--navy); }
+.engage__step--last .engage__t { color: var(--navy); }
+
+/* 05 — ManaGEM origin */
+.origin__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+.origin__ctas { margin-top: clamp(22px, 2.8vw, 34px); }
+.origin__aside { display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 28px); }
+.origin__shot { width: 100%; height: auto; border: 1px solid var(--rule); }
+
+@media (max-width: 900px) {
+  .proof__logos { grid-template-columns: 1fr; gap: 26px; }
+  .engage__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .origin__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .engage__steps { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   GEMIS STORIES — the timeline, the video player and the endorsement card
+   The markup is a plain <ol> and reads top to bottom with no JavaScript and
+   no CSS. Everything below is presentation over that.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Three quiet accents drawn from the brand navy. Colour is never the only
+   marker — each thread also carries its client name as text, and each founding
+   card carries a "Founding client" label. */
+:root {
+  --thread-sbs-waterproofing: #1f2557;
+  --thread-homeassist:        #4a5490;
+  --thread-wastemart:         #7b84b8;
+}
+
+.stl { position: relative; }
+.stl__skip {
+  display: inline-block;
+  margin-bottom: clamp(24px, 3vw, 40px);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 3px;
+}
+.stl__skip:hover { color: var(--ink); border-bottom-color: var(--navy); }
+
+.stl__frame { position: relative; display: grid; grid-template-columns: minmax(150px, .24fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); }
+
+/* the three unbroken lines: the visual proof of "partners built to stay" */
+.stl__threads {
+  position: sticky;
+  top: clamp(90px, 12vh, 130px);
+  align-self: start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.stl__thread { position: relative; padding-left: 18px; font-size: var(--fs-small); color: var(--ink-2); }
+.stl__thread::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .55em;
+  width: 10px;
+  height: 2px;
+  background: var(--thread, var(--navy));
+}
+.stl__thread[data-thread="sbs-waterproofing"] { --thread: var(--thread-sbs-waterproofing); }
+.stl__thread[data-thread="homeassist"]        { --thread: var(--thread-homeassist); }
+.stl__thread[data-thread="wastemart"]         { --thread: var(--thread-wastemart); }
+
+.stl__list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: clamp(30px, 4vw, 56px); }
+
+.stl__item {
+  position: relative;
+  padding: clamp(24px, 3vw, 40px) 0 0;
+  border-top: 1px solid var(--rule);
+}
+/* a founding client's card carries its thread colour as a left edge */
+.stl__item--founding { padding-left: clamp(18px, 2.2vw, 30px); border-left: 3px solid var(--thread, var(--navy)); }
+.stl__item--founding[data-thread="sbs-waterproofing"] { --thread: var(--thread-sbs-waterproofing); }
+.stl__item--founding[data-thread="homeassist"]        { --thread: var(--thread-homeassist); }
+.stl__item--founding[data-thread="wastemart"]         { --thread: var(--thread-wastemart); }
+/* ManaGEM branches off the SBS thread */
+.stl__item--product { padding-left: clamp(18px, 2.2vw, 30px); border-left: 3px dashed var(--thread-sbs-waterproofing); }
+.stl__item--today { border-top-width: 2px; border-top-color: var(--navy); }
+
+.stl__period {
+  margin: 0 0 10px;
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--navy);
+}
+.stl__client {
+  margin: 0 0 6px;
+  font-size: var(--fs-display);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.04;
+  color: var(--ink);
+}
+.stl__thread-label {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 3px 9px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  vertical-align: middle;
+}
+.stl__headline { margin: 0 0 10px; font-size: var(--fs-title); font-weight: 500; letter-spacing: -.018em; color: var(--ink); }
+.stl__challenge { margin: 0 0 clamp(18px, 2.2vw, 26px); max-width: 62ch; color: var(--ink-2); }
+.stl__cta { margin: clamp(16px, 2vw, 22px) 0 0; }
+.stl__item--founding .stl__media { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(18px, 2.4vw, 32px); align-items: start; }
+.stl__endo { margin-top: clamp(18px, 2.2vw, 26px); }
+
+/* ── the video ─────────────────────────────────────────────────────────
+   Poster first. preload="none" means not one byte of video is fetched until
+   the visitor presses play. */
+.vid { margin: 0; }
+.vid__el {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--navy-deep);
+  border: 1px solid var(--rule);
+}
+.vid__cap { margin-top: clamp(12px, 1.6vw, 18px); }
+.vid__summary { margin: 0 0 10px; max-width: 70ch; font-size: var(--fs-copy); line-height: 1.5; color: var(--ink-2); }
+.vid__transcript { margin: 0 0 8px; }
+.vid__transcript > summary {
+  cursor: pointer;
+  font-size: var(--fs-small);
+  color: var(--navy);
+  padding: 4px 0;
+}
+.vid__transcript > summary:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+.vid__transcript p { margin: 10px 0 0; max-width: 72ch; font-size: var(--fs-copy); line-height: 1.6; color: var(--ink-2); }
+.vid__meta { margin: 0; font-size: var(--fs-eyebrow); letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ── the endorsement card ──────────────────────────────────────────────
+   Never carries a quote that has not been approved. Until a line arrives it
+   says so, visibly. */
+.endo {
+  margin: 0;
+  padding: clamp(18px, 2.2vw, 26px);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.endo__portrait { width: 64px; height: 64px; font-size: var(--fs-small); letter-spacing: .06em; }
+.endo__line { margin: 0; }
+.endo__line p {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-style: italic;
+  line-height: 1.34;
+  letter-spacing: -.012em;
+  color: var(--ink);
+}
+.endo__by { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-small); color: var(--ink-2); }
+.endo__name { font-weight: 600; color: var(--ink); }
+.endo__since { color: var(--ink-3); }
+
+@media (max-width: 900px) {
+  /* the threads column has nowhere to go; the coloured left edge on each
+     founding card carries the same information, with its text label */
+  .stl__frame { grid-template-columns: 1fr; gap: 0; }
+  .stl__threads { position: static; flex-direction: row; flex-wrap: wrap; gap: 10px 20px; margin-bottom: clamp(22px, 3vw, 30px); }
+  .stl__item--founding .stl__media { grid-template-columns: 1fr; }
+}
+/* the thread the reader is currently inside */
+.stl__thread.is-current { color: var(--ink); font-weight: 600; }
+.stl__thread.is-current::before { height: 3px; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   GEMIS STORIES — Our Work, the story pages, Solutions and Our Story
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Our Work */
+.wk__founders { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(20px,2.6vw,36px); }
+.wk__founder { display: flex; flex-direction: column; gap: 10px; }
+.wk__fname { margin: 0; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.wk__fsince, .wk__period { margin: 0; font-size: var(--fs-small); color: var(--navy); }
+.wk__fline, .wk__line { margin: 0; font-size: var(--fs-copy); line-height: 1.45; color: var(--ink-2); }
+
+.wk__filters { display: flex; flex-wrap: wrap; gap: clamp(16px,2.2vw,32px); margin: 0 0 clamp(24px,3vw,36px); }
+.wk__fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.wk__fieldset legend { float: left; width: 100%; margin-bottom: 8px; font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.wk__fieldset button {
+  padding: 7px 14px; border: 1px solid var(--rule); border-radius: 999px;
+  background: transparent; color: var(--ink-2); font: inherit; font-size: var(--fs-small);
+  cursor: pointer; transition: border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+}
+.wk__fieldset button:hover { border-color: var(--navy); color: var(--ink); }
+.wk__fieldset button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.wk__grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(22px,2.8vw,40px); }
+.wk__card { display: flex; flex-direction: column; gap: 10px; }
+.wk__card[hidden] { display: none; }
+.wk__media { display: block; overflow: hidden; border: 1px solid var(--rule); }
+.wk__media img { display: block; width: 100%; height: auto; }
+.wk__name { margin: 0; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.wk__grid--quiet { margin-top: clamp(16px,2vw,22px); opacity: .9; }
+.wk__card--unclassified { padding: clamp(14px,1.8vw,20px); border: 1px dashed var(--rule); }
+.wk__sub { margin: clamp(40px,5vw,66px) 0 6px; font-size: var(--fs-title); font-weight: 600; color: var(--ink); }
+.wk__subnote { margin: 0 0 clamp(12px,1.6vw,18px); max-width: 68ch; font-size: var(--fs-copy); color: var(--ink-2); }
+.wk__more { margin: clamp(30px,4vw,48px) 0 0; font-size: var(--fs-copy); color: var(--ink-2); }
+
+/* story pages */
+.story__meta { display: flex; flex-wrap: wrap; gap: clamp(20px,3vw,48px); margin: clamp(24px,3vw,36px) 0 0; }
+.story__meta div { display: flex; flex-direction: column; gap: 4px; }
+.story__meta dt { font-size: var(--fs-eyebrow); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.story__meta dd { margin: 0; font-size: var(--fs-copy); color: var(--ink); }
+.story__prose p { max-width: 68ch; margin: 0 0 clamp(12px,1.6vw,18px); color: var(--ink-2); }
+.story__build { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px,3vw,48px); align-items: start; }
+.story__caps { margin: 0; padding: 0; list-style: none; }
+.story__caps li { padding: clamp(9px,1.1vw,13px) 0; border-top: 1px solid var(--rule); font-size: var(--fs-copy); line-height: 1.45; color: var(--ink-2); }
+.story__tech { margin: clamp(20px,2.6vw,30px) 0 0; font-size: var(--fs-small); letter-spacing: .03em; color: var(--ink-3); }
+.story__metric { font-size: var(--fs-title); font-weight: 500; color: var(--ink); }
+.story__metric-note { font-size: var(--fs-small); font-weight: 400; color: var(--ink-3); }
+.story__next { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,64px); }
+
+/* Solutions */
+.sol__grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(24px,3.2vw,48px); }
+.sol__card { display: flex; flex-direction: column; gap: 12px; padding-top: clamp(18px,2.2vw,26px); border-top: 1px solid var(--rule); }
+.sol__name { margin: 0; font-size: var(--fs-display); font-weight: 600; letter-spacing: -.035em; line-height: 1.05; color: var(--ink); }
+.sol__body { margin: 0; max-width: 56ch; color: var(--ink-2); }
+
+/* Our Story */
+.hist__clients { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(20px,2.6vw,40px); margin: clamp(24px,3vw,40px) 0 0; padding: 0; list-style: none; }
+.hist__client { display: flex; flex-direction: column; gap: 8px; padding-top: clamp(14px,1.8vw,20px); border-top: 1px solid var(--rule); }
+.hist__client h3 { margin: 0; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.hist__client p { margin: 0; font-size: var(--fs-copy); color: var(--ink-2); }
+
+/* the stack row, moved off the homepage */
+.stack__row { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: clamp(20px,2.6vw,32px) 0 0; padding: 0; list-style: none; font-size: var(--fs-small); color: var(--ink-2); }
+.svc__proof { margin: clamp(12px,1.6vw,18px) 0 0; }
+
+@media (max-width: 900px) {
+  .wk__founders, .wk__grid, .hist__clients { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .story__build, .story__next, .sol__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .wk__founders, .wk__grid, .hist__clients { grid-template-columns: 1fr; }
+}
+
+/* .story__meta sits on .chero, which is navy-deep — the light-band ink colours
+   it inherited were 1.07:1 there. Matches .chero__meta, which solved this first. */
+.chero .story__meta dt { color: rgba(255,255,255,.66); }
+.chero .story__meta dd { color: #fff; }
+.chero .story__meta .tbc::after { background: #fff; color: var(--navy-deep); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   PUBLISH-SAFE MODE
+   The live build shows nothing unconfirmed: no "TBC", no "Endorsement to
+   follow", no "Image TBC", and no empty gap where one of them used to be.
+   Each hideable placeholder ships with a fallback that is what visitors
+   actually see, so the layout reads as finished rather than unfinished.
+
+   Adding ?review=1 to any URL flips it: the placeholders come back with
+   their dashed underline and TBC pill, so outstanding items stay visible
+   to reviewers. This is CSS-only, so the live state is correct even with
+   no JavaScript — the review state is the one that needs it.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* live: the placeholder is gone and its fallback stands in */
+.unconfirmed { display: none; }
+.confirmed-fallback { display: contents; }
+
+/* live: an inline unconfirmed value simply is not rendered */
+.tbc { display: none; }
+
+/* review: the placeholders return, the fallbacks step aside */
+.review .unconfirmed { display: block; }
+.review .confirmed-fallback { display: none; }
+.review .tbc { display: inline; }
+
+/* a client's name set as a wordmark, where no logo file exists */
+.client-mark {
+  display: inline-block;
+  font-size: var(--fs-title);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--navy);
+}
+.band-ink .client-mark, .chero .client-mark { color: #fff; }
+
+/* With no endorsement card, a founding card's video takes the full width.
+   That is the default, so the live build needs no JavaScript to look right. */
+.stl__item--founding .stl__media { display: block; }
+.review .stl__item--founding .stl__media {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .review .stl__item--founding .stl__media { grid-template-columns: 1fr; }
+}
+
+/* the review banner, so nobody mistakes a review URL for the live site */
+.review-flag {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding: 7px 16px;
+  background: var(--navy);
+  color: #fff;
+  font-size: var(--fs-small);
+  text-align: center;
+}
+/* the wordmark standing in for a founder-card logo carries that card's heading weight */
+.client-mark--lg { font-size: var(--fs-display); letter-spacing: -.035em; line-height: 1.05; }

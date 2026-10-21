@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sphamandla-designer.github.io/gemis-site/sitemap.xml

@@ -227,6 +227,7 @@
     var btn = item.querySelector('.acc__btn');
     var panel = item.querySelector('.acc__panel');
     if (!btn || !panel) return;
+    if ('inert' in panel && !item.hasAttribute('data-open')) panel.inert = true;
 
     btn.addEventListener('click', function () {
       var open = item.hasAttribute('data-open');
@@ -240,12 +241,15 @@
           var b = other.querySelector('.acc__btn');
           var pnl = other.querySelector('.acc__panel');
           if (b) b.setAttribute('aria-expanded', 'false');
-          if (pnl) pnl.setAttribute('aria-hidden', 'true');
+          if (pnl) { pnl.setAttribute('aria-hidden', 'true'); if ('inert' in pnl) pnl.inert = true; }
         });
         item.setAttribute('data-open', '');
       }
       btn.setAttribute('aria-expanded', open ? 'false' : 'true');
       panel.setAttribute('aria-hidden', open ? 'true' : 'false');
+      // a closed panel may hold links; inert takes them out of the tab order
+      // as well as out of the accessibility tree, which aria-hidden alone does not
+      if ('inert' in panel) panel.inert = open;
     });
   });
 

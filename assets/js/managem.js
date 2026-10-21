@@ -1,4 +1,4 @@
-/* GEMIS — ManaGem platform story: chapter scene choreography */
+/* GEMIS — ManaGEM platform story: chapter scene choreography */
 (function () {
   if (!document.body.classList.contains('page-managem')) return;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
