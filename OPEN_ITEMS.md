@@ -12,7 +12,7 @@ as long as nothing on the live build would be *wrong*.
   build**, replaced by a fallback that looks deliberate, and visible only at
   `?review=1`.
 
-Everything confirmed in `_project/assets-incoming/content/facts.md` has been
+Everything confirmed in `scripts/facts.md` has been
 applied and is no longer listed here.
 
 ---

@@ -218,7 +218,7 @@ STORY_PAGES = [s for s in STORIES if not s.get('is_product')]
 
 
 # ──────────────────────────────────────────────────────────────────────────
-# Confirmed in _project/assets-incoming/content/facts.md
+# Confirmed in scripts/facts.md
 # ──────────────────────────────────────────────────────────────────────────
 CONFIRMED = {
     'metric_wastemart': 'Six hours a week back, per depot',

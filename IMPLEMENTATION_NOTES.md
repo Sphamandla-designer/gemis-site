@@ -181,7 +181,7 @@ the colours `.chero__meta` already used.
 
 ## 9. facts.md was not in the repository
 
-It was described as added at `_project/assets-incoming/content/facts.md`, but it
+It was described as added at `scripts/facts.md`, but it
 is on no branch and in no working tree. The supplied PDF,
 `GEMIS_website___confirmed_facts.pdf`, is the only facts source, so it has been
 transcribed verbatim to that path and committed. `scripts/stories.py` applies it.
