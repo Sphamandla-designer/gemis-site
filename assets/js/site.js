@@ -1,4 +1,4 @@
-/* GEMIS home page — nav state, scroll reveals, stat counters, contact hand-off.
+/* GEMIS corporate site — nav state, drop-downs, scroll reveals, stat counters, contact hand-off.
    No dependencies; every effect degrades to a fully readable static page. */
 (function () {
   'use strict';
@@ -28,12 +28,13 @@
     if (!nav) return;
     nav.classList.remove('is-open');
     if (burger) burger.setAttribute('aria-expanded', 'false');
-    var panel = document.getElementById('productsMenu');
-    var trigger = document.getElementById('productsTrigger');
-    if (panel) panel.classList.remove('is-open');
-    if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    var item = document.querySelector('[data-mega]');
-    if (item) item.removeAttribute('data-open');
+    [].forEach.call(document.querySelectorAll('[data-mega]'), function (item) {
+      var trigger = item.querySelector('.nav__trigger');
+      var panel = item.querySelector('.mega');
+      if (panel) panel.classList.remove('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      item.removeAttribute('data-open');
+    });
     nav.classList.remove('is-mega');
   }
 
@@ -51,87 +52,80 @@
     });
   }
 
-  /* ── nav: Insights gate ──────────────────────────────────────────────
-        Single switch for the Insights nav item. It stays hidden until real
-        articles exist — see CONTENT-TODO.md. Flip to true to show it. */
+  /* ── drop-down menus (Solutions, Products) ──────────────────────────
+        Each [data-mega] item carries its own trigger and panel. Hover opens
+        it on pointer devices (with a close delay so the cursor can travel
+        diagonally into the panel); click and keyboard drive it everywhere,
+        which is also the whole story on touch and inside the mobile burger
+        panel. Opening one closes the other. */
 
-  var SHOW_INSIGHTS = false;
+  var megas = [].slice.call(document.querySelectorAll('[data-mega]')).map(function (item) {
+    return { item: item, trigger: item.querySelector('.nav__trigger'), panel: item.querySelector('.mega'), open: false, timer: null };
+  }).filter(function (m) { return m.trigger && m.panel; });
 
-  if (SHOW_INSIGHTS) {
-    [].slice.call(document.querySelectorAll('[data-nav="insights"]'))
-      .forEach(function (li) { li.hidden = false; });
-  }
-
-  /* ── products mega menu ──────────────────────────────────────────────
-        Hover opens it on pointer devices (with a close delay so the cursor can
-        travel diagonally into the panel); click and keyboard drive it
-        everywhere, which is also the whole story on touch and inside the
-        mobile burger panel. */
-
-  var megaItem = document.querySelector('[data-mega]');
-  var megaTrigger = document.getElementById('productsTrigger');
-  var megaPanel = document.getElementById('productsMenu');
-
-  if (megaItem && megaTrigger && megaPanel && nav) {
-    var closeTimer = null;
-    var megaOpen = false;
-
-    var setMega = function (open) {
-      megaOpen = open;
-      megaPanel.classList.toggle('is-open', open);
-      megaItem.toggleAttribute('data-open', open);
-      megaTrigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (megas.length && nav) {
+    var anyOpen = function () { return megas.some(function (m) { return m.open; }); };
+    var setMega = function (m, open) {
+      m.open = open;
+      m.panel.classList.toggle('is-open', open);
+      m.item.toggleAttribute('data-open', open);
+      m.trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
       // the panel is light, so the header has to leave its transparent state
-      nav.classList.toggle('is-mega', open);
+      nav.classList.toggle('is-mega', anyOpen());
     };
-
-    var openMega = function () { clearTimeout(closeTimer); if (!megaOpen) setMega(true); };
-    var closeMega = function () { clearTimeout(closeTimer); if (megaOpen) setMega(false); };
-    var deferClose = function () {
-      clearTimeout(closeTimer);
-      closeTimer = setTimeout(closeMega, 220);
+    var closeAll = function () { megas.forEach(function (m) { clearTimeout(m.timer); if (m.open) setMega(m, false); }); };
+    var openMega = function (m) {
+      clearTimeout(m.timer);
+      megas.forEach(function (o) { if (o !== m && o.open) setMega(o, false); });
+      if (!m.open) setMega(m, true);
     };
-
-    megaTrigger.addEventListener('click', function (e) {
-      e.preventDefault();
-      megaOpen ? closeMega() : openMega();
-    });
-
-    // hover only where a real pointer exists; touch would fire it on every tap
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      [megaItem, megaPanel].forEach(function (el) {
-        el.addEventListener('mouseenter', openMega);
-        el.addEventListener('mouseleave', deferClose);
-      });
-    }
-
-    // Keyboard opens it on focus, but only for keyboard focus: a mouse or touch
-    // press focuses the button first and would otherwise open the panel just in
-    // time for the click handler to toggle it straight back shut.
-    // Escape returns focus to the trigger, and focus is what opens the panel —
-    // so the close has to outlast the focus it causes, or Escape reopens it.
+    var closeMega = function (m) { clearTimeout(m.timer); m.byHover = false; if (m.open) setMega(m, false); };
     var suppressFocusOpen = false;
-    megaTrigger.addEventListener('focus', function () {
-      if (suppressFocusOpen) { suppressFocusOpen = false; return; }
-      var keyboard = true;
-      try { keyboard = megaTrigger.matches(':focus-visible'); } catch (err) { /* older engines */ }
-      if (keyboard) openMega();
-    });
-    document.addEventListener('focusin', function (e) {
-      if (!megaOpen) return;
-      if (!megaItem.contains(e.target) && !megaPanel.contains(e.target)) closeMega();
+
+    megas.forEach(function (m) {
+      // A click on a panel the hover already opened keeps it open (the visitor
+      // is confirming, not dismissing); it only closes a panel the click opened.
+      m.trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (m.open && m.byHover) { m.byHover = false; return; }
+        m.open ? closeMega(m) : openMega(m);
+      });
+
+      // hover only where a real pointer exists; touch would fire it on every tap
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        [m.item, m.panel].forEach(function (el) {
+          el.addEventListener('mouseenter', function () { if (!m.open) m.byHover = true; openMega(m); });
+          el.addEventListener('mouseleave', function () {
+            clearTimeout(m.timer);
+            m.timer = setTimeout(function () { closeMega(m); }, 220);
+          });
+        });
+      }
+
+      // Keyboard opens it on focus, but only for keyboard focus: a mouse or touch
+      // press focuses the button first and would otherwise open the panel just in
+      // time for the click handler to toggle it straight back shut.
+      m.trigger.addEventListener('focus', function () {
+        if (suppressFocusOpen) { suppressFocusOpen = false; return; }
+        var keyboard = true;
+        try { keyboard = m.trigger.matches(':focus-visible'); } catch (err) { /* older engines */ }
+        if (keyboard) openMega(m);
+      });
     });
 
+    var inside = function (target) {
+      return megas.some(function (m) { return m.open && (m.item.contains(target) || m.panel.contains(target)); });
+    };
+    document.addEventListener('focusin', function (e) { if (anyOpen() && !inside(e.target)) closeAll(); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && megaOpen) { closeMega(); suppressFocusOpen = true; megaTrigger.focus(); }
+      if (e.key !== 'Escape' || !anyOpen()) return;
+      var open = megas.filter(function (m) { return m.open; })[0];
+      closeAll(); suppressFocusOpen = true; open.trigger.focus();
     });
-
     // a click anywhere else, or any scroll, dismisses it
-    document.addEventListener('click', function (e) {
-      if (megaOpen && !megaItem.contains(e.target) && !megaPanel.contains(e.target)) closeMega();
-    });
+    document.addEventListener('click', function (e) { if (anyOpen() && !inside(e.target)) closeAll(); });
     window.addEventListener('scroll', function () {
-      if (megaOpen && !nav.classList.contains('is-open')) closeMega();
+      if (anyOpen() && !nav.classList.contains('is-open')) closeAll();
     }, { passive: true });
   }
 

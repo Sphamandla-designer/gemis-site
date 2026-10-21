@@ -29,7 +29,15 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | Generated | Source | Rebuild with |
 |---|---|---|
 | `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html` | `node tools/build-studio.mjs` |
-| `gemis-site-standalone.html` | the root pages, `site.css`, `site.js`, fonts, images | `python3 tools/build-site-standalone.py` |
+| `index.html` sections 03, 04, 06, 07 (between `<!--#services:start-->`, `<!--#stories:start-->`, `<!--#testimonials:start-->`, `<!--#insights:start-->` sentinels) | `scripts/services.py`, `scripts/stories.py` | `python3 scripts/build-stories.py && python3 scripts/build-home.py` |
+| `solutions/`, `solutions/<service>/` ×9, `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
+| `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
+| `work/`, `work/<story>/` ×6 | `scripts/stories.py` | `python3 scripts/build-pages.py` |
+| the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
+| `gemis-site-standalone.html` | the root pages, `site.css`, `site.js`, fonts, images | `python3 tools/build-site-standalone.py` — **stale**: it assumes flat root pages |
+
+Full rebuild, in order: `build-stories` → `build-home` → `build-services` →
+`build-pages` → `build-other` → `apply-chrome`.
 
 Rebuild the standalone bundle after **any** change to a root page or to
 `assets/css/site.css` or `assets/js/site.js`, or it silently goes stale.
@@ -45,8 +53,9 @@ Two traps in these builds:
 
 ## Redirect stubs
 
-`solutions.html`, `work.html`, `managem.html` and `brand-studio.html` are redirect
-stubs, not pages —
+`solutions.html`, `work.html`, `managem.html`, `brand-studio.html`, `services.html`,
+`about.html`, `case-studies.html`, `wastemart.html`, `insights.html`,
+`solutions/bespoke-software/` and `solutions/managem/` are redirect stubs, not pages —
 they keep old bookmarks and search results working. They carry
 `<meta name="robots" content="noindex">`, stay out of `sitemap.xml`, and stay out
 of the standalone bundle's `PAGES`.
@@ -111,7 +120,7 @@ is already set, so never run `playwright install`.
 - axe across the changed pages, with reveals forced in and accordions forced open
 - widths 360 / 620 / 900 / 1024 / 1440 / 1920: no horizontal overflow, no clipped
   text, no JS errors
-- the internal link graph — currently 267 links, 0 broken
+- the internal link graph — `node tools/check-links.mjs` (every page at any depth), 0 broken
 - JavaScript off, and reduced motion, on anything that animates
 
 Every page is axe-clean at serious/critical. The `mailto:` link inside a paragraph
@@ -130,3 +139,18 @@ action into it until that is fixed.
 
 Never invent a client, a testimonial, a statistic or a case study. Everything on
 the site has to be traceable to something already in the repository.
+
+**One standing exception, at the owner's instruction:** the homepage testimonials
+(`TESTIMONIALS` in `scripts/services.py`) are invented placeholders — South
+African names, no company named — until approved quotes arrive. OPEN_ITEMS.md
+tracks them as `testimonials-placeholder`. Do not add more invented content on
+the strength of that exception.
+
+## Site map (navigation)
+
+Home · Case Studies (`work/`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
+service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
+Studio at `studio/`, Technical Academy at gemis.tech) · About (`our-story/`) ·
+Contact. News & Insights lives at `insights/` (three articles), linked from the
+homepage and footer. `solutions/bespoke-software/`, `solutions/managem/` and
+`insights.html` are redirect stubs now.

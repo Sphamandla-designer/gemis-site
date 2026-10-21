@@ -17,6 +17,28 @@ applied and is no longer listed here.
 
 ---
 
+## Placeholders the owner asked for — 2
+
+These are on the live build **by instruction**, not by the publish-safe rule.
+Replace them before the site is presented as fact.
+
+### `testimonials-placeholder`
+
+The homepage "In their words" section carries **six invented testimonials** —
+South African names, roles and wording written to stand in until approved
+quotes arrive. None of the people exist and no company is named. The owner
+asked for them explicitly ("please for now use south africa names, invent the
+wording"). They live in `scripts/services.py` → `TESTIMONIALS`; replace each
+entry with an approved line and rebuild with `python3 scripts/build-home.py`.
+
+### `logo-marquee-wordmarks`
+
+The "Trusted by South African businesses" marquee runs on **wordmarks** (the
+name set in the site's type), because no logo files have been supplied. When
+they arrive, drop them into `assets/img/logos/` and swap each
+`<span class="client-mark">` in `index.html` for an `<img>`.
+
+
 ## Blocking — 3
 
 ### `chronology-2013`

@@ -48,21 +48,12 @@ of the site — but unlike the three sectors above it, **it has no case study be
 it**, which is why it is the only row without a "read the story" link. Either add one,
 or remove the row.
 
-### 4. The Insights page (`insights.html`)
+### 4. News & Insights (`insights/`)
 
-Three cards with topics, standfirsts and tags. **None of these articles has been
-written.** They are outlines that show what the page will look like.
-
-The page is still **hidden from the navigation**, behind a single constant:
-
-```js
-// assets/js/site.js
-var SHOW_INSIGHTS = false;
-```
-
-The nav item is `<li data-nav="insights" hidden>` on every page; the flag unhides it.
-Leave it `false` until the articles exist and each card links to one — three
-outlines in the main navigation would be worse than no Insights page at all.
+Live. Three articles, written for this site, generated from `ARTICLES` in
+`scripts/services.py` by `scripts/build-services.py`; the homepage shows the
+same three. Add an article there and rebuild. The old `insights.html` is a
+redirect stub.
 
 ### 5. Studio social profiles (`studio/src/index.html`)
 

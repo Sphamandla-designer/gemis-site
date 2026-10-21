@@ -3,13 +3,13 @@
   <url><loc>https://sphamandla-designer.github.io/gemis-site/</loc><priority>1.0</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/work/</loc><priority>0.9</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/</loc><priority>0.8</priority></url>
-  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/bespoke-software/</loc><priority>0.6</priority></url>
-  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/managem/</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/products/</loc><priority>0.8</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/products/managem/</loc><priority>0.7</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/our-story/</loc><priority>0.8</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/contact.html</loc><priority>0.7</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/industries.html</loc><priority>0.6</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/privacy.html</loc><priority>0.6</priority></url>
-  <url><loc>https://sphamandla-designer.github.io/gemis-site/insights.html</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/insights/</loc><priority>0.7</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/studio/</loc><priority>0.6</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/studio/work.html</loc><priority>0.6</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/studio/about.html</loc><priority>0.6</priority></url>
@@ -21,4 +21,16 @@
   <url><loc>https://sphamandla-designer.github.io/gemis-site/work/tores-foundation/</loc><priority>0.6</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/work/trans-hex/</loc><priority>0.6</priority></url>
   <url><loc>https://sphamandla-designer.github.io/gemis-site/work/wastemart/</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/custom-software/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/microsoft-cloud/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/enterprise-saas/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/mobile-apps/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/business-intelligence/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/system-integration/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/ux-design/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/modernisation/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/solutions/support/</loc><priority>0.7</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/insights/popia-business-systems-checklist/</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/insights/load-shedding-operations-resilience/</loc><priority>0.6</priority></url>
+  <url><loc>https://sphamandla-designer.github.io/gemis-site/insights/spreadsheets-to-a-system/</loc><priority>0.6</priority></url>
 </urlset>
