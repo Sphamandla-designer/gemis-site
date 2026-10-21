@@ -2702,3 +2702,62 @@ summary:focus-visible,
   .acc__body { grid-template-columns: clamp(40px,13vw,54px) minmax(0,1fr); }
   .acc__n { font-size: clamp(26px,8vw,38px); }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   GEMIS STORIES — Phase 1 globals
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Solutions carries four cards where Products carried three. */
+.mega__grid--4 { grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 1.8vw, 28px); }
+.mega__grid--4 .prod__name { font-size: var(--fs-name); }
+.mega__grid--4 .prod__desc { font-size: var(--fs-small); }
+
+@media (max-width: 1080px) {
+  .mega__grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── unconfirmed facts ────────────────────────────────────────────────
+   Every value that is not yet confirmed is wrapped in .tbc so a reviewer can
+   see all of them at a glance, and scripts/check-tbc.mjs can count them. The
+   marker is deliberately visible: this styling is what stops the branch being
+   mistaken for finished work. */
+.tbc {
+  border-bottom: 1px dashed currentColor;
+  text-decoration: none;
+}
+.tbc::after {
+  content: 'TBC';
+  display: inline-block;
+  margin-left: .35em;
+  padding: .12em .42em;
+  border-radius: 3px;
+  background: var(--navy);
+  color: #fff;
+  font-size: .62em;
+  font-weight: 600;
+  letter-spacing: .06em;
+  vertical-align: super;
+  line-height: 1.4;
+}
+.band-ink .tbc::after,
+.strip .tbc::after { background: #fff; color: var(--navy-deep); }
+
+/* A missing image. Never a stock photo and never a generated face. */
+.img-tbc {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--paper-2);
+  border: 1px dashed var(--rule);
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.img-tbc--square { aspect-ratio: 1; }
+.img-tbc--wide { aspect-ratio: 16 / 9; }
+.band-ink .img-tbc {
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.22);
+  color: rgba(255,255,255,.72);
+}

@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManaGem has moved — GEMIS®</title>
+  <title>ManaGEM has moved — GEMIS®</title>
   <meta name="robots" content="noindex" />
-  <link rel="canonical" href="https://sphamandla-designer.github.io/ManaGEM/" />
-  <meta http-equiv="refresh" content="0; url=https://sphamandla-designer.github.io/ManaGEM/" />
+  <link rel="canonical" href="solutions/managem/" />
+  <meta http-equiv="refresh" content="0; url=solutions/managem/" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <style>
     body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;
       background:#f2f2f1;color:#16181b;font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
-    .b{max-width:44ch;text-align:center}
+    .b{max-width:46ch;text-align:center}
     h1{margin:0 0 12px;font-size:22px;font-weight:500;letter-spacing:-.02em}
     p{margin:0 0 20px;color:#55565a}
     a{display:inline-block;padding:12px 26px;border-radius:999px;background:#161b40;color:#fff;text-decoration:none}
@@ -19,15 +19,21 @@
   </style>
 </head>
 <body>
-  <!-- Redirect stub. ManaGem has its own site now, so the platform story that
-       used to live here would only be a second, staler copy of it. The stub
-       keeps older inbound links, bookmarks and search results working instead
-       of 404ing. Every ManaGem link on the site points straight at the live
-       product; this catches the ones that do not belong to us. -->
+  <!-- Redirect stub. ManaGEM moved to ManaGEM in the GEMIS Stories update.
+       The stub keeps older inbound links, bookmarks and search results working
+       instead of 404ing. The script below carries the hash across, so a deep
+       link to an anchor lands on the matching anchor at the new address. -->
   <div class="b">
-    <h1>ManaGem has its own site</h1>
-    <p>This page moved to <strong>sphamandla-designer.github.io/ManaGEM</strong>. You should be redirected automatically.</p>
-    <a href="https://sphamandla-designer.github.io/ManaGEM/">Visit ManaGEM</a>
+    <h1>ManaGEM is now ManaGEM</h1>
+    <p>This page moved to <strong>solutions/managem/</strong>. You should be redirected automatically.</p>
+    <a href="solutions/managem/">Go to ManaGEM</a>
   </div>
+  <script>
+    (function () {
+      var target = "solutions/managem/";
+      // keep the anchor: services.html#process lands on .../#process
+      location.replace(target + location.hash);
+    })();
+  </script>
 </body>
 </html>
