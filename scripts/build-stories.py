@@ -149,56 +149,77 @@ def endorsement_html(key, base, since_text=''):
     return hideable(e['line_tbc'], card)
 
 
-# ── timeline ─────────────────────────────────────────────────────────────
-def timeline_html(base=''):
-    items = []
-    for s in S.STORIES:
+# ── the stories slider ───────────────────────────────────────────────────
+def stories_html(base=''):
+    """
+    "Built together. Still working." as a vertical slider.
+
+    The markup is a plain <ol> of story cards that reads top to bottom with no
+    JavaScript. assets/js/home.js turns it into a stage that shows one card at
+    a time, advances on its own, and is driven by the rail of client names on
+    the left. Under prefers-reduced-motion it still steps through on a click,
+    but never on its own.
+    """
+    tabs, slides = [], []
+    for i, s in enumerate(S.STORIES):
         founding = s['slug'] in S.FOUNDING
-        classes = 'stl__item' + (' stl__item--founding' if founding else '')
-        if s.get('is_product'):
-            classes += ' stl__item--product'
-        thread = f' data-thread="{s["slug"]}"' if founding else ''
-        cta = (f'<a class="arrow-link" href="{base}solutions/managem/">Explore ManaGEM {ARROW}</a>'
-               if s.get('is_product')
-               else f'<a class="arrow-link" href="{base}work/{s["slug"]}/">Read the story {ARROW}</a>')
-        # founding cards put the endorsement beside the video, as the brief asks;
-        # the others are just the video
-        media = video_html(s, base)
-        if founding and s['endorser']:
-            media = (f'<div class="stl__media">\n          {video_html(s, base)}\n'
-                     f'          <div class="stl__endo">{endorsement_html(s["endorser"], base, since_html(s))}</div>\n'
-                     f'          </div>')
-        label = ('<span class="stl__thread-label">Founding client</span>' if founding else '')
-        items.append(f'''        <li class="{classes}"{thread} id="stl-{s['slug']}" data-reveal>
-          <p class="stl__period">{period_html(s)}</p>
-          <h3 class="stl__client">{esc(s['client'])}{label}</h3>
-          <p class="stl__headline">{esc(s['headline'])}</p>
-          <p class="stl__challenge">{esc(s['challenge'])}</p>
-          {media}
-          <p class="stl__cta">{cta}</p>
-        </li>''')
-
-    # the closing entry: all three founding threads reach the present
-    items.append(f'''        <li class="stl__item stl__item--today" id="stl-today" data-reveal>
-          <p class="stl__period">2026</p>
-          <h3 class="stl__client">Today</h3>
-          <p class="stl__headline">Still building together</p>
-          <p class="stl__challenge">All three founding relationships continue.</p>
-          <p class="stl__cta"><a class="arrow-link" href="{base}#discovery">Book a Discovery Session {ARROW}</a></p>
-        </li>''')
-
-    threads = '\n'.join(
-        f'          <li class="stl__thread" data-thread="{slug}"><span>{esc(S.BY_SLUG[slug]["client"])}</span></li>'
-        for slug in S.FOUNDING)
-
-    return f'''        <div class="stl__frame">
-          <ul class="stl__threads" aria-label="Founding client relationships, running from 2014–15 to today">
-{threads}
-          </ul>
-
-          <ol class="stl__list">
-{chr(10).join(items)}
+        product = s.get('is_product')
+        href = f'{base}products/managem/' if product else f'{base}work/{s["slug"]}/'
+        cta = 'Explore ManaGEM' if product else 'Read the story'
+        tag = ('<span class="sty__tag">Founding client</span>' if founding
+               else '<span class="sty__tag sty__tag--product">Our product</span>' if product else '')
+        pressed = 'true' if i == 0 else 'false'
+        hidden = '' if i == 0 else ' aria-hidden="true"'
+        tabs.append(f'''          <li><button class="stories__tab" type="button" data-go="{i}" aria-pressed="{pressed}">
+            <span class="stories__tab-n">{i + 1:02d}</span>
+            <span class="stories__tab-name">{esc(s['client'])}</span>
+            <span class="stories__tab-p">{period_html(s)}</span>
+          </button></li>''')
+        slides.append(f'''          <li class="sty" id="sty-{s['slug']}"{hidden}>
+            <a class="sty__media" href="{href}" tabindex="-1" aria-hidden="true">
+              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+            </a>
+            <div class="sty__body">
+              <p class="sty__period">{period_html(s)}</p>
+              <h3 class="sty__client">{esc(s['client'])}{tag}</h3>
+              <p class="sty__headline">{esc(s['headline'])}</p>
+              <p class="sty__challenge">{esc(s['challenge'])}.</p>
+              <p class="sty__outcome"><span>Outcome</span>{esc(s['outcome'])}</p>
+              <a class="arrow-link" href="{href}">{cta} {ARROW}</a>
+            </div>
+          </li>''')
+    n = len(S.STORIES)
+    tabs.append(f'''          <li><button class="stories__tab" type="button" data-go="{n}" aria-pressed="false">
+            <span class="stories__tab-n">{n + 1:02d}</span>
+            <span class="stories__tab-name">Today</span>
+            <span class="stories__tab-p">2026</span>
+          </button></li>''')
+    slides.append(f'''          <li class="sty sty--today" id="sty-today" aria-hidden="true">
+            <div class="sty__body">
+              <p class="sty__period">2026</p>
+              <h3 class="sty__client">Today</h3>
+              <p class="sty__headline">Still building together</p>
+              <p class="sty__challenge">All three founding relationships continue, and the systems we built them are still the ones they run on.</p>
+              <a class="arrow-link" href="{base}#discovery">Book a Discovery Session {ARROW}</a>
+            </div>
+          </li>''')
+    nl = chr(10)
+    return f'''        <div class="stories__frame" data-stories>
+          <ol class="stories__rail" aria-label="Choose a story">
+{nl.join(tabs)}
           </ol>
+          <div class="stories__stage">
+            <ol class="stories__list">
+{nl.join(slides)}
+            </ol>
+            <div class="stories__ctl" hidden>
+              <button class="stories__btn" type="button" data-prev aria-label="Previous story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 10V2M2.5 5.5 6 2l3.5 3.5"/></svg></button>
+              <button class="stories__btn" type="button" data-pause aria-pressed="false" aria-label="Pause"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg></button>
+              <button class="stories__btn" type="button" data-next aria-label="Next story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2.5 6.5 6 10l3.5-3.5"/></svg></button>
+              <span class="stories__count" aria-live="polite"><b data-cur>1</b> / {n + 1}</span>
+              <span class="stories__bar" aria-hidden="true"><i></i></span>
+            </div>
+          </div>
         </div>'''
 
 
@@ -225,10 +246,8 @@ def fill_slot(path, slot, content):
 
 
 def main():
-    fill_slot(os.path.join(ROOT, 'index.html'), 'timeline', timeline_html(''))
-    fill_slot(os.path.join(ROOT, 'index.html'), 'endorsement-ryan',
-              '          ' + endorsement_html('ryan-smith', '', 'Client since 2014'))
-    print('index.html: timeline (8 entries) and the Ryan Smith endorsement card written')
+    fill_slot(os.path.join(ROOT, 'index.html'), 'stories', stories_html(''))
+    print(f'index.html: stories slider ({len(S.STORIES) + 1} slides) written')
 
 
 if __name__ == '__main__':

@@ -34,14 +34,15 @@ CANON = S.CANONICAL
 
 def original(path):
     """A page as it was before it became a redirect stub."""
-    rev = subprocess.run(['git', 'log', '--format=%H', '-1', '--', path],
-                         cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    # the commit that stubbed it is phase 1; take the parent
-    out = subprocess.run(['git', 'show', f'{rev}~1:{path}'], cwd=ROOT,
-                         capture_output=True, text=True)
-    if out.returncode:
-        raise SystemExit(f'could not recover {path}')
-    return out.stdout
+    revs = subprocess.run(['git', 'log', '--format=%H', '--', path],
+                          cwd=ROOT, capture_output=True, text=True).stdout.split()
+    # walk back past every commit that only touched the stub
+    for rev in revs:
+        out = subprocess.run(['git', 'show', f'{rev}:{path}'], cwd=ROOT,
+                             capture_output=True, text=True)
+        if out.returncode == 0 and 'http-equiv="refresh"' not in out.stdout:
+            return out.stdout
+    raise SystemExit(f'could not recover {path}')
 
 
 def sections(html_text, ids):
@@ -60,11 +61,11 @@ def rebase(block, base):
     block = re.sub(r'(href|src)="(?!https?:|#|mailto:|tel:|data:)([^"]+)"',
                    lambda m: f'{m.group(1)}="{base}{m.group(2)}"', block)
     # links to pages that moved
-    block = block.replace(f'{base}services.html', f'{base}solutions/bespoke-software/')
+    block = block.replace(f'{base}services.html', f'{base}solutions/')
     block = block.replace(f'{base}about.html', f'{base}our-story/')
     block = block.replace(f'{base}case-studies.html', f'{base}work/')
     block = block.replace(f'{base}wastemart.html', f'{base}work/wastemart/')
-    block = block.replace(f'{base}managem.html', f'{base}solutions/managem/')
+    block = block.replace(f'{base}managem.html', f'{base}products/managem/')
     return block
 
 
@@ -82,12 +83,12 @@ CARDS = [
     ('Bespoke Software',
      'A system designed and built around your operation, then supported for the long term. '
      'We start with how the business actually runs, not with a template, and we stay after go-live.',
-     'solutions/bespoke-software/', 'Explore Bespoke Software',
+     'solutions/', 'Explore our solutions',
      'wastemart', 'See it in production — WasteMart'),
     ('ManaGEM',
      'A proven business management platform, ready to run on: sales, stock, payroll, projects '
      'and multi-company accounting in one place. It began as one client’s system.',
-     'solutions/managem/', 'Explore ManaGEM',
+     'products/managem/', 'Explore ManaGEM',
      'sbs-waterproofing', 'See where it came from — SBS Waterproofing'),
     ('GEMIS Studio',
      'Product and interface design from the team that can also build it — research, prototypes '
@@ -297,7 +298,7 @@ def managem():
       </div>
     </section>
 '''
-    page('solutions/managem/index.html', base,
+    page('products/managem/index.html', base,
          'ManaGEM — a business management platform born in a real business | GEMIS®',
          'ManaGEM began as the system GEMIS built for SBS Waterproofing. Sales, stock, payroll, '
          'projects and multi-company accounting in one platform, used by about a dozen companies.',
@@ -382,7 +383,6 @@ def our_story():
 
 
 if __name__ == '__main__':
-    solutions_index()
-    bespoke()
+    # solutions/ and solutions/bespoke-software/ are built by build-services.py now
     managem()
     our_story()
