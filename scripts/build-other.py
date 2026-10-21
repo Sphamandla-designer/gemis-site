@@ -315,13 +315,11 @@ def our_story():
     story = story.replace('class="sec band band-wash" id="story"', 'class="sec band" id="story"')
     team = rebase(blocks.get('team', ''), base)
 
-    founders = '\n'.join(
-        f'''          <li class="hist__client">
-            <h3>{esc(S.BY_SLUG[k]['client'])}</h3>
-            <p>{B.since_html(S.BY_SLUG[k])}</p>
-            <p>{esc(S.BY_SLUG[k]['headline'])}</p>
-            <a class="arrow-link arrow-link--quiet" href="{base}work/{k}/">Read the story {ARROW}</a>
-          </li>''' for k in S.FOUNDING)
+    founders = B.srows([
+        (f'<a href="{base}work/{k}/">{esc(S.BY_SLUG[k]["client"])}</a>',
+         f'<p>{esc(S.BY_SLUG[k]["headline"])}</p>', [B.since_html(S.BY_SLUG[k])],
+         f'<a class="arrow-link arrow-link--quiet srow__go" href="{base}work/{k}/">Read the story {ARROW}</a>')
+        for k in S.FOUNDING])
 
     body = f'''
     <section class="chero" id="hero">
@@ -332,20 +330,24 @@ def our_story():
       </div>
     </section>
 
-    <section class="sec band band-wash" id="founding" aria-labelledby="foundingHeading">
+    <section class="sec band band-wash plusgrid plusgrid--tr" id="founding" aria-labelledby="foundingHeading">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Where it started</p>
-        <h2 class="display" id="foundingHeading" data-reveal style="--d:80ms">Three relationships that have not ended</h2>
-        <ul class="hist__clients" data-reveal style="--d:140ms">
+        <div class="svcs__head">
+          <div>
+            <p class="eyebrow" data-reveal>Where it started</p>
+            <h2 class="display" id="foundingHeading" data-reveal style="--d:80ms">Three relationships that have not ended</h2>
+          </div>
+        </div>
+        <ol class="srows">
 {founders}
-        </ul>
+        </ol>
       </div>
     </section>
 
 {story}
 
     <!-- moved off the homepage, where it sat under a heading the brief retired -->
-    <section class="sec band band-ink" id="numbers" aria-labelledby="numbersHeading">
+    <section class="sec band band-ink plusgrid plusgrid--br" id="numbers" aria-labelledby="numbersHeading">
       <div class="shell">
         <p class="eyebrow" data-reveal>By the numbers</p>
         <h2 class="display" id="numbersHeading" data-reveal style="--d:80ms">Since 2014</h2>

@@ -3687,4 +3687,59 @@ a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
 .post__tag { position: static; padding: 0; background: none; color: var(--navy); font-size: inherit; letter-spacing: .04em; }
 .post__x { margin: 0 0 16px; color: var(--ink-2); }
 .post__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: auto 0 0; padding: 0; list-style: none; }
-.post__chips li { padding: 6px 11px; background: var(--chip); font-size: var(--fs-small); color: var(--ink-2); white-space: nowrap; }
+.post__chips li { padding: 6px 11px; background: var(--chip); font-size: var(--fs-small); color: var(--ink-2); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE SAME LOOK EVERYWHERE — the reference kit (ruled numbered rows, ruled
+   features, the photographic band, the plus-grid) applied to every page.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* every closing band is the photographic band */
+.endnote { background: var(--navy-deep) url('../img/home/hero-bg.jpg') 78% 50% / cover no-repeat; min-height: clamp(380px, 42vw, 520px); display: flex; align-items: center; }
+.endnote::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(95deg, rgba(8,34,62,.96) 0%, rgba(8,34,62,.9) 42%, rgba(8,34,62,.45) 70%, rgba(8,34,62,.2) 100%); }
+.endnote::after { content: ''; position: absolute; z-index: -1; left: 0; bottom: 0; width: clamp(160px, 22vw, 300px); height: clamp(220px, 30vw, 380px); pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 9.5v7M9.5 13h7' stroke='%23ffffff' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"); -webkit-mask-image: linear-gradient(45deg, #000 30%, transparent 100%); mask-image: linear-gradient(45deg, #000 30%, transparent 100%); }
+.endnote .dotgrid { display: none; }
+.endnote .shell { position: relative; width: 100%; }
+.endnote .eyebrow { color: rgba(255,255,255,.78); }
+.endnote .display { max-width: 16ch; }
+.endnote p { color: rgba(255,255,255,.84); max-width: 48ch; }
+.story__next { gap: clamp(28px, 4vw, 64px); max-width: 980px; }
+@media (max-width: 760px) { .endnote::before { background: linear-gradient(180deg, rgba(8,34,62,.96) 0%, rgba(8,34,62,.9) 70%, rgba(8,34,62,.6) 100%); } }
+
+/* page heroes carry the same white plus-grid in the corner */
+.chero::after { content: ''; position: absolute; z-index: -1; left: 0; bottom: 0; width: clamp(160px, 22vw, 300px); height: clamp(180px, 24vw, 300px); pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 9.5v7M9.5 13h7' stroke='%23ffffff' stroke-opacity='.16' stroke-width='1'/%3E%3C/svg%3E"); -webkit-mask-image: linear-gradient(45deg, #000 30%, transparent 100%); mask-image: linear-gradient(45deg, #000 30%, transparent 100%); }
+.chero .shell { position: relative; }
+
+/* the plus-grid on a dark band is white */
+.band-ink.plusgrid::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M13 9.5v7M9.5 13h7' stroke='%23ffffff' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E"); }
+
+/* the numbered rows wherever a list is ordered: steps, founders, reasons */
+.srow__name a { color: inherit; }
+.srow__chips { margin-top: 2px; }
+.srows .srow:last-child { border-bottom: 1px solid var(--rule); }
+.band-ink .srows, .band-ink .srow { border-color: rgba(255,255,255,.18); }
+
+/* the ruled features wherever items carry an image: case studies, products */
+.feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.6vw, 36px); }
+.feats--1 { grid-template-columns: minmax(0, 1fr); }
+.feats--1 .post { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 clamp(22px, 3vw, 48px); align-items: start; }
+.feats--1 .post__t { grid-column: 1 / -1; }
+.feats--1 .post__media { grid-row: 2 / 6; margin-bottom: 0; }
+.feats--1 .post__meta { margin-top: clamp(18px, 2.2vw, 28px); }
+.feats .post[hidden] { display: none; }
+@media (max-width: 900px) { .feats { grid-template-columns: 1fr; max-width: 560px; } .feats--1 { max-width: none; } .feats--1 .post { grid-template-columns: 1fr; } .feats--1 .post__media { grid-row: auto; } }
+
+/* the ruled link list: the other solutions on a service page */
+.rlist { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 3vw, 48px); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+.rlist li { border-bottom: 1px solid var(--rule); }
+.rlist a { display: flex; justify-content: space-between; gap: 18px; padding: 14px 0; font-size: var(--fs-small); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); transition: color .3s var(--ease); }
+.rlist a:hover { color: var(--navy); }
+.rlist a > span:last-child { text-align: right; }
+.rlist a:hover .post__plus { transform: rotate(90deg); }
+@media (max-width: 620px) { .rlist { grid-template-columns: 1fr; } }
+
+/* the contact page's enquiry section takes the same plus-grid */
+.ctc.plusgrid::after { top: var(--hero-top); }
+/* case-study and product features keep the full frame of their image */
+.feats .post__media img { aspect-ratio: 16 / 9; }
+.post .arrow-link { margin-top: 14px; align-self: flex-start; color: var(--ink); }

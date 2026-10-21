@@ -109,12 +109,17 @@ def solutions_index():
       </div>
     </section>
 
-    <section class="svcs band" aria-labelledby="svcsHeading">
+    <section class="svcs band plusgrid plusgrid--tr" aria-labelledby="svcsHeading">
       <div class="shell">
-        <h2 class="vh" id="svcsHeading">The nine solutions</h2>
-        <div class="svcs__grid">
-{services_grid(base)}
+        <div class="svcs__head">
+          <div>
+            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
+            <h2 class="display" id="svcsHeading" data-reveal style="--d:80ms">What we do</h2>
+          </div>
         </div>
+        <ol class="srows">
+{services_rows(base, 9)}
+        </ol>
       </div>
     </section>
 
@@ -146,13 +151,14 @@ def service_page(s):
     base = '../../'
     others = [o for o in SV.SERVICES if o['slug'] != s['slug']]
     caps = '\n'.join(f'          <li>{esc(c)}</li>' for c in s['caps'])
-    why = '\n'.join(f'''          <div class="why__col" data-reveal style="--d:{i * 80}ms">
-            <h3 class="why__t">{esc(t)}</h3>
-            <p>{esc(b)}</p>
-          </div>''' for i, (t, b) in enumerate(s['body']))
+    why = B.srows([(esc(t), f'<p>{esc(b)}</p>', (), '') for t, b in s['body']])
     proof = ''
     if s.get('proof'):
         st = S.BY_SLUG[s['proof']]
+        card = B.feat(esc(st['client']), f"{base}work/{st['slug']}/",
+                      f"{base}{S.VIDEO_DIR}{st['video']}_thumb.jpg",
+                      B.period_html(st), esc(st['headline']) + ' — ' + esc(st['challenge']) + '.',
+                      chips=[esc(st['industry'])] + [t.replace('-', ' ').capitalize() for t in st['capability_tags'][:2]])
         proof = f'''
     <section class="sec band band-wash" aria-labelledby="proofHeading">
       <div class="shell">
@@ -163,24 +169,12 @@ def service_page(s):
           </div>
           <p class="lede" data-reveal style="--d:140ms">A system in use today, not a mock-up.</p>
         </div>
-        <article class="pf" data-reveal style="--d:160ms">
-          <a class="pf__media" href="{base}work/{st['slug']}/" tabindex="-1" aria-hidden="true">
-            <img src="{base}{S.VIDEO_DIR}{st['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-          </a>
-          <div class="pf__body">
-            <p class="sty__period">{B.period_html(st)}</p>
-            <h3 class="sty__client">{esc(st['client'])}</h3>
-            <p class="sty__headline">{esc(st['headline'])}</p>
-            <p class="sty__challenge">{esc(st['challenge'])}.</p>
-            <a class="arrow-link" href="{base}work/{st['slug']}/">Read the story {ARROW}</a>
-          </div>
-        </article>
+        <div class="feats feats--1" data-reveal style="--d:160ms">
+{card}
+        </div>
       </div>
     </section>'''
-    more = '\n'.join(f'''          <li><a class="more__link" href="{base}solutions/{o['slug']}/">
-            <span class="more__icon" aria-hidden="true">{icon(o['slug'])}</span>
-            <span>{esc(o['name'])}</span>
-          </a></li>''' for o in others)
+    more = '\n'.join(f'''          <li><a href="{base}solutions/{o['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(o['name'])}</span></a></li>''' for o in others)
     body = f'''
     <section class="chero" id="hero">
       <div class="shell">
@@ -190,7 +184,7 @@ def service_page(s):
       </div>
     </section>
 
-    <section class="sec band" aria-labelledby="deliverHeading">
+    <section class="sec band plusgrid plusgrid--tr" aria-labelledby="deliverHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -205,12 +199,12 @@ def service_page(s):
       </div>
     </section>
 
-    <section class="sec band band-tint" aria-labelledby="whyHeading">
+    <section class="sec band band-tint plusgrid plusgrid--br" aria-labelledby="whyHeading">
       <div class="shell">
         <h2 class="vh" id="whyHeading">Why it matters, how we work, what you get</h2>
-        <div class="why">
+        <ol class="srows">
 {why}
-        </div>
+        </ol>
       </div>
     </section>
 {proof}
@@ -218,7 +212,7 @@ def service_page(s):
       <div class="shell">
         <p class="eyebrow" data-reveal>Other solutions</p>
         <h2 class="display" id="moreHeading" data-reveal style="--d:80ms">Usually part of a larger whole</h2>
-        <ul class="more" data-reveal style="--d:140ms">
+        <ul class="rlist" data-reveal style="--d:140ms">
 {more}
         </ul>
       </div>
@@ -235,19 +229,14 @@ def products_index():
     for i, p in enumerate(SV.PRODUCTS):
         ext = p['href'].startswith('http')
         href = p['href'] if ext else base + p['href']
-        extra = ' target="_blank" rel="noopener"' if ext else ''
-        cards.append(f'''          <article class="pcard" data-reveal style="--d:{i * 80}ms">
-            <a class="pcard__media" href="{href}"{extra} tabindex="-1" aria-hidden="true">
-              <img src="{base}{p['image']}" alt="" loading="lazy" width="760" height="475" />
-            </a>
-            <div class="pcard__body">
-              <p class="eyebrow">{i + 1:02d}</p>
-              <h2 class="pcard__name">{esc(p['name'])}</h2>
-              <p class="pcard__short">{esc(p['short'])}</p>
-              <p class="pcard__copy">{esc(p['body'])}</p>
-              <a class="arrow-link" href="{href}"{extra}>{esc(p['cta'])} {ARROW}</a>
-            </div>
-          </article>''')
+        cards.append(B.feat(esc(p['name']), href, f"{base}{p['image']}", f'{i + 1:02d} · {esc(p["short"])}',
+                            esc(p['body']), link=f'<a class="arrow-link" href="{href}">{esc(p["cta"])} {ARROW}</a>',
+                            extra_attrs=f' data-reveal style="--d:{i * 80}ms"'))
+    cards = '\n'.join(cards)
+    if True:
+        # the external product opens in a new tab
+        cards = cards.replace('href="https://gemis.tech/"', 'href="https://gemis.tech/" target="_blank" rel="noopener"')
+        cards = cards.replace('href="https://sphamandla-designer.github.io/ManaGEM/"', 'href="https://sphamandla-designer.github.io/ManaGEM/" target="_blank" rel="noopener"')
     body = f'''
     <section class="chero" id="hero">
       <div class="shell">
@@ -257,11 +246,11 @@ def products_index():
       </div>
     </section>
 
-    <section class="sec band" aria-labelledby="productsHeading">
+    <section class="sec band plusgrid plusgrid--tr" aria-labelledby="productsHeading">
       <div class="shell">
         <h2 class="vh" id="productsHeading">The three products</h2>
-        <div class="pcards">
-{chr(10).join(cards)}
+        <div class="feats">
+{cards}
         </div>
       </div>
     </section>
@@ -310,7 +299,7 @@ def insights_index():
       </div>
     </section>
 
-    <section class="news band" aria-labelledby="newsHeading">
+    <section class="news band plusgrid plusgrid--tr" aria-labelledby="newsHeading">
       <div class="shell">
         <h2 class="vh" id="newsHeading">Articles</h2>
         <div class="news__grid">

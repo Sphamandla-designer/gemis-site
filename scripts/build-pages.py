@@ -131,7 +131,7 @@ def story_page(s):
       </div>
     </section>
 {endo}
-    <section class="chap band" aria-labelledby="challengeHeading">
+    <section class="chap band plusgrid plusgrid--tr" aria-labelledby="challengeHeading">
       <div class="shell">
         <p class="eyebrow" data-reveal>The challenge</p>
         <h2 class="display" id="challengeHeading" data-reveal style="--d:80ms">What the business needed</h2>
@@ -221,22 +221,17 @@ def work_page():
                  'for years. Case studies from GEMIS, a business systems partner since 2014.',
                  f'{CANON}work/', extra_head=schema)
 
-    founders = '\n'.join(f'''          <article class="wk__founder" data-reveal>
-            {B.client_logo(s['slug'], s['client'], wide=True, name_markup=f'<h3 class="wk__fname">{esc(s["client"])}</h3>')}
-            <p class="wk__fsince">{B.since_html(s)}</p>
-            <p class="wk__fline">{esc(s['headline'])}</p>
-            <a class="arrow-link" href="{base}work/{s['slug']}/">Read the story {ARROW}</a>
-          </article>''' for s in [S.BY_SLUG[k] for k in S.FOUNDING])
+    founders = B.srows([
+        (f'<a href="{base}work/{s["slug"]}/">{esc(s["client"])}</a>',
+         f'<p>{esc(s["headline"])}</p>', [B.since_html(s)],
+         f'<a class="arrow-link arrow-link--quiet srow__go" href="{base}work/{s["slug"]}/">Read the story {ARROW}</a>')
+        for s in [S.BY_SLUG[k] for k in S.FOUNDING]])
 
-    grid = '\n'.join(f'''          <article class="wk__card" data-reveal
-                   data-industry="{s['industry_tag']}" data-capability="{' '.join(s['capability_tags'])}">
-            <a class="wk__media" href="{base}work/{s['slug']}/" tabindex="-1" aria-hidden="true">
-              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <p class="wk__period">{B.period_html(s)}</p>
-            <h3 class="wk__name"><a href="{base}work/{s['slug']}/">{esc(s['client'])}</a></h3>
-            <p class="wk__line">{esc(s['headline'])}</p>
-          </article>''' for s in S.STORY_PAGES)
+    grid = '\n'.join(B.feat(
+        esc(s['client']), f"{base}work/{s['slug']}/", f"{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg",
+        B.period_html(s), esc(s['headline']), chips=[esc(s['industry'])] + [t.replace('-', ' ').capitalize() for t in s['capability_tags'][:2]],
+        extra_attrs=f' data-reveal data-industry="{s["industry_tag"]}" data-capability="{" ".join(s["capability_tags"])}"',
+    ).replace('<article class="post"', '<article class="post wk__card"') for s in S.STORY_PAGES)
 
     # Not confirmed as client systems, so they are not on the live build at all.
     # Listing them with a "to confirm" note would publish our uncertainty.
@@ -255,12 +250,17 @@ def work_page():
       </div>
     </section>
 
-    <section class="wk band band-tint" aria-labelledby="foundersHeading">
+    <section class="wk band band-tint plusgrid plusgrid--tr" aria-labelledby="foundersHeading">
       <div class="shell">
-        <h2 class="display" id="foundersHeading" data-reveal>The relationships that started it</h2>
-        <div class="wk__founders">
-{founders}
+        <div class="svcs__head">
+          <div>
+            <p class="eyebrow" data-reveal>Founding clients</p>
+            <h2 class="display" id="foundersHeading" data-reveal style="--d:80ms">The relationships that started it</h2>
+          </div>
         </div>
+        <ol class="srows">
+{founders}
+        </ol>
       </div>
     </section>
 
@@ -295,14 +295,16 @@ def work_page():
         </div>
 
         <p class="vh" id="wkCount" role="status" aria-live="polite"></p>
-        <div class="wk__grid" data-grid>
+        <div class="feats" data-grid>
 {grid}
         </div>
 
+        <div class="unconfirmed" data-kind="hideable">
         <h3 class="wk__sub" data-reveal>Still to classify</h3>
         <p class="wk__subnote" data-reveal>These five are in the repository but it is not yet confirmed whether each is a client system or a concept. They are listed rather than quietly dropped.</p>
         <div class="wk__grid wk__grid--quiet">
 {unclassified}
+        </div>
         </div>
 
         <p class="wk__more" data-reveal>Looking for a sector rather than a project? See <a href="{base}industries.html">Industries</a>.</p>
