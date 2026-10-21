@@ -10,6 +10,7 @@ every page here carries the same head, header and footer as the rest of the
 site, and scripts/apply-chrome.py keeps the navigation in step afterwards.
 """
 import importlib.util
+import json
 import os
 import re
 import sys
@@ -175,6 +176,30 @@ def service_page(s):
       </div>
     </section>'''
     more = '\n'.join(f'''          <li><a href="{base}solutions/{o['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(o['name'])}</span></a></li>''' for o in others)
+    faq_items = '\n'.join(f'''          <details class="faq__item" data-reveal style="--d:{i * 60}ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">{i + 1:02d}</span><span class="faq__text">{esc(q)}</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>{esc(a)}</p></div>
+          </details>''' for i, (q, a) in enumerate(s['faq']))
+    faq = f'''
+    <section class="sec band band-wash plusgrid plusgrid--br" aria-labelledby="faqHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Questions we are asked</p>
+            <h2 class="display" id="faqHeading" data-reveal style="--d:80ms">Frequently asked questions</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">The questions that come up first when a business asks about {esc(s['name'].lower())}. If yours is not here, ask it in a discovery session.</p>
+        </div>
+        <div class="faq">
+{faq_items}
+        </div>
+      </div>
+    </section>'''
+    faq_schema = json.dumps({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        "mainEntity": [{"@type": "Question", "name": q,
+                        "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s['faq']],
+    }, ensure_ascii=False, indent=2)
     body = f'''
     <section class="chero" id="hero">
       <div class="shell">
@@ -217,9 +242,15 @@ def service_page(s):
         </ul>
       </div>
     </section>
+{faq}
 {endnote(base, f"Talk to us about {s['name'].lower()}.")}'''
-    page(f"solutions/{s['slug']}/index.html", base,
-         f"{s['name']} — Solutions | GEMIS®", s['intro'][:180], body)
+    head, tail = P.shell(base, f"{s['name']} — Solutions | GEMIS®", s['intro'][:180],
+                         f"{CANON}solutions/{s['slug']}/",
+                         extra_head='  <script type="application/ld+json">\n' + faq_schema + '\n  </script>')
+    path = f"solutions/{s['slug']}/index.html"
+    os.makedirs(os.path.join(ROOT, os.path.dirname(path)), exist_ok=True)
+    open(os.path.join(ROOT, path), 'w', encoding='utf-8').write(head + body + tail)
+    print(path)
 
 
 # ── Products ─────────────────────────────────────────────────────────────
