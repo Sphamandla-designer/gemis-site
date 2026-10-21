@@ -89,3 +89,9 @@ the video narration and carry no placeholder.
 | `managem-external-site` | Should `solutions/managem/` link out to the separate ManaGEM site as a secondary CTA? | Leon |
 | `eighth-video` | Is there an eighth video? None was supplied, so no entry exists for it. | Leon |
 | `brand-tokens` | The brief's palette and fonts are not the ones in the CSS. See `IMPLEMENTATION_NOTES.md`. Confirm the repository's tokens are correct. | Leon / Sphamandla |
+
+## Blocking the bundle
+
+| id | What is needed | Who |
+|---|---|---|
+| `standalone-bundle` | `gemis-site-standalone.html` is **stale**: it still carries the old flat site. `tools/build-site-standalone.py` models the site as flat `name.html` files at the root with `assets/…` paths, and asserts every internal link matches that shape. The new structure uses folder URLs (`work/`, `solutions/managem/`) and `../` asset paths, so the build now fails its own assertion. Teaching it nested pages is a separate piece of work; it was not half-fixed. | Sphamandla |
