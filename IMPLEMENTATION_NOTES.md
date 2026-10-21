@@ -245,3 +245,34 @@ Two things this pass caught:
 | Link check | 34 pages, **913 links, 0 broken** |
 | axe | **0 serious or critical** on 9 pages, except the pre-existing `mailto` contrast on index |
 | Gate | 3 blocking, 25 hideable — exits 1 on the blocking three only |
+
+## 13. The preview is not GitHub Pages
+
+A separate `gemis-site-preview` repository could not be created: this session's
+GitHub access is **scoped to `Sphamandla-designer/gemis-site`**. Both routes fail
+the same way —
+
+```
+create_repository → 403 Resource not accessible by integration
+gh repo create     → 403 sessions are bound to their configured repositories
+```
+
+and the repository already serving Pages can only have one source, so publishing
+the branch there would replace the live site, which is the opposite of reviewing
+before merging.
+
+The preview is therefore hosted as a Claude artifact:
+**https://claude.ai/artifact/Rr7uaoSDicrguF6hZ4a5t2**
+
+- The real pages are published as files under `site/`, served as-is. The site uses
+  only relative paths, so it works unchanged under that prefix.
+- 62 files, 22 MB: the corporate pages, `site.css`, the four scripts, the fonts,
+  the images in use and all 21 video files.
+- Every page carries `noindex, nofollow` and `robots.txt` disallows everything, so
+  a preview can never compete with the live site for search results.
+- The artifact is **private** — only the owner and anyone they share it with.
+- `/studio/` is not included; this branch leaves it unchanged apart from the web
+  and social work moved onto its own work page.
+
+For a preview on GitHub Pages proper, create `gemis-site-preview` and grant this
+session access; pushing the branch there is then one step.
