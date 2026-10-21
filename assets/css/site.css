@@ -17,41 +17,50 @@
 }
 
 :root {
-  --paper:        #f2f2f1;
-  --paper-2:      #f7f7f6;
+  /* ── colour: the hero photograph is the source ───────────────────────
+     Every ground and ink below is sampled from, or derived from, the
+     steel-blue sky in assets/img/home/hero-bg.jpg (#96bbd5 in the open,
+     #09263f under the scrim). The indigo that used to sit beside it is gone. */
+  --paper:        #f3f4f6;   /* body ground: the sky's grey, at 96% light */
+  --paper-2:      #fafbfc;   /* lifted ground for cards and quiet bands */
+  --wash:         #e6edf4;   /* the sky, at a whisper */
   --white:        #ffffff;
-  --ink:          #16181b;
-  --ink-2:        #55565a;
-  /* was #85868a, which is 3.24:1 on --paper and below AA. This is the same
-     hue a shade darker, and clears 4.5:1 on all five section grounds. */
-  --ink-3:        #626367;
-  --navy:         #1f2557;
-  --navy-deep:    #161b40;
-  --cta-navy:     #2e3358;
-  --rule:         #dededa;
-  --rule-soft:    #e8e8e4;
-  --chip:         #e9e9e5;
+  --ink:          #121a26;   /* blue-black, not neutral black */
+  --ink-2:        #4b5563;   /* 6.4:1 on --wash, the darkest ground it sits on */
+  --ink-3:        #5c6675;   /* 4.9:1 on --wash */
+  --navy:         #16395e;   /* the sky under the hero scrim, mid */
+  --navy-deep:    #0b2642;   /* the sky under the hero scrim, deep — dark bands */
+  --blue:         #2a5c8a;   /* the open sky, darkened to 5.9:1 on --wash */
+  --steel:        #96bbd5;   /* the open sky, as sampled */
+  --cta-navy:     var(--navy-deep);
+  --rule:         #d9dee5;
+  --rule-soft:    #e4e8ee;
+  --chip:         #e6eaf0;
 
   --shell:        1360px;
   --gutter:       clamp(20px, 4vw, 56px);
   --ease:         cubic-bezier(.22, .61, .36, 1);
 
-  /* type scale — every heading and copy size on the site resolves to one of these */
-  --fs-hero:      clamp(36px, 4.3vw, 64px);     /* page titles */
-  --fs-display:   clamp(31px, 3.5vw, 50px);     /* section titles */
-  --fs-title:     clamp(17px, 1.4vw, 22px);     /* card and item titles */
-  --fs-name:      clamp(15px, 1.15vw, 17.5px);  /* names, small titles */
-  --fs-copy:      clamp(13.5px, 1vw, 15px);     /* body copy inside components */
-  --fs-small:     clamp(12.5px, .93vw, 14px);   /* metas, chips, notes */
-  --fs-label:     clamp(12px, .93vw, 14px);     /* uppercase labels */
-  --fs-eyebrow:   clamp(10.5px, .78vw, 12px);   /* eyebrows */
-  --fs-stat:      clamp(36px, 3.7vw, 54px);     /* figures */
+  /* ── type scale: eight steps, nothing in between ──────────────────────
+     Page title → section title → lead → title → name → copy → small → eyebrow. */
+  --fs-hero:      clamp(38px, 4.4vw, 64px);     /* h1, one per page */
+  --fs-display:   clamp(28px, 3vw, 44px);       /* h2 section titles */
+  --fs-lead:      clamp(22px, 2.1vw, 30px);     /* large card names, wordmarks */
+  --fs-title:     clamp(18px, 1.4vw, 21px);     /* h3 card and item titles */
+  --fs-name:      clamp(16px, 1.1vw, 17px);     /* names, ledes */
+  --fs-copy:      clamp(14.5px, 1vw, 15.5px);   /* body and component copy — one size */
+  --fs-small:     clamp(13px, .9vw, 13.5px);    /* metas, chips, notes */
+  --fs-label:     var(--fs-small);              /* uppercase labels share the small step */
+  --fs-eyebrow:   clamp(11px, .8vw, 12px);      /* eyebrows */
+  --fs-stat:      clamp(36px, 3.6vw, 52px);     /* figures */
   --fs-quote:     clamp(26px, 3vw, 44px);       /* pull quotes */
 
-  /* rhythm */
+  /* ── rhythm ──────────────────────────────────────────────────────────── */
   --hero-top:     clamp(120px, 15vh, 184px);
-  --hero-bottom:  clamp(40px, 5vh, 64px);
-  --head-gap:     clamp(32px, 4vw, 56px);       /* under a section header */
+  --hero-bottom:  clamp(48px, 6vh, 80px);
+  --sec-y:        clamp(72px, 8vw, 112px);      /* every section, both edges */
+  --sec-y-s:      clamp(44px, 5vw, 68px);       /* the short proof strip */
+  --head-gap:     clamp(28px, 3.6vw, 48px);     /* under a section header */
   --card-pad:     clamp(18px, 2vw, 24px);       /* inside a card */
   --card-gap:     clamp(14px, 1.6vw, 20px);     /* between cards */
 }
@@ -139,7 +148,7 @@ h1, h2, h3, h4 {
 /* faint plotted dot-grid used in the reference's margins */
 .dotgrid {
   position: absolute;
-  background-image: radial-gradient(rgba(31,37,87,.19) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(22,57,94,.19) 1px, transparent 1px);
   background-size: 17px 17px;
   pointer-events: none;
 }
@@ -221,7 +230,7 @@ h1, h2, h3, h4 {
 
 /* solid state once scrolled past the hero */
 .nav.is-stuck {
-  background: rgba(242,242,241,.93);
+  background: rgba(243,244,246,.93);
   backdrop-filter: saturate(1.6) blur(14px);
   box-shadow: 0 1px 0 var(--rule);
   padding-block: 14px;
@@ -355,7 +364,7 @@ h1, h2, h3, h4 {
   display: block;
   overflow: hidden;
   margin-bottom: clamp(12px, 1.4vw, 16px);
-  background: #e4e4e0;
+  background: #e2e7ed;
 }
 .prod__media img {
   width: 100%;
@@ -604,12 +613,12 @@ h1, h2, h3, h4 {
   background: var(--paper-2);
   transition: border-color .45s var(--ease), background .45s var(--ease), transform .45s var(--ease);
 }
-.card:hover { border-color: #cdcec9; background: #fff; transform: translateY(-4px); }
+.card:hover { border-color: #c9d1db; background: #fff; transform: translateY(-4px); }
 .card__icon {
   display: grid;
   place-items: center;
   width: 42px; height: 42px;
-  background: rgba(31,37,87,.055);
+  background: rgba(22,57,94,.055);
   color: var(--navy);
 }
 .card__icon svg { width: 20px; height: 20px; }
@@ -704,7 +713,7 @@ h1, h2, h3, h4 {
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  background: #e4e4e0;
+  background: #e2e7ed;
   transition: transform .7s var(--ease);
 }
 .story__frame { overflow: hidden; }
@@ -729,7 +738,7 @@ h1, h2, h3, h4 {
 .cta::before {
   content: '';
   position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(30,34,63,.72), rgba(38,43,76,.62));
+  background: linear-gradient(180deg, rgba(8,34,62,.72), rgba(22,57,94,.62));
 }
 .cta .dotgrid {
   z-index: -1;
@@ -774,7 +783,7 @@ h1, h2, h3, h4 {
   color: var(--ink);
 }
 .cta__form input::placeholder { color: #8b8c90; }
-.cta__form input:focus { outline: 2px solid rgba(31,37,87,.35); outline-offset: 2px; border-radius: 999px; }
+.cta__form input:focus { outline: 2px solid rgba(22,57,94,.35); outline-offset: 2px; border-radius: 999px; }
 .cta__form button {
   flex: 0 0 auto;
   padding: 12px 26px;
@@ -786,7 +795,7 @@ h1, h2, h3, h4 {
   cursor: pointer;
   transition: background .35s var(--ease), transform .35s var(--ease);
 }
-.cta__form button:hover { background: #0f1330; transform: translateY(-1px); }
+.cta__form button:hover { background: #061a30; transform: translateY(-1px); }
 .cta__note { margin: 16px 0 0; font-size: 12.5px; color: rgba(255,255,255,.62); }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -981,7 +990,7 @@ h1, h2, h3, h4 {
   place-items: center;
   aspect-ratio: 4 / 5;
   margin-bottom: clamp(16px, 1.8vw, 24px);
-  background: linear-gradient(158deg, #dfe1e6 0%, #c9ccd4 52%, #b9bdc7 100%);
+  background: linear-gradient(158deg, #e3e9f0 0%, #cbd6e2 52%, #b8c6d6 100%);
   color: var(--navy);
   font-size: clamp(30px, 3vw, 44px);
   font-weight: 500;
@@ -1163,7 +1172,7 @@ h1, h2, h3, h4 {
   place-items: center;
   aspect-ratio: 1 / 1;
   margin-bottom: clamp(14px, 1.6vw, 20px);
-  background: linear-gradient(158deg, #dfe1e6, #c3c7d0);
+  background: linear-gradient(158deg, #e3e9f0, #c6d2df);
   color: var(--navy);
   font-size: clamp(30px, 3vw, 44px);
   font-weight: 500;
@@ -1460,7 +1469,7 @@ h1, h2, h3, h4 {
   position: relative;
   overflow: hidden;
   margin-bottom: clamp(14px, 1.7vw, 20px);
-  background: #e4e4e0;
+  background: #e2e7ed;
   aspect-ratio: 4 / 3;
 }
 .tile--wide .tile__media { aspect-ratio: 21 / 9; }
@@ -1547,9 +1556,9 @@ h1, h2, h3, h4 {
   color: rgba(255,255,255,.66);
 }
 .frame--light { background: var(--paper-2); color: var(--ink); }
-.frame--light .frame__bar { background: rgba(31,37,87,.05); border-bottom-color: var(--rule-soft); }
-.frame--light .frame__dot { background: rgba(31,37,87,.2); }
-.frame--light .frame__url { background: rgba(31,37,87,.07); color: var(--ink-3); }
+.frame--light .frame__bar { background: rgba(22,57,94,.05); border-bottom-color: var(--rule-soft); }
+.frame--light .frame__dot { background: rgba(22,57,94,.2); }
+.frame--light .frame__url { background: rgba(22,57,94,.07); color: var(--ink-3); }
 .frame--light .frame__nav { color: var(--ink-3); }
 .frame--light .frame__h { color: var(--ink); }
 .frame--light .frame__p { color: var(--ink-2); }
@@ -1579,7 +1588,7 @@ h1, h2, h3, h4 {
 }
 .tbl td { padding: clamp(15px, 1.7vw, 21px) 0; border-bottom: 1px solid var(--rule-soft); vertical-align: baseline; }
 .tbl tbody tr { transition: background .3s var(--ease); }
-.tbl tbody tr:hover { background: rgba(31,37,87,.028); }
+.tbl tbody tr:hover { background: rgba(22,57,94,.028); }
 .tbl__acct { font-size: var(--fs-name); letter-spacing: -.014em; color: var(--ink); }
 .tbl__acct a { display: inline-flex; align-items: center; gap: 8px; }
 .tbl__acct a:hover { color: var(--navy); }
@@ -1976,7 +1985,7 @@ h1, h2, h3, h4 {
 .field textarea:focus {
   outline: none;
   border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(31,37,87,.12);
+  box-shadow: 0 0 0 3px rgba(22,57,94,.12);
 }
 .field input:invalid:not(:placeholder-shown),
 .field textarea:invalid:not(:placeholder-shown) { border-color: #b4453a; }
@@ -2010,7 +2019,7 @@ h1, h2, h3, h4 {
   transition: background .35s var(--ease), transform .35s var(--ease);
 }
 .form__send svg { width: 11px; height: 11px; transition: transform .35s var(--ease); }
-.form__send:hover { background: #0f1330; transform: translateY(-1px); }
+.form__send:hover { background: #061a30; transform: translateY(-1px); }
 .form__send:hover svg { transform: translate(3px, -3px); }
 .form__note { margin: 14px 0 0; font-size: var(--fs-small); color: var(--ink-3); max-width: 54ch; }
 
@@ -2300,9 +2309,7 @@ summary:focus-visible,
    ══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  --sec-y: clamp(80px, 8.4vw, 124px);
-  --wash: #eceef4;   /* the brand navy, at a whisper */
-  --warm: #f0efeb;   /* the paper, warmed */
+  --warm: var(--paper-2);   /* retired: a warm ground has no place beside the sky */
 }
 
 /* ── rhythm: space on both edges, not just the top ───────────────────── */
@@ -2413,7 +2420,7 @@ summary:focus-visible,
   width: min(880px, 70vw);
   aspect-ratio: 1;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(92,112,208,.20), rgba(92,112,208,0) 68%);
+  background: radial-gradient(circle, rgba(42,92,138,.20), rgba(42,92,138,0) 68%);
 }
 
 /* the dot grid the light bands already carry, inverted for the dark one */
@@ -2541,13 +2548,13 @@ summary:focus-visible,
   line-height: .82;
   font-weight: 300;
   letter-spacing: -.04em;
-  color: rgba(31,37,87,.55);
+  color: rgba(22,57,94,.55);
   transition: color .5s var(--ease);
 }
 @supports (-webkit-text-stroke: 1px #000) {
   .rows--svc .row__n {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(31,37,87,.55);
+    -webkit-text-stroke: 1px rgba(22,57,94,.55);
     transition: color .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
   }
   .rows--svc .row:hover .row__n { -webkit-text-stroke-color: transparent; }
@@ -2582,7 +2589,7 @@ summary:focus-visible,
   white-space: normal;
   transition: border-color .45s var(--ease), color .45s var(--ease);
 }
-.rows--svc .row:hover .chips li { border-color: #c9cac4; color: var(--ink); }
+.rows--svc .row:hover .chips li { border-color: #c9d1db; color: var(--ink); }
 
 @media (max-width: 900px) {
   /* the ledger stacks, so the cell divider has to become a rule above */
@@ -2648,13 +2655,13 @@ summary:focus-visible,
   line-height: .82;
   font-weight: 300;
   letter-spacing: -.04em;
-  color: rgba(31,37,87,.55);
+  color: rgba(22,57,94,.55);
   transition: color .5s var(--ease);
 }
 @supports (-webkit-text-stroke: 1px #000) {
   .acc__n {
     color: transparent;
-    -webkit-text-stroke: 1px rgba(31,37,87,.55);
+    -webkit-text-stroke: 1px rgba(22,57,94,.55);
     transition: color .5s var(--ease), -webkit-text-stroke-color .5s var(--ease);
   }
   .acc__item:hover .acc__n,
@@ -2684,7 +2691,7 @@ summary:focus-visible,
   white-space: normal;
   transition: border-color .45s var(--ease), color .45s var(--ease);
 }
-.acc__item:hover .chips li { border-color: #c9cac4; color: var(--ink); }
+.acc__item:hover .chips li { border-color: #c9d1db; color: var(--ink); }
 
 @media (max-width: 900px) {
   .acc__btn { grid-template-columns: clamp(52px,11vw,72px) 1fr 28px; gap: clamp(14px,2.4vw,22px); }
@@ -2870,9 +2877,9 @@ summary:focus-visible,
    marker — each thread also carries its client name as text, and each founding
    card carries a "Founding client" label. */
 :root {
-  --thread-sbs-waterproofing: #1f2557;
-  --thread-homeassist:        #4a5490;
-  --thread-wastemart:         #7b84b8;
+  --thread-sbs-waterproofing: #16395e;
+  --thread-homeassist:        #2a5c8a;
+  --thread-wastemart:         #5f8fb5;
 }
 
 .stl { position: relative; }
@@ -3164,3 +3171,174 @@ summary:focus-visible,
 }
 /* the wordmark standing in for a founder-card logo carries that card's heading weight */
 .client-mark--lg { font-size: var(--fs-display); letter-spacing: -.035em; line-height: 1.05; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   TIDY — one system for the whole corporate site
+   The layers above were written page by page, and each one brought its own
+   section padding, its own heading sizes and its own ground colour. This
+   block is the single place those decisions are now made:
+
+     · colour   — the tokens at the top of the file, all taken from the hero
+     · type     — eight steps; every heading on the site resolves to one
+     · rhythm   — every section carries --sec-y on both edges, no more, no less
+     · grounds  — paper → wash → paper → tint, one dark band, then the footer
+     · heroes   — every page opens the same way: the hero photograph under
+                  the same scrim, type set left, one h1
+
+   Rules here are written at the same specificity as the ones they replace
+   and simply come later, so nothing needs !important.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── type ─────────────────────────────────────────────────────────────── */
+body { font-size: var(--fs-copy); }
+.lede { font-size: var(--fs-name); }
+.eyebrow { margin-bottom: 14px; letter-spacing: .10em; }
+.chero__kicker { margin-bottom: 14px; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .10em; }
+
+/* a section title leads straight into its content, unless it sits in a
+   header row that already carries the gap */
+.display { margin-bottom: var(--head-gap); }
+.sec__head .display,
+.values__head .display,
+.what__head .display,
+.chap__head .display { margin-bottom: 0; }
+.origin .display,
+.endnote .display { margin-bottom: clamp(16px, 2vw, 24px); }
+.ctc__title { font-size: var(--fs-display); margin-bottom: clamp(16px, 2vw, 24px); }
+h1.ctc__title { font-size: var(--fs-hero); }
+
+/* every h3 that titles a card, a step or an item is one size and one weight */
+.card__t,
+.engage__t,
+.stl__headline,
+.wk__name,
+.hist__client h3,
+.next__t,
+.acc__name,
+.row__name,
+.proof__name { font-size: var(--fs-title); font-weight: 500; letter-spacing: -.018em; line-height: 1.25; text-transform: none; color: var(--ink); }
+.card__t { margin: 16px 0 8px; }
+.cards--ways .card__t { margin-top: 0; }
+.stp__t,
+.step__t,
+.group h3,
+.tl__t { font-size: var(--fs-name); font-weight: 500; letter-spacing: -.012em; line-height: 1.3; text-transform: none; color: var(--ink); }
+.stp p, .step p, .next li p, .tl__item p { font-size: var(--fs-copy); }
+
+/* the large names: a client wordmark, a solution, a timeline entry */
+.client-mark--lg,
+.sol__name,
+.stl__client { font-size: var(--fs-lead); font-weight: 600; letter-spacing: -.025em; line-height: 1.1; }
+.wk__fname { font-size: var(--fs-lead); }
+.endo__line p { font-size: var(--fs-name); }
+
+/* the decorative numerals stay decorative: large, but not larger than a title */
+.acc__n,
+.rows--svc .row__n { font-size: clamp(30px, 3.4vw, 52px); }
+@media (max-width: 900px) { .acc__n, .rows--svc .row__n { font-size: clamp(26px, 5vw, 40px); } }
+
+/* ── rhythm ───────────────────────────────────────────────────────────── */
+main > section,
+.sec, .sec--tight, .sec--last,
+.about, .what, .values, .work, .chap, .ctc, .endnote, .legal,
+.proof, .stl, .origin, .ways, .engage, .wk, .sol { padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
+
+/* the one exception: the proof strip is a line and three names, not a chapter */
+.proof, .hero + .proof { padding-top: var(--sec-y-s); padding-bottom: var(--sec-y-s); }
+
+/* a page that opens on a light section still needs to clear the fixed bar */
+main > .ctc:first-child,
+main > .legal:first-child { padding-top: var(--hero-top); }
+
+/* heroes keep their own measure */
+.hero { padding-top: var(--hero-top); padding-bottom: var(--hero-bottom); }
+.chero, .ihero { padding-top: var(--hero-top); padding-bottom: clamp(52px, 6.5vw, 88px); }
+.hero + .band, .shero + .band, .ihero + .band, .whero + .band, .chero + .band { padding-top: var(--sec-y); }
+
+/* the closing band used to carry a top margin as well, which left a strip of
+   bare page between it and the section above — the gap read as a mistake */
+.endnote { margin-top: 0; }
+
+/* the section header row: title left, lede right, both on the same baseline */
+.sec__head,
+.values__head,
+.what__head { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: end; padding-bottom: var(--head-gap); }
+.sec__head .lede,
+.values__head .lede,
+.what__head .lede { max-width: 46ch; }
+@media (max-width: 900px) {
+  .sec__head, .values__head, .what__head { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* lists that followed a title used to bring their own top margin on top of
+   the title's; the title now owns that space */
+.stats, .hist__clients, .stack__row, .mods { margin-top: 0; }
+
+/* ── grounds ──────────────────────────────────────────────────────────── */
+.band-warm { background-color: var(--paper-2); }
+/* paper footer under a paper section: a hairline so the seam still reads */
+.foot { border-top: 1px solid var(--rule-soft); }
+.band-ink + .foot, .endnote + .foot { border-top: 0; }
+
+/* ── page heroes: the same sky as the home page, type set left ────────── */
+.chero {
+  text-align: left;
+  background: var(--navy-deep) url('../img/home/hero-bg.jpg') center / cover no-repeat;
+}
+.chero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(8,34,62,.94) 0%, rgba(8,34,62,.88) 46%, rgba(8,34,62,.62) 100%),
+    linear-gradient(to bottom, rgba(8,34,62,.5) 0%, rgba(8,34,62,0) 30%, rgba(8,34,62,0) 70%, rgba(8,34,62,.45) 100%);
+}
+.chero .dotgrid { display: none; }
+.chero__title { margin-left: 0; margin-right: 0; max-width: 18ch; }
+.chero__copy { margin-left: 0; margin-right: 0; max-width: 52ch; font-size: var(--fs-name); color: rgba(255,255,255,.88); }
+.chero__meta { justify-content: flex-start; }
+.chero__meta div { text-align: left; }
+.chero .story__meta { margin-top: clamp(32px, 4vw, 48px); padding-top: clamp(20px, 2.4vw, 28px); border-top: 1px solid rgba(255,255,255,.2); }
+.chero .story__meta dt { color: rgba(255,255,255,.72); }
+.hero__copy { font-size: var(--fs-name); }
+
+/* ── components that were out of step ────────────────────────────────── */
+/* the founders row reads as three ruled columns, like every other item row */
+.wk__founder { padding-top: clamp(16px, 2vw, 22px); border-top: 1px solid var(--rule); }
+.wk__fsince { margin: 0; font-size: var(--fs-small); color: var(--ink-3); }
+.wk__fline { margin: 0; color: var(--ink-2); }
+.wk__founder .arrow-link { margin-top: 6px; align-self: flex-start; }
+
+/* the team grid sat in a staggered cascade that read as misalignment */
+.roster > *:nth-child(3n+2),
+.roster > *:nth-child(3n+3) { margin-top: 0; }
+.mate__face { aspect-ratio: 4 / 5; }
+
+/* the four route cards share the card kit; the arrow sits on the baseline */
+.cards--ways .card { background: var(--paper-2); }
+
+/* numbered process and next-step grids: the numeral is quiet, the title leads */
+.stp__n, .next__n, .engage__n { color: var(--blue); }
+
+/* every control looks clickable */
+button, summary, [role="button"] { cursor: pointer; }
+
+/* the accordion row wash on a paper ground */
+.acc__item:hover { background: var(--paper-2); }
+
+/* contact page: the enquiry card sits on the lifted ground */
+.ctc .form { background: var(--paper-2); }
+
+/* the team: a compact row per person — initials as an avatar beside the name,
+   not a photograph-sized block with two letters in it */
+.roster { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.2vw, 28px) clamp(18px, 2.6vw, 40px); }
+.mate { display: grid; grid-template-columns: 64px minmax(0, 1fr); grid-template-rows: auto auto; gap: 4px 16px; align-items: start; padding-top: clamp(14px, 1.8vw, 20px); border-top: 1px solid var(--rule); }
+.mate__face { grid-row: 1 / 3; }
+.mate__n, .mate__r { grid-column: 2; }
+.mate__n { margin: 0; padding-top: 10px; }
+.mate__face { width: 64px; aspect-ratio: 1 / 1; margin: 0; border-radius: 50%; font-size: var(--fs-title); font-weight: 500; letter-spacing: .02em; }
+@media (max-width: 900px) { .roster { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .roster { grid-template-columns: 1fr; } }
+
+/* a link inside running copy is underlined, so it never depends on colour alone */
+main p > a:not([class]) { color: var(--navy); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+main p > a:not([class]):hover { color: var(--blue); }

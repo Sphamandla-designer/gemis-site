@@ -93,7 +93,9 @@ def client_logo(slug, client, wide=False, name_markup=''):
     # duplication rather than a design.
     block = (f'<span class="img-tbc{shape}" role="img" '
              f'aria-label="{esc(client)} logo to follow">Image TBC</span>' + name_markup)
-    mark = (f'<span class="client-mark client-mark--lg">{esc(client)}</span>'
+    # the fallback keeps the card's heading element, so the live page has the
+    # same outline as the review page — only the mark inside it differs
+    mark = (f'<h3 class="wk__fname"><span class="client-mark client-mark--lg">{esc(client)}</span></h3>'
             if name_markup else f'<span class="client-mark">{esc(client)}</span>')
     return hideable(f'logo-{slug}', block, mark)
 

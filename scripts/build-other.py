@@ -164,6 +164,7 @@ def bespoke():
 
     services = rebase(blocks['services'], base)
     process = rebase(blocks['process'], base)
+    process = process.replace('band band-warm', 'band band-wash')  # the warm ground is retired
 
     # "See it in production" goes at the end of each capability's panel, after its
     # chips list. It must never land inside .acc__btn: a link inside a button is a
@@ -243,7 +244,7 @@ def managem():
       </div>
     </section>
 
-    <section class="origin band band-warm" id="origin" aria-labelledby="originHeading">
+    <section class="origin band band-wash" id="origin" aria-labelledby="originHeading">
       <div class="shell origin__grid">
         <div class="origin__body">
           <p class="eyebrow" data-reveal>Born at SBS Waterproofing</p>
@@ -309,6 +310,8 @@ def our_story():
     src = original('about.html')
     blocks = sections(src, ['story', 'team'])
     story = rebase(blocks.get('story', ''), base)
+    # it follows the wash band above, so it takes the paper ground
+    story = story.replace('class="sec band band-wash" id="story"', 'class="sec band" id="story"')
     team = rebase(blocks.get('team', ''), base)
 
     founders = '\n'.join(
