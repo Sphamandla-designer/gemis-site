@@ -40,6 +40,16 @@ ICONS = {
 SERVICES = [
     {
         'slug': 'custom-software',
+        'faq': [
+            ('How long does a custom system take to build?',
+             'It depends on the size of the operation, but the shape is consistent: a short discovery, a design that is tested with your people, then a build in demonstrated sprints over months rather than weeks. You see working software early and steer it, so there is no long wait for a big reveal.'),
+            ('What does it cost compared with off-the-shelf software?',
+             'A custom build is a capital project plus a monthly running cost, so it costs more up front than a licence. It pays back where off-the-shelf software is being worked around — in retyping, reconciliation and the growth a template cannot take. A discovery session puts a number on both sides.'),
+            ('Who owns the system and the code?',
+             'You do. The system is built on your Microsoft Cloud environment, documented, and handed over with the people who built it still looking after it. Nothing is locked to us.'),
+            ('Can it connect to the systems we already run?',
+             'Yes. Most of what we build has to talk to an accounting package, a payment provider or an existing platform from day one, and integration is scoped at the start rather than added later.'),
+        ],
         'name': 'Custom software development',
         'short': 'Systems designed around how your business actually runs.',
         'intro': 'When off-the-shelf software holds you back, we design and build solutions around '
@@ -67,6 +77,16 @@ SERVICES = [
     },
     {
         'slug': 'microsoft-cloud',
+        'faq': [
+            ('Is our data kept in South Africa?',
+             'For most clients, yes. Azure has South African regions, and we design environments in-country unless a business has a reason to do otherwise, which also helps with POPIA obligations.'),
+            ('Will we need our own IT team to run it?',
+             'No. We architect the environment, deploy it, monitor it and keep it patched as part of ongoing support. You see the cost and the status; we do the running.'),
+            ('What happens during load-shedding?',
+             'A system on Azure does not notice that your office has lost power. It stays reachable from a phone or a laptop on a battery, which is one of the main reasons businesses move their core system to the cloud.'),
+            ('Can you move an existing system to the cloud without downtime?',
+             'We migrate in stages with a tested way back at each step, and run old and new side by side until the switch is a formality. The business does not have to stop to move.'),
+        ],
         'name': 'Microsoft Cloud solutions',
         'short': 'Secure, scalable infrastructure on Azure, run for you.',
         'intro': 'We architect, deploy and manage solutions on the Microsoft Cloud — the same '
@@ -92,6 +112,16 @@ SERVICES = [
     },
     {
         'slug': 'enterprise-saas',
+        'faq': [
+            ('What makes a platform different from a custom system?',
+             'A platform serves many organisations from one shared core, with each customer’s configuration, data and permissions kept separate. Tenancy, billing and release management have to be designed in from the start; they cannot be bolted on later.'),
+            ('Have you built one before?',
+             'Yes. ManaGEM, our own business management platform, runs on exactly this foundation — a shared core with per-tenant configuration — and several of the systems in our case studies serve more than one organisation.'),
+            ('How do you handle security and access across tenants?',
+             'Role-based access that holds up to audit, data isolated per tenant, identity on the Microsoft Cloud, and a release process that lets a change reach one customer before all of them.'),
+            ('Can the platform grow without growing our support team?',
+             'That is the point of it. Onboarding a new customer is configuration rather than a build, and the reporting shows which features are earning their keep.'),
+        ],
         'name': 'Enterprise SaaS platforms',
         'short': 'Multi-tenant platforms built to serve thousands of users.',
         'intro': 'Multi-tenant platforms engineered to serve thousands of users — built for '
@@ -117,6 +147,16 @@ SERVICES = [
     },
     {
         'slug': 'mobile-apps',
+        'faq': [
+            ('Does the app work without signal?',
+             'Yes. Offline-first is built in from the start: work is captured on the device and syncs when there is a connection. In South Africa signal is a hope, not a plan, so we never assume it.'),
+            ('Android, iOS or both?',
+             'Both, from one codebase, so a field team on mixed devices runs the same app. We also design for one hand and a dirty screen, because that is how it is actually used.'),
+            ('Is the app a separate system from the office one?',
+             'No. The app is a window onto the same system, so a scan in the field is visible in the office the moment it lands, and nothing is retyped.'),
+            ('What about the phones themselves?',
+             'The app runs on ordinary Android and iOS devices, so there is no special hardware to buy, and a lost phone can be cut off from the system without losing data.'),
+        ],
         'name': 'Mobile application development',
         'short': 'Capture work where it happens — online or offline, always in sync.',
         'intro': 'Mobile apps that extend your systems into the field — capturing work where it '
@@ -141,6 +181,16 @@ SERVICES = [
     },
     {
         'slug': 'business-intelligence',
+        'faq': [
+            ('We already have reports. What would change?',
+             'Reports that are compiled by hand are a week old by the time they are read. A dashboard draws live from the systems the numbers come from, so the question is answered when it is asked and the people compiling reports get their week back.'),
+            ('Do we need all our data in one place first?',
+             'No. Power BI connects to several sources at once. What does need to be agreed first is who owns each figure, so that a number means the same thing everywhere it appears.'),
+            ('Can people see it on their phones?',
+             'Yes. Dashboards are built to be read on a phone every morning, not only on a boardroom screen.'),
+            ('Can you show where a number came from?',
+             'Every figure traces back to the system it was drawn from. That is what makes the business trust the dashboard enough to stop keeping its own spreadsheet.'),
+        ],
         'name': 'Business intelligence & reporting',
         'short': 'Power BI dashboards that turn scattered data into decisions.',
         'intro': 'Power BI dashboards that turn scattered data into clear, real-time '
@@ -164,6 +214,16 @@ SERVICES = [
     },
     {
         'slug': 'system-integration',
+        'faq': [
+            ('Which systems can you connect?',
+             'Accounting packages, ERP and CRM platforms, payment gateways, authentication services and most third-party APIs. Where a system has no interface, we build the bridge.'),
+            ('Will integration break when one of the systems is updated?',
+             'We connect through each system’s proper interface rather than through exports and imports, monitor the integration layer, and maintain it as part of ongoing support, so an update on one side is handled rather than discovered.'),
+            ('Which system should own the data?',
+             'That is the first question we answer. Each piece of information gets one owner, and the others read from it. It is a business decision as much as a technical one, and it is made before anything is connected.'),
+            ('What does it save?',
+             'Every retyping, and with it the errors, the delays and the arguments about which figure is right. Accounting, operations, payments and reporting end up agreeing without anyone reconciling them.'),
+        ],
         'name': 'System integration',
         'short': 'Make your systems talk to each other. End double capture.',
         'intro': 'We make your systems talk to each other — eliminating double capture, '
@@ -188,6 +248,16 @@ SERVICES = [
     },
     {
         'slug': 'ux-design',
+        'faq': [
+            ('Why does design matter for internal software?',
+             'A system that is hard to use gets worked around, and a system that is worked around holds bad data. Good design decides whether the people who live in the software every day put the right thing in the right place.'),
+            ('Do you test designs with our staff?',
+             'Yes. Prototypes go in front of the people who will use them early, so the design is checked against a real working day rather than a demo.'),
+            ('Is the design team separate from the build team?',
+             'GEMIS Studio is the design practice inside the company that builds, so what is designed is what ships, and a design decision never gets lost in a hand-off.'),
+            ('Can you redesign a system we already have?',
+             'Yes. Redesigning a dated interface is one of the most common ways we modernise a system without replacing it, and it usually cuts training and support calls straight away.'),
+        ],
         'name': 'UX & system design',
         'short': 'Enterprise software people actually enjoy using.',
         'intro': 'Enterprise software doesn’t have to feel like enterprise software. We design '
@@ -212,6 +282,16 @@ SERVICES = [
     },
     {
         'slug': 'modernisation',
+        'faq': [
+            ('Do we have to replace the whole system at once?',
+             'No, and we recommend against it. We move a system in stages — the data first, then the parts that hurt most — with old and new running side by side until the switch is a formality.'),
+            ('Will the business have to stop while you work?',
+             'No. Zero-disruption rollouts are the standard: every stage has a tested way back, and the business keeps trading throughout.'),
+            ('What happens to our existing data?',
+             'It is migrated once, cleaned as it goes, and checked against the old system before the switch. Some history may stay in an archive where it belongs.'),
+            ('How do you decide what to keep?',
+             'We separate what the old system does well from what people have learned to work around. The first is kept; the second is where the modernisation earns its cost.'),
+        ],
         'name': 'Software modernisation',
         'short': 'Move ageing systems forward without stopping the business.',
         'intro': 'We migrate ageing systems to the cloud, redesign dated interfaces, improve '
@@ -235,6 +315,16 @@ SERVICES = [
     },
     {
         'slug': 'support',
+        'faq': [
+            ('What does ongoing support include?',
+             'Monitoring, maintenance, security updates, training for new staff, technical support, and improvements as the business changes — on a monthly arrangement sized to the system rather than to a contract template.'),
+            ('Who answers when we call?',
+             'The people who built the system, who already know it. Our founding clients have been with us since 2013 and 2014, and we still look after the systems we built them.'),
+            ('Can you support a system someone else built?',
+             'Usually, after a review of the code, the environment and the documentation. Where it is on the Microsoft Cloud or can be moved there, support is straightforward.'),
+            ('How do changes get made after go-live?',
+             'The same way the system was built: a request, a short scope, a demonstrated change and a rollout that does not interrupt the business. Go-live is the start of the system’s life, not the end of the project.'),
+        ],
         'name': 'Ongoing support & maintenance',
         'short': 'We stay after go-live. Some clients have been with us for over a decade.',
         'intro': 'Software needs care beyond go-live. We stay with you — monitoring, maintaining '
