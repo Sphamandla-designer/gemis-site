@@ -223,6 +223,48 @@ def stories_html(base=''):
         </div>'''
 
 
+
+# ── the design-reference kit, shared by every generated page ─────────────
+def srows(items, numbered=True):
+    """
+    Numbered ruled rows — the "What we do" pattern from the design references.
+    items: (name, body_html, chips, link_html). body_html is already escaped.
+    """
+    out = []
+    for i, (name, body, chips, link) in enumerate(items):
+        chip_html = ''
+        if chips:
+            chip_html = ('\n              <ul class="srow__chips">\n'
+                         + '\n'.join(f'                <li>{esc(c)}</li>' for c in chips)
+                         + '\n              </ul>')
+        n = f'<span class="srow__n" aria-hidden="true">{i + 1:02d}</span>' if numbered else ''
+        out.append(f'''          <li class="srow" data-reveal style="--d:{i * 60}ms">
+            {n}
+            <h3 class="srow__name">{name}</h3>
+            <div class="srow__body">
+              {body}{chip_html}{('' if not link else chr(10) + '              ' + link)}
+            </div>
+          </li>''')
+    return '\n'.join(out)
+
+
+def feat(title, href, img, meta, body, chips=(), extra_attrs='', link=''):
+    """A ruled feature: title row with a plus, image, meta, copy, chips."""
+    chip_html = ''
+    if chips:
+        chip_html = ('\n            <ul class="post__chips">\n'
+                     + '\n'.join(f'              <li>{esc(c)}</li>' for c in chips)
+                     + '\n            </ul>')
+    return f'''          <article class="post"{extra_attrs}>
+            <h3 class="post__t"><a href="{href}"><span class="post__plus" aria-hidden="true">+</span><span>{title}</span></a></h3>
+            <a class="post__media" href="{href}" tabindex="-1" aria-hidden="true">
+              <img src="{img}" alt="" loading="lazy" width="1280" height="720" />
+            </a>
+            <p class="post__meta">{meta}</p>
+            <p class="post__x">{body}</p>{chip_html}{('' if not link else chr(10) + '            ' + link)}
+          </article>'''
+
+
 def fill_slot(path, slot, content):
     """
     Fill a slot, and stay fillable.

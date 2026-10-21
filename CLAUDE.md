@@ -85,6 +85,13 @@ layer that first introduced the component.
   type set left. A story page's endorsement chapter is itself `.unconfirmed`, so an
   unapproved line removes the whole band rather than leaving an empty one.
 
+- **The reference kit** (from the owner's screenshots in `qa/design-refs/`) runs on
+  every page: `.srows/.srow` numbered ruled rows for anything ordered (services,
+  steps, founders, reasons), `.feats/.post` ruled features for anything with an
+  image (articles, case studies, products), `.rlist` ruled link lists, `.plusgrid`
+  (`--tr`, `--br`) corner accents, and `.endnote` as the photographic band. The
+  helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
+
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
 
