@@ -25,7 +25,7 @@ in the repository, so it is recorded here and `scripts/stories.py` applies it.
 - Ryan Smith (no title), company: SBS Waterproofing
 - Philippine Francke, Managing Director, company: HashTopic
 
-The quotations themselves are in `endorsements.md` (direct quotes from
+The quotations themselves are in `scripts/endorsements.md` (direct quotes from gemis.co.za, supplied by the owner on 2026-10-22; direct quotes from
 gemis.co.za, copied exactly); the build reads them from
 `_project/assets-incoming/content/endorsements.md` or `scripts/endorsements.md`.
 

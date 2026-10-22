@@ -139,9 +139,8 @@ layer that first introduced the component.
   under reduced motion; the band's bottom padding lives on the statement's
   pin (`.selw__out-pin`), so when the pin releases the statement is exactly
   `--sec-y` from the next section) → **In their words** on the Client stories stage
-  (names on the left, one quotation at a time; shown live, with
-  "Quotation to follow." in place of each line until `endorsements.md`
-  exists, at the owner's instruction) → **The operating logic** (`operating_logic()`: the four principles,
+  (names on the left, one quotation at a time, the three lines from
+  `scripts/endorsements.md`) → **The operating logic** (`operating_logic()`: the four principles,
   verbatim in `OPERATING`, on the brand navy — the hero photograph under the
   standard `band-ink` navy scrim, white and silver type, `#8fc3f3` the one
   accent; the title on `--fs-display` like every other section heading;
@@ -217,10 +216,10 @@ hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 **Endorsements are quotations, never written here.** `scripts/stories.py` reads
 them character for character from `_project/assets-incoming/content/endorsements.md`
 (or `scripts/endorsements.md`) — direct quotes from gemis.co.za — into
-`ENDORSERS[...]['line']`. A person with no line in that file has no card on the
-story and ManaGEM pages; on the homepage stage their slide shows the italic
-"Quotation to follow." (`.cs__pending`, a hideable TBC) until the file exists —
-the owner asked for the section to show now. Names, titles and companies come from `scripts/facts.md`
+`ENDORSERS[...]['line']`. The three lines are in `scripts/endorsements.md` now
+(supplied by the owner, 2026-10-22). A person with no line in that file has no
+card on the story and ManaGEM pages, and their homepage slide shows the italic
+"Quotation to follow." (`.cs__pending`, a hideable TBC). Names, titles and companies come from `scripts/facts.md`
 (Keshan Patel, CEO, HomeAssist (Pty) Ltd · Ryan Smith, SBS Waterproofing, no
 title · Philippine Francke, Managing Director, HashTopic). Never use the word
 "testimonial" in visible copy or in class names.

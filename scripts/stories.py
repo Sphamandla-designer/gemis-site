@@ -15,6 +15,7 @@ quoted anywhere, per the video document's own instruction.
 """
 import json
 import os
+import re
 
 VIDEO_DIR = 'assets/video/case-studies/'
 CANONICAL = 'https://sphamandla-designer.github.io/gemis-site/'
@@ -295,9 +296,7 @@ TBC_KIND = {
 
     # ── hideable ─────────────────────────────────────────────────────────
     # a person whose quotation is not yet in endorsements.md has no card live
-    'endorsement-keshan-line': 'hideable',
-    'endorsement-ryan-line': 'hideable',
-    'endorsement-philippine-line': 'hideable',
+    # (Keshan, Ryan and Philippine are confirmed there now, so only Nazier remains)
     'endorsement-nazier-line': 'hideable',
     'logo-wastemart': 'hideable',
     'logo-homeassist': 'hideable',

@@ -250,6 +250,23 @@ JS errors; reduced motion and no-JS; the functional sweep (overlay from a
 card, the stage's tabs, nav links, tab order); chrome `--check`; the
 standalone bundle rebuilt (19.4 MB, 29 pages, 72 assets, 7 videos).
 
+### The endorsements arrive
+
+The owner supplied the three quotations in chat on 2026-10-22. They are in
+`scripts/endorsements.md` under each person's name, and `stories.py` reads
+them character for character (the loader needed its missing `import re`,
+which the empty-file path had never exercised). Verified by extracting the
+text of each built page and counting the exact string: Keshan Patel on the
+home and the HomeAssist outcomes; Ryan Smith on the home, the SBS 2014
+chapter and the ManaGEM origin block, which now carries "Where the SBS
+relationship began:"; Philippine Francke on the home. The homepage keeps the
+order the earlier brief set (Keshan, Ryan, Philippine). The three
+`endorsement-*-line` ids are out of the TBC table and `OPEN_ITEMS.md`; Nazier
+Mathinus's stays, with no card on the WasteMart page. "Quotation to follow."
+no longer appears anywhere on the live build. Checks after the change: links
+2,033 / 0 broken; axe 0 serious or critical; layout sweep clean; functional
+sweep clean; chrome `--check` clean; check-tbc with no blocking change.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

@@ -22,6 +22,13 @@ applied and is no longer listed here.
 These are on the live build **by instruction**, not by the publish-safe rule.
 Replace them before the site is presented as fact.
 
+### `endorsement-keshan-line`, `endorsement-ryan-line`, `endorsement-philippine-line` — closed
+
+The owner supplied the three quotations on 2026-10-22; they are in
+`scripts/endorsements.md` and read into the site character for character. The
+ids are out of the TBC table; the homepage stage, the HomeAssist and SBS story
+chapters and the ManaGEM origin block all carry the real lines.
+
 ### `testimonials-placeholder` — closed
 
 The six invented entries are gone from the repository. The homepage now
@@ -66,7 +73,6 @@ None of these stop a merge. Each has a fallback that reads as finished.
 
 | id | What is missing | What the live build shows instead | Who |
 |---|---|---|---|
-| `endorsement-keshan-line`, `endorsement-ryan-line`, `endorsement-philippine-line` | The quotation, read from `_project/assets-incoming/content/endorsements.md` (or `scripts/endorsements.md`). **The file is not in the repository yet.** The story and ManaGEM cards stay hidden; the homepage "In their words" stage is shown (the owner's instruction) with "Quotation to follow." in place of each line. | Homepage slide reads "Quotation to follow."; no card elsewhere | Sphamandla — push `endorsements.md` |
 | `endorsement-nazier-line` | No endorsement from Nazier Mathinus (WasteMart) exists yet | No card on the WasteMart page | Leon |
 | portraits | Portraits for Keshan Patel, Ryan Smith and Philippine Francke | Initials in a circle | Leon |
 | `logo-wastemart`, `logo-homeassist`, `logo-sbs-waterproofing`, `logo-trans-hex`, `logo-sonke`, `logo-tores-foundation` | Logo files, and permission to use them | The client's name set as a **wordmark** in the site's own type | Leon |
