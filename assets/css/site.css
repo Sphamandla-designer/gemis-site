@@ -4562,3 +4562,16 @@ html.has-modal { overflow: hidden; }
 .story__flow--top { margin: 0 0 clamp(28px, 4vw, 48px); }
 .srow__seen { margin: 12px 0 6px !important; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .band-wash .flow__step { background: #fff; }
+
+/* ── In their words: three cards on the site's grid; the card as it was ── */
+.words__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); }
+.words__item { min-width: 0; display: flex; }
+.words__item .endo { flex: 1 1 auto; }
+.endo__label { margin: 0; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.endo__portrait--initials { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--wash); color: var(--navy); font-size: var(--fs-small); font-weight: 600; letter-spacing: .06em; }
+.endo__co { color: var(--ink-2); }
+.endo__go { margin-top: auto; padding-top: 6px; align-self: flex-start; }
+.origin__where { margin: 0 0 10px; font-size: var(--fs-small); color: var(--ink-3); }
+.chap__words { max-width: 720px; margin-top: clamp(24px, 3vw, 40px); }
+.out__words { margin-top: clamp(24px, 3vw, 40px); max-width: 720px; }
+@media (max-width: 900px) { .words__grid { grid-template-columns: 1fr; } }

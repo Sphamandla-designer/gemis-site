@@ -1,5 +1,5 @@
 """
-Content for the services, products, homepage testimonials and insights.
+Content for the services, products and insights.
 
 One module, read by scripts/apply-chrome.py (the two navigation drop-downs),
 scripts/build-services.py (the Solutions page, nine service pages, the
@@ -382,32 +382,6 @@ PRODUCTS = [
                 'at gemis.tech.',
         'cta': 'Visit gemis.tech',
     },
-]
-
-# ── Homepage testimonials ────────────────────────────────────────────────
-# PLACEHOLDERS. The site owner asked for invented South African names and
-# wording to stand in until approved quotes arrive. None of these people
-# exist and no company is named. Replace every entry before this is taken
-# as fact; OPEN_ITEMS.md lists it under `testimonials-placeholder`.
-TESTIMONIALS = [
-    ('Thandiwe Mokoena', 'Operations Director', 'waterproofing contractor, Cape Town',
-     'For the first time every quote, job and invoice is in one place. My planners stopped '
-     'phoning around for status — they just look.', 5),
-    ('Pieter van der Merwe', 'Financial Manager', 'plumbing claims administrator, Johannesburg',
-     'Month-end used to take the better part of two weeks. The system GEMIS built closes it in '
-     'two days, and the numbers agree with the bank.', 5),
-    ('Naledi Dlamini', 'Monitoring & Evaluation Lead', 'non-profit, Pretoria',
-     'Field officers capture on their phones, with or without signal, and the dashboard is '
-     'current by the time they are back in the office.', 5),
-    ('Sipho Ndlovu', 'Managing Director', 'skip-hire operator, Durban',
-     'They did not sell us a package. They sat in our yard for a week first, and the system '
-     'works the way the yard works.', 5),
-    ('Anika Pillay', 'Head of Finance', 'mining services group, Gauteng',
-     'A report that took a team a week now takes one click, and it is right. That changed how '
-     'our executive meeting runs.', 5),
-    ('Johan Botha', 'Owner', 'small manufacturing business, Stellenbosch',
-     'What I value most is that the same people who built it still answer the phone, ten years '
-     'on. That is rare.', 5),
 ]
 
 # ── News & Insights ──────────────────────────────────────────────────────

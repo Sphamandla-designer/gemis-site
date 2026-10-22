@@ -258,7 +258,8 @@ def managem():
           <p data-reveal style="--d:180ms"><a class="arrow-link arrow-link--quiet" href="{base}work/sbs-waterproofing/">Read the SBS Waterproofing story {ARROW}</a></p>
         </div>
         <div class="origin__aside" data-reveal style="--d:160ms">
-          {B.endorsement_html('ryan-smith', base, 'Client since 2014')}
+          {'<p class="origin__where">Where the SBS relationship began:</p>' if S.ENDORSERS['ryan-smith'].get('line') else ''}
+          {B.endorsement_html('ryan-smith', base)}
         </div>
       </div>
     </section>

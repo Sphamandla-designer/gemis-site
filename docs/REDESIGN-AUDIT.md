@@ -92,7 +92,7 @@ restricted / permission needed.
 | "A report that took weeks became available on demand" (Trans Hex) | work/trans-hex | video narration | P | Published with "(as stated in the case study)" |
 | 40 countries (Sonke), 24 schools / 430+ learners (Tore's) | work | video narration | P | Published as the video states them; not turned into outcome metrics |
 | Client testimonials (six, homepage) | home | invented placeholders (owner's earlier instruction) | U | **Removed** — the brief's rule 1 supersedes; replaced by the stories panel and confirmed metrics |
-| Endorsement lines from Ryan Smith, Kehan Patel, Nazier Mathinus | work/<slug> | names and companies in facts.md; **no approved line** | M | Cards stay hidden (`endorsement-*` hideable items) |
+| Endorsement lines from Ryan Smith, Keshan Patel, Nazier Mathinus | work/<slug> | names and companies in facts.md; **no approved line** | M | Cards stay hidden (`endorsement-*` hideable items) |
 | Phone number `+27 11 219 5008` | contact, home | old site only; absent from facts.md | U | Hidden (`phone-number`) |
 | Microsoft Partner designation | home hero | owner instruction to keep; no designation in facts.md | P | Shown; marked under `?review=1` (`microsoft-partner-badge`) |
 | Team titles and surnames (Graeme Mehl CEO, Leon Small BDM, Byron Thompson senior developer, Sebastian Vries and Vanessa Davis development) | our-story | **The 2025 company profile in the repository states them**; facts.md does not | P | Still hidden, per the owner's PR #85 instruction ("tbc unless facts.md confirms"). One line in facts.md clears it. |

@@ -208,7 +208,7 @@ already used are unchanged.
 | Phone number | `phone-number` | the number, in `facts.md` |
 | Team titles and surnames | `team-titles` | one line in `facts.md` confirming the 2025 profile's roles |
 | Microsoft Partner designation and badge artwork | `microsoft-partner-badge` | the designation |
-| Endorsement lines (Ryan Smith, Kehan Patel, Nazier Mathinus) | `endorsement-*` | approved wording, title, permission |
+| Endorsement lines (Ryan Smith, Keshan Patel, Nazier Mathinus) | `endorsement-*` | approved wording, title, permission |
 | Client logos permission | `logo-*` | confirmation the supplied marks may be shown |
 | SmartStart, SwiftMLS, FINOS, RentFlow, NuraCoach, Lungelo, HashTopic | `entry-*-status` | client system or concept; GEMIS's role; permission |
 | Sonke and Tore's current status | — | whether the systems remain in use |

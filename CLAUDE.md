@@ -109,9 +109,8 @@ layer that first introduced the component.
   `testimonials.png`) set: the stories panel (`stories_section()` — on the home's
   partnership section, over the hero photograph, never black) and the horizontal
   timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
-  steps, About's milestones). The "Client stories" testimonial stage
-  (`testimonials_html()`) is no longer rendered anywhere: the invented
-  placeholders were removed by the case-study-led redesign. Any tabbed stage is a
+  steps, About's milestones). The old "Client stories" stage is gone with its
+  invented entries; the homepage carries **In their words** instead. Any tabbed stage is a
   `[data-stage]` driven by `assets/js/home.js`; `data-auto="0"` turns off the
   auto-advance. Section headers (`.sec__head`) carry the ruled, plus-marked
   bottom edge the references share. The three founding clients on the stories
@@ -134,8 +133,9 @@ layer that first introduced the component.
   its video; then the transition statement `[data-scaleup]` that scales up
   as it is scrolled to the centre of the viewport, holds, and releases;
   both static without JS and
-  under reduced motion) → **Client stories** (`testimonials_html()`, the
-  owner's placeholder testimonials) → the overall thinking (`PRINCIPLES` +
+  under reduced motion) → **In their words** (`in_their_words()`: the three
+  endorsements read verbatim from `endorsements.md`; omitted until the file
+  exists) → the overall thinking (`PRINCIPLES` +
   `OVERALL_FLOW` in `build-home.py`) → **Book a Discovery Session** with the
   form, as it was. No capabilities, stories panel, how-we-work or company
   section on the home; those live on Solutions, Case Studies and Our Story.
@@ -199,12 +199,15 @@ two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.m
 does not confirm — the phone number, team titles, the partner designation — is a
 hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 
-**One standing exception, at the owner's instruction:** the homepage "Client
-stories" (`TESTIMONIALS` in `scripts/services.py`) are invented placeholders —
-South African names, no company named — until approved quotes arrive. The owner
-reaffirmed this after the case-study-led redesign removed them. OPEN_ITEMS.md
-tracks them as `testimonials-placeholder`. Do not add more invented content on
-the strength of that exception.
+**Endorsements are quotations, never written here.** `scripts/stories.py` reads
+them character for character from `_project/assets-incoming/content/endorsements.md`
+(or `scripts/endorsements.md`) — direct quotes from gemis.co.za — into
+`ENDORSERS[...]['line']`. A person with no line in that file has no card on the
+live build, and the homepage "In their words" section is omitted until at least
+one line exists. Names, titles and companies come from `scripts/facts.md`
+(Keshan Patel, CEO, HomeAssist (Pty) Ltd · Ryan Smith, SBS Waterproofing, no
+title · Philippine Francke, Managing Director, HashTopic). Never use the word
+"testimonial" in visible copy or in class names.
 
 ## Site map (navigation)
 

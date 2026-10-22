@@ -116,12 +116,20 @@ def story_page(s):
     ov = '\n'.join(f'''          <div class="ov__item" data-reveal style="--d:{i * 50}ms"><dt>{esc(k)}</dt><dd>{esc(val)}</dd></div>''' for i, (k, val) in enumerate(overview))
 
     endo = ''
-    if founding and s['endorser']:
-        # Hidden on the live build until the line is approved; back under ?review=1.
+    if founding and s['endorser'] and s['slug'] != 'sbs-waterproofing':
+        # the HomeAssist words sit with the outcomes; a person with no line in
+        # endorsements.md has no card live
         endo = f'''
-        <div class="unconfirmed" data-kind="hideable">
-          <h3 class="out__h">Client feedback</h3>
-          {B.endorsement_html(s['endorser'], base, since)}
+        <div class="out__words">
+          {B.endorsement_html(s['endorser'], base, story_link=False)}
+        </div>'''
+    challenge_words = ''
+    if s['slug'] == 'sbs-waterproofing':
+        # Ryan Smith's words describe the 2014 website and Google campaign, so
+        # they sit in the part of the page about that work
+        challenge_words = f'''
+        <div class="chap__words" data-reveal style="--d:200ms">
+          {B.endorsement_html('ryan-smith', base, story_link=False)}
         </div>'''
 
     verified = ''
@@ -285,7 +293,7 @@ def story_page(s):
         </div>
         <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
 {paras(c['challenge'])}
-        </div>
+        </div>{challenge_words}
       </div>
     </section>
 

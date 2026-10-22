@@ -24,20 +24,65 @@ BASE_URL = CANONICAL + VIDEO_DIR
 # every thread also carries its client name as text.
 FOUNDING = ['sbs-waterproofing', 'homeassist', 'wastemart']
 
+# The people whose words appear on the site. Names, titles and companies are
+# from facts.md. The quotations themselves are read, character for character,
+# from endorsements.md (see load_endorsements below); nothing is ever written
+# here. A person with no line in that file has no card on the live build.
 ENDORSERS = {
+    'keshan-patel': dict(
+        name='Keshan Patel', title='CEO', company='HomeAssist (Pty) Ltd', slug='homeassist',
+        since='Client since 2014', initials='KP', line_tbc='endorsement-keshan-line'),
     'ryan-smith': dict(
-        name='Ryan Smith', company='SBS Waterproofing', slug='sbs-waterproofing',
-        title_tbc='endorsement-ryan-title', line_tbc='endorsement-ryan-line',
-        portrait_tbc='endorsement-ryan-portrait', initials='RS'),
-    'kehan-patel': dict(
-        name='Kehan Patel', company='HomeAssist', slug='homeassist',
-        title_tbc='endorsement-kehan-title', line_tbc='endorsement-kehan-line',
-        portrait_tbc='endorsement-kehan-portrait', initials='KP'),
+        name='Ryan Smith', title=None, company='SBS Waterproofing', slug='sbs-waterproofing',
+        since='Client since 2014', initials='RS', line_tbc='endorsement-ryan-line'),
+    'philippine-francke': dict(
+        name='Philippine Francke', title='Managing Director', company='HashTopic', slug=None,
+        since=None, initials='PF', line_tbc='endorsement-philippine-line'),
     'nazier-mathinus': dict(
-        name='Nazier Mathinus', company='WasteMart', slug='wastemart',
-        title_tbc='endorsement-nazier-title', line_tbc='endorsement-nazier-line',
-        portrait_tbc='endorsement-nazier-portrait', initials='NM'),
+        name='Nazier Mathinus', title=None, company='WasteMart', slug='wastemart',
+        since=None, initials='NM', line_tbc='endorsement-nazier-line'),
 }
+# the homepage order
+ENDORSEMENT_ORDER = ['keshan-patel', 'ryan-smith', 'philippine-francke']
+
+ENDORSEMENTS_FILE = None
+for _cand in ('_project/assets-incoming/content/endorsements.md', 'scripts/endorsements.md'):
+    _p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), _cand)
+    if os.path.exists(_p):
+        ENDORSEMENTS_FILE = _p
+        break
+
+
+def load_endorsements():
+    """
+    endorsements.md → {key: line}. The file is the source of truth and the
+    quotations are copied exactly: a line is taken verbatim from the block
+    under the person's name (a "## Name" or "### Name" heading, or a "**Name**"
+    label), with only the surrounding whitespace and any blockquote marker
+    removed. Nothing is paraphrased, shortened or added.
+    """
+    if not ENDORSEMENTS_FILE:
+        return {}
+    text = open(ENDORSEMENTS_FILE, encoding='utf-8').read()
+    found = {}
+    for key, e in ENDORSERS.items():
+        m = re.search(r'(?:^#{1,4}\s*|^\*\*)' + re.escape(e['name']) + r'\b[^\n]*\n(.*?)(?=^#{1,4}\s|^\*\*|\Z)', text, flags=re.S | re.M)
+        if not m:
+            continue
+        body = m.group(1)
+        lines = []
+        for ln in body.splitlines():
+            ln = re.sub(r'^\s*>\s?', '', ln.rstrip())
+            if ln.strip():
+                lines.append(ln.strip())
+        if lines:
+            found[key] = ' '.join(lines).strip()
+    return found
+
+
+ENDORSEMENT_LINES = load_endorsements()
+for _k, _e in ENDORSERS.items():
+    _e['line'] = ENDORSEMENT_LINES.get(_k)
 
 STORIES = [
     dict(
@@ -72,7 +117,7 @@ STORIES = [
         challenge='One system for burst-geyser and plumbing jobs: nearest-plumber dispatch, '
                   'SMS and WhatsApp updates, SANS photo evidence, insurer and warranty links',
         outcome='Every job across the country visible in one place, from first report to sign-off',
-        endorser='kehan-patel',
+        endorser='keshan-patel',
         capabilities=['Homeowners report online, or insurers log the claim',
                       'The next available plumber near the job is assigned automatically from a national panel',
                       'Customers kept informed by SMS or WhatsApp at every step',
@@ -249,15 +294,11 @@ TBC_KIND = {
     'managem-trial-url': 'blocking',
 
     # ── hideable ─────────────────────────────────────────────────────────
+    # a person whose quotation is not yet in endorsements.md has no card live
+    'endorsement-keshan-line': 'hideable',
     'endorsement-ryan-line': 'hideable',
-    'endorsement-ryan-portrait': 'hideable',
-    'endorsement-ryan-title': 'hideable',
-    'endorsement-kehan-line': 'hideable',
-    'endorsement-kehan-portrait': 'hideable',
-    'endorsement-kehan-title': 'hideable',
+    'endorsement-philippine-line': 'hideable',
     'endorsement-nazier-line': 'hideable',
-    'endorsement-nazier-portrait': 'hideable',
-    'endorsement-nazier-title': 'hideable',
     'logo-wastemart': 'hideable',
     'logo-homeassist': 'hideable',
     'logo-sbs-waterproofing': 'hideable',

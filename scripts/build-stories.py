@@ -127,28 +127,48 @@ def video_html(s, base):
 
 
 # ── endorsement card ─────────────────────────────────────────────────────
-def endorsement_html(key, base, since_text=''):
+def endorsement_html(key, base, since_text=None, label='In their words', story_link=True):
     """
-    No line is ever written here. endorsements.md is absent, so every card says
-    the line is still to come. The brief's "theme" column is layout context, not
-    a quote, and is not turned into one.
+    One person's words, exactly as endorsements.md has them. No line in the
+    file means no card on the live build (hidden, visible at ?review=1 with a
+    note). Initials stand in for a portrait until one arrives.
     """
     e = S.ENDORSERS[key]
-    card = f'''<figure class="endo">
-            <div class="endo__portrait img-tbc img-tbc--square" data-tbc="{e['portrait_tbc']}"
-                 role="img" aria-label="Portrait of {esc(e['name'])} to follow">{e['initials']}</div>
+    since = e['since'] if since_text is None else since_text
+    title = f'<span class="endo__title">{esc(e["title"])}</span>' if e.get('title') else ''
+    since_html = f'<span class="endo__since">{esc(since)}</span>' if since else ''
+    link = ''
+    if story_link and e.get('slug'):
+        link = f'<a class="arrow-link arrow-link--quiet endo__go" href="{base}work/{e["slug"]}/">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story {ARROW}</a>'
+    head = f'<p class="endo__label">{esc(label)}</p>' if label else ''
+    if e.get('line'):
+        return f'''<figure class="endo">
+            {head}
+            <span class="endo__portrait endo__portrait--initials" aria-hidden="true">{e['initials']}</span>
             <blockquote class="endo__line">
-              <p>{tbc(e['line_tbc'], 'Endorsement to follow')}</p>
+              <p>{esc(e['line'])}</p>
             </blockquote>
             <figcaption class="endo__by">
               <span class="endo__name">{esc(e['name'])}</span>
-              <span class="endo__title">{tbc(e['title_tbc'], 'Title to confirm')}</span>
+              {title}
               <span class="endo__co">{esc(e['company'])}</span>
-              {f'<span class="endo__since">{since_text}</span>' if since_text else ''}
+              {since_html}
+            </figcaption>
+            {link}
+          </figure>'''
+    card = f'''<figure class="endo">
+            {head}
+            <span class="endo__portrait endo__portrait--initials" aria-hidden="true">{e['initials']}</span>
+            <blockquote class="endo__line">
+              <p>{tbc(e['line_tbc'], 'Quotation to follow from endorsements.md')}</p>
+            </blockquote>
+            <figcaption class="endo__by">
+              <span class="endo__name">{esc(e['name'])}</span>
+              {title}
+              <span class="endo__co">{esc(e['company'])}</span>
+              {since_html}
             </figcaption>
           </figure>'''
-    # no approved line means no card on the live build — the founding card simply
-    # shows its video full width, which is a deliberate layout, not a gap
     return hideable(e['line_tbc'], card)
 
 
