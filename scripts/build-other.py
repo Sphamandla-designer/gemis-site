@@ -89,8 +89,8 @@ CARDS = [
      'solutions/', 'Explore our solutions',
      'wastemart', 'See it in production — WasteMart'),
     ('ManaGEM',
-     'A proven business management platform, ready to run on: sales, stock, payroll, projects '
-     'and multi-company accounting in one place. It began as one client’s system.',
+     'A proven business management platform, ready to run on: enquiries, quotes, deposit '
+     'invoices, project profit, stock and staff records in one place. It began as one client’s system.',
      'products/managem/', 'Explore ManaGEM',
      'sbs-waterproofing', 'See where it came from — SBS Waterproofing'),
     ('GEMIS Studio',
@@ -244,7 +244,7 @@ def managem():
       <div class="shell">
         <p class="chero__kicker" data-reveal>ManaGEM</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">A business management platform, born in a real business</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">Sales, stock, payroll, projects and multi-company accounting in one place. About a dozen companies run their day-to-day operations on it.</p>
+        <p class="chero__copy" data-reveal style="--d:140ms">Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.</p>
       </div>
     </section>
 
@@ -303,8 +303,8 @@ def managem():
 '''
     page('products/managem/index.html', base,
          'ManaGEM — a business management platform born in a real business | GEMIS®',
-         'ManaGEM began as the system GEMIS built for SBS Waterproofing. Sales, stock, payroll, '
-         'projects and multi-company accounting in one platform, used by about a dozen companies.',
+         'ManaGEM began as the system GEMIS built for SBS Waterproofing. Enquiries, quotes, deposit '
+         'invoices, project profit, stock and staff records in one platform, used by about a dozen companies.',
          body)
 
 
@@ -319,6 +319,19 @@ def our_story():
     # the About timeline becomes the horizontal timeline the whole site shares
     story = re.sub(r'<ol class="tl">.*?</ol>', lambda m: B.tline(SV.MILESTONES, 'Era').strip(), story, count=1, flags=re.S)
     team = rebase(blocks.get('team', ''), base)
+    team = team.replace('UI/UX designer — head of Brand Studio', 'UI/UX designer, head of GEMIS Studio')
+    # facts.md confirms no surname or title except Sphamandla Xaba's. The others
+    # publish as a first name, their line held back until confirmed (?review=1
+    # shows everything the old page carried).
+    def flag_mate(m):
+        name, role = m.group(1), m.group(2)
+        if name.startswith('Sphamandla'):
+            return m.group(0)
+        first = name.split()[0]
+        return ('<h3 class="mate__n"><span class="unconfirmed" data-tbc="team-titles" data-kind="hideable">' + name
+                + '</span><span class="confirmed-fallback">' + first + '</span></h3>\n'
+                '            <p class="mate__r unconfirmed" data-tbc="team-titles" data-kind="hideable">' + role + '</p>')
+    team = re.sub(r'<h3 class="mate__n">(.*?)</h3>\s*<p class="mate__r">(.*?)</p>', flag_mate, team)
 
     founders = B.srows([
         (f'<a href="{base}work/{k}/">{esc(S.BY_SLUG[k]["client"])}</a>',
@@ -366,7 +379,7 @@ def our_story():
             <span class="stat__l">Systems delivered into production</span>
           </li>
           <li class="stat">
-            <span class="stat__n">10<sup>+</sup></span>
+            <span class="stat__n">5<sup>+</sup></span>
             <span class="stat__l">Sectors served nationally</span>
           </li>
         </ul>

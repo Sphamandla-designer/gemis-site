@@ -113,7 +113,7 @@ NAV = """<ul class="nav__links" id="navLinks">
           </div>
         </div>
         </li>
-        <li><a href="{B}our-story/">About</a></li>
+        <li><a href="{B}our-story/">Our Story</a></li>
         <li><a href="{B}contact.html">Contact</a></li>
         </ul>"""
 
@@ -139,7 +139,7 @@ FOOTER_COLS = """<div class="foot__col">
         <div class="foot__col">
           <h2>Support &amp; Resources</h2>
           <ul>
-            <li><a href="{B}our-story/">About GEMIS</a></li>
+            <li><a href="{B}our-story/">Our Story</a></li>
             <li><a href="{B}contact.html">Contact Us</a></li>
             <li><a href="{B}solutions/support/">Ongoing Support</a></li>
             <li><a href="{B}industries.html">Industries</a></li>

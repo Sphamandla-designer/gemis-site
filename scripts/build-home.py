@@ -78,8 +78,7 @@ def testimonials_html():
 
 if __name__ == '__main__':
     index = os.path.join(ROOT, 'index.html')
-    B.fill_slot(index, 'services', BS.services_rows('', 6))
     B.fill_slot(index, 'testimonials', testimonials_html())
     B.fill_slot(index, 'ways', B.tline(SV.WAYS))
-    print(f'index.html: services (6 of {len(SV.SERVICES)}), testimonials ({len(SV.TESTIMONIALS)}) '
+    print(f'index.html: testimonials ({len(SV.TESTIMONIALS)}) '
           f'and the {len(SV.WAYS)}-step timeline written')

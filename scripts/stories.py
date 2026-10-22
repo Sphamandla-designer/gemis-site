@@ -89,8 +89,8 @@ STORIES = [
     dict(
         slug='wastemart', client='WasteMart', order=3,
         industry='Waste management and skip hire',
-        period='Client since 2013', period_tbc=None,
-        since='2013', since_tbc=None,
+        period='Client for more than ten years', period_tbc=None,
+        since=None, since_tbc=None,
         headline='From quote to collection, handled',
         challenge='Automatic quotes with terms, secure payment links, scheduling, '
                   'driver scan confirmation, order tracking',
@@ -178,9 +178,9 @@ STORIES = [
     dict(
         slug='managem', client='ManaGEM', order=7,
         industry='Business management software — compact ERP',
-        period='Launched 2013 · redesigned 2026', period_tbc=None, since=None, since_tbc=None,
+        period='Developed from the SBS Waterproofing system of 2015', period_tbc=None, since=None, since_tbc=None,
         headline='Born in a real business, built for many',
-        challenge='Generalised from the SBS system; about a dozen companies run on it today',
+        challenge='Generalised from the system built for SBS Waterproofing in 2015 into a platform other businesses could run on',
         outcome='About a dozen companies run their day-to-day operations on it',
         endorser='ryan-smith',
         capabilities=['Capture every enquiry and follow it to the sale, with SMS and email updates',
@@ -240,13 +240,7 @@ CONFIRMED = {
 # ──────────────────────────────────────────────────────────────────────────
 TBC_KIND = {
     # ── blocking ─────────────────────────────────────────────────────────
-    # facts.md puts WasteMart's relationship at 2013 and ManaGEM's launch at
-    # 2013, but the site states "Operating since 2014" with foundingDate 2014,
-    # and the SBS story — which the timeline tells in order — says SBS got its
-    # own system in 2015 and that system "grew into ManaGEM". Published as-is
-    # the page contradicts itself twice.
-    'chronology-2013': 'blocking',
-    # Tore's Foundation is now 2014, which places it after Trans Hex (2017) and
+    # Tore's Foundation is 2014, which places it after Trans Hex (2017) and
     # Sonke (2018) in the brief's running order.
     'timeline-order': 'blocking',
     # facts.md confirms the free trial is live but gives no URL, and the
@@ -280,6 +274,14 @@ TBC_KIND = {
     'managem-external-site': 'hideable',
     'eighth-video': 'hideable',
     'standalone-bundle': 'hideable',
+    # facts.md gives no phone number: the one the old site carried is hidden
+    # until it is confirmed
+    'phone-number': 'hideable',
+    # facts.md names no team titles or surnames beyond Sphamandla Xaba's
+    'team-titles': 'hideable',
+    # the partnership line stays on the hero at the owner's instruction, and is
+    # flagged until facts.md confirms the current partner designation
+    'microsoft-partner-badge': 'hideable',
 }
 
 BLOCKING = sorted(k for k, v in TBC_KIND.items() if v == 'blocking')

@@ -135,7 +135,7 @@
           </div>
         </div>
         </li>
-        <li><a href="our-story/">About</a></li>
+        <li><a href="our-story/">Our Story</a></li>
         <li><a href="contact.html">Contact</a></li>
         </ul>
 
@@ -177,10 +177,10 @@
         <!-- The Microsoft four-square mark is drawn inline. The exact partner
              designation and official badge artwork are still to be supplied —
              see OPEN_ITEMS.md (microsoft-partner-badge). -->
-        <aside class="hero__partner" data-reveal style="--d:320ms" aria-label="Microsoft partnership">
+        <aside class="hero__partner" data-reveal style="--d:320ms" aria-label="Microsoft partnership" data-tbc="microsoft-partner-badge" data-kind="hideable">
           <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
           <span class="hero__partner-name">Microsoft Partner</span>
-          <span class="hero__partner-line">Systems built and run on the Microsoft Cloud</span>
+          <span class="hero__partner-line">Systems built and run on the Microsoft Cloud <span class="tbc" data-tbc="microsoft-partner-badge" data-kind="hideable">designation to confirm</span></span>
         </aside>
     </section>
 
@@ -207,7 +207,7 @@
             <ul class="trust__stats" data-reveal style="--d:200ms">
               <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
               <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
-              <li class="stat"><span class="stat__n" data-count="10" data-sup="+">10<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
+              <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
             </ul>
           </div>
         </div>
@@ -252,16 +252,19 @@
             <p class="stories__lede" data-reveal style="--d:80ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
             <a class="stories__cta" href="work/" data-reveal style="--d:140ms"><span>See all case studies</span><span class="stories__cta-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></a>
             <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:200ms">
-            <li><button class="stories__tab" type="button" data-tab data-go="0" aria-pressed="true">
+            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="0" aria-pressed="true">
               <span class="stories__tab-name">SBS Waterproofing</span>
+              <span class="stories__tab-p">Founding client &middot; since 2014</span>
               <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
             </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="1" aria-pressed="false">
+            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="1" aria-pressed="false">
               <span class="stories__tab-name">HomeAssist</span>
+              <span class="stories__tab-p">Founding client &middot; since 2014</span>
               <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
             </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="2" aria-pressed="false">
+            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="2" aria-pressed="false">
               <span class="stories__tab-name">WasteMart</span>
+              <span class="stories__tab-p">Founding client &middot; more than ten years</span>
               <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
             </button></li>
             <li><button class="stories__tab" type="button" data-tab data-go="3" aria-pressed="false">
@@ -363,7 +366,7 @@
                 </video>
               </div>
               <p class="sty__title">ManaGEM: born in a real business, built for many.</p>
-              <p class="sty__copy">Generalised from the SBS system; about a dozen companies run on it today. About a dozen companies run their day-to-day operations on it. <a class="sty__link" href="products/managem/">Explore ManaGEM &rarr;</a></p>
+              <p class="sty__copy">Generalised from the system built for SBS Waterproofing in 2015 into a platform other businesses could run on. About a dozen companies run their day-to-day operations on it. <a class="sty__link" href="products/managem/">Explore ManaGEM &rarr;</a></p>
             </li>
             <li class="sty sty--today" id="sty-today" data-slide aria-hidden="true">
               <div class="sty__panel sty__panel--today"><p class="sty__big">Still building together.</p></div>
@@ -381,111 +384,6 @@
           </div>
         </div>
 <!--#stories:end-->
-      </div>
-    </section>
-
-    <!-- ═══════════════════ 04 · SOLUTIONS ═══════════════════
-         The design reference: "What we do" with a See-all link on the right,
-         then numbered rows — number, name, description and capability chips —
-         and a plus-grid bottom-right. Six of the nine; the rest are on the
-         Solutions page. Generated from scripts/services.py by build-home.py. -->
-    <section class="svcs band plusgrid plusgrid--br" id="solutions" aria-labelledby="svcsHeading">
-      <div class="shell">
-        <div class="svcs__head">
-          <div>
-            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
-            <h2 class="display" id="svcsHeading" data-reveal style="--d:80ms">What we do</h2>
-          </div>
-          <a class="arrow-link" href="solutions/" data-reveal style="--d:140ms">See all nine solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-        </div>
-        <ol class="srows">
-<!--#services:start-->
-          <li class="srow" data-reveal style="--d:0ms">
-            <span class="srow__n" aria-hidden="true">01</span>
-            <h3 class="srow__name"><a href="solutions/custom-software/">Custom software development</a></h3>
-            <div class="srow__body">
-              <p>When off-the-shelf software holds you back, we design and build solutions around your exact processes, people and goals — software that fits your business, not the other way around.</p>
-              <ul class="srow__chips">
-                <li>Enterprise applications</li>
-                <li>Business portals</li>
-                <li>Internal management systems</li>
-                <li>Workflow automation</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/custom-software/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:60ms">
-            <span class="srow__n" aria-hidden="true">02</span>
-            <h3 class="srow__name"><a href="solutions/microsoft-cloud/">Microsoft Cloud solutions</a></h3>
-            <div class="srow__body">
-              <p>We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
-              <ul class="srow__chips">
-                <li>Microsoft Azure</li>
-                <li>Azure SQL</li>
-                <li>Cloud hosting</li>
-                <li>Identity management</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/microsoft-cloud/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:120ms">
-            <span class="srow__n" aria-hidden="true">03</span>
-            <h3 class="srow__name"><a href="solutions/enterprise-saas/">Enterprise SaaS platforms</a></h3>
-            <div class="srow__body">
-              <p>Multi-tenant platforms engineered to serve thousands of users — built for performance, security and growth from day one.</p>
-              <ul class="srow__chips">
-                <li>Property management</li>
-                <li>Business operations</li>
-                <li>Healthcare</li>
-                <li>Manufacturing</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/enterprise-saas/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:180ms">
-            <span class="srow__n" aria-hidden="true">04</span>
-            <h3 class="srow__name"><a href="solutions/mobile-apps/">Mobile application development</a></h3>
-            <div class="srow__body">
-              <p>Mobile apps that extend your systems into the field — capturing work where it happens, online or offline, always in sync.</p>
-              <ul class="srow__chips">
-                <li>Field operations</li>
-                <li>Inspections</li>
-                <li>Incident reporting</li>
-                <li>Data collection</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/mobile-apps/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:240ms">
-            <span class="srow__n" aria-hidden="true">05</span>
-            <h3 class="srow__name"><a href="solutions/business-intelligence/">Business intelligence &amp; reporting</a></h3>
-            <div class="srow__body">
-              <p>Power BI dashboards that turn scattered data into clear, real-time decision-making tools for every level of your organisation.</p>
-              <ul class="srow__chips">
-                <li>Executive reporting</li>
-                <li>Operational KPIs</li>
-                <li>Sales analytics</li>
-                <li>Financial reporting</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/business-intelligence/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:300ms">
-            <span class="srow__n" aria-hidden="true">06</span>
-            <h3 class="srow__name"><a href="solutions/system-integration/">System integration</a></h3>
-            <div class="srow__body">
-              <p>We make your systems talk to each other — eliminating double capture, disconnected data and manual hand-offs between platforms.</p>
-              <ul class="srow__chips">
-                <li>Accounting systems</li>
-                <li>ERP platforms</li>
-                <li>CRM solutions</li>
-                <li>Third-party APIs</li>
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="solutions/system-integration/">See details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-            </div>
-          </li>
-<!--#services:end-->
-        </ol>
       </div>
     </section>
 
@@ -644,7 +542,7 @@
           </ol>
           <div class="go__contact" data-reveal style="--d:260ms">
             <p><span>Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
-            <p><span>Phone</span><a href="tel:+27112195008">+27 11 219 5008</a></p>
+            <div class="unconfirmed" data-tbc="phone-number" data-kind="hideable"><p><span>Phone</span><a href="tel:+27112195008">+27 11 219 5008</a> <span class="tbc" data-tbc="phone-number" data-kind="hideable">number to confirm</span></p></div>
             <p><span>Cape Town</span>9 Tapiola Way, Edgemead</p>
           </div>
         </div>
@@ -767,7 +665,7 @@
         <div class="foot__col">
           <h2>Support &amp; Resources</h2>
           <ul>
-            <li><a href="our-story/">About GEMIS</a></li>
+            <li><a href="our-story/">Our Story</a></li>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="solutions/support/">Ongoing Support</a></li>
             <li><a href="industries.html">Industries</a></li>

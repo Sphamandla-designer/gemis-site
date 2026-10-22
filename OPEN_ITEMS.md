@@ -34,31 +34,14 @@ entry with an approved line and rebuild with `python3 scripts/build-home.py`.
 ### `microsoft-partner-badge`
 
 The hero carries a "Microsoft Partner" line with the four-square mark drawn
-inline, at the owner's instruction. The exact partner designation (for example
+inline, at the owner's instruction ("please keep them"). `facts.md` does not
+confirm the partnership, so the line is also registered as a hideable item: it
+stays on the live build, and `?review=1` marks it "designation to confirm". The exact partner designation (for example
 "Solutions Partner" or "Cloud Solution Provider") and the official badge
 artwork from Partner Center have not been supplied; swap them in when they are.
 
 
-## Blocking — 3
-
-### `chronology-2013`
-
-`facts.md` puts **WasteMart at 2013** and **ManaGEM's launch at 2013**. Both
-contradict things the site already states:
-
-| The site says | Where | facts.md says |
-|---|---|---|
-| "Operating since 2014", `foundingDate: 2014`, "Business systems partner since 2014" | homepage, Organization schema | WasteMart has been a client since **2013** — a year before the company |
-| SBS got its own system **from 2015**, and "the system built for SBS grew into ManaGEM" | the SBS video narration, quoted on the timeline and story page | ManaGEM launched **2013** — two years before the system it grew from |
-
-Published as-is the page contradicts itself twice, and the second one sits
-directly beside the narration that disproves it.
-
-**To clear it,** one of:
-- confirm the 2014 founding date is wrong and give the real one;
-- confirm the relationships predate the company (work done before incorporating)
-  and say how the site should word that;
-- or correct the two years.
+## Blocking — 2
 
 ### `timeline-order`
 
@@ -95,7 +78,9 @@ None of these stop a merge. Each has a fallback that reads as finished.
 | `entry-finos-status`, `entry-smartstart-status`, `entry-rentflow-status`, `entry-nuracoach-status`, `entry-lungelo-status` | Whether each is a client system or a concept | **Not listed on Our Work.** Listing them with a "to confirm" note would publish our uncertainty. | Leon |
 | `managem-external-site` | Whether `solutions/managem/` links out to the separate ManaGEM site | No secondary link | Leon |
 | `eighth-video` | Whether an eighth video exists | No eighth entry | Leon |
-| `standalone-bundle` | `gemis-site-standalone.html` is stale — its builder assumes flat root pages and the new structure is folder URLs | The stale file is in the repo but is not part of the site | Sphamandla |
+| `standalone-bundle` | `gemis-site-standalone.html` is a review copy of the whole site; it goes stale after any change unless `python3 tools/build-site-standalone.py` is re-run | Not part of the site | Sphamandla |
+| `phone-number` | `facts.md` gives no phone number; the one the old site carried (`+27 11 219 5008`) is unverified | **No phone line** in Get started; Contact says "Number to follow. Email is the quickest way to reach us." | Sphamandla |
+| `team-titles` | Titles and surnames for the Our Story team other than Sphamandla Xaba (UI/UX designer, head of GEMIS Studio — confirmed) | First names only, no title line | Sphamandla |
 
 ---
 
@@ -106,9 +91,11 @@ From `facts.md`, now live on the branch:
 - Product spelling **ManaGEM**; client names as written.
 - **SBS Waterproofing** client since 2014, system since 2015.
 - **HomeAssist** client since 2014.
-- **WasteMart** client since 2013. *(See `chronology-2013`.)*
+- **WasteMart** "client for more than ten years" — `facts.md` has no confirmed year, so no year is published.
 - **Trans Hex Group** 2017 · **Sonke Gender Justice** 2018 · **Tore's Foundation**
-  2014 · **ManaGEM** launched 2013, redesigned 2026. *(See both blocking items.)*
+  2014 · **ManaGEM** described as developed from the SBS Waterproofing system of
+  2015 — the 2013 launch and 2026 redesign dates are no longer published, which
+  closes `chronology-2013`. *(See `timeline-order`.)*
 - Executive names and companies: Nazier Mathinus (WasteMart), Kehan Patel
   (HomeAssist), Ryan Smith (SBS Waterproofing).
 - Metrics, all client-confirmed and now published: WasteMart "six hours a week

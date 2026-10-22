@@ -111,8 +111,10 @@ layer that first introduced the component.
   `build-home.py`). Any tabbed stage is a `[data-stage]` driven by
   `assets/js/home.js`; `data-auto="0"` turns off the auto-advance. Section
   headers (`.sec__head`) carry the ruled, plus-marked bottom edge the
-  references share. The homepage no longer carries News & Insights; the
-  `insights/` pages remain, linked from the footer.
+  references share. The homepage no longer carries News & Insights or the
+  "What we do" service rows (Solutions owns the list); the `insights/` pages
+  remain, linked from the footer. The three founding clients on the stories
+  panel carry a "Founding client · since <year>" tag (`stories__tab--founding`).
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
@@ -167,7 +169,11 @@ a success state and **discards what the visitor typed**. Do not route new calls 
 action into it until that is fixed.
 
 Never invent a client, a testimonial, a statistic or a case study. Everything on
-the site has to be traceable to something already in the repository.
+the site has to be traceable to something already in the repository, and every
+figure to `scripts/facts.md` (50+ systems, 5+ sectors and ManaGEM's "nine days to
+two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.md
+does not confirm — the phone number, team titles, the partner designation — is a
+hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 
 **One standing exception, at the owner's instruction:** the homepage testimonials
 (`TESTIMONIALS` in `scripts/services.py`) are invented placeholders — South
@@ -181,7 +187,8 @@ Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
 filtered card grid with Read/Play, the approach timeline and a conversion band;
 the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
-Studio at `studio/`, Technical Academy at gemis.tech) · About (`our-story/`) ·
+Studio at `studio/`, Technical Academy at gemis.tech) · Our Story (`our-story/`; the
+nav label and the page name match — keep them that way) ·
 Contact. News & Insights lives at `insights/` (three articles), linked from the
 homepage and footer. `solutions/bespoke-software/`, `solutions/managem/` and
 `insights.html` are redirect stubs now.

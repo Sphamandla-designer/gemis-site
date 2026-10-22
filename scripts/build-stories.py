@@ -75,6 +75,9 @@ def since_html(s):
         return (hideable(s['since_tbc'],
                          'Client since ' + tbc(s['since_tbc'], '2014–15'),
                          'Client for more than ten years'))
+    if s['period'] and s['period'].startswith('Client '):
+        # no year at all: the period line already says what is confirmed
+        return esc(s['period'])
     return ''
 
 
@@ -173,8 +176,14 @@ def stories_html(base=''):
         v = f'{base}{S.VIDEO_DIR}{s["video"]}'
         pressed = 'true' if i == 0 else 'false'
         hidden = '' if i == 0 else ' aria-hidden="true"'
-        tabs.append(f'''            <li><button class="stories__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}">
-              <span class="stories__tab-name">{esc(s['client'])}</span>
+        founding = s['slug'] in S.FOUNDING
+        tag = ''
+        if founding:
+            since = f'since {s["since"]}' if s.get('since') else 'more than ten years'
+            tag = f'\n              <span class="stories__tab-p">Founding client &middot; {since}</span>'
+        cls = 'stories__tab stories__tab--founding' if founding else 'stories__tab'
+        tabs.append(f'''            <li><button class="{cls}" type="button" data-tab data-go="{i}" aria-pressed="{pressed}">
+              <span class="stories__tab-name">{esc(s['client'])}</span>{tag}
               <span class="stories__tab-go" aria-hidden="true">{GO}</span>
             </button></li>''')
         slides.append(f'''            <li class="sty" id="sty-{s['slug']}" data-slide{hidden}>
