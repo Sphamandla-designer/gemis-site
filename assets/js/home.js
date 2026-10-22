@@ -166,34 +166,30 @@
     });
   }
 
-  /* ── selected work: the band pins and the cards travel across as the page scrolls ──
-     Wide screens only, and never under reduced motion; otherwise the list stays
-     vertical. Focus inside the track scrolls the page to bring the card on. */
-  var hs = document.querySelector('[data-hscroll]');
-  if (hs && !reduced && window.matchMedia('(min-width: 901px)').matches) {
-    var track = hs.querySelector('[data-track]');
-    var span = 0, total = 0;
-    function hsSize() {
-      hs.classList.add('is-pinned');
-      span = Math.max(0, track.scrollWidth - window.innerWidth);
-      total = span;                                   // one px of travel per px of scroll
-      hs.style.height = (window.innerHeight + total) + 'px';
+  /* ── the transition statement: scales up as it is scrolled to the centre, holds, releases ──
+     Scroll-linked, no library. The pin is a sticky block inside a tall wrapper;
+     the statement's scale and opacity follow the wrapper's progress through
+     the viewport: the first 60 % grows, the rest holds at full size, then the
+     sticky block releases with the page. Under reduced motion the block is static. */
+  var su = document.querySelector('[data-scaleup]');
+  if (su && !reduced) {
+    var stmt = su.querySelector('.selw__statement');
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };   // ease-out cubic
+    function suRun() {
+      var r = su.getBoundingClientRect();
+      var total = su.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      var p = Math.min(1, Math.max(0, -r.top / total));
+      var g = ease(Math.min(1, p / .6));                         // growth phase, then the hold
+      su.style.setProperty('--s', (0.42 + 0.58 * g).toFixed(4));
+      su.style.setProperty('--o', (0.35 + 0.65 * g).toFixed(4));
+      su.style.setProperty('--l', (p > .5 ? Math.min(1, (p - .5) / .15) : 0).toFixed(3));
     }
-    function hsRun() {
-      var top = hs.getBoundingClientRect().top;
-      var p = total ? Math.min(1, Math.max(0, -top / total)) : 0;
-      track.style.transform = 'translate3d(' + (-p * span) + 'px,0,0)';
-    }
-    hsSize(); hsRun();
-    window.addEventListener('scroll', hsRun, { passive: true });
-    window.addEventListener('resize', function () { hsSize(); hsRun(); });
-    window.addEventListener('load', function () { hsSize(); hsRun(); });
-    track.addEventListener('focusin', function (e) {
-      var item = e.target.closest('.selw__item'); if (!item || !span) return;
-      var x = Math.min(span, Math.max(0, item.offsetLeft - 48));
-      var y = hs.getBoundingClientRect().top + window.scrollY + (x / span) * total;
-      window.scrollTo({ top: y, behavior: 'auto' });
-    });
+    su.classList.add('is-scaling');
+    suRun();
+    window.addEventListener('scroll', suRun, { passive: true });
+    window.addEventListener('resize', suRun);
+    if (stmt) stmt.addEventListener('transitionend', suRun);
   }
 
   /* ── the horizontal timeline: draws its line and lands its steps in turn ── */

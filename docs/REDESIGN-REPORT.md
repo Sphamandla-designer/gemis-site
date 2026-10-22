@@ -127,6 +127,20 @@ company sections leave the homepage. The brief's rule against invented
 testimonials is therefore overridden by the owner for the homepage only;
 `OPEN_ITEMS.md` tracks the placeholders.
 
+### Owner's third revision — the section refined
+
+Selected work was refined for alignment and consistency: the site's shared
+section header; four equal-height cards on a two-column grid (one column
+under 620px) inside the site's shell, each with industry, name, one-line
+description, the site's arrow link and a play button that opens the video;
+and the closing statement as a scroll-linked transition — small as it arrives,
+scaling smoothly to full size at the centre of the viewport over the first 60 %
+of a 200vh travel, held for the rest, then released with the page. No library:
+about twenty lines in `home.js` set three custom properties from the scroll
+position. Under reduced motion and without JavaScript the statement is static.
+Verified at 360, 390, 768, 1024, 1440 and 1440×700: cards level on every row,
+the statement centred at every step, no overflow, no console errors.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

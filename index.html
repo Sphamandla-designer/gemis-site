@@ -241,71 +241,78 @@
     </section>
 
     <!-- ═══════════════════ 03 · SELECTED WORK ═══════════════════
-         The owner's reference (commit 4440697): a pinned grey band divided
-         into panels by thin rules, the heading first, four project cards
-         travelling across as the page scrolls, and a closing panel to every
-         case study. assets/js/home.js drives the pin; the list stacks
-         without it. Every card plays its case study video. -->
-    <section class="selw" id="selected" aria-labelledby="selectedHeading" data-hscroll>
-      <div class="selw__pin">
-        <ol class="selw__track" data-track>
-          <li class="selw__item selw__head">
-            <h2 class="selw__title" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
-          </li>
-          <li class="selw__item selw__card">
-            <div class="selw__media" data-reveal style="--d:0ms">
+         Four case studies on the site's grid, each playing its video, then
+         the transition statement that scales up on scroll (home.js,
+         [data-scaleup]); static under reduced motion and without JavaScript. -->
+    <section class="selw band" id="selected" aria-labelledby="selectedHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Selected work</p>
+            <h2 class="display" id="selectedHeading" data-reveal style="--d:80ms">Selected work &amp; case studies</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Four systems in production, each with the story of what the business needed and what was built. <a class="arrow-link" href="work/">View all projects <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
+        </div>
+        <ol class="selw__grid">
+          <li class="selw__card" data-reveal style="--d:0ms">
+            <div class="selw__media">
               <img src="assets/video/case-studies/ManaGEM_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <a class="selw__play" href="assets/video/case-studies/ManaGEM_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/ManaGEM_explainer_web.mp4" data-webm="assets/video/case-studies/ManaGEM_explainer_web.webm" data-poster="assets/video/case-studies/ManaGEM_explainer_thumb.jpg" data-title="ManaGEM: born in a real business, built for many" aria-label="Play the ManaGEM story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
               <span class="selw__len" aria-hidden="true">1:06</span>
             </div>
-            <h3 class="selw__name" data-reveal style="--d:60ms"><a href="products/managem/">ManaGEM</a></h3>
-            <div class="selw__row" data-reveal style="--d:100ms">
+            <div class="selw__body">
+              <p class="selw__tag">Business management software — compact ERP</p>
+              <h3 class="selw__name"><a href="products/managem/">ManaGEM</a></h3>
               <p class="selw__line">ManaGEM is GEMIS&#x27;s business management platform, generalised from the system built for SBS Waterproofing.</p>
-              <a class="selw__more" href="products/managem/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
+              <a class="arrow-link arrow-link--quiet selw__go" href="products/managem/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card selw__card--low">
-            <div class="selw__media" data-reveal style="--d:60ms">
+          <li class="selw__card" data-reveal style="--d:80ms">
+            <div class="selw__media">
               <img src="assets/video/case-studies/WasteMart_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <a class="selw__play" href="assets/video/case-studies/WasteMart_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/WasteMart_explainer_web.mp4" data-webm="assets/video/case-studies/WasteMart_explainer_web.webm" data-poster="assets/video/case-studies/WasteMart_explainer_thumb.jpg" data-title="WasteMart: from quote to collection, handled" aria-label="Play the WasteMart story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
               <span class="selw__len" aria-hidden="true">1:29</span>
             </div>
-            <h3 class="selw__name" data-reveal style="--d:120ms"><a href="work/wastemart/">WasteMart</a></h3>
-            <div class="selw__row" data-reveal style="--d:160ms">
+            <div class="selw__body">
+              <p class="selw__tag">Waste management and skip hire</p>
+              <h3 class="selw__name"><a href="work/wastemart/">WasteMart</a></h3>
               <p class="selw__line">A single call becomes a priced quote, a secure payment, a scheduled truck and a confirmed collection — without the manual work in between.</p>
-              <a class="selw__more" href="work/wastemart/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
+              <a class="arrow-link arrow-link--quiet selw__go" href="work/wastemart/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card">
-            <div class="selw__media" data-reveal style="--d:120ms">
+          <li class="selw__card" data-reveal style="--d:0ms">
+            <div class="selw__media">
               <img src="assets/video/case-studies/HomeAssist_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <a class="selw__play" href="assets/video/case-studies/HomeAssist_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/HomeAssist_explainer_web.mp4" data-webm="assets/video/case-studies/HomeAssist_explainer_web.webm" data-poster="assets/video/case-studies/HomeAssist_explainer_thumb.jpg" data-title="HomeAssist: plumbing claims, from report to sign-off" aria-label="Play the HomeAssist story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
               <span class="selw__len" aria-hidden="true">1:29</span>
             </div>
-            <h3 class="selw__name" data-reveal style="--d:180ms"><a href="work/homeassist/">HomeAssist</a></h3>
-            <div class="selw__row" data-reveal style="--d:220ms">
+            <div class="selw__body">
+              <p class="selw__tag">Insurance and home services — plumbing repairs</p>
+              <h3 class="selw__name"><a href="work/homeassist/">HomeAssist</a></h3>
               <p class="selw__line">A national plumbing-claims operation run from one system: report, dispatch, evidence and sign-off, with the customer informed at every step.</p>
-              <a class="selw__more" href="work/homeassist/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
+              <a class="arrow-link arrow-link--quiet selw__go" href="work/homeassist/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card selw__card--low">
-            <div class="selw__media" data-reveal style="--d:180ms">
+          <li class="selw__card" data-reveal style="--d:80ms">
+            <div class="selw__media">
               <img src="assets/video/case-studies/Sonke_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <a class="selw__play" href="assets/video/case-studies/Sonke_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/Sonke_explainer_web.mp4" data-webm="assets/video/case-studies/Sonke_explainer_web.webm" data-poster="assets/video/case-studies/Sonke_explainer_thumb.jpg" data-title="Sonke Gender Justice: monitoring and evaluation across Africa" aria-label="Play the Sonke Gender Justice story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
               <span class="selw__len" aria-hidden="true">1:22</span>
             </div>
-            <h3 class="selw__name" data-reveal style="--d:240ms"><a href="work/sonke/">Sonke Gender Justice</a></h3>
-            <div class="selw__row" data-reveal style="--d:280ms">
+            <div class="selw__body">
+              <p class="selw__tag">Non-profit — gender-based violence and HIV prevention</p>
+              <h3 class="selw__name"><a href="work/sonke/">Sonke Gender Justice</a></h3>
               <p class="selw__line">A monitoring and evaluation system for work in forty countries — captured offline in the field, checked in the office, reported to donors from verified data.</p>
-              <a class="selw__more" href="work/sonke/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
+              <a class="arrow-link arrow-link--quiet selw__go" href="work/sonke/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__end">
-            <p class="selw__endline" data-reveal>Discover the complete collection of systems, platforms and products GEMIS has built.</p>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
-          </li>
         </ol>
+      </div>
+      <div class="selw__out" data-scaleup>
+        <div class="selw__out-pin">
+          <p class="selw__statement">Discover the complete collection of systems, platforms and products GEMIS has built.</p>
+          <a class="arrow-link selw__out-link" href="work/">View all projects <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+        </div>
       </div>
     </section>
 
