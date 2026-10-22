@@ -31,12 +31,12 @@ asked for them explicitly ("please for now use south africa names, invent the
 wording"). They live in `scripts/services.py` → `TESTIMONIALS`; replace each
 entry with an approved line and rebuild with `python3 scripts/build-home.py`.
 
-### `logo-marquee-wordmarks`
+### `microsoft-partner-badge`
 
-The "Trusted by South African businesses" marquee runs on **wordmarks** (the
-name set in the site's type), because no logo files have been supplied. When
-they arrive, drop them into `assets/img/logos/` and swap each
-`<span class="client-mark">` in `index.html` for an `<img>`.
+The hero carries a "Microsoft Partner" line with the four-square mark drawn
+inline, at the owner's instruction. The exact partner designation (for example
+"Solutions Partner" or "Cloud Solution Provider") and the official badge
+artwork from Partner Center have not been supplied; swap them in when they are.
 
 
 ## Blocking — 3

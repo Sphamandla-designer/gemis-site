@@ -361,7 +361,7 @@ def our_story():
             <span class="stat__l">Systems delivered into production</span>
           </li>
           <li class="stat">
-            <span class="stat__n">5<sup>+</sup></span>
+            <span class="stat__n">10<sup>+</sup></span>
             <span class="stat__l">Sectors served nationally</span>
           </li>
         </ul>

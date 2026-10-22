@@ -3759,3 +3759,21 @@ a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
 @media (max-width: 620px) { .faq__q { grid-template-columns: minmax(0, 1fr) 24px; } .faq__n { display: none; } .faq__a { padding-left: 0; } }
 /* belt and braces: a closed question never shows its answer, whatever the engine does with <details> */
 .faq__item:not([open]) > .faq__a { display: none; }
+
+/* ── client logos in the marquee: the supplied marks, one height, one grey ── */
+.marquee__item img { display: block; height: 56px; width: auto; max-width: none; opacity: .9; transition: opacity .3s var(--ease); }
+.marquee__item:hover img { opacity: 1; }
+.marquee__track { gap: clamp(44px, 6vw, 96px); align-items: center; }
+@media (max-width: 620px) { .marquee__item img { height: 40px; } }
+
+/* the pill button, for the one call to action that is a button rather than a link */
+.btn { display: inline-flex; align-items: center; gap: 10px; margin-top: clamp(22px, 2.6vw, 30px); padding: 13px 26px; border-radius: 999px; background: var(--navy-deep); color: #fff; font-size: var(--fs-copy); font-weight: 500; transition: background .3s var(--ease), transform .3s var(--ease); }
+.btn svg { width: 11px; height: 11px; transition: transform .35s var(--ease); }
+.btn:hover { background: var(--navy); transform: translateY(-1px); }
+.btn:hover svg { transform: translate(3px, -3px); }
+.btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
+/* the Microsoft partnership line under the hero's calls to action */
+.hero__partner { display: inline-grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; align-items: center; margin: clamp(32px, 4vw, 52px) 0 0; padding: 12px 18px 12px 14px; border: 1px solid rgba(255,255,255,.28); border-radius: 8px; background: rgba(8,34,62,.35); backdrop-filter: blur(6px); font-size: var(--fs-small); line-height: 1.4; color: rgba(255,255,255,.82); }
+.hero__partner svg { width: 22px; height: 22px; }
+.hero__partner strong { display: block; font-weight: 600; font-size: var(--fs-copy); color: #fff; letter-spacing: -.005em; }
