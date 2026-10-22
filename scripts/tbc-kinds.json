@@ -1,5 +1,4 @@
 {
- "chronology-2013": "blocking",
  "eighth-video": "hideable",
  "endorsement-kehan-line": "hideable",
  "endorsement-kehan-portrait": "hideable",
@@ -23,8 +22,11 @@
  "logo-wastemart": "hideable",
  "managem-external-site": "hideable",
  "managem-trial-url": "blocking",
+ "microsoft-partner-badge": "hideable",
+ "phone-number": "hideable",
  "standalone-bundle": "hideable",
  "team-photos": "hideable",
+ "team-titles": "hideable",
  "then-now-screenshots": "hideable",
  "timeline-order": "blocking"
 }

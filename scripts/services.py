@@ -360,7 +360,8 @@ PRODUCTS = [
         'slug': 'managem', 'name': 'ManaGEM', 'href': 'https://sphamandla-designer.github.io/ManaGEM/',
         'image': 'assets/img/menu/managem.jpg',
         'short': 'A proven business management platform, ready to run on.',
-        'body': 'Sales, stock, payroll, projects and multi-company accounting in one place. It '
+        'body': 'Enquiries followed to the sale, quotes accepted online, deposit invoices raised '
+                'automatically, project profit, stock alerts and staff records in one place. It '
                 'began as one client’s system, and about a dozen companies run their '
                 'day-to-day operations on it today.',
         'cta': 'Explore ManaGEM',

@@ -399,7 +399,7 @@ def work_page():
         <ul class="trust__stats csstats__row" data-reveal>
           <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
           <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
-          <li class="stat"><span class="stat__n" data-count="10" data-sup="+">10<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
+          <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
         </ul>
       </div>
     </section>
@@ -463,11 +463,11 @@ def work_page():
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>How GEMIS approaches projects</p>
-            <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Understand. Define. Design. Deliver.</h2>
+            <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">The same four principles sit behind every project here. <a class="arrow-link" href="{base}solutions/">See how we work {ARROW}</a></p>
         </div>
-{B.tline(SV.APPROACH)}
+{B.tline(SV.WAYS)}
       </div>
     </section>
 

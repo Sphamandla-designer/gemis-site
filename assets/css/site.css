@@ -4402,3 +4402,10 @@ html.has-modal { overflow: hidden; }
 .go .lede, .band-ink.band-photo .lede { color: rgba(255,255,255,.84); }
 .go .go__contact p > a:not([class]), .go .go__contact a { color: #fff; text-decoration-color: rgba(255,255,255,.4); }
 .go .go__contact a:hover { text-decoration-color: #fff; }
+/* the three founding clients on the stories panel carry their tag and a mark */
+.stories__tab--founding { grid-template-rows: auto auto; }
+.stories__tab--founding .stories__tab-p { display: block; grid-column: 1; margin-top: 2px; font-size: var(--fs-eyebrow); letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.58); }
+.stories__tab--founding .stories__tab-p::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 8px 1px 0; border-radius: 50%; background: #fff; opacity: .7; }
+.stories__tab--founding[aria-pressed="true"] .stories__tab-p { color: rgba(255,255,255,.82); }
+.stories__tab--founding .stories__tab-go { grid-row: 1 / span 2; }
+@media (max-width: 1080px) { .stories__tab--founding .stories__tab-p { display: block; } }
