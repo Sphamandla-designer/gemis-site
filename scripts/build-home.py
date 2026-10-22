@@ -344,104 +344,56 @@ OPERATING = [
     },
 ]
 
-# the abstract motifs: fine lines only, metaphors rather than interfaces
-MOTIFS = {
-    # a precise line entering a structured field, breaking, then reconnecting
-    'leak': '''<svg class="op__motif" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-              <rect class="m-field" x="70" y="22" width="130" height="76" rx="2" />
-              <path class="m-grid" d="M70 48h130M70 74h130M113 22v76M157 22v76" />
-              <path class="m-in" d="M6 60h64" />
-              <path class="m-gap" d="M70 60h43" />
-              <path class="m-out" d="M113 60h87" />
-              <circle class="m-dot m-dot--a" cx="6" cy="60" r="2.5" fill="currentColor" stroke="none" />
-              <circle class="m-dot m-dot--b" cx="200" cy="60" r="2.5" fill="currentColor" stroke="none" />
-            </svg>''',
-    # one data point moving into a structured record; offline to synchronised
-    'capture': '''<svg class="op__motif" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-              <rect class="m-record" x="96" y="18" width="110" height="84" rx="2" />
-              <path class="m-rows" d="M110 40h82M110 60h82M110 80h58" />
-              <circle class="m-point" cx="24" cy="60" r="4" />
-              <path class="m-path" d="M28 60h68" stroke-dasharray="3 4" />
-              <circle class="m-ring" cx="24" cy="60" r="11" stroke-dasharray="3 4" />
-              <text class="m-state m-state--off" x="12" y="104" font-size="8" letter-spacing=".12em" fill="currentColor" stroke="none">OFFLINE</text>
-              <text class="m-state m-state--on" x="12" y="104" font-size="8" letter-spacing=".12em" fill="currentColor" stroke="none">SYNCED</text>
-            </svg>''',
-    # two previously disconnected paths joining into one continuous route
-    'handoff': '''<svg class="op__motif" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-              <path class="m-a" d="M8 36h70c20 0 26 24 46 24h86" />
-              <path class="m-b" d="M8 84h70c20 0 26-24 46-24" />
-              <circle class="m-join" cx="124" cy="60" r="3" />
-              <circle class="m-dot m-dot--a" cx="8" cy="36" r="2.5" fill="currentColor" stroke="none" />
-              <circle class="m-dot m-dot--a" cx="8" cy="84" r="2.5" fill="currentColor" stroke="none" />
-              <circle class="m-dot m-dot--b" cx="210" cy="60" r="2.5" fill="currentColor" stroke="none" />
-              <path class="m-ticks" d="M160 56v8M186 56v8" />
-            </svg>''',
-    # thin layers extending from an earlier outline into a more developed structure
-    'evolve': '''<svg class="op__motif" viewBox="0 0 220 120" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
-              <rect class="m-layer m-layer--1" x="14" y="70" width="60" height="36" rx="1" />
-              <rect class="m-layer m-layer--2" x="38" y="54" width="86" height="52" rx="1" />
-              <rect class="m-layer m-layer--3" x="62" y="38" width="112" height="68" rx="1" />
-              <rect class="m-layer m-layer--4" x="86" y="22" width="120" height="84" rx="1" />
-              <path class="m-axis" d="M14 110h192" />
-              <path class="m-marks" d="M14 110v4M74 110v4M124 110v4M174 110v4M206 110v4" />
-              <text class="m-state" x="14" y="16" font-size="8" letter-spacing=".12em" fill="currentColor" stroke="none">2015</text>
-              <text class="m-state" x="206" y="16" font-size="8" letter-spacing=".12em" text-anchor="end" fill="currentColor" stroke="none">YEAR TEN</text>
-            </svg>''',
-}
-
-
 def operating_logic():
     """
-    "The operating logic": the four principles that connect the seven systems,
-    as a dark editorial composition. A two-by-two asymmetric grid on wide
-    screens with one continuous line drawn through the four index nodes as the
-    visitor scrolls (home.js, [data-oplogic]); a vertical spine on narrow
-    screens. Every statement and line of copy is verbatim from the brief.
+    "Operating principles": the four principles that connect the seven systems,
+    as a sticky index and a ruled list. The left column holds the label, the
+    statement and a large index numeral; the right column lists the four
+    principles as numbered ruled rows — statement, evidence, "Seen in" links.
+    As the visitor scrolls, the row at the reading line is the one in full
+    white and the numeral follows it (home.js, [data-principles]); without
+    JavaScript, under reduced motion and on narrow screens every row is full
+    and nothing moves. Every statement and line of copy is verbatim.
     """
-    items = []
+    rows, nums, ticks = [], [], []
     for i, p in enumerate(OPERATING):
         seen = ' '.join(f'<li><a href="{link_for(k)}">{esc(S.BY_SLUG[k]["client"])}</a></li>' for k in p['seen'])
-        items.append(f'''          <li class="op__item op__item--{i + 1}" data-op style="--i:{i}">
-            <span class="op__node" data-op-node aria-hidden="true"></span>
-            <span class="op__ghost" aria-hidden="true">{p['n']}</span>
-            <div class="op__head">
-              <span class="op__index" data-reveal>{p['n']}</span>
-              <span class="op__rule" aria-hidden="true"></span>
-            </div>
-            <h3 class="op__statement" data-reveal style="--d:80ms">{esc(p['statement'])}</h3>
-            <p class="op__copy" data-reveal style="--d:140ms">{esc(p['copy'])}</p>
-            <nav class="op__seen" aria-label="Seen in" data-reveal style="--d:200ms">
-              <span class="op__seen-label">Seen in</span>
-              <ul class="op__seen-list">{seen}</ul>
-            </nav>
-            <div class="op__motif-wrap" data-reveal style="--d:260ms">
-{MOTIFS[p['motif']]}
+        rows.append(f'''          <li class="prin__row{' is-active' if i == 0 else ''}" data-prin-row data-reveal style="--d:{i * 70}ms">
+            <span class="prin__n" aria-hidden="true">{p['n']}</span>
+            <div class="prin__body">
+              <h3 class="prin__statement">{esc(p['statement'])}</h3>
+              <p class="prin__copy">{esc(p['copy'])}</p>
+              <div class="prin__seen"><span class="prin__seen-label">Seen in</span><ul class="prin__seen-list">{seen}</ul></div>
             </div>
           </li>''')
+        nums.append(f'<span class="prin__num{" is-on" if i == 0 else ""}" data-prin-num>{p["n"]}</span>')
+        ticks.append(f'<span class="prin__tick{" is-on" if i == 0 else ""}" data-prin-tick></span>')
     reads = ' '.join(f'<li><a href="insights/{a["slug"]}/">{esc(a["title"])}</a></li>' for a in SV.ARTICLES)
     nl = chr(10)
     return f'''
-    <!-- ═══════════════════ 05 · THE OPERATING LOGIC ═══════════════════
-         Four principles connecting seven systems: a dark editorial band on
-         the hero photograph, one line drawn through the four as the visitor
-         scrolls (home.js, [data-oplogic]), abstract motifs, and the links to
-         the chapters and the three articles. Verbatim copy. -->
-    <section class="op band-ink" id="thinking" aria-labelledby="opHeading" data-oplogic>
-      <div class="shell op__in">
-        <header class="op__open">
-          <p class="op__label" data-reveal>GEMIS <span aria-hidden="true">/</span> Operating principles</p>
-          <h2 class="op__title" id="opHeading" data-reveal style="--d:100ms"><span class="op__t1">Seven systems.</span> <span class="op__t2">The same <em>four decisions.</em></span></h2>
-        </header>
-        <div class="op__field">
-          <svg class="op__line" aria-hidden="true" data-op-line><path class="op__line-base" d="" /><path class="op__line-draw" d="" pathLength="1" /></svg>
-          <ol class="op__grid">
-{nl.join(items)}
-          </ol>
-          <div class="op__end" aria-hidden="true"><span class="op__end-line"></span><span class="op__end-node"></span></div>
+    <!-- ═══════════════════ 05 · OPERATING PRINCIPLES ═══════════════════
+         Four principles connecting seven systems: a sticky index on the left,
+         four numbered ruled rows on the right; the row at the reading line is
+         the live one (home.js, [data-principles]). Verbatim copy. -->
+    <section class="prin band-ink" id="thinking" aria-labelledby="opHeading" data-principles>
+      <div class="shell prin__in">
+        <div class="prin__side">
+          <div class="prin__sticky">
+            <p class="prin__label" data-reveal>GEMIS <span aria-hidden="true">/</span> Operating principles</p>
+            <h2 class="prin__title" id="opHeading" data-reveal style="--d:80ms">Seven systems. The same four decisions.</h2>
+            <div class="prin__index" aria-hidden="true" data-reveal style="--d:160ms">
+              <span class="prin__nums">{''.join(nums)}</span>
+              <span class="prin__ticks">{''.join(ticks)}</span>
+              <span class="prin__of">of 04</span>
+            </div>
+          </div>
         </div>
-        <footer class="op__foot" data-reveal>
-          <p class="op__foot-label">Read more of our thinking:</p>
-          <ul class="op__reads">{reads}</ul>
+        <ol class="prin__list">
+{nl.join(rows)}
+        </ol>
+        <footer class="prin__foot" data-reveal>
+          <p class="prin__foot-label">Read more of our thinking:</p>
+          <ul class="prin__reads">{reads}</ul>
         </footer>
       </div>
     </section>

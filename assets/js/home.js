@@ -265,92 +265,41 @@
     if (stmt) stmt.addEventListener('transitionend', suRun);
   }
 
-  /* ── the operating logic: one line through the four principles, drawn on scroll ──
-     The line's path is built from the real positions of the four index nodes
-     (so it survives any width), drawn with a dash offset that follows the
-     section's progress through the viewport. A principle becomes active when
-     the line reaches its node, or on hover / focus; on touch screens scroll
-     position alone decides. Under reduced motion the CSS shows everything
-     resolved and this does nothing but build the path. */
-  var op = document.querySelector('[data-oplogic]');
-  if (op) {
-    var opSvg = op.querySelector('[data-op-line]');
-    var opBase = opSvg.querySelector('.op__line-base');
-    var opDraw = opSvg.querySelector('.op__line-draw');
-    var opItems = [].slice.call(op.querySelectorAll('[data-op]'));
-    var opEnd = op.querySelector('.op__end-node');
-    var opField = op.querySelector('.op__field');
-    var fractions = [];          // where along the path each node sits, 0..1
-
-    function opBuild() {
-      var fr = opField.getBoundingClientRect();
-      var pts = opItems.map(function (it) {
-        var n = it.querySelector('[data-op-node]').getBoundingClientRect();
-        return { x: n.left - fr.left + n.width / 2, y: n.top - fr.top + n.height / 2 };
-      });
-      var endR = opEnd.getBoundingClientRect();
-      var end = { x: endR.left - fr.left + endR.width / 2, y: endR.top - fr.top - 4 };
-      opSvg.setAttribute('viewBox', '0 0 ' + fr.width + ' ' + fr.height);
-      opSvg.setAttribute('preserveAspectRatio', 'none');
-      // an orthogonal route: 1 → 2 along the top, down the gutter and back to 3, across to 4, down to the end
-      var segs = [], d = 'M' + pts[0].x + ' ' + pts[0].y, cur = pts[0], total = 0;
-      function go(x, y) { total += Math.abs(x - cur.x) + Math.abs(y - cur.y); d += ' L' + x + ' ' + y; cur = { x: x, y: y }; }
-      fractions = [0];
-      if (window.matchMedia('(min-width: 901px)').matches) {
-        go(pts[1].x, pts[0].y); go(pts[1].x, pts[1].y); fractions.push(total);
-        var midY = (pts[1].y + pts[2].y) / 2 + Math.max(0, (pts[2].y - pts[1].y)) * 0.2;
-        go(pts[1].x, midY); go(pts[2].x, midY); go(pts[2].x, pts[2].y); fractions.push(total);
-        go(pts[3].x, pts[2].y); go(pts[3].x, pts[3].y); fractions.push(total);
-        go(pts[3].x, end.y - 24); go(end.x, end.y - 24); go(end.x, end.y);
-      } else {
-        for (var i = 1; i < pts.length; i++) { go(pts[i].x, pts[i].y); fractions.push(total); }
-        go(end.x, end.y);
+  /* ── operating principles: the row at the reading line is the live one ──
+     The index numeral and the ticks on the sticky side follow the row whose
+     box crosses a line 42 % down the viewport (the nearest row otherwise).
+     Wide screens only; elsewhere, and without scripts, every row is full. */
+  var prin = document.querySelector('[data-principles]');
+  if (prin && window.matchMedia('(min-width: 1001px)').matches) {
+    var pRows = [].slice.call(prin.querySelectorAll('[data-prin-row]'));
+    var pNums = [].slice.call(prin.querySelectorAll('[data-prin-num]'));
+    var pTicks = [].slice.call(prin.querySelectorAll('[data-prin-tick]'));
+    var pCur = 0, pTick = false, pOn = false;
+    function pSet(i) {
+      if (i === pCur) return;
+      pRows[pCur].classList.remove('is-active'); pNums[pCur].classList.remove('is-on'); pTicks[pCur].classList.remove('is-on');
+      pCur = i;
+      pRows[i].classList.add('is-active'); pNums[i].classList.add('is-on'); pTicks[i].classList.add('is-on');
+    }
+    function pFrame() {
+      pTick = false;
+      var line = window.innerHeight * 0.42, best = 0, bestD = Infinity;
+      for (var i = 0; i < pRows.length; i++) {
+        var r = pRows[i].getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) { best = i; bestD = 0; break; }
+        var d = r.top > line ? r.top - line : line - r.bottom;
+        if (d < bestD) { bestD = d; best = i; }
       }
-      fractions = fractions.map(function (f) { return total ? f / total : 0; });
-      opBase.setAttribute('d', d); opDraw.setAttribute('d', d);
+      pSet(best);
     }
-
-    var opActive = -1, opHover = -1;
-    function setActive(i) {
-      opItems.forEach(function (it, j) { it.classList.toggle('is-active', j === i); });
-    }
-    function opRun() {
-      var r = op.getBoundingClientRect(), vh = window.innerHeight;
-      var fr = opField.getBoundingClientRect();
-      // the line draws from when the field enters the lower third until its end passes the upper third
-      var p = Math.min(1, Math.max(0, (vh * 0.72 - fr.top) / (fr.height + vh * 0.4)));
-      op.style.setProperty('--p', p.toFixed(4));
-      op.style.setProperty('--pe', Math.min(1, Math.max(0, (p - 0.86) / 0.14)).toFixed(3));
-      // the principle whose node the line has reached most recently
-      var k = -1;
-      for (var i = 0; i < fractions.length; i++) if (p >= fractions[i] - 0.02) k = i;
-      if (p <= 0 || r.bottom < 0 || r.top > vh) k = -1;
-      opActive = k;
-      if (opHover < 0) setActive(opActive);
-    }
-    opItems.forEach(function (it, i) {
-      it.addEventListener('mouseenter', function () { opHover = i; setActive(i); });
-      it.addEventListener('mouseleave', function () { opHover = -1; setActive(opActive); });
-      it.addEventListener('focusin', function () { opHover = i; setActive(i); });
-      it.addEventListener('focusout', function (e) { if (!it.contains(e.relatedTarget)) { opHover = -1; setActive(opActive); } });
-    });
-    opBuild();
-    if (reduced) {
-      op.style.setProperty('--p', '1'); op.style.setProperty('--pe', '1');
-    } else {
-      var opOn = false, opTick = false;
-      function opFrame() { opTick = false; opRun(); }
-      function opScroll() { if (opOn && !opTick) { opTick = true; requestAnimationFrame(opFrame); } }
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (en) { opOn = en[0].isIntersecting; if (opOn) opRun(); }, { rootMargin: '20% 0px 20% 0px' }).observe(op);
-      } else { opOn = true; }
-      window.addEventListener('scroll', opScroll, { passive: true });
-      opRun();
-    }
-    window.addEventListener('resize', function () { opBuild(); if (!reduced) opRun(); });
-    window.addEventListener('load', function () { opBuild(); if (!reduced) opRun(); });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { opBuild(); if (!reduced) opRun(); });
-    if ('ResizeObserver' in window) new ResizeObserver(function () { opBuild(); if (!reduced) opRun(); }).observe(opField);
+    function pScroll() { if (pOn && !pTick) { pTick = true; requestAnimationFrame(pFrame); } }
+    prin.classList.add('is-live');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { pOn = es[0].isIntersecting; if (pOn) pScroll(); }, { rootMargin: '20% 0px 20% 0px' }).observe(prin);
+    } else { pOn = true; }
+    window.addEventListener('scroll', pScroll, { passive: true });
+    window.addEventListener('resize', pScroll);
+    pFrame();
   }
 
   /* ── the horizontal timeline: draws its line and lands its steps in turn ── */

@@ -93,7 +93,7 @@ layer that first introduced the component.
   is rebuilt as plain markup in `FOOTER` in `apply-chrome.py`, which
   replaces the whole `<footer class="foot">` on every page): rounded top
   corners with a centred glow and a blurred hairline, a brand column, four
-  sections — Solutions (all nine) / Products (ManaGEM, Design Studio,
+  sections — Solutions (the first four and All solutions) / Products (ManaGEM, Design Studio,
   Technical Academy, All products) / Company (Our Story, Case Studies,
   Insights, Industries, Contact) / Connect (LinkedIn, gemis.co.za, email,
   with icons) — a gradient rule and a centred legal line with the privacy
@@ -160,16 +160,18 @@ layer that first introduced the component.
   pin (`.selw__out-pin`), so when the pin releases the statement is exactly
   `--sec-y` from the next section) → **In their words** on the Client stories stage
   (names on the left, one quotation at a time, the three lines from
-  `scripts/endorsements.md`) → **The operating logic** (`operating_logic()`: the four principles,
-  verbatim in `OPERATING`, on the brand navy — the hero photograph under the
-  standard `band-ink` navy scrim, white and silver type, `#8fc3f3` the one
-  accent; the title on `--fs-display` like every other section heading;
-  an asymmetric two-by-two with one line drawn through the four index
-  nodes on scroll by `[data-oplogic]` in `home.js`, a vertical spine under
-  900px, abstract SVG motifs that resolve when a principle is active, "Seen
-  in" links to the chapter pages and the three articles; type on the site's
-  steps — display, lead, copy, eyebrow; complete and still without JS and
-  under reduced motion) → **Book a Discovery
+  `scripts/endorsements.md`) → **Operating principles** (`operating_logic()`,
+  section `.prin`: the four principles, verbatim in `OPERATING`, on the
+  standard navy band as a sticky index and a ruled list — left, the label,
+  the statement on `--fs-display` and one large index numeral with four
+  ticks; right, four numbered ruled rows (statement on `--fs-title`,
+  evidence, "Seen in" links to the chapter pages), then "Read more of our
+  thinking" with the three articles. On wide screens with scripts,
+  `[data-principles]` in `home.js` makes the row at 42 % of the viewport the
+  live one — full white, the others at half — and the numeral follows it;
+  hover or focus lifts any row. Under 1000px, without JS and under reduced
+  motion every row is full and nothing moves. The earlier drawn-line
+  composition is gone; its `.op` rules are dormant in `site.css`) → **Book a Discovery
   Session** with the
   form, as it was. No capabilities, stories panel, how-we-work or company
   section on the home; those live on Solutions, Case Studies and Our Story.
