@@ -150,15 +150,22 @@ def endorsement_html(key, base, since_text=''):
 
 
 # ── the stories slider ───────────────────────────────────────────────────
+PLAY = ('<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">'
+        '<path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg>')
+
+
 def stories_html(base=''):
     """
-    "Built together. Still working." as a vertical slider.
+    "Built together. Still working." after the stories-panel design reference
+    (qa/design-refs/stories-panel.png): the introduction and the list of
+    clients on the left, one story at a time on the right — its video poster
+    in a bordered panel, the headline and copy beneath, and two actions:
+    Read the story, and Watch the story, which opens the video full-screen.
 
     The markup is a plain <ol> of story cards that reads top to bottom with no
-    JavaScript. assets/js/home.js turns it into a stage that shows one card at
-    a time, advances on its own, and is driven by the rail of client names on
-    the left. Under prefers-reduced-motion it still steps through on a click,
-    but never on its own.
+    JavaScript; assets/js/home.js turns it into the stage, the auto-advance
+    and the video overlay. Without JavaScript "Watch the story" is a link to
+    the video file itself.
     """
     tabs, slides = [], []
     for i, s in enumerate(S.STORIES):
@@ -166,49 +173,64 @@ def stories_html(base=''):
         product = s.get('is_product')
         href = f'{base}products/managem/' if product else f'{base}work/{s["slug"]}/'
         cta = 'Explore ManaGEM' if product else 'Read the story'
+        v = f'{base}{S.VIDEO_DIR}{s["video"]}'
         tag = ('<span class="sty__tag">Founding client</span>' if founding
-               else '<span class="sty__tag sty__tag--product">Our product</span>' if product else '')
+               else '<span class="sty__tag">Our product</span>' if product else '')
         pressed = 'true' if i == 0 else 'false'
         hidden = '' if i == 0 else ' aria-hidden="true"'
-        tabs.append(f'''          <li><button class="stories__tab" type="button" data-go="{i}" aria-pressed="{pressed}">
-            <span class="stories__tab-n">{i + 1:02d}</span>
-            <span class="stories__tab-name">{esc(s['client'])}</span>
-            <span class="stories__tab-p">{period_html(s)}</span>
-          </button></li>''')
-        slides.append(f'''          <li class="sty" id="sty-{s['slug']}"{hidden}>
-            <a class="sty__media" href="{href}" tabindex="-1" aria-hidden="true">
-              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <div class="sty__body">
-              <p class="sty__period">{period_html(s)}</p>
-              <h3 class="sty__client">{esc(s['client'])}{tag}</h3>
-              <p class="sty__headline">{esc(s['headline'])}</p>
-              <p class="sty__challenge">{esc(s['challenge'])}.</p>
-              <p class="sty__outcome"><span>Outcome</span>{esc(s['outcome'])}</p>
-              <a class="arrow-link" href="{href}">{cta} {ARROW}</a>
-            </div>
-          </li>''')
+        tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{i}" aria-pressed="{pressed}">
+              <span class="stories__tab-name">{esc(s['client'])}</span>
+              <span class="stories__tab-p">{period_html(s)}</span>
+              <span class="stories__tab-go" aria-hidden="true">{ARROW}</span>
+            </button></li>''')
+        slides.append(f'''            <li class="sty" id="sty-{s['slug']}"{hidden}>
+              <div class="sty__panel">
+                <img class="sty__poster" src="{v}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+                <a class="sty__play" href="{v}_web.mp4" data-watch data-mp4="{v}_web.mp4" data-webm="{v}_web.webm" data-poster="{v}_thumb.jpg" data-title="{esc(s['video_title'])}" aria-label="Watch the {esc(s['client'])} story">{PLAY}</a>
+                <span class="sty__len" aria-hidden="true">{s['duration_label']}</span>
+              </div>
+              <div class="sty__body">
+                <p class="sty__period">{period_html(s)}{tag}</p>
+                <h3 class="sty__client">{esc(s['client'])} <span class="sty__sep">—</span> {esc(s['headline'])}</h3>
+                <p class="sty__challenge">{esc(s['challenge'])}. <strong>{esc(s['outcome'])}.</strong></p>
+                <div class="sty__actions">
+                  <a class="btn btn--light" href="{href}">{cta} {ARROW}</a>
+                  <a class="btn btn--ghost" href="{v}_web.mp4" data-watch data-mp4="{v}_web.mp4" data-webm="{v}_web.webm" data-poster="{v}_thumb.jpg" data-title="{esc(s['video_title'])}">{PLAY} Watch the story</a>
+                </div>
+              </div>
+            </li>''')
     n = len(S.STORIES)
-    tabs.append(f'''          <li><button class="stories__tab" type="button" data-go="{n}" aria-pressed="false">
-            <span class="stories__tab-n">{n + 1:02d}</span>
-            <span class="stories__tab-name">Today</span>
-            <span class="stories__tab-p">2026</span>
-          </button></li>''')
-    slides.append(f'''          <li class="sty sty--today" id="sty-today" aria-hidden="true">
-            <div class="sty__body">
-              <p class="sty__period">2026</p>
-              <h3 class="sty__client">Today</h3>
-              <p class="sty__headline">Still building together</p>
-              <p class="sty__challenge">All three founding relationships continue, and the systems we built them are still the ones they run on.</p>
-              <a class="arrow-link" href="{base}#discovery">Book a Discovery Session {ARROW}</a>
-            </div>
-          </li>''')
+    tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{n}" aria-pressed="false">
+              <span class="stories__tab-name">Today</span>
+              <span class="stories__tab-p">2026</span>
+              <span class="stories__tab-go" aria-hidden="true">{ARROW}</span>
+            </button></li>''')
+    slides.append(f'''            <li class="sty sty--today" id="sty-today" aria-hidden="true">
+              <div class="sty__panel sty__panel--today">
+                <p class="sty__big">Still building together.</p>
+              </div>
+              <div class="sty__body">
+                <p class="sty__period">2026</p>
+                <h3 class="sty__client">Today <span class="sty__sep">—</span> the founding relationships continue</h3>
+                <p class="sty__challenge">All three founding clients still run on the systems we built them, and the systems have kept growing with the businesses.</p>
+                <div class="sty__actions">
+                  <a class="btn btn--light" href="{base}#discovery">Book a Discovery Session {ARROW}</a>
+                  <a class="btn btn--ghost" href="{base}work/">All case studies {ARROW}</a>
+                </div>
+              </div>
+            </li>''')
     nl = chr(10)
     return f'''        <div class="stories__frame" data-stories>
-          <ol class="stories__rail" aria-label="Choose a story">
+          <div class="stories__intro">
+            <p class="eyebrow" data-reveal>Our story, told through the businesses we've helped</p>
+            <h2 class="display" id="storiesHeading" data-reveal style="--d:80ms">Built together. Still working.</h2>
+            <p class="lede" data-reveal style="--d:140ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
+            <a class="btn btn--light stories__all" href="{base}work/" data-reveal style="--d:200ms">See all case studies {ARROW}</a>
+            <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:260ms">
 {nl.join(tabs)}
-          </ol>
-          <div class="stories__stage">
+            </ol>
+          </div>
+          <div class="stories__stage" data-reveal style="--d:200ms">
             <ol class="stories__list">
 {nl.join(slides)}
             </ol>
@@ -220,8 +242,15 @@ def stories_html(base=''):
               <span class="stories__bar" aria-hidden="true"><i></i></span>
             </div>
           </div>
-        </div>'''
+        </div>
 
+        <!-- the video overlay: filled and opened by home.js; closed on Escape,
+             the close button or a click on the backdrop -->
+        <dialog class="vmodal" id="videoModal" aria-label="Case study video">
+          <button class="vmodal__close" type="button" data-close aria-label="Close video"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7"/></svg></button>
+          <video class="vmodal__video" controls playsinline preload="none" width="1280" height="720"></video>
+          <p class="vmodal__title" data-vtitle></p>
+        </dialog>'''
 
 
 # ── the design-reference kit, shared by every generated page ─────────────
