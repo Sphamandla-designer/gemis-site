@@ -124,16 +124,18 @@ layer that first introduced the component.
   challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
   one case card (industry, name, headline, GEMIS's role, status, capability
   chips, Read / Play) used by the index, the homepage, related rows, service
-  pages and articles. The homepage order (owner's revision of the brief's):
+  pages and articles. The homepage order (the owner's revisions of the brief's):
   the hero as it was (tagline, partner line) → the stats section as it was
   (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
-  (`.selw`, after the owner's Trionn reference: a white band pinned to the
-  viewport while four project cards travel across on scroll; `[data-hscroll]`
-  in `home.js`, vertical without JS, on phones and under reduced motion) → the
-  overall thinking (`PRINCIPLES` + `OVERALL_FLOW` in `build-home.py`, each
-  principle with "seen in" chips) → capabilities → the stories panel → how we
-  work → the company → the enquiry band. The enquiry form lives on
-  `contact.html` only; every CTA says *Discuss a project* and points there.
+  (`.selw`, after the owner's reference screenshots in commit 4440697: a grey
+  band pinned to the viewport, divided into panels by thin rules, four project
+  cards with play buttons travelling across on scroll, a closing "view all"
+  panel; `[data-hscroll]` in `home.js`, vertical without JS, on phones and
+  under reduced motion) → **Client stories** (`testimonials_html()`, the
+  owner's placeholder testimonials) → the overall thinking (`PRINCIPLES` +
+  `OVERALL_FLOW` in `build-home.py`) → **Book a Discovery Session** with the
+  form, as it was. No capabilities, stories panel, how-we-work or company
+  section on the home; those live on Solutions, Case Studies and Our Story.
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
@@ -194,10 +196,12 @@ two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.m
 does not confirm — the phone number, team titles, the partner designation — is a
 hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 
-The homepage testimonials that used to stand in as placeholders are gone (the
-redesign brief's rule against invented testimonials supersedes the earlier
-instruction). `TESTIMONIALS` in `scripts/services.py` is kept only so an approved
-set can be dropped in; nothing renders it.
+**One standing exception, at the owner's instruction:** the homepage "Client
+stories" (`TESTIMONIALS` in `scripts/services.py`) are invented placeholders —
+South African names, no company named — until approved quotes arrive. The owner
+reaffirmed this after the case-study-led redesign removed them. OPEN_ITEMS.md
+tracks them as `testimonials-placeholder`. Do not add more invented content on
+the strength of that exception.
 
 ## Site map (navigation)
 

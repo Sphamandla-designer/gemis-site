@@ -39,6 +39,8 @@ SV = load('services', 'services.py')
 C = load('cases', 'cases.py')
 B = load('build_stories', 'build-stories.py')
 esc, ARROW, PLAY = B.esc, B.ARROW, B.PLAY
+# the reference's thin right-pointing arrow on the monospace links
+MONO_ARROW = '<svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg>'
 
 # the owner-supplied client logos, one grey version each (PR #77)
 LOGOS = [
@@ -94,7 +96,7 @@ def hero():
           a decade.
         </p>
         <div class="hero__ctas" data-reveal style="--d:240ms">
-          <a class="arrow-link" href="contact.html">
+          <a class="arrow-link" href="#discovery">
             Book a Discovery Session
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
           </a>
@@ -179,52 +181,122 @@ def trust():
 
 def selected():
     """
-    Selected work, after the owner's reference (the Trionn "Selected work &
-    explorations" screenshots): a white band pinned to the viewport while four
-    large project cards travel across it as the page scrolls, then a closing
-    panel that points to every case study. The markup is a plain list; without
-    JavaScript, on a phone, or under reduced motion it stacks vertically.
+    Selected work, after the owner's reference screenshots (commit 4440697):
+    a soft grey band pinned to the viewport, divided into panels by thin
+    full-height rules — the heading panel, four project cards, a closing
+    panel — travelling across as the page scrolls. Each card is a large
+    rounded image with a play button (it is a video), the project name, a
+    two-line description and a monospace EXPLORE PROJECT link. The list is
+    plain and vertical without JavaScript, on phones and under reduced motion.
     """
     picks = ['managem', 'wastemart', 'homeassist', 'sonke']
     cards = []
     for i, k in enumerate(picks):
         st = S.BY_SLUG[k]
         c = C.CASES.get(k, {})
-        line = c.get('value') or st['summary']
-        line = line.split('. ')[0].rstrip('.') + '.'
-        cards.append(f'''          <li class="selw__item selw__card" data-reveal style="--d:{i * 80}ms">
-            <a class="selw__media" href="{link_for(k)}" tabindex="-1" aria-hidden="true">
+        line = (c.get('value') or st['summary']).split('. ')[0].rstrip('.') + '.'
+        cards.append(f'''          <li class="selw__item selw__card{' selw__card--low' if i % 2 else ''}">
+            <div class="selw__media" data-reveal style="--d:{i * 60}ms">
               <img src="{S.VIDEO_DIR}{st['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <h3 class="selw__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
-            <div class="selw__row">
-              <p class="selw__line">{esc(st['headline'])}. {esc(line)}</p>
-              <a class="selw__more" href="{link_for(k)}">Explore project {ARROW}</a>
+              <a class="selw__play" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}<span>Play story</span></a>
+              <span class="selw__len" aria-hidden="true">{st['duration_label']}</span>
+            </div>
+            <h3 class="selw__name" data-reveal style="--d:{i * 60 + 60}ms"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
+            <div class="selw__row" data-reveal style="--d:{i * 60 + 100}ms">
+              <p class="selw__line">{esc(line)}</p>
+              <a class="selw__more" href="{link_for(k)}">Explore project {MONO_ARROW}</a>
             </div>
           </li>''')
     nl = chr(10)
     return f'''
     <!-- ═══════════════════ 03 · SELECTED WORK ═══════════════════
-         The owner's reference: a pinned white band, the heading on the left,
-         four large project cards travelling across as the page scrolls, and a
-         closing panel to every case study. assets/js/home.js drives the pin;
-         the list stacks without it. -->
+         The owner's reference (commit 4440697): a pinned grey band divided
+         into panels by thin rules, the heading first, four project cards
+         travelling across as the page scrolls, and a closing panel to every
+         case study. assets/js/home.js drives the pin; the list stacks
+         without it. Every card plays its case study video. -->
     <section class="selw" id="selected" aria-labelledby="selectedHeading" data-hscroll>
       <div class="selw__pin">
         <ol class="selw__track" data-track>
           <li class="selw__item selw__head">
-            <h2 class="display" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {ARROW}</a>
+            <h2 class="selw__title" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {MONO_ARROW}</a>
           </li>
 {nl.join(cards)}
           <li class="selw__item selw__end">
             <p class="selw__endline" data-reveal>Discover the complete collection of systems, platforms and products GEMIS has built.</p>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {ARROW}</a>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {MONO_ARROW}</a>
           </li>
         </ol>
       </div>
     </section>
 '''
+
+STAR = ('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg>')
+
+
+def testimonials_html():
+    """
+    "Client stories", after the owner's reference (qa/design-refs/testimonials.png):
+    the list of names on the left with the active one marked by an arrow and a
+    pair of square arrow buttons beneath; on the right one quotation at a time,
+    large, with the person beneath it. Tabbed by home.js; a plain list without it.
+    """
+    GO = ('<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+          '<path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg>')
+    tabs, slides = [], []
+    for i, (name, role, where, quote, stars) in enumerate(SV.TESTIMONIALS):
+        initials = ''.join(w[0] for w in name.split()[:2])
+        pressed = 'true' if i == 0 else 'false'
+        hidden = '' if i == 0 else ' aria-hidden="true"'
+        tabs.append(f'''            <li><button class="cs__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span>{esc(name)}</span><span class="cs__tab-go" aria-hidden="true">{GO}</span></button></li>''')
+        slides.append(f'''            <li class="cs__item" data-slide{hidden}>
+              <blockquote class="cs__q"><p>{esc(quote)}</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">{initials}</span>
+                <span class="cs__who"><strong>{esc(name)}</strong><span>{esc(role)} &middot; {esc(where)}</span></span>
+                <span class="cs__stars" role="img" aria-label="{stars} out of 5 stars">{STAR * stars}</span>
+              </p>
+            </li>''')
+    nl = chr(10)
+    return f'''        <div class="cs" data-stage data-auto="0">
+          <div class="cs__side">
+            <ol class="cs__rail" aria-label="Choose a client story" data-reveal>
+{nl.join(tabs)}
+            </ol>
+            <div class="cs__ctl" data-ctl hidden>
+              <button class="cs__btn" type="button" data-prev aria-label="Previous client story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+              <button class="cs__btn" type="button" data-next aria-label="Next client story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+            </div>
+          </div>
+          <div class="cs__main" data-reveal style="--d:80ms">
+            <ol class="cs__list" data-list>
+{nl.join(slides)}
+            </ol>
+            <a class="cs__more" href="#discovery">Become a client <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>'''
+
+def client_stories():
+    """Client stories, as it was: the owner's reference stage. PLACEHOLDERS —
+    invented names and wording at the owner's instruction until approved
+    quotes arrive (OPEN_ITEMS.md: testimonials-placeholder)."""
+    return f'''
+    <!-- ═══════════════════ 04 · CLIENT STORIES ═══════════════════
+         PLACEHOLDERS, at the owner's instruction: invented South African names
+         and wording until approved quotes arrive. See OPEN_ITEMS.md
+         (testimonials-placeholder). -->
+    <section class="testi band" id="client-stories" aria-labelledby="testiHeading">
+      <div class="shell">
+        <div class="cs__head">
+          <h2 class="cs__title" id="testiHeading" data-reveal>Client stories</h2>
+          <p class="cs__lede" data-reveal style="--d:80ms">Great work is built through partnership. Here's what our clients say.</p>
+        </div>
+{testimonials_html()}
+      </div>
+    </section>
+'''
+
 
 # 04 · the overall thinking: the principles every system here was built on,
 # each with the projects where it can be seen running
@@ -278,7 +350,7 @@ def thinking():
     <!-- ═══════════════════ 04 · THE THINKING ═══════════════════
          The overall thinking: the pattern every system here follows, and the
          principles behind it, each pointing to the projects where it runs. -->
-    <section class="think-sec capmap band band-wash plusgrid plusgrid--tr" id="thinking" aria-labelledby="thinkingHeading">
+    <section class="think-sec capmap band band-wash plusgrid plusgrid--br" id="thinking" aria-labelledby="thinkingHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -404,28 +476,110 @@ def company():
 
 
 def enquiry():
-    return f'''
-    <!-- ═══════════════════ 09 · THE ENQUIRY ═══════════════════
-         The one conversion path. The form itself lives on contact.html. -->
-    <section class="convert" id="discovery" aria-labelledby="convertHeading">
-      <div class="shell convert__in">
-        <p class="eyebrow" data-reveal>Your project</p>
-        <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Have a business challenge worth solving?</h2>
-        <p class="lede" data-reveal style="--d:140ms">Describe the operational problem &mdash; the spreadsheet that has become the system, the hand-off that keeps failing, the report that takes weeks. We come back within two working days with a short written view and a time to talk. No obligation.</p>
-        <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="contact.html">Discuss a project {ARROW}</a>
-          <a class="arrow-link" href="solutions/">Explore our solutions {ARROW}</a>
+    # Book a Discovery Session, with the form, as it was before the redesign
+    return '''
+    <!-- ═══════════════════ 07 · GET STARTED ═══════════════════
+         The form hands off to the visitor's email client (this site is static);
+         nothing is stored. The three steps mirror contact.html. -->
+    <section class="go band-ink band-photo band-photo--wide" id="discovery" aria-labelledby="goHeading">
+      <div class="shell go__grid">
+        <div class="go__intro">
+          <p class="eyebrow" data-reveal>Get started</p>
+          <h2 class="display" id="goHeading" data-reveal style="--d:80ms">Book a Discovery Session</h2>
+          <p class="lede" data-reveal style="--d:140ms">
+            Tell us what you're trying to fix. We'll come back within two working days with a
+            short written view and a time to talk. No obligation.
+          </p>
+          <ol class="go__steps" data-reveal style="--d:200ms">
+            <li><span class="go__n">01</span><div><strong>We read it properly</strong><p>Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</p></div></li>
+            <li><span class="go__n">02</span><div><strong>A discovery conversation</strong><p>We map how your organisation actually works — the goals, the friction and the constraints — before anyone proposes a system.</p></div></li>
+            <li><span class="go__n">03</span><div><strong>A scoped way forward</strong><p>You get an architecture, a plan and a cost you can act on. If we're not the right fit, we'll say so.</p></div></li>
+          </ol>
+          <div class="go__contact" data-reveal style="--d:260ms">
+            <p><span>Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
+            <div class="unconfirmed" data-tbc="phone-number" data-kind="hideable"><p><span>Phone</span><a href="tel:+27112195008">+27 11 219 5008</a> <span class="tbc" data-tbc="phone-number" data-kind="hideable">number to confirm</span></p></div>
+            <p><span>Cape Town</span>9 Tapiola Way, Edgemead</p>
+          </div>
         </div>
+
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
+            <div class="form__rows">
+              <div class="field">
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
+                  <option value="">Select one…</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
+              </div>
+            </div>
+
+            <div class="consent">
+              <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
+              <label for="d-consent">
+                I consent to GEM Information Systems processing the information above in
+                order to respond to this enquiry, as described in the
+                <a href="privacy.html">privacy notice</a>. I can withdraw this consent at
+                any time.
+              </label>
+            </div>
+            <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
+
+            <button class="form__send" type="submit">
+              Book a Discovery Session
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+            </button>
+
+            <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
+              This site is static, so sending opens a pre-filled message in your email
+              client addressed to info@gemis.co.za — nothing is submitted or stored here.
+            </p>
+          </form>
       </div>
     </section>
 
-{B.video_modal()}
-'''
-
+''' + B.video_modal() + '\n'
 
 def home_main():
-    return (hero() + trust() + selected() + thinking() + capabilities() + stories()
-            + ways() + company() + enquiry())
+    return hero() + trust() + selected() + client_stories() + thinking() + enquiry()
 
 
 if __name__ == '__main__':

@@ -163,7 +163,7 @@
           a decade.
         </p>
         <div class="hero__ctas" data-reveal style="--d:240ms">
-          <a class="arrow-link" href="contact.html">
+          <a class="arrow-link" href="#discovery">
             Book a Discovery Session
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
           </a>
@@ -241,69 +241,160 @@
     </section>
 
     <!-- ═══════════════════ 03 · SELECTED WORK ═══════════════════
-         The owner's reference: a pinned white band, the heading on the left,
-         four large project cards travelling across as the page scrolls, and a
-         closing panel to every case study. assets/js/home.js drives the pin;
-         the list stacks without it. -->
+         The owner's reference (commit 4440697): a pinned grey band divided
+         into panels by thin rules, the heading first, four project cards
+         travelling across as the page scrolls, and a closing panel to every
+         case study. assets/js/home.js drives the pin; the list stacks
+         without it. Every card plays its case study video. -->
     <section class="selw" id="selected" aria-labelledby="selectedHeading" data-hscroll>
       <div class="selw__pin">
         <ol class="selw__track" data-track>
           <li class="selw__item selw__head">
-            <h2 class="display" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <h2 class="selw__title" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
           </li>
-          <li class="selw__item selw__card" data-reveal style="--d:0ms">
-            <a class="selw__media" href="products/managem/" tabindex="-1" aria-hidden="true">
+          <li class="selw__item selw__card">
+            <div class="selw__media" data-reveal style="--d:0ms">
               <img src="assets/video/case-studies/ManaGEM_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <h3 class="selw__name"><a href="products/managem/">ManaGEM</a></h3>
-            <div class="selw__row">
-              <p class="selw__line">Born in a real business, built for many. ManaGEM is GEMIS&#x27;s business management platform, generalised from the system built for SBS Waterproofing.</p>
-              <a class="selw__more" href="products/managem/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="selw__play" href="assets/video/case-studies/ManaGEM_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/ManaGEM_explainer_web.mp4" data-webm="assets/video/case-studies/ManaGEM_explainer_web.webm" data-poster="assets/video/case-studies/ManaGEM_explainer_thumb.jpg" data-title="ManaGEM: born in a real business, built for many" aria-label="Play the ManaGEM story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
+              <span class="selw__len" aria-hidden="true">1:06</span>
+            </div>
+            <h3 class="selw__name" data-reveal style="--d:60ms"><a href="products/managem/">ManaGEM</a></h3>
+            <div class="selw__row" data-reveal style="--d:100ms">
+              <p class="selw__line">ManaGEM is GEMIS&#x27;s business management platform, generalised from the system built for SBS Waterproofing.</p>
+              <a class="selw__more" href="products/managem/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card" data-reveal style="--d:80ms">
-            <a class="selw__media" href="work/wastemart/" tabindex="-1" aria-hidden="true">
+          <li class="selw__item selw__card selw__card--low">
+            <div class="selw__media" data-reveal style="--d:60ms">
               <img src="assets/video/case-studies/WasteMart_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <h3 class="selw__name"><a href="work/wastemart/">WasteMart</a></h3>
-            <div class="selw__row">
-              <p class="selw__line">From quote to collection, handled. A single call becomes a priced quote, a secure payment, a scheduled truck and a confirmed collection — without the manual work in between.</p>
-              <a class="selw__more" href="work/wastemart/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="selw__play" href="assets/video/case-studies/WasteMart_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/WasteMart_explainer_web.mp4" data-webm="assets/video/case-studies/WasteMart_explainer_web.webm" data-poster="assets/video/case-studies/WasteMart_explainer_thumb.jpg" data-title="WasteMart: from quote to collection, handled" aria-label="Play the WasteMart story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
+              <span class="selw__len" aria-hidden="true">1:29</span>
+            </div>
+            <h3 class="selw__name" data-reveal style="--d:120ms"><a href="work/wastemart/">WasteMart</a></h3>
+            <div class="selw__row" data-reveal style="--d:160ms">
+              <p class="selw__line">A single call becomes a priced quote, a secure payment, a scheduled truck and a confirmed collection — without the manual work in between.</p>
+              <a class="selw__more" href="work/wastemart/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card" data-reveal style="--d:160ms">
-            <a class="selw__media" href="work/homeassist/" tabindex="-1" aria-hidden="true">
+          <li class="selw__item selw__card">
+            <div class="selw__media" data-reveal style="--d:120ms">
               <img src="assets/video/case-studies/HomeAssist_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <h3 class="selw__name"><a href="work/homeassist/">HomeAssist</a></h3>
-            <div class="selw__row">
-              <p class="selw__line">Plumbing claims, from report to sign-off. A national plumbing-claims operation run from one system: report, dispatch, evidence and sign-off, with the customer informed at every step.</p>
-              <a class="selw__more" href="work/homeassist/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="selw__play" href="assets/video/case-studies/HomeAssist_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/HomeAssist_explainer_web.mp4" data-webm="assets/video/case-studies/HomeAssist_explainer_web.webm" data-poster="assets/video/case-studies/HomeAssist_explainer_thumb.jpg" data-title="HomeAssist: plumbing claims, from report to sign-off" aria-label="Play the HomeAssist story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
+              <span class="selw__len" aria-hidden="true">1:29</span>
+            </div>
+            <h3 class="selw__name" data-reveal style="--d:180ms"><a href="work/homeassist/">HomeAssist</a></h3>
+            <div class="selw__row" data-reveal style="--d:220ms">
+              <p class="selw__line">A national plumbing-claims operation run from one system: report, dispatch, evidence and sign-off, with the customer informed at every step.</p>
+              <a class="selw__more" href="work/homeassist/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
             </div>
           </li>
-          <li class="selw__item selw__card" data-reveal style="--d:240ms">
-            <a class="selw__media" href="work/sonke/" tabindex="-1" aria-hidden="true">
+          <li class="selw__item selw__card selw__card--low">
+            <div class="selw__media" data-reveal style="--d:180ms">
               <img src="assets/video/case-studies/Sonke_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-            </a>
-            <h3 class="selw__name"><a href="work/sonke/">Sonke Gender Justice</a></h3>
-            <div class="selw__row">
-              <p class="selw__line">Monitoring and evaluation across Africa. A monitoring and evaluation system for work in forty countries — captured offline in the field, checked in the office, reported to donors from verified data.</p>
-              <a class="selw__more" href="work/sonke/">Explore project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="selw__play" href="assets/video/case-studies/Sonke_explainer_web.mp4" data-watch data-mp4="assets/video/case-studies/Sonke_explainer_web.mp4" data-webm="assets/video/case-studies/Sonke_explainer_web.webm" data-poster="assets/video/case-studies/Sonke_explainer_thumb.jpg" data-title="Sonke Gender Justice: monitoring and evaluation across Africa" aria-label="Play the Sonke Gender Justice story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg><span>Play story</span></a>
+              <span class="selw__len" aria-hidden="true">1:22</span>
+            </div>
+            <h3 class="selw__name" data-reveal style="--d:240ms"><a href="work/sonke/">Sonke Gender Justice</a></h3>
+            <div class="selw__row" data-reveal style="--d:280ms">
+              <p class="selw__line">A monitoring and evaluation system for work in forty countries — captured offline in the field, checked in the office, reported to donors from verified data.</p>
+              <a class="selw__more" href="work/sonke/">Explore project <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
             </div>
           </li>
           <li class="selw__item selw__end">
             <p class="selw__endline" data-reveal>Discover the complete collection of systems, platforms and products GEMIS has built.</p>
-            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects <svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg></a>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ 04 · CLIENT STORIES ═══════════════════
+         PLACEHOLDERS, at the owner's instruction: invented South African names
+         and wording until approved quotes arrive. See OPEN_ITEMS.md
+         (testimonials-placeholder). -->
+    <section class="testi band" id="client-stories" aria-labelledby="testiHeading">
+      <div class="shell">
+        <div class="cs__head">
+          <h2 class="cs__title" id="testiHeading" data-reveal>Client stories</h2>
+          <p class="cs__lede" data-reveal style="--d:80ms">Great work is built through partnership. Here's what our clients say.</p>
+        </div>
+        <div class="cs" data-stage data-auto="0">
+          <div class="cs__side">
+            <ol class="cs__rail" aria-label="Choose a client story" data-reveal>
+            <li><button class="cs__tab" type="button" data-tab data-go="0" aria-pressed="true"><span>Thandiwe Mokoena</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            <li><button class="cs__tab" type="button" data-tab data-go="1" aria-pressed="false"><span>Pieter van der Merwe</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            <li><button class="cs__tab" type="button" data-tab data-go="2" aria-pressed="false"><span>Naledi Dlamini</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            <li><button class="cs__tab" type="button" data-tab data-go="3" aria-pressed="false"><span>Sipho Ndlovu</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            <li><button class="cs__tab" type="button" data-tab data-go="4" aria-pressed="false"><span>Anika Pillay</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            <li><button class="cs__tab" type="button" data-tab data-go="5" aria-pressed="false"><span>Johan Botha</span><span class="cs__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></button></li>
+            </ol>
+            <div class="cs__ctl" data-ctl hidden>
+              <button class="cs__btn" type="button" data-prev aria-label="Previous client story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+              <button class="cs__btn" type="button" data-next aria-label="Next client story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+            </div>
+          </div>
+          <div class="cs__main" data-reveal style="--d:80ms">
+            <ol class="cs__list" data-list>
+            <li class="cs__item" data-slide>
+              <blockquote class="cs__q"><p>For the first time every quote, job and invoice is in one place. My planners stopped phoning around for status — they just look.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">TM</span>
+                <span class="cs__who"><strong>Thandiwe Mokoena</strong><span>Operations Director &middot; waterproofing contractor, Cape Town</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            <li class="cs__item" data-slide aria-hidden="true">
+              <blockquote class="cs__q"><p>Month-end used to take the better part of two weeks. The system GEMIS built closes it in two days, and the numbers agree with the bank.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">Pv</span>
+                <span class="cs__who"><strong>Pieter van der Merwe</strong><span>Financial Manager &middot; plumbing claims administrator, Johannesburg</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            <li class="cs__item" data-slide aria-hidden="true">
+              <blockquote class="cs__q"><p>Field officers capture on their phones, with or without signal, and the dashboard is current by the time they are back in the office.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">ND</span>
+                <span class="cs__who"><strong>Naledi Dlamini</strong><span>Monitoring &amp; Evaluation Lead &middot; non-profit, Pretoria</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            <li class="cs__item" data-slide aria-hidden="true">
+              <blockquote class="cs__q"><p>They did not sell us a package. They sat in our yard for a week first, and the system works the way the yard works.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">SN</span>
+                <span class="cs__who"><strong>Sipho Ndlovu</strong><span>Managing Director &middot; skip-hire operator, Durban</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            <li class="cs__item" data-slide aria-hidden="true">
+              <blockquote class="cs__q"><p>A report that took a team a week now takes one click, and it is right. That changed how our executive meeting runs.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">AP</span>
+                <span class="cs__who"><strong>Anika Pillay</strong><span>Head of Finance &middot; mining services group, Gauteng</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            <li class="cs__item" data-slide aria-hidden="true">
+              <blockquote class="cs__q"><p>What I value most is that the same people who built it still answer the phone, ten years on. That is rare.</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">JB</span>
+                <span class="cs__who"><strong>Johan Botha</strong><span>Owner &middot; small manufacturing business, Stellenbosch</span></span>
+                <span class="cs__stars" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg></span>
+              </p>
+            </li>
+            </ol>
+            <a class="cs__more" href="#discovery">Become a client <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════════════ 04 · THE THINKING ═══════════════════
          The overall thinking: the pattern every system here follows, and the
          principles behind it, each pointing to the projects where it runs. -->
-    <section class="think-sec capmap band band-wash plusgrid plusgrid--tr" id="thinking" aria-labelledby="thinkingHeading">
+    <section class="think-sec capmap band band-wash plusgrid plusgrid--br" id="thinking" aria-labelledby="thinkingHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -424,333 +515,101 @@
       </div>
     </section>
 
-    <!-- ═══════════════════ 05 · CAPABILITIES, DEMONSTRATED ═══════════════════
-         What a visitor can engage GEMIS for, each tied to the projects that
-         show it running. Only capabilities with evidence on the site. -->
-    <section class="capmap band plusgrid plusgrid--br" id="capabilities" aria-labelledby="capHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Capabilities, demonstrated</p>
-            <h2 class="display" id="capHeading" data-reveal style="--d:80ms">What you can engage GEMIS for, and where each has run</h2>
+    <!-- ═══════════════════ 07 · GET STARTED ═══════════════════
+         The form hands off to the visitor's email client (this site is static);
+         nothing is stored. The three steps mirror contact.html. -->
+    <section class="go band-ink band-photo band-photo--wide" id="discovery" aria-labelledby="goHeading">
+      <div class="shell go__grid">
+        <div class="go__intro">
+          <p class="eyebrow" data-reveal>Get started</p>
+          <h2 class="display" id="goHeading" data-reveal style="--d:80ms">Book a Discovery Session</h2>
+          <p class="lede" data-reveal style="--d:140ms">
+            Tell us what you're trying to fix. We'll come back within two working days with a
+            short written view and a time to talk. No obligation.
+          </p>
+          <ol class="go__steps" data-reveal style="--d:200ms">
+            <li><span class="go__n">01</span><div><strong>We read it properly</strong><p>Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</p></div></li>
+            <li><span class="go__n">02</span><div><strong>A discovery conversation</strong><p>We map how your organisation actually works — the goals, the friction and the constraints — before anyone proposes a system.</p></div></li>
+            <li><span class="go__n">03</span><div><strong>A scoped way forward</strong><p>You get an architecture, a plan and a cost you can act on. If we're not the right fit, we'll say so.</p></div></li>
+          </ol>
+          <div class="go__contact" data-reveal style="--d:260ms">
+            <p><span>Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
+            <div class="unconfirmed" data-tbc="phone-number" data-kind="hideable"><p><span>Phone</span><a href="tel:+27112195008">+27 11 219 5008</a> <span class="tbc" data-tbc="phone-number" data-kind="hideable">number to confirm</span></p></div>
+            <p><span>Cape Town</span>9 Tapiola Way, Edgemead</p>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Every capability below is tied to a system in production. <a class="arrow-link" href="solutions/">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
         </div>
-        <ol class="srows">
-          <li class="srow" data-reveal style="--d:0ms">
-            <span class="srow__n" aria-hidden="true">01</span>
-            <h3 class="srow__name">Business systems and ERP</h3>
-            <div class="srow__body">
-              <p>One system for enquiries, quotes, jobs, deposits, stock and staff, designed around the sequence the business actually follows rather than a package’s.</p>
-              <ul class="srow__chips">
-                <li><a href="work/sbs-waterproofing/">SBS Waterproofing</a></li>
-                <li><a href="work/wastemart/">WasteMart</a></li>
-                <li><a href="products/managem/">ManaGEM</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/custom-software/">Custom software development <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a> &middot; <a class="arrow-link arrow-link--quiet" href="solutions/enterprise-saas/">Enterprise SaaS platforms <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:60ms">
-            <span class="srow__n" aria-hidden="true">02</span>
-            <h3 class="srow__name">Custom software and digital platforms</h3>
-            <div class="srow__body">
-              <p>Web platforms built for a specific programme or operation: a schools debating competition with its claims and payments, a national plumbing-claims operation.</p>
-              <ul class="srow__chips">
-                <li><a href="work/tores-foundation/">Tore&#x27;s Foundation</a></li>
-                <li><a href="work/homeassist/">HomeAssist</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/custom-software/">Custom software development <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:120ms">
-            <span class="srow__n" aria-hidden="true">03</span>
-            <h3 class="srow__name">Mobile and field operations</h3>
-            <div class="srow__body">
-              <p>Apps for the people doing the work: offline session capture, automatic dispatch, scan confirmation at the point of collection, photographic evidence on site.</p>
-              <ul class="srow__chips">
-                <li><a href="work/sonke/">Sonke Gender Justice</a></li>
-                <li><a href="work/wastemart/">WasteMart</a></li>
-                <li><a href="work/homeassist/">HomeAssist</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/mobile-apps/">Mobile application development <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:180ms">
-            <span class="srow__n" aria-hidden="true">04</span>
-            <h3 class="srow__name">System integration and reporting</h3>
-            <div class="srow__body">
-              <p>Feeds between the systems a business already runs — SAP, accounting, insurers and manufacturers — and the management reports built on top of them.</p>
-              <ul class="srow__chips">
-                <li><a href="work/trans-hex/">Trans Hex Group</a></li>
-                <li><a href="work/sbs-waterproofing/">SBS Waterproofing</a></li>
-                <li><a href="work/homeassist/">HomeAssist</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/system-integration/">System integration <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a> &middot; <a class="arrow-link arrow-link--quiet" href="solutions/business-intelligence/">Business intelligence &amp; reporting <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:240ms">
-            <span class="srow__n" aria-hidden="true">05</span>
-            <h3 class="srow__name">Digital product and UX design</h3>
-            <div class="srow__body">
-              <p>Interface and product design from GEMIS Studio, the design practice inside the company, for systems people have to use every day.</p>
-              <ul class="srow__chips">
-                <li><a href="studio/">GEMIS Studio</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/ux-design/">UX &amp; system design <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-          <li class="srow" data-reveal style="--d:300ms">
-            <span class="srow__n" aria-hidden="true">06</span>
-            <h3 class="srow__name">Ongoing support and system evolution</h3>
-            <div class="srow__body">
-              <p>We stay after go-live. The three founding clients from 2014 still run on the systems we built them, and the Trans Hex report went to a second version.</p>
-              <ul class="srow__chips">
-                <li><a href="work/sbs-waterproofing/">SBS Waterproofing</a></li>
-                <li><a href="work/homeassist/">HomeAssist</a></li>
-                <li><a href="work/wastemart/">WasteMart</a></li>
-                <li><a href="work/trans-hex/">Trans Hex Group</a></li>
-              </ul>
-              <p class="srow__links"><a class="arrow-link arrow-link--quiet" href="solutions/support/">Ongoing support &amp; maintenance <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a> &middot; <a class="arrow-link arrow-link--quiet" href="solutions/modernisation/">Software modernisation <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
 
-    <!-- ═══════════════════ 06 · BUILT TOGETHER ═══════════════════ -->
-    <section class="built" id="our-story" aria-labelledby="storiesHeading">
-      <img class="built__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-      <div class="shell">
-        <div class="stories__frame" data-stage>
-          <div class="stories__intro">
-            <span class="stories__glow" aria-hidden="true"></span>
-            <h2 class="stories__title" id="storiesHeading" data-reveal>Built together.<br />Still working.</h2>
-            <p class="stories__lede" data-reveal style="--d:80ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
-            <a class="stories__cta" href="work/" data-reveal style="--d:140ms"><span>See all case studies</span><span class="stories__cta-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></a>
-            <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:200ms">
-            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="0" aria-pressed="true">
-              <span class="stories__tab-name">SBS Waterproofing</span>
-              <span class="stories__tab-p">Founding client &middot; since 2014</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="1" aria-pressed="false">
-              <span class="stories__tab-name">HomeAssist</span>
-              <span class="stories__tab-p">Founding client &middot; since 2014</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab stories__tab--founding" type="button" data-tab data-go="2" aria-pressed="false">
-              <span class="stories__tab-name">WasteMart</span>
-              <span class="stories__tab-p">Founding client &middot; more than ten years</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="3" aria-pressed="false">
-              <span class="stories__tab-name">Trans Hex Group</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="4" aria-pressed="false">
-              <span class="stories__tab-name">Sonke Gender Justice</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="5" aria-pressed="false">
-              <span class="stories__tab-name">Tore&#x27;s Foundation</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="6" aria-pressed="false">
-              <span class="stories__tab-name">ManaGEM</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            <li><button class="stories__tab" type="button" data-tab data-go="7" aria-pressed="false">
-              <span class="stories__tab-name">Today</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
-            </button></li>
-            </ol>
-          </div>
-          <div class="stories__stage" data-reveal style="--d:140ms">
-            <ol class="stories__list" data-list>
-            <li class="sty" id="sty-sbs-waterproofing" data-slide>
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/SBS_explainer_thumb.jpg" aria-label="SBS Waterproofing: the system behind more than a decade of growth">
-                  <source src="assets/video/case-studies/SBS_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/SBS_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/SBS_explainer_web.mp4">Download the video</a>
-                </video>
+          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
+            <div class="form__rows">
+              <div class="field">
+                <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-name" name="name" type="text" placeholder="Jane Dlamini" autocomplete="name" required aria-describedby="d-name-err" />
+                <p class="form__note" id="d-name-err" hidden>Please enter your name.</p>
               </div>
-              <p class="sty__title">SBS Waterproofing: the system behind more than a decade of growth.</p>
-              <p class="sty__copy">Website and Google campaigns from 2014; their own business system from 2015, which grew into ManaGEM. Still running the business on the system GEMIS built, more than ten years on. <a class="sty__link" href="work/sbs-waterproofing/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-homeassist" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/HomeAssist_explainer_thumb.jpg" aria-label="HomeAssist: plumbing claims, from report to sign-off">
-                  <source src="assets/video/case-studies/HomeAssist_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/HomeAssist_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/HomeAssist_explainer_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">HomeAssist: plumbing claims, from report to sign-off.</p>
-              <p class="sty__copy">One system for burst-geyser and plumbing jobs: nearest-plumber dispatch, SMS and WhatsApp updates, SANS photo evidence, insurer and warranty links. Every job across the country visible in one place, from first report to sign-off. <a class="sty__link" href="work/homeassist/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-wastemart" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/WasteMart_explainer_thumb.jpg" aria-label="WasteMart: from quote to collection, handled">
-                  <source src="assets/video/case-studies/WasteMart_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/WasteMart_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/WasteMart_explainer_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">WasteMart: from quote to collection, handled.</p>
-              <p class="sty__copy">Automatic quotes with terms, secure payment links, scheduling, driver scan confirmation, order tracking. Every order visible from quote to collection, for managers and customers alike. <a class="sty__link" href="work/wastemart/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-trans-hex" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/TransHex_explainer_thumb.jpg" aria-label="Trans Hex Group: from a weeks-long report to one click">
-                  <source src="assets/video/case-studies/TransHex_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/TransHex_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/TransHex_explainer_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">Trans Hex Group: from a weeks-long report to one click.</p>
-              <p class="sty__copy">Baken mine: SAP data feed automated and an integrated management report built in. A report that took weeks became available on demand. <a class="sty__link" href="work/trans-hex/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-sonke" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/Sonke_explainer_thumb.jpg" aria-label="Sonke Gender Justice: monitoring and evaluation across Africa">
-                  <source src="assets/video/case-studies/Sonke_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/Sonke_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/Sonke_explainer_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">Sonke Gender Justice: monitoring and evaluation across Africa.</p>
-              <p class="sty__copy">Offline mobile capture, approval workflow, programme targets and donor reporting, for work in 40 countries. Donor reports build from data that has already been checked. <a class="sty__link" href="work/sonke/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-tores-foundation" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/Tores_debating_platform_thumb.jpg" aria-label="Tore&#x27;s Foundation: a debating platform for 24 schools">
-                  <source src="assets/video/case-studies/Tores_debating_platform_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/Tores_debating_platform_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/Tores_debating_platform_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">Tore&#x27;s Foundation: a debating platform for 24 schools.</p>
-              <p class="sty__copy">Built for the University of Stellenbosch Business School: competitions, live standings, mobile expense and stipend claims for 430+ learners. More time for debate, less time on admin. <a class="sty__link" href="work/tores-foundation/">Read the story &rarr;</a></p>
-            </li>
-            <li class="sty" id="sty-managem" data-slide aria-hidden="true">
-              <div class="sty__panel">
-                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="assets/video/case-studies/ManaGEM_explainer_thumb.jpg" aria-label="ManaGEM: born in a real business, built for many">
-                  <source src="assets/video/case-studies/ManaGEM_explainer_web.webm" type="video/webm">
-                  <source src="assets/video/case-studies/ManaGEM_explainer_web.mp4" type="video/mp4">
-                  <a href="assets/video/case-studies/ManaGEM_explainer_web.mp4">Download the video</a>
-                </video>
-              </div>
-              <p class="sty__title">ManaGEM: born in a real business, built for many.</p>
-              <p class="sty__copy">Generalised from the system built for SBS Waterproofing in 2015 into a platform other businesses could run on. About a dozen companies run their day-to-day operations on it. <a class="sty__link" href="products/managem/">Explore ManaGEM &rarr;</a></p>
-            </li>
-            <li class="sty sty--today" id="sty-today" data-slide aria-hidden="true">
-              <div class="sty__panel sty__panel--today"><p class="sty__big">Still building together.</p></div>
-              <p class="sty__title">Today: the founding relationships continue.</p>
-              <p class="sty__copy">All three founding clients still run on the systems we built them, and those systems have kept growing with the businesses. <a class="sty__link" href="contact.html">Discuss a project &rarr;</a></p>
-            </li>
-            </ol>
-            <div class="stories__ctl" data-ctl hidden>
-              <button class="stories__btn" type="button" data-prev aria-label="Previous story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 10V2M2.5 5.5 6 2l3.5 3.5"/></svg></button>
-              <button class="stories__btn" type="button" data-pause aria-pressed="false" aria-label="Pause"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg></button>
-              <button class="stories__btn" type="button" data-next aria-label="Next story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2.5 6.5 6 10l3.5-3.5"/></svg></button>
-              <span class="stories__count" aria-live="polite"><b data-cur>1</b> / 8</span>
-              <span class="stories__bar" data-bar aria-hidden="true"><i></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ═══════════════════ 07 · HOW GEMIS WORKS ═══════════════════
-         The company's own methodology, as the horizontal timeline. -->
-    <section class="ways band" id="how" aria-labelledby="waysHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>How GEMIS works</p>
-            <h2 class="display" id="waysHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">One agreed statement of the problem before a screen is drawn; demonstrated sprints so there are no surprises at go-live; and the same team afterwards. <a class="arrow-link" href="solutions/">See how we work <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-        </div>
-        <ol class="tline tline--4" style="--n:4">
-          <span class="tline__runner" aria-hidden="true"></span>
-          <li class="tline__step" style="--i:0">
-            <span class="tline__disc" aria-hidden="true"><b>01</b><i>Step</i></span>
-            <div class="tline__plate">
-              <span class="tline__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2.5 7.5 6 4 9.5"/></svg></span>
-              <h3 class="tline__t">Understand</h3>
-              <p class="tline__c">We learn your business before proposing anything: how the work is actually done, where it breaks, and what a fix is worth.</p>
-            </div>
-          </li>
-          <li class="tline__step" style="--i:1">
-            <span class="tline__disc" aria-hidden="true"><b>02</b><i>Step</i></span>
-            <div class="tline__plate">
-              <span class="tline__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2.5 7.5 6 4 9.5"/></svg></span>
-              <h3 class="tline__t">Design</h3>
-              <p class="tline__c">We design the system around your people and your process, and test it with them before anything is built.</p>
-            </div>
-          </li>
-          <li class="tline__step" style="--i:2">
-            <span class="tline__disc" aria-hidden="true"><b>03</b><i>Step</i></span>
-            <div class="tline__plate">
-              <span class="tline__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2.5 7.5 6 4 9.5"/></svg></span>
-              <h3 class="tline__t">Build</h3>
-              <p class="tline__c">Short, demonstrated sprints on the Microsoft Cloud, so you see the system grow and steer it as it does.</p>
-            </div>
-          </li>
-          <li class="tline__step" style="--i:3">
-            <span class="tline__disc" aria-hidden="true"><b>04</b><i>Step</i></span>
-            <div class="tline__plate">
-              <span class="tline__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2.5 7.5 6 4 9.5"/></svg></span>
-              <h3 class="tline__t">Evolve</h3>
-              <p class="tline__c">Go-live is the start. We monitor, maintain and keep improving the system as the business changes.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
+              <div class="field">
+                <label for="d-email">Work email <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-email" name="email" type="email" placeholder="jane@company.co.za" autocomplete="email" required aria-describedby="d-email-err" />
+                <p class="form__note" id="d-email-err" hidden>Please enter a valid work email address.</p>
+              </div>
 
-    <!-- ═══════════════════ 08 · THE COMPANY ═══════════════════
-         Who is behind the work, from the company's own profile. Team titles
-         beyond the one confirmed are held back (OPEN_ITEMS: team-titles). -->
-    <section class="cred-sec band band-wash plusgrid plusgrid--tr" id="company" aria-labelledby="companyHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>The company</p>
-            <h2 class="display" id="companyHeading" data-reveal style="--d:80ms">Who is behind the work</h2>
-          </div>
-        </div>
-        <div class="cred">
-          <div class="story__prose" data-reveal style="--d:120ms">
-            <p>GEM Information Systems was founded in Cape Town in 2014, building systems for small and medium businesses and non-profits where budgets were tight and the system had to work from day one. The clients grew, and so did the work: ERP platforms, national field operations, monitoring and evaluation across Africa, integrated reporting for a mining group.</p>
-            <p>The Microsoft Cloud has been the foundation throughout &mdash; Azure, Azure SQL, C# and Power BI &mdash; and one accountable team stays with a system from the first conversation through to support, with GEMIS Studio handling the design.</p>
-            <p><a class="arrow-link" href="our-story/">Our story <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
-          </div>
-          <dl class="cred__facts" data-reveal style="--d:180ms">
-            <div><dt>Founded</dt><dd>2014, Cape Town</dd></div>
-            <div><dt>Platform</dt><dd>Microsoft Azure, Azure SQL, C#, Power BI</dd></div>
-            <div><dt>Founding clients</dt><dd>Three, from 2014, all still running on their systems</dd></div>
-            <div><dt>Design practice</dt><dd><a href="studio/">GEMIS Studio</a></dd></div>
-            <div><dt>Product</dt><dd><a href="products/managem/">ManaGEM</a>, run by about a dozen companies</dd></div>
-            <div><dt>Office</dt><dd>9 Tapiola Way, Edgemead, Cape Town</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
+              <div class="field field--wide">
+                <label for="d-company">Company <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <input id="d-company" name="company" type="text" placeholder="Company name" autocomplete="organization" required aria-describedby="d-company-err" />
+                <p class="form__note" id="d-company-err" hidden>Please enter your company name.</p>
+              </div>
 
-    <!-- ═══════════════════ 09 · THE ENQUIRY ═══════════════════
-         The one conversion path. The form itself lives on contact.html. -->
-    <section class="convert" id="discovery" aria-labelledby="convertHeading">
-      <div class="shell convert__in">
-        <p class="eyebrow" data-reveal>Your project</p>
-        <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Have a business challenge worth solving?</h2>
-        <p class="lede" data-reveal style="--d:140ms">Describe the operational problem &mdash; the spreadsheet that has become the system, the hand-off that keeps failing, the report that takes weeks. We come back within two working days with a short written view and a time to talk. No obligation.</p>
-        <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="contact.html">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-          <a class="arrow-link" href="solutions/">Explore our solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-        </div>
+              <div class="field">
+                <label for="d-goal">What are you looking to do? <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
+                <select id="d-goal" name="goal" autocomplete="off" required aria-describedby="d-goal-err">
+                  <option value="">Select one…</option>
+                  <option>Replace a legacy system</option>
+                  <option>Build a new platform or app</option>
+                  <option>Connect existing systems</option>
+                  <option>Reporting and business intelligence</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="form__note" id="d-goal-err" hidden>Please choose what you're looking to do.</p>
+              </div>
+
+              <div class="field">
+                <label for="d-timeline">Rough timeline</label>
+                <select id="d-timeline" name="timeline" autocomplete="off">
+                  <option value="">Select one…</option>
+                  <option>Within 3 months</option>
+                  <option>3–6 months</option>
+                  <option>6+ months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
+
+              <div class="field field--wide">
+                <label for="d-notes">Anything we should know?</label>
+                <textarea id="d-notes" name="notes" placeholder="The system you're replacing, the process that's breaking, or the thing you want to build." autocomplete="off"></textarea>
+              </div>
+            </div>
+
+            <div class="consent">
+              <input id="d-consent" name="consent" type="checkbox" required aria-describedby="d-consent-err" />
+              <label for="d-consent">
+                I consent to GEM Information Systems processing the information above in
+                order to respond to this enquiry, as described in the
+                <a href="privacy.html">privacy notice</a>. I can withdraw this consent at
+                any time.
+              </label>
+            </div>
+            <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
+
+            <button class="form__send" type="submit">
+              Book a Discovery Session
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+            </button>
+
+            <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
+              This site is static, so sending opens a pre-filled message in your email
+              client addressed to info@gemis.co.za — nothing is submitted or stored here.
+            </p>
+          </form>
       </div>
     </section>
 

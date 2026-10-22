@@ -4515,37 +4515,49 @@ html.has-modal { overflow: hidden; }
 .story__flow { margin-top: clamp(28px, 4vw, 48px); }
 .story__flow .out__h { margin-bottom: 14px; }
 
-/* ── selected work: a pinned white band, the cards travel across on scroll ──
-   The owner's reference. The list is vertical by default; home.js adds
-   .is-pinned on wide screens when motion is allowed, which pins the band and
-   lets the track translate with the page scroll. */
-.selw { position: relative; background: #fff; color: var(--ink); padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
-.selw__track { display: grid; gap: clamp(28px, 4vw, 56px); margin: 0; padding: 0 var(--gutter); list-style: none; }
+/* ── selected work: a pinned grey band, panels divided by rules, cards travel across ──
+   The owner's reference (commit 4440697). The list is vertical by default;
+   home.js adds .is-pinned on wide screens when motion is allowed, which pins
+   the band and lets the track translate with the page scroll. */
+.selw { position: relative; color: #3a3a3a; background: linear-gradient(180deg, #e7e8ea 0%, #f2f3f4 55%, #e9eaec 100%); padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
+.selw__track { display: grid; gap: clamp(32px, 5vw, 72px); margin: 0; padding: 0 var(--gutter); list-style: none; }
 .selw__item { min-width: 0; }
-.selw__head .display { max-width: 12ch; margin-bottom: clamp(18px, 2.4vw, 28px); }
-.selw__media { display: block; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-2); }
-.selw__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .7s var(--ease); }
-.selw__card:hover .selw__media img { transform: scale(1.03); }
-.selw__name { margin: 16px 0 6px; font-size: var(--fs-title); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; }
-.selw__name a { color: var(--ink); text-decoration: none; }
+.selw__title { margin: 0 0 clamp(20px, 2.6vw, 32px); font-size: clamp(40px, 4.6vw, 68px); font-weight: 400; letter-spacing: -.035em; line-height: 1.02; color: #4a4a4a; }
+.selw__media { position: relative; overflow: hidden; border-radius: 8px; background: #dfe1e4; box-shadow: 0 1px 0 rgba(255,255,255,.6) inset; }
+.selw__media::after { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(255,255,255,.55); border-radius: 3px; pointer-events: none; }
+.selw__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .8s var(--ease); }
+.selw__card:hover .selw__media img { transform: scale(1.025); }
+.selw__play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 10px; padding: 0; color: #fff; text-decoration: none; z-index: 2; }
+.selw__play svg { width: 72px; height: 72px; padding: 24px; box-sizing: border-box; border-radius: 50%; background: rgba(11,38,66,.78); border: 1px solid rgba(255,255,255,.55); backdrop-filter: blur(4px); transition: transform .35s var(--ease), background .35s var(--ease); }
+.selw__play span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.selw__play:hover svg { transform: scale(1.08); background: var(--navy); }
+.selw__play:focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 50%; }
+.selw__len { position: absolute; right: 26px; bottom: 26px; z-index: 2; padding: 4px 9px; background: rgba(11,38,66,.78); border-radius: 3px; font-size: var(--fs-eyebrow); letter-spacing: .06em; color: #fff; }
+.selw__name { margin: 18px 0 6px; font-size: clamp(22px, 1.8vw, 26px); font-weight: 400; letter-spacing: -.02em; line-height: 1.2; }
+.selw__name a { color: #3a3a3a; text-decoration: none; }
 .selw__name a:hover { color: var(--navy); }
-.selw__row { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.selw__line { margin: 0; max-width: 40ch; font-size: var(--fs-small); color: var(--ink-2); }
-.selw__more { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--ink); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-decoration: none; white-space: nowrap; }
-.selw__more svg { width: 11px; height: 11px; }
+.selw__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.selw__line { margin: 0; max-width: 34ch; font-size: var(--fs-small); line-height: 1.45; color: #6a6a6a; }
+.selw__more { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 18px; padding-bottom: 7px; border-bottom: 1px solid #3a3a3a; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; white-space: nowrap; }
+.selw__more svg { width: 13px; height: 9px; }
 .selw__more:hover { color: var(--navy); border-bottom-color: var(--navy); }
 .selw__more:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
 .selw__end { text-align: center; }
-.selw__endline { margin: 0 auto clamp(18px, 2.4vw, 28px); max-width: 28ch; font-size: var(--fs-lead); font-weight: 500; letter-spacing: -.02em; line-height: 1.25; color: var(--ink); }
-/* pinned: the band is as tall as the track is wide; the viewport-high pin holds the row */
+.selw__endline { margin: 0 auto clamp(20px, 2.6vw, 32px); max-width: 26ch; font-size: clamp(22px, 1.9vw, 28px); font-weight: 400; letter-spacing: -.02em; line-height: 1.25; color: #3a3a3a; }
+/* pinned: the band is as tall as the track is wide; the viewport-high pin holds a row of panels */
 .selw.is-pinned { padding: 0; }
-.selw.is-pinned .selw__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
-.selw.is-pinned .selw__track { display: flex; align-items: center; width: max-content; gap: clamp(40px, 5vw, 96px); padding: 0 var(--gutter); will-change: transform; }
-.selw.is-pinned .selw__head { flex: 0 0 min(520px, 36vw); padding-right: clamp(24px, 4vw, 72px); border-right: 1px solid var(--rule); }
-.selw.is-pinned .selw__card { flex: 0 0 min(680px, 50vw); }
-.selw.is-pinned .selw__end { flex: 0 0 min(560px, 40vw); padding-left: clamp(24px, 4vw, 72px); }
-.selw.is-pinned .selw__card[data-reveal] { transform: translateX(40px); }
-.selw.is-pinned .selw__card[data-reveal].is-in { transform: none; }
+.selw.is-pinned .selw__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.selw.is-pinned .selw__track { display: flex; align-items: stretch; width: max-content; height: 100%; gap: 0; padding: 0; will-change: transform; }
+.selw.is-pinned .selw__item { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0 clamp(36px, 4vw, 64px); border-right: 1px solid rgba(0,0,0,.09); box-sizing: border-box; }
+.selw.is-pinned .selw__head { flex: 0 0 min(600px, 42vw); align-items: flex-start; padding-left: var(--gutter); }
+.selw.is-pinned .selw__head .selw__title { max-width: 11ch; }
+.selw.is-pinned .selw__card { flex: 0 0 min(760px, 50vw); padding-top: 6vh; padding-bottom: 6vh; }
+.selw.is-pinned .selw__card--low { justify-content: flex-end; padding-bottom: 8vh; }
+.selw.is-pinned .selw__card:not(.selw__card--low) { justify-content: flex-start; padding-top: 10vh; }
+.selw.is-pinned .selw__end { flex: 0 0 min(760px, 50vw); align-items: center; border-right: 0; }
+.selw.is-pinned .selw__media[data-reveal] { transform: translateX(32px); }
+.selw.is-pinned .selw__media[data-reveal].is-in { transform: none; }
+@media (max-width: 900px) { .selw__media::after { inset: 12px; } .selw__play svg { width: 60px; height: 60px; padding: 20px; } }
 /* the overall-thinking rows: the pattern first, then "seen in" chips */
 .story__flow--top { margin: 0 0 clamp(28px, 4vw, 48px); }
 .srow__seen { margin: 12px 0 6px !important; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }

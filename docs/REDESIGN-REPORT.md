@@ -114,6 +114,19 @@ follows, six principles, each with the projects where it runs); then
 sections were folded into these; the stories panel, how we work, the company
 and the enquiry band follow as before.
 
+### Owner's second revision
+
+With the reference screenshots now in the repository (commit 4440697), Selected
+work was rebuilt to them: a soft grey band divided into panels by thin rules,
+the heading panel, four large rounded project cards each with a play button
+that opens the case study video, monospace EXPLORE PROJECT links, and a closing
+"view all" panel. At the owner's instruction the Client stories section (the
+placeholder testimonials) returns after it, the Book a Discovery Session form
+returns at the end, and the capabilities, stories-panel, how-we-work and
+company sections leave the homepage. The brief's rule against invented
+testimonials is therefore overridden by the owner for the homepage only;
+`OPEN_ITEMS.md` tracks the placeholders.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |
