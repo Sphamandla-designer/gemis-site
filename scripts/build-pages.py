@@ -27,6 +27,9 @@ B = importlib.util.module_from_spec(bs_spec)
 bs_spec.loader.exec_module(B)
 
 esc, tbc, ARROW = B.esc, B.tbc, B.ARROW
+c_spec = importlib.util.spec_from_file_location('cases', os.path.join(HERE, 'cases.py'))
+C = importlib.util.module_from_spec(c_spec)
+c_spec.loader.exec_module(C)
 sv_spec = importlib.util.spec_from_file_location('services', os.path.join(HERE, 'services.py'))
 SV = importlib.util.module_from_spec(sv_spec)
 sv_spec.loader.exec_module(SV)
@@ -64,7 +67,7 @@ def shell(base, title, description, canonical, extra_head=''):
         return text
 
     # every page this shell builds opens on a light wave hero, so the bar is solid from the start
-    head_open = head_open.replace('<header class="nav" id="nav">', '<header class="nav nav--solid" id="nav">', 1)
+    head_open = head_open.replace('<header class="nav" id="nav">', '<header class="nav nav--photo" id="nav">', 1)
     return rebase(head_open) + '<main>\n', '</main>\n' + rebase(tail)
 
 
@@ -88,108 +91,202 @@ def video_schema(s, indent='  '):
 # ── story page ───────────────────────────────────────────────────────────
 def story_page(s):
     base = '../../'
-    idx = S.STORY_PAGES.index(s)
-    nxt = S.STORY_PAGES[(idx + 1) % len(S.STORY_PAGES)]
+    c = C.CASES[s['slug']]
     founding = s['slug'] in S.FOUNDING
-
     since = B.since_html(s)
+    v = f'{base}{S.VIDEO_DIR}{s["video"]}'
+
+    def li(items):
+        return '\n'.join(f'            <li>{esc(x)}</li>' for x in items)
+
+    def paras(items):
+        return '\n'.join(f'          <p>{esc(x)}</p>' for x in items)
+
+    principles, approach_paras = c['approach']
+    overview = [
+        ('Industry', s['industry']),
+        ('Target users', c['users']),
+        ('GEMIS’s role', c['role']),
+        ('Scope', c['scope']),
+    ]
+    if c.get('timeframe'):
+        overview.append(('Timeframe', c['timeframe']))
+    overview.append(('Status', c['status']))
+    ov = '\n'.join(f'''          <div class="ov__item" data-reveal style="--d:{i * 50}ms"><dt>{esc(k)}</dt><dd>{esc(val)}</dd></div>''' for i, (k, val) in enumerate(overview))
+
     endo = ''
     if founding and s['endorser']:
-        # The card inside is hideable, and so is the section around it: until a
-        # line is approved the live page skips the chapter entirely rather than
-        # showing an empty band where it would go. ?review=1 brings both back.
+        # Hidden on the live build until the line is approved; back under ?review=1.
         endo = f'''
-    <section class="chap band band-wash unconfirmed" data-kind="hideable" aria-labelledby="endoHeading-{s['slug']}">
-      <div class="shell">
-        <h2 class="vh" id="endoHeading-{s['slug']}">What {esc(s['client'])} says</h2>
-        {B.endorsement_html(s['endorser'], base, since)}
-      </div>
-    </section>'''
+        <div class="unconfirmed" data-kind="hideable">
+          <h3 class="out__h">Client feedback</h3>
+          {B.endorsement_html(s['endorser'], base, since)}
+        </div>'''
 
-    caps = '\n'.join(f'            <li>{c}</li>' for c in s['capabilities'])
+    verified = ''
+    if c['outcomes']['verified']:
+        verified = f'''
+          <div class="out__col" data-reveal style="--d:80ms">
+            <h3 class="out__h">Verified results</h3>
+            <ul class="out__list">
+{li(c['outcomes']['verified'])}
+            </ul>
+          </div>'''
 
-    outcome = f'<p>{esc(s["outcome"])}</p>'
-    if s.get('metric'):
-        # confirmed by the client in facts.md, so it publishes plainly
-        outcome += f'\n          <p class="story__metric">{esc(s["metric"])}</p>'
+    related = '\n'.join(f'''          <article class="cscard" data-reveal style="--d:{i * 80}ms">
+            <a class="cscard__media" href="{base}work/{r['slug']}/" tabindex="-1" aria-hidden="true">
+              <img src="{base}{S.VIDEO_DIR}{r['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+              <span class="cscard__len">{r['duration_label']}</span>
+            </a>
+            <div class="cscard__body">
+              <p class="cscard__tag">{esc(r['industry'])}</p>
+              <h3 class="cscard__name">{esc(r['client'])}</h3>
+              <p class="cscard__line">{esc(r['headline'])}</p>
+              <div class="cscard__actions">
+                <a class="btn btn--sm" href="{base}work/{r['slug']}/">Read story {ARROW}</a>
+                <a class="btn btn--sm btn--ghost" {B.play_attrs(r, base)}>{B.PLAY} Play story</a>
+              </div>
+            </div>
+          </article>''' for i, r in enumerate(S.BY_SLUG[k] for k in c['related']))
 
     head = shell(
         base,
         f"{s['client']} — {s['headline']} | GEMIS®",
-        s['summary'][:180],
+        c['value'][:180],
         f"{CANON}work/{s['slug']}/",
         extra_head=video_schema(s),
     )
 
     body = f'''
     <!-- ═══════════ {s['client'].upper()} ═══════════ -->
-    <section class="chero" id="hero">
+    <section class="chero cshero cshero--story" id="hero">
+      <div class="shell cshero__in">
+        <div class="cshero__text">
+          <p class="chero__kicker" data-reveal>Case study · {esc(s['industry'])}</p>
+          <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['client'])}</h1>
+          <p class="cshero__headline" data-reveal style="--d:120ms">{esc(s['headline'])}</p>
+          <p class="chero__copy" data-reveal style="--d:160ms">{esc(c['value'])}</p>
+          <p class="cshero__status" data-reveal style="--d:200ms"><span class="cshero__dot" aria-hidden="true"></span>{esc(c['status'])}</p>
+          <div class="cshero__ctas" data-reveal style="--d:240ms">
+            <a class="btn" {B.play_attrs(s, base)}>{B.PLAY} Play story</a>
+            <a class="arrow-link" href="#overview">Project overview {ARROW}</a>
+          </div>
+        </div>
+        <div class="cshero__visual" data-reveal style="--d:200ms">
+          <img src="{v}_thumb.jpg" alt="A frame from the {esc(s['client'])} case study video" width="1280" height="720" />
+          <a class="featured__play" {B.play_attrs(s, base)} aria-label="Play the {esc(s['client'])} story">{B.PLAY}</a>
+          <span class="featured__len" aria-hidden="true">{s['duration_label']}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ov band" id="overview" aria-labelledby="overviewHeading">
       <div class="shell">
-        <p class="chero__kicker" data-reveal>{esc(s['industry'])}</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['client'])}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">{esc(s['headline'])}</p>
-        <dl class="story__meta" data-reveal style="--d:200ms">
-          <div><dt>Period</dt><dd>{B.period_html(s)}</dd></div>
-          {f'<div><dt>Relationship</dt><dd>{since}</dd></div>' if since else ''}
-          <div><dt>Outcome</dt><dd>{esc(s['outcome'])}</dd></div>
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Project overview</p>
+            <h2 class="display" id="overviewHeading" data-reveal style="--d:80ms">What the project is, and where it stands</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Responsibilities and status, stated plainly. Where the record is silent — a date, a measured result — the page says so rather than guessing.</p>
+        </div>
+        <dl class="ov__grid">
+{ov}
         </dl>
       </div>
     </section>
-{endo}
-    <section class="chap band plusgrid plusgrid--tr" aria-labelledby="challengeHeading">
+
+    <section class="chap band band-tint plusgrid plusgrid--tr" aria-labelledby="challengeHeading">
       <div class="shell">
-        <p class="eyebrow" data-reveal>The challenge</p>
-        <h2 class="display" id="challengeHeading" data-reveal style="--d:80ms">What the business needed</h2>
-        <div class="story__prose" data-reveal style="--d:140ms">
-          <p>{esc(s['challenge'])}.</p>
-          <p>{esc(s['summary'])}</p>
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>The business challenge</p>
+            <h2 class="display" id="challengeHeading" data-reveal style="--d:80ms">{esc(s['headline'])}</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">{esc(s['challenge'])}.</p>
+        </div>
+        <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
+{paras(c['challenge'])}
         </div>
       </div>
     </section>
 
-    <section class="chap band band-wash" aria-labelledby="builtHeading">
+    <section class="chap band" aria-labelledby="approachHeading">
       <div class="shell">
-        <p class="eyebrow" data-reveal>What we built</p>
-        <h2 class="display" id="builtHeading" data-reveal style="--d:80ms">{esc(s['video_title'].split(':', 1)[-1].strip().capitalize())}</h2>
-        <div class="story__build" data-reveal style="--d:140ms">
-          {B.video_html(s, base)}
-          <ul class="story__caps">
-{caps}
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Strategy and solution approach</p>
+            <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Why this approach fits the problem</h2>
+          </div>
+          <ul class="caps caps--1" data-reveal style="--d:140ms">
+{li(principles)}
           </ul>
         </div>
+        <div class="appr">
+          <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
+{paras(approach_paras)}
+          </div>
+          <div class="appr__video" data-reveal style="--d:200ms">
+            {B.video_html(s, base)}
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- "Then and now" is omitted deliberately: it needs an early and a current
-         screenshot, neither of which has been supplied, and the prompt forbids a
-         mock-up in their place. Tracked as then-now-screenshots in OPEN_ITEMS.md. -->
-
-    <section class="chap band" aria-labelledby="outcomeHeading">
+    <section class="out band band-wash plusgrid plusgrid--br" aria-labelledby="outcomesHeading">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Outcome</p>
-        <h2 class="display" id="outcomeHeading" data-reveal style="--d:80ms">Where it stands</h2>
-        <div class="story__prose" data-reveal style="--d:140ms">
-          {outcome}
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Outcomes and business value</p>
+            <h2 class="display" id="outcomesHeading" data-reveal style="--d:80ms">{esc(s['outcome'])}</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Delivered work, verified results and intended benefits are kept apart. Nothing here is a metric the client has not confirmed.</p>
         </div>
-        <p class="story__tech" data-reveal style="--d:200ms">{esc(s['tech'])}</p>
+        <div class="out__cols">
+          <div class="out__col" data-reveal>
+            <h3 class="out__h">Delivered</h3>
+            <ul class="out__list">
+{li(c['outcomes']['delivered'])}
+            </ul>
+          </div>{verified}
+          <div class="out__col" data-reveal style="--d:160ms">
+            <h3 class="out__h">Intended benefits</h3>
+            <ul class="out__list">
+{li(c['outcomes']['intended'])}
+            </ul>
+          </div>
+        </div>
+        <p class="story__tech" data-reveal style="--d:200ms">Built on {esc(s['tech'])}</p>{endo}
       </div>
     </section>
 
-    <section class="endnote" aria-labelledby="nextHeading">
-      <div class="shell story__next">
-        <div>
-          <p class="eyebrow" data-reveal>Next story</p>
-          <h2 class="display" id="nextHeading" data-reveal style="--d:80ms">{esc(nxt['client'])}</h2>
-          <p data-reveal style="--d:140ms">{esc(nxt['headline'])}</p>
-          <a class="arrow-link" href="{base}work/{nxt['slug']}/" data-reveal style="--d:200ms">Read the story {ARROW}</a>
+    <section class="rel band" aria-labelledby="relatedHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Related work</p>
+            <h2 class="display" id="relatedHeading" data-reveal style="--d:80ms">Two projects that share the pattern</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms"><a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
         </div>
-        <div>
-          <p class="eyebrow" data-reveal>Start something</p>
-          <h2 class="display" data-reveal style="--d:80ms">Tell us what your business needs to do better.</h2>
-          <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:200ms">Book a Discovery Session {ARROW}</a>
+        <div class="cscards cscards--2">
+{related}
         </div>
       </div>
     </section>
+
+    <section class="convert" aria-labelledby="convertHeading">
+      <div class="shell convert__in">
+        <p class="eyebrow" data-reveal>Next steps</p>
+        <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">{esc(c['cta'])}</h2>
+        <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
+        <div class="convert__ctas" data-reveal style="--d:200ms">
+          <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+          <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
+        </div>
+      </div>
+    </section>
+
+{B.video_modal()}
 '''
     return head[0] + body + head[1]
 
@@ -259,23 +356,27 @@ def work_page():
             <p class="wk__line">{tbc(tid, 'Client system or concept — to confirm')}</p>
           </article>''') for name, tid in UNCLASSIFIED)
 
-    filters = '''        <div class="wk__filters" data-filters hidden>
-          <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
-            <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
-            <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
-            <button type="button" data-filter="industry" data-value="insurance" aria-pressed="false">Insurance</button>
-            <button type="button" data-filter="industry" data-value="waste" aria-pressed="false">Waste</button>
-            <button type="button" data-filter="industry" data-value="mining" aria-pressed="false">Mining</button>
-            <button type="button" data-filter="industry" data-value="non-profit" aria-pressed="false">Non-profit</button>
-            <button type="button" data-filter="industry" data-value="education" aria-pressed="false">Education</button>
-          </fieldset>
-          <fieldset class="wk__fieldset"><legend class="eyebrow">Capability</legend>
-            <button type="button" data-filter="capability" data-value="all" aria-pressed="true">All</button>
-            <button type="button" data-filter="capability" data-value="field-operations" aria-pressed="false">Field operations</button>
-            <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
-            <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
-          </fieldset>
-        </div>'''
+    filters = '''        <details class="wkf" data-filters hidden>
+          <summary class="wkf__btn"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h14M6 10h8M8.5 15h3"/></svg><span>Filter</span><span class="wkf__count" data-filter-count hidden></span></summary>
+          <div class="wkf__panel">
+            <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
+              <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
+              <button type="button" data-filter="industry" data-value="insurance" aria-pressed="false">Insurance</button>
+              <button type="button" data-filter="industry" data-value="waste" aria-pressed="false">Waste</button>
+              <button type="button" data-filter="industry" data-value="mining" aria-pressed="false">Mining</button>
+              <button type="button" data-filter="industry" data-value="non-profit" aria-pressed="false">Non-profit</button>
+              <button type="button" data-filter="industry" data-value="education" aria-pressed="false">Education</button>
+            </fieldset>
+            <fieldset class="wk__fieldset"><legend class="eyebrow">Capability</legend>
+              <button type="button" data-filter="capability" data-value="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="capability" data-value="field-operations" aria-pressed="false">Field operations</button>
+              <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
+              <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
+            </fieldset>
+            <button class="wkf__clear" type="button" data-filter-clear>Clear filters</button>
+          </div>
+        </details>'''
 
     body = f'''
     <!-- ═══════════ CASE STUDIES ═══════════ -->
@@ -290,9 +391,6 @@ def work_page():
             <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
           </div>
         </div>
-        <div class="cshero__comp" data-reveal style="--d:200ms" aria-hidden="true">
-{composition}
-        </div>
       </div>
     </section>
 
@@ -302,7 +400,6 @@ def work_page():
           <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
           <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
           <li class="stat"><span class="stat__n" data-count="10" data-sup="+">10<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
-          <li class="stat"><span class="stat__n" data-count="3">3</span><span class="stat__l">Founding clients, still with us</span></li>
         </ul>
       </div>
     </section>
@@ -344,8 +441,10 @@ def work_page():
           </div>
           <p class="lede" data-reveal style="--d:140ms">Every project here is a system in use today, and several have been running for more than a decade. Filter by industry or by what the system had to do.</p>
         </div>
+        <div class="wk__bar">
 {filters}
-        <p class="vh" id="wkCount" aria-live="polite"></p>
+          <p class="wk__count" id="wkCount" aria-live="polite"></p>
+        </div>
         <div class="cscards" data-grid>
 {cards}
         </div>

@@ -192,7 +192,7 @@
   <a class="skip-link" href="#hero">Skip to content</a>
 
   <!-- ═══════════════════ HEADER ═══════════════════ -->
-  <header class="nav nav--solid" id="nav">
+  <header class="nav nav--photo" id="nav">
     <div class="shell nav__in">
       <a class="nav__logo" href="../index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
 
@@ -306,11 +306,6 @@
             <a class="arrow-link" href="../solutions/">Explore our solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
           </div>
         </div>
-        <div class="cshero__comp" data-reveal style="--d:200ms" aria-hidden="true">
-          <img class="cshero__shot cshero__shot--1" src="../assets/video/case-studies/WasteMart_explainer_thumb.jpg" alt="" width="1280" height="720" loading="lazy" />
-          <img class="cshero__shot cshero__shot--2" src="../assets/video/case-studies/HomeAssist_explainer_thumb.jpg" alt="" width="1280" height="720" loading="lazy" />
-          <img class="cshero__shot cshero__shot--3" src="../assets/video/case-studies/ManaGEM_explainer_thumb.jpg" alt="" width="1280" height="720" loading="eager" />
-        </div>
       </div>
     </section>
 
@@ -320,7 +315,6 @@
           <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
           <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
           <li class="stat"><span class="stat__n" data-count="10" data-sup="+">10<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
-          <li class="stat"><span class="stat__n" data-count="3">3</span><span class="stat__l">Founding clients, still with us</span></li>
         </ul>
       </div>
     </section>
@@ -362,24 +356,30 @@
           </div>
           <p class="lede" data-reveal style="--d:140ms">Every project here is a system in use today, and several have been running for more than a decade. Filter by industry or by what the system had to do.</p>
         </div>
-        <div class="wk__filters" data-filters hidden>
-          <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
-            <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
-            <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
-            <button type="button" data-filter="industry" data-value="insurance" aria-pressed="false">Insurance</button>
-            <button type="button" data-filter="industry" data-value="waste" aria-pressed="false">Waste</button>
-            <button type="button" data-filter="industry" data-value="mining" aria-pressed="false">Mining</button>
-            <button type="button" data-filter="industry" data-value="non-profit" aria-pressed="false">Non-profit</button>
-            <button type="button" data-filter="industry" data-value="education" aria-pressed="false">Education</button>
-          </fieldset>
-          <fieldset class="wk__fieldset"><legend class="eyebrow">Capability</legend>
-            <button type="button" data-filter="capability" data-value="all" aria-pressed="true">All</button>
-            <button type="button" data-filter="capability" data-value="field-operations" aria-pressed="false">Field operations</button>
-            <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
-            <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
-          </fieldset>
+        <div class="wk__bar">
+        <details class="wkf" data-filters hidden>
+          <summary class="wkf__btn"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5h14M6 10h8M8.5 15h3"/></svg><span>Filter</span><span class="wkf__count" data-filter-count hidden></span></summary>
+          <div class="wkf__panel">
+            <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
+              <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
+              <button type="button" data-filter="industry" data-value="insurance" aria-pressed="false">Insurance</button>
+              <button type="button" data-filter="industry" data-value="waste" aria-pressed="false">Waste</button>
+              <button type="button" data-filter="industry" data-value="mining" aria-pressed="false">Mining</button>
+              <button type="button" data-filter="industry" data-value="non-profit" aria-pressed="false">Non-profit</button>
+              <button type="button" data-filter="industry" data-value="education" aria-pressed="false">Education</button>
+            </fieldset>
+            <fieldset class="wk__fieldset"><legend class="eyebrow">Capability</legend>
+              <button type="button" data-filter="capability" data-value="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="capability" data-value="field-operations" aria-pressed="false">Field operations</button>
+              <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
+              <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
+            </fieldset>
+            <button class="wkf__clear" type="button" data-filter-clear>Clear filters</button>
+          </div>
+        </details>
+          <p class="wk__count" id="wkCount" aria-live="polite"></p>
         </div>
-        <p class="vh" id="wkCount" aria-live="polite"></p>
         <div class="cscards" data-grid>
           <article class="cscard wk__card" data-reveal style="--d:0ms"
                    data-industry="construction" data-capability="platforms">
