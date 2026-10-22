@@ -71,6 +71,13 @@ The last block, **TIDY — one system for the whole corporate site**, is where t
 decisions now live; put a change to colour, type or spacing there, not in the
 layer that first introduced the component.
 
+- **Grounds are the owner's wave images, never navy.** `assets/img/bg/waves.jpg`
+  and `waves-alpha.webp` (web-sized; the 5000px masters are not in the repo)
+  carry every band that used to be navy — `.chero`, `.endnote`, `.go`, `.built`,
+  `.band-ink`, `.convert` — through the `.wave` rules at the tail of `site.css`:
+  the photograph pans and the transparent wave floats over it (still under
+  reduced motion), and type on them is ink. Pages that open on one get
+  `nav--solid`, which `build-pages.shell()` sets.
 - **Colour** comes from the hero photograph (`assets/img/home/hero-bg.jpg`):
   `--navy-deep #0b2642`, `--navy #16395e`, `--blue #2a5c8a`, `--wash #e6edf4`.
   No indigo, no warm grey — `band-warm` is retired and maps to `--paper-2`.
@@ -165,7 +172,9 @@ the strength of that exception.
 
 ## Site map (navigation)
 
-Home · Case Studies (`work/`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
+Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
+filtered card grid with Read/Play, the approach timeline and a conversion band;
+the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
 Studio at `studio/`, Technical Academy at gemis.tech) · About (`our-story/`) ·
 Contact. News & Insights lives at `insights/` (three articles), linked from the
