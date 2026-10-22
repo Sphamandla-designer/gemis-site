@@ -58,7 +58,7 @@
 
     function schedule() {
       clearTimeout(timer);
-      if (reduced || paused) return;
+      if (reduced || paused || document.documentElement.classList.contains('has-modal')) return;
       timer = setTimeout(function () { show(i + 1, 1); schedule(); }, DWELL);
     }
 
@@ -103,9 +103,57 @@
 
     fit();
     window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    // a card can grow after first paint (fonts, images, wrapped buttons): keep the stage in step
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(function () { fit(); });
+      slides.forEach(function (s) { ro.observe(s); });
+    }
     show(0, 1);
     if (reduced) setPaused(true);
+  }
+
+  /* ── the video overlay: "Watch the story" expands the video on screen ── */
+  var modal = document.getElementById('videoModal');
+  if (modal && typeof modal.showModal === 'function') {
+    var mv = modal.querySelector('.vmodal__video');
+    var mt = modal.querySelector('[data-vtitle]');
+    var opener = null;
+
+    function openVideo(btn) {
+      opener = btn;
+      while (mv.firstChild) mv.removeChild(mv.firstChild);
+      var webm = document.createElement('source'); webm.src = btn.getAttribute('data-webm'); webm.type = 'video/webm';
+      var mp4 = document.createElement('source'); mp4.src = btn.getAttribute('data-mp4'); mp4.type = 'video/mp4';
+      mv.appendChild(webm); mv.appendChild(mp4);
+      mv.poster = btn.getAttribute('data-poster') || '';
+      mv.setAttribute('aria-label', btn.getAttribute('data-title') || 'Case study video');
+      if (mt) mt.textContent = btn.getAttribute('data-title') || '';
+      mv.load();
+      modal.showModal();
+      document.documentElement.classList.add('has-modal');
+      var p = mv.play();
+      if (p && p.catch) p.catch(function () { /* autoplay blocked: the controls are there */ });
+    }
+    function closeVideo() {
+      mv.pause();
+      if (modal.open) modal.close();
+    }
+    modal.addEventListener('close', function () {
+      mv.pause();
+      mv.removeAttribute('src');
+      while (mv.firstChild) mv.removeChild(mv.firstChild);
+      document.documentElement.classList.remove('has-modal');
+      if (opener) opener.focus();
+    });
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-watch]');
+      if (btn) { e.preventDefault(); openVideo(btn); return; }
+      if (e.target.closest('[data-close]')) { closeVideo(); return; }
+      // a click on the backdrop (outside the video) closes it
+      if (modal.open && e.target === modal) closeVideo();
+    });
   }
 
   /* ── testimonials: a snapping track that advances on its own ─────────── */

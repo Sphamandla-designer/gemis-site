@@ -3816,3 +3816,80 @@ a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
 /* Solutions & Expertise on pure white */
 .svcs { background-color: #fff; }
 .svcs .srow__chips li { background: var(--wash); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   STORIES PANEL — "Built together. Still working." after the owner's
+   stories-panel reference (qa/design-refs/stories-panel.png): intro and
+   the client list on the left, one story's visual and copy on the right,
+   two actions per story, the video opening in an overlay. The ground is the
+   hero photograph rather than the near-black of the reference.
+   ══════════════════════════════════════════════════════════════════════ */
+.built { position: relative; isolation: isolate; overflow: clip; background: var(--navy-deep); }
+.built__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.built::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(8,34,62,.94) 0%, rgba(8,34,62,.86) 40%, rgba(8,34,62,.62) 72%, rgba(8,34,62,.48) 100%), linear-gradient(to bottom, rgba(8,34,62,.5) 0%, rgba(8,34,62,0) 30%, rgba(8,34,62,0) 70%, rgba(8,34,62,.4) 100%); }
+.built .shell { position: relative; }
+
+.stories__frame { grid-template-columns: minmax(280px, .38fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 88px); align-items: start; }
+.stories__intro { position: relative; }
+.stories__intro .lede { margin-bottom: clamp(20px, 2.4vw, 30px); max-width: 40ch; }
+.stories__all { margin-top: 0; }
+.btn--light { background: #fff; color: var(--navy-deep); }
+.btn--light:hover { background: var(--wash); color: var(--navy-deep); }
+.btn--ghost { background: none; color: #fff; border: 1px solid rgba(255,255,255,.4); }
+.btn--ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
+.btn--ghost svg, .btn--light svg { width: 11px; height: 11px; }
+.btn--ghost:focus-visible, .btn--light:focus-visible { outline-color: #fff; }
+
+/* the client list: a left bar marks the active one, an arrow appears on hover */
+.stories__rail { margin-top: clamp(28px, 3.4vw, 44px); border-top: 1px solid rgba(255,255,255,.16); }
+.stories__tab { grid-template-columns: minmax(0, 1fr) 18px; gap: 2px 12px; padding: 13px 0 13px 14px; border-left: 2px solid transparent; transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
+.stories__tab:hover { background: rgba(255,255,255,.05); }
+.stories__tab[aria-pressed="true"] { padding-left: 14px; border-left-color: #fff; color: #fff; }
+.stories__tab-name { font-size: var(--fs-name); }
+.stories__tab-go { grid-row: 1 / 3; align-self: center; opacity: 0; transform: translateX(-6px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.stories__tab-go svg { width: 12px; height: 12px; }
+.stories__tab:hover .stories__tab-go, .stories__tab[aria-pressed="true"] .stories__tab-go { opacity: 1; transform: none; }
+
+/* the story: the visual in a bordered panel, copy and two actions beneath */
+.sty { display: flex; flex-direction: column; gap: clamp(18px, 2.2vw, 26px); padding: 0; background: none; border: 0; backdrop-filter: none; }
+.sty__panel { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.22); background: rgba(8,34,62,.5); aspect-ratio: 16 / 9; }
+.sty__panel::before, .sty__panel::after { content: '+'; position: absolute; z-index: 2; font-size: 14px; line-height: 1; color: rgba(255,255,255,.7); }
+.sty__panel::before { top: -7px; left: -4px; }
+.sty__panel::after { top: -7px; right: -4px; }
+.sty__poster { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+.sty:hover .sty__poster { transform: scale(1.02); }
+.sty__play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; }
+.sty__play svg { width: 72px; height: 72px; padding: 24px; border-radius: 50%; background: rgba(8,34,62,.72); border: 1px solid rgba(255,255,255,.5); backdrop-filter: blur(4px); box-sizing: border-box; transition: transform .35s var(--ease), background .35s var(--ease); }
+.sty__play:hover svg { transform: scale(1.08); background: var(--navy); }
+.sty__play:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
+.sty__len { position: absolute; right: 14px; bottom: 12px; padding: 4px 9px; background: rgba(8,34,62,.72); border: 1px solid rgba(255,255,255,.25); font-size: var(--fs-eyebrow); letter-spacing: .06em; color: #fff; }
+.sty__panel--today { display: grid; place-items: center; padding: 24px; }
+.sty__big { margin: 0; font-size: var(--fs-display); font-weight: 500; letter-spacing: -.026em; color: #fff; text-align: center; }
+.sty__period { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.sty__client { display: block; font-size: var(--fs-title); font-weight: 500; letter-spacing: -.018em; line-height: 1.3; }
+.sty__sep { color: rgba(255,255,255,.5); }
+.sty__challenge strong { color: #fff; font-weight: 500; }
+.sty__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.sty__actions .btn { margin-top: 0; }
+.stories--live .sty { inset: 0 0 auto; }
+@media (max-width: 1080px) { .stories__frame { grid-template-columns: 1fr; } .stories__rail { flex-direction: column; gap: 0; border-top: 1px solid rgba(255,255,255,.16); margin-bottom: clamp(20px, 3vw, 32px); } .stories__tab { width: 100%; grid-template-columns: minmax(0, 1fr) 18px; padding: 11px 0 11px 14px; border-bottom: 1px solid rgba(255,255,255,.12); } .stories__tab[aria-pressed="true"] { border-bottom-color: rgba(255,255,255,.12); } .stories__tab-p { display: block; } }
+
+/* the overlay */
+.vmodal { width: min(1120px, 92vw); max-width: none; padding: 0; border: 0; background: #000; color: #fff; box-shadow: 0 40px 90px -30px rgba(0,0,0,.8); }
+.vmodal::backdrop { background: rgba(4,16,32,.86); backdrop-filter: blur(4px); }
+.vmodal__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+.vmodal__title { margin: 0; padding: 12px 18px; font-size: var(--fs-small); color: rgba(255,255,255,.78); background: var(--navy-deep); }
+.vmodal__close { position: absolute; top: 10px; right: 10px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(8,34,62,.8); color: #fff; cursor: pointer; }
+.vmodal__close svg { width: 14px; height: 14px; }
+.vmodal__close:hover { background: var(--navy); }
+.vmodal__close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+html.has-modal { overflow: hidden; }
+/* the light pill keeps its navy text on the dark band; the tab's arrow takes the second column */
+.band-ink .btn--light, .built .btn--light { color: var(--navy-deep); }
+.stories__tab-name, .stories__tab-p { grid-column: 1; }
+.stories__tab-go { grid-column: 2; }
+/* on wide screens the story stays level with the list as the list runs longer */
+@media (min-width: 1081px) { .stories__stage { position: sticky; top: 96px; } }
+/* the row columns collapse on small screens (the wide-measure rule above is desktop-only) */
+@media (max-width: 900px) { .srow { grid-template-columns: 48px minmax(0, 1fr); } .srow__body { grid-column: 2; } }
+@media (max-width: 560px) { .srow { grid-template-columns: 1fr; gap: 10px; } .srow__body { grid-column: 1; } }
