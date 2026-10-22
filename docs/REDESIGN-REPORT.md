@@ -320,6 +320,30 @@ scripts. Checks: links 2,149 / 0 broken; axe 0 serious or critical; 14 pages
 × 4 widths clean; reduced motion and no-JS show the footer at once; chrome
 `--check` clean; standalone rebuilt.
 
+### Owner's fourth revision — the footer tightened, the principles redesigned
+
+- **Footer.** Solutions lists the first four services and All solutions
+  instead of all nine; padding, column gaps and line spacing are reduced.
+  Height at 1440px: 657px → 390px.
+- **Operating principles.** The drawn-line composition (asymmetric grid,
+  abstract motifs, ghost numerals, a path through four nodes) is replaced by
+  a sticky index and a ruled list, built on the site's own numbered-row
+  pattern: the left column holds the label, the statement and a single
+  large index numeral with four ticks that follows the reading line; the
+  right column lists the four principles as numbered ruled rows — statement,
+  evidence, "Seen in" links — followed by the three articles on a ruled
+  footer row. One typographic hierarchy (display → title → copy → eyebrow),
+  one rule weight, no decoration; the only motion is state: the row at 42 %
+  of the viewport is full white and the others recede to half, the numeral
+  and tick follow, hover or focus lifts any row. Under 1000px the index is
+  hidden and every row is full; without JavaScript and under reduced motion
+  nothing moves. Copy unchanged and verbatim. The `.op` rules remain in
+  `site.css` but match nothing.
+
+Checks: links 2,033 / 0 broken; axe 0 serious or critical; 14 pages × 4
+widths clean; functional sweep clean; chrome `--check` clean; standalone
+rebuilt.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

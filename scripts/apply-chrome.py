@@ -146,7 +146,7 @@ FOOTER = """<footer class="foot">
           <address class="foot__addr">9 Tapiola Way, Edgemead, Cape Town<br /><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></address>
         </div>
         <div class="foot__cols">
-  """ + _col('Solutions', [f'<a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a>' for s in SV.SERVICES], 100) + """
+  """ + _col('Solutions', [f'<a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a>' for s in SV.SERVICES[:4]] + ['<a href="{B}solutions/">All solutions</a>'], 100) + """
   """ + _col('Products', ['<a href="{B}products/managem/">ManaGEM</a>', '<a href="{B}studio/">Design Studio</a>',
                            '<a href="https://gemis.tech/" target="_blank" rel="noopener">Technical Academy</a>', '<a href="{B}products/">All products</a>'], 200) + """
   """ + _col('Company', ['<a href="{B}our-story/">Our Story</a>', '<a href="{B}work/">Case Studies</a>', '<a href="{B}insights/">Insights</a>',
