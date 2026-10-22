@@ -71,13 +71,17 @@ The last block, **TIDY — one system for the whole corporate site**, is where t
 decisions now live; put a change to colour, type or spacing there, not in the
 layer that first introduced the component.
 
-- **Grounds are the owner's wave images, never navy.** `assets/img/bg/waves.jpg`
-  and `waves-alpha.webp` (web-sized; the 5000px masters are not in the repo)
-  carry every band that used to be navy — `.chero`, `.endnote`, `.go`, `.built`,
-  `.band-ink`, `.convert` — through the `.wave` rules at the tail of `site.css`:
-  the photograph pans and the transparent wave floats over it (still under
-  reduced motion), and type on them is ink. Pages that open on one get
-  `nav--solid`, which `build-pages.shell()` sets.
+- **Grounds are the hero photograph, never flat navy.** `assets/img/home/hero-bg.jpg`
+  is the ground of every band that is not paper — `.chero`, `.endnote`, `.go`,
+  `.built`, `.band-ink`, `.convert` — through the rules at the tail of `site.css`;
+  only the gradient over it (`--scrim`) changes per band. It pans slowly and the
+  gradient breathes (still under reduced motion); type on it is white. Pages that
+  open on it get `nav--photo` (set by `build-pages.shell()`); the light-hero pages
+  (`contact.html`, `privacy.html`) keep `nav--solid`. No hero carries image mockups.
+- **Case study pages** are built from `scripts/cases.py` (hero with status and
+  Play story, overview, business challenge, strategy and approach, outcomes split
+  into delivered / verified / intended, related work, tailored enquiry). Only the
+  client-confirmed metric is a number; a section with nothing verified is omitted.
 - **Colour** comes from the hero photograph (`assets/img/home/hero-bg.jpg`):
   `--navy-deep #0b2642`, `--navy #16395e`, `--blue #2a5c8a`, `--wash #e6edf4`.
   No indigo, no warm grey — `band-warm` is retired and maps to `--paper-2`.

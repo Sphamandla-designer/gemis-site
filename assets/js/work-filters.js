@@ -33,21 +33,32 @@
       c.hidden = !ok;
       if (ok) shown++;
     });
-    // tell anyone using a screen reader what just happened
+    // say what just happened — on screen and to a screen reader
     var live = document.getElementById('wkCount');
     if (live) live.textContent = shown + (shown === 1 ? ' project shown' : ' projects shown');
+    var active = (state.industry !== 'all' ? 1 : 0) + (state.capability !== 'all' ? 1 : 0);
+    var badge = bar.querySelector('[data-filter-count]');
+    if (badge) { badge.textContent = String(active); badge.hidden = !active; }
+  }
+
+  function press(group, value) {
+    state[group] = value;
+    [].forEach.call(bar.querySelectorAll('button[data-filter="' + group + '"]'), function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-value') === value));
+    });
   }
 
   bar.addEventListener('click', function (e) {
+    if (e.target.closest('[data-filter-clear]')) { press('industry', 'all'); press('capability', 'all'); apply(); return; }
     var btn = e.target.closest('button[data-filter]');
     if (!btn) return;
-    var group = btn.getAttribute('data-filter');
-    state[group] = btn.getAttribute('data-value');
-    [].forEach.call(bar.querySelectorAll('button[data-filter="' + group + '"]'), function (b) {
-      b.setAttribute('aria-pressed', String(b === btn));
-    });
+    press(btn.getAttribute('data-filter'), btn.getAttribute('data-value'));
     apply();
   });
+
+  // the panel closes on Escape or a click elsewhere
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && bar.open) { bar.open = false; } });
+  document.addEventListener('click', function (e) { if (bar.open && !bar.contains(e.target)) bar.open = false; });
 
   apply();
 })();
