@@ -36,6 +36,7 @@
 
     function show(k, dir) {
       k = (k + n) % n;
+      slides.forEach(function (s) { var v = s.querySelector('video'); if (v && !v.paused) v.pause(); });
       slides.forEach(function (s, j) {
         s.classList.remove('is-active', 'is-above', 'is-below');
         if (j === k) s.classList.add('is-active');
@@ -101,6 +102,13 @@
       schedule();
     }
 
+    slides.forEach(function (s) {
+      var v = s.querySelector('video');
+      if (!v) return;
+      v.addEventListener('play', function () { hold = true; clearTimeout(timer); if (bar) bar.classList.remove('is-running'); });
+      v.addEventListener('pause', function () { hold = false; restartBar(); schedule(); });
+      v.addEventListener('ended', function () { hold = false; restartBar(); schedule(); });
+    });
     fit();
     window.addEventListener('resize', fit);
     window.addEventListener('load', fit);
