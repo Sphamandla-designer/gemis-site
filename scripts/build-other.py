@@ -30,6 +30,9 @@ B = globals()['build_stories']
 P = globals()['build_pages']
 esc, tbc, ARROW = B.esc, B.tbc, B.ARROW
 CANON = S.CANONICAL
+sv_spec = importlib.util.spec_from_file_location('services', os.path.join(HERE, 'services.py'))
+SV = importlib.util.module_from_spec(sv_spec)
+sv_spec.loader.exec_module(SV)
 
 
 def original(path):
@@ -313,6 +316,8 @@ def our_story():
     story = rebase(blocks.get('story', ''), base)
     # it follows the wash band above, so it takes the paper ground
     story = story.replace('class="sec band band-wash" id="story"', 'class="sec band" id="story"')
+    # the About timeline becomes the horizontal timeline the whole site shares
+    story = re.sub(r'<ol class="tl">.*?</ol>', lambda m: B.tline(SV.MILESTONES, 'Era').strip(), story, count=1, flags=re.S)
     team = rebase(blocks.get('team', ''), base)
 
     founders = B.srows([

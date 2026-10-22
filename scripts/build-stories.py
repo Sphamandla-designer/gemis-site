@@ -153,16 +153,18 @@ def endorsement_html(key, base, since_text=''):
 def stories_html(base=''):
     """
     "Built together. Still working." reproduced from the owner's reference
-    (qa/design-refs/stories-panel.png) as it is: a dark panel with a ruled top
-    edge marked by two plus signs, a left column (blue glow at its head, the
-    headline, a paragraph, one bordered button, then the list with the active
-    row marked by a bar and an arrow) divided by a vertical rule from the right
-    column (a bordered panel on a faint grid — the video, in place of the
-    illustration — then a bold line and grey copy). Only the content changes.
+    (qa/design-refs/stories-panel.png): a ruled top edge marked by two plus
+    signs, a left column (blue glow at its head, the headline, a paragraph,
+    one bordered button, then the list with the active row marked by a bar
+    and an arrow) divided by a vertical rule from the right column (a
+    bordered panel on a faint grid — the video, in place of the illustration
+    — then a bold line and grey copy). The ground is the hero photograph.
 
     The markup is a plain <ol> of stories that reads top to bottom with no
     JavaScript; assets/js/home.js turns it into the tabbed stage.
     """
+    GO = ('<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+          '<path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg>')
     tabs, slides = [], []
     for i, s in enumerate(S.STORIES):
         product = s.get('is_product')
@@ -171,11 +173,11 @@ def stories_html(base=''):
         v = f'{base}{S.VIDEO_DIR}{s["video"]}'
         pressed = 'true' if i == 0 else 'false'
         hidden = '' if i == 0 else ' aria-hidden="true"'
-        tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{i}" aria-pressed="{pressed}">
+        tabs.append(f'''            <li><button class="stories__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}">
               <span class="stories__tab-name">{esc(s['client'])}</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
+              <span class="stories__tab-go" aria-hidden="true">{GO}</span>
             </button></li>''')
-        slides.append(f'''            <li class="sty" id="sty-{s['slug']}"{hidden}>
+        slides.append(f'''            <li class="sty" id="sty-{s['slug']}" data-slide{hidden}>
               <div class="sty__panel">
                 <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="{v}_thumb.jpg" aria-label="{esc(s['video_title'])}">
                   <source src="{v}_web.webm" type="video/webm">
@@ -183,43 +185,79 @@ def stories_html(base=''):
                   <a href="{v}_web.mp4">Download the video</a>
                 </video>
               </div>
-              <p class="sty__title">{esc(s['client'])}: {esc(s['headline'].lower() if s['headline'][:1].isupper() and not s['headline'][:2].isupper() else s['headline'])}.</p>
+              <p class="sty__title">{esc(s['client'])}: {esc(s['headline'][0].lower() + s['headline'][1:])}.</p>
               <p class="sty__copy">{esc(s['challenge'])}. {esc(s['outcome'])}. <a class="sty__link" href="{href}">{cta} &rarr;</a></p>
             </li>''')
     n = len(S.STORIES)
-    tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{n}" aria-pressed="false">
+    tabs.append(f'''            <li><button class="stories__tab" type="button" data-tab data-go="{n}" aria-pressed="false">
               <span class="stories__tab-name">Today</span>
-              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
+              <span class="stories__tab-go" aria-hidden="true">{GO}</span>
             </button></li>''')
-    slides.append(f'''            <li class="sty sty--today" id="sty-today" aria-hidden="true">
+    slides.append(f'''            <li class="sty sty--today" id="sty-today" data-slide aria-hidden="true">
               <div class="sty__panel sty__panel--today"><p class="sty__big">Still building together.</p></div>
               <p class="sty__title">Today: the founding relationships continue.</p>
               <p class="sty__copy">All three founding clients still run on the systems we built them, and those systems have kept growing with the businesses. <a class="sty__link" href="{base}#discovery">Book a Discovery Session &rarr;</a></p>
             </li>''')
     nl = chr(10)
-    return f'''        <div class="stories__frame" data-stories>
+    return f'''        <div class="stories__frame" data-stage>
           <div class="stories__intro">
             <span class="stories__glow" aria-hidden="true"></span>
             <h2 class="stories__title" id="storiesHeading" data-reveal>Built together.<br />Still working.</h2>
             <p class="stories__lede" data-reveal style="--d:80ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
-            <a class="stories__cta" href="{base}work/" data-reveal style="--d:140ms"><span>See all case studies</span><span class="stories__cta-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></a>
+            <a class="stories__cta" href="{base}work/" data-reveal style="--d:140ms"><span>See all case studies</span><span class="stories__cta-go" aria-hidden="true">{GO}</span></a>
             <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:200ms">
 {nl.join(tabs)}
             </ol>
           </div>
           <div class="stories__stage" data-reveal style="--d:140ms">
-            <ol class="stories__list">
+            <ol class="stories__list" data-list>
 {nl.join(slides)}
             </ol>
-            <div class="stories__ctl" hidden>
+            <div class="stories__ctl" data-ctl hidden>
               <button class="stories__btn" type="button" data-prev aria-label="Previous story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 10V2M2.5 5.5 6 2l3.5 3.5"/></svg></button>
               <button class="stories__btn" type="button" data-pause aria-pressed="false" aria-label="Pause"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg></button>
               <button class="stories__btn" type="button" data-next aria-label="Next story"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 2v8M2.5 6.5 6 10l3.5-3.5"/></svg></button>
               <span class="stories__count" aria-live="polite"><b data-cur>1</b> / {n + 1}</span>
-              <span class="stories__bar" aria-hidden="true"><i></i></span>
+              <span class="stories__bar" data-bar aria-hidden="true"><i></i></span>
             </div>
           </div>
         </div>'''
+
+
+def stories_section(base=''):
+    """The whole "Built together" section, for any page that carries it."""
+    return f'''    <section class="built" id="our-story" aria-labelledby="storiesHeading">
+      <img class="built__bg" src="{base}assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
+      <div class="shell">
+{stories_html(base)}
+      </div>
+    </section>'''
+
+
+# ── the horizontal timeline ──────────────────────────────────────────────
+def tline(steps, label='Step'):
+    """
+    A horizontal timeline after the owner's infographic reference
+    (qa/design-refs/timeline.png): a numbered disc for each step on one
+    connecting line, and beneath each a tinted plate with a chevron, an
+    uppercase title and copy, the plates stepping through the site's blues.
+    steps: (title, copy). Animated by assets/js/home.js (.is-drawn); static
+    under reduced motion and with JavaScript off.
+    """
+    items = []
+    for i, (t, c) in enumerate(steps):
+        items.append(f'''          <li class="tline__step" style="--i:{i}">
+            <span class="tline__disc" aria-hidden="true"><b>{i + 1:02d}</b><i>{esc(label)}</i></span>
+            <div class="tline__plate">
+              <span class="tline__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 2.5 7.5 6 4 9.5"/></svg></span>
+              <h3 class="tline__t">{esc(t)}</h3>
+              <p class="tline__c">{esc(c)}</p>
+            </div>
+          </li>''')
+    nl = chr(10)
+    return f'''        <ol class="tline tline--{len(steps)}" style="--n:{len(steps)}">
+{nl.join(items)}
+        </ol>'''
 
 
 # ── the design-reference kit, shared by every generated page ─────────────

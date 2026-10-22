@@ -264,6 +264,8 @@ def work_page():
       </div>
     </section>
 
+{B.stories_section(base)}
+
     <section class="wk band" id="all" aria-labelledby="allHeading">
       <div class="shell">
         <div class="sec__head">
@@ -273,10 +275,8 @@ def work_page():
           </div>
           <p class="lede" data-reveal style="--d:140ms">Filter by industry or by what the system had to do. Every project is listed whether you filter or not.</p>
         </div>
-
         <div class="wk__filters" data-filters hidden>
-          <fieldset class="wk__fieldset">
-            <legend>Industry</legend>
+          <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
             <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
             <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
             <button type="button" data-filter="industry" data-value="insurance" aria-pressed="false">Insurance</button>
@@ -285,20 +285,17 @@ def work_page():
             <button type="button" data-filter="industry" data-value="non-profit" aria-pressed="false">Non-profit</button>
             <button type="button" data-filter="industry" data-value="education" aria-pressed="false">Education</button>
           </fieldset>
-          <fieldset class="wk__fieldset">
-            <legend>Capability</legend>
+          <fieldset class="wk__fieldset"><legend class="eyebrow">Capability</legend>
             <button type="button" data-filter="capability" data-value="all" aria-pressed="true">All</button>
             <button type="button" data-filter="capability" data-value="field-operations" aria-pressed="false">Field operations</button>
-            <button type="button" data-filter="capability" data-value="integration" aria-pressed="false">Integration and reporting</button>
+            <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
             <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
           </fieldset>
         </div>
-
-        <p class="vh" id="wkCount" role="status" aria-live="polite"></p>
+        <p class="vh" id="wkCount" aria-live="polite"></p>
         <div class="feats" data-grid>
 {grid}
         </div>
-
         <div class="unconfirmed" data-kind="hideable">
         <h3 class="wk__sub" data-reveal>Still to classify</h3>
         <p class="wk__subnote" data-reveal>These five are in the repository but it is not yet confirmed whether each is a client system or a concept. They are listed rather than quietly dropped.</p>
@@ -306,7 +303,6 @@ def work_page():
 {unclassified}
         </div>
         </div>
-
         <p class="wk__more" data-reveal>Looking for a sector rather than a project? See <a href="{base}industries.html">Industries</a>.</p>
       </div>
     </section>

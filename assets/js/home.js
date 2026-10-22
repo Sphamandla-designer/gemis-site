@@ -1,48 +1,56 @@
 /* ──────────────────────────────────────────────────────────────────────
-   Homepage motion: the stories slider and the testimonials slider.
+   Homepage motion: the tabbed stages (the stories panel and the client
+   stories) and the horizontal timeline.
 
-   Both work on markup that already reads correctly without this file: the
-   stories are a plain <ol> of cards, the testimonials a plain <ul>. This adds
-   the stage, the auto-advance and the controls over the top. The logo marquee
+   Every stage works on markup that already reads correctly without this
+   file: a plain <ol> of cards. This adds the one-at-a-time stage, the tabs,
+   the optional auto-advance and the controls over the top. The logo marquee
    is CSS only. Under prefers-reduced-motion nothing advances on its own;
    every control still works, and changes are instant rather than animated.
+
+   A stage is any [data-stage] element holding:
+     [data-list]   the <ol> of cards        [data-slide]  each card
+     [data-tab]    a button per card, with data-go="<index>"
+     [data-ctl]    optional controls: [data-prev] [data-next] [data-pause]
+                   [data-cur] (the current number) [data-bar] (a progress bar)
+     data-auto="0" turns the auto-advance off (the client stories)
    ────────────────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── stories: one card at a time, sliding vertically ─────────────────── */
-  var frame = document.querySelector('[data-stories]');
-  if (frame) {
-    var slides = [].slice.call(frame.querySelectorAll('.sty'));
-    var tabs = [].slice.call(frame.querySelectorAll('.stories__tab'));
-    var ctl = frame.querySelector('.stories__ctl');
-    var bar = frame.querySelector('.stories__bar');
+  function stage(frame) {
+    var slides = [].slice.call(frame.querySelectorAll('[data-slide]'));
+    var tabs = [].slice.call(frame.querySelectorAll('[data-tab]'));
+    var list = frame.querySelector('[data-list]');
+    var ctl = frame.querySelector('[data-ctl]');
+    var bar = frame.querySelector('[data-bar]');
     var cur = frame.querySelector('[data-cur]');
-    var stage = frame.querySelector('.stories__stage');
-    var n = slides.length, i = 0, timer = null, paused = false;
-    var DWELL = 7000;
+    var auto = frame.getAttribute('data-auto') !== '0';
+    var n = slides.length, i = 0, timer = null, paused = !auto, hold = false;
+    var DWELL = parseInt(frame.getAttribute('data-dwell'), 10) || 7000;
+    if (!n || !list) return;
 
-    frame.classList.add('stories--live');
+    frame.classList.add('is-live');
     if (ctl) ctl.hidden = false;
 
     function fit() {
-      // the stage is as tall as its tallest card, so the layout never jumps
+      // the list is as tall as its tallest card, so the layout never jumps
       var h = 0;
       slides.forEach(function (s) { h = Math.max(h, s.offsetHeight); });
-      stage.style.setProperty('--stage-h', h + 'px');
+      list.style.setProperty('--stage-h', h + 'px');
     }
 
-    function show(k, dir) {
+    function show(k) {
       k = (k + n) % n;
-      slides.forEach(function (s) { var v = s.querySelector('video'); if (v && !v.paused) v.pause(); });
       slides.forEach(function (s, j) {
+        var v = s.querySelector('video');
+        if (v && !v.paused) v.pause();
         s.classList.remove('is-active', 'is-above', 'is-below');
-        if (j === k) s.classList.add('is-active');
-        else s.classList.add(j < k ? 'is-above' : 'is-below');
+        s.classList.add(j === k ? 'is-active' : (j < k ? 'is-above' : 'is-below'));
         s.setAttribute('aria-hidden', j === k ? 'false' : 'true');
-        [].forEach.call(s.querySelectorAll('a'), function (a) { a.tabIndex = j === k ? 0 : -1; });
+        [].forEach.call(s.querySelectorAll('a, button, video, summary'), function (el) { el.tabIndex = j === k ? 0 : -1; });
       });
       tabs.forEach(function (t, j) { t.setAttribute('aria-pressed', j === k ? 'true' : 'false'); });
       if (cur) cur.textContent = String(k + 1);
@@ -54,13 +62,13 @@
       if (!bar) return;
       bar.classList.remove('is-running');
       void bar.offsetWidth;   // restart the CSS animation
-      if (!reduced && !paused) bar.classList.add('is-running');
+      if (!reduced && !paused && !hold) bar.classList.add('is-running');
     }
 
     function schedule() {
       clearTimeout(timer);
-      if (reduced || paused || document.documentElement.classList.contains('has-modal')) return;
-      timer = setTimeout(function () { show(i + 1, 1); schedule(); }, DWELL);
+      if (reduced || paused || hold || !auto) return;
+      timer = setTimeout(function () { show(i + 1); schedule(); }, DWELL);
     }
 
     function setPaused(p) {
@@ -79,18 +87,24 @@
       t.addEventListener('click', function () { show(parseInt(t.getAttribute('data-go'), 10) || 0); schedule(); });
     });
     var prev = frame.querySelector('[data-prev]'), next = frame.querySelector('[data-next]'), pause = frame.querySelector('[data-pause]');
-    if (prev) prev.addEventListener('click', function () { show(i - 1, -1); schedule(); });
-    if (next) next.addEventListener('click', function () { show(i + 1, 1); schedule(); });
+    if (prev) prev.addEventListener('click', function () { show(i - 1); schedule(); });
+    if (next) next.addEventListener('click', function () { show(i + 1); schedule(); });
     if (pause) pause.addEventListener('click', function () { setPaused(!paused); });
 
-    // a pointer over the stage, or focus inside it, holds the current story
-    var hold = false;
+    // a pointer over the cards, focus inside them, or a playing video holds the current one
     function holdOn() { hold = true; clearTimeout(timer); if (bar) bar.classList.remove('is-running'); }
     function holdOff() { if (!hold) return; hold = false; restartBar(); schedule(); }
-    stage.addEventListener('mouseenter', holdOn);
-    stage.addEventListener('mouseleave', holdOff);
-    stage.addEventListener('focusin', holdOn);
-    stage.addEventListener('focusout', function (e) { if (!stage.contains(e.relatedTarget)) holdOff(); });
+    list.addEventListener('mouseenter', holdOn);
+    list.addEventListener('mouseleave', holdOff);
+    list.addEventListener('focusin', holdOn);
+    list.addEventListener('focusout', function (e) { if (!list.contains(e.relatedTarget)) holdOff(); });
+    slides.forEach(function (s) {
+      var v = s.querySelector('video');
+      if (!v) return;
+      v.addEventListener('play', holdOn);
+      v.addEventListener('pause', holdOff);
+      v.addEventListener('ended', holdOff);
+    });
 
     // only run while on screen
     if ('IntersectionObserver' in window) {
@@ -102,131 +116,31 @@
       schedule();
     }
 
-    slides.forEach(function (s) {
-      var v = s.querySelector('video');
-      if (!v) return;
-      v.addEventListener('play', function () { hold = true; clearTimeout(timer); if (bar) bar.classList.remove('is-running'); });
-      v.addEventListener('pause', function () { hold = false; restartBar(); schedule(); });
-      v.addEventListener('ended', function () { hold = false; restartBar(); schedule(); });
-    });
     fit();
     window.addEventListener('resize', fit);
     window.addEventListener('load', fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-    // a card can grow after first paint (fonts, images, wrapped buttons): keep the stage in step
     if ('ResizeObserver' in window) {
       var ro = new ResizeObserver(function () { fit(); });
       slides.forEach(function (s) { ro.observe(s); });
     }
-    show(0, 1);
-    if (reduced) setPaused(true);
+    show(0);
+    if (reduced && auto) setPaused(true);
   }
 
-  /* ── the video overlay: "Watch the story" expands the video on screen ── */
-  var modal = document.getElementById('videoModal');
-  if (modal && typeof modal.showModal === 'function') {
-    var mv = modal.querySelector('.vmodal__video');
-    var mt = modal.querySelector('[data-vtitle]');
-    var opener = null;
+  [].forEach.call(document.querySelectorAll('[data-stage]'), stage);
 
-    function openVideo(btn) {
-      opener = btn;
-      while (mv.firstChild) mv.removeChild(mv.firstChild);
-      var webm = document.createElement('source'); webm.src = btn.getAttribute('data-webm'); webm.type = 'video/webm';
-      var mp4 = document.createElement('source'); mp4.src = btn.getAttribute('data-mp4'); mp4.type = 'video/mp4';
-      mv.appendChild(webm); mv.appendChild(mp4);
-      mv.poster = btn.getAttribute('data-poster') || '';
-      mv.setAttribute('aria-label', btn.getAttribute('data-title') || 'Case study video');
-      if (mt) mt.textContent = btn.getAttribute('data-title') || '';
-      mv.load();
-      modal.showModal();
-      document.documentElement.classList.add('has-modal');
-      var p = mv.play();
-      if (p && p.catch) p.catch(function () { /* autoplay blocked: the controls are there */ });
-    }
-    function closeVideo() {
-      mv.pause();
-      if (modal.open) modal.close();
-    }
-    modal.addEventListener('close', function () {
-      mv.pause();
-      mv.removeAttribute('src');
-      while (mv.firstChild) mv.removeChild(mv.firstChild);
-      document.documentElement.classList.remove('has-modal');
-      if (opener) opener.focus();
-    });
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-watch]');
-      if (btn) { e.preventDefault(); openVideo(btn); return; }
-      if (e.target.closest('[data-close]')) { closeVideo(); return; }
-      // a click on the backdrop (outside the video) closes it
-      if (modal.open && e.target === modal) closeVideo();
-    });
-  }
-
-  /* ── testimonials: a snapping track that advances on its own ─────────── */
-  var track = document.querySelector('[data-testi]');
-  if (track) {
-    var cards = [].slice.call(track.children);
-    var dots = document.querySelector('[data-testi-dots]');
-    var t = 0, ttimer = null, thold = false;
-
-    function cardWidth() { return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0); }
-    function perView() { return Math.max(1, Math.round(track.clientWidth / cardWidth())); }
-    function pages() { return Math.max(1, Math.ceil(cards.length / perView())); }
-
-    function paintDots() {
-      if (!dots) return;
-      dots.innerHTML = '';
-      for (var k = 0; k < pages(); k++) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'testi__dot';
-        b.setAttribute('aria-label', 'Show testimonials ' + (k * perView() + 1) + ' to ' + Math.min(cards.length, (k + 1) * perView()));
-        b.setAttribute('aria-pressed', k === t ? 'true' : 'false');
-        (function (k) { b.addEventListener('click', function () { go(k); tschedule(); }); })(k);
-        dots.appendChild(b);
-      }
-    }
-
-    function go(k) {
-      t = (k + pages()) % pages();
-      track.scrollTo({ left: t * perView() * cardWidth(), behavior: reduced ? 'auto' : 'smooth' });
-      if (dots) [].forEach.call(dots.children, function (d, j) { d.setAttribute('aria-pressed', j === t ? 'true' : 'false'); });
-    }
-
-    function tschedule() {
-      clearTimeout(ttimer);
-      if (reduced || thold) return;
-      ttimer = setTimeout(function () { go(t + 1); tschedule(); }, 6000);
-    }
-
-    track.addEventListener('mouseenter', function () { thold = true; clearTimeout(ttimer); });
-    track.addEventListener('mouseleave', function () { thold = false; tschedule(); });
-    track.addEventListener('focusin', function () { thold = true; clearTimeout(ttimer); });
-    track.addEventListener('focusout', function (e) { if (!track.contains(e.relatedTarget)) { thold = false; tschedule(); } });
-    // a manual scroll (touch) updates the dots and holds the timer briefly
-    var sdeb = null;
-    track.addEventListener('scroll', function () {
-      clearTimeout(sdeb);
-      sdeb = setTimeout(function () {
-        var k = Math.round(track.scrollLeft / (perView() * cardWidth()));
-        if (k !== t && dots) { t = k; [].forEach.call(dots.children, function (d, j) { d.setAttribute('aria-pressed', j === t ? 'true' : 'false'); }); }
-      }, 120);
-    }, { passive: true });
-    window.addEventListener('resize', function () { paintDots(); go(Math.min(t, pages() - 1)); });
-
-    var prevT = document.querySelector('[data-testi-prev]'), nextT = document.querySelector('[data-testi-next]');
-    if (prevT) prevT.addEventListener('click', function () { go(t - 1); tschedule(); });
-    if (nextT) nextT.addEventListener('click', function () { go(t + 1); tschedule(); });
-
-    paintDots();
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) tschedule(); else clearTimeout(ttimer);
-      }, { threshold: 0.25 }).observe(track);
+  /* ── the horizontal timeline: draws its line and lands its steps in turn ── */
+  var lines = [].slice.call(document.querySelectorAll('.tline'));
+  if (lines.length) {
+    var land = function (el) { el.classList.add('is-drawn'); };
+    if (reduced || !('IntersectionObserver' in window)) {
+      lines.forEach(land);
     } else {
-      tschedule();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { land(en.target); io.unobserve(en.target); } });
+      }, { threshold: 0.3 });
+      lines.forEach(function (el) { io.observe(el); });
     }
   }
 })();

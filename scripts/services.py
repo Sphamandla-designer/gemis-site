@@ -557,3 +557,34 @@ ARTICLES = [
 ]
 
 ARTICLE_BY_SLUG = {a['slug']: a for a in ARTICLES}
+
+
+# ── the ways of working and the delivery stages, for the horizontal timelines ──
+WAYS = [
+    ('Understand', 'We learn your business before proposing anything: how the work is actually done, where it breaks, and what a fix is worth.'),
+    ('Design', 'We design the system around your people and your process, and test it with them before anything is built.'),
+    ('Build', 'Short, demonstrated sprints on the Microsoft Cloud, so you see the system grow and steer it as it does.'),
+    ('Evolve', 'Go-live is the start. We monitor, maintain and keep improving the system as the business changes.'),
+]
+
+STAGES = [
+    ('Discovery', 'We immerse ourselves in your operations to understand the challenges and goals before proposing anything.'),
+    ('Architecture', 'A secure, scalable Microsoft Cloud design that fits your business today — and where it is heading.'),
+    ('UX & Design', 'Wireframes and prototypes make sure the system works the way your people actually do.'),
+    ('Build', 'Iterative sprints with regular demonstrations keep you involved and the solution on target.'),
+    ('Assurance', 'Structured testing, performance validation and user acceptance before anything reaches production.'),
+    ('Support', 'Careful rollout, training and documentation — then ongoing monitoring and improvement.'),
+]
+
+NEXT_STEPS = [
+    ('We read it properly', 'Your enquiry reaches a monitored GEMIS mailbox, not a personal address. Expect a reply from a person who has read it.'),
+    ('A discovery conversation', 'We map how your organisation actually works — the goals, the friction and the constraints — before anyone proposes a system.'),
+    ('A scoped way forward', 'You get an architecture, a plan and a cost you can act on. If we are not the right fit, we will say so.'),
+]
+
+MILESTONES = [
+    ('Founded in Cape Town', 'GEM Information Systems opens its doors in 2014, building affordable tools for SMEs and non-profits.'),
+    ('Into the Microsoft Cloud', 'Azure, Azure SQL and C# become the backbone — enterprise infrastructure for mission-critical work.'),
+    ('Platforms at national scale', 'ERP, learning, waste, property and community systems serving organisations nationally and abroad.'),
+    ('A long-term partner', 'Discovery through continuous improvement — we stay with the systems we ship.'),
+]
