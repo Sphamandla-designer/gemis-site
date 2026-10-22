@@ -20,9 +20,14 @@ in the repository, so it is recorded here and `scripts/stories.py` applies it.
 
 ## Executives (for endorsement cards)
 
-- Nazier Mathinus, company: WasteMart
-- Kehan Patel, company: HomeAssist
-- Ryan Smith, company: SBS Waterproofing
+- Nazier Mathinus, company: WasteMart (no endorsement yet)
+- Keshan Patel, CEO, company: HomeAssist (Pty) Ltd
+- Ryan Smith (no title), company: SBS Waterproofing
+- Philippine Francke, Managing Director, company: HashTopic
+
+The quotations themselves are in `scripts/endorsements.md` (direct quotes from gemis.co.za, supplied by the owner on 2026-10-22; direct quotes from
+gemis.co.za, copied exactly); the build reads them from
+`_project/assets-incoming/content/endorsements.md` or `scripts/endorsements.md`.
 
 ## Other projects
 

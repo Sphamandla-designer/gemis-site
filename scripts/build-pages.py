@@ -112,15 +112,24 @@ def story_page(s):
     if c.get('timeframe'):
         overview.append(('Timeframe', c['timeframe']))
     overview.append(('Status', c['status']))
+    overview.append(('Key deliverables', '; '.join(c['deliverables'])))
     ov = '\n'.join(f'''          <div class="ov__item" data-reveal style="--d:{i * 50}ms"><dt>{esc(k)}</dt><dd>{esc(val)}</dd></div>''' for i, (k, val) in enumerate(overview))
 
     endo = ''
-    if founding and s['endorser']:
-        # Hidden on the live build until the line is approved; back under ?review=1.
+    if founding and s['endorser'] and s['slug'] != 'sbs-waterproofing':
+        # the HomeAssist words sit with the outcomes; a person with no line in
+        # endorsements.md has no card live
         endo = f'''
-        <div class="unconfirmed" data-kind="hideable">
-          <h3 class="out__h">Client feedback</h3>
-          {B.endorsement_html(s['endorser'], base, since)}
+        <div class="out__words">
+          {B.endorsement_html(s['endorser'], base, story_link=False)}
+        </div>'''
+    challenge_words = ''
+    if s['slug'] == 'sbs-waterproofing':
+        # Ryan Smith's words describe the 2014 website and Google campaign, so
+        # they sit in the part of the page about that work
+        challenge_words = f'''
+        <div class="chap__words" data-reveal style="--d:200ms">
+          {B.endorsement_html('ryan-smith', base, story_link=False)}
         </div>'''
 
     verified = ''
@@ -133,21 +142,99 @@ def story_page(s):
             </ul>
           </div>'''
 
-    related = '\n'.join(f'''          <article class="cscard" data-reveal style="--d:{i * 80}ms">
-            <a class="cscard__media" href="{base}work/{r['slug']}/" tabindex="-1" aria-hidden="true">
-              <img src="{base}{S.VIDEO_DIR}{r['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">{r['duration_label']}</span>
-            </a>
-            <div class="cscard__body">
-              <p class="cscard__tag">{esc(r['industry'])}</p>
-              <h3 class="cscard__name">{esc(r['client'])}</h3>
-              <p class="cscard__line">{esc(r['headline'])}</p>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="{base}work/{r['slug']}/">Read story {ARROW}</a>
-                <a class="btn btn--sm btn--ghost" {B.play_attrs(r, base)}>{B.PLAY} Play story</a>
-              </div>
-            </div>
-          </article>''' for i, r in enumerate(S.BY_SLUG[k] for k in c['related']))
+    related = '\n'.join(B.cscard(S.BY_SLUG[k], base, i) for i, k in enumerate(c['related']))
+
+    basis = ''
+    if c.get('basis'):
+        basis = f'''
+    <section class="chap band" aria-labelledby="basisHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Discovery and evidence</p>
+            <h2 class="display" id="basisHeading" data-reveal style="--d:80ms">What the design was based on</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Only the evidence that exists is described here. Nothing is labelled research that was not.</p>
+        </div>
+        <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
+{paras(c['basis'])}
+        </div>
+      </div>
+    </section>
+'''
+
+    structure = ''
+    if c.get('flow'):
+        structure = f'''
+        <div class="story__flow" data-reveal style="--d:220ms">
+          <h3 class="out__h">The workflow as implemented</h3>
+{B.flow(c['flow'], c.get('flow_label', ''))}
+        </div>'''
+
+    walkthrough = ''
+    if c.get('walk'):
+        walkthrough = f'''
+    <section class="chap band" id="walkthrough" aria-labelledby="walkHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>The system, step by step</p>
+            <h2 class="display" id="walkHeading" data-reveal style="--d:80ms">What the user needs to do, and how the system supports it</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Stills from the case study video. The interfaces are illustrated for the video, not screen recordings of the production system; every capability shown is one the system delivers.</p>
+        </div>
+{B.walk(c['walk'], base, s['slug'])}
+      </div>
+    </section>
+'''
+
+    decided = ''
+    if c.get('decisions'):
+        decided = f'''
+    <section class="chap band band-tint plusgrid plusgrid--br" aria-labelledby="decHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Key decisions</p>
+            <h2 class="display" id="decHeading" data-reveal style="--d:80ms">Why it was built this way</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">The decisions the evidence supports: what needed addressing, what GEMIS chose, why, and what was delivered or observed.</p>
+        </div>
+{B.decisions(c['decisions'])}
+      </div>
+    </section>
+'''
+
+    validation = ''
+    if c.get('validation'):
+        vr = c['validation']
+        validation = f'''
+    <section class="chap band" aria-labelledby="valHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Validation, delivery and iteration</p>
+            <h2 class="display" id="valHeading" data-reveal style="--d:80ms">What the record shows</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Delivery and continued use are the validation the repository can evidence. What it cannot, it says.</p>
+        </div>
+        <div class="rec">
+          <div class="rec__col" data-reveal>
+            <h3 class="out__h">On record</h3>
+            <ul class="out__list">
+{li(vr['record'])}
+            </ul>
+          </div>
+          <div class="rec__col rec__col--quiet" data-reveal style="--d:80ms">
+            <h3 class="out__h">Not documented</h3>
+            <ul class="out__list">
+{li(vr['not_recorded'])}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+'''
 
     head = shell(
         base,
@@ -169,7 +256,7 @@ def story_page(s):
           <p class="cshero__status" data-reveal style="--d:200ms"><span class="cshero__dot" aria-hidden="true"></span>{esc(c['status'])}</p>
           <div class="cshero__ctas" data-reveal style="--d:240ms">
             <a class="btn" {B.play_attrs(s, base)}>{B.PLAY} Play story</a>
-            <a class="arrow-link" href="#overview">Project overview {ARROW}</a>
+            <a class="arrow-link" href="{base}contact.html">Discuss a similar challenge {ARROW}</a>
           </div>
         </div>
         <div class="cshero__visual" data-reveal style="--d:200ms">
@@ -185,7 +272,7 @@ def story_page(s):
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Project overview</p>
-            <h2 class="display" id="overviewHeading" data-reveal style="--d:80ms">What the project is, and where it stands</h2>
+            <h2 class="display" id="overviewHeading" data-reveal style="--d:80ms">Project snapshot</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">Responsibilities and status, stated plainly. Where the record is silent — a date, a measured result — the page says so rather than guessing.</p>
         </div>
@@ -206,15 +293,16 @@ def story_page(s):
         </div>
         <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
 {paras(c['challenge'])}
-        </div>
+        </div>{challenge_words}
       </div>
     </section>
 
-    <section class="chap band" aria-labelledby="approachHeading">
+{basis}
+    <section class="chap band band-wash" aria-labelledby="approachHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>Strategy and solution approach</p>
+            <p class="eyebrow" data-reveal>Strategy and system structure</p>
             <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Why this approach fits the problem</h2>
           </div>
           <ul class="caps caps--1" data-reveal style="--d:140ms">
@@ -228,11 +316,12 @@ def story_page(s):
           <div class="appr__video" data-reveal style="--d:200ms">
             {B.video_html(s, base)}
           </div>
-        </div>
+        </div>{structure}
       </div>
     </section>
+{walkthrough}{decided}{validation}
 
-    <section class="out band band-wash plusgrid plusgrid--br" aria-labelledby="outcomesHeading">
+    <section class="out band band-wash" aria-labelledby="outcomesHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -280,7 +369,7 @@ def story_page(s):
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">{esc(c['cta'])}</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
           <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
         </div>
       </div>
@@ -331,22 +420,8 @@ def work_page():
         for i, c in enumerate(comp))
 
     def card(i, s):
-        return f'''          <article class="cscard wk__card" data-reveal style="--d:{i * 60}ms"
-                   data-industry="{s['industry_tag']}" data-capability="{' '.join(s['capability_tags'])}">
-            <a class="cscard__media" href="{base}work/{s['slug']}/" tabindex="-1" aria-hidden="true">
-              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">{s['duration_label']}</span>
-            </a>
-            <div class="cscard__body">
-              <p class="cscard__tag">{esc(s['industry'])}</p>
-              <h3 class="cscard__name">{esc(s['client'])}</h3>
-              <p class="cscard__line">{esc(s['headline'])}</p>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="{base}work/{s['slug']}/">Read story {ARROW}</a>
-                <a class="btn btn--sm btn--ghost" {B.play_attrs(s, base)}>{B.PLAY} Play story</a>
-              </div>
-            </div>
-          </article>'''
+        return B.cscard(s, base, i, extra_attrs=f''' data-industry="{s['industry_tag']}" data-capability="{' '.join(s['capability_tags'])}"''').replace('<article class="cscard"', '<article class="cscard wk__card"', 1)
+
     cards = '\n'.join(card(i, s) for i, s in enumerate(S.STORY_PAGES))
 
     # Not confirmed as client systems, so they are not on the live build at all.
@@ -387,7 +462,7 @@ def work_page():
           <h1 class="chero__title" data-reveal style="--d:80ms">Complex business challenges. Thoughtfully designed digital solutions.</h1>
           <p class="chero__copy" data-reveal style="--d:140ms">GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.</p>
           <div class="cshero__ctas" data-reveal style="--d:200ms">
-            <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+            <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
             <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
           </div>
         </div>
@@ -425,7 +500,7 @@ def work_page():
             <div><dt>GEMIS&rsquo;s contribution</dt><dd>{esc(m['summary'])}</dd></div>
           </dl>
           <div class="featured__actions" data-reveal style="--d:140ms">
-            <a class="btn" href="{base}products/managem/">Read the full story {ARROW}</a>
+            <a class="btn" href="{base}products/managem/">Read the case study {ARROW}</a>
             <a class="btn btn--ghost" {B.play_attrs(m, base)}>{B.PLAY} Play story</a>
           </div>
         </div>
@@ -437,9 +512,9 @@ def work_page():
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>All case studies</p>
-            <h2 class="display" id="allHeading" data-reveal style="--d:80ms">Systems in production</h2>
+            <h2 class="display" id="allHeading" data-reveal style="--d:80ms">The portfolio</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Every project here is a system in use today, and several have been running for more than a decade. Filter by industry or by what the system had to do.</p>
+          <p class="lede" data-reveal style="--d:140ms">Each card names the business context, what GEMIS did, and where the project stands. Several of these systems have been running for more than a decade. Filter by industry or by what the system had to do.</p>
         </div>
         <div class="wk__bar">
 {filters}
@@ -465,7 +540,7 @@ def work_page():
             <p class="eyebrow" data-reveal>How GEMIS approaches projects</p>
             <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">The same four principles sit behind every project here. <a class="arrow-link" href="{base}solutions/">See how we work {ARROW}</a></p>
+          <p class="lede" data-reveal style="--d:140ms">The same four stages sit behind every project here: the enquiry record at SBS, the payment-driven schedule at WasteMart and the approval step at Sonke were each decided before anything was built. <a class="arrow-link" href="{base}solutions/">See how we work {ARROW}</a></p>
         </div>
 {B.tline(SV.WAYS)}
       </div>
@@ -477,7 +552,7 @@ def work_page():
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Have a complex business challenge? Let&rsquo;s explore the right solution.</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
           <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
         </div>
       </div>

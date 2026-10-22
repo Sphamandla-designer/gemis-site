@@ -166,6 +166,193 @@
     });
   }
 
+  /* ── selected work: the band pins and the cards travel across as the page scrolls ──
+     Wide screens only, and never under reduced motion; otherwise the list stays
+     vertical. Focus inside the track scrolls the page to bring the card on. */
+  var hs = document.querySelector('[data-hscroll]');
+  if (hs && !reduced && window.matchMedia('(min-width: 901px)').matches) {
+    var track = hs.querySelector('[data-track]');
+    var span = 0, total = 0;
+    function hsSize() {
+      hs.classList.add('is-pinned');
+      span = Math.max(0, track.scrollWidth - window.innerWidth);
+      total = span + Math.round(window.innerHeight * .25);   // one px of travel per px of scroll, then a short rest
+      hs.style.height = (window.innerHeight + total) + 'px';
+    }
+    /* The travel follows the scroll with inertia: each frame the track closes a
+       fraction of the distance to where the scroll says it should be, so a
+       flick glides to rest instead of stopping dead, and a slow scroll feels
+       weighted. The loop only runs while there is distance left to close. */
+    var hsTarget = 0, hsNow = 0, hsTick = false, hsSnap = true;
+    var cards = track.querySelectorAll('.selw__card');
+    function hsPaint() {
+      track.style.transform = 'translate3d(' + (-hsNow) + 'px,0,0)';
+      // the cards lean into the direction of travel while moving, and settle upright
+      var v = Math.max(-1, Math.min(1, (hsTarget - hsNow) / 400));
+      hs.style.setProperty('--hs-v', v.toFixed(3));
+      var vw = window.innerWidth;
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i], cx = c.offsetLeft - hsNow + c.offsetWidth / 2;
+        var d = Math.max(-1, Math.min(1, (cx - vw / 2) / vw));     // -1 left edge … 1 right edge
+        c.style.setProperty('--hs-d', d.toFixed(3));
+      }
+    }
+    function hsFrame() {
+      var diff = hsTarget - hsNow;
+      if (Math.abs(diff) < 0.3 || hsSnap) { hsNow = hsTarget; hsSnap = false; hsPaint(); hsTick = false; return; }
+      hsNow += diff * 0.11;
+      hsPaint();
+      requestAnimationFrame(hsFrame);
+    }
+    function hsRun() {
+      var top = hs.getBoundingClientRect().top;
+      var p = total ? Math.min(1, Math.max(0, -top / span)) : 0;
+      hsTarget = p * span;
+      if (!hsTick) { hsTick = true; requestAnimationFrame(hsFrame); }
+    }
+    hsSize(); hsRun();
+    window.addEventListener('scroll', hsRun, { passive: true });
+    window.addEventListener('resize', function () { hsSize(); hsSnap = true; hsRun(); });
+    window.addEventListener('load', function () { hsSize(); hsSnap = true; hsRun(); });
+    track.addEventListener('focusin', function (e) {
+      var item = e.target.closest('.selw__card'); if (!item || !span) return;
+      var x = Math.min(span, Math.max(0, item.offsetLeft - 48));
+      var y = hs.getBoundingClientRect().top + window.scrollY + (x / span) * total;
+      hsSnap = true;                                              // keyboard focus lands at once
+      window.scrollTo({ top: y, behavior: 'auto' });
+    });
+  }
+
+  /* ── the transition statement: scales up as it is scrolled to the centre, holds, releases ──
+     Scroll-linked, no library. The pin is a sticky block inside a tall wrapper;
+     the statement's scale and opacity follow the wrapper's progress through
+     the viewport: the first 60 % grows, the rest holds at full size, then the
+     sticky block releases with the page. Under reduced motion the block is static. */
+  var su = document.querySelector('[data-scaleup]');
+  if (su && !reduced) {
+    var stmt = su.querySelector('.selw__statement');
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };   // ease-out cubic
+    var suPin = su.querySelector('.selw__out-pin');
+    function suSize() { su.style.setProperty('--pinh', suPin.offsetHeight + 'px'); }
+    var suTarget = 0, suNow = 0, suTick = false, suSnap = true;
+    function suPaint() {
+      var g = ease(Math.min(1, suNow / .6));                     // growth phase, then the hold
+      su.style.setProperty('--s', (0.42 + 0.58 * g).toFixed(4));
+      su.style.setProperty('--o', (0.35 + 0.65 * g).toFixed(4));
+      su.style.setProperty('--l', (suNow > .5 ? Math.min(1, (suNow - .5) / .15) : 0).toFixed(3));
+    }
+    function suFrame() {
+      var diff = suTarget - suNow;
+      if (Math.abs(diff) < 0.001 || suSnap) { suNow = suTarget; suSnap = false; suPaint(); suTick = false; return; }
+      suNow += diff * 0.14;
+      suPaint();
+      requestAnimationFrame(suFrame);
+    }
+    function suRun() {
+      var r = su.getBoundingClientRect();
+      // the pin holds the statement at the centre; the travel is the wrapper
+      // beyond half a viewport, so the hold ends as the pin releases
+      var total = su.offsetHeight - window.innerHeight * 0.5;
+      if (total <= 0) return;
+      suTarget = Math.min(1, Math.max(0, -r.top / total));
+      if (!suTick) { suTick = true; requestAnimationFrame(suFrame); }
+    }
+    su.classList.add('is-scaling');
+    suSize(); suRun();
+    window.addEventListener('scroll', suRun, { passive: true });
+    window.addEventListener('resize', function () { suSize(); suRun(); });
+    window.addEventListener('load', function () { suSize(); suRun(); });
+    if (stmt) stmt.addEventListener('transitionend', suRun);
+  }
+
+  /* ── the operating logic: one line through the four principles, drawn on scroll ──
+     The line's path is built from the real positions of the four index nodes
+     (so it survives any width), drawn with a dash offset that follows the
+     section's progress through the viewport. A principle becomes active when
+     the line reaches its node, or on hover / focus; on touch screens scroll
+     position alone decides. Under reduced motion the CSS shows everything
+     resolved and this does nothing but build the path. */
+  var op = document.querySelector('[data-oplogic]');
+  if (op) {
+    var opSvg = op.querySelector('[data-op-line]');
+    var opBase = opSvg.querySelector('.op__line-base');
+    var opDraw = opSvg.querySelector('.op__line-draw');
+    var opItems = [].slice.call(op.querySelectorAll('[data-op]'));
+    var opEnd = op.querySelector('.op__end-node');
+    var opField = op.querySelector('.op__field');
+    var fractions = [];          // where along the path each node sits, 0..1
+
+    function opBuild() {
+      var fr = opField.getBoundingClientRect();
+      var pts = opItems.map(function (it) {
+        var n = it.querySelector('[data-op-node]').getBoundingClientRect();
+        return { x: n.left - fr.left + n.width / 2, y: n.top - fr.top + n.height / 2 };
+      });
+      var endR = opEnd.getBoundingClientRect();
+      var end = { x: endR.left - fr.left + endR.width / 2, y: endR.top - fr.top - 4 };
+      opSvg.setAttribute('viewBox', '0 0 ' + fr.width + ' ' + fr.height);
+      opSvg.setAttribute('preserveAspectRatio', 'none');
+      // an orthogonal route: 1 → 2 along the top, down the gutter and back to 3, across to 4, down to the end
+      var segs = [], d = 'M' + pts[0].x + ' ' + pts[0].y, cur = pts[0], total = 0;
+      function go(x, y) { total += Math.abs(x - cur.x) + Math.abs(y - cur.y); d += ' L' + x + ' ' + y; cur = { x: x, y: y }; }
+      fractions = [0];
+      if (window.matchMedia('(min-width: 901px)').matches) {
+        go(pts[1].x, pts[0].y); go(pts[1].x, pts[1].y); fractions.push(total);
+        var midY = (pts[1].y + pts[2].y) / 2 + Math.max(0, (pts[2].y - pts[1].y)) * 0.2;
+        go(pts[1].x, midY); go(pts[2].x, midY); go(pts[2].x, pts[2].y); fractions.push(total);
+        go(pts[3].x, pts[2].y); go(pts[3].x, pts[3].y); fractions.push(total);
+        go(pts[3].x, end.y - 24); go(end.x, end.y - 24); go(end.x, end.y);
+      } else {
+        for (var i = 1; i < pts.length; i++) { go(pts[i].x, pts[i].y); fractions.push(total); }
+        go(end.x, end.y);
+      }
+      fractions = fractions.map(function (f) { return total ? f / total : 0; });
+      opBase.setAttribute('d', d); opDraw.setAttribute('d', d);
+    }
+
+    var opActive = -1, opHover = -1;
+    function setActive(i) {
+      opItems.forEach(function (it, j) { it.classList.toggle('is-active', j === i); });
+    }
+    function opRun() {
+      var r = op.getBoundingClientRect(), vh = window.innerHeight;
+      var fr = opField.getBoundingClientRect();
+      // the line draws from when the field enters the lower third until its end passes the upper third
+      var p = Math.min(1, Math.max(0, (vh * 0.72 - fr.top) / (fr.height + vh * 0.4)));
+      op.style.setProperty('--p', p.toFixed(4));
+      op.style.setProperty('--pe', Math.min(1, Math.max(0, (p - 0.86) / 0.14)).toFixed(3));
+      // the principle whose node the line has reached most recently
+      var k = -1;
+      for (var i = 0; i < fractions.length; i++) if (p >= fractions[i] - 0.02) k = i;
+      if (p <= 0 || r.bottom < 0 || r.top > vh) k = -1;
+      opActive = k;
+      if (opHover < 0) setActive(opActive);
+    }
+    opItems.forEach(function (it, i) {
+      it.addEventListener('mouseenter', function () { opHover = i; setActive(i); });
+      it.addEventListener('mouseleave', function () { opHover = -1; setActive(opActive); });
+      it.addEventListener('focusin', function () { opHover = i; setActive(i); });
+      it.addEventListener('focusout', function (e) { if (!it.contains(e.relatedTarget)) { opHover = -1; setActive(opActive); } });
+    });
+    opBuild();
+    if (reduced) {
+      op.style.setProperty('--p', '1'); op.style.setProperty('--pe', '1');
+    } else {
+      var opOn = false, opTick = false;
+      function opFrame() { opTick = false; opRun(); }
+      function opScroll() { if (opOn && !opTick) { opTick = true; requestAnimationFrame(opFrame); } }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { opOn = en[0].isIntersecting; if (opOn) opRun(); }, { rootMargin: '20% 0px 20% 0px' }).observe(op);
+      } else { opOn = true; }
+      window.addEventListener('scroll', opScroll, { passive: true });
+      opRun();
+    }
+    window.addEventListener('resize', function () { opBuild(); if (!reduced) opRun(); });
+    window.addEventListener('load', function () { opBuild(); if (!reduced) opRun(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { opBuild(); if (!reduced) opRun(); });
+    if ('ResizeObserver' in window) new ResizeObserver(function () { opBuild(); if (!reduced) opRun(); }).observe(opField);
+  }
+
   /* ── the horizontal timeline: draws its line and lands its steps in turn ── */
   var lines = [].slice.call(document.querySelectorAll('.tline'));
   if (lines.length) {

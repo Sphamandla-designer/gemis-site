@@ -295,3 +295,334 @@ CASES = {
         cta='Running a programme on paper and spreadsheets? Let’s talk about one platform for the activity and the admin behind it.',
     ),
 }
+
+
+# ── the redesign's detail: what each page can show beyond the record above ──
+# Every line below comes from the case study video narration (transcripts in
+# scripts/stories.py) or from scripts/facts.md. Where the repository holds no
+# record — formal research, usability testing, user-acceptance records — the
+# page says so; nothing is labelled research that was not.
+DETAIL = {
+    'sbs-waterproofing': {
+        'role_short': 'Website partner from 2014; designer, builder and support partner of the business system from 2015',
+        'status_short': 'Live — in daily use since 2015',
+        'basis': [
+            'There is no research report in the record for this project. The system was designed from how SBS Waterproofing already worked: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way.',
+            'Two facts shaped the brief. Enquiries from the 2014 website and Google campaigns were arriving faster than the business could keep track of, and the off-the-shelf apps SBS tried did not fit that sequence, so leads were lost between tools.',
+        ],
+        'flow': [
+            ('New enquiry', 'Captured once; the customer gets an SMS reference straight away'),
+            ('Contacted', 'Every call, email and appointment hangs off the enquiry'),
+            ('Site visit', 'Tracked on the same record through to the sale'),
+            ('Quoted', 'A few clicks to send; the customer accepts online'),
+            ('Won', 'The deposit invoice follows automatically into accounting'),
+            ('Project', 'Profit shown per job; stock reorder reminders'),
+        ],
+        'flow_label': 'The SBS pipeline, from enquiry to project',
+        'walk': [
+            ('01-enquiry.jpg', 'Every enquiry, tracked', 'An enquiry is captured once, and the customer receives an SMS with a reference number straight away — so nothing arrives faster than it can be recorded.'),
+            ('02-pipeline.jpg', 'From first call to the sale', 'New, contacted, site visit, quoted, won: every call, email and appointment is tracked on the enquiry, all the way to the sale.'),
+            ('03-deposit.jpg', 'Quote. Accept. Deposit.', 'Quotes go out in a few clicks. When the customer accepts online, the deposit invoice follows automatically, straight into the accounting system.'),
+            ('04-profit.jpg', 'Profit, job by job', 'Every project shows whether it made money, because the system holds the costs as well as the sale.'),
+            ('05-stock.jpg', 'Stock under control', 'The system sends a reminder when stock needs reordering, before a job stalls.'),
+            ('06-system.jpg', 'An operating system for growth', 'Enquiries, pipeline, quotes, invoices, products, projects, stock and staff in one place — in daily use since 2015.'),
+        ],
+        'decisions': [
+            ('Enquiries were arriving faster than anyone could keep track of them.',
+             'Make the enquiry the root record, captured once, with an SMS reference sent to the customer immediately.',
+             'A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call.',
+             'Delivered, as shown in the case study; the system has been in daily use since 2015.'),
+            ('After a quote was accepted, the deposit and the accounting entry depended on someone remembering to raise them.',
+             'Online quote acceptance raises the deposit invoice automatically and posts it into the accounting system.',
+             'The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start.',
+             'Delivered, as shown in the case study.'),
+            ('Nobody could see which jobs made money.',
+             'Hold the costs with the sale and show the profit on every project.',
+             'Management decisions should come from live job data rather than a reconstruction at year-end.',
+             'Delivered, as shown in the case study.'),
+            ('A generic package would have forced SBS to work the package’s way.',
+             'Design the system around SBS’s own pipeline, but general enough to serve other businesses.',
+             'A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite.',
+             'The same system became ManaGEM, which about a dozen companies run on today (facts.md).'),
+        ],
+        'validation': {
+            'record': [
+                'The website and campaign work came first (2014); the business system followed in 2015 and has been extended since.',
+                'More than ten years on, SBS still runs its business on the system, and has grown many times over (as stated in the case study).',
+                'The system was generalised into ManaGEM, which is itself in production.',
+            ],
+            'not_recorded': [
+                'Formal usability testing or user-acceptance records are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+    'homeassist': {
+        'role_short': 'Designer, builder and long-term support partner',
+        'status_short': 'Live — in use for more than ten years',
+        'basis': [
+            'The record holds no research report for this project. The design follows the four parties a burst geyser involves: the homeowner who reports it, the insurer who logs the claim, the plumber who repairs it, and HomeAssist, which coordinates a national panel.',
+            'What each needed is stated in the case study: the homeowner wanted to report in minutes and then know what was happening; the insurer needed the claim logged and the warranty checked; the plumber needed to prove each step met SANS standards; HomeAssist needed to see every job without phoning around.',
+        ],
+        'flow': [
+            ('Reported', 'The homeowner reports online, or the insurer logs the claim'),
+            ('One job record', 'Either way, the job lands in the same place'),
+            ('Dispatched', 'The next available plumber near the job is assigned automatically'),
+            ('Informed', 'SMS or WhatsApp updates to the customer at every step'),
+            ('Evidenced', 'The plumber photographs each step in the app — SANS compliance'),
+            ('Signed off', 'Insurer and manufacturer links update the claim; one national view'),
+        ],
+        'flow_label': 'A HomeAssist job, from report to sign-off',
+        'walk': [
+            ('01-intake.jpg', 'Two ways in. One system.', 'The homeowner reports the burst geyser online in minutes, or the insurer logs the claim for them. Either way the job lands in one place.'),
+            ('02-dispatch.jpg', 'The nearest available plumber, found automatically', 'HomeAssist works with a national panel. The system finds the next available plumber near the job and assigns it, without a phone call.'),
+            ('03-updates.jpg', 'Updates by SMS or WhatsApp', 'The customer is kept informed at every step, so nobody has to phone around for updates.'),
+            ('04-evidence.jpg', 'Photo proof of SANS compliance', 'On site, the plumber uses the app to photograph the work, proving each step meets SANS standards as it is done.'),
+            ('05-insurers.jpg', 'Warranties checked. Claims updated.', 'Behind the scenes the system links directly to insurers and manufacturers, checking warranties and updating claims automatically.'),
+            ('06-overview.jpg', 'Every job, nationwide, in one view', 'HomeAssist sees every job across the country in one place, from first report to sign-off.'),
+        ],
+        'decisions': [
+            ('Homeowners and insurers reported the same problem through different channels.',
+             'One job record with two ways in: the homeowner reports online, or the insurer logs the claim.',
+             'Every party then works from the same job rather than reconciling two versions of it by phone and email.',
+             'Delivered, as shown in the case study.'),
+            ('Assigning a plumber from a national panel meant phoning around.',
+             'Assign the next available plumber near the job automatically.',
+             'Dispatch by proximity and availability is faster than any phone round, and it does not wait on a person.',
+             'Delivered, as shown in the case study.'),
+            ('SANS compliance had to be proved after the fact, from paperwork.',
+             'The plumber’s app captures a photograph at each step of the repair.',
+             'Evidence captured where the work happens is complete and dated; evidence reconstructed afterwards is neither.',
+             'Delivered, as shown in the case study.'),
+            ('Warranty positions and claim updates meant waiting on manufacturers and insurers.',
+             'Link the system directly to insurers and manufacturers.',
+             'The checks that used to be a phone call become part of the job’s own record, and the claim stays current.',
+             'Delivered, as shown in the case study.'),
+        ],
+        'validation': {
+            'record': [
+                'GEMIS and HomeAssist have worked side by side for more than ten years, and the system remains in use (as stated in the case study).',
+            ],
+            'not_recorded': [
+                'Formal usability testing, user-acceptance records and usage figures are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+    'wastemart': {
+        'role_short': 'Designer, builder and long-term support partner',
+        'status_short': 'Live — more than ten years and still growing',
+        'basis': [
+            'The record holds no research report for this project. The design starts from the four manual jobs that sat behind one phone call at WasteMart: building a quote, attaching the right terms, chasing payment, and then remembering to tell operations.',
+            'The constraint was that sales, finance and operations each held part of the picture, so the problem to solve was the chain of hand-offs between the call and the collection.',
+        ],
+        'flow': [
+            ('Service picked', 'The quote is priced automatically, standard terms attached'),
+            ('Accepted and paid', 'The customer accepts and pays through a secure link'),
+            ('Operations alerted', 'The moment payment lands, the job goes onto the schedule'),
+            ('Planned', 'Planners assign the truck and the driver'),
+            ('Collected', 'The driver confirms the collection with a scan in the app'),
+            ('Tracked', 'Managers and the customer see the order from quote to collection'),
+        ],
+        'flow_label': 'A WasteMart order, from call to collection',
+        'walk': [
+            ('01-quote.jpg', 'Quotes in minutes, terms included', 'The sales team picks the service and the quote is priced, with WasteMart’s standard terms and conditions attached automatically.'),
+            ('02-payment.jpg', 'Accept and pay in one go', 'The customer receives the quote, accepts it, and gets a secure payment link straight away. No chasing, no waiting for proof of payment.'),
+            ('03-schedule.jpg', 'Operations, alerted instantly', 'The moment payment comes through, operations is alerted and the job goes onto the schedule.'),
+            ('04-collection.jpg', 'Planned, collected, confirmed', 'Planners assign the truck and driver, and the driver confirms the collection on the mobile app with a quick scan.'),
+            ('05-overview.jpg', 'One view, quote to collection', 'Managers see every order from quote to collection in one place, and the customer can track it too.'),
+        ],
+        'decisions': [
+            ('Quotes were built by hand and the right terms attached from memory.',
+             'Price the quote automatically from the service picked, with standard terms and conditions attached every time.',
+             'A quote that cannot go out without its terms removes a class of errors and most of the time spent building it.',
+             'Delivered, as shown in the case study.'),
+            ('Payment was chased, and proof of payment waited for.',
+             'Send a secure payment link with the quote, and let payment itself trigger the next step.',
+             'When payment drives the schedule there is nothing to chase and nothing to remember.',
+             'Delivered; the client confirms six hours a week back, per depot (facts.md).'),
+            ('Operations found out about jobs late.',
+             'Alert operations the moment payment lands and put the job on the schedule automatically.',
+             'The hand-off that depended on someone remembering to tell operations is removed entirely.',
+             'Delivered, as shown in the case study.'),
+            ('Nobody, including the customer, could see where an order stood.',
+             'One shared order record, confirmed by the driver’s scan, visible to managers and customers.',
+             'The driver’s scan closes the loop at the point of collection, so the view is current without a phone call.',
+             'Delivered, as shown in the case study.'),
+        ],
+        'validation': {
+            'record': [
+                'The client has confirmed the one quantified result: six hours a week back, per depot (facts.md).',
+                'The system has grown with WasteMart for more than ten years (as stated in the case study).',
+            ],
+            'not_recorded': [
+                'Formal usability testing and user-acceptance records are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+    'trans-hex': {
+        'role_short': 'Stabilised the in-house system, automated the SAP feed, built the reporting into it',
+        'status_short': 'Delivered 2017; a second version followed',
+        'basis': [
+            'The record holds no research report for this project. The brief was management’s own: one clear view across plant, mining, finance, security and people at the Baken mine, in place of a report pieced together in Excel from several sources over weeks, with errors creeping in.',
+            'The constraint was that the data already existed in systems the mine depended on — SAP among them — so the problem was getting it into one reliable, repeatable report.',
+        ],
+        'flow': [
+            ('SAP', 'Financial data in the systems the mine already runs on'),
+            ('Daily feed', 'Scheduled; duplicates skipped; every run logged'),
+            ('Failure email', 'The team is told if anything fails — a missing day is noticed'),
+            ('The company MIS', 'Stabilised first, then holds the imported data'),
+            ('Integrated report', 'Plant, mining, finance, security and HR; budget against actual'),
+            ('Version two', 'Weekly figures, forecasts, variances, exchange rates, mine groups'),
+        ],
+        'flow_label': 'The Trans Hex data flow, from SAP to the management report',
+        'walk': [
+            ('01-stabilise.jpg', 'First, make it work', 'GEMIS first got the company’s own information system running reliably, so nothing new was built on an unstable base.'),
+            ('02-sap-feed.jpg', 'SAP data, in every morning', 'The daily feed of financial data from SAP runs on schedule, skips duplicates, logs what it did, and emails the team if anything fails.'),
+            ('03-budget.jpg', 'Budget against actual', 'Gravel treated, carats, fleet availability and cost per carat, for the month and the year to date, built into the system itself.'),
+            ('04-filter.jpg', 'Any mine. Any period.', 'Filter by mine, period or date range, then export to Excel or PDF.'),
+            ('05-forecast.jpg', 'Weekly. Forecast. Variance.', 'Version two added weekly figures, forecasts, variances and live exchange rates.'),
+            ('06-operations.jpg', 'Every operation, one view', 'Mine groups brought other operations into the same report.'),
+        ],
+        'decisions': [
+            ('The existing information system was not reliable enough to build on.',
+             'Stabilise the company’s own system before adding anything to it.',
+             'A report is only as trustworthy as the system that holds its data; fixing the foundation first avoided building errors in.',
+             'Delivered, as shown in the case study.'),
+            ('Financial data was re-keyed from SAP into spreadsheets, and errors crept in.',
+             'Automate a daily SAP feed that runs on schedule, skips duplicates and logs every run.',
+             'Loading the data once, automatically, removes the manual copy that introduced the errors.',
+             'Delivered, as shown in the case study.'),
+            ('A silent failure in an automated feed would only be discovered at month-end.',
+             'Email the team if any run fails.',
+             'Automation that fails loudly is safer than automation that fails quietly; a missing day is noticed the same morning.',
+             'Delivered, as shown in the case study.'),
+            ('The management report lived outside the system, assembled by hand.',
+             'Build the report into the system, with filters by mine and period and export to Excel and PDF.',
+             'A report generated from the system is repeatable and current; one assembled beside it is neither.',
+             'A report that took weeks became available whenever it was needed (as stated in the case study); version two extended the same structure.'),
+        ],
+        'validation': {
+            'record': [
+                'Delivered in 2017 (facts.md).',
+                'A second version followed, adding weekly figures, forecasts, variances, live exchange rates and mine groups — evidence that the first version was used and extended.',
+            ],
+            'not_recorded': [
+                'Time-saving figures beyond the case study’s own statement, and user-acceptance records, are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+    'sonke': {
+        'role_short': 'Designer and builder of the monitoring and evaluation system',
+        'status_short': 'Delivered 2018',
+        'basis': [
+            'The record holds no research report for this project. The design follows the question funders ask — what difference did it make? — and the conditions under which the answer has to be gathered: sessions held far from any office, often without signal, across forty countries.',
+            'The problem was both capture and credibility: getting field data in reliably, and making it trustworthy enough to report.',
+        ],
+        'flow': [
+            ('Captured in the field', 'Facilitators record each session on the mobile app, offline'),
+            ('Synced', 'When there is signal, the records come in'),
+            ('Checked', 'M&E officers review and approve each record'),
+            ('Counted', 'Only approved activity counts against targets'),
+            ('Seen by role', 'Country teams see their country; leadership the whole picture'),
+            ('Reported', 'Donor reports assemble from already-verified data'),
+        ],
+        'flow_label': 'The Sonke monitoring and evaluation flow',
+        'walk': [
+            ('01-capture.jpg', 'Captured in the field. Even offline.', 'Facilitators capture each session on a mobile app. It works offline and syncs when there is signal, so a lack of connectivity never means a lost record.'),
+            ('02-approve.jpg', 'Checked once, trusted everywhere', 'Back in the office, M&E officers check and approve what comes in, so every number can be traced to a real activity.'),
+            ('03-roles.jpg', 'The right view for every role', 'Programme managers see progress against targets by country and programme; each person sees what their role needs.'),
+            ('04-donor.jpg', 'Donor reports, ready when you are', 'When reporting time comes the figures are already there, assembled from data that has already been checked.'),
+        ],
+        'decisions': [
+            ('Sessions happen far from any office, often without signal.',
+             'An offline-first mobile app that syncs when there is signal.',
+             'If capture depends on connectivity, the records that matter most — the remote ones — are the ones lost.',
+             'Delivered, as shown in the case study.'),
+            ('Funders need to trust that reported numbers correspond to real activities.',
+             'Nothing counts until an M&E officer has checked and approved it.',
+             'An approval step between capture and counting is what makes every figure traceable to a session.',
+             'Delivered, as shown in the case study.'),
+            ('Country teams and leadership need different views of the same data.',
+             'Role-based views: each role sees what it needs, and progress against targets is live by country and programme.',
+             'One system can serve the field, the office and leadership if each sees its own slice rather than everything.',
+             'Delivered, as shown in the case study.'),
+        ],
+        'validation': {
+            'record': [
+                'Delivered in 2018 (facts.md).',
+            ],
+            'not_recorded': [
+                'Whether the system remains in use, usage figures, usability testing and user-acceptance records are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+    'tores-foundation': {
+        'role_short': 'Designer and builder, commissioned by the University of Stellenbosch Business School',
+        'status_short': 'Delivered',
+        'basis': [
+            'The record holds no research report for this project. The design follows the programme as it runs: every week, debating for more than 430 learners in 24 schools, each debate with a coach, a competition to run, and expenses and stipends to pay — all of it previously on paper.',
+            'The University of Stellenbosch Business School asked for one platform that would run the competition and the money side of the programme together.',
+        ],
+        'flow': [
+            ('Competition set up', 'Schools, rounds, motions and judges, in minutes'),
+            ('Results captured', 'As each debate ends'),
+            ('Standings live', 'Updated straight away, through to the year-end final'),
+            ('Claims from the phone', 'Pick the session, snap the receipt, submit'),
+            ('Checked', 'Every claim matched to a session that actually ran'),
+            ('Paid', 'One approved payment batch to finance'),
+        ],
+        'flow_label': 'The Tore’s Foundation platform, from fixtures to payment',
+        'walk': [
+            ('01-competitions.jpg', 'Competitions set up in minutes', 'Schools, rounds, motions and judges are set up in minutes, for the University of Stellenbosch Business School’s programme.'),
+            ('02-standings.jpg', 'Results in, standings live', 'Results are captured as each debate ends and the standings update straight away, right through to the year-end final.'),
+            ('03-claims.jpg', 'Coaches claim from their phone', 'Coaches claim expenses and stipends in the same web app: pick the session, snap the receipt, submit.'),
+            ('04-approval.jpg', 'Checked, approved, paid', 'The programme team checks every claim against the sessions actually run, approves it, and sends one payment batch to finance.'),
+        ],
+        'decisions': [
+            ('Fixtures, scores and claims were all on paper, and slow for everyone.',
+             'One web platform for the debates and the admin behind them, rather than separate tools.',
+             'The competition and the money are linked — claims are for sessions — so one system can verify what two cannot.',
+             'Delivered, as shown in the case study.'),
+            ('Standings lagged because results were compiled after the fact.',
+             'Capture results as each debate ends and update the standings straight away.',
+             'Results captured at the event are trusted; results compiled later are questioned.',
+             'Delivered, as shown in the case study.'),
+            ('Coaches’ claims had to be gathered, matched to sessions and paid one by one.',
+             'Claims from the phone with the receipt attached, checked against the sessions that ran, paid in one batch.',
+             'Matching a claim to a recorded session makes payment both faster and verifiable.',
+             'Delivered, as shown in the case study.'),
+        ],
+        'validation': {
+            'record': [
+                'Delivered for the University of Stellenbosch Business School (facts.md gives 2014 for the engagement; the case study records the programme at 24 schools and more than 430 learners).',
+            ],
+            'not_recorded': [
+                'Whether the platform remains in use, participation changes, payment-time improvements and testing records are not in the repository, so none are claimed.',
+            ],
+        },
+    },
+}
+
+for _k, _v in DETAIL.items():
+    CASES[_k].update(_v)
+
+
+# ── ManaGEM, the product: the same evidence kit, from its own video ───────
+MANAGEM = {
+    'flow': [
+        ('Enquiry', 'Captured once; the customer gets SMS and email updates'),
+        ('Pipeline', 'Followed through every contact to the sale'),
+        ('Quote', 'Sent in a few clicks; accepted online'),
+        ('Deposit invoice', 'Follows automatically on acceptance'),
+        ('Project', 'Tracked, with the profit on each job'),
+        ('Stock and staff', 'Stock alerts before you run out; products, prices and staff records'),
+    ],
+    'flow_label': 'ManaGEM, from enquiry to invoice',
+    'walk': [
+        ('01-pipeline.jpg', 'From enquiry to sale', 'Capture every enquiry and follow it to the sale, with SMS and email updates for the customer.'),
+        ('02-quotes.jpg', 'Quotes that close', 'Quotes go out in a few clicks, customers accept online, and deposit invoices follow automatically.'),
+        ('03-profit.jpg', 'Know what every job earns', 'Track every project and see the profit on each job.'),
+        ('04-stock.jpg', 'Stock under control', 'Keep track of stock, and get an alert before you run out.'),
+        ('05-modules.jpg', 'One place for the whole business', 'Enquiries, pipeline, quotes, invoices, products, projects, stock and staff records sit in the same system.'),
+        ('06-companies.jpg', 'About a dozen companies, every day', 'Built for one business and designed for many: about a dozen companies run their day-to-day operations on ManaGEM.'),
+    ],
+}

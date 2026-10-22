@@ -29,15 +29,17 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | Generated | Source | Rebuild with |
 |---|---|---|
 | `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html` | `node tools/build-studio.mjs` |
-| `index.html` sections 03, 04, 06, 07 (between `<!--#services:start-->`, `<!--#stories:start-->`, `<!--#testimonials:start-->`, `<!--#insights:start-->` sentinels) | `scripts/services.py`, `scripts/stories.py` | `python3 scripts/build-stories.py && python3 scripts/build-home.py` |
+| the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections, in the brief's order) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9, `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
-| `work/`, `work/<story>/` ×6 | `scripts/stories.py` | `python3 scripts/build-pages.py` |
+| `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
 | the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
-| `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images and the MP4 videos | `python3 tools/build-site-standalone.py` — one 17 MB file; pages run in frames, videos reach them as blob URLs |
+| `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
+| `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
-Full rebuild, in order: `build-stories` → `build-home` → `build-services` →
-`build-pages` → `build-other` → `apply-chrome`.
+Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
+`build-other` → `apply-chrome`. (`build-stories.py` is the shared markup library
+the others import; running it alone only prints a summary.)
 
 Rebuild the standalone bundle after **any** change to a root page or to
 `assets/css/site.css` or `assets/js/site.js`, or it silently goes stale.
@@ -79,6 +81,18 @@ layer that first introduced the component.
   gradient breathes (still under reduced motion); type on it is white. Pages that
   open on it get `nav--photo` (set by `build-pages.shell()`); the light-hero pages
   (`contact.html`, `privacy.html`) keep `nav--solid`. No hero carries image mockups.
+  The moment the page scrolls (`.is-stuck`), or a drop-down opens, the bar
+  itself turns `--navy-deep` with the wordmark and links in white, on every
+  page (the owner's third harmony pass); under 900px the paper drawer slides
+  under a cleared bar. The Selected work cards are white on the pure white
+  band. **Every page ends paper → navy footer**: the closing bands — `.go`
+  (home), `.convert` (case studies), `.endnote` (services, Our Story) — are
+  white with ink type and navy buttons, and `.foot` is `--navy-deep` with
+  white type. The footer columns are Solutions (all nine) / Products
+  (ManaGEM, Design Studio, Technical Academy, All products) / Company (Our
+  Story, Case Studies, Insights, Industries, Contact), with the privacy
+  policy on the legal line (`FOOTER_COLS` + `FOOTER_LEGAL` in
+  `apply-chrome.py`, applied to every page).
 - **Case study pages** are built from `scripts/cases.py` (hero with status and
   Play story, overview, business challenge, strategy and approach, outcomes split
   into delivered / verified / intended, related work, tailored enquiry). Only the
@@ -104,17 +118,53 @@ layer that first introduced the component.
   (`--tr`, `--br`) corner accents, and `.endnote` as the photographic band. The
   helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
 - **Three more references** (`qa/design-refs/stories-panel.png`, `timeline.png`,
-  `testimonials.png`) set: the stories panel (`stories_section()` — on the home
-  and Case Studies, over the hero photograph, never black), the horizontal
+  `testimonials.png`) set: the stories panel (`stories_section()` — on the home's
+  partnership section, over the hero photograph, never black) and the horizontal
   timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
-  steps, About's milestones) and "Client stories" (`testimonials_html()` in
-  `build-home.py`). Any tabbed stage is a `[data-stage]` driven by
-  `assets/js/home.js`; `data-auto="0"` turns off the auto-advance. Section
-  headers (`.sec__head`) carry the ruled, plus-marked bottom edge the
-  references share. The homepage no longer carries News & Insights or the
-  "What we do" service rows (Solutions owns the list); the `insights/` pages
-  remain, linked from the footer. The three founding clients on the stories
+  steps, About's milestones). The old "Client stories" stage is gone with its
+  invented entries; the homepage carries **In their words** instead. Any tabbed stage is a
+  `[data-stage]` driven by `assets/js/home.js`; `data-auto="0"` turns off the
+  auto-advance. Section headers (`.sec__head`) carry the ruled, plus-marked
+  bottom edge the references share. The three founding clients on the stories
   panel carry a "Founding client · since <year>" tag (`stories__tab--founding`).
+
+- **The evidence kit** (case-study-led redesign, `docs/REDESIGN-AUDIT.md` and
+  `docs/REDESIGN-REPORT.md`): `flow(steps, label)` draws a workflow as a chain of
+  steps; `walk(items, base, slug)` lays out video stills with captions that say
+  "Illustrated in the case study video"; `decisions(items)` renders
+  challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
+  one case card (industry, name, headline, GEMIS's role, status, capability
+  chips, Read / Play) used by the index, the homepage, related rows, service
+  pages and articles. The homepage order (the owner's revisions of the brief's):
+  the hero as it was (tagline, partner line) → the stats section as it was
+  (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
+  (`.selw`, pure white: the shared section header, then four equal-height
+  case study cards on a horizontal travel pinned to the viewport, two to a
+  screen on desktop and one at 901–1100px (`[data-hscroll]` in `home.js`,
+  which follows the scroll with inertia — each frame closes 11 % of the
+  distance — and sets `--hs-d` per card and `--hs-v` on the travel so the
+  pictures drift and lean with the motion; keyboard focus snaps),
+  a two-column grid on tablets and one column under 620px; each card plays
+  its video; then the transition statement `[data-scaleup]` that scales up
+  as it is scrolled to the centre of the viewport, holds, and releases;
+  both static without JS and
+  under reduced motion; the band's bottom padding lives on the statement's
+  pin (`.selw__out-pin`), so when the pin releases the statement is exactly
+  `--sec-y` from the next section) → **In their words** on the Client stories stage
+  (names on the left, one quotation at a time, the three lines from
+  `scripts/endorsements.md`) → **The operating logic** (`operating_logic()`: the four principles,
+  verbatim in `OPERATING`, on the brand navy — the hero photograph under the
+  standard `band-ink` navy scrim, white and silver type, `#8fc3f3` the one
+  accent; the title on `--fs-display` like every other section heading;
+  an asymmetric two-by-two with one line drawn through the four index
+  nodes on scroll by `[data-oplogic]` in `home.js`, a vertical spine under
+  900px, abstract SVG motifs that resolve when a principle is active, "Seen
+  in" links to the chapter pages and the three articles; type on the site's
+  steps — display, lead, copy, eyebrow; complete and still without JS and
+  under reduced motion) → **Book a Discovery
+  Session** with the
+  form, as it was. No capabilities, stories panel, how-we-work or company
+  section on the home; those live on Solutions, Case Studies and Our Story.
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
@@ -175,11 +225,16 @@ two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.m
 does not confirm — the phone number, team titles, the partner designation — is a
 hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 
-**One standing exception, at the owner's instruction:** the homepage testimonials
-(`TESTIMONIALS` in `scripts/services.py`) are invented placeholders — South
-African names, no company named — until approved quotes arrive. OPEN_ITEMS.md
-tracks them as `testimonials-placeholder`. Do not add more invented content on
-the strength of that exception.
+**Endorsements are quotations, never written here.** `scripts/stories.py` reads
+them character for character from `_project/assets-incoming/content/endorsements.md`
+(or `scripts/endorsements.md`) — direct quotes from gemis.co.za — into
+`ENDORSERS[...]['line']`. The three lines are in `scripts/endorsements.md` now
+(supplied by the owner, 2026-10-22). A person with no line in that file has no
+card on the story and ManaGEM pages, and their homepage slide shows the italic
+"Quotation to follow." (`.cs__pending`, a hideable TBC). Names, titles and companies come from `scripts/facts.md`
+(Keshan Patel, CEO, HomeAssist (Pty) Ltd · Ryan Smith, SBS Waterproofing, no
+title · Philippine Francke, Managing Director, HashTopic). Never use the word
+"testimonial" in visible copy or in class names.
 
 ## Site map (navigation)
 
@@ -187,8 +242,7 @@ Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
 filtered card grid with Read/Play, the approach timeline and a conversion band;
 the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
-Studio at `studio/`, Technical Academy at gemis.tech) · Our Story (`our-story/`; the
-nav label and the page name match — keep them that way) ·
-Contact. News & Insights lives at `insights/` (three articles), linked from the
-homepage and footer. `solutions/bespoke-software/`, `solutions/managem/` and
+Studio at `studio/`, Technical Academy at gemis.tech) · Insights (`insights/`, three
+articles, each linking the case study behind it) · Our Story (`our-story/`; the nav
+label and the page name match — keep them that way) · Contact. `solutions/bespoke-software/`, `solutions/managem/` and
 `insights.html` are redirect stubs now.

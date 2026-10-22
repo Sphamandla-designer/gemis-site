@@ -113,6 +113,7 @@ NAV = """<ul class="nav__links" id="navLinks">
           </div>
         </div>
         </li>
+        <li><a href="{B}insights/">Insights</a></li>
         <li><a href="{B}our-story/">Our Story</a></li>
         <li><a href="{B}contact.html">Contact</a></li>
         </ul>"""
@@ -120,36 +121,41 @@ NAV = """<ul class="nav__links" id="navLinks">
 FOOTER_COLS = """<div class="foot__col">
           <h2>Solutions</h2>
           <ul>
-""" + '\n'.join(f'            <li><a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a></li>' for s in SV.SERVICES[:5]) + """
-            <li><a href="{B}solutions/">All solutions</a></li>
+""" + '\n'.join(f'            <li><a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a></li>' for s in SV.SERVICES) + """
           </ul>
         </div>
 
         <div class="foot__col">
           <h2>Products</h2>
           <ul>
-            <li><a href="https://sphamandla-designer.github.io/ManaGEM/" target="_blank" rel="noopener">ManaGEM</a></li>
+            <li><a href="{B}products/managem/">ManaGEM</a></li>
             <li><a href="{B}studio/">Design Studio</a></li>
             <li><a href="https://gemis.tech/" target="_blank" rel="noopener">Technical Academy</a></li>
-            <li><a href="{B}work/">Case Studies</a></li>
-            <li><a href="{B}insights/">News &amp; Insights</a></li>
+            <li><a href="{B}products/">All products</a></li>
           </ul>
         </div>
 
         <div class="foot__col">
-          <h2>Support &amp; Resources</h2>
+          <h2>Company</h2>
           <ul>
             <li><a href="{B}our-story/">Our Story</a></li>
-            <li><a href="{B}contact.html">Contact Us</a></li>
-            <li><a href="{B}solutions/support/">Ongoing Support</a></li>
+            <li><a href="{B}work/">Case Studies</a></li>
+            <li><a href="{B}insights/">Insights</a></li>
             <li><a href="{B}industries.html">Industries</a></li>
-            <li><a href="{B}privacy.html">Privacy Policy</a></li>
+            <li><a href="{B}contact.html">Contact</a></li>
           </ul>
+        </div>"""
+
+# the legal line at the foot of every page: copyright, then the privacy policy
+FOOTER_LEGAL = """<div class="foot__legal">
+          <p>Copyright &copy; 2026 GEM Information Systems (PTY) LTD. All Rights Reserved.</p>
+          <a href="{B}privacy.html">Privacy Policy</a>
         </div>"""
 
 NAV_RE = re.compile(r'<ul class="nav__links" id="navLinks">.*?\n        </ul>', re.S)
 FOOT_RE = re.compile(r'<div class="foot__col">\s*<h2>(?:Products|Solutions)</h2>.*?'
-                     r'<h2>Support &amp; Resources</h2>.*?</ul>\s*</div>', re.S)
+                     r'<h2>(?:Support &amp; Resources|Company)</h2>.*?</ul>\s*</div>', re.S)
+LEGAL_RE = re.compile(r'(<div class="foot__bar">\s*)(?:<div class="foot__legal">.*?</div>|<p>Copyright[^<]*</p>)', re.S)
 
 
 def pages():
@@ -186,6 +192,8 @@ def main():
             out = NAV_RE.sub(lambda m: render(NAV, base), out, count=1)
         if FOOT_RE.search(out):
             out = FOOT_RE.sub(lambda m: render(FOOTER_COLS, base), out, count=1)
+        if LEGAL_RE.search(out):
+            out = LEGAL_RE.sub(lambda m: m.group(1) + render(FOOTER_LEGAL, base), out, count=1)
         rel = os.path.relpath(path, ROOT)
         if out != html:
             (stale if check else changed).append(rel)

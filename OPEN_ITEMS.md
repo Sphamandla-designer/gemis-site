@@ -17,19 +17,23 @@ applied and is no longer listed here.
 
 ---
 
-## Placeholders the owner asked for — 2
+## Placeholders the owner asked for — 1
 
 These are on the live build **by instruction**, not by the publish-safe rule.
 Replace them before the site is presented as fact.
 
-### `testimonials-placeholder`
+### `endorsement-keshan-line`, `endorsement-ryan-line`, `endorsement-philippine-line` — closed
 
-The homepage "In their words" section carries **six invented testimonials** —
-South African names, roles and wording written to stand in until approved
-quotes arrive. None of the people exist and no company is named. The owner
-asked for them explicitly ("please for now use south africa names, invent the
-wording"). They live in `scripts/services.py` → `TESTIMONIALS`; replace each
-entry with an approved line and rebuild with `python3 scripts/build-home.py`.
+The owner supplied the three quotations on 2026-10-22; they are in
+`scripts/endorsements.md` and read into the site character for character. The
+ids are out of the TBC table; the homepage stage, the HomeAssist and SBS story
+chapters and the ManaGEM origin block all carry the real lines.
+
+### `testimonials-placeholder` — closed
+
+The six invented entries are gone from the repository. The homepage now
+carries **In their words**: three real endorsements (Keshan Patel, Ryan Smith,
+Philippine Francke) read character for character from `endorsements.md`.
 
 ### `microsoft-partner-badge`
 
@@ -69,9 +73,8 @@ None of these stop a merge. Each has a fallback that reads as finished.
 
 | id | What is missing | What the live build shows instead | Who |
 |---|---|---|---|
-| `endorsement-{ryan,kehan,nazier}-line` | The approved endorsement line, and whether it is a quote or a paraphrase | **No card at all.** The founding timeline card shows its video full-width. | Leon |
-| `endorsement-{ryan,kehan,nazier}-portrait` | Portrait or 20–30s clip | — (the whole card is absent) | Leon |
-| `endorsement-{ryan,kehan,nazier}-title` | Job title. Names and companies are confirmed. | — (the whole card is absent) | Leon |
+| `endorsement-nazier-line` | No endorsement from Nazier Mathinus (WasteMart) exists yet | No card on the WasteMart page | Leon |
+| portraits | Portraits for Keshan Patel, Ryan Smith and Philippine Francke | Initials in a circle | Leon |
 | `logo-wastemart`, `logo-homeassist`, `logo-sbs-waterproofing`, `logo-trans-hex`, `logo-sonke`, `logo-tores-foundation` | Logo files, and permission to use them | The client's name set as a **wordmark** in the site's own type | Leon |
 | `then-now-screenshots` | Early and current screenshots for the three founding clients | **The Then/Now block is omitted entirely** — no mock-up | GEMIS dev team |
 | `team-photos` | Team photos for Our Story | The team section renders without portraits | GEMIS |
@@ -96,8 +99,9 @@ From `facts.md`, now live on the branch:
   2014 · **ManaGEM** described as developed from the SBS Waterproofing system of
   2015 — the 2013 launch and 2026 redesign dates are no longer published, which
   closes `chronology-2013`. *(See `timeline-order`.)*
-- Executive names and companies: Nazier Mathinus (WasteMart), Kehan Patel
-  (HomeAssist), Ryan Smith (SBS Waterproofing).
+- Executive names, titles and companies: Keshan Patel (CEO, HomeAssist (Pty)
+  Ltd), Ryan Smith (SBS Waterproofing, no title), Philippine Francke (Managing
+  Director, HashTopic); Nazier Mathinus (WasteMart) has no endorsement yet.
 - Metrics, all client-confirmed and now published: WasteMart "six hours a week
   back, per depot"; ManaGEM "month-end close: nine days to two"; "50+ systems
   delivered"; "5+ sectors".
