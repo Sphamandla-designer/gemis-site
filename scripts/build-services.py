@@ -98,9 +98,19 @@ def services_rows(base='', limit=6):
 # ── Solutions (the services page) ────────────────────────────────────────
 def solutions_index():
     base = '../'
-    src = O.original('services.html')
-    blocks = O.sections(src, ['process'])
-    process = O.rebase(blocks.get('process', ''), base).replace('band band-warm', 'band band-wash')
+    process = f'''
+    <section class="sec band band-wash" id="process" aria-labelledby="processHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Our Development Process</p>
+            <h2 class="display" id="processHeading" data-reveal style="--d:80ms">Six stages, no surprises</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">You see progress every sprint and shape the product as it grows — no black-box development, and no discovering at the end that the system solves the wrong problem.</p>
+        </div>
+{B.tline(SV.STAGES, 'Stage')}
+      </div>
+    </section>'''
     body = f'''
     <section class="chero" id="hero">
       <div class="shell">

@@ -91,6 +91,16 @@ layer that first introduced the component.
   image (articles, case studies, products), `.rlist` ruled link lists, `.plusgrid`
   (`--tr`, `--br`) corner accents, and `.endnote` as the photographic band. The
   helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
+- **Three more references** (`qa/design-refs/stories-panel.png`, `timeline.png`,
+  `testimonials.png`) set: the stories panel (`stories_section()` — on the home
+  and Case Studies, over the hero photograph, never black), the horizontal
+  timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
+  steps, About's milestones) and "Client stories" (`testimonials_html()` in
+  `build-home.py`). Any tabbed stage is a `[data-stage]` driven by
+  `assets/js/home.js`; `data-auto="0"` turns off the auto-advance. Section
+  headers (`.sec__head`) carry the ruled, plus-marked bottom edge the
+  references share. The homepage no longer carries News & Insights; the
+  `insights/` pages remain, linked from the footer.
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
