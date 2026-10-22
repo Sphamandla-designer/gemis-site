@@ -179,19 +179,46 @@
       total = span + Math.round(window.innerHeight * .25);   // one px of travel per px of scroll, then a short rest
       hs.style.height = (window.innerHeight + total) + 'px';
     }
+    /* The travel follows the scroll with inertia: each frame the track closes a
+       fraction of the distance to where the scroll says it should be, so a
+       flick glides to rest instead of stopping dead, and a slow scroll feels
+       weighted. The loop only runs while there is distance left to close. */
+    var hsTarget = 0, hsNow = 0, hsTick = false, hsSnap = true;
+    var cards = track.querySelectorAll('.selw__card');
+    function hsPaint() {
+      track.style.transform = 'translate3d(' + (-hsNow) + 'px,0,0)';
+      // the cards lean into the direction of travel while moving, and settle upright
+      var v = Math.max(-1, Math.min(1, (hsTarget - hsNow) / 400));
+      hs.style.setProperty('--hs-v', v.toFixed(3));
+      var vw = window.innerWidth;
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i], cx = c.offsetLeft - hsNow + c.offsetWidth / 2;
+        var d = Math.max(-1, Math.min(1, (cx - vw / 2) / vw));     // -1 left edge … 1 right edge
+        c.style.setProperty('--hs-d', d.toFixed(3));
+      }
+    }
+    function hsFrame() {
+      var diff = hsTarget - hsNow;
+      if (Math.abs(diff) < 0.3 || hsSnap) { hsNow = hsTarget; hsSnap = false; hsPaint(); hsTick = false; return; }
+      hsNow += diff * 0.11;
+      hsPaint();
+      requestAnimationFrame(hsFrame);
+    }
     function hsRun() {
       var top = hs.getBoundingClientRect().top;
       var p = total ? Math.min(1, Math.max(0, -top / span)) : 0;
-      track.style.transform = 'translate3d(' + (-p * span) + 'px,0,0)';
+      hsTarget = p * span;
+      if (!hsTick) { hsTick = true; requestAnimationFrame(hsFrame); }
     }
     hsSize(); hsRun();
     window.addEventListener('scroll', hsRun, { passive: true });
-    window.addEventListener('resize', function () { hsSize(); hsRun(); });
-    window.addEventListener('load', function () { hsSize(); hsRun(); });
+    window.addEventListener('resize', function () { hsSize(); hsSnap = true; hsRun(); });
+    window.addEventListener('load', function () { hsSize(); hsSnap = true; hsRun(); });
     track.addEventListener('focusin', function (e) {
       var item = e.target.closest('.selw__card'); if (!item || !span) return;
       var x = Math.min(span, Math.max(0, item.offsetLeft - 48));
       var y = hs.getBoundingClientRect().top + window.scrollY + (x / span) * total;
+      hsSnap = true;                                              // keyboard focus lands at once
       window.scrollTo({ top: y, behavior: 'auto' });
     });
   }
@@ -207,17 +234,28 @@
     var ease = function (t) { return 1 - Math.pow(1 - t, 3); };   // ease-out cubic
     var suPin = su.querySelector('.selw__out-pin');
     function suSize() { su.style.setProperty('--pinh', suPin.offsetHeight + 'px'); }
+    var suTarget = 0, suNow = 0, suTick = false, suSnap = true;
+    function suPaint() {
+      var g = ease(Math.min(1, suNow / .6));                     // growth phase, then the hold
+      su.style.setProperty('--s', (0.42 + 0.58 * g).toFixed(4));
+      su.style.setProperty('--o', (0.35 + 0.65 * g).toFixed(4));
+      su.style.setProperty('--l', (suNow > .5 ? Math.min(1, (suNow - .5) / .15) : 0).toFixed(3));
+    }
+    function suFrame() {
+      var diff = suTarget - suNow;
+      if (Math.abs(diff) < 0.001 || suSnap) { suNow = suTarget; suSnap = false; suPaint(); suTick = false; return; }
+      suNow += diff * 0.14;
+      suPaint();
+      requestAnimationFrame(suFrame);
+    }
     function suRun() {
       var r = su.getBoundingClientRect();
       // the pin holds the statement at the centre; the travel is the wrapper
       // beyond half a viewport, so the hold ends as the pin releases
       var total = su.offsetHeight - window.innerHeight * 0.5;
       if (total <= 0) return;
-      var p = Math.min(1, Math.max(0, -r.top / total));
-      var g = ease(Math.min(1, p / .6));                         // growth phase, then the hold
-      su.style.setProperty('--s', (0.42 + 0.58 * g).toFixed(4));
-      su.style.setProperty('--o', (0.35 + 0.65 * g).toFixed(4));
-      su.style.setProperty('--l', (p > .5 ? Math.min(1, (p - .5) / .15) : 0).toFixed(3));
+      suTarget = Math.min(1, Math.max(0, -r.top / total));
+      if (!suTick) { suTick = true; requestAnimationFrame(suFrame); }
     }
     su.classList.add('is-scaling');
     suSize(); suRun();

@@ -81,9 +81,18 @@ layer that first introduced the component.
   gradient breathes (still under reduced motion); type on it is white. Pages that
   open on it get `nav--photo` (set by `build-pages.shell()`); the light-hero pages
   (`contact.html`, `privacy.html`) keep `nav--solid`. No hero carries image mockups.
-  Once the bar is stuck, solid or open, the menu reads in `--navy` on every page
-  (the owner's harmony pass); the Selected work cards are white on the pure
-  white band (the owner reversed the navy cards the next day).
+  The moment the page scrolls (`.is-stuck`), or a drop-down opens, the bar
+  itself turns `--navy-deep` with the wordmark and links in white, on every
+  page (the owner's third harmony pass); under 900px the paper drawer slides
+  under a cleared bar. The Selected work cards are white on the pure white
+  band. **Every page ends paper → navy footer**: the closing bands — `.go`
+  (home), `.convert` (case studies), `.endnote` (services, Our Story) — are
+  white with ink type and navy buttons, and `.foot` is `--navy-deep` with
+  white type. The footer columns are Solutions (all nine) / Products
+  (ManaGEM, Design Studio, Technical Academy, All products) / Company (Our
+  Story, Case Studies, Insights, Industries, Contact), with the privacy
+  policy on the legal line (`FOOTER_COLS` + `FOOTER_LEGAL` in
+  `apply-chrome.py`, applied to every page).
 - **Case study pages** are built from `scripts/cases.py` (hero with status and
   Play story, overview, business challenge, strategy and approach, outcomes split
   into delivered / verified / intended, related work, tailored enquiry). Only the
@@ -131,7 +140,10 @@ layer that first introduced the component.
   (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
   (`.selw`, pure white: the shared section header, then four equal-height
   case study cards on a horizontal travel pinned to the viewport, two to a
-  screen on desktop and one at 901–1100px (`[data-hscroll]` in `home.js`),
+  screen on desktop and one at 901–1100px (`[data-hscroll]` in `home.js`,
+  which follows the scroll with inertia — each frame closes 11 % of the
+  distance — and sets `--hs-d` per card and `--hs-v` on the travel so the
+  pictures drift and lean with the motion; keyboard focus snaps),
   a two-column grid on tablets and one column under 620px; each card plays
   its video; then the transition statement `[data-scaleup]` that scales up
   as it is scrolled to the centre of the viewport, holds, and releases;

@@ -267,6 +267,40 @@ no longer appears anywhere on the live build. Checks after the change: links
 2,033 / 0 broken; axe 0 serious or critical; layout sweep clean; functional
 sweep clean; chrome `--check` clean; check-tbc with no blocking change.
 
+### Owner's third harmony pass
+
+- **The menu bar turns navy on scroll.** `.is-stuck` (and an open drop-down)
+  now sets the bar's ground to `--navy-deep` with the wordmark, links,
+  underline and burger in white, on every page; the contact and privacy
+  pages keep their paper bar at the top and turn navy once scrolled. The
+  drop-down panel stays paper under the navy bar. Under 900px the paper
+  drawer slides under a cleared bar, so the wordmark and burger read navy on
+  it as before.
+- **The Selected work travel has inertia.** The track no longer sits at the
+  exact scroll position: each frame it closes 11 % of the distance to where
+  the scroll says it should be, so a flick glides to rest and a slow scroll
+  feels weighted; the loop runs only while there is distance left. Each
+  card's picture drifts against the direction of travel as it crosses the
+  screen (`--hs-d`) and leans with the speed (`--hs-v`). Keyboard focus and
+  resize snap. The transition statement eases the same way. Reduced motion
+  still gets the static grid.
+- **White closing bands, navy footer.** Get started on the home, the
+  conversion band on the case study pages and the endnote on the service and
+  Our Story pages are white with ink type and navy buttons, so every page
+  ends paper → the navy footer. The footer is `--navy-deep` with white type.
+- **The footer columns make sense now.** Solutions lists all nine services;
+  Products is ManaGEM (the site's own page, not the external link), Design
+  Studio, Technical Academy and All products; Company is Our Story, Case
+  Studies, Insights, Industries and Contact; the privacy policy sits on the
+  legal line beside the copyright. The "Support & Resources" column, which
+  mixed company pages with one service and the policy, is gone.
+  `apply-chrome.py` carries the columns and the legal line and applies them
+  to every page at any depth.
+
+Checks: links 2,149 / 0 broken; axe 0 serious or critical; 14 pages × 4
+widths clean; functional sweep (overlay, stage, nav, tab order) clean; the
+statement-to-next-section spacing unchanged; chrome `--check` clean.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

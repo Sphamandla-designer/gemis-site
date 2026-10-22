@@ -560,7 +560,7 @@ def enquiry():
     <!-- ═══════════════════ 07 · GET STARTED ═══════════════════
          The form hands off to the visitor's email client (this site is static);
          nothing is stored. The three steps mirror contact.html. -->
-    <section class="go band-ink band-photo band-photo--wide" id="discovery" aria-labelledby="goHeading">
+    <section class="go" id="discovery" aria-labelledby="goHeading">
       <div class="shell go__grid">
         <div class="go__intro">
           <p class="eyebrow" data-reveal>Get started</p>

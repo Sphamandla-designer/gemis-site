@@ -4781,3 +4781,103 @@ html.has-modal { overflow: hidden; }
 main > section.selw { padding-bottom: 0; }
 .selw__out-pin { padding-bottom: var(--sec-y); box-sizing: content-box; }
 .selw__out.is-scaling .selw__out-pin { padding-top: var(--sec-y); }
+
+/* ── the owner's third harmony pass ─────────────────────────────────────
+   1. The menu bar turns the brand navy the moment the page scrolls (and when
+      a drop-down is open), with the wordmark and links in white.
+   2. The closing bands — Get started on the home, the conversion band on
+      the case study pages, the endnote on the service and story pages — are
+      white, so every page ends paper → the navy footer.
+   3. The footer is navy with white type, and its columns are Solutions /
+      Products / Company; the privacy policy sits on the legal line. */
+
+/* 1. the navy bar */
+.nav.is-stuck, .nav--photo.is-stuck, .nav--solid.is-stuck,
+.nav.is-mega, .nav--photo.is-mega, .nav--solid.is-mega {
+  background: var(--navy-deep);
+  backdrop-filter: none;
+  box-shadow: 0 1px 0 rgba(255,255,255,.08);
+}
+.nav.is-stuck .nav__logo, .nav.is-mega .nav__logo,
+.nav--photo.is-stuck .nav__logo, .nav--photo.is-mega .nav__logo,
+.nav--solid.is-stuck .nav__logo, .nav--solid.is-mega .nav__logo { color: #fff; }
+.nav.is-stuck .nav__links > li > a, .nav.is-stuck .nav__trigger,
+.nav.is-mega .nav__links > li > a, .nav.is-mega .nav__trigger,
+.nav--photo.is-stuck .nav__links > li > a, .nav--photo.is-stuck .nav__trigger,
+.nav--photo.is-mega .nav__links > li > a, .nav--photo.is-mega .nav__trigger,
+.nav--solid.is-stuck .nav__links > li > a, .nav--solid.is-stuck .nav__trigger,
+.nav--solid.is-mega .nav__links > li > a, .nav--solid.is-mega .nav__trigger { color: #fff; }
+.nav.is-stuck .nav__links > li > a::after, .nav.is-mega .nav__links > li > a::after,
+.nav.is-stuck .nav__trigger::after, .nav.is-mega .nav__trigger::after { background: #fff; }
+.nav.is-stuck .nav__burger span, .nav.is-mega .nav__burger span,
+.nav--photo.is-stuck .nav__burger span, .nav--solid.is-stuck .nav__burger span { background: #fff; }
+.nav.is-stuck .nav__logo .logo, .nav.is-mega .nav__logo .logo { filter: none; }
+/* the open drop-down hangs off the navy bar in paper, as before */
+.nav.is-mega .mega { border-top-color: transparent; }
+/* small screens: the drawer is paper and slides under the bar, so an open
+   bar goes clear and its wordmark and burger read navy on the drawer */
+@media (max-width: 900px) {
+  .nav.is-open, .nav.is-stuck.is-open, .nav--photo.is-stuck.is-open, .nav--solid.is-stuck.is-open { background: none; box-shadow: none; }
+  .nav.is-open .nav__logo, .nav.is-stuck.is-open .nav__logo, .nav--photo.is-stuck.is-open .nav__logo { color: var(--navy); }
+  .nav.is-open .nav__burger span, .nav.is-stuck.is-open .nav__burger span, .nav--photo.is-stuck.is-open .nav__burger span { background: var(--ink); }
+  .nav.is-stuck .nav__links > li > a, .nav.is-stuck .nav__trigger,
+  .nav--photo.is-stuck .nav__links > li > a, .nav--photo.is-stuck .nav__trigger,
+  .nav--solid.is-stuck .nav__links > li > a, .nav--solid.is-stuck .nav__trigger { color: var(--navy); }
+}
+
+/* 2. the closing bands on paper */
+.go, .convert, .endnote {
+  color: var(--ink);
+  background: #fff;
+  animation: none;
+}
+.go::before, .convert::before, .endnote::before, .endnote::after { content: none; }
+.go .eyebrow, .convert .eyebrow, .endnote .eyebrow { color: var(--navy); }
+.go .display, .convert .display, .endnote .display, .endnote h2 { color: var(--ink); }
+.go p, .convert p, .endnote p, .go .lede, .convert .lede, .endnote .lede { color: var(--ink-2); }
+.go a, .convert a, .endnote a, .convert .arrow-link, .endnote .arrow-link { color: var(--ink); }
+.go__steps { border-top-color: var(--rule); }
+.go__steps li { border-bottom-color: var(--rule-soft); }
+.go__steps strong { color: var(--ink); }
+.go__steps p { color: var(--ink-2); }
+.go__n { color: var(--navy); }
+.go__contact p { color: var(--ink); }
+.go__contact span { color: var(--ink-3); }
+.go .go__contact p > a:not([class]), .go .go__contact a { color: var(--navy); text-decoration-color: rgba(22,57,94,.35); }
+.go .go__contact a:hover { text-decoration-color: var(--navy); }
+.go .form { background: var(--paper); border: 1px solid var(--rule-soft); box-shadow: 0 30px 60px -40px rgba(8,34,62,.35); }
+.go .tbc::after { background: var(--navy); color: #fff; }
+.go .btn, .convert .btn, .endnote .btn { background: var(--navy-deep); color: #fff; }
+.go .btn:hover, .convert .btn:hover, .endnote .btn:hover { background: var(--navy); color: #fff; }
+.go .btn--ghost, .convert .btn--ghost, .endnote .btn--ghost { background: none; color: var(--ink); border-color: var(--rule); }
+.go .btn--ghost:hover, .convert .btn--ghost:hover, .endnote .btn--ghost:hover { background: var(--paper-2); border-color: var(--ink); }
+.endnote { margin-top: 0; }
+/* the band before the footer keeps its own bottom rhythm; the footer draws the edge */
+.go + .foot, .convert + .foot, .endnote + .foot { border-top: 0; }
+
+/* 3. the navy footer */
+.foot { background: var(--navy-deep); color: #fff; border-top: 0; }
+.foot__logo { color: #fff; }
+.foot__blurb, .foot__addr { color: rgba(255,255,255,.76); }
+.foot__addr a { color: #fff; }
+.foot__addr a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.foot__col h2 { color: #fff; }
+.foot__col a { color: rgba(255,255,255,.72); }
+.foot__col a:hover { color: #fff; }
+.foot__bar { border-top-color: rgba(255,255,255,.14); }
+.foot__bar p { color: rgba(255,255,255,.62); }
+.foot__legal { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
+.foot__legal p { margin: 0; font-size: var(--fs-small); color: rgba(255,255,255,.62); }
+.foot__legal a { font-size: var(--fs-small); color: rgba(255,255,255,.72); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.3); }
+.foot__legal a:hover { color: #fff; text-decoration-color: #fff; }
+.foot__social a { color: #fff; }
+.foot a:focus-visible { outline-color: #fff; }
+/* the travel's inertia reaches the pictures: each card's picture drifts
+   against the direction of travel as the card crosses the screen (--hs-d, set
+   by home.js from the card's position) and leans with the speed (--hs-v) */
+.selw__travel.is-pinned .selw__media img {
+  transform: translateX(calc(var(--hs-d, 0) * -4%)) skewX(calc(var(--hs-v, 0) * -1.6deg)) scale(1.1);
+  transition: none;
+  will-change: transform;
+}
+.selw__travel.is-pinned .selw__card:hover .selw__media img { transform: translateX(calc(var(--hs-d, 0) * -4%)) skewX(calc(var(--hs-v, 0) * -1.6deg)) scale(1.13); }
