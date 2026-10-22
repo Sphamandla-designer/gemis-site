@@ -29,15 +29,17 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | Generated | Source | Rebuild with |
 |---|---|---|
 | `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html` | `node tools/build-studio.mjs` |
-| `index.html` sections 03, 04, 06, 07 (between `<!--#services:start-->`, `<!--#stories:start-->`, `<!--#testimonials:start-->`, `<!--#insights:start-->` sentinels) | `scripts/services.py`, `scripts/stories.py` | `python3 scripts/build-stories.py && python3 scripts/build-home.py` |
+| the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections, in the brief's order) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9, `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
-| `work/`, `work/<story>/` ×6 | `scripts/stories.py` | `python3 scripts/build-pages.py` |
+| `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
 | the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
-| `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images and the MP4 videos | `python3 tools/build-site-standalone.py` — one 17 MB file; pages run in frames, videos reach them as blob URLs |
+| `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
+| `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
-Full rebuild, in order: `build-stories` → `build-home` → `build-services` →
-`build-pages` → `build-other` → `apply-chrome`.
+Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
+`build-other` → `apply-chrome`. (`build-stories.py` is the shared markup library
+the others import; running it alone only prints a summary.)
 
 Rebuild the standalone bundle after **any** change to a root page or to
 `assets/css/site.css` or `assets/js/site.js`, or it silently goes stale.
@@ -104,17 +106,29 @@ layer that first introduced the component.
   (`--tr`, `--br`) corner accents, and `.endnote` as the photographic band. The
   helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
 - **Three more references** (`qa/design-refs/stories-panel.png`, `timeline.png`,
-  `testimonials.png`) set: the stories panel (`stories_section()` — on the home
-  and Case Studies, over the hero photograph, never black), the horizontal
+  `testimonials.png`) set: the stories panel (`stories_section()` — on the home's
+  partnership section, over the hero photograph, never black) and the horizontal
   timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
-  steps, About's milestones) and "Client stories" (`testimonials_html()` in
-  `build-home.py`). Any tabbed stage is a `[data-stage]` driven by
-  `assets/js/home.js`; `data-auto="0"` turns off the auto-advance. Section
-  headers (`.sec__head`) carry the ruled, plus-marked bottom edge the
-  references share. The homepage no longer carries News & Insights or the
-  "What we do" service rows (Solutions owns the list); the `insights/` pages
-  remain, linked from the footer. The three founding clients on the stories
+  steps, About's milestones). The "Client stories" testimonial stage
+  (`testimonials_html()`) is no longer rendered anywhere: the invented
+  placeholders were removed by the case-study-led redesign. Any tabbed stage is a
+  `[data-stage]` driven by `assets/js/home.js`; `data-auto="0"` turns off the
+  auto-advance. Section headers (`.sec__head`) carry the ruled, plus-marked
+  bottom edge the references share. The three founding clients on the stories
   panel carry a "Founding client · since <year>" tag (`stories__tab--founding`).
+
+- **The evidence kit** (case-study-led redesign, `docs/REDESIGN-AUDIT.md` and
+  `docs/REDESIGN-REPORT.md`): `flow(steps, label)` draws a workflow as a chain of
+  steps; `walk(items, base, slug)` lays out video stills with captions that say
+  "Illustrated in the case study video"; `decisions(items)` renders
+  challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
+  one case card (industry, name, headline, GEMIS's role, status, capability
+  chips, Read / Play) used by the index, the homepage, related rows, service
+  pages and articles. The homepage runs in the brief's order: proposition hero →
+  featured case study → selected projects → the thinking → capabilities →
+  partnership proof (stats, confirmed results, logos, stories panel) → how we
+  work → the company → the enquiry band. The enquiry form lives on
+  `contact.html` only; every CTA says *Discuss a project* and points there.
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
@@ -175,11 +189,10 @@ two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.m
 does not confirm — the phone number, team titles, the partner designation — is a
 hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
 
-**One standing exception, at the owner's instruction:** the homepage testimonials
-(`TESTIMONIALS` in `scripts/services.py`) are invented placeholders — South
-African names, no company named — until approved quotes arrive. OPEN_ITEMS.md
-tracks them as `testimonials-placeholder`. Do not add more invented content on
-the strength of that exception.
+The homepage testimonials that used to stand in as placeholders are gone (the
+redesign brief's rule against invented testimonials supersedes the earlier
+instruction). `TESTIMONIALS` in `scripts/services.py` is kept only so an approved
+set can be dropped in; nothing renders it.
 
 ## Site map (navigation)
 
@@ -187,8 +200,7 @@ Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
 filtered card grid with Read/Play, the approach timeline and a conversion band;
 the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
-Studio at `studio/`, Technical Academy at gemis.tech) · Our Story (`our-story/`; the
-nav label and the page name match — keep them that way) ·
-Contact. News & Insights lives at `insights/` (three articles), linked from the
-homepage and footer. `solutions/bespoke-software/`, `solutions/managem/` and
+Studio at `studio/`, Technical Academy at gemis.tech) · Insights (`insights/`, three
+articles, each linking the case study behind it) · Our Story (`our-story/`; the nav
+label and the page name match — keep them that way) · Contact. `solutions/bespoke-software/`, `solutions/managem/` and
 `insights.html` are redirect stubs now.

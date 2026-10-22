@@ -205,7 +205,7 @@ def stories_html(base=''):
     slides.append(f'''            <li class="sty sty--today" id="sty-today" data-slide aria-hidden="true">
               <div class="sty__panel sty__panel--today"><p class="sty__big">Still building together.</p></div>
               <p class="sty__title">Today: the founding relationships continue.</p>
-              <p class="sty__copy">All three founding clients still run on the systems we built them, and those systems have kept growing with the businesses. <a class="sty__link" href="{base}#discovery">Book a Discovery Session &rarr;</a></p>
+              <p class="sty__copy">All three founding clients still run on the systems we built them, and those systems have kept growing with the businesses. <a class="sty__link" href="{base}contact.html">Discuss a project &rarr;</a></p>
             </li>''')
     nl = chr(10)
     return f'''        <div class="stories__frame" data-stage>
@@ -329,6 +329,122 @@ def feat(title, href, img, meta, body, chips=(), extra_attrs='', link=''):
           </article>'''
 
 
+# ── the redesign kit: diagram, walkthrough, decisions, case card ─────────
+def flow(steps, label=''):
+    """
+    A workflow drawn from verified information — the case study narration —
+    as a chain of labelled steps. steps: (title, note). It is a plain <ol>,
+    so it reads top to bottom without CSS and with no JavaScript.
+    """
+    items = '\n'.join(f'''          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">{i + 1:02d}</span>
+            <span class="flow__t">{esc(t)}</span>
+            <span class="flow__c">{esc(c)}</span>
+          </li>''' for i, (t, c) in enumerate(steps))
+    aria = f' aria-label="{esc(label)}"' if label else ''
+    return f'''        <ol class="flow"{aria} style="--n:{len(steps)}">
+{items}
+        </ol>'''
+
+
+def walk(items, base, slug):
+    """
+    The walkthrough: stills from the case study video, each with what the user
+    is doing and how the system supports it. items: (file, title, caption).
+    The caption says where the picture comes from, so an illustration is never
+    taken for a production screenshot.
+    """
+    rows = []
+    for i, (img, title, caption) in enumerate(items):
+        rows.append(f'''          <li class="walk__row" data-reveal style="--d:{(i % 2) * 60}ms">
+            <figure class="walk__fig">
+              <img src="{base}assets/img/cases/{slug}/{img}" alt="{esc(title)} — illustrated in the {esc(S.BY_SLUG[slug]['client'])} case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">{i + 1:02d}</span>
+              <h3 class="walk__t">{esc(title)}</h3>
+              <p class="walk__c">{esc(caption)}</p>
+            </div>
+          </li>''')
+    nl = chr(10)
+    return f'''        <ol class="walk">
+{nl.join(rows)}
+        </ol>'''
+
+
+def decisions(items):
+    """Key decisions: challenge, decision, rationale, evidence or effect."""
+    cards = []
+    for i, (ch, de, ra, ev) in enumerate(items):
+        cards.append(f'''          <li class="dec" data-reveal style="--d:{i * 60}ms">
+            <dl class="dec__l">
+              <div><dt>Challenge</dt><dd>{esc(ch)}</dd></div>
+              <div><dt>Decision</dt><dd>{esc(de)}</dd></div>
+              <div><dt>Rationale</dt><dd>{esc(ra)}</dd></div>
+              <div><dt>Evidence or effect</dt><dd>{esc(ev)}</dd></div>
+            </dl>
+          </li>''')
+    nl = chr(10)
+    return f'''        <ol class="decs">
+{nl.join(cards)}
+        </ol>'''
+
+
+def cap_label(tag):
+    return {'field-operations': 'Field operations', 'integration-reporting': 'Integration and reporting',
+            'integration': 'Integration', 'platforms': 'Platforms', 'reporting': 'Reporting',
+            'workflow': 'Workflow', 'mobile': 'Mobile', 'product': 'Product'}.get(tag, tag.replace('-', ' ').capitalize())
+
+
+_CASES = None
+
+
+def cases():
+    global _CASES
+    if _CASES is None:
+        import importlib.util
+        c_spec = importlib.util.spec_from_file_location('cases', os.path.join(HERE, 'cases.py'))
+        _CASES = importlib.util.module_from_spec(c_spec)
+        c_spec.loader.exec_module(_CASES)
+    return _CASES.CASES
+
+
+def cscard(s, base, i=0, wide=False, extra_attrs=''):
+    """
+    A case study card: industry, name, challenge-led headline, GEMIS's role,
+    status, capability labels, and Read / Play. Used by the index, the related
+    rows and the homepage's selected projects.
+    """
+    c = cases().get(s['slug'], {})
+    product = s.get('is_product')
+    href = f'{base}products/managem/' if product else f'{base}work/{s["slug"]}/'
+    role = c.get('role_short', 'Designed, built and supported by GEMIS')
+    status = c.get('status_short', c.get('status', ''))
+    chips = ''.join(f'<li>{esc(cap_label(t))}</li>' for t in s.get('capability_tags', [])[:3])
+    cls = 'cscard cscard--wide' if wide else 'cscard'
+    return f'''          <article class="{cls}"{extra_attrs} data-reveal style="--d:{i * 60}ms">
+            <a class="cscard__media" href="{href}" tabindex="-1" aria-hidden="true">
+              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+              <span class="cscard__len">{s['duration_label']}</span>
+            </a>
+            <div class="cscard__body">
+              <p class="cscard__tag">{esc(s['industry'])}</p>
+              <h3 class="cscard__name">{esc(s['client'])}</h3>
+              <p class="cscard__line">{esc(s['headline'])}</p>
+              <dl class="cscard__meta">
+                <div><dt>GEMIS&rsquo;s role</dt><dd>{esc(role)}</dd></div>
+                <div><dt>Status</dt><dd>{esc(status)}</dd></div>
+              </dl>
+              <ul class="cscard__chips" aria-label="Capabilities">{chips}</ul>
+              <div class="cscard__actions">
+                <a class="btn btn--sm" href="{href}">{'Explore ManaGEM' if product else 'Read the case study'} {ARROW}</a>
+                <a class="btn btn--sm btn--ghost" {play_attrs(s, base)}>{PLAY} Play story</a>
+              </div>
+            </div>
+          </article>'''
+
+
 def fill_slot(path, slot, content):
     """
     Fill a slot, and stay fillable.
@@ -352,8 +468,9 @@ def fill_slot(path, slot, content):
 
 
 def main():
-    fill_slot(os.path.join(ROOT, 'index.html'), 'stories', stories_html(''))
-    print(f'index.html: stories slider ({len(S.STORIES) + 1} slides) written')
+    # the homepage is generated whole by build-home.py now, stories panel
+    # included; this script is the library the other builds import
+    print(f'stories: {len(S.STORIES)} stories, {len(S.STORY_PAGES)} case study pages (markup helpers loaded)')
 
 
 if __name__ == '__main__':

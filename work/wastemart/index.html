@@ -10,7 +10,7 @@
   <meta property="og:site_name" content="GEM Information Systems" />
   <meta property="og:title" content="WasteMart — From quote to collection, handled | GEMIS®" />
   <meta property="og:description" content="A single call becomes a priced quote, a secure payment, a scheduled truck and a confirmed collection — without the manual work in between." />
-  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/home/about-band.jpg" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/video/case-studies/ManaGEM_explainer_thumb.jpg" />
   <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/work/wastemart/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg" />
@@ -140,6 +140,7 @@
           </div>
         </div>
         </li>
+        <li><a href="../../insights/">Insights</a></li>
         <li><a href="../../our-story/">Our Story</a></li>
         <li><a href="../../contact.html">Contact</a></li>
         </ul>
@@ -166,7 +167,7 @@
           <p class="cshero__status" data-reveal style="--d:200ms"><span class="cshero__dot" aria-hidden="true"></span>Live — the system has grown with WasteMart for more than ten years</p>
           <div class="cshero__ctas" data-reveal style="--d:240ms">
             <a class="btn" href="../../assets/video/case-studies/WasteMart_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/WasteMart_explainer_web.mp4" data-webm="../../assets/video/case-studies/WasteMart_explainer_web.webm" data-poster="../../assets/video/case-studies/WasteMart_explainer_thumb.jpg" data-title="WasteMart: from quote to collection, handled"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
-            <a class="arrow-link" href="#overview">Project overview <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="arrow-link" href="../../contact.html">Discuss a similar challenge <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
           </div>
         </div>
         <div class="cshero__visual" data-reveal style="--d:200ms">
@@ -182,7 +183,7 @@
         <div class="sec__head">
           <div>
             <p class="eyebrow" data-reveal>Project overview</p>
-            <h2 class="display" id="overviewHeading" data-reveal style="--d:80ms">What the project is, and where it stands</h2>
+            <h2 class="display" id="overviewHeading" data-reveal style="--d:80ms">Project snapshot</h2>
           </div>
           <p class="lede" data-reveal style="--d:140ms">Responsibilities and status, stated plainly. Where the record is silent — a date, a measured result — the page says so rather than guessing.</p>
         </div>
@@ -192,6 +193,7 @@
           <div class="ov__item" data-reveal style="--d:100ms"><dt>GEMIS’s role</dt><dd>Designer, builder and long-term support partner</dd></div>
           <div class="ov__item" data-reveal style="--d:150ms"><dt>Scope</dt><dd>Quoting with standard terms, online acceptance and payment, operations alerts and scheduling, driver mobile confirmation, order tracking</dd></div>
           <div class="ov__item" data-reveal style="--d:200ms"><dt>Status</dt><dd>Live — the system has grown with WasteMart for more than ten years</dd></div>
+          <div class="ov__item" data-reveal style="--d:250ms"><dt>Key deliverables</dt><dd>Quotes priced automatically with standard terms and conditions attached; Online acceptance and a secure payment link sent to the customer; Operations alerted the moment payment lands, with the job placed on the schedule; Truck and driver assignment, and a driver app that confirms collection with a scan; Order tracking for managers and customers</dd></div>
         </dl>
       </div>
     </section>
@@ -213,11 +215,28 @@
       </div>
     </section>
 
-    <section class="chap band" aria-labelledby="approachHeading">
+
+    <section class="chap band" aria-labelledby="basisHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>Strategy and solution approach</p>
+            <p class="eyebrow" data-reveal>Discovery and evidence</p>
+            <h2 class="display" id="basisHeading" data-reveal style="--d:80ms">What the design was based on</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Only the evidence that exists is described here. Nothing is labelled research that was not.</p>
+        </div>
+        <div class="story__prose story__prose--wide" data-reveal style="--d:160ms">
+          <p>The record holds no research report for this project. The design starts from the four manual jobs that sat behind one phone call at WasteMart: building a quote, attaching the right terms, chasing payment, and then remembering to tell operations.</p>
+          <p>The constraint was that sales, finance and operations each held part of the picture, so the problem to solve was the chain of hand-offs between the call and the collection.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chap band band-wash" aria-labelledby="approachHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Strategy and system structure</p>
             <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Why this approach fits the problem</h2>
           </div>
           <ul class="caps caps--1" data-reveal style="--d:140ms">
@@ -251,10 +270,188 @@
           </figure>
           </div>
         </div>
+        <div class="story__flow" data-reveal style="--d:220ms">
+          <h3 class="out__h">The workflow as implemented</h3>
+        <ol class="flow" aria-label="A WasteMart order, from call to collection" style="--n:6">
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">01</span>
+            <span class="flow__t">Service picked</span>
+            <span class="flow__c">The quote is priced automatically, standard terms attached</span>
+          </li>
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">02</span>
+            <span class="flow__t">Accepted and paid</span>
+            <span class="flow__c">The customer accepts and pays through a secure link</span>
+          </li>
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">03</span>
+            <span class="flow__t">Operations alerted</span>
+            <span class="flow__c">The moment payment lands, the job goes onto the schedule</span>
+          </li>
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">04</span>
+            <span class="flow__t">Planned</span>
+            <span class="flow__c">Planners assign the truck and the driver</span>
+          </li>
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">05</span>
+            <span class="flow__t">Collected</span>
+            <span class="flow__c">The driver confirms the collection with a scan in the app</span>
+          </li>
+          <li class="flow__step">
+            <span class="flow__n" aria-hidden="true">06</span>
+            <span class="flow__t">Tracked</span>
+            <span class="flow__c">Managers and the customer see the order from quote to collection</span>
+          </li>
+        </ol>
+        </div>
       </div>
     </section>
 
-    <section class="out band band-wash plusgrid plusgrid--br" aria-labelledby="outcomesHeading">
+    <section class="chap band" id="walkthrough" aria-labelledby="walkHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>The system, step by step</p>
+            <h2 class="display" id="walkHeading" data-reveal style="--d:80ms">What the user needs to do, and how the system supports it</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Stills from the case study video. The interfaces are illustrated for the video, not screen recordings of the production system; every capability shown is one the system delivers.</p>
+        </div>
+        <ol class="walk">
+          <li class="walk__row" data-reveal style="--d:0ms">
+            <figure class="walk__fig">
+              <img src="../../assets/img/cases/wastemart/01-quote.jpg" alt="Quotes in minutes, terms included — illustrated in the WasteMart case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">01</span>
+              <h3 class="walk__t">Quotes in minutes, terms included</h3>
+              <p class="walk__c">The sales team picks the service and the quote is priced, with WasteMart’s standard terms and conditions attached automatically.</p>
+            </div>
+          </li>
+          <li class="walk__row" data-reveal style="--d:60ms">
+            <figure class="walk__fig">
+              <img src="../../assets/img/cases/wastemart/02-payment.jpg" alt="Accept and pay in one go — illustrated in the WasteMart case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">02</span>
+              <h3 class="walk__t">Accept and pay in one go</h3>
+              <p class="walk__c">The customer receives the quote, accepts it, and gets a secure payment link straight away. No chasing, no waiting for proof of payment.</p>
+            </div>
+          </li>
+          <li class="walk__row" data-reveal style="--d:0ms">
+            <figure class="walk__fig">
+              <img src="../../assets/img/cases/wastemart/03-schedule.jpg" alt="Operations, alerted instantly — illustrated in the WasteMart case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">03</span>
+              <h3 class="walk__t">Operations, alerted instantly</h3>
+              <p class="walk__c">The moment payment comes through, operations is alerted and the job goes onto the schedule.</p>
+            </div>
+          </li>
+          <li class="walk__row" data-reveal style="--d:60ms">
+            <figure class="walk__fig">
+              <img src="../../assets/img/cases/wastemart/04-collection.jpg" alt="Planned, collected, confirmed — illustrated in the WasteMart case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">04</span>
+              <h3 class="walk__t">Planned, collected, confirmed</h3>
+              <p class="walk__c">Planners assign the truck and driver, and the driver confirms the collection on the mobile app with a quick scan.</p>
+            </div>
+          </li>
+          <li class="walk__row" data-reveal style="--d:0ms">
+            <figure class="walk__fig">
+              <img src="../../assets/img/cases/wastemart/05-overview.jpg" alt="One view, quote to collection — illustrated in the WasteMart case study video" loading="lazy" width="1200" height="675" />
+              <figcaption class="walk__src">Illustrated in the case study video</figcaption>
+            </figure>
+            <div class="walk__text">
+              <span class="walk__n" aria-hidden="true">05</span>
+              <h3 class="walk__t">One view, quote to collection</h3>
+              <p class="walk__c">Managers see every order from quote to collection in one place, and the customer can track it too.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="chap band band-tint plusgrid plusgrid--br" aria-labelledby="decHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Key decisions</p>
+            <h2 class="display" id="decHeading" data-reveal style="--d:80ms">Why it was built this way</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">The decisions the evidence supports: what needed addressing, what GEMIS chose, why, and what was delivered or observed.</p>
+        </div>
+        <ol class="decs">
+          <li class="dec" data-reveal style="--d:0ms">
+            <dl class="dec__l">
+              <div><dt>Challenge</dt><dd>Quotes were built by hand and the right terms attached from memory.</dd></div>
+              <div><dt>Decision</dt><dd>Price the quote automatically from the service picked, with standard terms and conditions attached every time.</dd></div>
+              <div><dt>Rationale</dt><dd>A quote that cannot go out without its terms removes a class of errors and most of the time spent building it.</dd></div>
+              <div><dt>Evidence or effect</dt><dd>Delivered, as shown in the case study.</dd></div>
+            </dl>
+          </li>
+          <li class="dec" data-reveal style="--d:60ms">
+            <dl class="dec__l">
+              <div><dt>Challenge</dt><dd>Payment was chased, and proof of payment waited for.</dd></div>
+              <div><dt>Decision</dt><dd>Send a secure payment link with the quote, and let payment itself trigger the next step.</dd></div>
+              <div><dt>Rationale</dt><dd>When payment drives the schedule there is nothing to chase and nothing to remember.</dd></div>
+              <div><dt>Evidence or effect</dt><dd>Delivered; the client confirms six hours a week back, per depot (facts.md).</dd></div>
+            </dl>
+          </li>
+          <li class="dec" data-reveal style="--d:120ms">
+            <dl class="dec__l">
+              <div><dt>Challenge</dt><dd>Operations found out about jobs late.</dd></div>
+              <div><dt>Decision</dt><dd>Alert operations the moment payment lands and put the job on the schedule automatically.</dd></div>
+              <div><dt>Rationale</dt><dd>The hand-off that depended on someone remembering to tell operations is removed entirely.</dd></div>
+              <div><dt>Evidence or effect</dt><dd>Delivered, as shown in the case study.</dd></div>
+            </dl>
+          </li>
+          <li class="dec" data-reveal style="--d:180ms">
+            <dl class="dec__l">
+              <div><dt>Challenge</dt><dd>Nobody, including the customer, could see where an order stood.</dd></div>
+              <div><dt>Decision</dt><dd>One shared order record, confirmed by the driver’s scan, visible to managers and customers.</dd></div>
+              <div><dt>Rationale</dt><dd>The driver’s scan closes the loop at the point of collection, so the view is current without a phone call.</dd></div>
+              <div><dt>Evidence or effect</dt><dd>Delivered, as shown in the case study.</dd></div>
+            </dl>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="chap band" aria-labelledby="valHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Validation, delivery and iteration</p>
+            <h2 class="display" id="valHeading" data-reveal style="--d:80ms">What the record shows</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Delivery and continued use are the validation the repository can evidence. What it cannot, it says.</p>
+        </div>
+        <div class="rec">
+          <div class="rec__col" data-reveal>
+            <h3 class="out__h">On record</h3>
+            <ul class="out__list">
+            <li>The client has confirmed the one quantified result: six hours a week back, per depot (facts.md).</li>
+            <li>The system has grown with WasteMart for more than ten years (as stated in the case study).</li>
+            </ul>
+          </div>
+          <div class="rec__col rec__col--quiet" data-reveal style="--d:80ms">
+            <h3 class="out__h">Not documented</h3>
+            <ul class="out__list">
+            <li>Formal usability testing and user-acceptance records are not in the repository, so none are claimed.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="out band band-wash" aria-labelledby="outcomesHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
@@ -327,13 +524,18 @@
               <p class="cscard__tag">Construction services — waterproofing and roofing</p>
               <h3 class="cscard__name">SBS Waterproofing</h3>
               <p class="cscard__line">The system behind more than a decade of growth</p>
+              <dl class="cscard__meta">
+                <div><dt>GEMIS&rsquo;s role</dt><dd>Website partner from 2014; designer, builder and support partner of the business system from 2015</dd></div>
+                <div><dt>Status</dt><dd>Live — in daily use since 2015</dd></div>
+              </dl>
+              <ul class="cscard__chips" aria-label="Capabilities"><li>Platforms</li></ul>
               <div class="cscard__actions">
-                <a class="btn btn--sm" href="../../work/sbs-waterproofing/">Read story <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+                <a class="btn btn--sm" href="../../work/sbs-waterproofing/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
                 <a class="btn btn--sm btn--ghost" href="../../assets/video/case-studies/SBS_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/SBS_explainer_web.mp4" data-webm="../../assets/video/case-studies/SBS_explainer_web.webm" data-poster="../../assets/video/case-studies/SBS_explainer_thumb.jpg" data-title="SBS Waterproofing: the system behind more than a decade of growth"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
               </div>
             </div>
           </article>
-          <article class="cscard" data-reveal style="--d:80ms">
+          <article class="cscard" data-reveal style="--d:60ms">
             <a class="cscard__media" href="../../work/homeassist/" tabindex="-1" aria-hidden="true">
               <img src="../../assets/video/case-studies/HomeAssist_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <span class="cscard__len">1:29</span>
@@ -342,8 +544,13 @@
               <p class="cscard__tag">Insurance and home services — plumbing repairs</p>
               <h3 class="cscard__name">HomeAssist</h3>
               <p class="cscard__line">Plumbing claims, from report to sign-off</p>
+              <dl class="cscard__meta">
+                <div><dt>GEMIS&rsquo;s role</dt><dd>Designer, builder and long-term support partner</dd></div>
+                <div><dt>Status</dt><dd>Live — in use for more than ten years</dd></div>
+              </dl>
+              <ul class="cscard__chips" aria-label="Capabilities"><li>Field operations</li><li>Integration</li></ul>
               <div class="cscard__actions">
-                <a class="btn btn--sm" href="../../work/homeassist/">Read story <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+                <a class="btn btn--sm" href="../../work/homeassist/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
                 <a class="btn btn--sm btn--ghost" href="../../assets/video/case-studies/HomeAssist_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/HomeAssist_explainer_web.mp4" data-webm="../../assets/video/case-studies/HomeAssist_explainer_web.webm" data-poster="../../assets/video/case-studies/HomeAssist_explainer_thumb.jpg" data-title="HomeAssist: plumbing claims, from report to sign-off"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
               </div>
             </div>
@@ -358,7 +565,7 @@
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Still chasing quotes, payments and schedules by hand? Let’s map the chain from call to collection.</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="../../index.html#discovery">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          <a class="btn" href="../../contact.html">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
           <a class="arrow-link" href="../../solutions/">Explore our solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
         </div>
       </div>

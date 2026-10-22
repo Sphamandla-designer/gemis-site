@@ -17,19 +17,19 @@ applied and is no longer listed here.
 
 ---
 
-## Placeholders the owner asked for — 2
+## Placeholders the owner asked for — 1
 
 These are on the live build **by instruction**, not by the publish-safe rule.
 Replace them before the site is presented as fact.
 
-### `testimonials-placeholder`
+### `testimonials-placeholder` — closed
 
-The homepage "In their words" section carries **six invented testimonials** —
-South African names, roles and wording written to stand in until approved
-quotes arrive. None of the people exist and no company is named. The owner
-asked for them explicitly ("please for now use south africa names, invent the
-wording"). They live in `scripts/services.py` → `TESTIMONIALS`; replace each
-entry with an approved line and rebuild with `python3 scripts/build-home.py`.
+The six invented homepage testimonials were **removed** by the case-study-led
+redesign (`docs/REDESIGN-REPORT.md`): the brief's rule against invented
+testimonials supersedes the earlier instruction. `TESTIMONIALS` in
+`scripts/services.py` is kept, unrendered, so approved quotes can replace it.
+Until then the homepage shows the two client-confirmed results and the stories
+panel instead.
 
 ### `microsoft-partner-badge`
 

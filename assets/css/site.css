@@ -4409,3 +4409,108 @@ html.has-modal { overflow: hidden; }
 .stories__tab--founding[aria-pressed="true"] .stories__tab-p { color: rgba(255,255,255,.82); }
 .stories__tab--founding .stories__tab-go { grid-row: 1 / span 2; }
 @media (max-width: 1080px) { .stories__tab--founding .stories__tab-p { display: block; } }
+
+/* ══════════════════════════════════════════════════════════════════════
+   CASE-STUDY-LED REDESIGN — the evidence kit. Components the homepage, the
+   index and every case study share: the proposition hero's support line, the
+   selected-projects grid, the workflow diagram, the capability map, the
+   walkthrough rows, the decision cards, the credibility block and the richer
+   case card. All of it on the existing tokens.
+   ══════════════════════════════════════════════════════════════════════ */
+/* the hero: the proposition leads, the brand promise supports it */
+.hero__tag { display: inline-flex; align-items: center; gap: 12px; margin: 0 0 clamp(14px, 1.6vw, 20px); font-size: var(--fs-small); font-weight: 500; letter-spacing: .02em; color: rgba(255,255,255,.82); }
+.hero__tag::before { content: ''; width: 28px; height: 1px; background: rgba(255,255,255,.55); }
+.hero .hero__title { max-width: 15ch; }
+.hero__ctas .btn { margin-top: 0; }
+
+/* selected projects: one wide card, two narrow, the same card throughout */
+.sel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); }
+.cscard--wide { grid-column: span 2; }
+.cscard--wide .cscard__media img { aspect-ratio: 21 / 9; }
+.cscard__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin: 6px 0 4px; padding-top: 10px; border-top: 1px solid var(--rule-soft); }
+.cscard__meta > div { min-width: 0; }
+.cscard__meta dt { margin: 0 0 2px; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.cscard__meta dd { margin: 0; font-size: var(--fs-small); color: var(--ink-2); }
+.cscard__chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding: 0; list-style: none; }
+.cscard__chips li { padding: 4px 10px; border: 1px solid var(--rule); border-radius: 999px; font-size: var(--fs-eyebrow); letter-spacing: .04em; color: var(--ink-2); }
+@media (max-width: 620px) { .sel { grid-template-columns: 1fr; } .cscard--wide { grid-column: auto; } .cscard--wide .cscard__media img { aspect-ratio: 16 / 9; } .cscard__meta { grid-template-columns: 1fr; } }
+
+/* the thinking: a workflow as a chain of steps, drawn from the case study */
+.think { display: grid; gap: clamp(28px, 4vw, 56px); }
+.think__item { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(20px, 3vw, 48px); align-items: start; padding-top: clamp(20px, 2.6vw, 32px); border-top: 1px solid var(--rule); }
+.think__item:first-child { border-top: 0; padding-top: 0; }
+.think__kicker { margin: 0 0 8px; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.think__t { margin: 0 0 10px; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; line-height: 1.2; color: var(--ink); }
+.think__c { margin: 0 0 14px; color: var(--ink-2); max-width: 46ch; }
+.flow { display: grid; grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+/* beside a column of copy there is room for three across; the full-width band takes all six */
+.think .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.think .flow__step:nth-child(3n)::after { display: none; }
+@media (max-width: 1100px) { .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); } .flow__step:nth-child(3n)::after { display: none; } }
+.flow__step { position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 14px 14px 16px; border: 1px solid var(--rule); border-radius: 10px; background: #fff; }
+.flow__step::after { content: ''; position: absolute; right: -10px; top: 50%; width: 10px; height: 1px; background: var(--rule); }
+.flow__step:last-child::after { display: none; }
+.flow__n { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .1em; color: var(--navy); }
+.flow__t { font-size: var(--fs-small); font-weight: 600; letter-spacing: -.01em; line-height: 1.25; color: var(--ink); }
+.flow__c { font-size: var(--fs-small); line-height: 1.45; color: var(--ink-2); }
+.band-wash .flow__step, .band-tint .flow__step { background: #fff; }
+@media (max-width: 1000px) { .think__item { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .flow, .think .flow { grid-template-columns: 1fr; gap: 0; } .flow__step { border-radius: 0; border-top: 0; } .flow__step:first-child { border-top: 1px solid var(--rule); border-radius: 10px 10px 0 0; } .flow__step:last-child { border-radius: 0 0 10px 10px; } .flow__step::after { display: none; } }
+
+/* capabilities demonstrated through projects: ruled rows whose chips are links */
+.srow__links { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--fs-small); }
+.capmap .srow__chips li { padding: 0; border: 0; background: none; }
+.capmap .srow__chips li a { display: inline-block; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; font-size: var(--fs-eyebrow); letter-spacing: .04em; color: var(--ink); text-decoration: none; transition: border-color .3s var(--ease), background .3s var(--ease); }
+.capmap .srow__chips li a:hover { border-color: var(--navy); background: var(--wash); }
+.capmap .srow__chips li a:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+/* the walkthrough: a still from the video and what it shows, alternating sides */
+.walk { display: grid; gap: clamp(28px, 4vw, 56px); margin: 0; padding: 0; list-style: none; }
+.walk__row { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(20px, 3vw, 48px); align-items: center; }
+.walk__row:nth-child(even) .walk__fig { order: 2; }
+.walk__fig { margin: 0; }
+.walk__fig img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule); background: #fff; }
+.walk__src { margin: 8px 0 0; font-size: var(--fs-eyebrow); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.walk__n { display: block; margin: 0 0 8px; font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .1em; color: var(--navy); }
+.walk__t { margin: 0 0 10px; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; line-height: 1.2; color: var(--ink); }
+.walk__c { margin: 0; color: var(--ink-2); max-width: 44ch; }
+@media (max-width: 760px) { .walk__row { grid-template-columns: 1fr; } .walk__row:nth-child(even) .walk__fig { order: 0; } }
+
+/* key decisions: four labelled parts each */
+.decs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); margin: 0; padding: 0; list-style: none; }
+.dec { padding: clamp(18px, 2.2vw, 28px); border: 1px solid var(--rule); border-radius: 10px; background: #fff; }
+.dec__l { margin: 0; display: grid; gap: 12px; }
+.dec__l > div { padding-top: 10px; border-top: 1px solid var(--rule-soft); }
+.dec__l > div:first-child { padding-top: 0; border-top: 0; }
+.dec__l dt { margin: 0 0 3px; font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.dec__l dd { margin: 0; font-size: var(--fs-small); line-height: 1.55; color: var(--ink-2); }
+.dec__l > div:nth-child(2) dd { font-size: var(--fs-copy); font-weight: 500; color: var(--ink); }
+@media (max-width: 760px) { .decs { grid-template-columns: 1fr; } }
+
+/* the discovery basis and the validation record: plain, honest lists */
+.rec { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(22px, 3vw, 48px); }
+.rec__col { padding-top: 16px; border-top: 1px solid var(--navy); }
+.rec__col--quiet { border-top-color: var(--rule); }
+.rec__col--quiet .out__h { color: var(--ink-3); }
+.rec__col--quiet .out__list li::before { background: var(--rule); }
+
+/* company credibility: a short statement and the facts beside it */
+.cred { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.cred__facts { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+.cred__facts > div { padding-top: 12px; border-top: 1px solid var(--rule); }
+.cred__facts dt { margin: 0 0 3px; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.cred__facts dd { margin: 0; font-size: var(--fs-small); color: var(--ink-2); }
+@media (max-width: 900px) { .cred { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .cred__facts { grid-template-columns: 1fr; } }
+
+/* the partnership proof strip: three confirmed figures over the logo marquee */
+.proof .trust__stats { margin-bottom: clamp(22px, 3vw, 36px); }
+.proof__note { margin: 0 0 clamp(18px, 2.4vw, 28px); font-size: var(--fs-small); color: var(--ink-3); }
+
+/* the related rows and the index reuse the card; the index also needs three across */
+.cscards .cscard__meta { grid-template-columns: 1fr; }
+@media (min-width: 1200px) { .cscards .cscard__meta { grid-template-columns: 1fr 1fr; } }
+
+/* the diagram beneath a video or prose block keeps its distance */
+.story__flow { margin-top: clamp(28px, 4vw, 48px); }
+.story__flow .out__h { margin-bottom: 14px; }

@@ -113,6 +113,7 @@ NAV = """<ul class="nav__links" id="navLinks">
           </div>
         </div>
         </li>
+        <li><a href="{B}insights/">Insights</a></li>
         <li><a href="{B}our-story/">Our Story</a></li>
         <li><a href="{B}contact.html">Contact</a></li>
         </ul>"""

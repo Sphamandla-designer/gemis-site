@@ -139,7 +139,7 @@ def solutions_index():
       <div class="shell">
         <h2 class="display" data-reveal>Not sure which one you need?</h2>
         <p data-reveal style="--d:80ms">Tell us what the business needs to do better and we will come back with a view.</p>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
       </div>
     </section>
 '''
@@ -225,7 +225,7 @@ def bespoke():
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Tell us what your business needs to do better.</h2>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
       </div>
     </section>
 '''
@@ -239,6 +239,7 @@ def bespoke():
 def managem():
     base = '../../'
     s = S.BY_SLUG['managem']
+    C = P.C
     body = f'''
     <section class="chero" id="hero">
       <div class="shell">
@@ -272,6 +273,23 @@ def managem():
 {chr(10).join(f'            <li>{c}</li>' for c in s['capabilities'])}
           </ul>
         </div>
+        <div class="story__flow" data-reveal style="--d:200ms">
+          <h3 class="out__h">The workflow as implemented</h3>
+{B.flow(C.MANAGEM['flow'], C.MANAGEM['flow_label'])}
+        </div>
+      </div>
+    </section>
+
+    <section class="chap band band-wash" id="walkthrough" aria-labelledby="walkHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>The product, step by step</p>
+            <h2 class="display" id="walkHeading" data-reveal style="--d:80ms">What the user needs to do, and how ManaGEM supports it</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Stills from the ManaGEM video. The interfaces are illustrated for the video, not screen recordings of the product; every capability shown is one ManaGEM delivers.</p>
+        </div>
+{B.walk(C.MANAGEM['walk'], base, 'managem')}
       </div>
     </section>
 
@@ -280,16 +298,18 @@ def managem():
         <p class="eyebrow" data-reveal>Results</p>
         <h2 class="display" id="resultsHeading" data-reveal style="--d:80ms">In use today</h2>
         <div class="story__prose" data-reveal style="--d:140ms">
-          <p>About a dozen companies run their day-to-day operations on ManaGEM.</p>
+          <p>About a dozen companies run their day-to-day operations on ManaGEM (confirmed).</p>
           <p class="story__metric">Month-end close: nine days to two</p>
+          <p>One client&rsquo;s month-end close went from nine days to two &mdash; confirmed by that client. No other figure is published: adoption, time saved or revenue effects across the dozen companies have not been measured.</p>
         </div>
       </div>
     </section>
 
     <section class="endnote">
       <div class="shell">
-        <h2 class="display" data-reveal>See whether ManaGEM fits your business.</h2>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <h2 class="display" data-reveal>Planning a new business platform, or outgrowing the apps you have?</h2>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link arrow-link--quiet" href="{base}work/" data-reveal style="--d:180ms">View related work {ARROW}</a>
         <!-- facts.md confirms the free trial is live, but gives no URL for it and
              leaves the separate ManaGEM site as "FILL". A trial CTA with nowhere
              to point is worse than no CTA, so it is held back and the missing URL
@@ -355,6 +375,7 @@ def our_story():
             <p class="eyebrow" data-reveal>Where it started</p>
             <h2 class="display" id="foundingHeading" data-reveal style="--d:80ms">Three relationships that have not ended</h2>
           </div>
+          <p class="lede" data-reveal style="--d:140ms">The company&rsquo;s story is told best by the systems: each of these is a case study, with the video of what was built. <a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
         </div>
         <ol class="srows">
 {founders}
@@ -390,8 +411,8 @@ def our_story():
 
     <section class="endnote">
       <div class="shell">
-        <h2 class="display" data-reveal>We learn your business. We build around it. We stay.</h2>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <h2 class="display" data-reveal>Have a business challenge worth solving?</h2>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
       </div>
     </section>
 '''

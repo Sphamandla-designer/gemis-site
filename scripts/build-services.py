@@ -55,7 +55,7 @@ def endnote(base, title='Tell us what your business needs to do better.'):
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>{esc(title)}</h2>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
       </div>
     </section>
 '''
@@ -158,18 +158,37 @@ def solutions_index():
 
 
 # ── one service page ─────────────────────────────────────────────────────
+# which case studies demonstrate each solution; the first is the lead
+SERVICE_STORIES = {
+    'custom-software': ['sbs-waterproofing', 'wastemart', 'homeassist'],
+    'microsoft-cloud': ['trans-hex', 'managem', 'sonke'],
+    'enterprise-saas': ['managem', 'homeassist'],
+    'mobile-apps': ['sonke', 'wastemart', 'homeassist'],
+    'business-intelligence': ['trans-hex', 'sonke'],
+    'system-integration': ['trans-hex', 'sbs-waterproofing', 'homeassist'],
+    'ux-design': ['homeassist', 'sonke'],
+    'modernisation': ['trans-hex', 'sbs-waterproofing'],
+    'support': ['sbs-waterproofing', 'homeassist', 'wastemart'],
+}
+
+# the case study each article's argument comes from
+ARTICLE_STORY = {
+    'spreadsheets-to-a-system': ('sbs-waterproofing', 'SBS Waterproofing moved from a spreadsheet and three apps to one system in 2015, and still runs on it.'),
+    'load-shedding-operations-resilience': ('sonke', 'Sonke’s field app was designed for no signal at all: it captures offline and syncs when it can.'),
+    'popia-business-systems-checklist': ('homeassist', 'HomeAssist’s system holds homeowner, insurer and plumber data on one job record, with each party seeing only its side.'),
+}
+
+
 def service_page(s):
     base = '../../'
     others = [o for o in SV.SERVICES if o['slug'] != s['slug']]
     caps = '\n'.join(f'          <li>{esc(c)}</li>' for c in s['caps'])
     why = B.srows([(esc(t), f'<p>{esc(b)}</p>', (), '') for t, b in s['body']])
     proof = ''
-    if s.get('proof'):
-        st = S.BY_SLUG[s['proof']]
-        card = B.feat(esc(st['client']), f"{base}work/{st['slug']}/",
-                      f"{base}{S.VIDEO_DIR}{st['video']}_thumb.jpg",
-                      B.period_html(st), esc(st['headline']) + ' — ' + esc(st['challenge']) + '.',
-                      chips=[esc(st['industry'])] + [t.replace('-', ' ').capitalize() for t in st['capability_tags'][:2]])
+    stories = SERVICE_STORIES.get(s['slug'], [s['proof']] if s.get('proof') else [])
+    if stories:
+        cards = '\n'.join(B.cscard(S.BY_SLUG[k], base, i) for i, k in enumerate(stories))
+        n = len(stories)
         proof = f'''
     <section class="sec band band-wash" aria-labelledby="proofHeading">
       <div class="shell">
@@ -178,10 +197,10 @@ def service_page(s):
             <p class="eyebrow" data-reveal>In production</p>
             <h2 class="display" id="proofHeading" data-reveal style="--d:80ms">Where this has run</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">A system in use today, not a mock-up.</p>
+          <p class="lede" data-reveal style="--d:140ms">{'A system' if n == 1 else 'Systems'} in use today, not mock-ups. Each card names what GEMIS did and where the project stands. <a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
         </div>
-        <div class="feats feats--1" data-reveal style="--d:160ms">
-{card}
+        <div class="cscards{' cscards--2' if n == 2 else ''}">
+{cards}
         </div>
       </div>
     </section>'''
@@ -216,6 +235,10 @@ def service_page(s):
         <p class="chero__kicker" data-reveal>Solutions</p>
         <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['name'])}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">{esc(s['intro'])}</p>
+        <div class="cshero__ctas" data-reveal style="--d:200ms">
+          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
+          <a class="arrow-link" href="#proofHeading">Where this has run {ARROW}</a>
+        </div>
       </div>
     </section>
 
@@ -381,6 +404,25 @@ def article_page(a):
    "publisher": {{"@type": "Organization", "name": "GEM Information Systems (GEMIS)", "url": "{CANON}"}},
    "mainEntityOfPage": "{CANON}insights/{a['slug']}/"}}
   </script>'''.replace("'", '"')
+    practice = ''
+    if a['slug'] in ARTICLE_STORY:
+        k, line = ARTICLE_STORY[a['slug']]
+        practice = f'''
+    <section class="sec band band-wash" aria-labelledby="practiceHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>In practice</p>
+            <h2 class="display" id="practiceHeading" data-reveal style="--d:80ms">The case study behind this article</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">{esc(line)}</p>
+        </div>
+        <div class="cscards cscards--2">
+{B.cscard(S.BY_SLUG[k], base, 0)}
+        </div>
+      </div>
+    </section>
+'''
     body = f'''
     <section class="chero chero--art" id="hero">
       <div class="shell">
@@ -402,7 +444,8 @@ def article_page(a):
       </div>
     </section>
 
-    <section class="news band band-tint" aria-labelledby="moreHeading">
+{practice}
+    <section class="news band" aria-labelledby="moreHeading">
       <div class="shell">
         <p class="eyebrow" data-reveal>Keep reading</p>
         <h2 class="display" id="moreHeading" data-reveal style="--d:80ms">More from GEMIS</h2>
