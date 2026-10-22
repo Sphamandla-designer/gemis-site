@@ -205,9 +205,13 @@
   if (su && !reduced) {
     var stmt = su.querySelector('.selw__statement');
     var ease = function (t) { return 1 - Math.pow(1 - t, 3); };   // ease-out cubic
+    var suPin = su.querySelector('.selw__out-pin');
+    function suSize() { su.style.setProperty('--pinh', suPin.offsetHeight + 'px'); }
     function suRun() {
       var r = su.getBoundingClientRect();
-      var total = su.offsetHeight - window.innerHeight;
+      // the pin holds the statement at the centre; the travel is the wrapper
+      // beyond half a viewport, so the hold ends as the pin releases
+      var total = su.offsetHeight - window.innerHeight * 0.5;
       if (total <= 0) return;
       var p = Math.min(1, Math.max(0, -r.top / total));
       var g = ease(Math.min(1, p / .6));                         // growth phase, then the hold
@@ -216,9 +220,10 @@
       su.style.setProperty('--l', (p > .5 ? Math.min(1, (p - .5) / .15) : 0).toFixed(3));
     }
     su.classList.add('is-scaling');
-    suRun();
+    suSize(); suRun();
     window.addEventListener('scroll', suRun, { passive: true });
-    window.addEventListener('resize', suRun);
+    window.addEventListener('resize', function () { suSize(); suRun(); });
+    window.addEventListener('load', function () { suSize(); suRun(); });
     if (stmt) stmt.addEventListener('transitionend', suRun);
   }
 

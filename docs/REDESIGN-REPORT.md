@@ -219,6 +219,37 @@ Client stories stage the owner chose (names on the left, one quotation at a
 time, a link to the founding client's story); it stays hidden on the live
 build until `endorsements.md` arrives and shows its layout under `?review=1`.
 
+### Owner's second harmony pass
+
+The owner reversed two of the previous day's choices and corrected the order:
+
+- The Selected work cards are white again on the pure white band; the navy
+  stays on the menu and the buttons.
+- The order is now Selected work → **In their words** → **The operating
+  logic** → Book a Discovery Session. In their words is shown on the live
+  build with the italic "Quotation to follow." (`.cs__pending`, a hideable
+  TBC) on each slide until `endorsements.md` arrives, at the owner's
+  instruction; the names, titles, "Client since 2014" and story links are
+  real.
+- The operating logic sits on the brand navy: the hero photograph under the
+  standard `band-ink` scrim, white type, the title on `--fs-display` like
+  every other section heading.
+- The spacing after the transition statement matched no other section: the
+  band kept its own bottom padding under the pin, and the earlier override
+  targeted `.selw.band` while the section carries only `.selw`, so it never
+  applied. The band's bottom padding now lives on the pin itself
+  (`.selw__out-pin`, symmetric while pinned so the statement stays centred);
+  when the pin releases the statement's link is exactly `--sec-y` from the
+  next section (112px at desktop, 72px on a phone — the same as every other
+  section boundary on the page), measured with `window.scrollTo` at 1440×900,
+  1440×700 and 390×844.
+
+Checks re-run after the pass: links 2,032 / 0 broken; axe 0 serious or
+critical across every page; 14 pages × 4 widths with no overflow, clipping or
+JS errors; reduced motion and no-JS; the functional sweep (overlay from a
+card, the stage's tabs, nav links, tab order); chrome `--check`; the
+standalone bundle rebuilt (19.4 MB, 29 pages, 72 assets, 7 videos).
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

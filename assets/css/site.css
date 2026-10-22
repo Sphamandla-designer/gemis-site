@@ -4745,3 +4745,39 @@ html.has-modal { overflow: hidden; }
 .words .cs__who span { display: block; }
 .words .cs__since { color: var(--ink-3); }
 .words .cs__more { margin-top: 8px; }
+
+/* ── the owner's second harmony pass ─────────────────────────────────────
+   Selected work cards back to white; The operating logic on the site's navy
+   ground (the standard band-ink scrim over the photograph); the transition
+   statement pins at its own height so it leaves only a section's spacing
+   behind it; Client stories follows the statement. */
+.selw__card { background: #fff; border-color: var(--rule-soft); color: var(--ink); }
+.selw__card:hover { border-color: var(--rule); box-shadow: 0 28px 48px -34px rgba(8,34,62,.45); }
+.selw__media { border-bottom-color: var(--rule-soft); }
+.selw__tag { color: var(--navy); }
+.selw__name a { color: var(--ink); }
+.selw__name a:hover { color: var(--navy); }
+.selw__line { color: var(--ink-2); }
+.selw__card .arrow-link, .selw__card .arrow-link--quiet { color: var(--ink); }
+.selw__card .arrow-link:hover { color: var(--navy); }
+.selw__card .arrow-link:focus-visible { outline-color: var(--navy); }
+/* the statement: a pin as tall as itself, centred by its own height */
+.selw__out.is-scaling { height: 150vh; height: 150svh; }
+.selw__out.is-scaling .selw__out-pin { position: sticky; top: calc(50vh - var(--pinh, 160px) / 2); top: calc(50svh - var(--pinh, 160px) / 2); height: auto; }
+.selw__out { margin-bottom: 0; }
+/* The operating logic on navy */
+.op { --scrim: radial-gradient(120% 80% at 80% 20%, rgba(20,66,104,.3) 0%, rgba(8,34,62,.86) 60%, rgba(8,34,62,.94) 100%); --op-ink: #fff; --op-silver: rgba(255,255,255,.78); --op-mute: rgba(255,255,255,.56); --op-rule: rgba(255,255,255,.18); }
+.op__node { background: var(--navy-deep); }
+.op__ghost { color: rgba(255,255,255,.06); }
+.op__title { font-size: var(--fs-display); line-height: 1.12; letter-spacing: -.026em; font-weight: 400; }
+.op__title .op__t1 { color: rgba(255,255,255,.72); }
+.op__seen-list a { border-bottom-color: rgba(255,255,255,.34); }
+.cs__pending { font-style: italic; color: var(--ink-3); }
+.cs__label { margin-bottom: 18px; }
+/* the statement leaves one section's spacing behind it, like every other section:
+   the band's own bottom padding moves into the pin, so when the pin releases the
+   distance from the statement to the next section is exactly --sec-y
+   (main > section sets the rhythm, so the selector matches its weight) */
+main > section.selw { padding-bottom: 0; }
+.selw__out-pin { padding-bottom: var(--sec-y); box-sizing: content-box; }
+.selw__out.is-scaling .selw__out-pin { padding-top: var(--sec-y); }

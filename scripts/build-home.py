@@ -263,7 +263,9 @@ def in_their_words():
         pressed = 'true' if i == 0 else 'false'
         hidden = '' if i == 0 else ' aria-hidden="true"'
         tabs.append(f'''            <li><button class="cs__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span>{esc(e['name'])}</span><span class="cs__tab-go" aria-hidden="true">{GO}</span></button></li>''')
-        quote = esc(e['line']) if e.get('line') else B.tbc(e['line_tbc'], 'Quotation to follow from endorsements.md')
+        # the owner asked to see the section now: with no line in endorsements.md
+        # the slot carries a plain note (the gate still lists the id)
+        quote = esc(e['line']) if e.get('line') else f'<span class="cs__pending" data-tbc="{e["line_tbc"]}" data-kind="hideable">Quotation to follow.</span>'
         title = f"{esc(e['title'])} &middot; " if e.get('title') else ''
         since = f'<span class="cs__since">{esc(e["since"])}</span>' if e.get('since') else ''
         link = (f'<a class="cs__more" href="{link_for(e["slug"])}">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story <span aria-hidden="true">&rarr;</span></a>'
@@ -278,14 +280,13 @@ def in_their_words():
               {link}
             </li>''')
     nl = chr(10)
-    wrap_open = '' if any_line else '<div class="unconfirmed" data-kind="hideable">\n'
-    wrap_close = '' if any_line else '\n</div>'
+    wrap_open, wrap_close = '', ''
     if not any_line:
-        print('home: no quotation in endorsements.md yet — "In their words" hidden on the live build')
+        print('home: no quotation in endorsements.md yet — "In their words" shows "Quotation to follow." (owner\'s instruction)')
     return f'''
     <!-- ═══════════════════ 06 · IN THEIR WORDS ═══════════════════
          The three endorsements, copied exactly from endorsements.md, on the
-         Client stories stage. Hidden live until the file arrives. -->
+         Client stories stage. Shown with a plain note until the file arrives. -->
 {wrap_open}    <section class="words testi band" id="in-their-words" aria-labelledby="wordsHeading">
       <div class="shell">
         <div class="cs__head">
@@ -657,7 +658,7 @@ def enquiry():
 ''' + B.video_modal() + '\n'
 
 def home_main():
-    return hero() + trust() + selected() + operating_logic() + in_their_words() + enquiry()
+    return hero() + trust() + selected() + in_their_words() + operating_logic() + enquiry()
 
 
 if __name__ == '__main__':
