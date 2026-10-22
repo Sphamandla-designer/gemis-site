@@ -187,7 +187,8 @@ Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
 filtered card grid with Read/Play, the approach timeline and a conversion band;
 the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
-Studio at `studio/`, Technical Academy at gemis.tech) · About (`our-story/`) ·
+Studio at `studio/`, Technical Academy at gemis.tech) · Our Story (`our-story/`; the
+nav label and the page name match — keep them that way) ·
 Contact. News & Insights lives at `insights/` (three articles), linked from the
 homepage and footer. `solutions/bespoke-software/`, `solutions/managem/` and
 `insights.html` are redirect stubs now.
