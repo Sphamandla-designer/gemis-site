@@ -207,6 +207,18 @@ show the resolved static band. Reference browsing (Awwwards, Godly,
 Pinterest) was not available in this environment; the design was developed
 from the brief's direction.
 
+### Owner's harmony pass
+
+The menu reads in the brand navy once the bar is stuck, solid or open, on
+every page. The Selected work cards take the navy of the buttons with white
+type and the light blue for their small label. The operating logic now sits on
+the site's type steps (display for the opening statement, lead for the
+principle statements, copy and eyebrow elsewhere), with the ghost numerals
+reduced. "In their words" moved after The operating logic and takes the
+Client stories stage the owner chose (names on the left, one quotation at a
+time, a link to the founding client's story); it stays hidden on the live
+build until `endorsements.md` arrives and shows its layout under `?review=1`.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

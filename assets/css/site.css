@@ -4705,3 +4705,43 @@ html.has-modal { overflow: hidden; }
   .op__motif .m-layer--2, .op__motif .m-layer--3, .op__motif .m-layer--4 { opacity: .85; transform: none; }
   .op__motif *, .op__node, .op__motif-wrap { transition: none !important; }
 }
+
+/* ── the owner's harmony pass ─────────────────────────────────────────────
+   The menu reads in the brand navy once the bar is stuck or solid, on every
+   page; the Selected work cards take the navy of the buttons with white type;
+   The operating logic uses the site's type steps like every other section. */
+.nav.is-stuck .nav__links > li > a, .nav.is-stuck .nav__trigger,
+.nav.is-mega .nav__links > li > a, .nav.is-mega .nav__trigger,
+.nav--solid .nav__links > li > a, .nav--solid .nav__trigger,
+.nav--photo.is-stuck .nav__links > li > a, .nav--photo.is-stuck .nav__trigger,
+.nav--photo.is-mega .nav__links > li > a, .nav--photo.is-mega .nav__trigger { color: var(--navy); }
+.nav__links > li > a::after { background: var(--navy); }
+@media (max-width: 1080px) { .nav__links > li > a, .nav__trigger, .nav.is-open .nav__links > li > a { color: var(--navy); } }
+/* Selected work: navy cards, white type, the light blue for the small label */
+.selw__card { background: var(--navy-deep); border-color: transparent; color: #fff; }
+.selw__card:hover { border-color: transparent; box-shadow: 0 30px 50px -30px rgba(8,34,62,.6); }
+.selw__media { border-bottom-color: rgba(255,255,255,.12); }
+.selw__tag { color: #8fc3f3; }
+.selw__name a { color: #fff; }
+.selw__name a:hover { color: #8fc3f3; }
+.selw__line { color: rgba(255,255,255,.8); }
+.selw__card .arrow-link, .selw__card .arrow-link--quiet { color: #fff; }
+.selw__card .arrow-link:hover { color: #8fc3f3; }
+.selw__card .arrow-link:focus-visible { outline-color: #fff; }
+/* The operating logic on the site's type steps */
+.op__label { font-size: var(--fs-eyebrow); letter-spacing: .10em; font-weight: 500; margin-bottom: 18px; }
+.op__title { font-size: var(--fs-display); font-weight: 400; letter-spacing: -.026em; line-height: 1.12; max-width: 22ch; }
+.op__title .op__t1, .op__title .op__t2 { display: inline; color: var(--op-ink); font-weight: 400; }
+.op__title em { font-weight: 500; }
+.op__open { padding-bottom: clamp(32px, 4vw, 56px); }
+.op__statement { font-size: var(--fs-lead); font-weight: 500; letter-spacing: -.022em; line-height: 1.18; max-width: 22ch; }
+.op__copy { font-size: var(--fs-copy); }
+.op__index, .op__seen-label, .op__foot-label { font-size: var(--fs-eyebrow); letter-spacing: .10em; }
+.op__ghost { font-size: clamp(56px, 6vw, 96px); top: -.1em; }
+.op__grid { gap: clamp(44px, 5vw, 80px) clamp(32px, 5vw, 80px); }
+.op__item--2, .op__item--4 { padding-top: clamp(28px, 4vw, 56px); }
+@media (max-width: 900px) { .op__title { font-size: var(--fs-display); } .op__statement { font-size: var(--fs-lead); } }
+/* In their words, as the Client stories stage: the names on the left, one quotation at a time */
+.words .cs__who span { display: block; }
+.words .cs__since { color: var(--ink-3); }
+.words .cs__more { margin-top: 8px; }

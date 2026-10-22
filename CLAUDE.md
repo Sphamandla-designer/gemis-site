@@ -81,6 +81,9 @@ layer that first introduced the component.
   gradient breathes (still under reduced motion); type on it is white. Pages that
   open on it get `nav--photo` (set by `build-pages.shell()`); the light-hero pages
   (`contact.html`, `privacy.html`) keep `nav--solid`. No hero carries image mockups.
+  Once the bar is stuck, solid or open, the menu reads in `--navy` on every page
+  (the owner's harmony pass); the Selected work cards are `--navy-deep` with white
+  type, like the buttons.
 - **Case study pages** are built from `scripts/cases.py` (hero with status and
   Play story, overview, business challenge, strategy and approach, outcomes split
   into delivered / verified / intended, related work, tailored enquiry). Only the
@@ -133,16 +136,18 @@ layer that first introduced the component.
   its video; then the transition statement `[data-scaleup]` that scales up
   as it is scrolled to the centre of the viewport, holds, and releases;
   both static without JS and
-  under reduced motion) → **In their words** (`in_their_words()`: the three
-  endorsements read verbatim from `endorsements.md`; omitted until the file
-  exists) → **The operating logic** (`operating_logic()`: the four principles,
+  under reduced motion) → **The operating logic** (`operating_logic()`: the four principles,
   verbatim in `OPERATING`, on a dark editorial band — the hero photograph
   under a graphite scrim, warm-white and silver type, `#8fc3f3` the one
   accent; an asymmetric two-by-two with one line drawn through the four index
   nodes on scroll by `[data-oplogic]` in `home.js`, a vertical spine under
   900px, abstract SVG motifs that resolve when a principle is active, "Seen
-  in" links to the chapter pages and the three articles; complete and still
-  without JS and under reduced motion) → **Book a Discovery Session** with the
+  in" links to the chapter pages and the three articles; type on the site's
+  steps — display, lead, copy, eyebrow; complete and still without JS and
+  under reduced motion) → **In their words** on the Client stories stage
+  (names on the left, one quotation at a time; hidden live until
+  `endorsements.md` exists, visible at `?review=1`) → **Book a Discovery
+  Session** with the
   form, as it was. No capabilities, stories panel, how-we-work or company
   section on the home; those live on Solutions, Case Studies and Our Story.
 

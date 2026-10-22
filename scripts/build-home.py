@@ -246,36 +246,71 @@ def selected():
 
 def in_their_words():
     """
-    "In their words": the three endorsements, exactly as endorsements.md has
-    them (Keshan Patel, Ryan Smith, Philippine Francke). A person whose line is
-    not yet in the file has no card live; the section itself is omitted until
-    at least one line exists, so nothing invented ever stands in.
+    "In their words", as the Client stories stage the owner chose: the names
+    on the left, one quotation at a time on the right. The three endorsements
+    (Keshan Patel, Ryan Smith, Philippine Francke) are read exactly from
+    endorsements.md; a person with no line yet shows a "quotation to follow"
+    note under ?review=1 only, and while no line exists at all the whole
+    section is hidden on the live build (visible under ?review=1).
     """
-    keys = [k for k in S.ENDORSEMENT_ORDER if S.ENDORSERS[k].get('line')]
-    if not keys:
-        print('home: no quotation in endorsements.md yet — "In their words" omitted')
-        return ''
-    cards = '\n'.join(f'          <div class="words__item" data-reveal style="--d:{i * 80}ms">\n          '
-                       + B.endorsement_html(k, '') + '\n          </div>' for i, k in enumerate(keys))
+    GO = ('<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+          '<path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg>')
+    keys = S.ENDORSEMENT_ORDER
+    any_line = any(S.ENDORSERS[k].get('line') for k in keys)
+    tabs, slides = [], []
+    for i, k in enumerate(keys):
+        e = S.ENDORSERS[k]
+        pressed = 'true' if i == 0 else 'false'
+        hidden = '' if i == 0 else ' aria-hidden="true"'
+        tabs.append(f'''            <li><button class="cs__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span>{esc(e['name'])}</span><span class="cs__tab-go" aria-hidden="true">{GO}</span></button></li>''')
+        quote = esc(e['line']) if e.get('line') else B.tbc(e['line_tbc'], 'Quotation to follow from endorsements.md')
+        title = f"{esc(e['title'])} &middot; " if e.get('title') else ''
+        since = f'<span class="cs__since">{esc(e["since"])}</span>' if e.get('since') else ''
+        link = (f'<a class="cs__more" href="{link_for(e["slug"])}">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story <span aria-hidden="true">&rarr;</span></a>'
+                if e.get('slug') else '')
+        slides.append(f'''            <li class="cs__item" data-slide{hidden}>
+              <p class="cs__label eyebrow">In their words</p>
+              <blockquote class="cs__q"><p>{quote}</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">{e['initials']}</span>
+                <span class="cs__who"><strong>{esc(e['name'])}</strong><span>{title}{esc(e['company'])}</span>{since}</span>
+              </p>
+              {link}
+            </li>''')
+    nl = chr(10)
+    wrap_open = '' if any_line else '<div class="unconfirmed" data-kind="hideable">\n'
+    wrap_close = '' if any_line else '\n</div>'
+    if not any_line:
+        print('home: no quotation in endorsements.md yet — "In their words" hidden on the live build')
     return f'''
-    <!-- ═══════════════════ 04 · IN THEIR WORDS ═══════════════════
-         Three endorsements, copied exactly from endorsements.md. -->
-    <section class="words band" id="in-their-words" aria-labelledby="wordsHeading">
+    <!-- ═══════════════════ 06 · IN THEIR WORDS ═══════════════════
+         The three endorsements, copied exactly from endorsements.md, on the
+         Client stories stage. Hidden live until the file arrives. -->
+{wrap_open}    <section class="words testi band" id="in-their-words" aria-labelledby="wordsHeading">
       <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>In their words</p>
-            <h2 class="display" id="wordsHeading" data-reveal style="--d:80ms">In their words</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">Some of the businesses we work with today first trusted GEMIS more than a decade ago.</p>
+        <div class="cs__head">
+          <h2 class="cs__title" id="wordsHeading" data-reveal>In their words</h2>
+          <p class="cs__lede" data-reveal style="--d:80ms">Some of the businesses we work with today first trusted GEMIS more than a decade ago.</p>
         </div>
-        <div class="words__grid">
-{cards}
+        <div class="cs" data-stage data-auto="0">
+          <div class="cs__side">
+            <ol class="cs__rail" aria-label="Choose a voice" data-reveal>
+{nl.join(tabs)}
+            </ol>
+            <div class="cs__ctl" data-ctl hidden>
+              <button class="cs__btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+              <button class="cs__btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+            </div>
+          </div>
+          <div class="cs__main" data-reveal style="--d:80ms">
+            <ol class="cs__list" data-list>
+{nl.join(slides)}
+            </ol>
+          </div>
         </div>
       </div>
-    </section>
+    </section>{wrap_close}
 '''
-
 
 
 # ── the operating logic: four principles, verbatim, connecting seven systems ──
@@ -622,7 +657,7 @@ def enquiry():
 ''' + B.video_modal() + '\n'
 
 def home_main():
-    return hero() + trust() + selected() + in_their_words() + operating_logic() + enquiry()
+    return hero() + trust() + selected() + operating_logic() + in_their_words() + enquiry()
 
 
 if __name__ == '__main__':
