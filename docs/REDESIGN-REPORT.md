@@ -148,6 +148,20 @@ band from the second revision returns as it was, on a pure white ground
 instead of the grey gradient. The grid and the scroll-linked statement were
 removed again.
 
+### Owner's fifth revision — the refinements on the horizontal travel
+
+The horizontal scrolling effect stays, and the refinement brief is applied to
+it: the site's shared section header above the band; four equal-height cards
+in the site's card style (industry, name, one-line description, arrow link,
+play button) two to a screen on desktop, one to a screen between 901 and
+1100px, on a two-column grid on tablets and one column under 620px; the first
+card aligned to the content shell and the last pair resting on it at the end
+of the travel; card width capped by viewport height so the row always fits;
+pure white ground; and the transition statement scaling up to the centre of
+the viewport, holding, then releasing. Verified at 1440×900, 1440×700,
+1280×800, 1024×768, 768×1024, 390×844 and 360×640, on an iPhone profile with
+wheel scrolling, under reduced motion, without JavaScript, and by keyboard.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

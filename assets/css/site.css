@@ -4515,49 +4515,49 @@ html.has-modal { overflow: hidden; }
 .story__flow { margin-top: clamp(28px, 4vw, 48px); }
 .story__flow .out__h { margin-bottom: 14px; }
 
-/* ── selected work: a pinned white band, panels divided by rules, cards travel across ──
-   The owner's reference (commit 4440697). The list is vertical by default;
-   home.js adds .is-pinned on wide screens when motion is allowed, which pins
-   the band and lets the track translate with the page scroll. */
-.selw { position: relative; color: #3a3a3a; background: #fff; padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
-.selw__track { display: grid; gap: clamp(32px, 5vw, 72px); margin: 0; padding: 0 var(--gutter); list-style: none; }
-.selw__item { min-width: 0; }
-.selw__title { margin: 0 0 clamp(20px, 2.6vw, 32px); font-size: clamp(40px, 4.6vw, 68px); font-weight: 400; letter-spacing: -.035em; line-height: 1.02; color: #4a4a4a; }
-.selw__media { position: relative; overflow: hidden; border-radius: 8px; background: var(--paper-2); border: 1px solid var(--rule-soft); }
-.selw__media::after { content: ''; position: absolute; inset: 18px; border: 1px solid rgba(255,255,255,.55); border-radius: 3px; pointer-events: none; }
-.selw__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .8s var(--ease); }
-.selw__card:hover .selw__media img { transform: scale(1.025); }
-.selw__play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 10px; padding: 0; color: #fff; text-decoration: none; z-index: 2; }
-.selw__play svg { width: 72px; height: 72px; padding: 24px; box-sizing: border-box; border-radius: 50%; background: rgba(11,38,66,.78); border: 1px solid rgba(255,255,255,.55); backdrop-filter: blur(4px); transition: transform .35s var(--ease), background .35s var(--ease); }
+/* ── selected work: the site's header, equal cards on a horizontal travel pinned to the
+   viewport (two to a screen on desktop; a grid on tablets and phones), and the
+   scroll-linked transition statement. Pure white. ───────────────────────────── */
+.selw { position: relative; background: #fff; }
+.selw .shell .sec__head { margin-bottom: 0; }
+/* the cards: one structure, one height per row */
+.selw__track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(22px, 3vw, 44px); margin: 0 auto; padding: clamp(28px, 3.6vw, 48px) var(--gutter) 0; max-width: var(--shell); box-sizing: border-box; list-style: none; }
+.selw__card { display: flex; flex-direction: column; min-width: 0; background: #fff; border: 1px solid var(--rule-soft); border-radius: 10px; overflow: hidden; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease); }
+.selw__card:hover { transform: translateY(-4px); border-color: var(--rule); box-shadow: 0 28px 48px -34px rgba(8,34,62,.45); }
+.selw__media { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule-soft); background: var(--paper-2); }
+.selw__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .7s var(--ease); }
+.selw__card:hover .selw__media img { transform: scale(1.03); }
+.selw__play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; color: #fff; text-decoration: none; z-index: 2; border-radius: 50%; }
+.selw__play svg { width: 68px; height: 68px; padding: 23px; box-sizing: border-box; border-radius: 50%; background: rgba(8,34,62,.78); border: 1px solid rgba(255,255,255,.5); backdrop-filter: blur(4px); transition: transform .35s var(--ease), background .35s var(--ease); }
 .selw__play span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .selw__play:hover svg { transform: scale(1.08); background: var(--navy); }
-.selw__play:focus-visible { outline: 2px solid #fff; outline-offset: 4px; border-radius: 50%; }
-.selw__len { position: absolute; right: 26px; bottom: 26px; z-index: 2; padding: 4px 9px; background: rgba(11,38,66,.78); border-radius: 3px; font-size: var(--fs-eyebrow); letter-spacing: .06em; color: #fff; }
-.selw__name { margin: 18px 0 6px; font-size: clamp(22px, 1.8vw, 26px); font-weight: 400; letter-spacing: -.02em; line-height: 1.2; }
-.selw__name a { color: #3a3a3a; text-decoration: none; }
+.selw__play:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.selw__len { position: absolute; right: 14px; bottom: 12px; z-index: 2; padding: 4px 9px; background: rgba(8,34,62,.78); font-size: var(--fs-eyebrow); letter-spacing: .06em; color: #fff; }
+.selw__body { display: flex; flex-direction: column; flex: 1 1 auto; gap: 6px; padding: clamp(18px, 2.2vw, 28px); }
+.selw__tag { margin: 0 0 2px; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.selw__name { margin: 0; font-size: var(--fs-title); font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.selw__name a { color: var(--ink); text-decoration: none; }
 .selw__name a:hover { color: var(--navy); }
-.selw__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-.selw__line { margin: 0; max-width: 34ch; font-size: var(--fs-small); line-height: 1.45; color: #6a6a6a; }
-.selw__more { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 18px; padding-bottom: 7px; border-bottom: 1px solid #3a3a3a; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; white-space: nowrap; }
-.selw__more svg { width: 13px; height: 9px; }
-.selw__more:hover { color: var(--navy); border-bottom-color: var(--navy); }
-.selw__more:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
-.selw__end { text-align: center; }
-.selw__endline { margin: 0 auto clamp(20px, 2.6vw, 32px); max-width: 26ch; font-size: clamp(22px, 1.9vw, 28px); font-weight: 400; letter-spacing: -.02em; line-height: 1.25; color: #3a3a3a; }
-/* pinned: the band is as tall as the track is wide; the viewport-high pin holds a row of panels */
-.selw.is-pinned { padding: 0; }
-.selw.is-pinned .selw__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-.selw.is-pinned .selw__track { display: flex; align-items: stretch; width: max-content; height: 100%; gap: 0; padding: 0; will-change: transform; }
-.selw.is-pinned .selw__item { display: flex; flex-direction: column; justify-content: center; height: 100%; padding: 0 clamp(36px, 4vw, 64px); border-right: 1px solid rgba(0,0,0,.09); box-sizing: border-box; }
-.selw.is-pinned .selw__head { flex: 0 0 min(600px, 42vw); align-items: flex-start; padding-left: var(--gutter); }
-.selw.is-pinned .selw__head .selw__title { max-width: 11ch; }
-.selw.is-pinned .selw__card { flex: 0 0 min(760px, 50vw); padding-top: 6vh; padding-bottom: 6vh; }
-.selw.is-pinned .selw__card--low { justify-content: flex-end; padding-bottom: 8vh; }
-.selw.is-pinned .selw__card:not(.selw__card--low) { justify-content: flex-start; padding-top: 10vh; }
-.selw.is-pinned .selw__end { flex: 0 0 min(760px, 50vw); align-items: center; border-right: 0; }
-.selw.is-pinned .selw__media[data-reveal] { transform: translateX(32px); }
-.selw.is-pinned .selw__media[data-reveal].is-in { transform: none; }
-@media (max-width: 900px) { .selw__media::after { inset: 12px; } .selw__play svg { width: 60px; height: 60px; padding: 20px; } }
+.selw__line { margin: 0; max-width: 52ch; color: var(--ink-2); }
+.selw__go { margin-top: auto; padding-top: 14px; align-self: flex-start; }
+@media (max-width: 620px) { .selw__track { grid-template-columns: 1fr; } .selw__play svg { width: 58px; height: 58px; padding: 19px; } }
+/* pinned (home.js, wide screens, motion allowed): the band is as tall as the track is wide,
+   the viewport-high pin holds one row, and the row travels with the page scroll */
+.selw__travel.is-pinned .selw__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.selw__travel.is-pinned .selw__track { display: flex; align-items: stretch; width: max-content; max-width: none; margin: 0; gap: clamp(22px, 3vw, 44px); padding: 0 var(--gutter); will-change: transform; --shell-side: max(var(--gutter), calc((100vw - var(--shell)) / 2)); padding-left: var(--shell-side); padding-right: var(--shell-side); }
+.selw__travel.is-pinned .selw__card { flex: 0 0 var(--card-w); width: var(--card-w); --card-w: min(calc((100vw - 2 * var(--shell-side) - clamp(22px, 3vw, 44px)) / 2), calc((100vh - 160px) * 1.2), calc((100svh - 160px) * 1.2)); }
+@media (max-width: 1100px) { .selw__travel.is-pinned .selw__card { --card-w: min(calc(100vw - 2 * var(--shell-side)), calc((100vh - 160px) * 1.2), 760px); } }
+.selw__travel.is-pinned .selw__card[data-reveal] { transform: translateX(32px); }
+.selw__travel.is-pinned .selw__card[data-reveal].is-in { transform: none; }
+.selw__travel.is-pinned .selw__card:hover { transform: translateY(-4px); }
+/* the transition statement: small as it arrives, full size at the centre, a held beat, then released */
+.selw__out { position: relative; margin-top: clamp(40px, 6vw, 88px); }
+.selw__out-pin { display: grid; place-items: center; align-content: center; gap: clamp(16px, 2vw, 24px); padding: clamp(32px, 5vw, 64px) var(--gutter); text-align: center; }
+.selw__statement { margin: 0; max-width: 20ch; font-size: clamp(28px, 4.2vw, 64px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; color: var(--ink); transform-origin: 50% 50%; }
+.selw__out.is-scaling { height: 200vh; height: 200svh; margin-top: 0; }
+.selw__out.is-scaling .selw__out-pin { position: sticky; top: 0; height: 100vh; height: 100svh; box-sizing: border-box; }
+.selw__out.is-scaling .selw__statement { transform: scale(var(--s, .42)); opacity: var(--o, .35); will-change: transform, opacity; }
+.selw__out.is-scaling .selw__out-link { opacity: var(--l, 0); transform: translateY(calc((1 - var(--l, 0)) * 12px)); transition: none; }
 /* the overall-thinking rows: the pattern first, then "seen in" chips */
 .story__flow--top { margin: 0 0 clamp(28px, 4vw, 48px); }
 .srow__seen { margin: 12px 0 6px !important; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }

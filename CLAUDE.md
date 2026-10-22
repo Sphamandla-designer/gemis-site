@@ -127,11 +127,13 @@ layer that first introduced the component.
   pages and articles. The homepage order (the owner's revisions of the brief's):
   the hero as it was (tagline, partner line) → the stats section as it was
   (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
-  (`.selw`, after the owner's reference screenshots in commit 4440697, on a
-  pure white ground: a band pinned to the viewport, divided into panels by
-  thin rules, four project cards with play buttons travelling across on
-  scroll, a closing "view all" panel; `[data-hscroll]` in `home.js`,
-  vertical without JS, on phones and
+  (`.selw`, pure white: the shared section header, then four equal-height
+  case study cards on a horizontal travel pinned to the viewport, two to a
+  screen on desktop and one at 901–1100px (`[data-hscroll]` in `home.js`),
+  a two-column grid on tablets and one column under 620px; each card plays
+  its video; then the transition statement `[data-scaleup]` that scales up
+  as it is scrolled to the centre of the viewport, holds, and releases;
+  both static without JS and
   under reduced motion) → **Client stories** (`testimonials_html()`, the
   owner's placeholder testimonials) → the overall thinking (`PRINCIPLES` +
   `OVERALL_FLOW` in `build-home.py`) → **Book a Discovery Session** with the
