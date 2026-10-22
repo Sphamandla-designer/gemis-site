@@ -149,88 +149,65 @@ def endorsement_html(key, base, since_text=''):
     return hideable(e['line_tbc'], card)
 
 
-# ── the stories slider ───────────────────────────────────────────────────
-PLAY = ('<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">'
-        '<path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg>')
-
-
+# ── the stories panel ────────────────────────────────────────────────────
 def stories_html(base=''):
     """
-    "Built together. Still working." after the stories-panel design reference
-    (qa/design-refs/stories-panel.png): the introduction and the list of
-    clients on the left, one story at a time on the right — its video poster
-    in a bordered panel, the headline and copy beneath, and two actions:
-    Read the story, and Watch the story, which opens the video full-screen.
+    "Built together. Still working." reproduced from the owner's reference
+    (qa/design-refs/stories-panel.png) as it is: a dark panel with a ruled top
+    edge marked by two plus signs, a left column (blue glow at its head, the
+    headline, a paragraph, one bordered button, then the list with the active
+    row marked by a bar and an arrow) divided by a vertical rule from the right
+    column (a bordered panel on a faint grid — the video, in place of the
+    illustration — then a bold line and grey copy). Only the content changes.
 
-    The markup is a plain <ol> of story cards that reads top to bottom with no
-    JavaScript; assets/js/home.js turns it into the stage, the auto-advance
-    and the video overlay. Without JavaScript "Watch the story" is a link to
-    the video file itself.
+    The markup is a plain <ol> of stories that reads top to bottom with no
+    JavaScript; assets/js/home.js turns it into the tabbed stage.
     """
     tabs, slides = [], []
     for i, s in enumerate(S.STORIES):
-        founding = s['slug'] in S.FOUNDING
         product = s.get('is_product')
         href = f'{base}products/managem/' if product else f'{base}work/{s["slug"]}/'
         cta = 'Explore ManaGEM' if product else 'Read the story'
         v = f'{base}{S.VIDEO_DIR}{s["video"]}'
-        tag = ('<span class="sty__tag">Founding client</span>' if founding
-               else '<span class="sty__tag">Our product</span>' if product else '')
         pressed = 'true' if i == 0 else 'false'
         hidden = '' if i == 0 else ' aria-hidden="true"'
         tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{i}" aria-pressed="{pressed}">
               <span class="stories__tab-name">{esc(s['client'])}</span>
-              <span class="stories__tab-p">{period_html(s)}</span>
-              <span class="stories__tab-go" aria-hidden="true">{ARROW}</span>
+              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
             </button></li>''')
         slides.append(f'''            <li class="sty" id="sty-{s['slug']}"{hidden}>
               <div class="sty__panel">
-                <img class="sty__poster" src="{v}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-                <a class="sty__play" href="{v}_web.mp4" data-watch data-mp4="{v}_web.mp4" data-webm="{v}_web.webm" data-poster="{v}_thumb.jpg" data-title="{esc(s['video_title'])}" aria-label="Watch the {esc(s['client'])} story">{PLAY}</a>
-                <span class="sty__len" aria-hidden="true">{s['duration_label']}</span>
+                <video class="sty__video" controls preload="none" playsinline width="1280" height="720" poster="{v}_thumb.jpg" aria-label="{esc(s['video_title'])}">
+                  <source src="{v}_web.webm" type="video/webm">
+                  <source src="{v}_web.mp4" type="video/mp4">
+                  <a href="{v}_web.mp4">Download the video</a>
+                </video>
               </div>
-              <div class="sty__body">
-                <p class="sty__period">{period_html(s)}{tag}</p>
-                <h3 class="sty__client">{esc(s['client'])} <span class="sty__sep">—</span> {esc(s['headline'])}</h3>
-                <p class="sty__challenge">{esc(s['challenge'])}. <strong>{esc(s['outcome'])}.</strong></p>
-                <div class="sty__actions">
-                  <a class="btn btn--light" href="{href}">{cta} {ARROW}</a>
-                  <a class="btn btn--ghost" href="{v}_web.mp4" data-watch data-mp4="{v}_web.mp4" data-webm="{v}_web.webm" data-poster="{v}_thumb.jpg" data-title="{esc(s['video_title'])}">{PLAY} Watch the story</a>
-                </div>
-              </div>
+              <p class="sty__title">{esc(s['client'])}: {esc(s['headline'].lower() if s['headline'][:1].isupper() and not s['headline'][:2].isupper() else s['headline'])}.</p>
+              <p class="sty__copy">{esc(s['challenge'])}. {esc(s['outcome'])}. <a class="sty__link" href="{href}">{cta} &rarr;</a></p>
             </li>''')
     n = len(S.STORIES)
     tabs.append(f'''            <li><button class="stories__tab" type="button" data-go="{n}" aria-pressed="false">
               <span class="stories__tab-name">Today</span>
-              <span class="stories__tab-p">2026</span>
-              <span class="stories__tab-go" aria-hidden="true">{ARROW}</span>
+              <span class="stories__tab-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span>
             </button></li>''')
     slides.append(f'''            <li class="sty sty--today" id="sty-today" aria-hidden="true">
-              <div class="sty__panel sty__panel--today">
-                <p class="sty__big">Still building together.</p>
-              </div>
-              <div class="sty__body">
-                <p class="sty__period">2026</p>
-                <h3 class="sty__client">Today <span class="sty__sep">—</span> the founding relationships continue</h3>
-                <p class="sty__challenge">All three founding clients still run on the systems we built them, and the systems have kept growing with the businesses.</p>
-                <div class="sty__actions">
-                  <a class="btn btn--light" href="{base}#discovery">Book a Discovery Session {ARROW}</a>
-                  <a class="btn btn--ghost" href="{base}work/">All case studies {ARROW}</a>
-                </div>
-              </div>
+              <div class="sty__panel sty__panel--today"><p class="sty__big">Still building together.</p></div>
+              <p class="sty__title">Today: the founding relationships continue.</p>
+              <p class="sty__copy">All three founding clients still run on the systems we built them, and those systems have kept growing with the businesses. <a class="sty__link" href="{base}#discovery">Book a Discovery Session &rarr;</a></p>
             </li>''')
     nl = chr(10)
     return f'''        <div class="stories__frame" data-stories>
           <div class="stories__intro">
-            <p class="eyebrow" data-reveal>Our story, told through the businesses we've helped</p>
-            <h2 class="display" id="storiesHeading" data-reveal style="--d:80ms">Built together. Still working.</h2>
-            <p class="lede" data-reveal style="--d:140ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
-            <a class="btn btn--light stories__all" href="{base}work/" data-reveal style="--d:200ms">See all case studies {ARROW}</a>
-            <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:260ms">
+            <span class="stories__glow" aria-hidden="true"></span>
+            <h2 class="stories__title" id="storiesHeading" data-reveal>Built together.<br />Still working.</h2>
+            <p class="stories__lede" data-reveal style="--d:80ms">More than a decade of real systems: the problems our clients brought us, what we built, and how those systems have grown since.</p>
+            <a class="stories__cta" href="{base}work/" data-reveal style="--d:140ms"><span>See all case studies</span><span class="stories__cta-go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></span></a>
+            <ol class="stories__rail" aria-label="Choose a story" data-reveal style="--d:200ms">
 {nl.join(tabs)}
             </ol>
           </div>
-          <div class="stories__stage" data-reveal style="--d:200ms">
+          <div class="stories__stage" data-reveal style="--d:140ms">
             <ol class="stories__list">
 {nl.join(slides)}
             </ol>
@@ -242,15 +219,7 @@ def stories_html(base=''):
               <span class="stories__bar" aria-hidden="true"><i></i></span>
             </div>
           </div>
-        </div>
-
-        <!-- the video overlay: filled and opened by home.js; closed on Escape,
-             the close button or a click on the backdrop -->
-        <dialog class="vmodal" id="videoModal" aria-label="Case study video">
-          <button class="vmodal__close" type="button" data-close aria-label="Close video"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7"/></svg></button>
-          <video class="vmodal__video" controls playsinline preload="none" width="1280" height="720"></video>
-          <p class="vmodal__title" data-vtitle></p>
-        </dialog>'''
+        </div>'''
 
 
 # ── the design-reference kit, shared by every generated page ─────────────
