@@ -3890,3 +3890,6 @@ html.has-modal { overflow: hidden; }
 .stories__tab-go { grid-column: 2; }
 /* on wide screens the story stays level with the list as the list runs longer */
 @media (min-width: 1081px) { .stories__stage { position: sticky; top: 96px; } }
+/* the row columns collapse on small screens (the wide-measure rule above is desktop-only) */
+@media (max-width: 900px) { .srow { grid-template-columns: 48px minmax(0, 1fr); } .srow__body { grid-column: 2; } }
+@media (max-width: 560px) { .srow { grid-template-columns: 1fr; gap: 10px; } .srow__body { grid-column: 1; } }

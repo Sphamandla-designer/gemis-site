@@ -103,7 +103,13 @@
 
     fit();
     window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    // a card can grow after first paint (fonts, images, wrapped buttons): keep the stage in step
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(function () { fit(); });
+      slides.forEach(function (s) { ro.observe(s); });
+    }
     show(0, 1);
     if (reduced) setPaused(true);
   }
