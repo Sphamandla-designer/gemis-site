@@ -34,7 +34,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
 | `work/`, `work/<story>/` ×6 | `scripts/stories.py` | `python3 scripts/build-pages.py` |
 | the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
-| `gemis-site-standalone.html` | the root pages, `site.css`, `site.js`, fonts, images | `python3 tools/build-site-standalone.py` — **stale**: it assumes flat root pages |
+| `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images and the MP4 videos | `python3 tools/build-site-standalone.py` — one 17 MB file; pages run in frames, videos reach them as blob URLs |
 
 Full rebuild, in order: `build-stories` → `build-home` → `build-services` →
 `build-pages` → `build-other` → `apply-chrome`.
@@ -47,9 +47,10 @@ Two traps in these builds:
 - The studio build bakes a live SAST clock into every page it writes, so a rebuild
   always dirties five files with a one-line timestamp change. Restore that line in
   the files you did not otherwise touch, so the diff is only the real work.
-- `build-site-standalone.py` asserts every page in its `PAGES` list links
-  `site.css`. A redirect stub has inline styles instead, so adding one to `PAGES`
-  fails the build. Stubs belong in the list that gets routed to the live site.
+- `build-site-standalone.py` takes its page list from `apply-chrome.pages()` and
+  skips anything carrying a meta refresh, so redirect stubs never enter the
+  bundle; a link to one is routed to the live site instead. It carries MP4 only
+  (iOS needs it); the WebM sources are dropped at build time.
 
 ## Redirect stubs
 
