@@ -3777,3 +3777,42 @@ a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
 .hero__partner { display: inline-grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; align-items: center; margin: clamp(32px, 4vw, 52px) 0 0; padding: 12px 18px 12px 14px; border: 1px solid rgba(255,255,255,.28); border-radius: 8px; background: rgba(8,34,62,.35); backdrop-filter: blur(6px); font-size: var(--fs-small); line-height: 1.4; color: rgba(255,255,255,.82); }
 .hero__partner svg { width: 22px; height: 22px; }
 .hero__partner strong { display: block; font-weight: 600; font-size: var(--fs-copy); color: #fff; letter-spacing: -.005em; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   POLISH — the hero partnership on the right, smaller uniform logos, a wider
+   measure so content fills the page, and a white ground for Solutions.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* the shell runs wider and the long-form measures follow, so the page no
+   longer leaves empty margins on wide screens */
+:root { --shell: 1560px; --gutter: clamp(20px, 3.4vw, 52px); }
+.trust__copy { max-width: 64ch; }
+.sec__head .lede, .values__head .lede, .what__head .lede { max-width: 56ch; }
+.srow__body p { max-width: 80ch; }
+.srow { grid-template-columns: 72px minmax(0, .8fr) minmax(0, 1.8fr); }
+.led__cols { max-width: 880px; }
+.art__in { max-width: 980px; }
+.art__body { max-width: 76ch; }
+.story__next { max-width: 1120px; }
+.endnote p { max-width: 56ch; }
+.chero__copy { max-width: 60ch; }
+.hero__copy { max-width: 52ch; }
+
+/* the hero: text on the left, the partnership on the right, both on the
+   same baseline; no card, just the mark and two lines with a little air */
+.hero__in { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 4vw, 72px); align-items: end; }
+.hero__text { min-width: 0; }
+.hero__partner { display: grid; grid-template-columns: 26px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; row-gap: 6px; align-items: center; margin: 0; padding: 0; border: 0; background: none; backdrop-filter: none; text-align: left; }
+.hero__partner svg { grid-row: 1 / 3; width: 26px; height: 26px; align-self: center; }
+.hero__partner-name { font-size: var(--fs-name); font-weight: 600; letter-spacing: -.005em; color: #fff; line-height: 1.2; }
+.hero__partner-line { font-size: var(--fs-small); color: rgba(255,255,255,.78); line-height: 1.4; }
+@media (max-width: 900px) { .hero__in { grid-template-columns: 1fr; } .hero__partner { margin-top: clamp(28px, 5vw, 44px); } }
+
+/* client logos: every mark sits in the same box, so none dominates */
+.marquee__item img { height: 36px; width: 128px; max-width: 128px; object-fit: contain; opacity: .85; }
+.marquee__track { gap: clamp(36px, 4.5vw, 72px); }
+@media (max-width: 620px) { .marquee__item img { height: 30px; width: 104px; max-width: 104px; } }
+
+/* Solutions & Expertise on pure white */
+.svcs { background-color: #fff; }
+.svcs .srow__chips li { background: var(--wash); }
