@@ -124,9 +124,14 @@ layer that first introduced the component.
   challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
   one case card (industry, name, headline, GEMIS's role, status, capability
   chips, Read / Play) used by the index, the homepage, related rows, service
-  pages and articles. The homepage runs in the brief's order: proposition hero →
-  featured case study → selected projects → the thinking → capabilities →
-  partnership proof (stats, confirmed results, logos, stories panel) → how we
+  pages and articles. The homepage order (owner's revision of the brief's):
+  the hero as it was (tagline, partner line) → the stats section as it was
+  (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
+  (`.selw`, after the owner's Trionn reference: a white band pinned to the
+  viewport while four project cards travel across on scroll; `[data-hscroll]`
+  in `home.js`, vertical without JS, on phones and under reduced motion) → the
+  overall thinking (`PRINCIPLES` + `OVERALL_FLOW` in `build-home.py`, each
+  principle with "seen in" chips) → capabilities → the stories panel → how we
   work → the company → the enquiry band. The enquiry form lives on
   `contact.html` only; every CTA says *Discuss a project* and points there.
 

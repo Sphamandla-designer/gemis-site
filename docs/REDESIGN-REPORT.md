@@ -100,6 +100,20 @@ The scene times used, checked against a contact sheet of each video:
 | `sonke` | `Sonke_explainer_web.mp4` | 01-capture @ 30.6s, 02-approve @ 42.6s, 03-roles @ 58.6s, 04-donor @ 70.6s |
 | `tores-foundation` | `Tores_debating_platform_web.mp4` | 01-competitions @ 30.6s, 02-standings @ 42.6s, 03-claims @ 54.6s, 04-approval @ 66.6s |
 
+### Owner's revision (same day)
+
+After reviewing the first build the owner asked for: the hero and the stats
+section restored as they were; "Selected projects" rebuilt to the Trionn
+"Selected work & explorations" reference in the repository (a white band
+pinned to the viewport, four large project cards travelling across as the page
+scrolls, a closing "view all" panel; vertical without JavaScript, on phones and
+under reduced motion, and keyboard focus scrolls a card into view); "The
+thinking behind the work" made the overall thinking (the pattern every system
+follows, six principles, each with the projects where it runs); then
+"Capabilities, demonstrated". The featured-case-study and partnership-proof
+sections were folded into these; the stories panel, how we work, the company
+and the enquiry band follow as before.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

@@ -4514,3 +4514,39 @@ html.has-modal { overflow: hidden; }
 /* the diagram beneath a video or prose block keeps its distance */
 .story__flow { margin-top: clamp(28px, 4vw, 48px); }
 .story__flow .out__h { margin-bottom: 14px; }
+
+/* ── selected work: a pinned white band, the cards travel across on scroll ──
+   The owner's reference. The list is vertical by default; home.js adds
+   .is-pinned on wide screens when motion is allowed, which pins the band and
+   lets the track translate with the page scroll. */
+.selw { position: relative; background: #fff; color: var(--ink); padding-top: var(--sec-y); padding-bottom: var(--sec-y); }
+.selw__track { display: grid; gap: clamp(28px, 4vw, 56px); margin: 0; padding: 0 var(--gutter); list-style: none; }
+.selw__item { min-width: 0; }
+.selw__head .display { max-width: 12ch; margin-bottom: clamp(18px, 2.4vw, 28px); }
+.selw__media { display: block; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-2); }
+.selw__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .7s var(--ease); }
+.selw__card:hover .selw__media img { transform: scale(1.03); }
+.selw__name { margin: 16px 0 6px; font-size: var(--fs-title); font-weight: 500; letter-spacing: -.02em; line-height: 1.2; }
+.selw__name a { color: var(--ink); text-decoration: none; }
+.selw__name a:hover { color: var(--navy); }
+.selw__row { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.selw__line { margin: 0; max-width: 40ch; font-size: var(--fs-small); color: var(--ink-2); }
+.selw__more { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--ink); font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.selw__more svg { width: 11px; height: 11px; }
+.selw__more:hover { color: var(--navy); border-bottom-color: var(--navy); }
+.selw__more:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; }
+.selw__end { text-align: center; }
+.selw__endline { margin: 0 auto clamp(18px, 2.4vw, 28px); max-width: 28ch; font-size: var(--fs-lead); font-weight: 500; letter-spacing: -.02em; line-height: 1.25; color: var(--ink); }
+/* pinned: the band is as tall as the track is wide; the viewport-high pin holds the row */
+.selw.is-pinned { padding: 0; }
+.selw.is-pinned .selw__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.selw.is-pinned .selw__track { display: flex; align-items: center; width: max-content; gap: clamp(40px, 5vw, 96px); padding: 0 var(--gutter); will-change: transform; }
+.selw.is-pinned .selw__head { flex: 0 0 min(520px, 36vw); padding-right: clamp(24px, 4vw, 72px); border-right: 1px solid var(--rule); }
+.selw.is-pinned .selw__card { flex: 0 0 min(680px, 50vw); }
+.selw.is-pinned .selw__end { flex: 0 0 min(560px, 40vw); padding-left: clamp(24px, 4vw, 72px); }
+.selw.is-pinned .selw__card[data-reveal] { transform: translateX(40px); }
+.selw.is-pinned .selw__card[data-reveal].is-in { transform: none; }
+/* the overall-thinking rows: the pattern first, then "seen in" chips */
+.story__flow--top { margin: 0 0 clamp(28px, 4vw, 48px); }
+.srow__seen { margin: 12px 0 6px !important; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.band-wash .flow__step { background: #fff; }

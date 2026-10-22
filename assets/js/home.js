@@ -166,6 +166,36 @@
     });
   }
 
+  /* ── selected work: the band pins and the cards travel across as the page scrolls ──
+     Wide screens only, and never under reduced motion; otherwise the list stays
+     vertical. Focus inside the track scrolls the page to bring the card on. */
+  var hs = document.querySelector('[data-hscroll]');
+  if (hs && !reduced && window.matchMedia('(min-width: 901px)').matches) {
+    var track = hs.querySelector('[data-track]');
+    var span = 0, total = 0;
+    function hsSize() {
+      hs.classList.add('is-pinned');
+      span = Math.max(0, track.scrollWidth - window.innerWidth);
+      total = span;                                   // one px of travel per px of scroll
+      hs.style.height = (window.innerHeight + total) + 'px';
+    }
+    function hsRun() {
+      var top = hs.getBoundingClientRect().top;
+      var p = total ? Math.min(1, Math.max(0, -top / total)) : 0;
+      track.style.transform = 'translate3d(' + (-p * span) + 'px,0,0)';
+    }
+    hsSize(); hsRun();
+    window.addEventListener('scroll', hsRun, { passive: true });
+    window.addEventListener('resize', function () { hsSize(); hsRun(); });
+    window.addEventListener('load', function () { hsSize(); hsRun(); });
+    track.addEventListener('focusin', function (e) {
+      var item = e.target.closest('.selw__item'); if (!item || !span) return;
+      var x = Math.min(span, Math.max(0, item.offsetLeft - 48));
+      var y = hs.getBoundingClientRect().top + window.scrollY + (x / span) * total;
+      window.scrollTo({ top: y, behavior: 'auto' });
+    });
+  }
+
   /* ── the horizontal timeline: draws its line and lands its steps in turn ── */
   var lines = [].slice.call(document.querySelectorAll('.tline'));
   if (lines.length) {
