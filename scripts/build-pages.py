@@ -27,6 +27,9 @@ B = importlib.util.module_from_spec(bs_spec)
 bs_spec.loader.exec_module(B)
 
 esc, tbc, ARROW = B.esc, B.tbc, B.ARROW
+sv_spec = importlib.util.spec_from_file_location('services', os.path.join(HERE, 'services.py'))
+SV = importlib.util.module_from_spec(sv_spec)
+sv_spec.loader.exec_module(SV)
 CANON = S.CANONICAL
 
 
@@ -60,6 +63,8 @@ def shell(base, title, description, canonical, extra_head=''):
                       lambda m: f'{m.group(1)}="{base}{m.group(2)}"', text)
         return text
 
+    # every page this shell builds opens on a light wave hero, so the bar is solid from the start
+    head_open = head_open.replace('<header class="nav" id="nav">', '<header class="nav nav--solid" id="nav">', 1)
     return rebase(head_open) + '<main>\n', '</main>\n' + rebase(tail)
 
 
@@ -216,66 +221,45 @@ def work_page():
     schema = ('  <script type="application/ld+json">\n'
               + json.dumps(items, ensure_ascii=False, indent=2) + '\n  </script>')
 
-    head = shell(base, 'Our Work — systems in the real world | GEMIS®',
-                 'Every project here is a system in production, and many have been running '
-                 'for years. Case studies from GEMIS, a business systems partner since 2014.',
+    head = shell(base, 'Case Studies — complex business challenges, thoughtfully designed digital solutions | GEMIS®',
+                 'Case studies from GEMIS: the systems South African businesses run on, from field operations '
+                 'and claims to reporting and the ManaGEM platform. A business systems partner since 2014.',
                  f'{CANON}work/', extra_head=schema)
 
-    founders = B.srows([
-        (f'<a href="{base}work/{s["slug"]}/">{esc(s["client"])}</a>',
-         f'<p>{esc(s["headline"])}</p>', [B.since_html(s)],
-         f'<a class="arrow-link arrow-link--quiet srow__go" href="{base}work/{s["slug"]}/">Read the story {ARROW}</a>')
-        for s in [S.BY_SLUG[k] for k in S.FOUNDING]])
+    m = S.BY_SLUG['managem']
+    comp = [S.BY_SLUG[k] for k in ('wastemart', 'homeassist', 'managem')]
+    composition = '\n'.join(
+        '          <img class="cshero__shot cshero__shot--%d" src="%s%s%s_thumb.jpg" alt="" width="1280" height="720" loading="%s" />'
+        % (i + 1, base, S.VIDEO_DIR, c['video'], 'eager' if i == 2 else 'lazy')
+        for i, c in enumerate(comp))
 
-    grid = '\n'.join(B.feat(
-        esc(s['client']), f"{base}work/{s['slug']}/", f"{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg",
-        B.period_html(s), esc(s['headline']), chips=[esc(s['industry'])] + [t.replace('-', ' ').capitalize() for t in s['capability_tags'][:2]],
-        extra_attrs=f' data-reveal data-industry="{s["industry_tag"]}" data-capability="{" ".join(s["capability_tags"])}"',
-    ).replace('<article class="post"', '<article class="post wk__card"') for s in S.STORY_PAGES)
+    def card(i, s):
+        return f'''          <article class="cscard wk__card" data-reveal style="--d:{i * 60}ms"
+                   data-industry="{s['industry_tag']}" data-capability="{' '.join(s['capability_tags'])}">
+            <a class="cscard__media" href="{base}work/{s['slug']}/" tabindex="-1" aria-hidden="true">
+              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+              <span class="cscard__len">{s['duration_label']}</span>
+            </a>
+            <div class="cscard__body">
+              <p class="cscard__tag">{esc(s['industry'])}</p>
+              <h3 class="cscard__name">{esc(s['client'])}</h3>
+              <p class="cscard__line">{esc(s['headline'])}</p>
+              <div class="cscard__actions">
+                <a class="btn btn--sm" href="{base}work/{s['slug']}/">Read story {ARROW}</a>
+                <a class="btn btn--sm btn--ghost" {B.play_attrs(s, base)}>{B.PLAY} Play story</a>
+              </div>
+            </div>
+          </article>'''
+    cards = '\n'.join(card(i, s) for i, s in enumerate(S.STORY_PAGES))
 
     # Not confirmed as client systems, so they are not on the live build at all.
-    # Listing them with a "to confirm" note would publish our uncertainty.
     unclassified = '\n'.join(
         B.hideable(tid, f'''<article class="wk__card wk__card--unclassified">
             <h3 class="wk__name">{name}</h3>
             <p class="wk__line">{tbc(tid, 'Client system or concept — to confirm')}</p>
           </article>''') for name, tid in UNCLASSIFIED)
 
-    body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Our Work</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Systems in the real world</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">Every project here is a system in production, and many have been running for years.</p>
-      </div>
-    </section>
-
-    <section class="wk band band-tint plusgrid plusgrid--tr" aria-labelledby="foundersHeading">
-      <div class="shell">
-        <div class="svcs__head">
-          <div>
-            <p class="eyebrow" data-reveal>Founding clients</p>
-            <h2 class="display" id="foundersHeading" data-reveal style="--d:80ms">The relationships that started it</h2>
-          </div>
-        </div>
-        <ol class="srows">
-{founders}
-        </ol>
-      </div>
-    </section>
-
-{B.stories_section(base)}
-
-    <section class="wk band" id="all" aria-labelledby="allHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Every system</p>
-            <h2 class="display" id="allHeading" data-reveal style="--d:80ms">Systems in production</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">Filter by industry or by what the system had to do. Every project is listed whether you filter or not.</p>
-        </div>
-        <div class="wk__filters" data-filters hidden>
+    filters = '''        <div class="wk__filters" data-filters hidden>
           <fieldset class="wk__fieldset"><legend class="eyebrow">Industry</legend>
             <button type="button" data-filter="industry" data-value="all" aria-pressed="true">All</button>
             <button type="button" data-filter="industry" data-value="construction" aria-pressed="false">Construction</button>
@@ -291,10 +275,79 @@ def work_page():
             <button type="button" data-filter="capability" data-value="integration-reporting" aria-pressed="false">Integration and reporting</button>
             <button type="button" data-filter="capability" data-value="platforms" aria-pressed="false">Platforms</button>
           </fieldset>
+        </div>'''
+
+    body = f'''
+    <!-- ═══════════ CASE STUDIES ═══════════ -->
+    <section class="chero cshero" id="hero">
+      <div class="shell cshero__in">
+        <div class="cshero__text">
+          <p class="chero__kicker" data-reveal>Case studies</p>
+          <h1 class="chero__title" data-reveal style="--d:80ms">Complex business challenges. Thoughtfully designed digital solutions.</h1>
+          <p class="chero__copy" data-reveal style="--d:140ms">GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.</p>
+          <div class="cshero__ctas" data-reveal style="--d:200ms">
+            <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+            <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
+          </div>
         </div>
+        <div class="cshero__comp" data-reveal style="--d:200ms" aria-hidden="true">
+{composition}
+        </div>
+      </div>
+    </section>
+
+    <section class="csstats band" aria-label="GEMIS in numbers">
+      <div class="shell">
+        <ul class="trust__stats csstats__row" data-reveal>
+          <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
+          <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
+          <li class="stat"><span class="stat__n" data-count="10" data-sup="+">10<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
+          <li class="stat"><span class="stat__n" data-count="3">3</span><span class="stat__l">Founding clients, still with us</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="featured band band-tint plusgrid plusgrid--tr" aria-labelledby="featuredHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Featured project</p>
+            <h2 class="display" id="featuredHeading" data-reveal style="--d:80ms">ManaGEM — born in a real business, built for many</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">The system GEMIS built for one client in 2015, generalised into the business management platform about a dozen companies run on today.</p>
+        </div>
+        <div class="featured__grid">
+          <div class="featured__visual" data-reveal>
+            <img src="{base}{S.VIDEO_DIR}{m['video']}_thumb.jpg" alt="" width="1280" height="720" loading="lazy" />
+            <a class="featured__play" {B.play_attrs(m, base)} aria-label="Play the ManaGEM story">{B.PLAY}</a>
+            <span class="featured__len" aria-hidden="true">{m['duration_label']}</span>
+          </div>
+          <dl class="featured__facts" data-reveal style="--d:80ms">
+            <div><dt>Business context</dt><dd>{esc(m['industry'])}. {esc(m['period'])}.</dd></div>
+            <div><dt>The challenge</dt><dd>Off-the-shelf packages did not fit how SBS Waterproofing worked — quotes, jobs, invoices and stock lived in separate tools and spreadsheets, and the business had outgrown them.</dd></div>
+            <div><dt>GEMIS&rsquo;s contribution</dt><dd>{esc(m['summary'])}</dd></div>
+          </dl>
+          <div class="featured__actions" data-reveal style="--d:140ms">
+            <a class="btn" href="{base}products/managem/">Read the full story {ARROW}</a>
+            <a class="btn btn--ghost" {B.play_attrs(m, base)}>{B.PLAY} Play story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wk band" id="all" aria-labelledby="allHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>All case studies</p>
+            <h2 class="display" id="allHeading" data-reveal style="--d:80ms">Systems in production</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Every project here is a system in use today, and several have been running for more than a decade. Filter by industry or by what the system had to do.</p>
+        </div>
+{filters}
         <p class="vh" id="wkCount" aria-live="polite"></p>
-        <div class="feats" data-grid>
-{grid}
+        <div class="cscards" data-grid>
+{cards}
         </div>
         <div class="unconfirmed" data-kind="hideable">
         <h3 class="wk__sub" data-reveal>Still to classify</h3>
@@ -303,16 +356,35 @@ def work_page():
 {unclassified}
         </div>
         </div>
-        <p class="wk__more" data-reveal>Looking for a sector rather than a project? See <a href="{base}industries.html">Industries</a>.</p>
       </div>
     </section>
 
-    <section class="endnote">
+    <section class="approach band band-wash" aria-labelledby="approachHeading">
       <div class="shell">
-        <h2 class="display" data-reveal>Tell us what your business needs to do better.</h2>
-        <a class="arrow-link" href="{base}index.html#discovery" data-reveal style="--d:140ms">Book a Discovery Session {ARROW}</a>
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>How GEMIS approaches projects</p>
+            <h2 class="display" id="approachHeading" data-reveal style="--d:80ms">Understand. Define. Design. Deliver.</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">The same four principles sit behind every project here. <a class="arrow-link" href="{base}solutions/">See how we work {ARROW}</a></p>
+        </div>
+{B.tline(SV.APPROACH)}
       </div>
     </section>
+
+    <section class="convert" id="discuss" aria-labelledby="convertHeading">
+      <div class="shell convert__in">
+        <p class="eyebrow" data-reveal>Your project</p>
+        <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Have a complex business challenge? Let&rsquo;s explore the right solution.</h2>
+        <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
+        <div class="convert__ctas" data-reveal style="--d:200ms">
+          <a class="btn" href="{base}index.html#discovery">Discuss a project {ARROW}</a>
+          <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
+        </div>
+      </div>
+    </section>
+
+{B.video_modal()}
 '''
     html_out = head[0] + body + head[1]
     return html_out.replace('</body>',

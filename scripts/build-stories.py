@@ -256,8 +256,27 @@ def tline(steps, label='Step'):
           </li>''')
     nl = chr(10)
     return f'''        <ol class="tline tline--{len(steps)}" style="--n:{len(steps)}">
+          <span class="tline__runner" aria-hidden="true"></span>
 {nl.join(items)}
         </ol>'''
+
+
+PLAY = ('<svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg>')
+
+
+def play_attrs(s, base):
+    """The data attributes home.js reads to open a story's video in the overlay."""
+    v = f'{base}{S.VIDEO_DIR}{s["video"]}'
+    return (f'href="{v}_web.mp4" data-watch data-mp4="{v}_web.mp4" data-webm="{v}_web.webm" '
+            f'data-poster="{v}_thumb.jpg" data-title="{esc(s["video_title"])}"')
+
+
+def video_modal():
+    return '''        <dialog class="vmodal" id="videoModal" aria-label="Case study video">
+          <button class="vmodal__close" type="button" data-close aria-label="Close video"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7"/></svg></button>
+          <video class="vmodal__video" controls playsinline preload="none" width="1280" height="720"></video>
+          <p class="vmodal__title" data-vtitle></p>
+        </dialog>'''
 
 
 # ── the design-reference kit, shared by every generated page ─────────────

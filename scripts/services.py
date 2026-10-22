@@ -588,3 +588,10 @@ MILESTONES = [
     ('Platforms at national scale', 'ERP, learning, waste, property and community systems serving organisations nationally and abroad.'),
     ('A long-term partner', 'Discovery through continuous improvement — we stay with the systems we ship.'),
 ]
+
+APPROACH = [
+    ('Understand the business', 'We start on your floor, not at a whiteboard: how the work is actually done, where it breaks, and what a fix is worth.'),
+    ('Define the problem', 'One agreed statement of what the system has to do better, before anyone draws a screen or writes code.'),
+    ('Design the solution', 'The system is designed around your people and process, and tested with them as prototypes before it is built.'),
+    ('Validate and deliver', 'Demonstrated sprints, structured testing and a careful rollout — then we stay to keep improving it.'),
+]
