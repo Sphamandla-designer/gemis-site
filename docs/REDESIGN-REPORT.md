@@ -141,6 +141,13 @@ position. Under reduced motion and without JavaScript the statement is static.
 Verified at 360, 390, 768, 1024, 1440 and 1440×700: cards level on every row,
 the statement centred at every step, no overflow, no console errors.
 
+### Owner's fourth revision
+
+The owner chose the horizontal scrolling design over the grid: the pinned
+band from the second revision returns as it was, on a pure white ground
+instead of the grey gradient. The grid and the scroll-linked statement were
+removed again.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

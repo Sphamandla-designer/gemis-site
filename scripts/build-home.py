@@ -181,14 +181,13 @@ def trust():
 
 def selected():
     """
-    Selected work & case studies: the section header the whole site shares,
-    then four project cards on a responsive grid — two across on desktop and
-    tablet, one on a phone — every card the same height, with a play button
-    (each plays its case study video), the project name, a one-line
-    description and the site's arrow link. The band closes on the transition
-    statement, which scales up as it is scrolled into the centre of the
-    viewport, holds, then releases (home.js; static under reduced motion and
-    without JavaScript).
+    Selected work, after the owner's reference screenshots (commit 4440697):
+    a soft grey band pinned to the viewport, divided into panels by thin
+    full-height rules — the heading panel, four project cards, a closing
+    panel — travelling across as the page scrolls. Each card is a large
+    rounded image with a play button (it is a video), the project name, a
+    two-line description and a monospace EXPLORE PROJECT link. The list is
+    plain and vertical without JavaScript, on phones and under reduced motion.
     """
     picks = ['managem', 'wastemart', 'homeassist', 'sonke']
     cards = []
@@ -196,46 +195,43 @@ def selected():
         st = S.BY_SLUG[k]
         c = C.CASES.get(k, {})
         line = (c.get('value') or st['summary']).split('. ')[0].rstrip('.') + '.'
-        cards.append(f'''          <li class="selw__card" data-reveal style="--d:{(i % 2) * 80}ms">
-            <div class="selw__media">
+        cards.append(f'''          <li class="selw__item selw__card{' selw__card--low' if i % 2 else ''}">
+            <div class="selw__media" data-reveal style="--d:{i * 60}ms">
               <img src="{S.VIDEO_DIR}{st['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
               <a class="selw__play" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}<span>Play story</span></a>
               <span class="selw__len" aria-hidden="true">{st['duration_label']}</span>
             </div>
-            <div class="selw__body">
-              <p class="selw__tag">{esc(st['industry'])}</p>
-              <h3 class="selw__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
+            <h3 class="selw__name" data-reveal style="--d:{i * 60 + 60}ms"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
+            <div class="selw__row" data-reveal style="--d:{i * 60 + 100}ms">
               <p class="selw__line">{esc(line)}</p>
-              <a class="arrow-link arrow-link--quiet selw__go" href="{link_for(k)}">Explore project {ARROW}</a>
+              <a class="selw__more" href="{link_for(k)}">Explore project {MONO_ARROW}</a>
             </div>
           </li>''')
     nl = chr(10)
     return f'''
     <!-- ═══════════════════ 03 · SELECTED WORK ═══════════════════
-         Four case studies on the site's grid, each playing its video, then
-         the transition statement that scales up on scroll (home.js,
-         [data-scaleup]); static under reduced motion and without JavaScript. -->
-    <section class="selw band" id="selected" aria-labelledby="selectedHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Selected work</p>
-            <h2 class="display" id="selectedHeading" data-reveal style="--d:80ms">Selected work &amp; case studies</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">Four systems in production, each with the story of what the business needed and what was built. <a class="arrow-link" href="work/">View all projects {ARROW}</a></p>
-        </div>
-        <ol class="selw__grid">
+         The owner's reference (commit 4440697): a pinned grey band divided
+         into panels by thin rules, the heading first, four project cards
+         travelling across as the page scrolls, and a closing panel to every
+         case study. assets/js/home.js drives the pin; the list stacks
+         without it. Every card plays its case study video. -->
+    <section class="selw" id="selected" aria-labelledby="selectedHeading" data-hscroll>
+      <div class="selw__pin">
+        <ol class="selw__track" data-track>
+          <li class="selw__item selw__head">
+            <h2 class="selw__title" id="selectedHeading" data-reveal>Selected work<br />&amp; case studies</h2>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {MONO_ARROW}</a>
+          </li>
 {nl.join(cards)}
+          <li class="selw__item selw__end">
+            <p class="selw__endline" data-reveal>Discover the complete collection of systems, platforms and products GEMIS has built.</p>
+            <a class="selw__more" href="work/" data-reveal style="--d:80ms">View all projects {MONO_ARROW}</a>
+          </li>
         </ol>
-      </div>
-      <div class="selw__out" data-scaleup>
-        <div class="selw__out-pin">
-          <p class="selw__statement">Discover the complete collection of systems, platforms and products GEMIS has built.</p>
-          <a class="arrow-link selw__out-link" href="work/">View all projects {ARROW}</a>
-        </div>
       </div>
     </section>
 '''
+
 
 STAR = ('<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 1.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.5 7.8l5.9-.8Z"/></svg>')
 
