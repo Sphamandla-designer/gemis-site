@@ -88,11 +88,19 @@ layer that first introduced the component.
   band. **Every page ends paper → navy footer**: the closing bands — `.go`
   (home), `.convert` (case studies), `.endnote` (services, Our Story) — are
   white with ink type and navy buttons, and `.foot` is `--navy-deep` with
-  white type. The footer columns are Solutions (all nine) / Products
-  (ManaGEM, Design Studio, Technical Academy, All products) / Company (Our
-  Story, Case Studies, Insights, Industries, Contact), with the privacy
-  policy on the legal line (`FOOTER_COLS` + `FOOTER_LEGAL` in
-  `apply-chrome.py`, applied to every page).
+  white type. **The footer is a port of the efferd `footer-3` block** (the
+  owner supplied its React source; the site has no React, so the structure
+  is rebuilt as plain markup in `FOOTER` in `apply-chrome.py`, which
+  replaces the whole `<footer class="foot">` on every page): rounded top
+  corners with a centred glow and a blurred hairline, a brand column, four
+  sections — Solutions (all nine) / Products (ManaGEM, Design Studio,
+  Technical Academy, All products) / Company (Our Story, Case Studies,
+  Insights, Industries, Contact) / Connect (LinkedIn, gemis.co.za, email,
+  with icons) — a gradient rule and a centred legal line with the privacy
+  policy; expanded from the block's 1024px cap to the site's shell width.
+  Each section reveals with the block's blur-and-rise (`.has-js .foot
+  [data-reveal]`; `site.js` adds `has-js` to `<html>`, so the blur never
+  applies without JavaScript, and reduced motion gets it static).
 - **Case study pages** are built from `scripts/cases.py` (hero with status and
   Play story, overview, business challenge, strategy and approach, outcomes split
   into delivered / verified / intended, related work, tailored enquiry). Only the

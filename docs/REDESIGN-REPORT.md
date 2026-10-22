@@ -301,6 +301,25 @@ Checks: links 2,149 / 0 broken; axe 0 serious or critical; 14 pages × 4
 widths clean; functional sweep (overlay, stage, nav, tab order) clean; the
 statement-to-next-section spacing unchanged; chrome `--check` clean.
 
+### The footer, from the efferd footer-3 block
+
+The owner asked for the `@efferd/footer-3` shadcn block. The sandbox's
+network policy denies efferd.com and the site has no React or Tailwind, so
+the owner pasted the block's source and it was ported by hand into the
+site's own chrome: the block's structure (brand column; four link sections,
+the last with icons; a gradient hairline; a centred copyright), its rounded
+top corners, its top-centre glow and blurred hairline, and its reveal (each
+section blurs in from 4px and 8px above over .8s, a tenth of a second after
+the last). Expanded from the block's 1024px container to the site's shell
+width, on the navy ground. Content is the site's real links only: Solutions
+(nine), Products, Company, Connect (LinkedIn, gemis.co.za, email) — no
+Facebook, Instagram or YouTube, which the block lists as placeholders.
+`apply-chrome.py` now replaces the whole footer on every page; `site.js`
+marks `<html>` with `has-js` so the blur reveal cannot strand a page without
+scripts. Checks: links 2,149 / 0 broken; axe 0 serious or critical; 14 pages
+× 4 widths clean; reduced motion and no-JS show the footer at once; chrome
+`--check` clean; standalone rebuilt.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

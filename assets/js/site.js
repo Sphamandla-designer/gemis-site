@@ -2,6 +2,7 @@
    No dependencies; every effect degrades to a fully readable static page. */
 (function () {
   'use strict';
+  document.documentElement.classList.add('has-js');
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
