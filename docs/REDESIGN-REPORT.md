@@ -162,6 +162,51 @@ the viewport, holding, then releasing. Verified at 1440×900, 1440×700,
 1280×800, 1024×768, 768×1024, 390×844 and 360×640, on an iPhone profile with
 wheel scrolling, under reduced motion, without JavaScript, and by keyboard.
 
+### The operating logic (Fable 5.2.1 brief)
+
+"The thinking behind the work" was rebuilt as **The operating logic**: a dark
+editorial band between Selected work and the Discovery form. The hero
+photograph sits under a near-black graphite scrim (the site's photographic
+ground rule, darkened), type is warm white and silver, and the site's light
+blue is the one accent. The opening carries the label GEMIS / OPERATING
+PRINCIPLES and "Seven systems. The same four decisions." with "four decisions."
+as the accent anchor. The four principles sit on an asymmetric two-by-two
+(7/5 then 5/7 columns, the right-hand pair dropped), each with a ghost index,
+a solid index with a hairline, the statement, the supporting copy, a SEEN IN
+row of chapter links, and an abstract line motif (a line breaking and
+reconnecting in a field; a point travelling into a record, OFFLINE → SYNCED;
+two paths joining; layers extending from a 2015 outline). Every statement and
+line of copy is verbatim from the brief, verified by a string check against
+the rendered page.
+
+Motion: one SVG line is built from the real positions of the four index nodes
+and the endpoint (orthogonal route 1 → 2 → 3 → 4 → end), drawn with a dash
+offset that follows the band's progress through the viewport; a principle
+becomes active when the line reaches its node (and on hover or focus), which
+lights its node and resolves its motif through CSS transitions; the line ends
+at a single point above the insights footer, the bridge into Discovery.
+Reveals use the site's `data-reveal`. An IntersectionObserver gates the scroll
+handler so nothing runs offscreen; `requestAnimationFrame` coalesces scroll
+events. Under reduced motion CSS shows everything resolved and the script only
+builds the path; without JavaScript the band is complete and static. Narrow
+screens (≤900px) stack the principles on a vertical spine whose accent fill
+follows the same progress.
+
+Links: SEEN IN resolves to the existing chapter pages (`work/sbs-waterproofing/`,
+`work/wastemart/`, `work/sonke/`, `work/homeassist/`, `work/tores-foundation/`,
+`work/trans-hex/`, `products/managem/`) with the chapter names as labels; the
+footer links the three published articles by their real titles. The page has no
+in-page `#sbs-waterproofing` / `#wastemart` anchors, so the brief's fragment
+ids were resolved to those pages rather than invented.
+
+Verified at 1920×1000, 1440×900, 1024×768, 768×1024, 390×844 and 360×640:
+progress and active states sequence 1 → 2 → 3 → 4 at every size, all 14 links
+reachable by keyboard with a visible accent focus ring, hover activates a
+principle, no horizontal overflow, no console errors; reduced motion and no-JS
+show the resolved static band. Reference browsing (Awwwards, Godly,
+Pinterest) was not available in this environment; the design was developed
+from the brief's direction.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

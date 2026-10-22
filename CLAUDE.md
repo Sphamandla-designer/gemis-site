@@ -135,8 +135,14 @@ layer that first introduced the component.
   both static without JS and
   under reduced motion) → **In their words** (`in_their_words()`: the three
   endorsements read verbatim from `endorsements.md`; omitted until the file
-  exists) → the overall thinking (`PRINCIPLES` +
-  `OVERALL_FLOW` in `build-home.py`) → **Book a Discovery Session** with the
+  exists) → **The operating logic** (`operating_logic()`: the four principles,
+  verbatim in `OPERATING`, on a dark editorial band — the hero photograph
+  under a graphite scrim, warm-white and silver type, `#8fc3f3` the one
+  accent; an asymmetric two-by-two with one line drawn through the four index
+  nodes on scroll by `[data-oplogic]` in `home.js`, a vertical spine under
+  900px, abstract SVG motifs that resolve when a principle is active, "Seen
+  in" links to the chapter pages and the three articles; complete and still
+  without JS and under reduced motion) → **Book a Discovery Session** with the
   form, as it was. No capabilities, stories panel, how-we-work or company
   section on the home; those live on Solutions, Case Studies and Our Story.
 

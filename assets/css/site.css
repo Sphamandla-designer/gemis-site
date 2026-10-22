@@ -4575,3 +4575,133 @@ html.has-modal { overflow: hidden; }
 .chap__words { max-width: 720px; margin-top: clamp(24px, 3vw, 40px); }
 .out__words { margin-top: clamp(24px, 3vw, 40px); max-width: 720px; }
 @media (max-width: 900px) { .words__grid { grid-template-columns: 1fr; } }
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE OPERATING LOGIC — four principles, one line. A dark editorial band:
+   the hero photograph under a near-black graphite scrim, warm-white and
+   silver type, the site's light blue as the one accent, fine technical
+   rules and index numbers. Wide screens: an asymmetric two-by-two with a
+   continuous line drawn through the four index nodes on scroll. Narrow
+   screens: a vertical spine. Static and complete without JavaScript.
+   ══════════════════════════════════════════════════════════════════════ */
+.op { --op-ink: #f3efe8; --op-silver: #aeb4bc; --op-mute: #6f7782; --op-rule: rgba(255,255,255,.14); --op-accent: #8fc3f3; --scrim: linear-gradient(180deg, rgba(10,13,18,.93) 0%, rgba(12,16,22,.96) 50%, rgba(10,13,18,.98) 100%); color: var(--op-ink); padding-top: var(--sec-y); padding-bottom: 0; }
+.op::after { content: none; }
+.op__in { position: relative; }
+/* opening */
+.op__open { position: relative; padding-bottom: clamp(40px, 6vw, 96px); }
+.op__label { display: inline-flex; align-items: center; gap: 14px; margin: 0 0 clamp(22px, 3vw, 40px); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--op-silver); }
+.op__label::before { content: ''; width: 34px; height: 1px; background: var(--op-accent); }
+.op__label span { color: var(--op-mute); }
+.op__title { margin: 0; max-width: 11ch; font-size: clamp(44px, 7.2vw, 118px); font-weight: 300; letter-spacing: -.04em; line-height: .96; color: var(--op-ink); }
+.op__title .op__t1 { display: block; color: var(--op-silver); font-weight: 300; }
+.op__title .op__t2 { display: block; }
+.op__title em { font-style: normal; font-weight: 500; color: var(--op-accent); }
+/* the field and the line */
+.op__field { position: relative; }
+.op__line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.op__line path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.op__line-base { stroke: var(--op-rule); stroke-width: 1; }
+.op__line-draw { stroke: var(--op-accent); stroke-width: 1.25; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); opacity: .9; }
+.op__grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(56px, 7vw, 120px) clamp(32px, 5vw, 80px); margin: 0; padding: 0; list-style: none; }
+.op__item { position: relative; display: grid; grid-template-rows: auto auto auto auto 1fr; gap: 0; min-width: 0; padding-left: 36px; }
+.op__item--1 { grid-column: 1 / span 7; }
+.op__item--2 { grid-column: 8 / span 5; padding-top: clamp(40px, 6vw, 96px); }
+.op__item--3 { grid-column: 1 / span 5; }
+.op__item--4 { grid-column: 6 / span 7; padding-top: clamp(40px, 6vw, 96px); }
+.op__node { position: absolute; left: 0; top: 14px; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--op-silver); background: #0c1016; transition: border-color .4s var(--ease), box-shadow .4s var(--ease), background .4s var(--ease); z-index: 2; }
+.op__node::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--op-accent); opacity: 0; transition: opacity .4s var(--ease); }
+.op__item.is-active .op__node { border-color: var(--op-accent); box-shadow: 0 0 0 6px rgba(143,195,243,.12); }
+.op__item.is-active .op__node::after { opacity: 1; }
+.op__ghost { position: absolute; right: 0; top: -.18em; font-size: clamp(96px, 12vw, 200px); font-weight: 200; letter-spacing: -.06em; line-height: 1; color: rgba(255,255,255,.045); pointer-events: none; user-select: none; }
+.op__head { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(16px, 2vw, 26px); }
+.op__index { font-size: 12px; font-weight: 500; letter-spacing: .22em; color: var(--op-accent); }
+.op__rule { flex: 1 1 auto; height: 1px; background: var(--op-rule); max-width: 120px; }
+.op__statement { margin: 0 0 clamp(14px, 1.8vw, 22px); max-width: 16ch; font-size: clamp(26px, 2.6vw, 40px); font-weight: 500; letter-spacing: -.028em; line-height: 1.12; color: var(--op-ink); }
+.op__copy { margin: 0 0 clamp(18px, 2.2vw, 28px); max-width: 44ch; font-size: var(--fs-copy); line-height: 1.6; color: var(--op-silver); }
+.op__seen { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; }
+.op__seen-label { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--op-mute); }
+.op__seen-list { display: flex; flex-wrap: wrap; gap: 8px 0; margin: 0; padding: 0; list-style: none; }
+.op__seen-list li { display: flex; align-items: baseline; }
+.op__seen-list li + li::before { content: ''; width: 1px; height: 12px; margin: 0 14px; background: var(--op-rule); align-self: center; }
+.op__seen-list a { position: relative; font-size: var(--fs-small); font-weight: 500; color: var(--op-ink); text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,.28); transition: border-color .3s var(--ease), color .3s var(--ease); }
+.op__seen-list a:hover { color: var(--op-accent); border-bottom-color: var(--op-accent); }
+.op__seen-list a:focus-visible { outline: 2px solid var(--op-accent); outline-offset: 4px; }
+/* the motif: fine lines, silver at rest, accent and resolved when active */
+.op__motif-wrap { margin-top: clamp(26px, 3vw, 40px); align-self: end; justify-self: end; width: min(220px, 100%); color: var(--op-silver); opacity: .7; transition: opacity .5s var(--ease), color .5s var(--ease); }
+.op__item--1 .op__motif-wrap, .op__item--3 .op__motif-wrap { justify-self: start; }
+.op__item.is-active .op__motif-wrap { opacity: 1; color: var(--op-ink); }
+.op__motif { display: block; width: 100%; height: auto; }
+.op__motif .m-field, .op__motif .m-record, .op__motif .m-layer { stroke-opacity: .55; }
+.op__motif .m-grid, .op__motif .m-rows, .op__motif .m-marks, .op__motif .m-ticks { stroke-opacity: .28; }
+.op__motif .m-dot { opacity: .9; }
+.op__motif .m-dot--b, .op__motif .m-out, .op__motif .m-gap, .op__motif .m-join, .op__motif .m-ring, .op__motif .m-state--on, .op__motif .m-b { transition: opacity .6s var(--ease), stroke-dashoffset .9s var(--ease), stroke .6s var(--ease), transform .9s var(--ease); }
+/* 01 — the line breaks in the field and reconnects when active */
+.op__motif .m-gap { stroke-dasharray: 43; stroke-dashoffset: 43; stroke: var(--op-accent); }
+.op__motif .m-out, .op__motif .m-dot--b { opacity: .25; }
+.op__item.is-active .m-gap { stroke-dashoffset: 0; }
+.op__item.is-active .m-out, .op__item.is-active .m-dot--b { opacity: 1; }
+/* 02 — the point travels into the record; offline becomes synced */
+.op__motif .m-point { transition: transform .9s var(--ease), fill .6s var(--ease); }
+.op__motif .m-ring { opacity: .6; transition: opacity .6s var(--ease); }
+.op__motif .m-state--on { opacity: 0; }
+.op__item.is-active .m-point { transform: translateX(72px); fill: var(--op-accent); stroke: var(--op-accent); }
+.op__item.is-active .m-ring { opacity: 0; }
+.op__item.is-active .m-state--off { opacity: 0; }
+.op__item.is-active .m-state--on { opacity: 1; fill: var(--op-accent); }
+/* 03 — the second path joins the first */
+.op__motif .m-b { stroke-dasharray: 130; stroke-dashoffset: 130; }
+.op__motif .m-join { opacity: .35; }
+.op__item.is-active .m-b { stroke-dashoffset: 0; stroke: var(--op-accent); }
+.op__item.is-active .m-join { opacity: 1; stroke: var(--op-accent); }
+/* 04 — the layers extend from the earlier outline */
+.op__motif .m-layer { transition: opacity .7s var(--ease), transform .9s var(--ease); transform-origin: 14px 110px; }
+.op__motif .m-layer--2, .op__motif .m-layer--3, .op__motif .m-layer--4 { opacity: .18; transform: translate(-6px, 6px); }
+.op__item.is-active .m-layer--2 { opacity: .7; transform: none; transition-delay: .05s; }
+.op__item.is-active .m-layer--3 { opacity: .85; transform: none; transition-delay: .18s; }
+.op__item.is-active .m-layer--4 { opacity: 1; transform: none; stroke: var(--op-accent); transition-delay: .32s; }
+/* the ending: the line resolves to one point, then the Discovery band */
+.op__end { position: relative; display: grid; justify-items: center; gap: 0; margin-top: clamp(40px, 6vw, 96px); }
+.op__end-line { display: block; width: 1px; height: clamp(40px, 6vw, 88px); background: linear-gradient(180deg, var(--op-rule), var(--op-accent)); transform-origin: top; transform: scaleY(var(--pe, 0)); }
+.op__end-node { display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--op-accent); box-shadow: 0 0 0 8px rgba(143,195,243,.12); opacity: var(--pe, 0); }
+/* the insights footer */
+.op__foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px 28px; margin-top: clamp(36px, 5vw, 72px); padding: clamp(24px, 3vw, 36px) 0 var(--sec-y); border-top: 1px solid var(--op-rule); }
+.op__foot-label { margin: 0; font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--op-mute); }
+.op__reads { display: flex; flex-wrap: wrap; gap: 10px 0; margin: 0; padding: 0; list-style: none; }
+.op__reads li { display: flex; align-items: baseline; }
+.op__reads li + li::before { content: ''; width: 1px; height: 12px; margin: 0 20px; background: var(--op-rule); align-self: center; }
+.op__reads a { font-size: var(--fs-small); color: var(--op-silver); text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: color .3s var(--ease), border-color .3s var(--ease); }
+.op__reads a:hover { color: var(--op-ink); border-bottom-color: var(--op-accent); }
+.op__reads a:focus-visible { outline: 2px solid var(--op-accent); outline-offset: 4px; }
+/* reveals inside the band keep to one direction */
+.op [data-reveal] { transform: translateY(14px); }
+.op [data-reveal].is-in { transform: none; }
+/* laptop and tablet: a balanced two-column, smaller display, no ghost numerals */
+@media (max-width: 1280px) { .op__item--1, .op__item--3 { grid-column: 1 / span 6; } .op__item--2, .op__item--4 { grid-column: 7 / span 6; } .op__item--2, .op__item--4 { padding-top: clamp(32px, 5vw, 64px); } .op__ghost { font-size: clamp(80px, 10vw, 140px); } }
+/* narrow: a single column on a vertical spine; the SVG line gives way to it */
+@media (max-width: 900px) {
+  .op__grid { grid-template-columns: 1fr; gap: clamp(44px, 8vw, 64px); }
+  .op__grid::before { content: ''; position: absolute; left: 5px; top: 14px; bottom: 0; width: 1px; background: var(--op-rule); }
+  .op__grid::after { content: ''; position: absolute; left: 5px; top: 14px; bottom: 0; width: 1px; background: var(--op-accent); transform-origin: top; transform: scaleY(var(--p, 0)); }
+  .op__item, .op__item--1, .op__item--2, .op__item--3, .op__item--4 { grid-column: auto; padding-top: 0; padding-left: 32px; }
+  .op__line { display: none; }
+  .op__ghost { display: none; }
+  .op__motif-wrap, .op__item--1 .op__motif-wrap, .op__item--3 .op__motif-wrap { justify-self: start; width: min(200px, 100%); margin-top: 22px; }
+  .op__title { font-size: clamp(40px, 11vw, 64px); max-width: none; }
+  .op__statement { max-width: none; font-size: clamp(24px, 6vw, 32px); }
+  .op__end { justify-items: start; padding-left: 5px; }
+  .op__foot { flex-direction: column; align-items: flex-start; }
+  .op__reads { flex-direction: column; gap: 10px; }
+  .op__reads li + li::before { content: none; }
+}
+/* reduced motion: everything resolved and still */
+@media (prefers-reduced-motion: reduce) {
+  .op__line-draw { stroke-dashoffset: 0; }
+  .op__end-line { transform: none; } .op__end-node { opacity: 1; }
+  .op__grid::after { transform: none; }
+  .op__item .op__node { border-color: var(--op-accent); } .op__item .op__node::after { opacity: 1; }
+  .op__motif .m-gap { stroke-dashoffset: 0; } .op__motif .m-out, .op__motif .m-dot--b { opacity: 1; }
+  .op__motif .m-point { transform: translateX(72px); } .op__motif .m-ring, .op__motif .m-state--off { opacity: 0; } .op__motif .m-state--on { opacity: 1; }
+  .op__motif .m-b { stroke-dashoffset: 0; } .op__motif .m-join { opacity: 1; }
+  .op__motif .m-layer--2, .op__motif .m-layer--3, .op__motif .m-layer--4 { opacity: .85; transform: none; }
+  .op__motif *, .op__node, .op__motif-wrap { transition: none !important; }
+}
