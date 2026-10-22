@@ -4881,3 +4881,53 @@ main > section.selw { padding-bottom: 0; }
   will-change: transform;
 }
 .selw__travel.is-pinned .selw__card:hover .selw__media img { transform: translateX(calc(var(--hs-d, 0) * -4%)) skewX(calc(var(--hs-v, 0) * -1.6deg)) scale(1.13); }
+
+/* ── FOOTER — ported from the efferd footer-3 block ──────────────────────
+   The block's structure (brand column, four link sections, the last with
+   icons; a gradient hairline; a centred legal line), its top glow and its
+   blur-and-rise reveal, expanded from the block's 1024px cap to the site's
+   shell width, on the navy ground with white type. */
+.foot {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: clamp(56px, 7vw, 96px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  border-radius: clamp(28px, 4vw, 48px) clamp(28px, 4vw, 48px) 0 0;
+  background: var(--navy-deep);
+  color: #fff;
+}
+.foot::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(35% 128px at 50% 0%, rgba(255,255,255,.12), transparent); }
+.foot__glow { position: absolute; top: 0; left: 50%; width: 33%; height: 2px; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(255,255,255,.35); filter: blur(2px); }
+.foot__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(32px, 4vw, 64px); padding-bottom: clamp(44px, 5vw, 72px); }
+.foot__brand { grid-column: auto; }
+.foot__logo { height: clamp(30px, 2.4vw, 36px); margin-bottom: 22px; color: #fff; }
+.foot__blurb { max-width: 34ch; margin: 0 0 18px; font-size: var(--fs-copy); color: rgba(255,255,255,.72); }
+.foot__addr { font-size: var(--fs-copy); color: rgba(255,255,255,.72); }
+.foot__addr a { color: #fff; }
+.foot__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); }
+.foot__col h2 { margin: 0 0 16px; font-size: var(--fs-small); font-weight: 500; letter-spacing: 0; color: #fff; }
+.foot__col ul { margin: 0; padding: 0; list-style: none; }
+.foot__col li + li { margin-top: 9px; }
+.foot__col a { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-copy); color: rgba(255,255,255,.72); transition: color .25s var(--ease); }
+.foot__col a:hover { color: #fff; }
+.foot__col a svg { width: 14px; height: 14px; flex: none; }
+.foot__rule { height: 1px; width: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,.26), transparent); }
+.foot__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 22px; padding: 22px 0 28px; border-top: 0; }
+.foot__bar p { margin: 0; font-size: var(--fs-small); color: rgba(255,255,255,.62); }
+.foot__bar a { font-size: var(--fs-small); color: rgba(255,255,255,.72); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.3); }
+.foot__bar a:hover { color: #fff; text-decoration-color: #fff; }
+.foot a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+/* the block's reveal: blur(4px), 8px above, transparent → in place over .8s,
+   each section a tenth of a second after the last; only once scripts run,
+   never under reduced motion */
+.has-js .foot [data-reveal] { filter: blur(4px); transform: translateY(-8px); transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease); transition-delay: var(--d, 0ms); }
+.has-js .foot [data-reveal].is-in { filter: none; transform: none; }
+@media (prefers-reduced-motion: reduce) { .has-js .foot [data-reveal] { filter: none; transform: none; opacity: 1; } }
+@media (max-width: 1080px) {
+  .foot__grid { grid-template-columns: 1fr; gap: clamp(36px, 5vw, 48px); }
+  .foot__brand { grid-column: auto; }
+}
+@media (max-width: 767px) { .foot__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; } }
+@media (max-width: 620px) { .foot__bar { flex-direction: row; align-items: center; justify-content: center; text-align: center; } }
