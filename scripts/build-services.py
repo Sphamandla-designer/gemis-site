@@ -115,7 +115,7 @@ def solutions_index():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Nine disciplines, one accountable team</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Nine disciplines, one accountable team")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">Open any solution to see exactly what we deliver. Most engagements draw on several at once — you deal with one partner throughout.</p>
       </div>
     </section>
@@ -233,7 +233,7 @@ def service_page(s):
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['name'])}</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(s['name']))}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">{esc(s['intro'])}</p>
         <div class="cshero__ctas" data-reveal style="--d:200ms">
           <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
@@ -305,7 +305,7 @@ def products_index():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Products</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">A platform, a studio and an academy</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A platform, a studio and an academy")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">Three things GEMIS makes that are ready today: a business management platform to run on, a design studio to design with, and training that keeps your team ahead of the systems they use.</p>
       </div>
     </section>
@@ -358,7 +358,7 @@ def insights_index():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>News &amp; Insights</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Notes from building systems that have to work</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Notes from building systems that have to work")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">What we have learned building and running business systems in South Africa — written for the operations and finance leads who have to live with the result.</p>
       </div>
     </section>
@@ -427,7 +427,7 @@ def article_page(a):
     <section class="chero chero--art" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>{esc(a['tag'])}</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{esc(a['title'])}</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(a['title']))}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">{esc(a['standfirst'])}</p>
         <p class="art__meta" data-reveal style="--d:200ms"><time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']} · GEMIS</p>
       </div>

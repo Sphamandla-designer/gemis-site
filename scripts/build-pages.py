@@ -250,7 +250,7 @@ def story_page(s):
       <div class="shell cshero__in">
         <div class="cshero__text">
           <p class="chero__kicker" data-reveal>Case study · {esc(s['industry'])}</p>
-          <h1 class="chero__title" data-reveal style="--d:80ms">{esc(s['client'])}</h1>
+          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(s['client']))}</h1>
           <p class="cshero__headline" data-reveal style="--d:120ms">{esc(s['headline'])}</p>
           <p class="chero__copy" data-reveal style="--d:160ms">{esc(c['value'])}</p>
           <p class="cshero__status" data-reveal style="--d:200ms"><span class="cshero__dot" aria-hidden="true"></span>{esc(c['status'])}</p>
@@ -412,7 +412,6 @@ def work_page():
                  'and claims to reporting and the ManaGEM platform. A business systems partner since 2014.',
                  f'{CANON}work/', extra_head=schema)
 
-    m = S.BY_SLUG['managem']
     comp = [S.BY_SLUG[k] for k in ('wastemart', 'homeassist', 'managem')]
     composition = '\n'.join(
         '          <img class="cshero__shot cshero__shot--%d" src="%s%s%s_thumb.jpg" alt="" width="1280" height="720" loading="%s" />'
@@ -459,7 +458,7 @@ def work_page():
       <div class="shell cshero__in">
         <div class="cshero__text">
           <p class="chero__kicker" data-reveal>Case studies</p>
-          <h1 class="chero__title" data-reveal style="--d:80ms">Complex business challenges. Thoughtfully designed digital solutions.</h1>
+          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Complex business challenges. Thoughtfully designed digital solutions.")}</h1>
           <p class="chero__copy" data-reveal style="--d:140ms">GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.</p>
           <div class="cshero__ctas" data-reveal style="--d:200ms">
             <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
@@ -476,34 +475,6 @@ def work_page():
           <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
           <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
         </ul>
-      </div>
-    </section>
-
-    <section class="featured band band-tint plusgrid plusgrid--tr" aria-labelledby="featuredHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Featured project</p>
-            <h2 class="display" id="featuredHeading" data-reveal style="--d:80ms">ManaGEM — born in a real business, built for many</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">The system GEMIS built for one client in 2015, generalised into the business management platform about a dozen companies run on today.</p>
-        </div>
-        <div class="featured__grid">
-          <div class="featured__visual" data-reveal>
-            <img src="{base}{S.VIDEO_DIR}{m['video']}_thumb.jpg" alt="" width="1280" height="720" loading="lazy" />
-            <a class="featured__play" {B.play_attrs(m, base)} aria-label="Play the ManaGEM story">{B.PLAY}</a>
-            <span class="featured__len" aria-hidden="true">{m['duration_label']}</span>
-          </div>
-          <dl class="featured__facts" data-reveal style="--d:80ms">
-            <div><dt>Business context</dt><dd>{esc(m['industry'])}. {esc(m['period'])}.</dd></div>
-            <div><dt>The challenge</dt><dd>Off-the-shelf packages did not fit how SBS Waterproofing worked — quotes, jobs, invoices and stock lived in separate tools and spreadsheets, and the business had outgrown them.</dd></div>
-            <div><dt>GEMIS&rsquo;s contribution</dt><dd>{esc(m['summary'])}</dd></div>
-          </dl>
-          <div class="featured__actions" data-reveal style="--d:140ms">
-            <a class="btn" href="{base}products/managem/">Read the case study {ARROW}</a>
-            <a class="btn btn--ghost" {B.play_attrs(m, base)}>{B.PLAY} Play story</a>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -542,9 +513,10 @@ def work_page():
           </div>
           <p class="lede" data-reveal style="--d:140ms">The same four stages sit behind every project here: the enquiry record at SBS, the payment-driven schedule at WasteMart and the approval step at Sonke were each decided before anything was built. <a class="arrow-link" href="{base}solutions/">See how we work {ARROW}</a></p>
         </div>
-{B.tline(SV.WAYS)}
+{B.stages(SV.WAYS)}
       </div>
     </section>
+{B.in_their_words(base, "workWordsHeading")}
 
     <section class="convert" id="discuss" aria-labelledby="convertHeading">
       <div class="shell convert__in">

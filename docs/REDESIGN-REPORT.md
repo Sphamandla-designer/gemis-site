@@ -344,6 +344,31 @@ Checks: links 2,033 / 0 broken; axe 0 serious or critical; 14 pages × 4
 widths clean; functional sweep clean; chrome `--check` clean; standalone
 rebuilt.
 
+### Owner's fifth revision — two-line hero titles, the Case Studies page reordered
+
+- **Hero titles on two lines, every page.** `two_lines()` in
+  `build-stories.py` breaks each title once where the halves are most even,
+  preferring a break after a full stop, colon or comma, never starting a
+  line on "&" or a dash; the generators pass every hero title through it and
+  the stylesheet lifts the old width cap and stops the title wrapping on its
+  own above 620px (below that the break is dropped and the title wraps
+  naturally). Measured at 1440, 1024 and 900px: 27 of 29 page titles are
+  exactly two lines; HomeAssist and WasteMart are one word and stay one
+  line. The home hero already sat on two lines and is unchanged.
+- **Case Studies page.** The ManaGEM featured block is removed. The order is
+  hero → figures → All case studies (the filtered grid) → How GEMIS
+  approaches projects → In their words → Your project. The approach section
+  is redesigned from the disc-and-plate timeline to a ledger: one ruled
+  line, four hairlined columns, a light numeral, the stage on the title
+  step, the copy (two columns under 900px, one under 560px; the rule draws
+  in on reveal, static under reduced motion). In their words is the home's
+  stage, now a shared helper with page-relative links. The conversion band
+  is centred, on this page and on the story pages that share the component.
+
+Checks: links 2,029 / 0 broken; axe 0 serious or critical; 14 pages × 4
+widths clean; functional sweep clean; chrome `--check` clean; standalone
+rebuilt.
+
 ## 2. Decisions worth knowing
 
 | Decision | Why |

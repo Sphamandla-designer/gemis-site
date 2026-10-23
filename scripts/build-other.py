@@ -121,7 +121,7 @@ def solutions_index():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Four ways to work with GEMIS</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Four ways to work with GEMIS")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">A system built around your operation, a platform ready to run on, a studio to design it, or training to keep your team ahead.</p>
       </div>
     </section>
@@ -197,7 +197,7 @@ def bespoke():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Bespoke Software</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">A system built around your operation</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A system built around your operation")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">When off-the-shelf software holds the business back, we design and build around how it actually works — then stay to support it.</p>
       </div>
     </section>
@@ -244,7 +244,7 @@ def managem():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>ManaGEM</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">A business management platform, born in a real business</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A business management platform, born in a real business")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.</p>
       </div>
     </section>
@@ -364,7 +364,7 @@ def our_story():
     <section class="chero" id="hero">
       <div class="shell">
         <p class="chero__kicker" data-reveal>Our Story</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Technology changes. Businesses evolve. Good partnerships endure.</h1>
+        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Technology changes. Businesses evolve. Good partnerships endure.")}</h1>
         <p class="chero__copy" data-reveal style="--d:140ms">GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.</p>
       </div>
     </section>
