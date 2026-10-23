@@ -240,8 +240,10 @@ Never invent a client, a testimonial, a statistic or a case study. Everything on
 the site has to be traceable to something already in the repository, and every
 figure to `scripts/facts.md` (50+ systems, 5+ sectors and ManaGEM's "nine days to
 two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.md
-does not confirm — the phone number, team titles, the partner designation — is a
-hideable TBC in `scripts/stories.py`, shown only under `?review=1`.
+does not confirm — team titles, the partner designation — is a hideable TBC in
+`scripts/stories.py`, shown only under `?review=1`. **There is no phone number
+anywhere on either site** (the owner removed it, 2026-10-23): no `tel:` link,
+no number in copy, on the corporate pages or in `studio/src/`.
 
 **Endorsements are quotations, never written here.** `scripts/stories.py` reads
 them character for character from `_project/assets-incoming/content/endorsements.md`

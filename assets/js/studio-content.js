@@ -22,7 +22,6 @@ window.STUDIO_CONTENT = {
   nap: {
     /* Exact NAP — must match schema + Google Business Profile everywhere. */
     address: "",   /* no street address is published */
-    phone: "+27 11 219 5008",
     email: "info@gemis.co.za",
   },
 

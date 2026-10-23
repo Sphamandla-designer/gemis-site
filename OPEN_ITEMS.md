@@ -29,6 +29,12 @@ The owner supplied the three quotations on 2026-10-22; they are in
 ids are out of the TBC table; the homepage stage, the HomeAssist and SBS story
 chapters and the ManaGEM origin block all carry the real lines.
 
+### `phone-number` — closed
+
+The owner asked for the number to come off the site (2026-10-23). It is gone
+from Get started, Contact, Privacy, the studio's footers, Contact and Work
+pages and its draft content file; no `tel:` link remains. Email is the contact.
+
 ### `testimonials-placeholder` — closed
 
 The six invented entries are gone from the repository. The homepage now
@@ -82,7 +88,6 @@ None of these stop a merge. Each has a fallback that reads as finished.
 | `managem-external-site` | Whether `solutions/managem/` links out to the separate ManaGEM site | No secondary link | Leon |
 | `eighth-video` | Whether an eighth video exists | No eighth entry | Leon |
 | `standalone-bundle` | `gemis-site-standalone.html` is a review copy of the whole site; it goes stale after any change unless `python3 tools/build-site-standalone.py` is re-run | Not part of the site | Sphamandla |
-| `phone-number` | `facts.md` gives no phone number; the one the old site carried (`+27 11 219 5008`) is unverified | **No phone line** in Get started; Contact says "Number to follow. Email is the quickest way to reach us." | Sphamandla |
 | `team-titles` | Titles and surnames for the Our Story team other than Sphamandla Xaba (UI/UX designer, head of GEMIS Studio — confirmed) | First names only, no title line | Sphamandla |
 
 ---
