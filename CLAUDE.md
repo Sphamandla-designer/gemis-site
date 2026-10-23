@@ -116,7 +116,13 @@ layer that first introduced the component.
 - **Grounds** alternate paper → wash → paper → tint, one `band-ink` per long page,
   then the footer. Two washes never touch.
 - **Page heroes** (`.chero`) are the home hero's photograph under the same scrim,
-  type set left. A story page's endorsement chapter is itself `.unconfirmed`, so an
+  type set left. **Every hero title is two lines**: the generators pass the
+  title through `two_lines()` in `build-stories.py`, which breaks it once
+  where the halves are most even (after a full stop, colon or comma when
+  close) with a `<br class="h1-br">`; the width cap is lifted and the title
+  does not wrap on its own above 620px, where the break is dropped and it
+  wraps naturally. `contact.html` carries the break by hand. A single-word
+  title (HomeAssist, WasteMart) stays one line. A story page's endorsement chapter is itself `.unconfirmed`, so an
   unapproved line removes the whole band rather than leaving an empty one.
 
 - **The reference kit** (from the owner's screenshots in `qa/design-refs/`) runs on
@@ -248,9 +254,14 @@ title · Philippine Francke, Managing Director, HashTopic). Never use the word
 
 ## Site map (navigation)
 
-Home · Case Studies (`work/` — hero, stats, the ManaGEM featured project, the
-filtered card grid with Read/Play, the approach timeline and a conversion band;
-the video overlay is `#videoModal`, opened by any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
+Home · Case Studies (`work/` — hero, stats, the filtered card grid with
+Read/Play, **How GEMIS approaches projects** as the four-stage ledger
+(`stages(SV.WAYS)` in `build-stories.py`: one ruled line, four hairlined
+columns, a light numeral, the stage, the copy), **In their words** (the shared
+`in_their_words(base)` stage, the same as the home's), then the centred
+"Your project" conversion band (`.convert` is centred everywhere); the
+ManaGEM featured block is gone; the video overlay is `#videoModal`, opened by
+any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
 service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
 Studio at `studio/`, Technical Academy at gemis.tech) · Insights (`insights/`, three
 articles, each linking the case study behind it) · Our Story (`our-story/`; the nav

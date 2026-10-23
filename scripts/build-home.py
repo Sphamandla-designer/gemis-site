@@ -245,78 +245,11 @@ def selected():
 
 
 def in_their_words():
-    """
-    "In their words", as the Client stories stage the owner chose: the names
-    on the left, one quotation at a time on the right. The three endorsements
-    (Keshan Patel, Ryan Smith, Philippine Francke) are read exactly from
-    endorsements.md; a person with no line yet shows a "quotation to follow"
-    note under ?review=1 only, and while no line exists at all the whole
-    section is hidden on the live build (visible under ?review=1).
-    """
-    GO = ('<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
-          '<path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg>')
-    keys = S.ENDORSEMENT_ORDER
-    any_line = any(S.ENDORSERS[k].get('line') for k in keys)
-    tabs, slides = [], []
-    for i, k in enumerate(keys):
-        e = S.ENDORSERS[k]
-        pressed = 'true' if i == 0 else 'false'
-        hidden = '' if i == 0 else ' aria-hidden="true"'
-        tabs.append(f'''            <li><button class="cs__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span>{esc(e['name'])}</span><span class="cs__tab-go" aria-hidden="true">{GO}</span></button></li>''')
-        # the owner asked to see the section now: with no line in endorsements.md
-        # the slot carries a plain note (the gate still lists the id)
-        quote = esc(e['line']) if e.get('line') else f'<span class="cs__pending" data-tbc="{e["line_tbc"]}" data-kind="hideable">Quotation to follow.</span>'
-        title = f"{esc(e['title'])} &middot; " if e.get('title') else ''
-        since = f'<span class="cs__since">{esc(e["since"])}</span>' if e.get('since') else ''
-        link = (f'<a class="cs__more" href="{link_for(e["slug"])}">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story <span aria-hidden="true">&rarr;</span></a>'
-                if e.get('slug') else '')
-        slides.append(f'''            <li class="cs__item" data-slide{hidden}>
-              <p class="cs__label eyebrow">In their words</p>
-              <blockquote class="cs__q"><p>{quote}</p></blockquote>
-              <p class="cs__by">
-                <span class="cs__face" aria-hidden="true">{e['initials']}</span>
-                <span class="cs__who"><strong>{esc(e['name'])}</strong><span>{title}{esc(e['company'])}</span>{since}</span>
-              </p>
-              {link}
-            </li>''')
-    nl = chr(10)
-    wrap_open, wrap_close = '', ''
-    if not any_line:
+    """The home's In their words: the shared stage from build-stories, links from the root."""
+    if not any(S.ENDORSERS[k].get('line') for k in S.ENDORSEMENT_ORDER):
         print('home: no quotation in endorsements.md yet — "In their words" shows "Quotation to follow." (owner\'s instruction)')
-    return f'''
-    <!-- ═══════════════════ 06 · IN THEIR WORDS ═══════════════════
-         The three endorsements, copied exactly from endorsements.md, on the
-         Client stories stage. Shown with a plain note until the file arrives. -->
-{wrap_open}    <section class="words testi band" id="in-their-words" aria-labelledby="wordsHeading">
-      <div class="shell">
-        <div class="cs__head">
-          <h2 class="cs__title" id="wordsHeading" data-reveal>In their words</h2>
-          <p class="cs__lede" data-reveal style="--d:80ms">Some of the businesses we work with today first trusted GEMIS more than a decade ago.</p>
-        </div>
-        <div class="cs" data-stage data-auto="0">
-          <div class="cs__side">
-            <ol class="cs__rail" aria-label="Choose a voice" data-reveal>
-{nl.join(tabs)}
-            </ol>
-            <div class="cs__ctl" data-ctl hidden>
-              <button class="cs__btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
-              <button class="cs__btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
-            </div>
-          </div>
-          <div class="cs__main" data-reveal style="--d:80ms">
-            <ol class="cs__list" data-list>
-{nl.join(slides)}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>{wrap_close}
-'''
+    return B.in_their_words('')
 
-
-# ── the operating logic: four principles, verbatim, connecting seven systems ──
-# Statements and supporting copy are reproduced exactly as supplied; nothing is
-# added. "Seen in" links resolve to the existing chapter pages.
 OPERATING = [
     {
         'n': '01', 'motif': 'leak',

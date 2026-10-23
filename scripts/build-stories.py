@@ -332,6 +332,116 @@ def srows(items, numbered=True):
     return '\n'.join(out)
 
 
+def two_lines(text):
+    """
+    A hero title on exactly two lines: the words are split where the two
+    halves are most even, a split after a full stop, colon, question mark or
+    comma preferred, and a line is never started on "&" or a dash. The break
+    is a <br class="h1-br"> that the stylesheet drops under 620px, where the
+    title wraps naturally. A single word stays as it is. `text` is escaped.
+    """
+    words = text.split(' ')
+    if len(words) < 2:
+        return text
+    best = None
+    for i in range(1, len(words)):
+        a, b = ' '.join(words[:i]), ' '.join(words[i:])
+        score = abs(len(a) - len(b))
+        if a[-1] in '.:?!':
+            score -= 12
+        elif a[-1] == ',':
+            score -= 5
+        if b.startswith(('&', '—', '&amp;')):
+            score += 8
+        if len(a) < len(b):
+            score += 0.5                      # on a tie, the longer line first
+        if best is None or score < best[0]:
+            best = (score, a, b)
+    return f'{best[1]}<br class="h1-br">{best[2]}'
+
+
+def stages(steps):
+    """
+    How GEMIS approaches projects: the four stages as a ledger of columns on
+    one ruled line — a light numeral, the stage on the title step, the copy;
+    hairlines between the columns; the rule above draws in on reveal.
+    steps: (title, copy).
+    """
+    out = []
+    for i, (title, copy) in enumerate(steps):
+        out.append(f'''          <li class="stage" data-reveal style="--d:{i * 90}ms">
+            <span class="stage__n" aria-hidden="true">{i + 1:02d}</span>
+            <h3 class="stage__name">{esc(title)}</h3>
+            <p class="stage__copy">{esc(copy)}</p>
+          </li>''')
+    return '        <ol class="stages" data-reveal>\n' + '\n'.join(out) + '\n        </ol>'
+
+
+def in_their_words(base='', heading_id='wordsHeading'):
+    """
+    "In their words", as the Client stories stage the owner chose: the names
+    on the left, one quotation at a time on the right. The three endorsements
+    (Keshan Patel, Ryan Smith, Philippine Francke) are read exactly from
+    endorsements.md; a person with no line yet shows "Quotation to follow."
+    (a hideable TBC the gate still lists). Used by the home and Case Studies.
+    """
+    GO = ('<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+          '<path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg>')
+    keys = S.ENDORSEMENT_ORDER
+    tabs, slides = [], []
+    for i, k in enumerate(keys):
+        e = S.ENDORSERS[k]
+        pressed = 'true' if i == 0 else 'false'
+        hidden = '' if i == 0 else ' aria-hidden="true"'
+        tabs.append(f'''            <li><button class="cs__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span>{esc(e['name'])}</span><span class="cs__tab-go" aria-hidden="true">{GO}</span></button></li>''')
+        quote = esc(e['line']) if e.get('line') else f'<span class="cs__pending" data-tbc="{e["line_tbc"]}" data-kind="hideable">Quotation to follow.</span>'
+        title = f"{esc(e['title'])} &middot; " if e.get('title') else ''
+        since = f'<span class="cs__since">{esc(e["since"])}</span>' if e.get('since') else ''
+        link = ''
+        if e.get('slug'):
+            href = f'{base}products/managem/' if S.BY_SLUG[e['slug']].get('is_product') else f'{base}work/{e["slug"]}/'
+            link = f'<a class="cs__more" href="{href}">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story <span aria-hidden="true">&rarr;</span></a>'
+        slides.append(f'''            <li class="cs__item" data-slide{hidden}>
+              <p class="cs__label eyebrow">In their words</p>
+              <blockquote class="cs__q"><p>{quote}</p></blockquote>
+              <p class="cs__by">
+                <span class="cs__face" aria-hidden="true">{e['initials']}</span>
+                <span class="cs__who"><strong>{esc(e['name'])}</strong><span>{title}{esc(e['company'])}</span>{since}</span>
+              </p>
+              {link}
+            </li>''')
+    nl = chr(10)
+    return f'''
+    <!-- ═══════════════════ IN THEIR WORDS ═══════════════════
+         The three endorsements, copied exactly from endorsements.md, on the
+         Client stories stage. -->
+    <section class="words testi band" id="in-their-words" aria-labelledby="{heading_id}">
+      <div class="shell">
+        <div class="cs__head">
+          <h2 class="cs__title" id="{heading_id}" data-reveal>In their words</h2>
+          <p class="cs__lede" data-reveal style="--d:80ms">Some of the businesses we work with today first trusted GEMIS more than a decade ago.</p>
+        </div>
+        <div class="cs" data-stage data-auto="0">
+          <div class="cs__side">
+            <ol class="cs__rail" aria-label="Choose a voice" data-reveal>
+{nl.join(tabs)}
+            </ol>
+            <div class="cs__ctl" data-ctl hidden>
+              <button class="cs__btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+              <button class="cs__btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+            </div>
+          </div>
+          <div class="cs__main" data-reveal style="--d:80ms">
+            <ol class="cs__list" data-list>
+{nl.join(slides)}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+'''
+
+
 def feat(title, href, img, meta, body, chips=(), extra_attrs='', link=''):
     """A ruled feature: title row with a plus, image, meta, copy, chips."""
     chip_html = ''
