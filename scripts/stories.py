@@ -316,7 +316,6 @@ TBC_KIND = {
     'standalone-bundle': 'hideable',
     # facts.md gives no phone number: the one the old site carried is hidden
     # until it is confirmed
-    'phone-number': 'hideable',
     # facts.md names no team titles or surnames beyond Sphamandla Xaba's
     'team-titles': 'hideable',
     # the partnership line stays on the hero at the owner's instruction, and is

@@ -461,7 +461,6 @@ def enquiry():
           </ol>
           <div class="go__contact" data-reveal style="--d:260ms">
             <p><span>Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
-            <div class="unconfirmed" data-tbc="phone-number" data-kind="hideable"><p><span>Phone</span><a href="tel:+27112195008">+27 11 219 5008</a> <span class="tbc" data-tbc="phone-number" data-kind="hideable">number to confirm</span></p></div>
             <p><span>Cape Town</span>9 Tapiola Way, Edgemead</p>
           </div>
         </div>
