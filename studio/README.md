@@ -209,3 +209,14 @@ pages and go stale the moment a page is rebuilt, so regenerate them with each bu
 | `gemis-studio-standalone.html` | the whole studio — home, Work and About in one file, each page in its own frame, links between them switching frames |
 | `studio-standalone.html` | the home page alone |
 | `studio-about-standalone.html` | the About page alone |
+
+## One file for external users
+
+`python3 tools/build-studio-standalone.py` writes `gemis-studio-standalone.html`
+at the repository root: the five pages in frames, the runtime, the fonts, every
+image and the mark carried once, so it opens from a USB stick, an email
+attachment or a phone with no network. Images are handed to the frames as blob
+URLs rather than data URIs because `dc-runtime.js` splits inline style strings
+on `;` and would cut a data URI short. Links between the five pages switch
+frames; links to the corporate site open the live addresses. Rebuild it after
+any change under `studio/`.
