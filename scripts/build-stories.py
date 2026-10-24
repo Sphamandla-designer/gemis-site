@@ -357,7 +357,7 @@ def two_lines(text):
             score += 0.5                      # on a tie, the longer line first
         if best is None or score < best[0]:
             best = (score, a, b)
-    return f'{best[1]}<br class="h1-br">{best[2]}'
+    return f'{best[1]} <br class="h1-br">{best[2]}'
 
 
 def stages(steps):

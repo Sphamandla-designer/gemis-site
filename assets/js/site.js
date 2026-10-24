@@ -306,6 +306,31 @@
   if (discovery) {
     var dNote = document.getElementById('discoveryNote');
 
+    /* Arriving from a service page (contact.html?service=<slug>): pre-select the
+       closest topic and start the notes with the service, so the enquiry says
+       what it is about. Unknown or missing values change nothing. */
+    var SERVICE_TOPIC = {
+      'custom-software': ['Custom software development', 'Build a new platform or app'],
+      'microsoft-cloud': ['Microsoft Cloud solutions', 'Not sure yet'],
+      'enterprise-saas': ['Enterprise SaaS platforms', 'Build a new platform or app'],
+      'mobile-apps': ['Mobile application development', 'Build a new platform or app'],
+      'business-intelligence': ['Business intelligence & reporting', 'Reporting and business intelligence'],
+      'system-integration': ['System integration', 'Connect existing systems'],
+      'ux-design': ['UX & system design', 'Not sure yet'],
+      'modernisation': ['Software modernisation', 'Replace a legacy system'],
+      'support': ['Ongoing support & maintenance', 'Not sure yet']
+    };
+    try {
+      var svc = new URLSearchParams(window.location.search).get('service');
+      var topic = svc && SERVICE_TOPIC[svc];
+      if (topic) {
+        var goal = document.getElementById('d-goal');
+        var notes = document.getElementById('d-notes');
+        if (goal) [].forEach.call(goal.options, function (o) { if (o.text === topic[1]) goal.value = o.value || o.text; });
+        if (notes && !notes.value) notes.value = 'About: ' + topic[0] + '\n\n';
+      }
+    } catch (err) { /* no URLSearchParams: leave the form as it is */ }
+
     var showError = function (field, on) {
       var err = document.getElementById(field.id + '-err');
       if (err) err.hidden = !on;

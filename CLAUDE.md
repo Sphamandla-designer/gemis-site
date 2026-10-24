@@ -30,7 +30,8 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 |---|---|---|
 | `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html` | `node tools/build-studio.mjs` |
 | the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections, in the brief's order) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
-| `solutions/`, `solutions/<service>/` ×9, `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
+| `solutions/`, `solutions/<service>/` ×9 | `scripts/solutions.py` (all page copy, evidence, FAQs, section order; every claim sourced in `docs/SOLUTIONS-EVIDENCE.md`) rendered by `scripts/build-solutions.py` | `python3 scripts/build-services.py` (calls it) |
+| `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
 | `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
 | the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
@@ -258,6 +259,20 @@ title · Philippine Francke, Managing Director, HashTopic). Never use the word
 
 ## Site map (navigation)
 
+**Solutions** (`docs/SOLUTIONS-REPORT.md`): the directory is a nine-into-one hero
+drawing, a numbered index (what each discipline is for, when to choose it), an
+illustrative six-stage "work together" track, evidence from three projects, seven
+"start from the problem" pathways, a quotation and a centred close. Each service
+page picks its own section order from the components in `build-solutions.py` and
+has its own CSS-only hero drawing (`DIAGRAMS`). Evidence modules must say why the
+project is relevant **on that page** and only cite what its case record states —
+Trans Hex and Sonke record no Azure and no Power BI. Service CTAs link to
+`contact.html?service=<slug>`, which `site.js` uses to pre-select the topic.
+`scripts/services.py` now holds only slug, name and the navigation line.
+
+Run axe with the page list — `SP=<scratch> node axe-all.mjs <page> <page> …` takes
+its pages as arguments and silently checks nothing without them.
+
 Home · Case Studies (`work/` — hero, stats, the filtered card grid with
 Read/Play, **How GEMIS approaches projects** as the four-stage ledger
 (`stages(SV.WAYS)` in `build-stories.py`: one ruled line, four hairlined
@@ -266,7 +281,7 @@ columns, a light numeral, the stage, the copy), **In their words** (the shared
 "Your project" conversion band (`.convert` is centred everywhere); the
 ManaGEM featured block is gone; the video overlay is `#videoModal`, opened by
 any `[data-watch]`) · Solutions ▾ (`solutions/` + nine `solutions/<slug>/`
-service pages) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
+service pages, built from `scripts/solutions.py`) · Products ▾ (`products/`: ManaGEM at `products/managem/`, Design
 Studio at `studio/`, Technical Academy at gemis.tech) · Insights (`insights/`, three
 articles, each linking the case study behind it) · Our Story (`our-story/`; the nav
 label and the page name match — keep them that way) · Contact. `solutions/bespoke-software/`, `solutions/managem/` and
