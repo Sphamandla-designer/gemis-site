@@ -238,7 +238,7 @@
     function suPaint() {
       var g = ease(Math.min(1, suNow / .6));                     // growth phase, then the hold
       su.style.setProperty('--s', (0.42 + 0.58 * g).toFixed(4));
-      su.style.setProperty('--o', (0.35 + 0.65 * g).toFixed(4));
+      su.style.setProperty('--o', (0.6 + 0.4 * g).toFixed(4));   // never below 3:1 for large text
       su.style.setProperty('--l', (suNow > .5 ? Math.min(1, (suNow - .5) / .15) : 0).toFixed(3));
     }
     function suFrame() {

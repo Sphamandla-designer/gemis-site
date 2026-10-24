@@ -32,6 +32,7 @@ SV = load('services', 'services.py')
 B = load('build_stories', 'build-stories.py')
 P = load('build_pages', 'build-pages.py')
 O = load('build_other', 'build-other.py')
+SOLB = load('build_solutions', 'build-solutions.py')
 
 esc, ARROW = B.esc, B.ARROW
 CANON = S.CANONICAL
@@ -61,229 +62,12 @@ def endnote(base, title='Tell us what your business needs to do better.'):
 '''
 
 
-# ── the services grid, shared by the homepage and the Solutions page ─────
-def services_grid(base=''):
-    tiles = []
-    for i, s in enumerate(SV.SERVICES):
-        lead = ' svc--lead' if i == 0 else ''
-        tiles.append(f'''          <a class="svc{lead}" href="{base}solutions/{s['slug']}/" data-reveal style="--d:{i * 60}ms">
-            <span class="svc__n" aria-hidden="true">{i + 1:02d}</span>
-            <span class="svc__icon" aria-hidden="true">{icon(s['slug'])}</span>
-            <span class="svc__name">{esc(s['name'])}</span>
-            <span class="svc__line">{esc(s['short'])}</span>
-            <span class="svc__go" aria-hidden="true">{ARROW}</span>
-          </a>''')
-    return '\n'.join(tiles)
-
-
-# ── the services rows, for the homepage: the first six, numbered ─────────
-def services_rows(base='', limit=6):
-    rows = []
-    for i, s in enumerate(SV.SERVICES[:limit]):
-        chips = '\n'.join(f'                <li>{esc(c)}</li>' for c in s['caps'][:4])
-        rows.append(f'''          <li class="srow" data-reveal style="--d:{i * 60}ms">
-            <span class="srow__n" aria-hidden="true">{i + 1:02d}</span>
-            <h3 class="srow__name"><a href="{base}solutions/{s['slug']}/">{esc(s['name'])}</a></h3>
-            <div class="srow__body">
-              <p>{esc(s['intro'])}</p>
-              <ul class="srow__chips">
-{chips}
-              </ul>
-              <a class="arrow-link arrow-link--quiet srow__go" href="{base}solutions/{s['slug']}/">See details {ARROW}</a>
-            </div>
-          </li>''')
-    return '\n'.join(rows)
-
-
-# ── Solutions (the services page) ────────────────────────────────────────
-def solutions_index():
-    base = '../'
-    process = f'''
-    <section class="sec band band-wash" id="process" aria-labelledby="processHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Our Development Process</p>
-            <h2 class="display" id="processHeading" data-reveal style="--d:80ms">Six stages, no surprises</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">You see progress every sprint and shape the product as it grows — no black-box development, and no discovering at the end that the system solves the wrong problem.</p>
-        </div>
-{B.tline(SV.STAGES, 'Stage')}
-      </div>
-    </section>'''
-    body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Nine disciplines, one accountable team")}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">Open any solution to see exactly what we deliver. Most engagements draw on several at once — you deal with one partner throughout.</p>
-      </div>
-    </section>
-
-    <section class="svcs band plusgrid plusgrid--tr" aria-labelledby="svcsHeading">
-      <div class="shell">
-        <div class="svcs__head">
-          <div>
-            <p class="eyebrow" data-reveal>Solutions &amp; Expertise</p>
-            <h2 class="display" id="svcsHeading" data-reveal style="--d:80ms">What we do</h2>
-          </div>
-        </div>
-        <ol class="srows">
-{services_rows(base, 9)}
-        </ol>
-      </div>
-    </section>
-
-{process}
-
-    <section class="sec band band-tint" id="stack" aria-labelledby="stackHeading">
-      <div class="shell">
-        <p class="eyebrow" data-reveal>The stack</p>
-        <h2 class="display" id="stackHeading" data-reveal style="--d:80ms">Built on the Microsoft Cloud</h2>
-        <ul class="stack__row" data-reveal style="--d:140ms">
-          <li>Microsoft Azure</li>
-          <li>Azure SQL</li>
-          <li>.NET</li>
-          <li>Power BI</li>
-          <li>Identity management</li>
-          <li>Disaster recovery</li>
-        </ul>
-      </div>
-    </section>
-{endnote(base)}'''
-    page('solutions/index.html', base, 'Solutions — nine disciplines, one team | GEMIS®',
-         'Custom software, Microsoft Cloud, SaaS platforms, mobile, business intelligence, '
-         'integration, UX, modernisation and support — from one accountable partner since 2014.',
-         body)
-
-
-# ── one service page ─────────────────────────────────────────────────────
-# which case studies demonstrate each solution; the first is the lead
-SERVICE_STORIES = {
-    'custom-software': ['sbs-waterproofing', 'wastemart', 'homeassist'],
-    'microsoft-cloud': ['trans-hex', 'managem', 'sonke'],
-    'enterprise-saas': ['managem', 'homeassist'],
-    'mobile-apps': ['sonke', 'wastemart', 'homeassist'],
-    'business-intelligence': ['trans-hex', 'sonke'],
-    'system-integration': ['trans-hex', 'sbs-waterproofing', 'homeassist'],
-    'ux-design': ['homeassist', 'sonke'],
-    'modernisation': ['trans-hex', 'sbs-waterproofing'],
-    'support': ['sbs-waterproofing', 'homeassist', 'wastemart'],
-}
-
 # the case study each article's argument comes from
 ARTICLE_STORY = {
     'spreadsheets-to-a-system': ('sbs-waterproofing', 'SBS Waterproofing moved from a spreadsheet and three apps to one system in 2015, and still runs on it.'),
     'load-shedding-operations-resilience': ('sonke', 'Sonke’s field app was designed for no signal at all: it captures offline and syncs when it can.'),
     'popia-business-systems-checklist': ('homeassist', 'HomeAssist’s system holds homeowner, insurer and plumber data on one job record, with each party seeing only its side.'),
 }
-
-
-def service_page(s):
-    base = '../../'
-    others = [o for o in SV.SERVICES if o['slug'] != s['slug']]
-    caps = '\n'.join(f'          <li>{esc(c)}</li>' for c in s['caps'])
-    why = B.srows([(esc(t), f'<p>{esc(b)}</p>', (), '') for t, b in s['body']])
-    proof = ''
-    stories = SERVICE_STORIES.get(s['slug'], [s['proof']] if s.get('proof') else [])
-    if stories:
-        cards = '\n'.join(B.cscard(S.BY_SLUG[k], base, i) for i, k in enumerate(stories))
-        n = len(stories)
-        proof = f'''
-    <section class="sec band band-wash" aria-labelledby="proofHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>In production</p>
-            <h2 class="display" id="proofHeading" data-reveal style="--d:80ms">Where this has run</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">{'A system' if n == 1 else 'Systems'} in use today, not mock-ups. Each card names what GEMIS did and where the project stands. <a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
-        </div>
-        <div class="cscards{' cscards--2' if n == 2 else ''}">
-{cards}
-        </div>
-      </div>
-    </section>'''
-    more = '\n'.join(f'''          <li><a href="{base}solutions/{o['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(o['name'])}</span></a></li>''' for o in others)
-    faq_items = '\n'.join(f'''          <details class="faq__item" data-reveal style="--d:{i * 60}ms">
-            <summary class="faq__q"><span class="faq__n" aria-hidden="true">{i + 1:02d}</span><span class="faq__text">{esc(q)}</span><span class="post__plus" aria-hidden="true">+</span></summary>
-            <div class="faq__a"><p>{esc(a)}</p></div>
-          </details>''' for i, (q, a) in enumerate(s['faq']))
-    faq = f'''
-    <section class="sec band band-wash plusgrid plusgrid--br" aria-labelledby="faqHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Questions we are asked</p>
-            <h2 class="display" id="faqHeading" data-reveal style="--d:80ms">Frequently asked questions</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">The questions that come up first when a business asks about {esc(s['name'].lower())}. If yours is not here, ask it in a discovery session.</p>
-        </div>
-        <div class="faq">
-{faq_items}
-        </div>
-      </div>
-    </section>'''
-    faq_schema = json.dumps({
-        "@context": "https://schema.org", "@type": "FAQPage",
-        "mainEntity": [{"@type": "Question", "name": q,
-                        "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s['faq']],
-    }, ensure_ascii=False, indent=2)
-    body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(s['name']))}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">{esc(s['intro'])}</p>
-        <div class="cshero__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
-          <a class="arrow-link" href="#proofHeading">Where this has run {ARROW}</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec band plusgrid plusgrid--tr" aria-labelledby="deliverHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>What we deliver</p>
-            <h2 class="display" id="deliverHeading" data-reveal style="--d:80ms">{esc(s['short'])}</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">The work this solution covers. Each one is delivered by the same team, on the Microsoft Cloud, and supported after go-live.</p>
-        </div>
-        <ul class="caps" data-reveal style="--d:160ms">
-{caps}
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec band band-tint plusgrid plusgrid--br" aria-labelledby="whyHeading">
-      <div class="shell">
-        <h2 class="vh" id="whyHeading">Why it matters, how we work, what you get</h2>
-        <ol class="srows">
-{why}
-        </ol>
-      </div>
-    </section>
-{proof}
-    <section class="sec band" aria-labelledby="moreHeading">
-      <div class="shell">
-        <p class="eyebrow" data-reveal>Other solutions</p>
-        <h2 class="display" id="moreHeading" data-reveal style="--d:80ms">Usually part of a larger whole</h2>
-        <ul class="rlist" data-reveal style="--d:140ms">
-{more}
-        </ul>
-      </div>
-    </section>
-{faq}
-{endnote(base, f"Talk to us about {s['name'].lower()}.")}'''
-    head, tail = P.shell(base, f"{s['name']} — Solutions | GEMIS®", s['intro'][:180],
-                         f"{CANON}solutions/{s['slug']}/",
-                         extra_head='  <script type="application/ld+json">\n' + faq_schema + '\n  </script>')
-    path = f"solutions/{s['slug']}/index.html"
-    os.makedirs(os.path.join(ROOT, os.path.dirname(path)), exist_ok=True)
-    open(os.path.join(ROOT, path), 'w', encoding='utf-8').write(head + body + tail)
-    print(path)
 
 
 # ── Products ─────────────────────────────────────────────────────────────
@@ -464,9 +248,7 @@ def article_page(a):
 
 
 if __name__ == '__main__':
-    solutions_index()
-    for s in SV.SERVICES:
-        service_page(s)
+    SOLB.build()          # /solutions/ and the nine service pages
     products_index()
     insights_index()
     for a in SV.ARTICLES:

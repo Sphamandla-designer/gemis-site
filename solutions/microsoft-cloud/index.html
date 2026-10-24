@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Microsoft Cloud solutions — Solutions | GEMIS®</title>
-  <meta name="description" content="We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale." />
+  <title>Microsoft Cloud solutions — Azure environments designed and managed | GEMIS®</title>
+  <meta name="description" content="GEMIS designs, deploys and manages business systems on Microsoft Azure: hosting, Azure SQL, identity, integration, backup and recovery, planned around the business." />
   <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/solutions/microsoft-cloud/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GEM Information Systems" />
-  <meta property="og:title" content="Microsoft Cloud solutions — Solutions | GEMIS®" />
-  <meta property="og:description" content="We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale." />
+  <meta property="og:title" content="Microsoft Cloud solutions — Azure environments designed and managed | GEMIS®" />
+  <meta property="og:description" content="GEMIS designs, deploys and manages business systems on Microsoft Azure: hosting, Azure SQL, identity, integration, backup and recovery, planned around the business." />
   <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/video/case-studies/ManaGEM_explainer_thumb.jpg" />
   <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/solutions/microsoft-cloud/" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -21,22 +21,82 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Solutions",
+      "item": "https://sphamandla-designer.github.io/gemis-site/solutions/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Microsoft Cloud solutions",
+      "item": "https://sphamandla-designer.github.io/gemis-site/solutions/microsoft-cloud/"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Microsoft Cloud solutions",
+  "serviceType": "Microsoft Cloud solutions",
+  "description": "GEMIS designs, deploys and manages business systems on Microsoft Azure — where applications and data live, who can reach them, how they are backed up and how they recover.",
+  "url": "https://sphamandla-designer.github.io/gemis-site/solutions/microsoft-cloud/",
+  "provider": {
+    "@type": "Organization",
+    "name": "GEM Information Systems (GEMIS)",
+    "url": "https://sphamandla-designer.github.io/gemis-site/"
+  },
+  "areaServed": "ZA"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is our data kept in South Africa?",
+      "name": "Where will our data be hosted?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For most clients, yes. Azure has South African regions, and we design environments in-country unless a business has a reason to do otherwise, which also helps with POPIA obligations."
+        "text": "Azure has regions in South Africa as well as abroad. The region is chosen with you for each system, taking into account where your users are, cost and your obligations under POPIA."
       }
     },
     {
       "@type": "Question",
-      "name": "Will we need our own IT team to run it?",
+      "name": "Does moving to the cloud make our system secure and compliant?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. We architect the environment, deploy it, monitor it and keep it patched as part of ongoing support. You see the cost and the status; we do the running."
+        "text": "Not on its own. Azure provides strong building blocks, but security and POPIA compliance depend on how the environment is configured, how access is managed and how the system handles personal information. We design for those explicitly and are clear about where each responsibility sits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who maintains the environment after it is set up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is agreed per engagement. GEMIS can manage the environment as part of ongoing support, or hand it to your own IT team with the design written up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an existing system move without disrupting the business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most migrations can be staged to keep disruption low — for example by running old and new side by side, with a way back at each step. How much disruption remains depends on the system, so it is assessed before the plan is agreed rather than promised in advance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What will it cost to run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Azure charges for what the environment uses, so the running cost depends on the system’s size and usage. The design includes an estimate, and the cost can be watched once the system is live."
       }
     },
     {
@@ -44,15 +104,7 @@
       "name": "What happens during load-shedding?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A system on Azure does not notice that your office has lost power. It stays reachable from a phone or a laptop on a battery, which is one of the main reasons businesses move their core system to the cloud."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you move an existing system to the cloud without downtime?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We migrate in stages with a tested way back at each step, and run old and new side by side until the switch is a formality. The business does not have to stop to move."
+        "text": "A system hosted in an Azure data centre does not depend on your office having power, so staff with charged devices and a connection can keep working. It does not remove the need for connectivity at your end."
       }
     }
   ]
@@ -93,13 +145,13 @@
 
             <ul class="mega__svcs">
                 <li><a class="msvc" href="../../solutions/custom-software/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="1.6"/><path d="M8 20h8M12 18v2M7 9l2.5 2.5L7 14M12 14h5"/></svg></span><span class="msvc__body"><span class="msvc__name">Custom software development</span><span class="msvc__line">Systems designed around how your business actually runs.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/microsoft-cloud/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8.5a3.75 3.75 0 0 1 .5 7.5H7Z"/></svg></span><span class="msvc__body"><span class="msvc__name">Microsoft Cloud solutions</span><span class="msvc__line">Secure, scalable infrastructure on Azure, run for you.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/enterprise-saas/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.4"/><rect x="13" y="3" width="8" height="8" rx="1.4"/><rect x="3" y="13" width="8" height="8" rx="1.4"/><rect x="13" y="13" width="8" height="8" rx="1.4"/></svg></span><span class="msvc__body"><span class="msvc__name">Enterprise SaaS platforms</span><span class="msvc__line">Multi-tenant platforms built to serve thousands of users.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/mobile-apps/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/><path d="M3 9.5v5M21 9.5v5"/></svg></span><span class="msvc__body"><span class="msvc__name">Mobile application development</span><span class="msvc__line">Capture work where it happens — online or offline, always in sync.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/business-intelligence/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="msvc__body"><span class="msvc__name">Business intelligence & reporting</span><span class="msvc__line">Power BI dashboards that turn scattered data into decisions.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/microsoft-cloud/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8.5a3.75 3.75 0 0 1 .5 7.5H7Z"/></svg></span><span class="msvc__body"><span class="msvc__name">Microsoft Cloud solutions</span><span class="msvc__line">Azure environments designed, deployed and managed.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/enterprise-saas/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.4"/><rect x="13" y="3" width="8" height="8" rx="1.4"/><rect x="3" y="13" width="8" height="8" rx="1.4"/><rect x="13" y="13" width="8" height="8" rx="1.4"/></svg></span><span class="msvc__body"><span class="msvc__name">Enterprise SaaS platforms</span><span class="msvc__line">Platforms that serve many organisations from one product.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/mobile-apps/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/><path d="M3 9.5v5M21 9.5v5"/></svg></span><span class="msvc__body"><span class="msvc__name">Mobile application development</span><span class="msvc__line">Field work captured where it happens, online or offline.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/business-intelligence/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="msvc__body"><span class="msvc__name">Business intelligence & reporting</span><span class="msvc__line">Reporting and Power BI dashboards drawn from your systems.</span></span></a></li>
                 <li><a class="msvc" href="../../solutions/system-integration/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7 11l10-4.2M7 13l10 4.2"/></svg></span><span class="msvc__body"><span class="msvc__name">System integration</span><span class="msvc__line">Make your systems talk to each other. End double capture.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/ux-design/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4Z"/><path d="M13 7l3 3M17 3l1 1"/></svg></span><span class="msvc__body"><span class="msvc__name">UX & system design</span><span class="msvc__line">Enterprise software people actually enjoy using.</span></span></a></li>
-                <li><a class="msvc" href="../../solutions/modernisation/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/><path d="M12 8v4l3 2"/></svg></span><span class="msvc__body"><span class="msvc__name">Software modernisation</span><span class="msvc__line">Move ageing systems forward without stopping the business.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/ux-design/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4Z"/><path d="M13 7l3 3M17 3l1 1"/></svg></span><span class="msvc__body"><span class="msvc__name">UX & system design</span><span class="msvc__line">Business software designed around the people who use it.</span></span></a></li>
+                <li><a class="msvc" href="../../solutions/modernisation/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/><path d="M12 8v4l3 2"/></svg></span><span class="msvc__body"><span class="msvc__name">Software modernisation</span><span class="msvc__line">Improve ageing systems in stages, with disruption kept low.</span></span></a></li>
                 <li><a class="msvc" href="../../solutions/support/"><span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.2"/><rect x="17" y="13" width="4" height="6" rx="1.2"/><path d="M19 19a3 3 0 0 1-3 3h-3"/></svg></span><span class="msvc__body"><span class="msvc__name">Ongoing support & maintenance</span><span class="msvc__line">We stay after go-live. Some clients have been with us for over a decade.</span></span></a></li>
             </ul>
           </div>
@@ -172,193 +224,268 @@
 
   <main>
 
-    <section class="chero" id="hero">
+    <section class="chero svh" id="hero">
       <div class="shell">
-        <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">Microsoft Cloud<br class="h1-br">solutions</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">We architect, deploy and manage solutions on the Microsoft Cloud — the same platform trusted by enterprises worldwide for security, reliability and scale.</p>
-        <div class="cshero__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="../../contact.html">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-          <a class="arrow-link" href="#proofHeading">Where this has run <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+        <nav class="svh__crumbs" aria-label="Breadcrumb" data-reveal>
+          <ol><li><a href="../../solutions/">Solutions</a></li><li aria-current="page"><span class="svh__n">02</span> of 09</li></ol>
+        </nav>
+        <h1 class="chero__title svh__title" data-reveal style="--d:80ms"><span class="svh__label">Microsoft Cloud solutions</span> Infrastructure on Azure, designed <br class="h1-br">around the business it runs.</h1>
+        <div class="svh__grid">
+          <div class="svh__copy">
+            <p class="chero__copy" data-reveal style="--d:140ms">GEMIS designs, deploys and manages business systems on Microsoft Azure — where applications and data live, who can reach them, how they are backed up and how they recover.</p>
+            <div class="cshero__ctas" data-reveal style="--d:200ms">
+              <a class="btn" href="../../contact.html?service=microsoft-cloud">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              <a class="arrow-link" href="#faq">See the questions to settle <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            </div>
+          </div>
+          <figure class="svh__visual">
+<svg class="dg" viewBox="0 0 520 320" role="img" aria-label="Applications, data, identity and Azure infrastructure as layers, with backup and recovery alongside" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect class="dg-n" x="90" y="30" width="300" height="44" rx="3" style="--i:0"/><text class="dg-t" x="108" y="57" text-anchor="start">Applications</text><path class="dg-l dg-dash" d="M390 52 H 430" pathLength="1" style="--i:5"/><path class="dg-l" d="M240 74 V 96" pathLength="1" style="--i:4"/><rect class="dg-n" x="90" y="96" width="300" height="44" rx="3" style="--i:1"/><text class="dg-t" x="108" y="123" text-anchor="start">Data · Azure SQL</text><path class="dg-l dg-dash" d="M390 118 H 430" pathLength="1" style="--i:6"/><path class="dg-l" d="M240 140 V 162" pathLength="1" style="--i:5"/><rect class="dg-n" x="90" y="162" width="300" height="44" rx="3" style="--i:2"/><text class="dg-t" x="108" y="189" text-anchor="start">Identity &amp; access</text><path class="dg-l dg-dash" d="M390 184 H 430" pathLength="1" style="--i:7"/><path class="dg-l" d="M240 206 V 228" pathLength="1" style="--i:6"/><rect class="dg-n dg-a" x="90" y="228" width="300" height="44" rx="3" style="--i:3"/><text class="dg-t" x="108" y="255" text-anchor="start">Microsoft Azure</text><path class="dg-l dg-dash" d="M390 250 H 430" pathLength="1" style="--i:8"/><rect class="dg-n dg-dashbox" x="430" y="30" width="80" height="242" rx="3" style="--i:4"/><text class="dg-t" x="470" y="150" text-anchor="middle">Backup</text><text class="dg-t" x="470" y="166" text-anchor="middle">&amp; recovery</text><circle class="dg-n" cx="30" cy="40" r="6" style="--i:0"/><path class="dg-l" d="M38 40 C 64 40, 64 52, 90 52" pathLength="1" style="--i:0"/><circle class="dg-n" cx="30" cy="60" r="6" style="--i:1"/><path class="dg-l" d="M38 60 C 64 60, 64 52, 90 52" pathLength="1" style="--i:1"/><circle class="dg-n" cx="30" cy="80" r="6" style="--i:2"/><path class="dg-l" d="M38 80 C 64 80, 64 52, 90 52" pathLength="1" style="--i:2"/><text class="dg-t" x="14" y="108" text-anchor="start">People</text></svg>
+          </figure>
         </div>
       </div>
     </section>
-
-    <section class="sec band plusgrid plusgrid--tr" aria-labelledby="deliverHeading">
+    <section class="band sp" id="situation" aria-labelledby="spHeading">
+      <div class="shell sp__in">
+        <div class="sp__head">
+          <p class="eyebrow" data-reveal>The situation</p>
+          <h2 class="display" id="spHeading" data-reveal style="--d:80ms">When the system depends on one machine</h2>
+        </div>
+        <div class="sp__body">
+          <p class="sp__statement" data-reveal style="--d:120ms">A system on a single office server depends on that server, its power supply, its backups and the person who looks after it. Azure changes those dependencies — but only when the environment is designed for the business rather than copied from a template.</p>
+          <div class="sp__signs">
+            <p class="sp__signs-label" data-reveal style="--d:140ms">Signs you may recognise</p>
+            <ul>
+              <li data-reveal style="--d:160ms">The core system runs on one server in the office.</li>
+              <li data-reveal style="--d:220ms">Nobody is sure when a restore from backup was last tried.</li>
+              <li data-reveal style="--d:280ms">Staff cannot reach the system away from the office network.</li>
+              <li data-reveal style="--d:340ms">Access is granted and removed account by account, by hand.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="band band-wash sd" id="deliver" aria-labelledby="sdHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>What we deliver</p>
-            <h2 class="display" id="deliverHeading" data-reveal style="--d:80ms">Secure, scalable infrastructure on Azure, run for you.</h2>
+            <p class="eyebrow" data-reveal>What GEMIS delivers</p>
+            <h2 class="display" id="sdHeading" data-reveal style="--d:80ms">Each layer, planned for the system it carries</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">The work this solution covers. Each one is delivered by the same team, on the Microsoft Cloud, and supported after go-live.</p>
+          <p class="lede" data-reveal style="--d:140ms">The parts of an Azure environment GEMIS designs and puts in place.</p>
         </div>
-        <ul class="caps" data-reveal style="--d:160ms">
-          <li>Microsoft Azure</li>
-          <li>Azure SQL</li>
-          <li>Cloud hosting</li>
-          <li>Identity management</li>
-          <li>API integration</li>
-          <li>Disaster recovery</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="sec band band-tint plusgrid plusgrid--br" aria-labelledby="whyHeading">
-      <div class="shell">
-        <h2 class="vh" id="whyHeading">Why it matters, how we work, what you get</h2>
-        <ol class="srows">
-          <li class="srow" data-reveal style="--d:0ms">
-            <span class="srow__n" aria-hidden="true">01</span>
-            <h3 class="srow__name">Why it matters</h3>
-            <div class="srow__body">
-              <p>A server in a cupboard is a single point of failure with a power cable. Moving the systems a business depends on to Azure takes the hardware, the backups and the patching off your plate, and puts the data in a South African region with the resilience to ride out the next outage.</p>
-            </div>
+        <ol class="sd__list">
+          <li class="sd__item" data-reveal style="--d:0ms">
+            <span class="sd__n" aria-hidden="true">01</span>
+            <h3 class="sd__name">Microsoft Azure</h3>
+            <p class="sd__text">An environment sized for the system’s workload, cost and growth.</p>
           </li>
-          <li class="srow" data-reveal style="--d:60ms">
-            <span class="srow__n" aria-hidden="true">02</span>
-            <h3 class="srow__name">How we work</h3>
-            <div class="srow__body">
-              <p>We design the environment before anything is deployed: identity, network, data, backup and recovery, each sized to the business rather than to a template. Then we migrate in stages with a tested way back at every step, so the business never has to stop.</p>
-            </div>
+          <li class="sd__item" data-reveal style="--d:60ms">
+            <span class="sd__n" aria-hidden="true">02</span>
+            <h3 class="sd__name">Azure SQL</h3>
+            <p class="sd__text">Managed databases for the system’s data, with backup configured as part of the design.</p>
           </li>
-          <li class="srow" data-reveal style="--d:120ms">
-            <span class="srow__n" aria-hidden="true">03</span>
-            <h3 class="srow__name">What you get</h3>
-            <div class="srow__body">
-              <p>An environment you can see the cost of, with monitoring that tells us about a problem before you do, and a recovery plan that has actually been rehearsed.</p>
-            </div>
+          <li class="sd__item" data-reveal style="--d:120ms">
+            <span class="sd__n" aria-hidden="true">03</span>
+            <h3 class="sd__name">Cloud hosting</h3>
+            <p class="sd__text">Applications hosted on Azure, reachable securely from where the work is done.</p>
+          </li>
+          <li class="sd__item" data-reveal style="--d:180ms">
+            <span class="sd__n" aria-hidden="true">04</span>
+            <h3 class="sd__name">Identity management</h3>
+            <p class="sd__text">Sign-in and permissions managed centrally, so access follows each person’s role.</p>
+          </li>
+          <li class="sd__item" data-reveal style="--d:240ms">
+            <span class="sd__n" aria-hidden="true">05</span>
+            <h3 class="sd__name">API integration</h3>
+            <p class="sd__text">Interfaces through which the system exchanges data with other platforms.</p>
+          </li>
+          <li class="sd__item" data-reveal style="--d:300ms">
+            <span class="sd__n" aria-hidden="true">06</span>
+            <h3 class="sd__name">Disaster recovery</h3>
+            <p class="sd__text">A plan for restoring data and services after a failure, agreed as part of the design.</p>
           </li>
         </ol>
       </div>
     </section>
-
-    <section class="sec band band-wash" aria-labelledby="proofHeading">
+    <section class="band sa sa--columns" id="approach" aria-labelledby="saHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>In production</p>
-            <h2 class="display" id="proofHeading" data-reveal style="--d:80ms">Where this has run</h2>
+            <p class="eyebrow" data-reveal>How the engagement works</p>
+            <h2 class="display" id="saHeading" data-reveal style="--d:80ms">From the current setup to a managed environment</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Systems in use today, not mock-ups. Each card names what GEMIS did and where the project stands. <a class="arrow-link" href="../../work/">All case studies <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
+          <p class="lede" data-reveal style="--d:140ms">A migration and a new build follow the same thinking; a migration adds a way back at each step.</p>
         </div>
-        <div class="cscards">
-          <article class="cscard" data-reveal style="--d:0ms">
-            <a class="cscard__media" href="../../work/trans-hex/" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/video/case-studies/TransHex_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">1:21</span>
-            </a>
-            <div class="cscard__body">
-              <p class="cscard__tag">Mining — diamonds</p>
-              <h3 class="cscard__name">Trans Hex Group</h3>
-              <p class="cscard__line">From a weeks-long report to one click</p>
-              <dl class="cscard__meta">
-                <div><dt>GEMIS&rsquo;s role</dt><dd>Stabilised the in-house system, automated the SAP feed, built the reporting into it</dd></div>
-                <div><dt>Status</dt><dd>Delivered 2017; a second version followed</dd></div>
+        <ol class="stages" data-reveal style="--n:4">
+          <li class="stage" data-reveal style="--d:0ms">
+            <span class="stage__n" aria-hidden="true">01</span>
+            <h3 class="stage__name">Review</h3>
+            <p class="stage__copy">What runs where today, what it depends on, and what the business needs from it.</p>
+          </li>
+          <li class="stage" data-reveal style="--d:90ms">
+            <span class="stage__n" aria-hidden="true">02</span>
+            <h3 class="stage__name">Design</h3>
+            <p class="stage__copy">Hosting, data, identity, backup and recovery, each sized to the system.</p>
+          </li>
+          <li class="stage" data-reveal style="--d:180ms">
+            <span class="stage__n" aria-hidden="true">03</span>
+            <h3 class="stage__name">Deploy or migrate</h3>
+            <p class="stage__copy">In stages, with the existing setup kept available until the new one is proven.</p>
+          </li>
+          <li class="stage" data-reveal style="--d:270ms">
+            <span class="stage__n" aria-hidden="true">04</span>
+            <h3 class="stage__name">Operate</h3>
+            <p class="stage__copy">Monitoring, updates and cost reviews — by GEMIS or your own team, as agreed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+    <section class="band band-tint sev" id="evidence" aria-labelledby="sevHeading">
+      <div class="shell">
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Evidence from real projects</p>
+            <h2 class="display" id="sevHeading" data-reveal style="--d:80ms">Where this has been done</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Projects whose recorded scope shows this work. <a class="arrow-link" href="../../work/">All case studies <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
+        </div>
+        <p class="sev__note" data-reveal>The case studies record the platform each system is built on. They do not describe the hosting arrangements in detail, so none are claimed here.</p>
+        <div class="sev__grid">
+          <article class="sev__item sev__item--lead" data-reveal style="--d:0ms">
+            <figure class="sev__media">
+              <img src="../../assets/img/cases/sbs-waterproofing/06-system.jpg" alt="Still from the SBS Waterproofing case study video: the modules of the business system." width="1280" height="720" loading="lazy" decoding="async" />
+              <a class="sev__play" href="../../assets/video/case-studies/SBS_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/SBS_explainer_web.mp4" data-webm="../../assets/video/case-studies/SBS_explainer_web.webm" data-poster="../../assets/video/case-studies/SBS_explainer_thumb.jpg" data-title="SBS Waterproofing: the system behind more than a decade of growth" aria-label="Play the SBS Waterproofing story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg></a>
+              <figcaption>From the case study video</figcaption>
+            </figure>
+            <div class="sev__body">
+              <p class="sev__ctx">Construction services — waterproofing and roofing</p>
+              <h3 class="sev__name"><a href="../../work/sbs-waterproofing/">SBS Waterproofing</a></h3>
+              <p class="sev__why">Recorded in the case study as built on Microsoft Azure, .NET and SQL, and in daily use since 2015.</p>
+              <dl class="sev__meta">
+                <div><dt>GEMIS’s role</dt><dd>Website partner from 2014; designer, builder and support partner of the business system from 2015</dd></div>
+                <div><dt>Status</dt><dd>Live — in daily use since 2015</dd></div>
               </dl>
-              <ul class="cscard__chips" aria-label="Capabilities"><li>Integration</li></ul>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="../../work/trans-hex/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-                <a class="btn btn--sm btn--ghost" href="../../assets/video/case-studies/TransHex_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/TransHex_explainer_web.mp4" data-webm="../../assets/video/case-studies/TransHex_explainer_web.webm" data-poster="../../assets/video/case-studies/TransHex_explainer_thumb.jpg" data-title="Trans Hex Group: from a weeks-long report to one click"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
-              </div>
+              <a class="arrow-link sev__go" href="../../work/sbs-waterproofing/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </article>
-          <article class="cscard" data-reveal style="--d:60ms">
-            <a class="cscard__media" href="../../products/managem/" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/video/case-studies/ManaGEM_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">1:06</span>
-            </a>
-            <div class="cscard__body">
-              <p class="cscard__tag">Business management software — compact ERP</p>
-              <h3 class="cscard__name">ManaGEM</h3>
-              <p class="cscard__line">Born in a real business, built for many</p>
-              <dl class="cscard__meta">
-                <div><dt>GEMIS&rsquo;s role</dt><dd>Designed, built and supported by GEMIS</dd></div>
-                <div><dt>Status</dt><dd></dd></div>
+          <article class="sev__item" data-reveal style="--d:90ms">
+            <figure class="sev__media">
+              <img src="../../assets/img/cases/homeassist/06-overview.jpg" alt="Still from the HomeAssist case study video: every job across the country in one view." width="1280" height="720" loading="lazy" decoding="async" />
+              <a class="sev__play" href="../../assets/video/case-studies/HomeAssist_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/HomeAssist_explainer_web.mp4" data-webm="../../assets/video/case-studies/HomeAssist_explainer_web.webm" data-poster="../../assets/video/case-studies/HomeAssist_explainer_thumb.jpg" data-title="HomeAssist: plumbing claims, from report to sign-off" aria-label="Play the HomeAssist story"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg></a>
+              <figcaption>From the case study video</figcaption>
+            </figure>
+            <div class="sev__body">
+              <p class="sev__ctx">Insurance and home services — plumbing repairs</p>
+              <h3 class="sev__name"><a href="../../work/homeassist/">HomeAssist</a></h3>
+              <p class="sev__why">Recorded as built on Microsoft Azure, .NET and SQL, with every job across the country visible in one place.</p>
+              <dl class="sev__meta">
+                <div><dt>GEMIS’s role</dt><dd>Designer, builder and long-term support partner</dd></div>
+                <div><dt>Status</dt><dd>Live — in use for more than ten years</dd></div>
               </dl>
-              <ul class="cscard__chips" aria-label="Capabilities"><li>Platforms</li></ul>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="../../products/managem/">Explore ManaGEM <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-                <a class="btn btn--sm btn--ghost" href="../../assets/video/case-studies/ManaGEM_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/ManaGEM_explainer_web.mp4" data-webm="../../assets/video/case-studies/ManaGEM_explainer_web.webm" data-poster="../../assets/video/case-studies/ManaGEM_explainer_thumb.jpg" data-title="ManaGEM: born in a real business, built for many"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
-              </div>
-            </div>
-          </article>
-          <article class="cscard" data-reveal style="--d:120ms">
-            <a class="cscard__media" href="../../work/sonke/" tabindex="-1" aria-hidden="true">
-              <img src="../../assets/video/case-studies/Sonke_explainer_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">1:22</span>
-            </a>
-            <div class="cscard__body">
-              <p class="cscard__tag">Non-profit — gender-based violence and HIV prevention</p>
-              <h3 class="cscard__name">Sonke Gender Justice</h3>
-              <p class="cscard__line">Monitoring and evaluation across Africa</p>
-              <dl class="cscard__meta">
-                <div><dt>GEMIS&rsquo;s role</dt><dd>Designer and builder of the monitoring and evaluation system</dd></div>
-                <div><dt>Status</dt><dd>Delivered 2018</dd></div>
-              </dl>
-              <ul class="cscard__chips" aria-label="Capabilities"><li>Field operations</li><li>Integration</li></ul>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="../../work/sonke/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-                <a class="btn btn--sm btn--ghost" href="../../assets/video/case-studies/Sonke_explainer_web.mp4" data-watch data-mp4="../../assets/video/case-studies/Sonke_explainer_web.mp4" data-webm="../../assets/video/case-studies/Sonke_explainer_web.webm" data-poster="../../assets/video/case-studies/Sonke_explainer_thumb.jpg" data-title="Sonke Gender Justice: monitoring and evaluation across Africa"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.8v8.4L10 6 3 1.8Z"/></svg> Play story</a>
-              </div>
+              <a class="arrow-link sev__go" href="../../work/homeassist/">Read the case study <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             </div>
           </article>
         </div>
       </div>
     </section>
-    <section class="sec band" aria-labelledby="moreHeading">
+    <section class="band srel" id="related" aria-labelledby="srelHeading">
       <div class="shell">
-        <p class="eyebrow" data-reveal>Other solutions</p>
-        <h2 class="display" id="moreHeading" data-reveal style="--d:80ms">Usually part of a larger whole</h2>
-        <ul class="rlist" data-reveal style="--d:140ms">
-          <li><a href="../../solutions/custom-software/"><span class="post__plus" aria-hidden="true">+</span><span>Custom software development</span></a></li>
-          <li><a href="../../solutions/enterprise-saas/"><span class="post__plus" aria-hidden="true">+</span><span>Enterprise SaaS platforms</span></a></li>
-          <li><a href="../../solutions/mobile-apps/"><span class="post__plus" aria-hidden="true">+</span><span>Mobile application development</span></a></li>
-          <li><a href="../../solutions/business-intelligence/"><span class="post__plus" aria-hidden="true">+</span><span>Business intelligence &amp; reporting</span></a></li>
-          <li><a href="../../solutions/system-integration/"><span class="post__plus" aria-hidden="true">+</span><span>System integration</span></a></li>
-          <li><a href="../../solutions/ux-design/"><span class="post__plus" aria-hidden="true">+</span><span>UX &amp; system design</span></a></li>
-          <li><a href="../../solutions/modernisation/"><span class="post__plus" aria-hidden="true">+</span><span>Software modernisation</span></a></li>
-          <li><a href="../../solutions/support/"><span class="post__plus" aria-hidden="true">+</span><span>Ongoing support &amp; maintenance</span></a></li>
+        <div class="sec__head">
+          <div>
+            <p class="eyebrow" data-reveal>Connected disciplines</p>
+            <h2 class="display" id="srelHeading" data-reveal style="--d:80ms">Often part of the same engagement</h2>
+          </div>
+          <p class="lede" data-reveal style="--d:140ms">Services that tend to work alongside this one. Not every engagement needs them. <a class="arrow-link" href="../../solutions/">All nine solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a></p>
+        </div>
+        <ul class="srel__list">
+          <li data-reveal style="--d:0ms">
+            <a class="srel__link" href="../../solutions/modernisation/">
+              <span class="srel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/><path d="M12 8v4l3 2"/></svg></span>
+              <span class="srel__name">Software modernisation</span>
+              <span class="srel__why">Moving an existing system to Azure is often the first stage of modernising it.</span>
+              <span class="srel__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--d:60ms">
+            <a class="srel__link" href="../../solutions/support/">
+              <span class="srel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.2"/><rect x="17" y="13" width="4" height="6" rx="1.2"/><path d="M19 19a3 3 0 0 1-3 3h-3"/></svg></span>
+              <span class="srel__name">Ongoing support &amp; maintenance</span>
+              <span class="srel__why">Monitoring, updates and recovery tests continue after the move.</span>
+              <span class="srel__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--d:120ms">
+            <a class="srel__link" href="../../solutions/system-integration/">
+              <span class="srel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M7 11l10-4.2M7 13l10 4.2"/></svg></span>
+              <span class="srel__name">System integration</span>
+              <span class="srel__why">Systems on Azure still need to exchange data with the ones that are not.</span>
+              <span class="srel__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--d:180ms">
+            <a class="srel__link" href="../../solutions/custom-software/">
+              <span class="srel__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.6"/><path d="M8 20h8M12 18v2M7 9l2.5 2.5L7 14M12 14h5"/></svg></span>
+              <span class="srel__name">Custom software development</span>
+              <span class="srel__why">New systems are designed for the environment they will run in.</span>
+              <span class="srel__go" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
-
-    <section class="sec band band-wash plusgrid plusgrid--br" aria-labelledby="faqHeading">
+    <section class="band band-wash" id="faq" aria-labelledby="faqHeading">
       <div class="shell">
         <div class="sec__head">
           <div>
-            <p class="eyebrow" data-reveal>Questions we are asked</p>
-            <h2 class="display" id="faqHeading" data-reveal style="--d:80ms">Frequently asked questions</h2>
+            <p class="eyebrow" data-reveal>Questions</p>
+            <h2 class="display" id="faqHeading" data-reveal style="--d:80ms">Common questions</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">The questions that come up first when a business asks about microsoft cloud solutions. If yours is not here, ask it in a discovery session.</p>
+          <p class="lede" data-reveal style="--d:140ms">The questions that come up first about Microsoft Cloud solutions. Anything not answered here is worth raising in a discovery conversation.</p>
         </div>
         <div class="faq">
           <details class="faq__item" data-reveal style="--d:0ms">
-            <summary class="faq__q"><span class="faq__n" aria-hidden="true">01</span><span class="faq__text">Is our data kept in South Africa?</span><span class="post__plus" aria-hidden="true">+</span></summary>
-            <div class="faq__a"><p>For most clients, yes. Azure has South African regions, and we design environments in-country unless a business has a reason to do otherwise, which also helps with POPIA obligations.</p></div>
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">01</span><span class="faq__text">Where will our data be hosted?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>Azure has regions in South Africa as well as abroad. The region is chosen with you for each system, taking into account where your users are, cost and your obligations under POPIA.</p></div>
           </details>
-          <details class="faq__item" data-reveal style="--d:60ms">
-            <summary class="faq__q"><span class="faq__n" aria-hidden="true">02</span><span class="faq__text">Will we need our own IT team to run it?</span><span class="post__plus" aria-hidden="true">+</span></summary>
-            <div class="faq__a"><p>No. We architect the environment, deploy it, monitor it and keep it patched as part of ongoing support. You see the cost and the status; we do the running.</p></div>
+          <details class="faq__item" data-reveal style="--d:50ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">02</span><span class="faq__text">Does moving to the cloud make our system secure and compliant?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>Not on its own. Azure provides strong building blocks, but security and POPIA compliance depend on how the environment is configured, how access is managed and how the system handles personal information. We design for those explicitly and are clear about where each responsibility sits.</p></div>
           </details>
-          <details class="faq__item" data-reveal style="--d:120ms">
-            <summary class="faq__q"><span class="faq__n" aria-hidden="true">03</span><span class="faq__text">What happens during load-shedding?</span><span class="post__plus" aria-hidden="true">+</span></summary>
-            <div class="faq__a"><p>A system on Azure does not notice that your office has lost power. It stays reachable from a phone or a laptop on a battery, which is one of the main reasons businesses move their core system to the cloud.</p></div>
+          <details class="faq__item" data-reveal style="--d:100ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">03</span><span class="faq__text">Who maintains the environment after it is set up?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>That is agreed per engagement. GEMIS can manage the environment as part of ongoing support, or hand it to your own IT team with the design written up.</p></div>
           </details>
-          <details class="faq__item" data-reveal style="--d:180ms">
-            <summary class="faq__q"><span class="faq__n" aria-hidden="true">04</span><span class="faq__text">Can you move an existing system to the cloud without downtime?</span><span class="post__plus" aria-hidden="true">+</span></summary>
-            <div class="faq__a"><p>We migrate in stages with a tested way back at each step, and run old and new side by side until the switch is a formality. The business does not have to stop to move.</p></div>
+          <details class="faq__item" data-reveal style="--d:150ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">04</span><span class="faq__text">Can an existing system move without disrupting the business?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>Most migrations can be staged to keep disruption low — for example by running old and new side by side, with a way back at each step. How much disruption remains depends on the system, so it is assessed before the plan is agreed rather than promised in advance.</p></div>
+          </details>
+          <details class="faq__item" data-reveal style="--d:200ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">05</span><span class="faq__text">What will it cost to run?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>Azure charges for what the environment uses, so the running cost depends on the system’s size and usage. The design includes an estimate, and the cost can be watched once the system is live.</p></div>
+          </details>
+          <details class="faq__item" data-reveal style="--d:250ms">
+            <summary class="faq__q"><span class="faq__n" aria-hidden="true">06</span><span class="faq__text">What happens during load-shedding?</span><span class="post__plus" aria-hidden="true">+</span></summary>
+            <div class="faq__a"><p>A system hosted in an Azure data centre does not depend on your office having power, so staff with charged devices and a connection can keep working. It does not remove the need for connectivity at your end.</p></div>
           </details>
         </div>
       </div>
     </section>
-
-    <section class="endnote">
-      <div class="shell">
-        <h2 class="display" data-reveal>Talk to us about microsoft cloud solutions.</h2>
-        <a class="arrow-link" href="../../contact.html" data-reveal style="--d:140ms">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+    <section class="convert" id="discuss" aria-labelledby="convertHeading">
+      <div class="shell convert__in">
+        <p class="eyebrow" data-reveal>Microsoft Cloud solutions</p>
+        <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Tell us what your systems run on today.</h2>
+        <p class="lede" data-reveal style="--d:140ms">Where they are hosted, who looks after them and what worries you about that. We come back within two working days with a short written view and a time to talk.</p>
+        <div class="convert__ctas" data-reveal style="--d:200ms">
+          <a class="btn" href="../../contact.html?service=microsoft-cloud">Discuss a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          <a class="arrow-link" href="../../solutions/">All solutions <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+        </div>
       </div>
     </section>
+        <dialog class="vmodal" id="videoModal" aria-label="Case study video">
+          <button class="vmodal__close" type="button" data-close aria-label="Close video"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7"/></svg></button>
+          <video class="vmodal__video" controls playsinline preload="none" width="1280" height="720"></video>
+          <p class="vmodal__title" data-vtitle></p>
+        </dialog>
 </main>
 
 
