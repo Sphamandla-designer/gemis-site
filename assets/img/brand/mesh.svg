@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <!-- The GEMIS gradient mesh: cream, sherbet, lavender, indigo, ruby and magenta,
+       blurred into organic shapes. Light on the left where type sits, saturated on
+       the right where the product composites float. -->
+  <defs>
+    <filter id="b" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="78"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="#f7ead6"/>
+  <g filter="url(#b)">
+    <ellipse cx="160" cy="140" rx="460" ry="250" fill="#fff1dc"/>
+    <ellipse cx="470" cy="520" rx="420" ry="230" fill="#ffc382"/>
+    <ellipse cx="760" cy="150" rx="340" ry="230" fill="#ffb47a"/>
+    <ellipse cx="930" cy="430" rx="330" ry="260" fill="#c9b6ff"/>
+    <ellipse cx="1210" cy="560" rx="420" ry="300" fill="#533afd"/>
+    <ellipse cx="1180" cy="170" rx="300" ry="210" fill="#8f7bff"/>
+    <ellipse cx="1480" cy="230" rx="320" ry="260" fill="#ea2261"/>
+    <ellipse cx="1500" cy="700" rx="300" ry="230" fill="#f96bee"/>
+    <ellipse cx="800" cy="800" rx="420" ry="190" fill="#ff8a4c"/>
+  </g>
+</svg>

@@ -442,6 +442,51 @@ def in_their_words(base='', heading_id='wordsHeading'):
 '''
 
 
+# ── product-interface composites (brand v2) ─────────────────────────────
+# Real interfaces, cropped from the laptop and phone screens in GEMIS's own
+# case-study videos (each marked "Sample data" in the video). Composited as
+# app windows and phones over the gradient mesh — never invented screens.
+UI = {
+    'managem': ('ManaGEM', 'Projects · profit by job', 667, 371),
+    'homeassist': ('HomeAssist', 'Today · all provinces', 667, 374),
+    'trans-hex': ('Trans Hex MIS', 'Integrated MIS report', 693, 371),
+    'sonke': ('Sonke M&E', 'Progress against targets', 667, 374),
+    'wastemart': ('WasteMart', 'Quote to collection', 667, 374),
+    'sbs-waterproofing': ('SBS Waterproofing', 'Projects · profit by job', 667, 371),
+    'tores-foundation': ('Tore’s Foundation', 'League standings', 540, 270),
+}
+PHONES = {'wastemart': 'Driver app', 'homeassist': 'Plumber app', 'tores-foundation': 'Judge’s ballot'}
+
+
+def ui_window(slug, base, cls='', eager=False):
+    app, title, w, h = UI[slug]
+    load = 'eager' if eager else 'lazy'
+    return (f'<div class="win {cls}"><div class="win__bar" aria-hidden="true"><i></i><i></i><i></i>'
+            f'<span>{esc(app)} · {esc(title)}</span></div>'
+            f'<img src="{base}assets/img/ui/{slug}.jpg" alt="" width="{w}" height="{h}" loading="{load}" decoding="async" /></div>')
+
+
+def ui_phone(slug, base, cls='', eager=False):
+    load = 'eager' if eager else 'lazy'
+    return (f'<div class="phn {cls}"><img src="{base}assets/img/ui/{slug}-phone.jpg" alt="" width="244" height="494" '
+            f'loading="{load}" decoding="async" /></div>')
+
+
+def composite(base, wins, phone=None, label='', eager=False, cls='', note=True):
+    """
+    Up to two app windows and a phone, layered with soft shadows. The figure
+    carries the description; the screens inside are decorative. Under 760px
+    it simplifies to the front window alone.
+    """
+    parts = [ui_window(s, base, f'win--{i + 1}', eager) for i, s in enumerate(wins)]
+    if phone:
+        parts.append(ui_phone(phone, base, 'phn--1', eager))
+    cap = ('<figcaption class="comp__note">Interfaces from GEMIS case-study videos · sample data</figcaption>'
+           if note else '')
+    mods = f'comp--{len(wins)}' + (' comp--phone' if phone else '') + (f' {cls}' if cls else '')
+    return (f'<figure class="comp {mods}" aria-label="{esc(label)}">' + ''.join(parts) + cap + '</figure>')
+
+
 def feat(title, href, img, meta, body, chips=(), extra_attrs='', link=''):
     """A ruled feature: title row with a plus, image, meta, copy, chips."""
     chip_html = ''

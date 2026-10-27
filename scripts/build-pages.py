@@ -260,9 +260,7 @@ def story_page(s):
           </div>
         </div>
         <div class="cshero__visual" data-reveal style="--d:200ms">
-          <img src="{v}_thumb.jpg" alt="A frame from the {esc(s['client'])} case study video" width="1280" height="720" />
-          <a class="featured__play" {B.play_attrs(s, base)} aria-label="Play the {esc(s['client'])} story">{B.PLAY}</a>
-          <span class="featured__len" aria-hidden="true">{s['duration_label']}</span>
+          {B.composite(base, [s['slug']], s['slug'] if s['slug'] in B.PHONES else None, f"The {esc(s['client'])} system: an interface from its case-study video", eager=True)}
         </div>
       </div>
     </section>
@@ -464,6 +462,9 @@ def work_page():
             <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
             <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
           </div>
+        </div>
+        <div class="cshero__visual" data-reveal style="--d:200ms">
+          {B.composite(base, ['trans-hex', 'sonke'], 'homeassist', 'Interfaces from systems GEMIS built: the Trans Hex management report, Sonke programme targets, and the HomeAssist plumber app', eager=True)}
         </div>
       </div>
     </section>

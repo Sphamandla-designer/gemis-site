@@ -242,10 +242,15 @@ def managem():
     C = P.C
     body = f'''
     <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>ManaGEM</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A business management platform, born in a real business")}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.</p>
+      <div class="shell chero__grid">
+        <div class="chero__text">
+          <p class="chero__kicker" data-reveal>ManaGEM</p>
+          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A business management platform, born in a real business")}</h1>
+          <p class="chero__copy" data-reveal style="--d:140ms">Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.</p>
+        </div>
+        <div class="chero__visual" data-reveal style="--d:200ms">
+          {B.composite(base, ['managem', 'sbs-waterproofing'], None, 'ManaGEM project profit, and the SBS Waterproofing system it was generalised from: interfaces from the case-study videos', eager=True)}
+        </div>
       </div>
     </section>
 
