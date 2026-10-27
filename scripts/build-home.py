@@ -82,39 +82,33 @@ def link_for(slug, base=''):
 
 
 def hero():
-    # the hero as it was before the redesign (restored at the owner's request):
-    # the tagline leads, the partner line sits in the corner, no mock-ups
-    return '''    <section class="hero" id="hero">
-      <img class="hero__bg" src="assets/img/home/hero-bg.jpg" alt="" aria-hidden="true" />
-
-      <div class="shell hero__in">
-        <p class="eyebrow eyebrow--light" data-reveal>Business systems partner since 2014</p>
-        <h1 class="hero__title" data-reveal style="--d:80ms">Systems built to last. Partners built to stay.</h1>
-        <p class="hero__copy" data-reveal style="--d:160ms">
-          We build software around how your business actually works, and we stay to
-          support it as you grow. Some of our clients have been with us for more than
-          a decade.
-        </p>
-        <div class="hero__ctas" data-reveal style="--d:240ms">
-          <a class="arrow-link" href="#discovery">
-            Book a Discovery Session
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-          </a>
-          <a class="arrow-link arrow-link--quiet" href="#selected">
-            See our work
-            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-          </a>
+    # brand v2: the tagline on the gradient mesh, with a composite of real
+    # interfaces from the case-study videos beside it
+    return f'''    <section class="hero hero--mesh" id="hero">
+      <div class="shell hero__grid">
+        <div class="hero__text">
+          <p class="hero__eyebrow" data-reveal>Business systems partner since 2014</p>
+          <h1 class="hero__title" data-reveal style="--d:80ms">Systems built to last. <br class="h1-br">Partners built to stay.</h1>
+          <p class="hero__copy" data-reveal style="--d:160ms">
+            We build software around how your business actually works, and we stay to
+            support it as you grow. Some of our clients have been with us for more than
+            a decade.
+          </p>
+          <div class="hero__ctas" data-reveal style="--d:240ms">
+            <a class="btn" href="#discovery">Book a Discovery Session {ARROW}</a>
+            <a class="arrow-link" href="#selected">See our work {ARROW}</a>
+          </div>
+          <!-- The exact partner designation and badge artwork are still to be
+               supplied — see OPEN_ITEMS.md (microsoft-partner-badge). -->
+          <aside class="hero__partner" data-reveal style="--d:320ms" aria-label="Microsoft partnership" data-tbc="microsoft-partner-badge" data-kind="hideable">
+            <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
+            <span class="hero__partner-line">Systems built and run on the Microsoft Cloud <span class="tbc" data-tbc="microsoft-partner-badge" data-kind="hideable">designation to confirm</span></span>
+          </aside>
+        </div>
+        <div class="hero__visual" data-reveal style="--d:200ms">
+          {B.composite('', ['homeassist', 'managem'], 'wastemart', 'Interfaces from systems GEMIS built: the HomeAssist claims dashboard, ManaGEM project profit, and the WasteMart driver app', eager=True)}
         </div>
       </div>
-
-        <!-- The Microsoft four-square mark is drawn inline. The exact partner
-             designation and official badge artwork are still to be supplied —
-             see OPEN_ITEMS.md (microsoft-partner-badge). -->
-        <aside class="hero__partner" data-reveal style="--d:320ms" aria-label="Microsoft partnership" data-tbc="microsoft-partner-badge" data-kind="hideable">
-          <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
-          <span class="hero__partner-name">Microsoft Partner</span>
-          <span class="hero__partner-line">Systems built and run on the Microsoft Cloud <span class="tbc" data-tbc="microsoft-partner-badge" data-kind="hideable">designation to confirm</span></span>
-        </aside>
     </section>
 
     <!-- ═══════════════════ 02 · ABOUT / TRUST ═══════════════════

@@ -115,8 +115,8 @@ def post_cards(base='', articles=None):
         chips = '\n'.join(f'              <li>{esc(c)}</li>' for c in a.get('chips', [a['tag']]))
         cards.append(f'''          <article class="post" data-reveal style="--d:{i * 80}ms">
             <h3 class="post__t"><a href="{base}insights/{a['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(a['title'])}</span></a></h3>
-            <a class="post__media" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">
-              <img src="{base}{a['image']}" alt="" loading="lazy" width="1200" height="675" />
+            <a class="post__media post__media--mesh" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">
+              {B.ui_window(ARTICLE_STORY[a['slug']][0], base, 'win--card')}
             </a>
             <p class="post__meta"><span class="post__tag">{esc(a['tag'])}</span> · <time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']}</p>
             <p class="post__x">{esc(a['standfirst'])}</p>
@@ -207,6 +207,9 @@ def article_page(a):
       </div>
     </section>
 '''
+    ck = ARTICLE_STORY[a['slug']][0]
+    cover = B.composite(base, [ck], ck if ck in B.PHONES else None,
+                        f"The {S.BY_SLUG[ck]['client']} system, from its case-study video")
     body = f'''
     <section class="chero chero--art" id="hero">
       <div class="shell">
@@ -219,9 +222,9 @@ def article_page(a):
 
     <section class="art band" aria-label="Article">
       <div class="shell art__in">
-        <figure class="art__cover" data-reveal>
-          <img src="{base}{a['image']}" alt="" width="1200" height="675" />
-        </figure>
+        <div class="art__cover art__cover--mesh" data-reveal>
+          {cover}
+        </div>
         <div class="art__body" data-reveal style="--d:80ms">
 {article_body(a)}
         </div>

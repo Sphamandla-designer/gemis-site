@@ -70,73 +70,84 @@ Auditing one in a sandbox reports `document-title` and `html-has-lang` falsely: 
 meta-refresh fires before axe runs, so it measures the failed navigation. Re-run
 against the file's own bytes with the refresh stripped.
 
-## One design system — the tail of `site.css` decides
+## One design system — Brand v2, at the tail of `site.css`
 
 The stylesheet was written page by page and the layers contradict each other.
-The last block, **TIDY — one system for the whole corporate site**, is where the
-decisions now live; put a change to colour, type or spacing there, not in the
-layer that first introduced the component.
+The last block, **BRAND v2 — the GEMIS design system** (2026-10, from the owner's
+Stripe-like brief, reference stripe.com), and the short blocks after it are where
+the decisions live; put a change to colour, type or spacing there. Its selectors
+carry `:not(#_)` to beat older, more specific rules without `!important` — mind
+specificity when you add to it (`.ctc#hero` inside an `:is()` lifts the whole rule
+to ID weight).
 
-- **Grounds are the hero photograph, never flat navy.** `assets/img/home/hero-bg.jpg`
-  is the ground of every band that is not paper — `.chero`, `.endnote`, `.go`,
-  `.built`, `.band-ink`, `.convert` — through the rules at the tail of `site.css`;
-  only the gradient over it (`--scrim`) changes per band. It pans slowly and the
-  gradient breathes (still under reduced motion); type on it is white. Pages that
-  open on it get `nav--photo` (set by `build-pages.shell()`); the light-hero pages
-  (`contact.html`, `privacy.html`) keep `nav--solid`. No hero carries image mockups.
-  The moment the page scrolls (`.is-stuck`), or a drop-down opens, the bar
-  itself turns `--navy-deep` with the wordmark and links in white, on every
-  page (the owner's third harmony pass); under 900px the paper drawer slides
-  under a cleared bar. The Selected work cards are white on the pure white
-  band. **Every page ends paper → navy footer**: the closing bands — `.go`
-  (home), `.convert` (case studies), `.endnote` (services, Our Story) — are
-  white with ink type and navy buttons, and `.foot` is `--navy-deep` with
-  white type. **The footer is a port of the efferd `footer-3` block** (the
-  owner supplied its React source; the site has no React, so the structure
-  is rebuilt as plain markup in `FOOTER` in `apply-chrome.py`, which
-  replaces the whole `<footer class="foot">` on every page): rounded top
-  corners with a centred glow and a blurred hairline, a brand column, four
-  sections — Solutions (the first four and All solutions) / Products (ManaGEM, Design Studio,
-  Technical Academy, All products) / Company (Our Story, Case Studies,
-  Insights, Industries, Contact) / Connect (LinkedIn, gemis.co.za, email,
-  with icons) — a gradient rule and a centred legal line with the privacy
-  policy; expanded from the block's 1024px cap to the site's shell width.
-  Each section reveals with the block's blur-and-rise (`.has-js .foot
-  [data-reveal]`; `site.js` adds `has-js` to `<html>`, so the blur never
-  applies without JavaScript, and reduced motion gets it static).
-- **Case study pages** are built from `scripts/cases.py` (hero with status and
-  Play story, overview, business challenge, strategy and approach, outcomes split
-  into delivered / verified / intended, related work, tailored enquiry). Only the
-  client-confirmed metric is a number; a section with nothing verified is omitted.
-- **Colour** comes from the hero photograph (`assets/img/home/hero-bg.jpg`):
-  `--navy-deep #0b2642`, `--navy #16395e`, `--blue #2a5c8a`, `--wash #e6edf4`.
-  No indigo, no warm grey — `band-warm` is retired and maps to `--paper-2`.
-- **Type** is eight steps: `--fs-hero / display / lead / title / name / copy /
-  small / eyebrow`. Every heading resolves to one; no literal px sizes.
-- **Rhythm** is `--sec-y` on both edges of every section; the proof strip takes
-  `--sec-y-s`. `.endnote` carries no top margin — that margin was the bare strip of
-  page that used to show between sections.
-- **Grounds** alternate paper → wash → paper → tint, one `band-ink` per long page,
-  then the footer. Two washes never touch.
-- **Page heroes** (`.chero`) are the home hero's photograph under the same scrim,
-  type set left. **Every hero title is two lines**: the generators pass the
-  title through `two_lines()` in `build-stories.py`, which breaks it once
-  where the halves are most even (after a full stop, colon or comma when
-  close) with a `<br class="h1-br">`; the width cap is lifted and the title
-  does not wrap on its own above 620px, where the break is dropped and it
-  wraps naturally. `contact.html` carries the break by hand. A single-word
-  title (HomeAssist, WasteMart) stays one line. A story page's endorsement chapter is itself `.unconfirmed`, so an
+- **Colour.** Indigo `--primary #533afd` is for filled pill buttons and links only
+  — one filled pill per band. Ink `#0d253d`, ink-2 `#273951`, ink-3 `#5a6a81` (the
+  brief's `#64748d`, darkened to pass 4.5:1 on the soft and cream grounds). Grounds:
+  white, `--paper-2 #f6f9fc`, `--cream #f5e9d4` / `--cream-soft`. Hairline `#e3e8ee`,
+  input hairline `#a8c3de`. The old tokens are remapped (`--navy` → indigo,
+  `--navy-deep` → ink), so older components follow.
+- **Type.** Inter (variable, `assets/fonts/inter-latin-opsz-normal.woff2`, OFL) at
+  weight 300 with `ss01` and negative tracking, standing in for Sohne; `tnum` on
+  every number that is read as a number. Eight steps: `--fs-hero / display / lead /
+  title / name / copy / small / eyebrow`; display type drops to 36px on phones.
+- **Heroes are the gradient mesh** (`assets/img/brand/mesh.svg` — blurred SVG
+  blobs, cream / orange / lavender / indigo / ruby / magenta) on `.hero`, `.chero`,
+  `.ihero`, `.oops`, `.legal` and the contact hero `.ctc#hero`, cut on a slant and
+  drifting slowly (static under reduced motion). Type on it is ink. A white veil
+  over the text side keeps it at 4.5:1 — firmer on text-only heroes, full width
+  at 1100px and under. Measure it from pixels, not with axe (axe cannot see a
+  pseudo-element image): `meshc`-style sampling of each text line box at both ends
+  of the drift. The photograph `hero-bg.jpg` is no longer a ground.
+- **Composites, not photographs.** `composite()` in `build-stories.py` layers app
+  windows (`ui_window`) and a phone (`ui_phone`) over the hero, built from crops of
+  the case-study video stills in `assets/img/ui/` (each marked sample data in its
+  video), captioned "Interfaces from GEMIS case-study videos · sample data". Never
+  invent a dashboard. Article covers and insight cards show the window of the case
+  behind the article on a mesh panel.
+- **The nav floats on the mesh**: ink links, Contact as the indigo pill; once the
+  page scrolls (`.is-stuck`) or a drop-down opens it turns white with blur and a
+  hairline. **The footer is light**: white, hairline top, ink-3 type. Its structure
+  is still the efferd `footer-3` port in `FOOTER` in `apply-chrome.py` (brand
+  column; Solutions — the first four and All solutions / Products / Company /
+  Connect; centred legal line), each section revealing with blur-and-rise
+  (`.has-js .foot [data-reveal]`). These replace the owner's earlier navy-bar and
+  navy-footer requests.
+- **Surfaces.** Cards are white, hairline, radius 12, shadow level 1 lifting to
+  level 2 on hover. Dark product bands (`.band-ink`, `.prin`, `.sq`, `.built`,
+  `.op`) are deep ink with faint indigo / ruby / magenta glows, type white —
+  anything placed on them that inherits the global ink heading colour needs a white
+  override (stats and timeline plates have one). Closing bands (`.convert`,
+  `.endnote`) are cream cards, radius 16; the home `.go` form sits in a white card.
+  Tags are soft indigo pills; `.caps` stays a ruled list with an indigo marker.
+- **The logo** keeps its shapes; the gem is recoloured with the `gemisGem`
+  gradient (orange → ruby → indigo) defined in the sprite of `index.html` and the
+  four hand-written pages.
+- **Rhythm** is `--sec-y` (64–104px) on both edges of every section, `--sec-y-s`
+  after a text-only hero. Shell 1240px. **Grounds** alternate white → soft → white
+  → cream, one dark band per long page, then the footer.
+- **Case study pages** are built from `scripts/cases.py` (hero with status,
+  composite and Play story, overview, business challenge, strategy and approach,
+  outcomes split into delivered / verified / intended, related work, tailored
+  enquiry). Only the client-confirmed metric is a number; a section with nothing
+  verified is omitted.
+- **Every hero title is two lines**: the generators pass the title through
+  `two_lines()` in `build-stories.py`, which breaks it once where the halves are
+  most even (after a full stop, colon or comma when close) with a
+  `<br class="h1-br">`; the title does not wrap on its own above 620px, where the
+  break is dropped and it wraps naturally. `contact.html` and `industries.html`
+  carry the break by hand. A single-word title (HomeAssist, WasteMart) stays one
+  line. A story page's endorsement chapter is itself `.unconfirmed`, so an
   unapproved line removes the whole band rather than leaving an empty one.
 
 - **The reference kit** (from the owner's screenshots in `qa/design-refs/`) runs on
   every page: `.srows/.srow` numbered ruled rows for anything ordered (services,
   steps, founders, reasons), `.feats/.post` ruled features for anything with an
   image (articles, case studies, products), `.rlist` ruled link lists, `.plusgrid`
-  (`--tr`, `--br`) corner accents, and `.endnote` as the photographic band. The
+  (`--tr`, `--br`) corner accents (hidden under Brand v2), and `.endnote` as the closing band. The
   helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
 - **Three more references** (`qa/design-refs/stories-panel.png`, `timeline.png`,
   `testimonials.png`) set: the stories panel (`stories_section()` — on the home's
-  partnership section, over the hero photograph, never black) and the horizontal
+  partnership section, on a dark band, never black) and the horizontal
   timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
   steps, About's milestones). The old "Client stories" stage is gone with its
   invented entries; the homepage carries **In their words** instead. Any tabbed stage is a
@@ -171,7 +182,7 @@ layer that first introduced the component.
   (names on the left, one quotation at a time, the three lines from
   `scripts/endorsements.md`) → **Operating principles** (`operating_logic()`,
   section `.prin`: the four principles, verbatim in `OPERATING`, on the
-  standard navy band as a sticky index and a ruled list — left, the label,
+  standard dark band as a sticky index and a ruled list — left, the label,
   the statement on `--fs-display` and one large index numeral with four
   ticks; right, four numbered ruled rows (statement on `--fs-title`,
   evidence, "Seen in" links to the chapter pages), then "Read more of our
