@@ -15,8 +15,8 @@ No photographs and no product mockups: the objects are vector art and motion.
     01 the opener (white L-block, the animated block cluster)
     02 the statement           06 in their words
     03 the numbers             07 the principles, as stepped blocks
-    04 Solutions (hover panel) 08 our thinking
-    05 Case studies (carousel) 09 the enquiry
+    04 Case studies (carousel) 08 our thinking
+    05 Solutions (hover panel) 09 the enquiry
 
 Every project, figure and quotation comes from scripts/stories.py, cases.py
 and services.py; nothing is written here that is not already evidenced there.
@@ -76,6 +76,7 @@ PICTO = {
     'handoff': 'M8 44h60V24l44 36-44 36V76H8Z',
     'evolve': 'M54 70h12v42H54ZM60 8c22 0 38 18 38 38S82 78 60 78 22 68 22 46 38 8 60 8Z',
     'gem': 'M32 14h56l24 30-52 66L8 44Zm8 10L24 44h72L80 24Z',
+    'quote': 'M14 30h36v32H32c0 10 7 16 18 16v16C26 94 14 80 14 62Zm56 0h36v32H88c0 10 7 16 18 16v16C82 94 70 80 70 62Z',
 }
 
 
@@ -211,8 +212,10 @@ def numbers():
             <p class="hx-label">{esc(l)}</p>
             <p class="hx-num__n"><span class="stat__n" data-count="{n}" data-sup="+">{n}<sup>+</sup></span></p>
           </li>''' for i, (n, l) in enumerate(stats))
-    logos = NL.join(f'            <li><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" height="40" loading="lazy" /></li>'
+    logos = NL.join(f'            <li class="marquee__item"><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" height="40" loading="lazy" /></li>'
                     for k, n in LOGOS)
+    logos2 = NL.join(f'            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/{k}-grey.png" alt="" height="40" loading="lazy" /></li>'
+                     for k, n in LOGOS)
     return f'''
     <!-- ═══════════════════ 03 · THE NUMBERS ═══════════════════
          Three confirmed figures (scripts/facts.md) as giant light numerals in
@@ -225,9 +228,14 @@ def numbers():
         </ul>
         <div class="hx-logos" data-reveal>
           <p class="hx-label">Trusted by</p>
-          <ul class="hx-logos__row">
+          <div class="marquee hx-marquee">
+            <ul class="marquee__track">
 {logos}
-          </ul>
+            </ul>
+            <ul class="marquee__track" aria-hidden="true">
+{logos2}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -250,7 +258,7 @@ def solutions():
     <section class="hx hx-open hx-open--sol" id="solutions" aria-labelledby="solHeading">
       <div class="hx-open__field" aria-hidden="true"><div class="hx-dots"></div><span class="hx-streak hx-streak--3"></span></div>
       <div class="shell hx-open__in">
-{opener('Solutions', 2, 'Nine disciplines. One accountable team.', 'solHeading')}
+{opener('Solutions', 3, 'Nine disciplines. One accountable team.', 'solHeading')}
         <p class="hx-open__copy" data-reveal style="--d:200ms">GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.</p>
       </div>
     </section>
@@ -279,14 +287,20 @@ def cases():
         st = S.BY_SLUG[k]
         c = C.CASES.get(k, {})
         out = c.get('status_short') or st.get('outcome', '')
+        v = f"{S.VIDEO_DIR}{st['video']}"
         tiles.append(f'''          <li class="hx-tile" data-rail-item data-reveal style="--d:{(i % 3) * 80}ms">
-            <p class="hx-label hx-tile__ind">{esc(st['industry'])}</p>
-            <h3 class="hx-tile__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
-            <p class="hx-tile__line">{esc(st['headline'])}</p>
-            <p class="hx-tile__out">{esc(out)}</p>
-            <div class="hx-tile__foot">
-              <a class="hx-circle" href="{link_for(k)}" aria-label="Read the {esc(st['client'])} case study"><span aria-hidden="true">+</span></a>
-              <a class="hx-circle" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}</a>
+            <div class="hx-tile__media" data-preview data-src="{v}_web.mp4" data-webm="{v}_web.webm">
+              <img src="{v}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+              <video class="hx-tile__video" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>
+              <a class="hx-circle hx-tile__play" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}</a>
+              <span class="hx-label hx-tile__len" aria-hidden="true">{st['duration_label']}</span>
+            </div>
+            <div class="hx-tile__body">
+              <p class="hx-label hx-tile__ind">{esc(st['industry'])}</p>
+              <h3 class="hx-tile__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
+              <p class="hx-tile__line">{esc(st['headline'])}</p>
+              <p class="hx-tile__out">{esc(out)}</p>
+              <a class="hx-tile__more" href="{link_for(k)}"><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-label">Read the case study</span></a>
             </div>
           </li>''')
     return f'''
@@ -296,7 +310,7 @@ def cases():
          its case study or plays the video in the overlay. -->
     <section class="hx hx-cases" id="selected" aria-labelledby="casesHeading">
       <div class="shell">
-{opener('Case studies', 3, 'Systems in production, each with its story on video.', 'casesHeading', ink=True)}
+{opener('Case studies', 2, 'Systems in production, each with its story on video.', 'casesHeading', ink=True)}
       </div>
       <div class="hx-rail" data-rail>
         <div class="shell hx-rail__head">
@@ -317,11 +331,67 @@ def cases():
 
 # ── 06 · In their words ────────────────────────────────────────────────────
 def in_their_words():
-    """The shared stage from build-stories, restyled by the home block."""
+    """
+    The three endorsements, copied exactly from endorsements.md, on the
+    home's stage: the voices as a numbered rail with a counter and a running
+    bar on the left, the quotation large on navy under a hatch quotation mark
+    on the right; it advances on its own (home.js, [data-stage]) and every
+    control still works without it. A person with no line yet shows
+    "Quotation to follow." (a hideable TBC the gate still lists).
+    """
     if not any(S.ENDORSERS[k].get('line') for k in S.ENDORSEMENT_ORDER):
         print('home: no quotation in endorsements.md yet — "In their words" shows "Quotation to follow." (owner\'s instruction)')
-    html = B.in_their_words('')
-    return html.replace('<section class="words testi band"', '<section class="hx hx-words words testi band"', 1)
+    keys = S.ENDORSEMENT_ORDER
+    tabs, slides = [], []
+    for i, k in enumerate(keys):
+        e = S.ENDORSERS[k]
+        pressed = 'true' if i == 0 else 'false'
+        hidden = '' if i == 0 else ' aria-hidden="true"'
+        meta = ' · '.join(x for x in (e.get('title'), e.get('company')) if x)
+        tabs.append(f'''          <li><button class="hx-words__tab" type="button" data-tab data-go="{i}" aria-pressed="{pressed}"><span class="hx-label hx-words__n">{i + 1:02d}</span><span class="hx-words__who">{esc(e['name'])}</span><span class="hx-label hx-words__co">{esc(meta)}</span></button></li>''')
+        quote = esc(e['line']) if e.get('line') else f'<span class="cs__pending" data-tbc="{e["line_tbc"]}" data-kind="hideable">Quotation to follow.</span>'
+        since = f' · {esc(e["since"])}' if e.get('since') else ''
+        link = ''
+        if e.get('slug'):
+            link = f'<a class="hx-btn hx-btn--ghost hx-words__more" href="{link_for(e["slug"])}">Read the {esc(S.BY_SLUG[e["slug"]]["client"])} story</a>'
+        slides.append(f'''          <li class="hx-words__item" data-slide{hidden}>
+            <blockquote class="hx-words__q"><p>{quote}</p></blockquote>
+            <p class="hx-words__by"><span class="hx-words__face" aria-hidden="true">{e['initials']}</span><span class="hx-words__sig"><strong>{esc(e['name'])}</strong><span class="hx-label">{esc(meta)}{since}</span></span></p>
+            {link}
+          </li>''')
+    return f'''
+    <!-- ═══════════════════ 06 · IN THEIR WORDS ═══════════════════
+         The three endorsements, copied exactly from endorsements.md, on the
+         stage: a rail of voices with a counter and a running bar, the
+         quotation large on navy. Advances on its own; static and complete
+         without JavaScript. -->
+    <section class="hx hx-words" id="in-their-words" aria-labelledby="wordsHeading">
+      <div class="shell">
+{opener('In their words', 4, 'Some of the businesses we work with today first trusted GEMIS more than a decade ago.', 'wordsHeading')}
+        <div class="hx-words__stage" data-stage>
+          <div class="hx-words__side">
+            <ol class="hx-words__rail" aria-label="Choose a voice" data-reveal>
+{NL.join(tabs)}
+            </ol>
+            <div class="hx-words__ctl" data-ctl hidden>
+              <p class="hx-label hx-words__count"><span data-cur>01</span> <span aria-hidden="true">/</span> {len(keys):02d}</p>
+              <span class="hx-words__bar" aria-hidden="true"><span data-bar></span></span>
+              <div class="hx-words__btns">
+                <button class="hx-circle hx-circle--btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+                <button class="hx-circle hx-circle--btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="hx-words__main" data-reveal style="--d:120ms">
+            {picto('quote', 'hx-picto--w hx-words__mark')}
+            <ol class="hx-words__list" data-list>
+{NL.join(slides)}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+'''
 
 
 # ── 07 · the principles ────────────────────────────────────────────────────
@@ -370,7 +440,7 @@ def principles():
          a hatch pictogram each — the reference's service blocks. -->
     <section class="hx hx-prin" id="thinking" aria-labelledby="prinHeading">
       <div class="shell">
-{opener('Principles', 4, 'Seven systems. The same four decisions.', 'prinHeading', ink=True)}
+{opener('Principles', 5, 'Seven systems. The same four decisions.', 'prinHeading', ink=True)}
         <ol class="hx-prin__grid">
 {NL.join(blocks)}
         </ol>
@@ -415,7 +485,7 @@ def enquiry():
           <div class="hx-open__row">
             <div class="hx-open__block hx-open__block--ink hx-open__block--flush" data-reveal>
               <h2 class="hx-open__word" id="goHeading">Contact</h2>
-              <span class="hx-badge" aria-hidden="true">5</span>
+              <span class="hx-badge" aria-hidden="true">6</span>
             </div>
           </div>
           <p class="hx-go__lede" data-reveal style="--d:120ms">Book a Discovery Session. Tell us what you're trying to fix. We'll come back within two working days with a short written view and a time to talk. No obligation.</p>
@@ -506,7 +576,7 @@ def enquiry():
 
 
 def home_main():
-    return (picto_sprite() + hero() + statement() + numbers() + solutions() + cases()
+    return (picto_sprite() + hero() + statement() + numbers() + cases() + solutions()
             + in_their_words() + principles() + thinking() + enquiry())
 
 
