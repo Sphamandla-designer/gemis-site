@@ -29,7 +29,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | Generated | Source | Rebuild with |
 |---|---|---|
 | `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html` | `node tools/build-studio.mjs` |
-| the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections, in the brief's order) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
+| the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections of the owner's reference design, see **The home page**) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9 | `scripts/solutions.py` (all page copy, evidence, FAQs, section order; every claim sourced in `docs/SOLUTIONS-EVIDENCE.md`) rendered by `scripts/build-solutions.py` | `python3 scripts/build-services.py` (calls it) |
 | `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
@@ -162,38 +162,35 @@ there. Its selectors carry `:not(#_)` to beat older, more specific rules without
   challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
   one case card (industry, name, headline, GEMIS's role, status, capability
   chips, Read / Play) used by the index, the homepage, related rows, service
-  pages and articles. The homepage order (the owner's revisions of the brief's):
-  the hero as it was (tagline, partner line) → the stats section as it was
-  (About GEMIS, three confirmed figures, logo marquee) → **Selected work**
-  (`.selw`, pure white: the shared section header, then four equal-height
-  case study cards on a horizontal travel pinned to the viewport, two to a
-  screen on desktop and one at 901–1100px (`[data-hscroll]` in `home.js`,
-  which follows the scroll with inertia — each frame closes 11 % of the
-  distance — and sets `--hs-d` per card and `--hs-v` on the travel so the
-  pictures drift and lean with the motion; keyboard focus snaps),
-  a two-column grid on tablets and one column under 620px; each card plays
-  its video; then the transition statement `[data-scaleup]` that scales up
-  as it is scrolled to the centre of the viewport, holds, and releases;
-  both static without JS and
-  under reduced motion; the band's bottom padding lives on the statement's
-  pin (`.selw__out-pin`), so when the pin releases the statement is exactly
-  `--sec-y` from the next section) → **In their words** on the Client stories stage
-  (names on the left, one quotation at a time, the three lines from
-  `scripts/endorsements.md`) → **Operating principles** (`operating_logic()`,
-  section `.prin`: the four principles, verbatim in `OPERATING`, on the
-  standard dark band as a sticky index and a ruled list — left, the label,
-  the statement on `--fs-display` and one large index numeral with four
-  ticks; right, four numbered ruled rows (statement on `--fs-title`,
-  evidence, "Seen in" links to the chapter pages), then "Read more of our
-  thinking" with the three articles. On wide screens with scripts,
-  `[data-principles]` in `home.js` makes the row at 42 % of the viewport the
-  live one — full white, the others at half — and the numeral follows it;
-  hover or focus lifts any row. Under 1000px, without JS and under reduced
-  motion every row is full and nothing moves. The earlier drawn-line
-  composition is gone; its `.op` rules are dormant in `site.css`) → **Book a Discovery
-  Session** with the
-  form, as it was. No capabilities, stories panel, how-we-work or company
-  section on the home; those live on Solutions, Case Studies and Our Story.
+  pages and articles. The homepage is its own design (see below).
+
+- **The home page** (`scripts/build-home.py`, 2026-10-28) follows the owner's
+  reference screenshots and videos (committed at the repository root as
+  `Screenshot 2026-10-28 *.png`, `gemsi redesign referemnce (1).mp4` and
+  `hero view.mp4`): midnight navy `#0a1230` and white, Montserrat (OFL,
+  `assets/fonts/montserrat-latin.woff2`), huge light uppercase section words
+  in a block with a numbered badge (`opener()`), stepped blocks cut with
+  `clip-path` notches, giant numerals, "+" lists on hairlines (`.hx-plus`),
+  pictograms as silhouettes filled with vertical hatch lines (`PICTO`, the
+  `hxHatchN`/`hxHatchW` patterns, `.hx-picto`), statements and quotations with
+  a hanging first line (`text-indent`). **No photographs and no product
+  mockups**: the objects are vector art and motion — the isometric block
+  cluster (`cluster()`, three layers drifting), light streaks, a dotted field,
+  the scroll cue; all static under reduced motion. Every rule is scoped to
+  `.hx` in the **HOME v4** block at the tail of `site.css`; headings, links
+  and buttons inside it are set with doubled `:not(#_):not(#_)` so the
+  site-wide rules do not reach them. The bar and the footer are untouched (the
+  owner's instruction). Sections, in order: the opener (white strip, white
+  L-block with the wordmark, the cluster), the statement, the numbers (three
+  confirmed figures) with the client marks, Solutions (opener over the dotted
+  field, then the white card + "+" list — hover or focus a discipline to bring
+  its pictogram into the card, `[data-svc]` in `home.js`), Case studies (seven
+  typographic navy tiles on a scroll-snap carousel with a counter and circle
+  controls, `[data-rail]`; each reads its page or plays its video), In their
+  words (the shared stage, restyled), the principles (verbatim, as four stepped
+  blocks with pictograms), Our thinking (the three articles), Contact (the
+  steps as a "+" list and the form in a white stepped block). Other pages
+  keep Brand v3.
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
