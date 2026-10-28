@@ -145,7 +145,7 @@ def hero():
          isometric block cluster drifting in three layers, two light streaks.
          Static under reduced motion. -->
     <section class="hx hx-hero" id="hero" aria-labelledby="heroHeading">
-      <div class="hx-hero__field" aria-hidden="true">
+      <div class="hx-hero__field" aria-hidden="true" data-px=".12">
         <div class="hx-hero__hatch"></div>
         {cluster()}
         <span class="hx-streak hx-streak--1"></span>
@@ -157,12 +157,15 @@ def hero():
         </div>
       </div>
       <div class="hx-hero__block" data-reveal>
-        <p class="hx-hero__word" aria-hidden="true">GEMIS<span class="hx-hero__dot"></span></p>
-        <p class="hx-label hx-hero__sub">GEM Information Systems</p>
+        <h1 class="hx-hero__title" id="heroHeading"><span class="hx-rise" style="--i:0">Systems built to last.</span><br /><span class="hx-rise" style="--i:1">Partners built to stay.</span></h1>
+        <p class="hx-label hx-hero__sub">GEM Information Systems <span aria-hidden="true">·</span> Business systems partner since 2014</p>
       </div>
-      <div class="hx-hero__tag" data-reveal style="--d:200ms">
-        <h1 class="hx-label hx-hero__h1" id="heroHeading">Systems built to last.<br />Partners built to stay.</h1>
-      </div>
+      <!-- The exact partner designation and badge artwork are still to be
+           supplied — see OPEN_ITEMS.md (microsoft-partner-badge). -->
+      <aside class="hx-hero__tag hx-hero__ms" data-reveal style="--d:260ms" aria-label="Microsoft partnership" data-tbc="microsoft-partner-badge" data-kind="hideable">
+        <svg class="hx-hero__ms-mark" viewBox="0 0 21 21" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
+        <span class="hx-label hx-hero__ms-line">Microsoft partner <span aria-hidden="true">·</span> Systems built and run on the Microsoft Cloud <span class="tbc" data-tbc="microsoft-partner-badge" data-kind="hideable">designation to confirm</span></span>
+      </aside>
       <div class="hx-hero__foot">
         <div class="shell hx-hero__foot-in">
           <p class="hx-hero__copy" data-reveal style="--d:300ms">We build software around how your business actually works, and we stay to support it as you grow.</p>
@@ -192,7 +195,7 @@ def statement():
         </div>
         <h2 class="hx-statement" id="stateHeading" data-reveal style="--d:100ms">We build software around how your business actually works, and we stay to support it as you grow.</h2>
         <div class="hx-state__row">
-          <figure class="hx-state__obj" aria-hidden="true" data-reveal style="--d:200ms">{picto('gem', 'hx-picto--w hx-picto--lg')}</figure>
+          <figure class="hx-state__obj" aria-hidden="true" data-reveal style="--d:200ms" data-px=".08">{picto('gem', 'hx-picto--w hx-picto--lg')}</figure>
           <div class="hx-state__copy" data-reveal style="--d:260ms">
             <p>GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with. We design around how a business actually runs, build on the Microsoft Cloud, and stay after go-live.</p>
             <p>Some of our clients have been with us for more than a decade.</p>
@@ -256,7 +259,7 @@ def solutions():
          line to bring it into the card (home.js, [data-svc]); without
          JavaScript the first discipline is shown and every line is a link. -->
     <section class="hx hx-open hx-open--sol" id="solutions" aria-labelledby="solHeading">
-      <div class="hx-open__field" aria-hidden="true"><div class="hx-dots"></div><span class="hx-streak hx-streak--3"></span></div>
+      <div class="hx-open__field" aria-hidden="true" data-px=".1"><div class="hx-dots"></div><span class="hx-streak hx-streak--3"></span></div>
       <div class="shell hx-open__in">
 {opener('Solutions', 3, 'Nine disciplines. One accountable team.', 'solHeading')}
         <p class="hx-open__copy" data-reveal style="--d:200ms">GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.</p>
@@ -383,7 +386,7 @@ def in_their_words():
             </div>
           </div>
           <div class="hx-words__main" data-reveal style="--d:120ms">
-            {picto('quote', 'hx-picto--w hx-words__mark')}
+            <span class="hx-words__mark-wrap" data-px=".06">{picto('quote', 'hx-picto--w hx-words__mark')}</span>
             <ol class="hx-words__list" data-list>
 {NL.join(slides)}
             </ol>

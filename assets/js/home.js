@@ -183,6 +183,30 @@
     });
   }
 
+  /* ── parallax: the fields drift against the scroll ──────────────────────
+        [data-px="0.12"] moves by that fraction of its distance from the
+        viewport's centre, as --px; the stylesheet applies the transform.
+        Nothing moves under reduced motion. */
+  var pxEls = [].slice.call(document.querySelectorAll('[data-px]'));
+  if (pxEls.length && !reduced) {
+    var pxTick = false;
+    function pxPaint() {
+      pxTick = false;
+      var h = window.innerHeight;
+      pxEls.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -h || r.top > 2 * h) return;
+        var c = (r.top + r.height / 2 - h / 2) / h;
+        el.style.setProperty('--px', (-c * (parseFloat(el.getAttribute('data-px')) || 0) * 100).toFixed(1) + 'px');
+      });
+    }
+    function pxRun() { if (!pxTick) { pxTick = true; requestAnimationFrame(pxPaint); } }
+    window.addEventListener('scroll', pxRun, { passive: true });
+    window.addEventListener('resize', pxRun);
+    window.addEventListener('load', pxRun);
+    pxRun();
+  }
+
   /* ── Case studies: the still plays on hover ─────────────────────────────
         [data-preview] holds a poster and an empty muted <video>; the file in
         data-src is attached the first time the pointer or focus arrives and
