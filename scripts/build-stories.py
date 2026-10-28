@@ -664,3 +664,149 @@ def subnav(name, href, links, cta_label, cta_attrs, label):
             f'        <ul class="subnav__links">{lis}<li><a class="btn subnav__cta" {cta_attrs}>{cta_label}</a></li></ul>\n'
             f'      </div>\n'
             f'    </nav>\n')
+
+# ══ the reference language (2026-10-28), shared by every page ═════════════
+# Midnight navy and white; stepped blocks; huge light uppercase words with a
+# numbered badge; pictograms as silhouettes filled with vertical hatch lines;
+# the isometric block cluster. The home page composes these in build-home.py;
+# every other page opens on hero_block() and borrows the same parts.
+
+# the pictograms: silhouettes on a 120-unit box, filled with the hatch
+# patterns the footer's sprite defines (hxHatchN navy, hxHatchW white)
+PICTO = {
+    'custom-software': 'M44 20 8 60l36 40 10-9L23 60l31-31Zm32 0-10 9 31 31-31 31 10 9 36-40Z',
+    'microsoft-cloud': 'M34 96a22 22 0 0 1-2.4-43.9A32 32 0 0 1 93.6 46 25 25 0 0 1 92 96Z',
+    'enterprise-saas': 'M60 18 112 42 60 66 8 42Zm-52 40 12-5.5L60 76l40-21.5 12 5.5L60 86Zm0 20 12-5.5L60 96l40-21.5 12 5.5L60 106Z',
+    'mobile-apps': 'M38 6h44a10 10 0 0 1 10 10v88a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10V16A10 10 0 0 1 38 6Zm12 94h20v6H50Z',
+    'business-intelligence': 'M14 64h20v44H14Zm36-26h20v70H50Zm36-26h20v96H86Z',
+    'system-integration': 'M30 44a16 16 0 1 1 0 32 16 16 0 0 1 0-32Zm60 0a16 16 0 1 1 0 32 16 16 0 0 1 0-32ZM46 56h28v8H46Z',
+    'ux-design': 'M28 14 98 62 66 68 86 96l-10 6-20-28-20 24Z',
+    'modernisation': 'M8 106V82h28V58h28V34h28V10h20v96Z',
+    'support': 'M60 8 104 24v34c0 26-18 46-44 56C34 104 16 84 16 58V24Z',
+    'leak': 'M60 10c20 30 34 46 34 66a34 34 0 0 1-68 0c0-20 14-36 34-66Z',
+    'capture': 'M60 8a36 36 0 0 1 36 36c0 26-36 68-36 68S24 70 24 44A36 36 0 0 1 60 8Zm0 20a16 16 0 1 0 0 32 16 16 0 0 0 0-32Z',
+    'handoff': 'M8 44h60V24l44 36-44 36V76H8Z',
+    'evolve': 'M54 70h12v42H54ZM60 8c22 0 38 18 38 38S82 78 60 78 22 68 22 46 38 8 60 8Z',
+    'gem': 'M32 14h56l24 30-52 66L8 44Zm8 10L24 44h72L80 24Z',
+    'quote': 'M14 30h36v32H32c0 10 7 16 18 16v16C26 94 14 80 14 62Zm56 0h36v32H88c0 10 7 16 18 16v16C82 94 70 80 70 62Z',
+    'academy': 'M60 14 112 38 60 62 8 38Zm-32 36 32 15 32-15v22c0 10-14 20-32 20S28 82 28 72Zm78-2h8v30h-8Z',
+    'sectors': 'M12 100V44l24-14v70Zm30 0V30l24-14v84Zm30 0V54l24-14v60ZM8 104h104v6H8Z',
+    'letter': 'M12 28h96v64H12Zm8 8v4l40 26 40-26v-4L60 60Z',
+    'compass': 'M60 8a52 52 0 1 1 0 104A52 52 0 0 1 60 8Zm0 10a42 42 0 1 0 0 84 42 42 0 0 0 0-84Zm22 20L68 68 38 82l14-30Z',
+    'shield-check': 'M60 8 104 24v34c0 26-18 46-44 56C34 104 16 84 16 58V24Zm-8 72 30-30-7-7-23 23-11-11-7 7Z',
+    'blocks': 'M14 66h28v28H14Zm32 0h28v28H46Zm32 0h28v28H78ZM30 34h28v28H30Zm32 0h28v28H62ZM46 2h28v28H46Z',
+}
+PICTO_FOR_TAG = {'Compliance': 'shield-check', 'Resilience': 'modernisation', 'Strategy': 'compass'}
+PICTO_FOR_PRODUCT = {'managem': 'enterprise-saas', 'design-studio': 'ux-design', 'technical-academy': 'academy'}
+
+
+def picto_sprite():
+    """The symbols and the two hatch patterns; the footer carries it on every page."""
+    syms = ''.join(f'<symbol id="px-{k}" viewBox="0 0 120 120"><path d="{d}" fill-rule="evenodd"/></symbol>'
+                   for k, d in PICTO.items())
+    return ('<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>'
+            '<pattern id="hxHatchN" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#0a1230"/></pattern>'
+            '<pattern id="hxHatchW" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#ffffff"/></pattern>'
+            f'</defs>{syms}</svg>')
+
+
+def picto(key, cls=''):
+    return f'<svg class="hx-picto {cls}" aria-hidden="true" focusable="false"><use href="#px-{key}"/></svg>'
+
+
+# the isometric cluster of blocks in thin white lines, drifting in three layers
+BOXES = [
+    (0, 0, 0, 4, 4, 3), (4, 0, 0, 3, 4, 5), (0, 4, 0, 4, 3, 4), (4, 4, 0, 3, 3, 2), (7, 0, 0, 3, 3, 4),
+    (7, 3, 0, 3, 4, 6), (0, 7, 0, 3, 3, 2), (3, 7, 0, 4, 3, 5), (10, 2, 0, 2, 2, 3), (4, 0, 5, 3, 2, 2),
+    (7, 3, 6, 2, 2, 2), (1, 1, 3, 2, 2, 2),
+]
+
+
+def cluster():
+    cx, cy = 300, 320
+
+    def P(x, y, z):
+        return (cx + (x - y) * 26, cy + (x + y) * 13 - z * 26)
+
+    def pts(q):
+        return ' '.join(f'{a:.1f},{b:.1f}' for a, b in q)
+
+    layers = {0: [], 1: [], 2: []}
+    for i, (x, y, z, w, d, h) in enumerate(sorted(BOXES, key=lambda b: b[0] + b[1] + b[2])):
+        top = [P(x, y, z + h), P(x + w, y, z + h), P(x + w, y + d, z + h), P(x, y + d, z + h)]
+        left = [P(x, y + d, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x, y + d, z + h)]
+        right = [P(x + w, y, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x + w, y, z + h)]
+        layers[i % 3].append(f'<polygon points="{pts(top)}" fill="rgba(255,255,255,.1)"/>'
+                             f'<polygon points="{pts(left)}" fill="rgba(255,255,255,.03)"/>'
+                             f'<polygon points="{pts(right)}" fill="rgba(255,255,255,.06)"/>')
+    gs = ''.join(f'<g class="hx-cluster__l hx-cluster__l--{g + 1}" stroke="rgba(255,255,255,.62)" '
+                 f'stroke-width="1" stroke-linejoin="round">{"".join(layers[g])}</g>' for g in (0, 1, 2))
+    return f'<svg class="hx-cluster" viewBox="0 0 600 560" aria-hidden="true" focusable="false">{gs}</svg>'
+
+
+def opener(word, n, aside, heading_id, ink=False):
+    """A section opener: the huge light uppercase word in a block with a numbered badge, a tracked line beside it."""
+    tone = ' hx-open__block--ink' if ink else ''
+    return f'''        <div class="hx-open__row">
+          <div class="hx-open__block{tone}" data-reveal>
+            <h2 class="hx-open__word" id="{heading_id}">{word}</h2>
+            <span class="hx-badge" aria-hidden="true">{n}</span>
+          </div>
+          <p class="hx-open__aside hx-label" data-reveal style="--d:120ms">{aside}</p>
+        </div>'''
+
+
+def video_block(s, base, eager=False):
+    """A story's video as a stepped block: the still, a muted preview on hover, the play chip, the duration."""
+    v = f'{base}{S.VIDEO_DIR}{s["video"]}'
+    load = 'eager' if eager else 'lazy'
+    return (f'<div class="hx-vid" data-preview data-src="{v}_web.mp4" data-webm="{v}_web.webm">'
+            f'<img src="{v}_thumb.jpg" alt="" loading="{load}" width="1280" height="720" />'
+            f'<video class="hx-vid__video" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>'
+            f'<a class="hx-circle hx-vid__play" {play_attrs(s, base)} aria-label="Play the {esc(s["client"])} story">{PLAY}</a>'
+            f'<span class="hx-label hx-vid__len" aria-hidden="true">{s["duration_label"]}</span></div>')
+
+
+def hero_block(kicker, title, copy, ctas='', visual='', strip='', sub='', aside='', cls='', heading_id='heroHeading'):
+    """
+    Every page's opener, in the reference language: a white strip under the
+    bar, the white L-block with the title (two lines, rising in turn), the
+    midnight field with its hatch, the cluster and two light streaks behind;
+    then the copy and the actions on the left and, when given, a visual on
+    the right (a story's video block, a drawing in a white card, a pictogram).
+    """
+    lines = [x for x in title.split('<br class="h1-br">')]
+    spans = '<br />'.join(f'<span class="hx-rise" style="--i:{i}">{x.strip()}</span>' for i, x in enumerate(lines))
+    strip_html = (strip if strip.startswith('<') else f'<p class="hx-label hx-hero__strip-label">{strip}</p>') if strip else ''
+    sub_html = f'<p class="hx-label hx-hero__sub">{sub}</p>' if sub else ''
+    ctas_html = f'<div class="hx-hero__ctas" data-reveal style="--d:380ms">{ctas}</div>' if ctas else ''
+    visual_html = f'<div class="hx-phero__visual" data-reveal style="--d:300ms">{visual}</div>' if visual else ''
+    aside_html = f'<div class="hx-hero__tag" data-reveal style="--d:260ms">{aside}</div>' if aside else ''
+    return f'''    <section class="hx hx-hero hx-phero{(' ' + cls) if cls else ''}" id="hero" aria-labelledby="{heading_id}">
+      <div class="hx-hero__field" aria-hidden="true" data-px=".12">
+        <div class="hx-hero__hatch"></div>
+        {cluster()}
+        <span class="hx-streak hx-streak--1"></span>
+        <span class="hx-streak hx-streak--2"></span>
+      </div>
+      <div class="hx-hero__strip">
+        <div class="shell hx-hero__strip-in">{strip_html}</div>
+      </div>
+      <div class="hx-hero__block" data-reveal>
+        <p class="hx-label hx-hero__kicker">{kicker}</p>
+        <h1 class="hx-hero__title" id="{heading_id}">{spans}</h1>
+        {sub_html}
+      </div>
+      {aside_html}
+      <div class="hx-hero__foot hx-phero__foot">
+        <div class="shell hx-phero__grid">
+          <div class="hx-phero__lead">
+            <p class="hx-hero__copy" data-reveal style="--d:300ms">{copy}</p>
+            {ctas_html}
+          </div>
+          {visual_html}
+        </div>
+      </div>
+    </section>
+'''
+
