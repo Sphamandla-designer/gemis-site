@@ -3,6 +3,8 @@
 (function () {
   'use strict';
   document.documentElement.classList.add('has-js');
+  // the home page runs edge to edge, so its bar does too
+  if (document.querySelector('.hx-hero')) document.documentElement.classList.add('is-home');
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

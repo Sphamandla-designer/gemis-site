@@ -183,6 +183,33 @@
     });
   }
 
+  /* ── Case studies: the still plays on hover ─────────────────────────────
+        [data-preview] holds a poster and an empty muted <video>; the file in
+        data-src is attached the first time the pointer or focus arrives and
+        plays while it stays. Never under reduced motion or without hover. */
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  if (canHover && !reduced) {
+    [].forEach.call(document.querySelectorAll('[data-preview]'), function (box) {
+      var v = box.querySelector('video');
+      if (!v) return;
+      function start() {
+        if (!v.getAttribute('src')) {
+          var webm = box.getAttribute('data-webm');
+          v.src = (webm && v.canPlayType('video/webm')) ? webm : box.getAttribute('data-src');
+          v.load();
+        }
+        var p = v.play();
+        if (p && p.catch) p.catch(function () { /* blocked: the still stays */ });
+        box.classList.add('is-playing');
+      }
+      function stop() { v.pause(); box.classList.remove('is-playing'); }
+      box.addEventListener('mouseenter', start);
+      box.addEventListener('mouseleave', stop);
+      box.addEventListener('focusin', start);
+      box.addEventListener('focusout', function (e) { if (!box.contains(e.relatedTarget)) stop(); });
+    });
+  }
+
   /* ── Case studies: the carousel's counter and circle controls ──────────
         [data-rail] holds a scroll-snapping [data-rail-track] of
         [data-rail-item]s. The buttons scroll by one tile; the counter follows
