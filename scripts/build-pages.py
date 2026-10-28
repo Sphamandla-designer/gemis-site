@@ -246,7 +246,7 @@ def story_page(s):
 
     body = f'''
     <!-- ═══════════ {s['client'].upper()} ═══════════ -->
-    <section class="chero cshero cshero--story" id="hero">
+{B.subnav(s['client'], '#hero', [('Overview', '#overview'), ('Approach', '#approachHeading'), ('Walkthrough', '#walkthrough'), ('Outcomes', '#outcomesHeading')], f'{B.PLAY} Play story', B.play_attrs(s, base), f"{s['client']} case study")}    <section class="chero cshero cshero--story" id="hero">
       <div class="shell cshero__in">
         <div class="cshero__text">
           <p class="chero__kicker" data-reveal>Case study · {esc(s['industry'])}</p>
@@ -452,7 +452,7 @@ def work_page():
 
     body = f'''
     <!-- ═══════════ CASE STUDIES ═══════════ -->
-    <section class="chero cshero" id="hero">
+{B.subnav('Case Studies', '#hero', [('All case studies', '#all'), ('In their words', '#in-their-words'), ('Your project', '#discuss')], f'Discuss a project {ARROW}', f'href="{base}contact.html"', 'Case studies')}    <section class="chero cshero" id="hero">
       <div class="shell cshero__in">
         <div class="cshero__text">
           <p class="chero__kicker" data-reveal>Case studies</p>

@@ -82,9 +82,9 @@ def link_for(slug, base=''):
 
 
 def hero():
-    # brand v2: the tagline on the gradient mesh, with a composite of real
-    # interfaces from the case-study videos beside it
-    return f'''    <section class="hero hero--mesh" id="hero">
+    # brand v3: a centred product tile — the tagline, two pills, and a
+    # composite of real interfaces from the case-study videos beneath it
+    return f'''    <section class="hero" id="hero">
       <div class="shell hero__grid">
         <div class="hero__text">
           <p class="hero__eyebrow" data-reveal>Business systems partner since 2014</p>
@@ -96,7 +96,7 @@ def hero():
           </p>
           <div class="hero__ctas" data-reveal style="--d:240ms">
             <a class="btn" href="#discovery">Book a Discovery Session {ARROW}</a>
-            <a class="arrow-link" href="#selected">See our work {ARROW}</a>
+            <a class="btn btn--ghost" href="#selected">See our work {ARROW}</a>
           </div>
           <!-- The exact partner designation and badge artwork are still to be
                supplied — see OPEN_ITEMS.md (microsoft-partner-badge). -->

@@ -639,7 +639,11 @@ def write(path, base, title, desc, body, extra_head):
 def service_page(slug):
     base = '../../'
     p = SOL.PAGES[slug]
-    out = [hero(slug, p, base)]
+    chapters = {'problem': ('The situation', '#situation'), 'deliver': ('What you get', '#deliver'),
+                'approach': ('How we work', '#approach'), 'evidence': ('Evidence', '#evidence'), 'faq': ('FAQ', '#faq')}
+    links = [chapters[k] for k in p['order'] if k in chapters]
+    out = [B.subnav(name(slug), '#hero', links, f'Discuss a project {ARROW}', f'href="{base}contact.html?service={slug}"', name(slug)),
+           hero(slug, p, base)]
     g = 0
     for key in p['order']:
         if key == 'quote':
