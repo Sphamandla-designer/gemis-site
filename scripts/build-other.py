@@ -242,18 +242,10 @@ def managem():
     C = P.C
     body = f'''
 {B.subnav('ManaGEM', '#hero', [('Where it came from', '#origin'), ('Walkthrough', '#walkthrough')], f'Discuss ManaGEM {ARROW}', f'href="{base}contact.html?service=enterprise-saas"', 'ManaGEM')}
-    <section class="chero chero--product" id="hero">
-      <div class="shell chero__grid">
-        <div class="chero__text">
-          <p class="chero__kicker" data-reveal>ManaGEM</p>
-          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A business management platform, born in a real business")}</h1>
-          <p class="chero__copy" data-reveal style="--d:140ms">Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.</p>
-        </div>
-        <div class="chero__visual" data-reveal style="--d:200ms">
-          {B.composite(base, ['managem', 'sbs-waterproofing'], None, 'ManaGEM project profit, and the SBS Waterproofing system it was generalised from: interfaces from the case-study videos', eager=True)}
-        </div>
-      </div>
-    </section>
+{B.hero_block('ManaGEM', B.two_lines("A business management platform, born in a real business"),
+              'Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.',
+              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play the ManaGEM story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html?service=enterprise-saas">Discuss ManaGEM</a>',
+              visual=B.video_block(s, base, eager=True), strip='Products · ManaGEM')}
 
     <section class="origin band band-wash" id="origin" aria-labelledby="originHeading">
       <div class="shell origin__grid">
@@ -367,13 +359,10 @@ def our_story():
         for k in S.FOUNDING])
 
     body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Our Story</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Technology changes. Businesses evolve. Good partnerships endure.")}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.</p>
-      </div>
-    </section>
+{B.hero_block('Our Story', B.two_lines("Technology changes. Businesses evolve. Good partnerships endure."),
+              'GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
+              visual=f'<div class="hx-phero__picto">{B.picto("gem", "hx-picto--w hx-picto--xl")}</div>', strip='Business systems · Cape Town · since 2014')}
 
     <section class="sec band band-wash plusgrid plusgrid--tr" id="founding" aria-labelledby="foundingHeading">
       <div class="shell">

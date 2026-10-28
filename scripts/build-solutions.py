@@ -306,27 +306,12 @@ def sec_head(eyebrow, heading, hid, lede=''):
 def hero(slug, p, base):
     n = INDEX[slug]
     sec_label, sec_href = p['second']
-    return f'''
-    <section class="chero svh" id="hero">
-      <div class="shell">
-        <nav class="svh__crumbs" aria-label="Breadcrumb" data-reveal>
-          <ol><li><a href="{base}solutions/">Solutions</a></li><li aria-current="page"><span class="svh__n">{n:02d}</span> of 09</li></ol>
-        </nav>
-        <h1 class="chero__title svh__title" data-reveal style="--d:80ms"><span class="svh__label">{esc(name(slug))}</span> {B.two_lines(esc(p['headline']))}</h1>
-        <div class="svh__grid">
-          <div class="svh__copy">
-            <p class="chero__copy" data-reveal style="--d:140ms">{esc(p['copy'])}</p>
-            <div class="cshero__ctas" data-reveal style="--d:200ms">
-              <a class="btn" href="{base}contact.html?service={slug}">Discuss a project {ARROW}</a>
-              <a class="arrow-link" href="{sec_href}">{esc(sec_label)} {ARROW}</a>
-            </div>
-          </div>
-          <figure class="svh__visual">
-{DIAGRAMS[p['visual']]()}
-          </figure>
-        </div>
-      </div>
-    </section>'''
+    crumbs = (f'<nav class="svh__crumbs hx-label hx-hero__strip-label" aria-label="Breadcrumb"><ol><li><a href="{base}solutions/">Solutions</a></li>'
+              f'<li aria-current="page"><span class="svh__n">{n:02d}</span> of 09</li></ol></nav>')
+    return '\n' + B.hero_block(esc(name(slug)), B.two_lines(esc(p['headline'])), esc(p['copy']),
+                              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html?service={slug}">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{sec_href}">{esc(sec_label)}</a>',
+                              visual=f'<figure class="svh__visual hx-draw">{DIAGRAMS[p["visual"]]()}</figure>',
+                              strip=crumbs, cls='hx-phero--draw').rstrip('\n')
 
 
 def problem(p, ground):
@@ -732,24 +717,10 @@ def directory():
             </div>
           </li>''')
     body = f'''
-    <section class="chero svh svh--dir" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Solutions</p>
-        <h1 class="chero__title svh__title" data-reveal style="--d:80ms">{B.two_lines("Nine disciplines. One accountable team.")}</h1>
-        <div class="svh__grid">
-          <div class="svh__copy">
-            <p class="chero__copy" data-reveal style="--d:140ms">GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.</p>
-            <div class="cshero__ctas" data-reveal style="--d:200ms">
-              <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
-              <a class="arrow-link" href="{base}work/">Explore the work {ARROW}</a>
-            </div>
-          </div>
-          <figure class="svh__visual">
-{dg_directory()}
-          </figure>
-        </div>
-      </div>
-    </section>
+{B.hero_block('Solutions', B.two_lines("Nine disciplines. One accountable team."),
+              'GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">Explore the work</a>',
+              visual=f'<figure class="svh__visual hx-draw">{dg_directory()}</figure>', strip='Nine disciplines · one accountable team', cls='hx-phero--draw')}
 
     <section class="band sdir" id="services" aria-labelledby="sdirHeading">
       <div class="shell">

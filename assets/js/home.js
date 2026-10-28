@@ -267,4 +267,17 @@
     window.addEventListener('load', paint);
     paint();
   }
+  /* ── the horizontal timeline: draws its line and lands its steps in turn ── */
+  var lines = [].slice.call(document.querySelectorAll('.tline'));
+  if (lines.length) {
+    var land = function (el) { el.classList.add('is-drawn'); };
+    if (reduced || !('IntersectionObserver' in window)) {
+      lines.forEach(land);
+    } else {
+      var tio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { land(en.target); tio.unobserve(en.target); } });
+      }, { threshold: 0.3 });
+      lines.forEach(function (l) { tio.observe(l); });
+    }
+  }
 })();

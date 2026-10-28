@@ -246,24 +246,10 @@ def story_page(s):
 
     body = f'''
     <!-- ═══════════ {s['client'].upper()} ═══════════ -->
-{B.subnav(s['client'], '#hero', [('Overview', '#overview'), ('Approach', '#approachHeading'), ('Walkthrough', '#walkthrough'), ('Outcomes', '#outcomesHeading')], f'{B.PLAY} Play story', B.play_attrs(s, base), f"{s['client']} case study")}    <section class="chero cshero cshero--story" id="hero">
-      <div class="shell cshero__in">
-        <div class="cshero__text">
-          <p class="chero__kicker" data-reveal>Case study · {esc(s['industry'])}</p>
-          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(s['client']))}</h1>
-          <p class="cshero__headline" data-reveal style="--d:120ms">{esc(s['headline'])}</p>
-          <p class="chero__copy" data-reveal style="--d:160ms">{esc(c['value'])}</p>
-          <p class="cshero__status" data-reveal style="--d:200ms"><span class="cshero__dot" aria-hidden="true"></span>{esc(c['status'])}</p>
-          <div class="cshero__ctas" data-reveal style="--d:240ms">
-            <a class="btn" {B.play_attrs(s, base)}>{B.PLAY} Play story</a>
-            <a class="arrow-link" href="{base}contact.html">Discuss a similar challenge {ARROW}</a>
-          </div>
-        </div>
-        <div class="cshero__visual" data-reveal style="--d:200ms">
-          {B.composite(base, [s['slug']], s['slug'] if s['slug'] in B.PHONES else None, f"The {esc(s['client'])} system: an interface from its case-study video", eager=True)}
-        </div>
-      </div>
-    </section>
+{B.subnav(s['client'], '#hero', [('Overview', '#overview'), ('Approach', '#approachHeading'), ('Walkthrough', '#walkthrough'), ('Outcomes', '#outcomesHeading')], f'{B.PLAY} Play story', B.play_attrs(s, base), f"{s['client']} case study")}{B.hero_block(f"Case study · {esc(s['industry'])}", B.two_lines(esc(s['client'])), esc(c['value']),
+              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Discuss a similar challenge</a>',
+              visual=B.video_block(s, base, eager=True), strip='Case studies', sub=esc(s['headline']),
+              aside=f'<p class="hx-hero__ms hx-hero__status"><span class="cshero__dot" aria-hidden="true"></span><span class="hx-label">{esc(c["status"])}</span></p>')}
 
     <section class="ov band" id="overview" aria-labelledby="overviewHeading">
       <div class="shell">
@@ -452,22 +438,10 @@ def work_page():
 
     body = f'''
     <!-- ═══════════ CASE STUDIES ═══════════ -->
-{B.subnav('Case Studies', '#hero', [('All case studies', '#all'), ('In their words', '#in-their-words'), ('Your project', '#discuss')], f'Discuss a project {ARROW}', f'href="{base}contact.html"', 'Case studies')}    <section class="chero cshero" id="hero">
-      <div class="shell cshero__in">
-        <div class="cshero__text">
-          <p class="chero__kicker" data-reveal>Case studies</p>
-          <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Complex business challenges. Thoughtfully designed digital solutions.")}</h1>
-          <p class="chero__copy" data-reveal style="--d:140ms">GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.</p>
-          <div class="cshero__ctas" data-reveal style="--d:200ms">
-            <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
-            <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
-          </div>
-        </div>
-        <div class="cshero__visual" data-reveal style="--d:200ms">
-          {B.composite(base, ['trans-hex', 'sonke'], 'homeassist', 'Interfaces from systems GEMIS built: the Trans Hex management report, Sonke programme targets, and the HomeAssist plumber app', eager=True)}
-        </div>
-      </div>
-    </section>
+{B.subnav('Case Studies', '#hero', [('All case studies', '#all'), ('In their words', '#in-their-words'), ('Your project', '#discuss')], f'Discuss a project {ARROW}', f'href="{base}contact.html"', 'Case studies')}{B.hero_block('Case studies', B.two_lines("Complex business challenges. Thoughtfully designed digital solutions."),
+              'GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}solutions/">Explore our solutions</a>',
+              strip='Systems in production · each with its story on video')}
 
     <section class="csstats band" aria-label="GEMIS in numbers">
       <div class="shell">

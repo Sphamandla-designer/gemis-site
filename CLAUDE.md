@@ -70,13 +70,46 @@ Auditing one in a sandbox reports `document-title` and `html-has-lang` falsely: 
 meta-refresh fires before axe runs, so it measures the failed navigation. Re-run
 against the file's own bytes with the refresh stripped.
 
-## One design system — Brand v3, at the tail of `site.css`
+## One design system — the reference language (SITE v4), at the tail of `site.css`
 
 The stylesheet was written page by page and the layers contradict each other.
-The last block, **BRAND v3 — the GEMIS design system** (2026-10-28, from the
-owner's Apple-like brief, kept on the GEMIS dark blue), and the short blocks
-after it are where the decisions live; put a change to colour, type or spacing
-there. Its selectors carry `:not(#_)` to beat older, more specific rules without
+The decisions now live in the last blocks: **HOME v4** (the home page, scoped to
+`.hx`) and **SITE v4 — the reference language on every page** (2026-10-28) with
+its short passes after it. Put a change to colour, type or spacing there. The
+**BRAND v3** block beneath them (the Apple-like system) is what SITE v4 overrides;
+its component notes below still describe the markup, but the look on every page is
+now the owner's reference: midnight navy `#0a1230` (`--svn`) and white tiles,
+Montserrat site-wide, uppercase light headings, 11px tracked uppercase labels for
+every eyebrow and numeral, square uppercase buttons, "+" lists, cards as stepped
+blocks (navy on white tiles, white on navy, `clip-path` notch top right, so their
+content starts under it), the navy sub-nav strip, stats as light numerals.
+
+- **Every page opens on `hero_block()`** (`scripts/build-stories.py`): the white
+  strip under the bar with a tracked line (or markup — the service breadcrumb,
+  the article's meta — used as it is), the white L-block with the kicker and the
+  two-line title (`.hx-rise` words rising in turn; on `.hx-phero` the title wraps
+  inside the block), the midnight field with the hatch, `cluster()` and two
+  streaks behind, then the copy and the `.hx-btn` actions left and a visual right:
+  `video_block()` (story and ManaGEM — the still, a muted hover preview, the play
+  chip, the duration), the service drawing in a white stepped card
+  (`hx-phero--draw`), or a pictogram (`picto(key, 'hx-picto--w hx-picto--xl')`).
+  A story passes its status as `aside`. The hand-written pages (`contact.html`,
+  `industries.html`, `privacy.html`, `404.html`) carry the same block by hand and
+  load `home.js` for the parallax and the timeline.
+- **Pictograms** (`PICTO` in `build-stories.py`, 21 silhouettes filled with the
+  vertical hatch) replace every photograph and composite outside the case-study
+  stills: products (`PICTO_FOR_PRODUCT`), insight cards (`PICTO_FOR_TAG`), the
+  page openers. The sprite with the symbols and the two hatch patterns is part
+  of the footer chrome (`SPRITE` in `apply-chrome.py`), so it is on every page.
+- **Navy tiles** are `.band-wash`, `.band-tint`, `.band-ink`, `.sq`, `.convert`,
+  `.endnote`, `.prin`, `.go`, `.words`, `.built`; everything else is white. Text
+  inside a navy tile is white whatever element carries it — when a new
+  component's text disappears on navy, add its class to the SITE v4 colour lists.
+- The closing tiles (`.convert`, `.endnote`) are a two-column grid inside the
+  gutter: the title left, the copy and the actions right.
+- The Industries photo strip is gone; `.stmt` is the navy statement tile.
+
+The Brand v3 notes that follow are kept for the markup they describe. Its selectors carry `:not(#_)` to beat older, more specific rules without
 `!important`; a rule that must outrank another v3 rule doubles it (`:not(#_):not(#_)`).
 
 - **Tiles.** Every section is an edge-to-edge tile and the colour change is the
@@ -189,8 +222,8 @@ there. Its selectors carry `:not(#_)` to beat older, more specific rules without
   controls, `[data-rail]`; each reads its page or plays its video), In their
   words (the shared stage, restyled), the principles (verbatim, as four stepped
   blocks with pictograms), Our thinking (the three articles), Contact (the
-  steps as a "+" list and the form in a white stepped block). Other pages
-  keep Brand v3.
+  steps as a "+" list and the form in a white stepped block). Every other
+  page follows the same language through SITE v4 (above).
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.

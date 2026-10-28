@@ -37,6 +37,12 @@ import importlib.util as _ilu
 _spec = _ilu.spec_from_file_location('services', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'services.py'))
 SV = _ilu.module_from_spec(_spec)
 _spec.loader.exec_module(SV)
+# the pictogram sprite (symbols and the two hatch patterns) rides in the
+# footer, so every page can draw a hatch pictogram with <use href="#px-…">
+_bspec = _ilu.spec_from_file_location('build_stories', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build-stories.py'))
+_B = _ilu.module_from_spec(_bspec)
+_bspec.loader.exec_module(_B)
+SPRITE = _B.picto_sprite()
 
 
 def _service_items():
@@ -137,6 +143,7 @@ def _col(label, items, delay):
           </div>"""
 
 FOOTER = """<footer class="foot">
+    """ + SPRITE + """
     <span class="foot__glow" aria-hidden="true"></span>
     <div class="shell foot__in">
       <div class="foot__grid">

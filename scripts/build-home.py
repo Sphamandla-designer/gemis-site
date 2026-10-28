@@ -58,83 +58,8 @@ def link_for(slug, base=''):
     return f'{base}products/managem/' if S.BY_SLUG[slug].get('is_product') else f'{base}work/{slug}/'
 
 
-# ── the pictograms: silhouettes filled with vertical hatch lines ──────────
-# Drawn on a 120-unit box. The fill is a <pattern> of 1.6px lines every 5px —
-# navy on white cards, white on navy blocks (chosen from CSS on the <svg>).
-PICTO = {
-    'custom-software': 'M44 20 8 60l36 40 10-9L23 60l31-31Zm32 0-10 9 31 31-31 31 10 9 36-40Z',
-    'microsoft-cloud': 'M34 96a22 22 0 0 1-2.4-43.9A32 32 0 0 1 93.6 46 25 25 0 0 1 92 96Z',
-    'enterprise-saas': 'M60 18 112 42 60 66 8 42Zm-52 40 12-5.5L60 76l40-21.5 12 5.5L60 86Zm0 20 12-5.5L60 96l40-21.5 12 5.5L60 106Z',
-    'mobile-apps': 'M38 6h44a10 10 0 0 1 10 10v88a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10V16A10 10 0 0 1 38 6Zm12 94h20v6H50Z',
-    'business-intelligence': 'M14 64h20v44H14Zm36-26h20v70H50Zm36-26h20v96H86Z',
-    'system-integration': 'M30 44a16 16 0 1 1 0 32 16 16 0 0 1 0-32Zm60 0a16 16 0 1 1 0 32 16 16 0 0 1 0-32ZM46 56h28v8H46Z',
-    'ux-design': 'M28 14 98 62 66 68 86 96l-10 6-20-28-20 24Z',
-    'modernisation': 'M8 106V82h28V58h28V34h28V10h20v96Z',
-    'support': 'M60 8 104 24v34c0 26-18 46-44 56C34 104 16 84 16 58V24Z',
-    'leak': 'M60 10c20 30 34 46 34 66a34 34 0 0 1-68 0c0-20 14-36 34-66Z',
-    'capture': 'M60 8a36 36 0 0 1 36 36c0 26-36 68-36 68S24 70 24 44A36 36 0 0 1 60 8Zm0 20a16 16 0 1 0 0 32 16 16 0 0 0 0-32Z',
-    'handoff': 'M8 44h60V24l44 36-44 36V76H8Z',
-    'evolve': 'M54 70h12v42H54ZM60 8c22 0 38 18 38 38S82 78 60 78 22 68 22 46 38 8 60 8Z',
-    'gem': 'M32 14h56l24 30-52 66L8 44Zm8 10L24 44h72L80 24Z',
-    'quote': 'M14 30h36v32H32c0 10 7 16 18 16v16C26 94 14 80 14 62Zm56 0h36v32H88c0 10 7 16 18 16v16C82 94 70 80 70 62Z',
-}
-
-
-def picto_sprite():
-    syms = ''.join(f'<symbol id="px-{k}" viewBox="0 0 120 120"><path d="{d}" fill-rule="evenodd"/></symbol>'
-                   for k, d in PICTO.items())
-    return ('    <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>'
-            '<pattern id="hxHatchN" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#0a1230"/></pattern>'
-            '<pattern id="hxHatchW" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#ffffff"/></pattern>'
-            f'</defs>{syms}</svg>' + NL)
-
-
-def picto(key, cls=''):
-    return f'<svg class="hx-picto {cls}" aria-hidden="true" focusable="false"><use href="#px-{key}"/></svg>'
-
-
-# ── the hero's object: an isometric cluster of blocks in thin white lines ──
-# Generated here so the drawing is in code; the three layers drift apart at
-# different speeds in CSS (static under reduced motion).
-BOXES = [  # x, y, z, w, d, h in iso units
-    (0, 0, 0, 4, 4, 3), (4, 0, 0, 3, 4, 5), (0, 4, 0, 4, 3, 4), (4, 4, 0, 3, 3, 2), (7, 0, 0, 3, 3, 4),
-    (7, 3, 0, 3, 4, 6), (0, 7, 0, 3, 3, 2), (3, 7, 0, 4, 3, 5), (10, 2, 0, 2, 2, 3), (4, 0, 5, 3, 2, 2),
-    (7, 3, 6, 2, 2, 2), (1, 1, 3, 2, 2, 2),
-]
-
-
-def cluster():
-    cx, cy = 300, 320
-
-    def P(x, y, z):
-        return (cx + (x - y) * 26, cy + (x + y) * 13 - z * 26)
-
-    def pts(q):
-        return ' '.join(f'{a:.1f},{b:.1f}' for a, b in q)
-
-    layers = {0: [], 1: [], 2: []}
-    for i, (x, y, z, w, d, h) in enumerate(sorted(BOXES, key=lambda b: b[0] + b[1] + b[2])):
-        top = [P(x, y, z + h), P(x + w, y, z + h), P(x + w, y + d, z + h), P(x, y + d, z + h)]
-        left = [P(x, y + d, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x, y + d, z + h)]
-        right = [P(x + w, y, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x + w, y, z + h)]
-        layers[i % 3].append(f'<polygon points="{pts(top)}" fill="rgba(255,255,255,.1)"/>'
-                             f'<polygon points="{pts(left)}" fill="rgba(255,255,255,.03)"/>'
-                             f'<polygon points="{pts(right)}" fill="rgba(255,255,255,.06)"/>')
-    gs = ''.join(f'<g class="hx-cluster__l hx-cluster__l--{g + 1}" stroke="rgba(255,255,255,.62)" '
-                 f'stroke-width="1" stroke-linejoin="round">{"".join(layers[g])}</g>' for g in (0, 1, 2))
-    return f'<svg class="hx-cluster" viewBox="0 0 600 560" aria-hidden="true" focusable="false">{gs}</svg>'
-
-
-def opener(word, n, aside, heading_id, ink=False):
-    """The section opener: the huge light uppercase word in a block with a numbered badge, a tracked line beside it."""
-    tone = ' hx-open__block--ink' if ink else ''
-    return f'''        <div class="hx-open__row">
-          <div class="hx-open__block{tone}" data-reveal>
-            <h2 class="hx-open__word" id="{heading_id}">{word}</h2>
-            <span class="hx-badge" aria-hidden="true">{n}</span>
-          </div>
-          <p class="hx-open__aside hx-label" data-reveal style="--d:120ms">{aside}</p>
-        </div>'''
+# the pictograms, the cluster and the opener come from the shared library
+PICTO, picto, cluster, opener = B.PICTO, B.picto, B.cluster, B.opener
 
 
 # ── 01 · the opener ────────────────────────────────────────────────────────
@@ -579,7 +504,7 @@ def enquiry():
 
 
 def home_main():
-    return (picto_sprite() + hero() + statement() + numbers() + cases() + solutions()
+    return (hero() + statement() + numbers() + cases() + solutions()
             + in_their_words() + principles() + thinking() + enquiry())
 
 

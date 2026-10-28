@@ -77,22 +77,23 @@ def products_index():
     for i, p in enumerate(SV.PRODUCTS):
         ext = p['href'].startswith('http')
         href = p['href'] if ext else base + p['href']
-        cards.append(B.feat(esc(p['name']), href, f"{base}{p['image']}", f'{i + 1:02d} · {esc(p["short"])}',
-                            esc(p['body']), link=f'<a class="arrow-link" href="{href}">{esc(p["cta"])} {ARROW}</a>',
-                            extra_attrs=f' data-reveal style="--d:{i * 80}ms"'))
+        cards.append(f'''          <article class="post post--picto" data-reveal style="--d:{i * 80}ms">
+            <p class="post__meta hx-label">{i + 1:02d} · {esc(p["short"])}</p>
+            <a class="post__media post__media--picto" href="{href}" tabindex="-1" aria-hidden="true">{B.picto(B.PICTO_FOR_PRODUCT[p['slug']], 'hx-picto--w')}</a>
+            <h3 class="post__t"><a href="{href}">{esc(p['name'])}</a></h3>
+            <p class="post__x">{esc(p['body'])}</p>
+            <a class="arrow-link" href="{href}">{esc(p["cta"])} {ARROW}</a>
+          </article>''')
     cards = '\n'.join(cards)
     if True:
         # the external product opens in a new tab
         cards = cards.replace('href="https://gemis.tech/"', 'href="https://gemis.tech/" target="_blank" rel="noopener"')
         cards = cards.replace('href="https://sphamandla-designer.github.io/ManaGEM/"', 'href="https://sphamandla-designer.github.io/ManaGEM/" target="_blank" rel="noopener"')
     body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>Products</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("A platform, a studio and an academy")}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">Three things GEMIS makes that are ready today: a business management platform to run on, a design studio to design with, and training that keeps your team ahead of the systems they use.</p>
-      </div>
-    </section>
+{B.hero_block('Products', B.two_lines("A platform, a studio and an academy"),
+              'Three things GEMIS makes that are ready today: a business management platform to run on, a design studio to design with, and training that keeps your team ahead of the systems they use.',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}products/managem/">Explore ManaGEM</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Discuss a project</a>',
+              visual=f'<div class="hx-phero__picto">{B.picto("blocks", "hx-picto--w hx-picto--xl")}</div>', strip='ManaGEM · Design Studio · Technical Academy')}
 
     <section class="sec band plusgrid plusgrid--tr" aria-labelledby="productsHeading">
       <div class="shell">
@@ -115,9 +116,7 @@ def post_cards(base='', articles=None):
         chips = '\n'.join(f'              <li>{esc(c)}</li>' for c in a.get('chips', [a['tag']]))
         cards.append(f'''          <article class="post" data-reveal style="--d:{i * 80}ms">
             <h3 class="post__t"><a href="{base}insights/{a['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(a['title'])}</span></a></h3>
-            <a class="post__media post__media--mesh" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">
-              {B.ui_window(ARTICLE_STORY[a['slug']][0], base, 'win--card')}
-            </a>
+            <a class="post__media post__media--picto" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">{B.picto(B.PICTO_FOR_TAG.get(a['tag'], 'letter'), 'hx-picto--w')}</a>
             <p class="post__meta"><span class="post__tag">{esc(a['tag'])}</span> · <time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']}</p>
             <p class="post__x">{esc(a['standfirst'])}</p>
             <ul class="post__chips">
@@ -139,13 +138,10 @@ def pretty_date(iso):
 def insights_index():
     base = '../'
     body = f'''
-    <section class="chero" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>News &amp; Insights</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines("Notes from building systems that have to work")}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">What we have learned building and running business systems in South Africa — written for the operations and finance leads who have to live with the result.</p>
-      </div>
-    </section>
+{B.hero_block('News &amp; Insights', B.two_lines("Notes from building systems that have to work"),
+              'What we have learned building and running business systems in South Africa — written for the operations and finance leads who have to live with the result.',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
+              visual=f'<div class="hx-phero__picto">{B.picto("letter", "hx-picto--w hx-picto--xl")}</div>', strip='Three articles · each with the case study behind it')}
 
     <section class="news band plusgrid plusgrid--tr" aria-labelledby="newsHeading">
       <div class="shell">
@@ -207,24 +203,15 @@ def article_page(a):
       </div>
     </section>
 '''
-    ck = ARTICLE_STORY[a['slug']][0]
-    cover = B.composite(base, [ck], ck if ck in B.PHONES else None,
-                        f"The {S.BY_SLUG[ck]['client']} system, from its case-study video")
+    pk = B.PICTO_FOR_TAG.get(a['tag'], 'letter')
     body = f'''
-    <section class="chero chero--art" id="hero">
-      <div class="shell">
-        <p class="chero__kicker" data-reveal>{esc(a['tag'])}</p>
-        <h1 class="chero__title" data-reveal style="--d:80ms">{B.two_lines(esc(a['title']))}</h1>
-        <p class="chero__copy" data-reveal style="--d:140ms">{esc(a['standfirst'])}</p>
-        <p class="art__meta" data-reveal style="--d:200ms"><time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']} · GEMIS</p>
-      </div>
-    </section>
+{B.hero_block(esc(a['tag']), B.two_lines(esc(a['title'])), esc(a['standfirst']),
+              ctas=f'<a class="hx-btn hx-btn--ghost" href="{base}insights/">All insights</a>',
+              visual=f'<div class="hx-phero__picto">{B.picto(pk, "hx-picto--w hx-picto--xl")}</div>',
+              strip=f'<p class="hx-label hx-hero__strip-label art__meta"><time datetime="{a["date"]}">{pretty_date(a["date"])}</time> · {a["read"]} · GEMIS</p>')}
 
     <section class="art band" aria-label="Article">
       <div class="shell art__in">
-        <div class="art__cover art__cover--mesh" data-reveal>
-          {cover}
-        </div>
         <div class="art__body" data-reveal style="--d:80ms">
 {article_body(a)}
         </div>
