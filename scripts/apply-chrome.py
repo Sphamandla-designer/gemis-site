@@ -50,8 +50,7 @@ def _service_items():
     for i, s in enumerate(SV.SERVICES, 1):
         out.append(
             f'                <li><a class="msvc" href="{{B}}solutions/{s["slug"]}/">'
-            f'<span class="msvc__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-            f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{SV.ICONS[s["slug"]]}</svg></span>'
+            f'<span class="msvc__icon" aria-hidden="true">{_B.picto(s["slug"], "hx-picto--w")}</span>'
             f'<span class="msvc__body"><span class="msvc__name">{s["name"]}</span>'
             f'<span class="msvc__line">{s["short"]}</span></span></a></li>')
     return '\n'.join(out)

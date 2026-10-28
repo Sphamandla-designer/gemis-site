@@ -62,6 +62,17 @@ def link_for(slug, base=''):
 PICTO, picto, cluster, opener = B.PICTO, B.picto, B.cluster, B.opener
 
 
+def sec_head(kicker, title, heading_id, lede='', cta='', ink=False, stack=False):
+    """The site's section head on the home: the tracked kicker and the uppercase light title left, the lede (and an action) right, a hairline beneath."""
+    cls = 'hx-sec' + (' hx-sec--ink' if ink else '') + (' hx-sec--stack' if stack else '')
+    right = ''
+    if lede or cta:
+        right = (f'\n          <div class="hx-sec__r">' + (f'<p class="hx-sec__lede">{lede}</p>' if lede else '') + cta + '</div>')
+    return f'''        <div class="{cls}" data-reveal>
+          <div class="hx-sec__l"><p class="hx-label hx-sec__k">{kicker}</p><h2 class="hx-sec__t" id="{heading_id}">{title}</h2></div>{right}
+        </div>'''
+
+
 # ── 01 · the opener ────────────────────────────────────────────────────────
 def hero():
     return f'''    <!-- ═══════════════════ 01 · THE OPENER ═══════════════════
@@ -114,15 +125,10 @@ def statement():
          founding-client line. -->
     <section class="hx hx-state" aria-labelledby="stateHeading">
       <div class="shell">
-        <div class="hx-state__head" data-reveal>
-          <p class="hx-label">Business systems partner since 2014</p>
-          <span class="hx-badge" aria-hidden="true">1</span>
-        </div>
-        <h2 class="hx-statement" id="stateHeading" data-reveal style="--d:100ms">We build software around how your business actually works, and we stay to support it as you grow.</h2>
+{sec_head('01 · Business systems partner since 2014', 'We build software around how your business actually works, and we stay to support it as you grow.', 'stateHeading', lede='GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with. We design around how a business actually runs, build on the Microsoft Cloud, and stay after go-live.', ink=True)}
         <div class="hx-state__row">
           <figure class="hx-state__obj" aria-hidden="true" data-reveal style="--d:200ms" data-px=".08">{picto('gem', 'hx-picto--w hx-picto--lg')}</figure>
           <div class="hx-state__copy" data-reveal style="--d:260ms">
-            <p>GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with. We design around how a business actually runs, build on the Microsoft Cloud, and stay after go-live.</p>
             <p>Some of our clients have been with us for more than a decade.</p>
             <a class="hx-btn hx-btn--ghost" href="our-story/">Our story</a>
           </div>
@@ -183,14 +189,10 @@ def solutions():
          the nine disciplines as a "+" list on hairlines. Hover or focus a
          line to bring it into the card (home.js, [data-svc]); without
          JavaScript the first discipline is shown and every line is a link. -->
-    <section class="hx hx-open hx-open--sol" id="solutions" aria-labelledby="solHeading">
-      <div class="hx-open__field" aria-hidden="true" data-px=".1"><div class="hx-dots"></div><span class="hx-streak hx-streak--3"></span></div>
-      <div class="shell hx-open__in">
-{opener('Solutions', 3, 'Nine disciplines. One accountable team.', 'solHeading')}
-        <p class="hx-open__copy" data-reveal style="--d:200ms">GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.</p>
+    <section class="hx hx-svc" id="solutions" aria-labelledby="solHeading" data-svc>
+      <div class="shell">
+{sec_head('03 · Solutions', 'Nine disciplines. One accountable team.', 'solHeading', lede='GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.', ink=True)}
       </div>
-    </section>
-    <section class="hx hx-svc" aria-label="The nine disciplines" data-svc>
       <div class="shell hx-svc__grid">
         <div class="hx-svc__card" data-reveal>
           <p class="hx-label hx-svc__name" data-svc-name aria-live="polite">{esc(first['name'])}</p>
@@ -238,7 +240,7 @@ def cases():
          its case study or plays the video in the overlay. -->
     <section class="hx hx-cases" id="selected" aria-labelledby="casesHeading">
       <div class="shell">
-{opener('Case studies', 2, 'Systems in production, each with its story on video.', 'casesHeading', ink=True)}
+{sec_head('02 · Case studies', 'Systems in production, each with its story on video', 'casesHeading', lede='Seven systems GEMIS designed, built and supports. Each tile reads its case study or plays the video it was recorded from.')}
       </div>
       <div class="hx-rail" data-rail>
         <div class="shell hx-rail__head">
@@ -295,7 +297,7 @@ def in_their_words():
          without JavaScript. -->
     <section class="hx hx-words" id="in-their-words" aria-labelledby="wordsHeading">
       <div class="shell">
-{opener('In their words', 4, 'Some of the businesses we work with today first trusted GEMIS more than a decade ago.', 'wordsHeading')}
+{sec_head('04 · Clients', 'In their words', 'wordsHeading', lede='Some of the businesses we work with today first trusted GEMIS more than a decade ago.', ink=True)}
         <div class="hx-words__stage" data-stage>
           <div class="hx-words__side">
             <ol class="hx-words__rail" aria-label="Choose a voice" data-reveal>
@@ -368,7 +370,7 @@ def principles():
          a hatch pictogram each — the reference's service blocks. -->
     <section class="hx hx-prin" id="thinking" aria-labelledby="prinHeading">
       <div class="shell">
-{opener('Principles', 5, 'Seven systems. The same four decisions.', 'prinHeading', ink=True)}
+{sec_head('05 · Principles', 'Seven systems. The same four decisions.', 'prinHeading', lede='The four operating principles behind every system on this site, each with the case studies it is seen in.')}
         <ol class="hx-prin__grid">
 {NL.join(blocks)}
         </ol>
@@ -385,12 +387,8 @@ def thinking():
     return f'''
     <!-- ═══════════════════ 08 · OUR THINKING ═══════════════════ -->
     <section class="hx hx-think" aria-labelledby="thinkHeading">
-      <div class="shell hx-think__grid">
-        <div class="hx-think__head" data-reveal>
-          <p class="hx-label">Insights</p>
-          <h2 class="hx-think__t" id="thinkHeading">Notes from building systems that have to work</h2>
-          <a class="hx-btn hx-btn--ink" href="insights/">All insights</a>
-        </div>
+      <div class="shell hx-think__in">
+{sec_head('Insights', 'Notes from building systems that have to work', 'thinkHeading', lede='What we have learned building and running business systems in South Africa — written for the operations and finance leads who have to live with the result.', cta='<a class="hx-btn hx-btn--ink" href="insights/">All insights</a>')}
         <ul class="hx-plus hx-plus--ink" data-reveal style="--d:120ms">
 {items}
         </ul>
@@ -410,12 +408,7 @@ def enquiry():
     <section class="hx hx-go" id="discovery" aria-labelledby="goHeading">
       <div class="shell hx-go__grid">
         <div class="hx-go__intro">
-          <div class="hx-open__row">
-            <div class="hx-open__block hx-open__block--ink hx-open__block--flush" data-reveal>
-              <h2 class="hx-open__word" id="goHeading">Contact</h2>
-              <span class="hx-badge" aria-hidden="true">6</span>
-            </div>
-          </div>
+'''+ sec_head('06 · Contact', 'Book a discovery session', 'goHeading', ink=True, stack=True) + r'''
           <p class="hx-go__lede" data-reveal style="--d:120ms">Book a Discovery Session. Tell us what you're trying to fix. We'll come back within two working days with a short written view and a time to talk. No obligation.</p>
           <ol class="hx-plus hx-plus--steps" data-reveal style="--d:200ms">
             <li><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">We read it properly</span><span class="hx-plus__sub">Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</span></li>

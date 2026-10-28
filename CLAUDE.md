@@ -140,7 +140,10 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
 - **The chrome.** The global nav is a 48px navy bar (`--nav-bar #071b31`),
   sticky and in flow (so no page needs `--hero-top` clearance); 13px white
   links; the Solutions and Products flyouts are navy sheets with 19px/600
-  entries. Story pages, the Case Studies index, the nine service pages and
+  entries. Each discipline in the Solutions flyout carries its hatch pictogram
+  (`_B.picto(slug)` in `_service_items()`), and each product in the Products
+  flyout carries its image from `assets/img/menu/` (the owner's instruction,
+  2026-10-28 — the one place product mockups appear outside the case stills). Story pages, the Case Studies index, the nine service pages and
   ManaGEM carry a frosted **sub-nav** (`subnav()` in `build-stories.py`,
   emitted first in `<main>`): the page's name, its chapters, one small pill;
   sticky under the bar, parchment at 80% with blur, navy over a navy hero
@@ -201,8 +204,7 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   reference screenshots and videos (committed at the repository root as
   `Screenshot 2026-10-28 *.png`, `gemsi redesign referemnce (1).mp4` and
   `hero view.mp4`): midnight navy `#0a1230` and white, Montserrat (OFL,
-  `assets/fonts/montserrat-latin.woff2`), huge light uppercase section words
-  in a block with a numbered badge (`opener()`), stepped blocks cut with
+  `assets/fonts/montserrat-latin.woff2`), stepped blocks cut with
   `clip-path` notches, giant numerals, "+" lists on hairlines (`.hx-plus`),
   pictograms as silhouettes filled with vertical hatch lines (`PICTO`, the
   `hxHatchN`/`hxHatchW` patterns, `.hx-picto`), statements and quotations with
@@ -213,12 +215,16 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   `.hx` in the **HOME v4** block at the tail of `site.css`; headings, links
   and buttons inside it are set with doubled `:not(#_):not(#_)` so the
   site-wide rules do not reach them. The bar and the footer are untouched (the
-  owner's instruction). Sections, in order: the opener (white strip, white
-  L-block with the wordmark, the cluster), the statement, the numbers (three
-  confirmed figures) with the client marks, Solutions (opener over the dotted
-  field, then the white card + "+" list — hover or focus a discipline to bring
-  its pictogram into the card, `[data-svc]` in `home.js`), Case studies (seven
-  typographic navy tiles on a scroll-snap carousel with a counter and circle
+  owner's instruction). **Every section opens on the site's section head**
+  (`sec_head()` in `build-home.py`: the numbered kicker and the uppercase light
+  title left, the lede and an action right, a hairline beneath — the same
+  pattern as every other page; the giant word openers of the first pass are
+  gone, `opener()` in the library is unused). Sections, in order: the hero
+  (white strip, white L-block with the headline, the partnership tag, the
+  cluster), the statement, the numbers (three confirmed figures) with the
+  client marks, Case studies, Solutions (the white card + "+" list — hover or focus a discipline to bring
+  its pictogram into the card, `[data-svc]` in `home.js`; the case studies are
+  seven video tiles on a scroll-snap carousel with a counter and circle
   controls, `[data-rail]`; each reads its page or plays its video), In their
   words (the shared stage, restyled), the principles (verbatim, as four stepped
   blocks with pictograms), Our thinking (the three articles), Contact (the
@@ -281,8 +287,10 @@ Never invent a client, a testimonial, a statistic or a case study. Everything on
 the site has to be traceable to something already in the repository, and every
 figure to `scripts/facts.md` (50+ systems, 5+ sectors and ManaGEM's "nine days to
 two" are confirmed there; the sector count is **5+**, not 10+). Anything facts.md
-does not confirm — team titles, the partner designation — is a hideable TBC in
-`scripts/stories.py`, shown only under `?review=1`. **There is no phone number
+does not confirm — the partner designation — is a hideable TBC in
+`scripts/stories.py`, shown only under `?review=1`. The six team members on
+Our Story show their names and the line under each: confirmed by the owner
+(2026-10-28, recorded in `scripts/facts.md`). **There is no phone number
 anywhere on either site** (the owner removed it, 2026-10-23): no `tel:` link,
 no number in copy, on the corporate pages or in `studio/src/`.
 
