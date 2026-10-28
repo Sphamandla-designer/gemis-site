@@ -241,7 +241,8 @@ def managem():
     s = S.BY_SLUG['managem']
     C = P.C
     body = f'''
-    <section class="chero" id="hero">
+{B.subnav('ManaGEM', '#hero', [('Where it came from', '#origin'), ('Walkthrough', '#walkthrough')], f'Discuss ManaGEM {ARROW}', f'href="{base}contact.html?service=enterprise-saas"', 'ManaGEM')}
+    <section class="chero chero--product" id="hero">
       <div class="shell chero__grid">
         <div class="chero__text">
           <p class="chero__kicker" data-reveal>ManaGEM</p>

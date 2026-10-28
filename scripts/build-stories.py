@@ -650,3 +650,17 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+def subnav(name, href, links, cta_label, cta_attrs, label):
+    """
+    The frosted sub-nav under the global bar on product and story pages:
+    the page's name on the left, its chapters and one small pill on the
+    right. Sticky; under 900px only the name and the pill remain.
+    """
+    lis = ''.join(f'<li><a href="{h}">{esc(t)}</a></li>' for t, h in links)
+    return (f'    <nav class="subnav" aria-label="{esc(label)}">\n'
+            f'      <div class="shell subnav__in">\n'
+            f'        <p class="subnav__name"><a href="{href}">{esc(name)}</a></p>\n'
+            f'        <ul class="subnav__links">{lis}<li><a class="btn subnav__cta" {cta_attrs}>{cta_label}</a></li></ul>\n'
+            f'      </div>\n'
+            f'    </nav>\n')

@@ -70,66 +70,65 @@ Auditing one in a sandbox reports `document-title` and `html-has-lang` falsely: 
 meta-refresh fires before axe runs, so it measures the failed navigation. Re-run
 against the file's own bytes with the refresh stripped.
 
-## One design system — Brand v2, at the tail of `site.css`
+## One design system — Brand v3, at the tail of `site.css`
 
 The stylesheet was written page by page and the layers contradict each other.
-The last block, **BRAND v2 — the GEMIS design system** (2026-10, from the owner's
-Stripe-like brief, reference stripe.com), and the short blocks after it are where
-the decisions live; put a change to colour, type or spacing there. Its selectors
-carry `:not(#_)` to beat older, more specific rules without `!important` — mind
-specificity when you add to it (`.ctc#hero` inside an `:is()` lifts the whole rule
-to ID weight).
+The last block, **BRAND v3 — the GEMIS design system** (2026-10-28, from the
+owner's Apple-like brief, kept on the GEMIS dark blue), and the short blocks
+after it are where the decisions live; put a change to colour, type or spacing
+there. Its selectors carry `:not(#_)` to beat older, more specific rules without
+`!important`; a rule that must outrank another v3 rule doubles it (`:not(#_):not(#_)`).
 
-- **Colour.** Indigo `--primary #533afd` is for filled pill buttons and links only
-  — one filled pill per band. Ink `#0d253d`, ink-2 `#273951`, ink-3 `#5a6a81` (the
-  brief's `#64748d`, darkened to pass 4.5:1 on the soft and cream grounds). Grounds:
-  white, `--paper-2 #f6f9fc`, `--cream #f5e9d4` / `--cream-soft`. Hairline `#e3e8ee`,
-  input hairline `#a8c3de`. The old tokens are remapped (`--navy` → indigo,
-  `--navy-deep` → ink), so older components follow.
-- **Type.** Inter (variable, `assets/fonts/inter-latin-opsz-normal.woff2`, OFL) at
-  weight 300 with `ss01` and negative tracking, standing in for Sohne; `tnum` on
-  every number that is read as a number. Eight steps: `--fs-hero / display / lead /
-  title / name / copy / small / eyebrow`; display type drops to 36px on phones.
-- **Heroes are the gradient mesh** (`assets/img/brand/mesh.svg` — blurred SVG
-  blobs, cream / orange / lavender / indigo / ruby / magenta) on `.hero`, `.chero`,
-  `.ihero`, `.oops`, `.legal` and the contact hero `.ctc#hero`, cut on a slant and
-  drifting slowly (static under reduced motion). Type on it is ink. A white veil
-  over the text side keeps it at 4.5:1 — firmer on text-only heroes, full width
-  at 1100px and under. Measure it from pixels, not with axe (axe cannot see a
-  pseudo-element image): `meshc`-style sampling of each text line box at both ends
-  of the drift. The photograph `hero-bg.jpg` is no longer a ground.
-- **Composites, not photographs.** `composite()` in `build-stories.py` layers app
-  windows (`ui_window`) and a phone (`ui_phone`) over the hero, built from crops of
-  the case-study video stills in `assets/img/ui/` (each marked sample data in its
-  video), captioned "Interfaces from GEMIS case-study videos · sample data". Never
-  invent a dashboard. Article covers and insight cards show the window of the case
-  behind the article on a mesh panel.
-- **The nav floats on the mesh**: ink links, Contact as the indigo pill; once the
-  page scrolls (`.is-stuck`) or a drop-down opens it turns white with blur and a
-  hairline. **The footer is light**: white, hairline top, ink-3 type. Its structure
-  is still the efferd `footer-3` port in `FOOTER` in `apply-chrome.py` (brand
-  column; Solutions — the first four and All solutions / Products / Company /
-  Connect; centred legal line), each section revealing with blur-and-rise
-  (`.has-js .foot [data-reveal]`). These replace the owner's earlier navy-bar and
-  navy-footer requests.
-- **Surfaces.** Cards are white, hairline, radius 12, shadow level 1 lifting to
-  level 2 on hover. Dark product bands (`.band-ink`, `.prin`, `.sq`, `.built`,
-  `.op`) are deep ink with faint indigo / ruby / magenta glows, type white —
-  anything placed on them that inherits the global ink heading colour needs a white
-  override (stats and timeline plates have one). Closing bands (`.convert`,
-  `.endnote`) are cream cards, radius 16; the home `.go` form sits in a white card.
-  Tags are soft indigo pills; `.caps` stays a ruled list with an indigo marker.
-- **The logo** keeps its shapes; the gem is recoloured with the `gemisGem`
-  gradient (orange → ruby → indigo) defined in the sprite of `index.html` and the
-  four hand-written pages.
-- **Rhythm** is `--sec-y` (64–104px) on both edges of every section, `--sec-y-s`
-  after a text-only hero. Shell 1240px. **Grounds** alternate white → soft → white
-  → cream, one dark band per long page, then the footer.
-- **Case study pages** are built from `scripts/cases.py` (hero with status,
-  composite and Play story, overview, business challenge, strategy and approach,
-  outcomes split into delivered / verified / intended, related work, tailored
-  enquiry). Only the client-confirmed metric is a number; a section with nothing
-  verified is omitted.
+- **Tiles.** Every section is an edge-to-edge tile and the colour change is the
+  divider: white (`.band`), parchment `#f5f5f7` (`.band-wash`, `.band-tint`,
+  `.trust`, `.words`) and deep navy `--tile-1 #0b2642` (`.band-ink`, `.prin`,
+  `.sq`, `.built`, `.convert`, `.endnote`, the story and ManaGEM heroes). The
+  footer is navy too; after a navy closing tile it steps to `--tile-3` so the
+  two read apart. No gradients, no corner accents, no shadows on cards or type.
+- **One accent.** The dark blue `--primary #16395e` is every link and every
+  filled pill on light surfaces; on navy tiles links are `--primary-on-dark
+  #8fc1f5` and the filled pill is white with navy text. Ink `#1d1d1f`, ink-2
+  `#424245`, ink-3 `#6e6e73` (4.66:1 on parchment — do not lighten it).
+  Hairline `#e0e0e0`. The old tokens are remapped (`--navy`, `--navy-deep`,
+  `--wash`, `--rule`), so older components follow.
+- **Type.** Inter (variable, self-hosted, OFL) standing in for SF Pro: headlines
+  600 with tight tracking (hero 56px → 40px at 1068px → 34px → 28px under 420px),
+  body 17px/400/1.44 with `-.022em`, taglines 21px. Eyebrows are 14px/600 in
+  ink-3, normal case. Weight 500 does not exist in the ladder; `strong` is 600.
+  Tabular figures on every number read as a number.
+- **Heroes are centred product tiles**: eyebrow, a two-line title
+  (`two_lines()`), the tagline, two pills (filled + ghost), and the product
+  beneath — `composite()` in `build-stories.py`, app windows and a phone cut
+  from the case-study video stills in `assets/img/ui/` (each marked sample data
+  in its video), resting on the tile with the system's single shadow
+  `rgba(0,0,0,.22) 3px 5px 30px`. Never invent a dashboard. The Solutions
+  drawings sit in a white window card the same way. Industries, Contact, 404 and
+  Privacy open on plain white.
+- **The chrome.** The global nav is a 48px navy bar (`--nav-bar #071b31`),
+  sticky and in flow (so no page needs `--hero-top` clearance); 13px white
+  links; the Solutions and Products flyouts are navy sheets with 19px/600
+  entries. Story pages, the Case Studies index, the nine service pages and
+  ManaGEM carry a frosted **sub-nav** (`subnav()` in `build-stories.py`,
+  emitted first in `<main>`): the page's name, its chapters, one small pill;
+  sticky under the bar, parchment at 80% with blur, navy over a navy hero
+  (`:has()`); under 900px only the name and the pill remain. Anchors carry
+  `scroll-margin-top: 112px`. The footer is the efferd `footer-3` port in
+  `FOOTER` in `apply-chrome.py`, on navy, 14px links at 2.2 leading.
+- **Surfaces.** Cards (`.cscard`, `.selw__card`, `.post`, `.prod`, `.dec`,
+  `.flow__step`, `.sol__card`, `.sd__item`, `.cs__main` …) are white, 1px
+  hairline, radius 18, 24px padding, no shadow, no hover lift. Tags are 12px
+  hairline pills. Play controls are the translucent grey chip
+  `rgba(210,210,215,.64)` with blur. Inputs are 17px, `#d2d2d7` border, radius
+  11, a 3px focus ring. Buttons press with `transform: scale(.95)`. Section
+  heads (`.sec__head` and the `*__head` variants) are centred stacks.
+- **The logo** is the flat traced sprite in `currentColor` (the gem at .34
+  opacity), white on navy, ink on light.
+- **Rhythm** is `--sec-y` (56–80px) on both edges of every tile. Shell 1440px.
+- **Case study pages** are built from `scripts/cases.py` (navy hero with
+  status, composite and Play story, overview, business challenge, strategy and
+  approach, outcomes split into delivered / verified / intended, related work,
+  tailored enquiry). Only the client-confirmed metric is a number; a section
+  with nothing verified is omitted.
 - **Every hero title is two lines**: the generators pass the title through
   `two_lines()` in `build-stories.py`, which breaks it once where the halves are
   most even (after a full stop, colon or comma when close) with a
@@ -143,11 +142,11 @@ to ID weight).
   every page: `.srows/.srow` numbered ruled rows for anything ordered (services,
   steps, founders, reasons), `.feats/.post` ruled features for anything with an
   image (articles, case studies, products), `.rlist` ruled link lists, `.plusgrid`
-  (`--tr`, `--br`) corner accents (hidden under Brand v2), and `.endnote` as the closing band. The
+  (`--tr`, `--br`) corner accents (hidden under Brand v3), and `.endnote` as the closing band. The
   helpers `srows()` and `feat()` in `scripts/build-stories.py` emit the markup.
 - **Three more references** (`qa/design-refs/stories-panel.png`, `timeline.png`,
   `testimonials.png`) set: the stories panel (`stories_section()` — on the home's
-  partnership section, on a dark band, never black) and the horizontal
+  partnership section, on a navy tile, never black) and the horizontal
   timeline (`tline(steps, label)` — How we work, the six stages, Contact's next
   steps, About's milestones). The old "Client stories" stage is gone with its
   invented entries; the homepage carries **In their words** instead. Any tabbed stage is a
