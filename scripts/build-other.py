@@ -339,18 +339,8 @@ def our_story():
     story = re.sub(r'<ol class="tl">.*?</ol>', lambda m: B.tline(SV.MILESTONES, 'Era').strip(), story, count=1, flags=re.S)
     team = rebase(blocks.get('team', ''), base)
     team = team.replace('UI/UX designer — head of Brand Studio', 'UI/UX designer, head of GEMIS Studio')
-    # facts.md confirms no surname or title except Sphamandla Xaba's. The others
-    # publish as a first name, their line held back until confirmed (?review=1
-    # shows everything the old page carried).
-    def flag_mate(m):
-        name, role = m.group(1), m.group(2)
-        if name.startswith('Sphamandla'):
-            return m.group(0)
-        first = name.split()[0]
-        return ('<h3 class="mate__n"><span class="unconfirmed" data-tbc="team-titles" data-kind="hideable">' + name
-                + '</span><span class="confirmed-fallback">' + first + '</span></h3>\n'
-                '            <p class="mate__r unconfirmed" data-tbc="team-titles" data-kind="hideable">' + role + '</p>')
-    team = re.sub(r'<h3 class="mate__n">(.*?)</h3>\s*<p class="mate__r">(.*?)</p>', flag_mate, team)
+    # the names and the lines under them are the previous site's, confirmed by
+    # the owner (2026-10-28, facts.md), so every member shows both
 
     founders = B.srows([
         (f'<a href="{base}work/{k}/">{esc(S.BY_SLUG[k]["client"])}</a>',

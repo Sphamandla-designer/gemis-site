@@ -49,3 +49,7 @@ gemis.co.za, copied exactly); the build reads them from
 
 - Designer LinkedIn credit in footer: FILL (replace with GEMIS company
   page:https://www.linkedin.com/company/gem-information-systems-pty-ltd/)
+
+## Team (confirmed by the owner, 2026-10-28)
+
+The six names and the line under each on Our Story (Graeme Mehl, Leon Small, Byron Thompson, Sebastian Vries, Vanessa Davis, Sphamandla Xaba — as the previous site carried them) are confirmed and shown.
