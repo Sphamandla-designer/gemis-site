@@ -6,13 +6,17 @@ Generate the homepage's <main> from the site's data.
 
 index.html keeps its hand-written head, header and footer (the chrome every
 generated page lifts). Everything between the #home sentinels is built here,
-in the order the case-study-led brief sets:
+in the language of the owner's reference (2026-10-28): midnight navy and
+white, stepped blocks, huge light uppercase section words with a numbered
+badge, giant numerals, "+" lists on hairlines, pictograms drawn as vertical
+hatch lines, a carousel with a counter, statements with a hanging first line.
+No photographs and no product mockups: the objects are vector art and motion.
 
-    01 proposition hero        06 long-term partnership proof
-    02 featured case study     07 how GEMIS works
-    03 selected projects       08 the company
-    04 the thinking            09 the enquiry
-    05 capabilities, demonstrated
+    01 the opener (white L-block, the animated block cluster)
+    02 the statement           06 in their words
+    03 the numbers             07 the principles, as stepped blocks
+    04 Solutions (hover panel) 08 our thinking
+    05 Case studies (carousel) 09 the enquiry
 
 Every project, figure and quotation comes from scripts/stories.py, cases.py
 and services.py; nothing is written here that is not already evidenced there.
@@ -39,8 +43,7 @@ SV = load('services', 'services.py')
 C = load('cases', 'cases.py')
 B = load('build_stories', 'build-stories.py')
 esc, ARROW, PLAY = B.esc, B.ARROW, B.PLAY
-# the reference's thin right-pointing arrow on the monospace links
-MONO_ARROW = '<svg viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 5h11M8.5 1.5 12 5l-3.5 3.5"/></svg>'
+NL = chr(10)
 
 # the owner-supplied client logos, one grey version each (PR #77)
 LOGOS = [
@@ -50,200 +53,278 @@ LOGOS = [
     ('sonke', 'Sonke Gender Justice'), ('tores-foundation', "Tore's Foundation"),
 ]
 
-# 05 · capabilities a visitor can engage GEMIS for, each tied to the projects
-# that demonstrate it. Only capabilities with evidence on the site are listed.
-CAPABILITIES = [
-    ('Business systems and ERP',
-     'One system for enquiries, quotes, jobs, deposits, stock and staff, designed around the sequence the business actually follows rather than a package’s.',
-     ['custom-software', 'enterprise-saas'], ['sbs-waterproofing', 'wastemart', 'managem']),
-    ('Custom software and digital platforms',
-     'Web platforms built for a specific programme or operation: a schools debating competition with its claims and payments, a national plumbing-claims operation.',
-     ['custom-software'], ['tores-foundation', 'homeassist']),
-    ('Mobile and field operations',
-     'Apps for the people doing the work: offline session capture, automatic dispatch, scan confirmation at the point of collection, photographic evidence on site.',
-     ['mobile-apps'], ['sonke', 'wastemart', 'homeassist']),
-    ('System integration and reporting',
-     'Feeds between the systems a business already runs — SAP, accounting, insurers and manufacturers — and the management reports built on top of them.',
-     ['system-integration', 'business-intelligence'], ['trans-hex', 'sbs-waterproofing', 'homeassist']),
-    ('Digital product and UX design',
-     'Interface and product design from GEMIS Studio, the design practice inside the company, for systems people have to use every day.',
-     ['ux-design'], []),
-    ('Ongoing support and system evolution',
-     'We stay after go-live. The three founding clients from 2014 still run on the systems we built them, and the Trans Hex report went to a second version.',
-     ['support', 'modernisation'], ['sbs-waterproofing', 'homeassist', 'wastemart', 'trans-hex']),
-]
-
-def nl_join(it):
-    return chr(10).join(it)
-
 
 def link_for(slug, base=''):
     return f'{base}products/managem/' if S.BY_SLUG[slug].get('is_product') else f'{base}work/{slug}/'
 
 
+# ── the pictograms: silhouettes filled with vertical hatch lines ──────────
+# Drawn on a 120-unit box. The fill is a <pattern> of 1.6px lines every 5px —
+# navy on white cards, white on navy blocks (chosen from CSS on the <svg>).
+PICTO = {
+    'custom-software': 'M44 20 8 60l36 40 10-9L23 60l31-31Zm32 0-10 9 31 31-31 31 10 9 36-40Z',
+    'microsoft-cloud': 'M34 96a22 22 0 0 1-2.4-43.9A32 32 0 0 1 93.6 46 25 25 0 0 1 92 96Z',
+    'enterprise-saas': 'M60 18 112 42 60 66 8 42Zm-52 40 12-5.5L60 76l40-21.5 12 5.5L60 86Zm0 20 12-5.5L60 96l40-21.5 12 5.5L60 106Z',
+    'mobile-apps': 'M38 6h44a10 10 0 0 1 10 10v88a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10V16A10 10 0 0 1 38 6Zm12 94h20v6H50Z',
+    'business-intelligence': 'M14 64h20v44H14Zm36-26h20v70H50Zm36-26h20v96H86Z',
+    'system-integration': 'M30 44a16 16 0 1 1 0 32 16 16 0 0 1 0-32Zm60 0a16 16 0 1 1 0 32 16 16 0 0 1 0-32ZM46 56h28v8H46Z',
+    'ux-design': 'M28 14 98 62 66 68 86 96l-10 6-20-28-20 24Z',
+    'modernisation': 'M8 106V82h28V58h28V34h28V10h20v96Z',
+    'support': 'M60 8 104 24v34c0 26-18 46-44 56C34 104 16 84 16 58V24Z',
+    'leak': 'M60 10c20 30 34 46 34 66a34 34 0 0 1-68 0c0-20 14-36 34-66Z',
+    'capture': 'M60 8a36 36 0 0 1 36 36c0 26-36 68-36 68S24 70 24 44A36 36 0 0 1 60 8Zm0 20a16 16 0 1 0 0 32 16 16 0 0 0 0-32Z',
+    'handoff': 'M8 44h60V24l44 36-44 36V76H8Z',
+    'evolve': 'M54 70h12v42H54ZM60 8c22 0 38 18 38 38S82 78 60 78 22 68 22 46 38 8 60 8Z',
+    'gem': 'M32 14h56l24 30-52 66L8 44Zm8 10L24 44h72L80 24Z',
+}
+
+
+def picto_sprite():
+    syms = ''.join(f'<symbol id="px-{k}" viewBox="0 0 120 120"><path d="{d}" fill-rule="evenodd"/></symbol>'
+                   for k, d in PICTO.items())
+    return ('    <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0"><defs>'
+            '<pattern id="hxHatchN" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#0a1230"/></pattern>'
+            '<pattern id="hxHatchW" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="#ffffff"/></pattern>'
+            f'</defs>{syms}</svg>' + NL)
+
+
+def picto(key, cls=''):
+    return f'<svg class="hx-picto {cls}" aria-hidden="true" focusable="false"><use href="#px-{key}"/></svg>'
+
+
+# ── the hero's object: an isometric cluster of blocks in thin white lines ──
+# Generated here so the drawing is in code; the three layers drift apart at
+# different speeds in CSS (static under reduced motion).
+BOXES = [  # x, y, z, w, d, h in iso units
+    (0, 0, 0, 4, 4, 3), (4, 0, 0, 3, 4, 5), (0, 4, 0, 4, 3, 4), (4, 4, 0, 3, 3, 2), (7, 0, 0, 3, 3, 4),
+    (7, 3, 0, 3, 4, 6), (0, 7, 0, 3, 3, 2), (3, 7, 0, 4, 3, 5), (10, 2, 0, 2, 2, 3), (4, 0, 5, 3, 2, 2),
+    (7, 3, 6, 2, 2, 2), (1, 1, 3, 2, 2, 2),
+]
+
+
+def cluster():
+    cx, cy = 300, 320
+
+    def P(x, y, z):
+        return (cx + (x - y) * 26, cy + (x + y) * 13 - z * 26)
+
+    def pts(q):
+        return ' '.join(f'{a:.1f},{b:.1f}' for a, b in q)
+
+    layers = {0: [], 1: [], 2: []}
+    for i, (x, y, z, w, d, h) in enumerate(sorted(BOXES, key=lambda b: b[0] + b[1] + b[2])):
+        top = [P(x, y, z + h), P(x + w, y, z + h), P(x + w, y + d, z + h), P(x, y + d, z + h)]
+        left = [P(x, y + d, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x, y + d, z + h)]
+        right = [P(x + w, y, z), P(x + w, y + d, z), P(x + w, y + d, z + h), P(x + w, y, z + h)]
+        layers[i % 3].append(f'<polygon points="{pts(top)}" fill="rgba(255,255,255,.1)"/>'
+                             f'<polygon points="{pts(left)}" fill="rgba(255,255,255,.03)"/>'
+                             f'<polygon points="{pts(right)}" fill="rgba(255,255,255,.06)"/>')
+    gs = ''.join(f'<g class="hx-cluster__l hx-cluster__l--{g + 1}" stroke="rgba(255,255,255,.62)" '
+                 f'stroke-width="1" stroke-linejoin="round">{"".join(layers[g])}</g>' for g in (0, 1, 2))
+    return f'<svg class="hx-cluster" viewBox="0 0 600 560" aria-hidden="true" focusable="false">{gs}</svg>'
+
+
+def opener(word, n, aside, heading_id, ink=False):
+    """The section opener: the huge light uppercase word in a block with a numbered badge, a tracked line beside it."""
+    tone = ' hx-open__block--ink' if ink else ''
+    return f'''        <div class="hx-open__row">
+          <div class="hx-open__block{tone}" data-reveal>
+            <h2 class="hx-open__word" id="{heading_id}">{word}</h2>
+            <span class="hx-badge" aria-hidden="true">{n}</span>
+          </div>
+          <p class="hx-open__aside hx-label" data-reveal style="--d:120ms">{aside}</p>
+        </div>'''
+
+
+# ── 01 · the opener ────────────────────────────────────────────────────────
 def hero():
-    # brand v3: a centred product tile — the tagline, two pills, and a
-    # composite of real interfaces from the case-study videos beneath it
-    return f'''    <section class="hero" id="hero">
-      <div class="shell hero__grid">
-        <div class="hero__text">
-          <p class="hero__eyebrow" data-reveal>Business systems partner since 2014</p>
-          <h1 class="hero__title" data-reveal style="--d:80ms">Systems built to last. <br class="h1-br">Partners built to stay.</h1>
-          <p class="hero__copy" data-reveal style="--d:160ms">
-            We build software around how your business actually works, and we stay to
-            support it as you grow. Some of our clients have been with us for more than
-            a decade.
-          </p>
-          <div class="hero__ctas" data-reveal style="--d:240ms">
-            <a class="btn" href="#discovery">Book a Discovery Session {ARROW}</a>
-            <a class="btn btn--ghost" href="#selected">See our work {ARROW}</a>
-          </div>
-          <!-- The exact partner designation and badge artwork are still to be
-               supplied — see OPEN_ITEMS.md (microsoft-partner-badge). -->
-          <aside class="hero__partner" data-reveal style="--d:320ms" aria-label="Microsoft partnership" data-tbc="microsoft-partner-badge" data-kind="hideable">
-            <svg viewBox="0 0 21 21" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
-            <span class="hero__partner-line">Systems built and run on the Microsoft Cloud <span class="tbc" data-tbc="microsoft-partner-badge" data-kind="hideable">designation to confirm</span></span>
-          </aside>
+    return f'''    <!-- ═══════════════════ 01 · THE OPENER ═══════════════════
+         A white strip under the bar and a white L-block hanging from it with
+         the wordmark, over a midnight field: a hatch of fine lines, the
+         isometric block cluster drifting in three layers, two light streaks.
+         Static under reduced motion. -->
+    <section class="hx hx-hero" id="hero" aria-labelledby="heroHeading">
+      <div class="hx-hero__field" aria-hidden="true">
+        <div class="hx-hero__hatch"></div>
+        {cluster()}
+        <span class="hx-streak hx-streak--1"></span>
+        <span class="hx-streak hx-streak--2"></span>
+      </div>
+      <div class="hx-hero__strip">
+        <div class="shell hx-hero__strip-in">
+          <p class="hx-label hx-hero__strip-label">Business systems <span aria-hidden="true">·</span> Cape Town <span aria-hidden="true">·</span> since 2014</p>
         </div>
-        <div class="hero__visual" data-reveal style="--d:200ms">
-          {B.composite('', ['homeassist', 'managem'], 'wastemart', 'Interfaces from systems GEMIS built: the HomeAssist claims dashboard, ManaGEM project profit, and the WasteMart driver app', eager=True)}
+      </div>
+      <div class="hx-hero__block" data-reveal>
+        <p class="hx-hero__word" aria-hidden="true">GEMIS<span class="hx-hero__dot"></span></p>
+        <p class="hx-label hx-hero__sub">GEM Information Systems</p>
+      </div>
+      <div class="hx-hero__tag" data-reveal style="--d:200ms">
+        <h1 class="hx-label hx-hero__h1" id="heroHeading">Systems built to last.<br />Partners built to stay.</h1>
+      </div>
+      <div class="hx-hero__foot">
+        <div class="shell hx-hero__foot-in">
+          <p class="hx-hero__copy" data-reveal style="--d:300ms">We build software around how your business actually works, and we stay to support it as you grow.</p>
+          <div class="hx-hero__ctas" data-reveal style="--d:380ms">
+            <a class="hx-btn hx-btn--light" href="#discovery">Book a Discovery Session</a>
+            <a class="hx-btn hx-btn--ghost" href="#selected">See our work</a>
+          </div>
+          <span class="hx-scroll" aria-hidden="true"><span></span></span>
         </div>
       </div>
     </section>
-
-    <!-- ═══════════════════ 02 · ABOUT / TRUST ═══════════════════
-         The design reference: eyebrow and a two-line headline on the left, a
-         paragraph and three figures on the right, a faint plus-grid top-left.
-         The figures are the ones Our Story carries. Below it, the marquee of
-         every client with a story on the site plus our own product — on
-         wordmarks, since no logo files exist (OPEN_ITEMS.md). -->
 '''
 
-def trust():
-    # the stats section as it was: About GEMIS, the three confirmed figures, the
-    # owner's client logos
-    return '''
-    <section class="trust band plusgrid" aria-labelledby="trustHeading">
+
+# ── 02 · the statement ─────────────────────────────────────────────────────
+def statement():
+    return f'''
+    <!-- ═══════════════════ 02 · THE STATEMENT ═══════════════════
+         The tagline as the reference sets its statements: uppercase, light,
+         the first line hanging to the right; the gem pictogram beside the
+         founding-client line. -->
+    <section class="hx hx-state" aria-labelledby="stateHeading">
       <div class="shell">
-        <div class="trust__grid">
-          <div class="trust__lead">
-            <p class="eyebrow" data-reveal>About GEMIS</p>
-            <h2 class="display" id="trustHeading" data-reveal style="--d:80ms">Trusted by South African businesses.</h2>
-            <a class="btn" href="our-story/" data-reveal style="--d:140ms">Learn more about us <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
-          </div>
-          <div class="trust__body">
-            <p class="trust__copy" data-reveal style="--d:140ms">
-              GEM Information Systems has been building business systems in South Africa since
-              2014 — and still works with the businesses it started with. We design around how a
-              business actually runs, build on the Microsoft Cloud, and stay after go-live.
-            </p>
-            <ul class="trust__stats" data-reveal style="--d:200ms">
-              <li class="stat"><span class="stat__n" data-count="12" data-sup="+">12<sup>+</sup></span><span class="stat__l">Years building business systems</span></li>
-              <li class="stat"><span class="stat__n" data-count="50" data-sup="+">50<sup>+</sup></span><span class="stat__l">Systems delivered into production</span></li>
-              <li class="stat"><span class="stat__n" data-count="5" data-sup="+">5<sup>+</sup></span><span class="stat__l">Sectors served nationally</span></li>
-            </ul>
+        <div class="hx-state__head" data-reveal>
+          <p class="hx-label">Business systems partner since 2014</p>
+          <span class="hx-badge" aria-hidden="true">1</span>
+        </div>
+        <h2 class="hx-statement" id="stateHeading" data-reveal style="--d:100ms">We build software around how your business actually works, and we stay to support it as you grow.</h2>
+        <div class="hx-state__row">
+          <figure class="hx-state__obj" aria-hidden="true" data-reveal style="--d:200ms">{picto('gem', 'hx-picto--w hx-picto--lg')}</figure>
+          <div class="hx-state__copy" data-reveal style="--d:260ms">
+            <p>GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with. We design around how a business actually runs, build on the Microsoft Cloud, and stay after go-live.</p>
+            <p>Some of our clients have been with us for more than a decade.</p>
+            <a class="hx-btn hx-btn--ghost" href="our-story/">Our story</a>
           </div>
         </div>
+      </div>
+    </section>
+'''
 
-        <div class="marquee" data-reveal style="--d:260ms">
-          <ul class="marquee__track">
-            <li class="marquee__item"><img src="assets/img/logos/clients/wastemart-grey.png" alt="WasteMart" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/managem-grey.png" alt="ManaGEM" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/smartstart-grey.png" alt="SmartStart" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/ecd-connect-grey.png" alt="ECD Connect" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/homeassist-grey.png" alt="HomeAssist" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/sbs-waterproofing-grey.png" alt="SBS Waterproofing" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/trans-hex-grey.png" alt="Trans Hex Group" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/sonke-grey.png" alt="Sonke Gender Justice" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img src="assets/img/logos/clients/tores-foundation-grey.png" alt="Tore&#x27;s Foundation" height="56" loading="lazy" /></li>
-          </ul>
-          <ul class="marquee__track" aria-hidden="true">
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/wastemart-grey.png" alt="WasteMart" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/managem-grey.png" alt="ManaGEM" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/smartstart-grey.png" alt="SmartStart" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/ecd-connect-grey.png" alt="ECD Connect" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/homeassist-grey.png" alt="HomeAssist" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/sbs-waterproofing-grey.png" alt="SBS Waterproofing" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/trans-hex-grey.png" alt="Trans Hex Group" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/sonke-grey.png" alt="Sonke Gender Justice" height="56" loading="lazy" /></li>
-            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/tores-foundation-grey.png" alt="Tore&#x27;s Foundation" height="56" loading="lazy" /></li>
+
+# ── 03 · the numbers ───────────────────────────────────────────────────────
+def numbers():
+    stats = [('12', 'Years building business systems'), ('50', 'Systems delivered into production'),
+             ('5', 'Sectors served nationally')]
+    cells = NL.join(f'''          <li class="hx-num__cell" data-reveal style="--d:{i * 90}ms">
+            <p class="hx-label">{esc(l)}</p>
+            <p class="hx-num__n"><span class="stat__n" data-count="{n}" data-sup="+">{n}<sup>+</sup></span></p>
+          </li>''' for i, (n, l) in enumerate(stats))
+    logos = NL.join(f'            <li><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" height="40" loading="lazy" /></li>'
+                    for k, n in LOGOS)
+    return f'''
+    <!-- ═══════════════════ 03 · THE NUMBERS ═══════════════════
+         Three confirmed figures (scripts/facts.md) as giant light numerals in
+         three hairlined columns, the label small above each; then the client
+         marks. -->
+    <section class="hx hx-num" aria-label="GEMIS in numbers">
+      <div class="shell">
+        <ul class="hx-num__grid">
+{cells}
+        </ul>
+        <div class="hx-logos" data-reveal>
+          <p class="hx-label">Trusted by</p>
+          <ul class="hx-logos__row">
+{logos}
           </ul>
         </div>
       </div>
     </section>
 '''
 
-def selected():
-    """
-    Selected work & case studies: the site's shared section header, then the
-    horizontal travel — a white band pinned to the viewport while four
-    equal-height case study cards, two to a screen on desktop, travel across
-    as the page scrolls (home.js, [data-hscroll]); on tablets and phones the
-    cards sit on a plain grid instead. Every card plays its case study video.
-    The band closes on the transition statement, which scales up as it is
-    scrolled to the centre of the viewport, holds, then releases
-    ([data-scaleup]; static under reduced motion and without JavaScript).
-    """
-    picks = ['managem', 'wastemart', 'homeassist', 'sonke']
-    cards = []
-    for i, k in enumerate(picks):
+
+# ── 04 · Solutions ─────────────────────────────────────────────────────────
+def solutions():
+    first = SV.SERVICES[0]
+    items = NL.join(
+        f'''          <li><a href="solutions/{s['slug']}/" data-svc-item="{s['slug']}" data-svc-name="{esc(s['name'])}" data-svc-line="{esc(s['short'])}"{' class="is-on"' if i == 0 else ''}><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">{esc(s['name'])}</span></a></li>'''
+        for i, s in enumerate(SV.SERVICES))
+    return f'''
+    <!-- ═══════════════════ 04 · SOLUTIONS ═══════════════════
+         The opener over a dotted field, then the reference's list panel: a
+         white card carrying the discipline in view as a hatch pictogram, and
+         the nine disciplines as a "+" list on hairlines. Hover or focus a
+         line to bring it into the card (home.js, [data-svc]); without
+         JavaScript the first discipline is shown and every line is a link. -->
+    <section class="hx hx-open hx-open--sol" id="solutions" aria-labelledby="solHeading">
+      <div class="hx-open__field" aria-hidden="true"><div class="hx-dots"></div><span class="hx-streak hx-streak--3"></span></div>
+      <div class="shell hx-open__in">
+{opener('Solutions', 2, 'Nine disciplines. One accountable team.', 'solHeading')}
+        <p class="hx-open__copy" data-reveal style="--d:200ms">GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.</p>
+      </div>
+    </section>
+    <section class="hx hx-svc" aria-label="The nine disciplines" data-svc>
+      <div class="shell hx-svc__grid">
+        <div class="hx-svc__card" data-reveal>
+          <p class="hx-label hx-svc__name" data-svc-name aria-live="polite">{esc(first['name'])}</p>
+          <div class="hx-svc__pic" data-svc-pic>{picto(first['slug'], 'hx-picto--n')}</div>
+          <p class="hx-svc__line" data-svc-line>{esc(first['short'])}</p>
+          <a class="hx-btn hx-btn--ink" data-svc-link href="solutions/{first['slug']}/">Explore</a>
+        </div>
+        <ul class="hx-plus hx-plus--2" data-reveal style="--d:120ms">
+{items}
+        </ul>
+      </div>
+      <p class="shell hx-svc__all"><a class="hx-btn hx-btn--ghost" href="solutions/">All solutions</a></p>
+    </section>
+'''
+
+
+# ── 05 · Case studies ──────────────────────────────────────────────────────
+def cases():
+    order = ['sbs-waterproofing', 'homeassist', 'wastemart', 'trans-hex', 'sonke', 'tores-foundation', 'managem']
+    tiles = []
+    for i, k in enumerate(order):
         st = S.BY_SLUG[k]
         c = C.CASES.get(k, {})
-        line = (c.get('value') or st['summary']).split('. ')[0].rstrip('.') + '.'
-        cards.append(f'''          <li class="selw__card" data-reveal style="--d:{(i % 2) * 80}ms">
-            <div class="selw__media">
-              <img src="{S.VIDEO_DIR}{st['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <a class="selw__play" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}<span>Play story</span></a>
-              <span class="selw__len" aria-hidden="true">{st['duration_label']}</span>
-            </div>
-            <div class="selw__body">
-              <p class="selw__tag">{esc(st['industry'])}</p>
-              <h3 class="selw__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
-              <p class="selw__line">{esc(line)}</p>
-              <a class="arrow-link arrow-link--quiet selw__go" href="{link_for(k)}">Explore project {ARROW}</a>
+        out = c.get('status_short') or st.get('outcome', '')
+        tiles.append(f'''          <li class="hx-tile" data-rail-item data-reveal style="--d:{(i % 3) * 80}ms">
+            <p class="hx-label hx-tile__ind">{esc(st['industry'])}</p>
+            <h3 class="hx-tile__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
+            <p class="hx-tile__line">{esc(st['headline'])}</p>
+            <p class="hx-tile__out">{esc(out)}</p>
+            <div class="hx-tile__foot">
+              <a class="hx-circle" href="{link_for(k)}" aria-label="Read the {esc(st['client'])} case study"><span aria-hidden="true">+</span></a>
+              <a class="hx-circle" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}</a>
             </div>
           </li>''')
-    nl = chr(10)
     return f'''
-    <!-- ═══════════════════ 03 · SELECTED WORK ═══════════════════
-         The shared header, then four case study cards on a horizontal travel
-         pinned to the viewport (home.js, [data-hscroll]; a grid on tablets and
-         phones), then the transition statement that scales up on scroll
-         ([data-scaleup]). Static under reduced motion and without JavaScript. -->
-    <section class="selw" id="selected" aria-labelledby="selectedHeading">
+    <!-- ═══════════════════ 05 · CASE STUDIES ═══════════════════
+         Seven systems as typographic navy tiles on a carousel with a counter
+         and circle controls (home.js, [data-rail]); no stills. Each tile reads
+         its case study or plays the video in the overlay. -->
+    <section class="hx hx-cases" id="selected" aria-labelledby="casesHeading">
       <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Selected work</p>
-            <h2 class="display" id="selectedHeading" data-reveal style="--d:80ms">Selected work &amp; case studies</h2>
+{opener('Case studies', 3, 'Systems in production, each with its story on video.', 'casesHeading', ink=True)}
+      </div>
+      <div class="hx-rail" data-rail>
+        <div class="shell hx-rail__head">
+          <p class="hx-rail__count hx-label" aria-live="polite"><span data-rail-cur>1</span> <span aria-hidden="true">/</span> {len(order)}</p>
+          <div class="hx-rail__ctl">
+            <button class="hx-circle hx-circle--btn" type="button" data-rail-prev aria-label="Previous case studies"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
+            <button class="hx-circle hx-circle--btn" type="button" data-rail-next aria-label="Next case studies"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Four systems in production, each with the story of what the business needed and what was built. <a class="arrow-link" href="work/">View all projects {ARROW}</a></p>
         </div>
+        <ol class="hx-rail__track" data-rail-track aria-label="Case studies">
+{NL.join(tiles)}
+        </ol>
       </div>
-      <div class="selw__travel" data-hscroll>
-        <div class="selw__pin">
-          <ol class="selw__track" data-track>
-{nl.join(cards)}
-          </ol>
-        </div>
-      </div>
-      <div class="selw__out" data-scaleup>
-        <div class="selw__out-pin">
-          <p class="selw__statement">Discover the complete collection of systems, platforms and products GEMIS has built.</p>
-          <a class="arrow-link selw__out-link" href="work/">View all projects {ARROW}</a>
-        </div>
-      </div>
+      <p class="shell hx-rail__all"><a class="hx-btn hx-btn--ink" href="work/">All case studies</a></p>
     </section>
 '''
 
 
-
+# ── 06 · In their words ────────────────────────────────────────────────────
 def in_their_words():
-    """The home's In their words: the shared stage from build-stories, links from the root."""
+    """The shared stage from build-stories, restyled by the home block."""
     if not any(S.ENDORSERS[k].get('line') for k in S.ENDORSEMENT_ORDER):
         print('home: no quotation in endorsements.md yet — "In their words" shows "Quotation to follow." (owner\'s instruction)')
-    return B.in_their_words('')
+    html = B.in_their_words('')
+    return html.replace('<section class="words testi band"', '<section class="hx hx-words words testi band"', 1)
 
+
+# ── 07 · the principles ────────────────────────────────────────────────────
 OPERATING = [
     {
         'n': '01', 'motif': 'leak',
@@ -271,195 +352,83 @@ OPERATING = [
     },
 ]
 
-def operating_logic():
-    """
-    "Operating principles": the four principles that connect the seven systems,
-    as a sticky index and a ruled list. The left column holds the label, the
-    statement and a large index numeral; the right column lists the four
-    principles as numbered ruled rows — statement, evidence, "Seen in" links.
-    As the visitor scrolls, the row at the reading line is the one in full
-    white and the numeral follows it (home.js, [data-principles]); without
-    JavaScript, under reduced motion and on narrow screens every row is full
-    and nothing moves. Every statement and line of copy is verbatim.
-    """
-    rows, nums, ticks = [], [], []
+
+def principles():
+    blocks = []
     for i, p in enumerate(OPERATING):
-        seen = ' '.join(f'<li><a href="{link_for(k)}">{esc(S.BY_SLUG[k]["client"])}</a></li>' for k in p['seen'])
-        rows.append(f'''          <li class="prin__row{' is-active' if i == 0 else ''}" data-prin-row data-reveal style="--d:{i * 70}ms">
-            <span class="prin__n" aria-hidden="true">{p['n']}</span>
-            <div class="prin__body">
-              <h3 class="prin__statement">{esc(p['statement'])}</h3>
-              <p class="prin__copy">{esc(p['copy'])}</p>
-              <div class="prin__seen"><span class="prin__seen-label">Seen in</span><ul class="prin__seen-list">{seen}</ul></div>
-            </div>
+        seen = ' '.join(f'<a href="{link_for(k)}">{esc(S.BY_SLUG[k]["client"])}</a>' for k in p['seen'])
+        blocks.append(f'''          <li class="hx-blk" data-reveal style="--d:{(i % 2) * 90}ms">
+            <p class="hx-label hx-blk__n">{p['n']}</p>
+            <h3 class="hx-blk__t">{esc(p['statement'])}</h3>
+            <div class="hx-blk__pic" aria-hidden="true">{picto(p['motif'], 'hx-picto--w')}</div>
+            <p class="hx-blk__copy">{esc(p['copy'])}</p>
+            <p class="hx-blk__seen"><span class="hx-label">Seen in</span> {seen}</p>
           </li>''')
-        nums.append(f'<span class="prin__num{" is-on" if i == 0 else ""}" data-prin-num>{p["n"]}</span>')
-        ticks.append(f'<span class="prin__tick{" is-on" if i == 0 else ""}" data-prin-tick></span>')
-    reads = ' '.join(f'<li><a href="insights/{a["slug"]}/">{esc(a["title"])}</a></li>' for a in SV.ARTICLES)
-    nl = chr(10)
     return f'''
-    <!-- ═══════════════════ 05 · OPERATING PRINCIPLES ═══════════════════
-         Four principles connecting seven systems: a sticky index on the left,
-         four numbered ruled rows on the right; the row at the reading line is
-         the live one (home.js, [data-principles]). Verbatim copy. -->
-    <section class="prin band-ink" id="thinking" aria-labelledby="opHeading" data-principles>
-      <div class="shell prin__in">
-        <div class="prin__side">
-          <div class="prin__sticky">
-            <p class="prin__label" data-reveal>GEMIS <span aria-hidden="true">/</span> Operating principles</p>
-            <h2 class="prin__title" id="opHeading" data-reveal style="--d:80ms">Seven systems. The same four decisions.</h2>
-            <div class="prin__index" aria-hidden="true" data-reveal style="--d:160ms">
-              <span class="prin__nums">{''.join(nums)}</span>
-              <span class="prin__ticks">{''.join(ticks)}</span>
-              <span class="prin__of">of 04</span>
-            </div>
-          </div>
-        </div>
-        <ol class="prin__list">
-{nl.join(rows)}
-        </ol>
-        <footer class="prin__foot" data-reveal>
-          <p class="prin__foot-label">Read more of our thinking:</p>
-          <ul class="prin__reads">{reads}</ul>
-        </footer>
-      </div>
-    </section>
-'''
-
-
-def capabilities():
-    rows = []
-    for name, copy, services, projects in CAPABILITIES:
-        chips = [f'<a href="{link_for(k)}">{esc(S.BY_SLUG[k]["client"])}</a>' for k in projects]
-        if not projects:
-            chips = ['<a href="studio/">GEMIS Studio</a>']
-        links = ' &middot; '.join(
-            f'<a class="arrow-link arrow-link--quiet" href="solutions/{k}/">{esc(SV.BY_SLUG[k]["name"])} {ARROW}</a>'
-            for k in services)
-        rows.append((esc(name), f'<p>{esc(copy)}</p>', chips, f'<p class="srow__links">{links}</p>'))
-    # chips are already markup, so the helper must not escape them
-    out = []
-    for i, (name, body, chips, link) in enumerate(rows):
-        chip_html = ('\n              <ul class="srow__chips">\n'
-                     + '\n'.join(f'                <li>{c}</li>' for c in chips)
-                     + '\n              </ul>')
-        out.append(f'''          <li class="srow" data-reveal style="--d:{i * 60}ms">
-            <span class="srow__n" aria-hidden="true">{i + 1:02d}</span>
-            <h3 class="srow__name">{name}</h3>
-            <div class="srow__body">
-              {body}{chip_html}
-              {link}
-            </div>
-          </li>''')
-    nl = chr(10)
-    return f'''
-    <!-- ═══════════════════ 05 · CAPABILITIES, DEMONSTRATED ═══════════════════
-         What a visitor can engage GEMIS for, each tied to the projects that
-         show it running. Only capabilities with evidence on the site. -->
-    <section class="capmap band plusgrid plusgrid--br" id="capabilities" aria-labelledby="capHeading">
+    <!-- ═══════════════════ 07 · THE PRINCIPLES ═══════════════════
+         The four operating principles, verbatim, as stepped navy blocks with
+         a hatch pictogram each — the reference's service blocks. -->
+    <section class="hx hx-prin" id="thinking" aria-labelledby="prinHeading">
       <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>Capabilities, demonstrated</p>
-            <h2 class="display" id="capHeading" data-reveal style="--d:80ms">What you can engage GEMIS for, and where each has run</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">Every capability below is tied to a system in production. <a class="arrow-link" href="solutions/">All solutions {ARROW}</a></p>
-        </div>
-        <ol class="srows">
-{nl.join(out)}
+{opener('Principles', 4, 'Seven systems. The same four decisions.', 'prinHeading', ink=True)}
+        <ol class="hx-prin__grid">
+{NL.join(blocks)}
         </ol>
       </div>
     </section>
 '''
 
 
-def stories():
-    # the stories panel: the founding relationships on video, with their tags
+# ── 08 · our thinking ──────────────────────────────────────────────────────
+def thinking():
+    items = NL.join(
+        f'''          <li><a href="insights/{a['slug']}/"><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">{esc(a['title'])}</span><span class="hx-label hx-plus__meta">{esc(a['tag'])} <span aria-hidden="true">·</span> {a['read']}</span></a></li>'''
+        for a in SV.ARTICLES)
     return f'''
-    <!-- ═══════════════════ 06 · BUILT TOGETHER ═══════════════════ -->
-{B.stories_section('')}
-'''
-
-
-def ways():
-    return f'''
-    <!-- ═══════════════════ 07 · HOW GEMIS WORKS ═══════════════════
-         The company's own methodology, as the horizontal timeline. -->
-    <section class="ways band" id="how" aria-labelledby="waysHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>How GEMIS works</p>
-            <h2 class="display" id="waysHeading" data-reveal style="--d:80ms">Understand. Design. Build. Evolve.</h2>
-          </div>
-          <p class="lede" data-reveal style="--d:140ms">One agreed statement of the problem before a screen is drawn; demonstrated sprints so there are no surprises at go-live; and the same team afterwards. <a class="arrow-link" href="solutions/">See how we work {ARROW}</a></p>
+    <!-- ═══════════════════ 08 · OUR THINKING ═══════════════════ -->
+    <section class="hx hx-think" aria-labelledby="thinkHeading">
+      <div class="shell hx-think__grid">
+        <div class="hx-think__head" data-reveal>
+          <p class="hx-label">Insights</p>
+          <h2 class="hx-think__t" id="thinkHeading">Notes from building systems that have to work</h2>
+          <a class="hx-btn hx-btn--ink" href="insights/">All insights</a>
         </div>
-{B.tline(SV.WAYS)}
+        <ul class="hx-plus hx-plus--ink" data-reveal style="--d:120ms">
+{items}
+        </ul>
       </div>
     </section>
 '''
 
 
-def company():
-    return f'''
-    <!-- ═══════════════════ 08 · THE COMPANY ═══════════════════
-         Who is behind the work, from the company's own profile. Team titles
-         beyond the one confirmed are held back (OPEN_ITEMS: team-titles). -->
-    <section class="cred-sec band band-wash plusgrid plusgrid--tr" id="company" aria-labelledby="companyHeading">
-      <div class="shell">
-        <div class="sec__head">
-          <div>
-            <p class="eyebrow" data-reveal>The company</p>
-            <h2 class="display" id="companyHeading" data-reveal style="--d:80ms">Who is behind the work</h2>
-          </div>
-        </div>
-        <div class="cred">
-          <div class="story__prose" data-reveal style="--d:120ms">
-            <p>GEM Information Systems was founded in Cape Town in 2014, building systems for small and medium businesses and non-profits where budgets were tight and the system had to work from day one. The clients grew, and so did the work: ERP platforms, national field operations, monitoring and evaluation across Africa, integrated reporting for a mining group.</p>
-            <p>The Microsoft Cloud has been the foundation throughout &mdash; Azure, Azure SQL, C# and Power BI &mdash; and one accountable team stays with a system from the first conversation through to support, with GEMIS Studio handling the design.</p>
-            <p><a class="arrow-link" href="our-story/">Our story {ARROW}</a></p>
-          </div>
-          <dl class="cred__facts" data-reveal style="--d:180ms">
-            <div><dt>Founded</dt><dd>2014, Cape Town</dd></div>
-            <div><dt>Platform</dt><dd>Microsoft Azure, Azure SQL, C#, Power BI</dd></div>
-            <div><dt>Founding clients</dt><dd>Three, from 2014, all still running on their systems</dd></div>
-            <div><dt>Design practice</dt><dd><a href="studio/">GEMIS Studio</a></dd></div>
-            <div><dt>Product</dt><dd><a href="products/managem/">ManaGEM</a>, run by about a dozen companies</dd></div>
-            <div><dt>Office</dt><dd>9 Tapiola Way, Edgemead, Cape Town</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-'''
-
-
+# ── 09 · the enquiry ───────────────────────────────────────────────────────
 def enquiry():
-    # Book a Discovery Session, with the form, as it was before the redesign
-    return '''
-    <!-- ═══════════════════ 07 · GET STARTED ═══════════════════
-         The form hands off to the visitor's email client (this site is static);
-         nothing is stored. The three steps mirror contact.html. -->
-    <section class="go" id="discovery" aria-labelledby="goHeading">
-      <div class="shell go__grid">
-        <div class="go__intro">
-          <p class="eyebrow" data-reveal>Get started</p>
-          <h2 class="display" id="goHeading" data-reveal style="--d:80ms">Book a Discovery Session</h2>
-          <p class="lede" data-reveal style="--d:140ms">
-            Tell us what you're trying to fix. We'll come back within two working days with a
-            short written view and a time to talk. No obligation.
-          </p>
-          <ol class="go__steps" data-reveal style="--d:200ms">
-            <li><span class="go__n">01</span><div><strong>We read it properly</strong><p>Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</p></div></li>
-            <li><span class="go__n">02</span><div><strong>A discovery conversation</strong><p>We map how your organisation actually works — the goals, the friction and the constraints — before anyone proposes a system.</p></div></li>
-            <li><span class="go__n">03</span><div><strong>A scoped way forward</strong><p>You get an architecture, a plan and a cost you can act on. If we're not the right fit, we'll say so.</p></div></li>
-          </ol>
-          <div class="go__contact" data-reveal style="--d:260ms">
-            <p><span>Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
-            <p><span>Cape Town</span>9 Tapiola Way, Edgemead</p>
+    # Book a Discovery Session: the form hands off to the visitor's email client (this site is static); nothing is stored.
+    return r'''
+    <!-- ═══════════════════ 09 · GET STARTED ═══════════════════
+         The opener on navy, the three steps as a "+" list, the form in a
+         white stepped block. The form hands off to the visitor's email client
+         (this site is static); nothing is stored. -->
+    <section class="hx hx-go" id="discovery" aria-labelledby="goHeading">
+      <div class="shell hx-go__grid">
+        <div class="hx-go__intro">
+          <div class="hx-open__row">
+            <div class="hx-open__block hx-open__block--ink hx-open__block--flush" data-reveal>
+              <h2 class="hx-open__word" id="goHeading">Contact</h2>
+              <span class="hx-badge" aria-hidden="true">5</span>
+            </div>
           </div>
+          <p class="hx-go__lede" data-reveal style="--d:120ms">Book a Discovery Session. Tell us what you're trying to fix. We'll come back within two working days with a short written view and a time to talk. No obligation.</p>
+          <ol class="hx-plus hx-plus--steps" data-reveal style="--d:200ms">
+            <li><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">We read it properly</span><span class="hx-plus__sub">Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</span></li>
+            <li><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">A discovery conversation</span><span class="hx-plus__sub">We map how your organisation actually works — the goals, the friction and the constraints — before anyone proposes a system.</span></li>
+            <li><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">A scoped way forward</span><span class="hx-plus__sub">You get an architecture, a plan and a cost you can act on. If we're not the right fit, we'll say so.</span></li>
+          </ol>
+          <p class="hx-go__contact" data-reveal style="--d:260ms"><span class="hx-label">Email</span><a href="mailto:info@gemis.co.za">info@gemis.co.za</a><span class="hx-label">Cape Town</span><span>9 Tapiola Way, Edgemead</span></p>
         </div>
 
-          <form class="form" id="discoveryForm" novalidate data-reveal style="--d:160ms">
+        <div class="hx-go__panel" data-reveal style="--d:160ms">
+          <form class="form" id="discoveryForm" novalidate>
             <div class="form__rows">
               <div class="field">
                 <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
@@ -520,9 +489,8 @@ def enquiry():
             </div>
             <p class="form__note" id="d-consent-err" hidden>Please confirm your consent before sending.</p>
 
-            <button class="form__send" type="submit">
+            <button class="form__send hx-btn hx-btn--ink" type="submit">
               Book a Discovery Session
-              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
             </button>
 
             <p class="form__note" id="discoveryNote" role="status" aria-live="polite">
@@ -530,13 +498,16 @@ def enquiry():
               client addressed to info@gemis.co.za — nothing is submitted or stored here.
             </p>
           </form>
+        </div>
       </div>
     </section>
 
-''' + B.video_modal() + '\n'
+''' + B.video_modal() + NL
+
 
 def home_main():
-    return hero() + trust() + selected() + in_their_words() + operating_logic() + enquiry()
+    return (picto_sprite() + hero() + statement() + numbers() + solutions() + cases()
+            + in_their_words() + principles() + thinking() + enquiry())
 
 
 if __name__ == '__main__':
