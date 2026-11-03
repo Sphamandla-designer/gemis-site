@@ -237,10 +237,11 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   gone, `opener()` in the library is unused). Sections, in order: the hero
   (white strip, white L-block with the headline, the partnership tag, the
   cluster), the statement, the numbers (three confirmed figures) with the
-  client marks, Case studies, Solutions (the white card + "+" list — hover or focus a discipline to bring
+  client marks, proof (the client marks), Solutions (the white card + "+" list — hover or focus a discipline to bring
   its pictogram into the card, `[data-svc]` in `home.js`; the case studies are
   seven video tiles on a scroll-snap carousel with a counter and circle
-  controls, `[data-rail]`; each reads its page or plays its video), In their
+  controls, `[data-rail]`; each reads its page or plays its video), How we
+  work (the four stages), the case studies, In their
   words (the shared stage, restyled), the principles (verbatim, as four stepped
   blocks with pictograms), Our thinking (the three articles), Contact (the
   steps as a "+" list and the form in a white stepped block). Every other
@@ -248,6 +249,27 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
 
 Re-run the audit after a change: `node tools/audit-ui.mjs` prints the distinct
 font sizes in use and the padding/ground of every section on every page.
+
+## The UX pass (SITE v5, 2026-11-03) — keep these
+
+`docs/UX-REVIEW.md` records the review (against the UI/UX Pro Max skill in
+`.claude/skills/ui-ux-pro-max/` — query it before a UX change) and every
+decision. The rules that must survive later work:
+
+- **Type:** body 16px, ledes 17px, labels 12px, card copy 15px, a measure of
+  56–68 characters. Do not set `font-size` on bare `main p` or `main h3` at
+  tripled specificity: component rules (the tiles, the quotation, the cards)
+  are doubled and would lose.
+- **One primary action**, named **Book a discovery session** everywhere (the
+  sub-nav pill says *Book a session*; under 620px it shows *Book*). It is
+  the last item in the bar on every page (`nav__cta` in `apply-chrome.py`).
+- **The current page is marked** (`aria-current`, set by `site.js`).
+- **The home runs** hero (with the three figures) · proof · solutions · how
+  we work · case studies · in their words · principles · insights · contact;
+  navy never adjoins navy.
+- **The enquiry form** validates on blur and shows a focusable error summary
+  (`#discoverySummary`); keep the container when touching the form.
+- Story openers carry a breadcrumb (`B.crumbs`); both stages carry a pause.
 
 ## CSS is shared across pages — scope restyles
 

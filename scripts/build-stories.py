@@ -429,6 +429,7 @@ def in_their_words(base='', heading_id='wordsHeading'):
             <div class="cs__ctl" data-ctl hidden>
               <button class="cs__btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
               <button class="cs__btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+              <button class="cs__btn" type="button" data-pause aria-pressed="false" aria-label="Pause"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg></button>
             </div>
           </div>
           <div class="cs__main" data-reveal style="--d:80ms">
@@ -810,3 +811,8 @@ def hero_block(kicker, title, copy, ctas='', visual='', strip='', sub='', aside=
     </section>
 '''
 
+
+def crumbs(items):
+    """A breadcrumb for a page opener's strip: (label, href) pairs, the last one the page itself."""
+    lis = ''.join(f'<li><a href="{h}">{t}</a></li>' if h else f'<li aria-current="page">{t}</li>' for t, h in items)
+    return f'<nav class="svh__crumbs hx-label hx-hero__strip-label" aria-label="Breadcrumb"><ol>{lis}</ol></nav>'

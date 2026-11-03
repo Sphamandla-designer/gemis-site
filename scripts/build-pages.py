@@ -247,8 +247,8 @@ def story_page(s):
     body = f'''
     <!-- ═══════════ {s['client'].upper()} ═══════════ -->
 {B.subnav(s['client'], '#hero', [('Overview', '#overview'), ('Approach', '#approachHeading'), ('Walkthrough', '#walkthrough'), ('Outcomes', '#outcomesHeading')], f'{B.PLAY} Play story', B.play_attrs(s, base), f"{s['client']} case study")}{B.hero_block(f"Case study · {esc(s['industry'])}", B.two_lines(esc(s['client'])), esc(c['value']),
-              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Discuss a similar challenge</a>',
-              visual=B.video_block(s, base, eager=True), strip='Case studies', sub=esc(s['headline']),
+              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Book a discovery session</a>',
+              visual=B.video_block(s, base, eager=True), strip=B.crumbs([('Case studies', f'{base}work/'), (esc(s['client']), None)]), sub=esc(s['headline']),
               aside=f'<p class="hx-hero__ms hx-hero__status"><span class="cshero__dot" aria-hidden="true"></span><span class="hx-label">{esc(c["status"])}</span></p>')}
 
     <section class="ov band" id="overview" aria-labelledby="overviewHeading">
@@ -353,7 +353,7 @@ def story_page(s):
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">{esc(c['cta'])}</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html">Book a discovery session {ARROW}</a>
           <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
         </div>
       </div>
@@ -438,9 +438,9 @@ def work_page():
 
     body = f'''
     <!-- ═══════════ CASE STUDIES ═══════════ -->
-{B.subnav('Case Studies', '#hero', [('All case studies', '#all'), ('In their words', '#in-their-words'), ('Your project', '#discuss')], f'Discuss a project {ARROW}', f'href="{base}contact.html"', 'Case studies')}{B.hero_block('Case studies', B.two_lines("Complex business challenges. Thoughtfully designed digital solutions."),
+{B.subnav('Case Studies', '#hero', [('All case studies', '#all'), ('In their words', '#in-their-words'), ('Your project', '#discuss')], f'Book a session {ARROW}', f'href="{base}contact.html"', 'Case studies')}{B.hero_block('Case studies', B.two_lines("Complex business challenges. Thoughtfully designed digital solutions."),
               'GEMIS builds the systems South African businesses run on when a spreadsheet, a legacy package or five disconnected tools can no longer keep up: field operations, claims, quoting, reporting, learning, and the platform that holds it all together.',
-              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}solutions/">Explore our solutions</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Book a discovery session</a><a class="hx-btn hx-btn--ghost" href="{base}solutions/">Explore our solutions</a>',
               strip='Systems in production · each with its story on video')}
 
     <section class="csstats band" aria-label="GEMIS in numbers">
@@ -499,7 +499,7 @@ def work_page():
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Have a complex business challenge? Let&rsquo;s explore the right solution.</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us what the business needs to do better. We come back within two working days with a short written view and a time to talk — no obligation.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html">Book a discovery session {ARROW}</a>
           <a class="arrow-link" href="{base}solutions/">Explore our solutions {ARROW}</a>
         </div>
       </div>

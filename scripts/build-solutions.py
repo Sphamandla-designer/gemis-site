@@ -309,7 +309,7 @@ def hero(slug, p, base):
     crumbs = (f'<nav class="svh__crumbs hx-label hx-hero__strip-label" aria-label="Breadcrumb"><ol><li><a href="{base}solutions/">Solutions</a></li>'
               f'<li aria-current="page"><span class="svh__n">{n:02d}</span> of 09</li></ol></nav>')
     return '\n' + B.hero_block(esc(name(slug)), B.two_lines(esc(p['headline'])), esc(p['copy']),
-                              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html?service={slug}">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{sec_href}">{esc(sec_label)}</a>',
+                              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html?service={slug}">Book a discovery session</a><a class="hx-btn hx-btn--ghost" href="{sec_href}">{esc(sec_label)}</a>',
                               visual=f'<figure class="svh__visual hx-draw">{DIAGRAMS[p["visual"]]()}</figure>',
                               strip=crumbs, cls='hx-phero--draw').rstrip('\n')
 
@@ -600,7 +600,7 @@ def cta(slug, p, base):
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">{esc(c['heading'])}</h2>
         <p class="lede" data-reveal style="--d:140ms">{esc(c['copy'])}</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}contact.html?service={slug}">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html?service={slug}">Book a discovery session {ARROW}</a>
           <a class="arrow-link" href="{base}solutions/">All solutions {ARROW}</a>
         </div>
       </div>
@@ -627,7 +627,7 @@ def service_page(slug):
     chapters = {'problem': ('The situation', '#situation'), 'deliver': ('What you get', '#deliver'),
                 'approach': ('How we work', '#approach'), 'evidence': ('Evidence', '#evidence'), 'faq': ('FAQ', '#faq')}
     links = [chapters[k] for k in p['order'] if k in chapters]
-    out = [B.subnav(name(slug), '#hero', links, f'Discuss a project {ARROW}', f'href="{base}contact.html?service={slug}"', name(slug)),
+    out = [B.subnav(name(slug), '#hero', links, f'Book a session {ARROW}', f'href="{base}contact.html?service={slug}"', name(slug)),
            hero(slug, p, base)]
     g = 0
     for key in p['order']:
@@ -719,7 +719,7 @@ def directory():
     body = f'''
 {B.hero_block('Solutions', B.two_lines("Nine disciplines. One accountable team."),
               'GEMIS combines the technical and design disciplines a business system needs — to build it, connect it, improve it and support it. Most engagements draw on several at once, and you deal with one team throughout.',
-              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">Explore the work</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Book a discovery session</a><a class="hx-btn hx-btn--ghost" href="{base}work/">Explore the work</a>',
               visual=f'<figure class="svh__visual hx-draw">{dg_directory()}</figure>', strip='Nine disciplines · one accountable team', cls='hx-phero--draw')}
 
     <section class="band sdir" id="services" aria-labelledby="sdirHeading">
@@ -756,7 +756,7 @@ def directory():
         <h2 class="display" id="convertHeading" data-reveal style="--d:80ms">Let&rsquo;s work out what your business needs.</h2>
         <p class="lede" data-reveal style="--d:140ms">Tell us about your current system, the operational challenge or the project you are planning. We come back within two working days with a short written view and a time to talk.</p>
         <div class="convert__ctas" data-reveal style="--d:200ms">
-          <a class="btn" href="{base}contact.html">Discuss a project {ARROW}</a>
+          <a class="btn" href="{base}contact.html">Book a discovery session {ARROW}</a>
           <a class="arrow-link" href="{base}work/">Explore the work {ARROW}</a>
         </div>
       </div>

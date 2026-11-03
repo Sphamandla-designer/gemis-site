@@ -121,6 +121,7 @@ NAV = """<ul class="nav__links" id="navLinks">
         <li><a href="{B}insights/">Insights</a></li>
         <li><a href="{B}our-story/">Our Story</a></li>
         <li><a href="{B}contact.html">Contact</a></li>
+        <li class="nav__cta-item"><a class="nav__cta" href="{B}contact.html">Book a discovery session</a></li>
         </ul>"""
 
 # ── the footer: ported from the efferd footer-3 block (React/Tailwind) into

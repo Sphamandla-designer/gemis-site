@@ -104,11 +104,16 @@ def hero():
       </aside>
       <div class="hx-hero__foot">
         <div class="shell hx-hero__foot-in">
-          <p class="hx-hero__copy" data-reveal style="--d:300ms">We build software around how your business actually works, and we stay to support it as you grow.</p>
+          <p class="hx-hero__copy" data-reveal style="--d:300ms">GEMIS designs, builds and supports the business systems South African companies run on — enquiries, jobs, claims, stock, reporting — on the Microsoft Cloud, with one team from the first conversation to year ten.</p>
           <div class="hx-hero__ctas" data-reveal style="--d:380ms">
-            <a class="hx-btn hx-btn--light" href="#discovery">Book a Discovery Session</a>
-            <a class="hx-btn hx-btn--ghost" href="#selected">See our work</a>
+            <a class="hx-btn hx-btn--light" href="contact.html">Book a discovery session</a>
+            <a class="hx-btn hx-btn--ghost" href="#selected">See the case studies</a>
           </div>
+          <ul class="hx-hero__proof" data-reveal style="--d:460ms" aria-label="GEMIS in numbers">
+            <li><strong>12<sup>+</sup></strong><span>years building business systems</span></li>
+            <li><strong>50<sup>+</sup></strong><span>systems in production</span></li>
+            <li><strong>5<sup>+</sup></strong><span>sectors served nationally</span></li>
+          </ul>
           <span class="hx-scroll" aria-hidden="true"><span></span></span>
         </div>
       </div>
@@ -116,52 +121,21 @@ def hero():
 '''
 
 
-# ── 02 · the statement ─────────────────────────────────────────────────────
-def statement():
-    return f'''
-    <!-- ═══════════════════ 02 · THE STATEMENT ═══════════════════
-         The tagline as the reference sets its statements: uppercase, light,
-         the first line hanging to the right; the gem pictogram beside the
-         founding-client line. -->
-    <section class="hx hx-state" aria-labelledby="stateHeading">
-      <div class="shell">
-{sec_head('01 · Business systems partner since 2014', 'We build software around how your business actually works, and we stay to support it as you grow.', 'stateHeading', lede='GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with. We design around how a business actually runs, build on the Microsoft Cloud, and stay after go-live.', ink=True)}
-        <div class="hx-state__row">
-          <figure class="hx-state__obj" aria-hidden="true" data-reveal style="--d:200ms" data-px=".08">{picto('gem', 'hx-picto--w hx-picto--lg')}</figure>
-          <div class="hx-state__copy" data-reveal style="--d:260ms">
-            <p>Some of our clients have been with us for more than a decade.</p>
-            <a class="hx-btn hx-btn--ghost" href="our-story/">Our story</a>
-          </div>
-        </div>
-      </div>
-    </section>
-'''
-
-
-# ── 03 · the numbers ───────────────────────────────────────────────────────
-def numbers():
-    stats = [('12', 'Years building business systems'), ('50', 'Systems delivered into production'),
-             ('5', 'Sectors served nationally')]
-    cells = NL.join(f'''          <li class="hx-num__cell" data-reveal style="--d:{i * 90}ms">
-            <p class="hx-label">{esc(l)}</p>
-            <p class="hx-num__n"><span class="stat__n" data-count="{n}" data-sup="+">{n}<sup>+</sup></span></p>
-          </li>''' for i, (n, l) in enumerate(stats))
+# ── 02 · the proof ────────────────────────────────────────────────────────
+def proof():
     logos = NL.join(f'            <li class="marquee__item"><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" height="40" loading="lazy" /></li>'
                     for k, n in LOGOS)
     logos2 = NL.join(f'            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/{k}-grey.png" alt="" height="40" loading="lazy" /></li>'
                      for k, n in LOGOS)
     return f'''
-    <!-- ═══════════════════ 03 · THE NUMBERS ═══════════════════
-         Three confirmed figures (scripts/facts.md) as giant light numerals in
-         three hairlined columns, the label small above each; then the client
-         marks. -->
-    <section class="hx hx-num" aria-label="GEMIS in numbers">
+    <!-- ═══════════════════ 02 · THE PROOF ═══════════════════
+         The client marks on a white band straight after the opener (the
+         trust pattern: credibility, then proof, then the offer). The marquee
+         pauses on hover and focus and stands still under reduced motion. -->
+    <section class="hx hx-num" aria-labelledby="proofHeading">
       <div class="shell">
-        <ul class="hx-num__grid">
-{cells}
-        </ul>
         <div class="hx-logos" data-reveal>
-          <p class="hx-label">Trusted by</p>
+          <p class="hx-label" id="proofHeading">Trusted by</p>
           <div class="marquee hx-marquee">
             <ul class="marquee__track">
 {logos}
@@ -171,6 +145,29 @@ def numbers():
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+'''
+
+
+# ── 03 · how we work ──────────────────────────────────────────────────────
+def process():
+    steps = NL.join(f'''          <li class="hx-step" data-reveal style="--d:{i * 80}ms">
+            <p class="hx-label hx-step__n">0{i + 1}</p>
+            <h3 class="hx-step__t">{esc(t)}</h3>
+            <p class="hx-step__c">{esc(c)}</p>
+          </li>''' for i, (t, c) in enumerate(SV.WAYS))
+    return f'''
+    <!-- ═══════════════════ 04 · HOW WE WORK ═══════════════════
+         The four stages every project goes through, on white, so the
+         visitor knows what happens after the first conversation before
+         being asked to start one. -->
+    <section class="hx hx-how" id="how-we-work" aria-labelledby="howHeading">
+      <div class="shell">
+{sec_head('04 · How we work', 'Understand. Design. Build. Evolve.', 'howHeading', lede='The same four stages sit behind every system on this site. Discovery is where it starts — a conversation about how the work is done today, before anything is proposed.', cta='<a class="hx-btn hx-btn--ink" href="contact.html">Book a discovery session</a>')}
+        <ol class="hx-steps">
+{steps}
+        </ol>
       </div>
     </section>
 '''
@@ -240,7 +237,7 @@ def cases():
          its case study or plays the video in the overlay. -->
     <section class="hx hx-cases" id="selected" aria-labelledby="casesHeading">
       <div class="shell">
-{sec_head('02 · Case studies', 'Systems in production, each with its story on video', 'casesHeading', lede='Seven systems GEMIS designed, built and supports. Each tile reads its case study or plays the video it was recorded from.')}
+{sec_head('05 · Case studies', 'Systems in production, each with its story on video', 'casesHeading', lede='Seven systems GEMIS designed, built and supports. Each tile reads its case study or plays the video it was recorded from.')}
       </div>
       <div class="hx-rail" data-rail>
         <div class="shell hx-rail__head">
@@ -297,7 +294,7 @@ def in_their_words():
          without JavaScript. -->
     <section class="hx hx-words" id="in-their-words" aria-labelledby="wordsHeading">
       <div class="shell">
-{sec_head('04 · Clients', 'In their words', 'wordsHeading', lede='Some of the businesses we work with today first trusted GEMIS more than a decade ago.', ink=True)}
+{sec_head('06 · Clients', 'In their words', 'wordsHeading', lede='Some of the businesses we work with today first trusted GEMIS more than a decade ago.', ink=True)}
         <div class="hx-words__stage" data-stage>
           <div class="hx-words__side">
             <ol class="hx-words__rail" aria-label="Choose a voice" data-reveal>
@@ -309,6 +306,7 @@ def in_their_words():
               <div class="hx-words__btns">
                 <button class="hx-circle hx-circle--btn" type="button" data-prev aria-label="Previous"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 6h-9M5 2.5 1.5 6 5 9.5"/></svg></button>
                 <button class="hx-circle hx-circle--btn" type="button" data-next aria-label="Next"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1.5 6h9M7 2.5 10.5 6 7 9.5"/></svg></button>
+                <button class="hx-circle hx-circle--btn" type="button" data-pause aria-pressed="false" aria-label="Pause"><svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2.5" y="2" width="2.4" height="8" rx=".6"/><rect x="7.1" y="2" width="2.4" height="8" rx=".6"/></svg></button>
               </div>
             </div>
           </div>
@@ -370,7 +368,7 @@ def principles():
          a hatch pictogram each — the reference's service blocks. -->
     <section class="hx hx-prin" id="thinking" aria-labelledby="prinHeading">
       <div class="shell">
-{sec_head('05 · Principles', 'Seven systems. The same four decisions.', 'prinHeading', lede='The four operating principles behind every system on this site, each with the case studies it is seen in.')}
+{sec_head('07 · Principles', 'Seven systems. The same four decisions.', 'prinHeading', lede='The four operating principles behind every system on this site, each with the case studies it is seen in.')}
         <ol class="hx-prin__grid">
 {NL.join(blocks)}
         </ol>
@@ -408,7 +406,7 @@ def enquiry():
     <section class="hx hx-go" id="discovery" aria-labelledby="goHeading">
       <div class="shell hx-go__grid">
         <div class="hx-go__intro">
-'''+ sec_head('06 · Contact', 'Book a discovery session', 'goHeading', ink=True, stack=True) + r'''
+'''+ sec_head('08 · Contact', 'Book a discovery session', 'goHeading', ink=True, stack=True) + r'''
           <p class="hx-go__lede" data-reveal style="--d:120ms">Book a Discovery Session. Tell us what you're trying to fix. We'll come back within two working days with a short written view and a time to talk. No obligation.</p>
           <ol class="hx-plus hx-plus--steps" data-reveal style="--d:200ms">
             <li><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-plus__t">We read it properly</span><span class="hx-plus__sub">Your enquiry reaches a monitored GEMIS mailbox, not a personal address. A person who has read it replies.</span></li>
@@ -497,7 +495,7 @@ def enquiry():
 
 
 def home_main():
-    return (hero() + statement() + numbers() + cases() + solutions()
+    return (hero() + proof() + solutions() + process() + cases()
             + in_their_words() + principles() + thinking() + enquiry())
 
 
