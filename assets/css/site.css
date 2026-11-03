@@ -6667,44 +6667,61 @@ main p:not(#_) { line-height: 1.65; }
 @media (max-width: 620px) { .subnav__cta:not(#_):not(#_):not(#_) { font-size: 0; padding: 6px 10px; } }
 
 /* ══════════════════════════════════════════════════════════════════════
-   CARDS v2 — the case study card, clean (2026-11-03)
-   One white surface with a hairline and the notch, the still on top with
-   the play chip and the duration, then the industry, the name, one line,
-   and a footer with the status and the one link. The same card on the
-   index, the home carousel, the related rows, the service evidence.
+   CARDS v3 — the case study card, the indexed dossier (2026-11-03)
+   A numeral and the industry in a tracked header; the still mounted in a
+   hairline frame with the duration and a white play chip; the name large
+   and light over a hairline; the one line; the status and a square arrow
+   action; a faint hatch in the corner. Navy on white tiles, white on navy —
+   one component, two palettes, through custom properties.
    ══════════════════════════════════════════════════════════════════════ */
-.cscard:not(#_):not(#_):not(#_) { position: relative; display: flex; flex-direction: column; margin: 0; padding: 0; background: var(--svw); color: var(--svn); border: 1px solid var(--svil); border-radius: 0; box-shadow: none; overflow: hidden; clip-path: polygon(0 0, 70% 0, 70% 7%, 100% 7%, 100% 100%, 0 100%); transition: transform .45s var(--ease), border-color .25s var(--ease); }
-.cscard:not(#_):not(#_):not(#_):hover { transform: translateY(-4px); border-color: rgba(10, 18, 48, .4); box-shadow: none; }
-main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#_) { border-color: transparent; }
-.cscard:not(#_):not(#_):not(#_) :is(h3, p, a:not(.hx-circle), dd, dt, .arrow-link) { color: var(--svn); }
-.cscard__visual:not(#_) { position: relative; }
-.cscard__media:not(#_):not(#_):not(#_) { position: relative; display: block; margin: 0; aspect-ratio: 16 / 9; overflow: hidden; border: 0; border-bottom: 1px solid var(--svil); background: var(--svn-2); }
-.cscard__media:not(#_):not(#_) img, .cscard__video:not(#_) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; transform: none; transition: transform .8s var(--ease); }
-.cscard:not(#_):not(#_):hover .cscard__media img { transform: scale(1.03); }
+.cscard:not(#_):not(#_):not(#_) { --cbg: var(--svn); --cbg-2: #0d1636; --cfg: #ffffff; --cmute: rgba(255, 255, 255, .68); --cline: rgba(255, 255, 255, .16); --cline-hi: rgba(255, 255, 255, .5);
+  position: relative; display: flex; flex-direction: column; margin: 0; padding: clamp(18px, 2vw, 26px); background: var(--cbg); color: var(--cfg); border: 1px solid var(--cline); border-radius: 0; box-shadow: none; overflow: hidden; isolation: isolate;
+  clip-path: polygon(0 0, 68% 0, 68% 6%, 100% 6%, 100% 100%, 0 100%); transition: transform .5s var(--ease), border-color .3s var(--ease); }
+main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#_) { --cbg: #ffffff; --cbg-2: #f2f3f7; --cfg: var(--svn); --cmute: rgba(10, 18, 48, .68); --cline: rgba(10, 18, 48, .16); --cline-hi: rgba(10, 18, 48, .5); }
+.cscard:not(#_):not(#_):not(#_)::before { content: ''; position: absolute; z-index: -1; right: -6%; bottom: -4%; width: 52%; height: 42%; background: repeating-linear-gradient(90deg, var(--cfg) 0 1px, transparent 1px 5px); opacity: .07; -webkit-mask-image: linear-gradient(135deg, transparent 25%, #000 100%); mask-image: linear-gradient(135deg, transparent 25%, #000 100%); pointer-events: none; }
+.cscard:not(#_):not(#_):not(#_):hover { transform: translateY(-6px); border-color: var(--cline-hi); box-shadow: none; }
+.cscard:not(#_):not(#_):not(#_) :is(h3, p, a:not(.cscard__play), span) { color: var(--cfg); }
+/* the header: the numeral and the industry, clear of the notch */
+.cscard__head:not(#_) { display: flex; align-items: baseline; gap: 14px; margin: 0 0 18px; padding-right: 34%; }
+.cscard__n:not(#_):not(#_) { flex: 0 0 auto; font-size: 28px; font-weight: 300; line-height: 1; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.cscard__tag:not(#_):not(#_):not(#_) { margin: 0; font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; line-height: 1.5; color: var(--cmute); opacity: 1; }
+/* the mounted still */
+.cscard__visual:not(#_) { position: relative; margin: 0 0 20px; padding: 6px; border: 1px solid var(--cline); transition: border-color .3s var(--ease); }
+.cscard:not(#_):not(#_):hover .cscard__visual { border-color: var(--cline-hi); }
+.cscard__media:not(#_):not(#_):not(#_) { position: relative; display: block; margin: 0; aspect-ratio: 16 / 9; overflow: hidden; border: 0; background: var(--cbg-2); }
+.cscard__media:not(#_):not(#_) img, .cscard__video:not(#_) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; transform: none; transition: transform .9s var(--ease); }
+.cscard:not(#_):not(#_):hover .cscard__media img { transform: scale(1.04); }
 .cscard__video:not(#_) { opacity: 0; transition: opacity .4s var(--ease); }
 .cscard__media.is-playing:not(#_) .cscard__video { opacity: 1; }
-.cscard__len:not(#_):not(#_) { position: absolute; right: 12px; bottom: 10px; padding: 3px 8px; background: rgba(10, 18, 48, .72); color: #fff; font-size: 11px; font-weight: 500; letter-spacing: .08em; border-radius: 0; }
-.cscard__play:not(#_):not(#_) { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; background: rgba(10, 18, 48, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, .55); color: #fff; }
-.cscard__play:not(#_):not(#_) svg { width: 12px; height: 12px; background: none; border: 0; }
-.cscard__play:not(#_):not(#_):hover { background: #fff; color: var(--svn); }
-.cscard__body:not(#_):not(#_):not(#_) { display: flex; flex-direction: column; flex: 1 1 auto; gap: 8px; padding: clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px) clamp(16px, 1.8vw, 20px); }
-.cscard__tag:not(#_):not(#_):not(#_) { margin: 0; font-size: 12px; letter-spacing: .11em; text-transform: uppercase; opacity: .62; }
-.cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; line-height: 1.12; }
+.cscard__len:not(#_):not(#_) { position: absolute; left: 12px; bottom: 10px; padding: 4px 8px; background: rgba(10, 18, 48, .74); color: #fff; font-size: 11px; font-weight: 500; letter-spacing: .1em; border-radius: 0; font-variant-numeric: tabular-nums; }
+.cscard__play:not(#_):not(#_) { position: absolute; right: 18px; bottom: 18px; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 255, 255, .94); color: var(--svn); border: 0; transition: transform .3s var(--ease), background .3s var(--ease); }
+.cscard__play:not(#_):not(#_) svg { width: 12px; height: 12px; margin-left: 2px; background: none; border: 0; }
+.cscard__play:not(#_):not(#_):hover { transform: scale(1.06); background: #fff; }
+/* the name over a hairline, the line */
+.cscard__body:not(#_):not(#_):not(#_) { display: flex; flex-direction: column; gap: 8px; padding: 16px 0 0; border-top: 1px solid var(--cline); }
+.cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(22px, 1.75vw, 27px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; line-height: 1.1; }
 .cscard__name:not(#_):not(#_) a { color: inherit; text-decoration: none; }
 .cscard__name:not(#_):not(#_) a:hover { opacity: .72; }
-.cscard__line:not(#_):not(#_):not(#_) { margin: 0; font-size: 15px; line-height: 1.55; opacity: .82; }
-.cscard__foot:not(#_) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--svil); }
-.cscard__status:not(#_):not(#_) { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .72; }
-.cscard__dot:not(#_) { width: 8px; height: 8px; border-radius: 50%; background: rgba(10, 18, 48, .35); }
-.cscard__status--live:not(#_) .cscard__dot { background: #34c759; }
-.cscard__go:not(#_):not(#_):not(#_) { min-height: 0; margin: 0; padding: 0; font-size: 12px; }
+.cscard__line:not(#_):not(#_):not(#_) { margin: 0; font-size: 15px; line-height: 1.55; color: var(--cmute); opacity: 1; }
+/* the footer: the status, the square action */
+.cscard__foot:not(#_):not(#_) { display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; margin-top: auto; padding-top: 22px; border-top: 0; }
+.cscard__status:not(#_):not(#_) { display: inline-flex; align-items: center; gap: 9px; margin: 0; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--cmute); opacity: 1; }
+.cscard__dot:not(#_) { width: 8px; height: 8px; border-radius: 50%; background: var(--cline-hi); }
+.cscard__status--live:not(#_) .cscard__dot { background: #34c759; box-shadow: 0 0 0 3px rgba(52, 199, 89, .18); }
+.cscard__go:not(#_):not(#_):not(#_) { display: inline-flex; align-items: center; gap: 0; min-height: 40px; margin: 0; padding: 0; border: 1px solid var(--cline); color: var(--cfg); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
+.cscard__go:not(#_):not(#_) span { padding: 0 14px; }
+.cscard__go:not(#_):not(#_) svg { width: 38px; height: 38px; padding: 13px; border-left: 1px solid var(--cline); transition: transform .3s var(--ease); }
+.cscard__go:not(#_):not(#_):hover { background: var(--cfg); color: var(--cbg); border-color: var(--cfg); }
+.cscard__go:not(#_):not(#_):hover svg { transform: translateX(2px); }
 /* the home carousel carries the same card */
 .hx-rail__item { display: flex; }
 .hx-rail__item > .cscard:not(#_):not(#_) { width: 100%; }
 .hx .hx-rail__item .cscard:not(#_):not(#_) :is(h3, p) { font-family: inherit; }
-.hx .hx-rail__item .cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; }
-.hx .hx-rail__item .cscard__go:not(#_):not(#_) { color: var(--svn); }
+.hx .hx-rail__item .cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(22px, 1.75vw, 27px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; }
 .hx .hx-rail__item .cscard[data-reveal] { transform: translateY(28px); }
 .hx .hx-rail__item .cscard[data-reveal].is-in { transform: none; }
+@media (max-width: 760px) { .cscard__head:not(#_) { padding-right: 36%; } .cscard__n:not(#_):not(#_) { font-size: 24px; } }
 @media (prefers-reduced-motion: reduce) { .cscard:not(#_):not(#_):not(#_), .cscard:not(#_):not(#_):not(#_):hover { transform: none; transition: none; } .cscard:not(#_):not(#_):hover .cscard__media img { transform: none; } }
-.cscard__foot:not(#_):not(#_) { flex-direction: column; align-items: flex-start; gap: 10px; }
+.cscard__play:not(#_):not(#_):not(#_) svg { color: var(--svn); fill: currentColor; }
+.cscard__foot:not(#_):not(#_):not(#_) { flex-direction: column; align-items: stretch; gap: 14px; }
+.cscard__go:not(#_):not(#_):not(#_) { width: 100%; justify-content: space-between; }
