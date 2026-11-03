@@ -56,7 +56,7 @@ def endnote(base, title='Tell us what your business needs to do better.'):
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>{esc(title)}</h2>
-        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Book a discovery session {ARROW}</a>
       </div>
     </section>
 '''
@@ -92,7 +92,7 @@ def products_index():
     body = f'''
 {B.hero_block('Products', B.two_lines("A platform, a studio and an academy"),
               'Three things GEMIS makes that are ready today: a business management platform to run on, a design studio to design with, and training that keeps your team ahead of the systems they use.',
-              ctas=f'<a class="hx-btn hx-btn--light" href="{base}products/managem/">Explore ManaGEM</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Discuss a project</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}products/managem/">Explore ManaGEM</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html">Book a discovery session</a>',
               visual=f'<div class="hx-phero__picto">{B.picto("blocks", "hx-picto--w hx-picto--xl")}</div>', strip='ManaGEM · Design Studio · Technical Academy')}
 
     <section class="sec band plusgrid plusgrid--tr" aria-labelledby="productsHeading">
@@ -140,7 +140,7 @@ def insights_index():
     body = f'''
 {B.hero_block('News &amp; Insights', B.two_lines("Notes from building systems that have to work"),
               'What we have learned building and running business systems in South Africa — written for the operations and finance leads who have to live with the result.',
-              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Book a discovery session</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
               visual=f'<div class="hx-phero__picto">{B.picto("letter", "hx-picto--w hx-picto--xl")}</div>', strip='Three articles · each with the case study behind it')}
 
     <section class="news band plusgrid plusgrid--tr" aria-labelledby="newsHeading">

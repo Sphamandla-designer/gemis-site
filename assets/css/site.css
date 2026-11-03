@@ -6595,3 +6595,73 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) :is(.stl__since, .stl
 .hx-state .hx-sec__t:not(#_):not(#_) { max-width: 30ch; }
 main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) :is(.row__n, .row__t, .row__h):not(#_):not(#_) { color: var(--svw); }
 .legal__toc:not(#_):not(#_) p { opacity: .82; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SITE v5 — the UX pass (2026-11-03)
+   Readable type (16px body, 17px ledes, 12px labels), a measured line,
+   44px targets, the one primary action in the bar, the current page
+   marked, the proof in the opener, the four stages on the home, the
+   form's error summary. The look stays; the experience tightens.
+   ══════════════════════════════════════════════════════════════════════ */
+body:not(#_):not(#_) { font-size: 16px; line-height: 1.6; }
+main p:not(#_) { line-height: 1.65; }
+.lede:not(#_):not(#_):not(#_), .chero__copy:not(#_):not(#_):not(#_), .hx .hx-sec__lede:not(#_):not(#_):not(#_), .hx-hero__copy:not(#_):not(#_), .cs__lede:not(#_):not(#_) { font-size: 17px; line-height: 1.6; opacity: .84; max-width: 56ch; }
+.hx-go__lede:not(#_):not(#_) { font-size: 16px; }
+:is(.eyebrow, .chero__kicker, .cs__label, .cscard__tag, .post__tag, .svh__label, .srow__n, .sdir__n, .stage__n, .faq__n, .sd__n, .frm__n, .lp__n, .prin__label, .tline__t, .stl__ticks li, .cscard__meta dt, .post__meta, .art__meta, .wkf__label, .sev__ctx, .sev__note, .svh__crumbs, .legal__toc p, .go__n, .foot__col h2, .hx-label, .hx-sec__k):not(#_):not(#_):not(#_) { font-size: 12px; letter-spacing: .11em; }
+.hx .hx-label:not(#_):not(#_):not(#_) { font-size: 12px; }
+:is(.cscard__meta dd, .post__x, .flow__c, .mate__r, .cscard__line, .srow__copy p, .caps li, .hx-tile__line, .hx-tile__out, .hx-plus__sub, .hx-blk__copy, .hx-svc__line, .walk__text p, .dec p, .tline__c, .sd__item p, .sol__card p):not(#_):not(#_):not(#_) { font-size: 15px; line-height: 1.6; }
+:is(.foot__col a, .foot__blurb, .foot__addr):not(#_):not(#_):not(#_) { font-size: 14px; }
+.hx .hx-sec__t:not(#_):not(#_):not(#_) { max-width: 26ch; }
+.art__body:not(#_):not(#_):not(#_) :is(p, li) { font-size: 17px; line-height: 1.7; }
+/* targets: every action is at least 44px tall, with a visible focus ring */
+.hx .hx-btn:not(#_):not(#_), .btn:not(#_):not(#_):not(#_), .form__send:not(#_):not(#_):not(#_) { min-height: 46px; padding: 14px 24px; font-size: 12px; letter-spacing: .12em; }
+.hx .hx-btn:not(#_):not(#_) { line-height: 1.1; }
+.arrow-link:not(#_):not(#_):not(#_), .hx-tile__more .hx-label, .hx-plus__meta { font-size: 12px; }
+.arrow-link:not(#_):not(#_):not(#_) { min-height: 44px; display: inline-flex; align-items: center; }
+:is(a, button, summary, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+/* the bar: the one primary action, and the current page marked */
+.nav__cta-item:not(#_) { margin-left: clamp(4px, 1vw, 16px); }
+.nav__links > li > a.nav__cta:not(#_):not(#_) { display: inline-flex; align-items: center; min-height: 32px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, .7); background: transparent; color: #fff; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; transition: background .25s var(--ease), color .25s var(--ease); }
+.nav__links > li > a.nav__cta:not(#_):not(#_)::after { content: none; }
+.nav__links > li > a.nav__cta:not(#_):not(#_):hover { background: #fff; color: var(--svn); }
+.nav__links > li > a[aria-current="page"]:not(#_)::after, .nav__trigger[data-current]:not(#_)::after { transform: scaleX(1); transform-origin: left; }
+.nav__links > li > a[aria-current="page"]:not(#_) { color: #fff; }
+@media (max-width: 900px) {
+  .nav:not(#_) .nav__cta-item { margin: 18px 0 0; }
+  .nav:not(#_) .nav__links > li > a.nav__cta { display: inline-flex; min-height: 46px; padding: 0 22px; font-size: 12px; }
+}
+/* the opener: the proof in the same breath as the offer */
+.hx-hero__proof { display: flex; flex-wrap: wrap; gap: 16px clamp(24px, 3vw, 48px); margin: clamp(24px, 3vw, 36px) 0 0; padding: 0; list-style: none; }
+.hx-hero__proof li { display: flex; flex-direction: column; gap: 4px; padding-left: 14px; border-left: 1px solid rgba(255, 255, 255, .28); }
+.hx .hx-hero__proof strong:not(#_):not(#_) { font-size: clamp(26px, 2.6vw, 36px); font-weight: 300; line-height: 1; letter-spacing: -.01em; color: var(--hxw); font-variant-numeric: tabular-nums; }
+.hx .hx-hero__proof strong sup { font-size: .5em; font-weight: 300; opacity: .7; vertical-align: top; }
+.hx .hx-hero__proof span:not(#_):not(#_) { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .72; }
+.hx .hx-hero__copy:not(#_):not(#_) { max-width: 58ch; }
+/* the proof band and the four stages */
+.hx-num:not(#_) { padding: clamp(28px, 4vw, 48px) 0; }
+.hx-how { padding: clamp(56px, 7vw, 104px) 0; background: var(--hxw); color: var(--hxn); }
+.hx-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); margin: 0; padding: 0; list-style: none; }
+.hx-step { padding-top: 20px; border-top: 1px solid var(--svil); }
+.hx .hx-step__n:not(#_) { margin: 0 0 14px; opacity: .6; }
+.hx .hx-step__t:not(#_):not(#_) { margin: 0 0 10px; font-size: 16px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; line-height: 1.3; }
+.hx .hx-step__c:not(#_):not(#_) { margin: 0; font-size: 15px; line-height: 1.6; opacity: .82; }
+/* the rhythm: one section measure on the home, hairlines where two white tiles meet */
+:is(.hx-svc, .hx-cases, .hx-words, .hx-prin, .hx-think, .hx-go):not(#_):not(#_) { padding-top: clamp(56px, 7vw, 104px); padding-bottom: clamp(56px, 7vw, 104px); }
+.hx-cases:not(#_), .hx-think:not(#_) { border-top: 1px solid var(--svil); }
+/* the form: the summary at the top after a failed send, inputs that do not zoom on a phone */
+.form__sum:not(#_) { margin: 0 0 24px; padding: 16px 20px; border: 1px solid var(--svn); border-left-width: 4px; background: var(--svw); color: var(--svn); }
+.form__sum:not(#_) .form__sum-t { margin: 0; font-size: 15px; font-weight: 500; }
+.form__sum:not(#_) ul { margin: 8px 0 0; padding-left: 18px; }
+.form__sum:not(#_) li { font-size: 15px; line-height: 1.5; }
+.form__sum:not(#_) a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.field:not(#_):not(#_):not(#_) :is(input, select, textarea) { font-size: 16px; min-height: 44px; }
+.field:not(#_):not(#_):not(#_) label { font-size: 12px; }
+.consent:not(#_):not(#_) label, .form__note:not(#_):not(#_) { font-size: 14px; }
+@media (max-width: 900px) { .hx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .hx-steps { grid-template-columns: 1fr; } .hx-hero__proof { gap: 12px 20px; } }
+/* targets and the sub-nav at small widths, from the audit */
+.svh__crumbs:not(#_):not(#_) a { display: inline-block; padding: 6px 0; }
+@media (max-width: 1100px) { .subnav__links:not(#_) { gap: 12px; } .subnav__links:not(#_) a { font-size: 10px; letter-spacing: .08em; } }
+@media (max-width: 620px) { .subnav__cta:not(#_):not(#_) { font-size: 0; gap: 6px; padding: 6px 10px; } .subnav__cta:not(#_):not(#_)::before { content: 'Book'; font-size: 10px; letter-spacing: .12em; } .subnav__cta:not(#_):not(#_) svg { width: 10px; height: 10px; } }
+.subnav__cta:not(#_):not(#_):not(#_) { min-height: 30px; padding: 8px 14px; font-size: 10px; letter-spacing: .12em; }
+@media (max-width: 620px) { .subnav__cta:not(#_):not(#_):not(#_) { font-size: 0; padding: 6px 10px; } }

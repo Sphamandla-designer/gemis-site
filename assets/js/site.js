@@ -339,6 +339,35 @@
       field.setAttribute('aria-invalid', on ? 'true' : 'false');
     };
 
+    /* a field is checked when the visitor leaves it, never on every keystroke;
+       after a failed send, a summary at the top lists every problem and links
+       each line to its field, and takes focus so keyboard and screen-reader
+       users land on it */
+    var dSummary = document.getElementById('discoverySummary');
+    discovery.addEventListener('focusout', function (e) {
+      var f = e.target;
+      if (f && f.hasAttribute && f.hasAttribute('required') && (f.value || f.type === 'checkbox')) showError(f, !f.checkValidity());
+    }, true);
+    var summarise = function (bad) {
+      if (!dSummary) return;
+      if (!bad.length) { dSummary.hidden = true; dSummary.innerHTML = ''; return; }
+      var items = bad.map(function (f) {
+        var err = document.getElementById(f.id + '-err');
+        var label = discovery.querySelector('label[for="' + f.id + '"]');
+        var name = label ? label.textContent.replace(/\*|\(required\)/g, '').trim() : f.name;
+        return '<li><a href="#' + f.id + '">' + name + ': ' + (err ? err.textContent : 'please complete this field') + '</a></li>';
+      }).join('');
+      dSummary.innerHTML = '<p class="form__sum-t" id="discoverySummaryTitle">Before we can send this, ' + (bad.length === 1 ? 'one field needs' : bad.length + ' fields need') + ' attention</p><ul>' + items + '</ul>';
+      dSummary.hidden = false;
+      dSummary.focus();
+    };
+    if (dSummary) dSummary.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var f = document.getElementById(a.getAttribute('href').slice(1));
+      if (f) { e.preventDefault(); f.focus(); if (f.scrollIntoView) f.scrollIntoView({ block: 'center' }); }
+    });
+
     discovery.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -349,11 +378,13 @@
         showError(field, !ok);
         if (!ok && !firstBad) firstBad = field;
       });
+      var bad = required.filter(function (f) { return !f.checkValidity(); });
       if (firstBad) {
-        firstBad.focus();
+        if (dSummary) summarise(bad); else firstBad.focus();
         if (dNote) dNote.textContent = 'Please complete the highlighted fields before sending.';
         return;
       }
+      summarise([]);
 
       var val = function (id) {
         var el = document.getElementById(id);
@@ -458,4 +489,22 @@
         + '&body=' + encodeURIComponent(body);
     });
   }
+  /* ── the current page in the bar: the matching link carries aria-current,
+        and a section's trigger (Solutions, Products) is marked when the page
+        lives under it ─────────────────────────────────────────────────── */
+  (function () {
+    var here = location.pathname.replace(/index\.html$/, '');
+    var links = document.querySelectorAll('.nav__links > li > a');
+    var best = null, bestLen = 0;
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var path = a.pathname.replace(/index\.html$/, '');
+      if (path === here || (path !== '/' && here.indexOf(path) === 0 && path.length > bestLen)) { best = a; bestLen = path.length; }
+    }
+    if (best) best.setAttribute('aria-current', 'page');
+    var sections = { solutions: 'solutionsTrigger', products: 'productsTrigger' };
+    for (var k in sections) {
+      if (here.indexOf('/' + k + '/') !== -1) { var t = document.getElementById(sections[k]); if (t) t.setAttribute('data-current', ''); }
+    }
+  })();
 })();

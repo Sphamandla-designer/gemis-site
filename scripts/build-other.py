@@ -139,7 +139,7 @@ def solutions_index():
       <div class="shell">
         <h2 class="display" data-reveal>Not sure which one you need?</h2>
         <p data-reveal style="--d:80ms">Tell us what the business needs to do better and we will come back with a view.</p>
-        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Book a discovery session {ARROW}</a>
       </div>
     </section>
 '''
@@ -225,7 +225,7 @@ def bespoke():
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Tell us what your business needs to do better.</h2>
-        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Book a discovery session {ARROW}</a>
       </div>
     </section>
 '''
@@ -241,10 +241,10 @@ def managem():
     s = S.BY_SLUG['managem']
     C = P.C
     body = f'''
-{B.subnav('ManaGEM', '#hero', [('Where it came from', '#origin'), ('Walkthrough', '#walkthrough')], f'Discuss ManaGEM {ARROW}', f'href="{base}contact.html?service=enterprise-saas"', 'ManaGEM')}
+{B.subnav('ManaGEM', '#hero', [('Where it came from', '#origin'), ('Walkthrough', '#walkthrough')], f'Book a session {ARROW}', f'href="{base}contact.html?service=enterprise-saas"', 'ManaGEM')}
 {B.hero_block('ManaGEM', B.two_lines("A business management platform, born in a real business"),
               'Every enquiry followed to the sale, quotes accepted online, deposit invoices raised automatically, project profit, stock alerts and staff records in one place. About a dozen companies run their day-to-day operations on it.',
-              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play the ManaGEM story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html?service=enterprise-saas">Discuss ManaGEM</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" {B.play_attrs(s, base)}>{B.PLAY} Play the ManaGEM story</a><a class="hx-btn hx-btn--ghost" href="{base}contact.html?service=enterprise-saas">Book a discovery session</a>',
               visual=B.video_block(s, base, eager=True), strip='Products · ManaGEM')}
 
     <section class="origin band band-wash" id="origin" aria-labelledby="originHeading">
@@ -307,7 +307,7 @@ def managem():
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Planning a new business platform, or outgrowing the apps you have?</h2>
-        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Book a discovery session {ARROW}</a>
         <a class="arrow-link arrow-link--quiet" href="{base}work/" data-reveal style="--d:180ms">View related work {ARROW}</a>
         <!-- facts.md confirms the free trial is live, but gives no URL for it and
              leaves the separate ManaGEM site as "FILL". A trial CTA with nowhere
@@ -351,7 +351,7 @@ def our_story():
     body = f'''
 {B.hero_block('Our Story', B.two_lines("Technology changes. Businesses evolve. Good partnerships endure."),
               'GEM Information Systems has been building business systems in South Africa since 2014 — and still works with the businesses it started with.',
-              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Discuss a project</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
+              ctas=f'<a class="hx-btn hx-btn--light" href="{base}contact.html">Book a discovery session</a><a class="hx-btn hx-btn--ghost" href="{base}work/">See the case studies</a>',
               visual=f'<div class="hx-phero__picto">{B.picto("gem", "hx-picto--w hx-picto--xl")}</div>', strip='Business systems · Cape Town · since 2014')}
 
     <section class="sec band band-wash plusgrid plusgrid--tr" id="founding" aria-labelledby="foundingHeading">
@@ -398,7 +398,7 @@ def our_story():
     <section class="endnote">
       <div class="shell">
         <h2 class="display" data-reveal>Have a business challenge worth solving?</h2>
-        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Discuss a project {ARROW}</a>
+        <a class="arrow-link" href="{base}contact.html" data-reveal style="--d:140ms">Book a discovery session {ARROW}</a>
       </div>
     </section>
 '''
