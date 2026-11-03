@@ -212,23 +212,8 @@ def cases():
     tiles = []
     for i, k in enumerate(order):
         st = S.BY_SLUG[k]
-        c = C.CASES.get(k, {})
-        out = c.get('status_short') or st.get('outcome', '')
-        v = f"{S.VIDEO_DIR}{st['video']}"
-        tiles.append(f'''          <li class="hx-tile" data-rail-item data-reveal style="--d:{(i % 3) * 80}ms">
-            <div class="hx-tile__media" data-preview data-src="{v}_web.mp4" data-webm="{v}_web.webm">
-              <img src="{v}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <video class="hx-tile__video" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>
-              <a class="hx-circle hx-tile__play" {B.play_attrs(st, '')} aria-label="Play the {esc(st['client'])} story">{PLAY}</a>
-              <span class="hx-label hx-tile__len" aria-hidden="true">{st['duration_label']}</span>
-            </div>
-            <div class="hx-tile__body">
-              <p class="hx-label hx-tile__ind">{esc(st['industry'])}</p>
-              <h3 class="hx-tile__name"><a href="{link_for(k)}">{esc(st['client'])}</a></h3>
-              <p class="hx-tile__line">{esc(st['headline'])}</p>
-              <p class="hx-tile__out">{esc(out)}</p>
-              <a class="hx-tile__more" href="{link_for(k)}"><span class="hx-plus__mark" aria-hidden="true">+</span><span class="hx-label">Read the case study</span></a>
-            </div>
+        tiles.append(f'''          <li class="hx-rail__item" data-rail-item>
+{B.cscard(st, '', i)}
           </li>''')
     return f'''
     <!-- ═══════════════════ 05 · CASE STUDIES ═══════════════════

@@ -588,34 +588,35 @@ def cases():
 
 def cscard(s, base, i=0, wide=False, extra_attrs=''):
     """
-    A case study card: industry, name, challenge-led headline, GEMIS's role,
-    status, capability labels, and Read / Play. Used by the index, the related
-    rows and the homepage's selected projects.
+    The case study card (2026-11-03): the still with the play chip and the
+    duration (a muted preview plays on hover where home.js is loaded), then
+    the industry, the name, the one-line headline, and a footer with the
+    status and the one link. The role, the capability chips and the second
+    button are gone — the page carries them; the card is for choosing.
     """
     c = cases().get(s['slug'], {})
     product = s.get('is_product')
     href = f'{base}products/managem/' if product else f'{base}work/{s["slug"]}/'
-    role = c.get('role_short', 'Designed, built and supported by GEMIS')
     status = c.get('status_short', c.get('status', ''))
-    chips = ''.join(f'<li>{esc(cap_label(t))}</li>' for t in s.get('capability_tags', [])[:3])
+    live = status.lower().startswith('live')
+    v = f'{base}{S.VIDEO_DIR}{s["video"]}'
     cls = 'cscard cscard--wide' if wide else 'cscard'
     return f'''          <article class="{cls}"{extra_attrs} data-reveal style="--d:{i * 60}ms">
-            <a class="cscard__media" href="{href}" tabindex="-1" aria-hidden="true">
-              <img src="{base}{S.VIDEO_DIR}{s['video']}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
-              <span class="cscard__len">{s['duration_label']}</span>
-            </a>
+            <div class="cscard__visual">
+              <a class="cscard__media" href="{href}" tabindex="-1" aria-hidden="true" data-preview data-src="{v}_web.mp4" data-webm="{v}_web.webm">
+                <img src="{v}_thumb.jpg" alt="" loading="lazy" width="1280" height="720" />
+                <video class="cscard__video" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>
+                <span class="cscard__len">{s['duration_label']}</span>
+              </a>
+              <a class="hx-circle cscard__play" {play_attrs(s, base)} aria-label="Play the {esc(s['client'])} story">{PLAY}</a>
+            </div>
             <div class="cscard__body">
               <p class="cscard__tag">{esc(s['industry'])}</p>
-              <h3 class="cscard__name">{esc(s['client'])}</h3>
+              <h3 class="cscard__name"><a href="{href}">{esc(s['client'])}</a></h3>
               <p class="cscard__line">{esc(s['headline'])}</p>
-              <dl class="cscard__meta">
-                <div><dt>GEMIS&rsquo;s role</dt><dd>{esc(role)}</dd></div>
-                <div><dt>Status</dt><dd>{esc(status)}</dd></div>
-              </dl>
-              <ul class="cscard__chips" aria-label="Capabilities">{chips}</ul>
-              <div class="cscard__actions">
-                <a class="btn btn--sm" href="{href}">{'Explore ManaGEM' if product else 'Read the case study'} {ARROW}</a>
-                <a class="btn btn--sm btn--ghost" {play_attrs(s, base)}>{PLAY} Play story</a>
+              <div class="cscard__foot">
+                <p class="cscard__status{' cscard__status--live' if live else ''}"><span class="cscard__dot" aria-hidden="true"></span>{esc(status)}</p>
+                <a class="arrow-link cscard__go" href="{href}">{'Explore ManaGEM' if product else 'Read the case study'} {ARROW}</a>
               </div>
             </div>
           </article>'''

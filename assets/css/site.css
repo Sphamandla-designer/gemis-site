@@ -6665,3 +6665,46 @@ main p:not(#_) { line-height: 1.65; }
 @media (max-width: 620px) { .subnav__cta:not(#_):not(#_) { font-size: 0; gap: 6px; padding: 6px 10px; } .subnav__cta:not(#_):not(#_)::before { content: 'Book'; font-size: 10px; letter-spacing: .12em; } .subnav__cta:not(#_):not(#_) svg { width: 10px; height: 10px; } }
 .subnav__cta:not(#_):not(#_):not(#_) { min-height: 30px; padding: 8px 14px; font-size: 10px; letter-spacing: .12em; }
 @media (max-width: 620px) { .subnav__cta:not(#_):not(#_):not(#_) { font-size: 0; padding: 6px 10px; } }
+
+/* ══════════════════════════════════════════════════════════════════════
+   CARDS v2 — the case study card, clean (2026-11-03)
+   One white surface with a hairline and the notch, the still on top with
+   the play chip and the duration, then the industry, the name, one line,
+   and a footer with the status and the one link. The same card on the
+   index, the home carousel, the related rows, the service evidence.
+   ══════════════════════════════════════════════════════════════════════ */
+.cscard:not(#_):not(#_):not(#_) { position: relative; display: flex; flex-direction: column; margin: 0; padding: 0; background: var(--svw); color: var(--svn); border: 1px solid var(--svil); border-radius: 0; box-shadow: none; overflow: hidden; clip-path: polygon(0 0, 70% 0, 70% 7%, 100% 7%, 100% 100%, 0 100%); transition: transform .45s var(--ease), border-color .25s var(--ease); }
+.cscard:not(#_):not(#_):not(#_):hover { transform: translateY(-4px); border-color: rgba(10, 18, 48, .4); box-shadow: none; }
+main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#_) { border-color: transparent; }
+.cscard:not(#_):not(#_):not(#_) :is(h3, p, a:not(.hx-circle), dd, dt, .arrow-link) { color: var(--svn); }
+.cscard__visual:not(#_) { position: relative; }
+.cscard__media:not(#_):not(#_):not(#_) { position: relative; display: block; margin: 0; aspect-ratio: 16 / 9; overflow: hidden; border: 0; border-bottom: 1px solid var(--svil); background: var(--svn-2); }
+.cscard__media:not(#_):not(#_) img, .cscard__video:not(#_) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 0; transform: none; transition: transform .8s var(--ease); }
+.cscard:not(#_):not(#_):hover .cscard__media img { transform: scale(1.03); }
+.cscard__video:not(#_) { opacity: 0; transition: opacity .4s var(--ease); }
+.cscard__media.is-playing:not(#_) .cscard__video { opacity: 1; }
+.cscard__len:not(#_):not(#_) { position: absolute; right: 12px; bottom: 10px; padding: 3px 8px; background: rgba(10, 18, 48, .72); color: #fff; font-size: 11px; font-weight: 500; letter-spacing: .08em; border-radius: 0; }
+.cscard__play:not(#_):not(#_) { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; background: rgba(10, 18, 48, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, .55); color: #fff; }
+.cscard__play:not(#_):not(#_) svg { width: 12px; height: 12px; background: none; border: 0; }
+.cscard__play:not(#_):not(#_):hover { background: #fff; color: var(--svn); }
+.cscard__body:not(#_):not(#_):not(#_) { display: flex; flex-direction: column; flex: 1 1 auto; gap: 8px; padding: clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px) clamp(16px, 1.8vw, 20px); }
+.cscard__tag:not(#_):not(#_):not(#_) { margin: 0; font-size: 12px; letter-spacing: .11em; text-transform: uppercase; opacity: .62; }
+.cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; line-height: 1.12; }
+.cscard__name:not(#_):not(#_) a { color: inherit; text-decoration: none; }
+.cscard__name:not(#_):not(#_) a:hover { opacity: .72; }
+.cscard__line:not(#_):not(#_):not(#_) { margin: 0; font-size: 15px; line-height: 1.55; opacity: .82; }
+.cscard__foot:not(#_) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--svil); }
+.cscard__status:not(#_):not(#_) { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .72; }
+.cscard__dot:not(#_) { width: 8px; height: 8px; border-radius: 50%; background: rgba(10, 18, 48, .35); }
+.cscard__status--live:not(#_) .cscard__dot { background: #34c759; }
+.cscard__go:not(#_):not(#_):not(#_) { min-height: 0; margin: 0; padding: 0; font-size: 12px; }
+/* the home carousel carries the same card */
+.hx-rail__item { display: flex; }
+.hx-rail__item > .cscard:not(#_):not(#_) { width: 100%; }
+.hx .hx-rail__item .cscard:not(#_):not(#_) :is(h3, p) { font-family: inherit; }
+.hx .hx-rail__item .cscard__name:not(#_):not(#_):not(#_) { margin: 0; font-size: clamp(20px, 1.6vw, 24px); font-weight: 300; letter-spacing: .04em; text-transform: uppercase; }
+.hx .hx-rail__item .cscard__go:not(#_):not(#_) { color: var(--svn); }
+.hx .hx-rail__item .cscard[data-reveal] { transform: translateY(28px); }
+.hx .hx-rail__item .cscard[data-reveal].is-in { transform: none; }
+@media (prefers-reduced-motion: reduce) { .cscard:not(#_):not(#_):not(#_), .cscard:not(#_):not(#_):not(#_):hover { transform: none; transition: none; } .cscard:not(#_):not(#_):hover .cscard__media img { transform: none; } }
+.cscard__foot:not(#_):not(#_) { flex-direction: column; align-items: flex-start; gap: 10px; }

@@ -211,9 +211,16 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   steps; `walk(items, base, slug)` lays out video stills with captions that say
   "Illustrated in the case study video"; `decisions(items)` renders
   challenge / decision / rationale / evidence cards; `cscard(s, base, i)` is the
-  one case card (industry, name, headline, GEMIS's role, status, capability
-  chips, Read / Play) used by the index, the homepage, related rows, service
-  pages and articles. The homepage is its own design (see below).
+  **one case card** (2026-11-03, **CARDS v2** at the tail of `site.css`): a
+  white surface with a hairline and the notch, the still on top with the play
+  chip and the duration (a muted preview plays on hover via `[data-preview]`
+  in `home.js`), then the industry, the name, the one-line headline, and a
+  footer with the status (green dot when live) and the one link. The role and
+  the capability chips are not on the card — the page carries them; the
+  index's filter reads the `data-industry` / `data-capability` attributes on
+  the article. The same card is used by the index, the home carousel
+  (`.hx-rail__item` wraps it), related rows, service pages and articles. The
+  homepage is its own design (see below).
 
 - **The home page** (`scripts/build-home.py`, 2026-10-28) follows the owner's
   reference screenshots and videos (committed at the repository root as
