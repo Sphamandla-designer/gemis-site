@@ -157,8 +157,19 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   `rgba(210,210,215,.64)` with blur. Inputs are 17px, `#d2d2d7` border, radius
   11, a 3px focus ring. Buttons press with `transform: scale(.95)`. Section
   heads (`.sec__head` and the `*__head` variants) are centred stacks.
-- **The logo** is the flat traced sprite in `currentColor` (the gem at .34
-  opacity), white on navy, ink on light.
+- **The logo** (redesigned 2026-11-03) is the stone: six facets — three
+  crown, three pavilion — cut from one colour with light between them, beside
+  GEMIS in Montserrat 600 and GEM INFORMATION SYSTEMS in 500, both outlined
+  to paths so no file depends on the font. It is one `currentColor` symbol
+  (`#gemisLogo`, viewBox `0 0 234.6 40`) in every page's sprite, white on the
+  bar and the footer, navy on light. The files are in `assets/img/logos/`
+  (`gemis-logo.svg`, `gemis-logo-stacked.svg`, `gemis-mark.svg`, and PNGs in
+  navy, white and stacked) and the favicon is the stone in white on the
+  midnight square. The generator is `tools/make-logo.py` (python3.13 with
+  fonttools and brotli; it writes the SVGs, the sprite symbol and the
+  favicon): the stone is six convex polygons inset by 1.1 units on a 64 box;
+  rebuild the PNGs from the SVGs if the mark changes. The
+  studio keeps its own pink-and-orange stone.
 - **Rhythm** is `--sec-y` (56–80px) on both edges of every tile. Shell 1440px.
 - **Case study pages** are built from `scripts/cases.py` (navy hero with
   status, composite and Play story, overview, business challenge, strategy and
