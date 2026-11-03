@@ -128,3 +128,34 @@ open(f'{OUT}/favicon.svg', 'w').write(
     f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0a1230"/>'
     f'<g fill="#ffffff">{stone(7, 5, 50 / 64)}</g></svg>')
 print('W', W, 'SW', SW)
+
+
+# ── the studio's stone: the same cut in the studio's two colours — the crown
+#    pink, the pavilion orange — and the white version for dark grounds
+PINK, ORANGE = '#ff1f7a', '#ff7a12'
+
+
+def stone_two(x, y, s, top, bottom):
+    polys = []
+    for i, f in enumerate(FACETS):
+        p = inset(f, GAP)
+        polys.append(f'<polygon fill="{top if i < 3 else bottom}" points="' + ' '.join(f'{x + px * s:.2f},{y + py * s:.2f}' for px, py in p) + '"/>')
+    return ''.join(polys)
+
+
+STUDIO = sys.argv[2] if len(sys.argv) > 2 else None
+if STUDIO:
+    head = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="GEMIS Studio">'
+    open(f'{STUDIO}/mark-colour.svg', 'w').write(head + stone_two(0, 0, 1, PINK, ORANGE) + '</svg>')
+    open(f'{STUDIO}/mark-white.svg', 'w').write(head + stone_two(0, 0, 1, '#ffffff', '#ffffff') + '</svg>')
+    open(f'{STUDIO}/favicon.svg', 'w').write(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#16161a"/>'
+        + stone_two(7, 5, 50 / 64, PINK, ORANGE) + '</svg>')
+    # the studio lockup: the coloured stone, GEMIS in ink, STUDIO tracked beneath
+    gd, gend = text_path(F600, 'GEMIS', 26 / CAP, 96, 40, .12)
+    sd, send = text_path(F500, 'STUDIO', 11 / CAP, 96, 62, .42)
+    W3 = round(max(gend, send) + 2, 1)
+    open(f'{STUDIO}/gemis-studio-logo.svg', 'w').write(
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W3} 72" role="img" aria-label="GEMIS Studio">'
+        f'{stone_two(0, 0, 72 / 64, PINK, ORANGE)}<path fill="#16161a" d="{gd}"/><path fill="#55565e" d="{sd}"/></svg>')
+    print('studio ok', W3)

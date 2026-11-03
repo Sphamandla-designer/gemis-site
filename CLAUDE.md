@@ -169,7 +169,11 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   fonttools and brotli; it writes the SVGs, the sprite symbol and the
   favicon): the stone is six convex polygons inset by 1.1 units on a 64 box;
   rebuild the PNGs from the SVGs if the mark changes. The
-  studio keeps its own pink-and-orange stone.
+  same script, given a second directory, writes the studio's stone in the
+  studio's colours — crown pink `#ff1f7a`, pavilion orange `#ff7a12` — as
+  `studio/assets/mark-colour.svg`, `mark-white.svg`, `favicon.svg` (on the
+  studio's ink) and the `gemis-studio-logo.svg` lockup; the touch icon and
+  `assets/img/logos/gemis-studio.png` are rendered from those.
 - **Rhythm** is `--sec-y` (56–80px) on both edges of every tile. Shell 1440px.
 - **Case study pages** are built from `scripts/cases.py` (navy hero with
   status, composite and Play story, overview, business challenge, strategy and
