@@ -147,7 +147,7 @@ FOOTER = """<footer class="foot">
     <div class="shell foot__in">
       <div class="foot__grid">
         <div class="foot__brand" data-reveal>
-          <a class="foot__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 187 34" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
+          <a class="foot__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 234.6 40" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
           <p class="foot__blurb">Bringing ideas and innovation to life through technology &mdash; secure, scalable systems built on the Microsoft Cloud.</p>
           <address class="foot__addr">9 Tapiola Way, Edgemead, Cape Town<br /><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></address>
         </div>
