@@ -634,7 +634,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section data-screen-label="Marquee" style="position:relative;z-index:1;padding:140px 0 120px;overflow:hidden;background:#16161a;color:#f5f6f8">
   {{ darkBg2 }}
-  <div data-m="note" style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3;text-transform:uppercase">Published prices.<br>Fixed after the Teardown.</div>
+  <div data-m="note" style="position:absolute;left:180px;top:160px;font-size:15px;font-weight:600;color:#ff7a12;line-height:1.3;text-transform:uppercase">One published price.<br>Everything else fixed after the Teardown.</div>
   <div data-marquee aria-hidden="true" style="margin-top:120px;overflow:hidden;white-space:nowrap">{{ marquee }}</div>
   <div style="text-align:center;margin-top:100px;font-size:15px;font-weight:600;color:#f5f6f8;text-transform:uppercase">✦ Diagnose. Refresh. Build. Embed.</div>
 </section>
@@ -697,9 +697,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Our services</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Four <span style="color:#ff1f7a">fixed</span> steps.</h2>
+        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">One ladder.<br>Start with a <span style="color:#ff1f7a">diagnosis.</span></h2>
       </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a diagnosis and climbs only as far as you need. Prices published. Scope and price fixed in writing after the Teardown. Fee credited when you climb.</p>
+      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#c9cad1;justify-self:end">Every engagement starts with a five-day Teardown and climbs only as far as you need. The Teardown fixes your scope and price in writing before any design or build begins. Fee credited when you climb.</p>
     </div>
 
     <div data-m="split" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);margin-top:80px;align-items:start">
@@ -749,7 +749,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
             </div>
           </div>
           <div style="margin-top:32px;background:#16161a;color:#f5f6f8;padding:22px clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
-            <span style="font-size:14px;color:#9a9ba3">Excl. VAT · developer handoff and 30 days aftercare included</span>
+            <span style="font-size:14px;color:#9a9ba3">{{ s.note }}</span>
             <a href="{{ s.ctaHref }}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;min-width:200px;color:#f5f6f8"><span style="text-transform:uppercase">{{ s.cta }}</span><span>→</span></a>
           </div>
         </div>
@@ -758,8 +758,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:100px;gap:24px;flex-wrap:wrap">
-      <div style="font-size:15px;font-weight:600;text-transform:uppercase">✦ Developer handoff · WCAG 2.2 AA · 30 days aftercare — in every price.</div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;text-transform:uppercase">All prices excl. VAT</div>
+      <div style="font-size:15px;font-weight:600;text-transform:uppercase">✦ Developer handoff · WCAG 2.2 AA · 30 days aftercare — in every engagement.</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3;text-transform:uppercase">Teardown price excl. VAT</div>
     </div>
   </div>
 </section>
@@ -963,10 +963,10 @@ class Component extends DCLogic {
     const lightBg2 = wrap([blob('a','driftC 40s ease-in-out infinite','55vw','50%','-20%','rgba(255,122,18,.12)',80),blob('b','driftA 48s ease-in-out infinite','40vw','-15%','50%','rgba(255,31,122,.10)',80)]);
     const lightBg3 = wrap([blob('a','driftB 38s ease-in-out infinite','50vw','-10%','10%','rgba(255,31,122,.12)',80)]);
     const ladderData = [
-      { num: '01', name: 'Product Teardown', slug: 'teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown' },
-      { num: '02', name: 'Interface Refresh Sprint', slug: 'refresh', time: '2 weeks', kicker: 'Refresh', price: 'R18,000 – R25,000', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
-      { num: '03', name: 'Web Experience', slug: 'web', time: '6 – 8 weeks', kicker: 'Build', price: 'R55,000 – R85,000', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Book a teardown' },
-      { num: '04', name: 'Embedded Designer', slug: 'embedded', time: 'Ongoing', kicker: 'Embed', price: 'R20,000 – R35,000/month', priceNote: 'Per month · 3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Book a teardown' }
+      { num: '01', name: 'Product Teardown', slug: 'teardown', time: '5 days', kicker: 'Diagnose', price: 'R6,500', priceNote: 'Fixed · 5 working days', img: 'assets/img/studio/svc-teardown.jpg', evidence: 'Evidence — WasteMart', desc: 'A senior designer sits with your product for a week and comes back with what is actually wrong, ranked by impact — not a list of opinions.', deliverables: ['45-minute discovery session', 'Ranked issue list with severity', 'Five screens redesigned', '12-month product roadmap'], credit: 'Fee credited in full against any engagement booked within 60 days.', cta: 'Book a teardown', note: 'Excl. VAT · developer handoff and 30 days aftercare included' },
+      { num: '02', name: 'Interface Refresh Sprint', slug: 'refresh', time: '2 weeks', kicker: 'Refresh', price: 'Scoped after the Teardown', priceNote: 'Fixed scope · 2 weeks', img: 'assets/img/studio/svc-refresh.jpg', evidence: 'Evidence — ManaGEM', desc: 'The screens that matter most, redesigned to a developer-ready standard your team can build the following Monday.', deliverables: ['Up to 12 screens redesigned', 'Component spec and tokens', 'WCAG 2.2 AA contrast pass', 'Developer handoff session'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Start with a teardown', note: 'Developer handoff and 30 days aftercare included' },
+      { num: '03', name: 'Web Experience', slug: 'web', time: '6 – 8 weeks', kicker: 'Build', price: 'Scoped after the Teardown', priceNote: 'Design + build · 6–8 weeks', img: 'assets/img/studio/svc-web.jpg', evidence: 'Evidence — FINOS', desc: 'Design and WordPress build under one roof, so nothing is lost between the Figma file and the live site. Design-only handoff available.', deliverables: ['Content and structure map', 'Full responsive design system', 'WordPress build and CMS training', 'Performance and SEO baseline'], credit: 'Teardown fee credited. Thirty days of aftercare included.', cta: 'Start with a teardown', note: 'Developer handoff and 30 days aftercare included' },
+      { num: '04', name: 'Embedded Designer', slug: 'embedded', time: 'Ongoing', kicker: 'Embed', price: 'Scoped after the Teardown', priceNote: '3-month minimum', img: 'assets/img/studio/svc-embedded.jpg', evidence: 'Evidence — RentFlow', desc: 'A senior product designer inside your team, in 20, 40 or 60-hour bands. Continuity and standards without the R600k hire.', deliverables: ['20 / 40 / 60 hour bands', 'Weekly planning with your PM', 'Design system ownership', 'Direct line to our developers'], credit: 'Three-month minimum. Scale the band up or down monthly.', cta: 'Start with a teardown', note: 'Developer handoff and 30 days aftercare included' }
     ];
     ladderData.forEach(l => { l.deliverables = l.deliverables.map((t, i) => typeof t === 'string' ? { n: '0' + (i + 1), t } : t); });
     const si = this.state.step, sn = ladderData.length;
@@ -1025,7 +1025,7 @@ class Component extends DCLogic {
     const marquee = React.createElement('div', { style: { display: 'inline-flex', alignItems: 'center', animation: (this.props.marqueeSpeed ?? 24) + 's marquee linear infinite', willChange: 'transform' } }, items);
     const clientsData = [
       { label: 'Freelance designer', quote: 'A freelancer hands you a Figma file. We hand your developer a specified, buildable system — or build it ourselves.', person: 'Alternative 01', role: 'Freelance designer', img: ((window.__resources||{}).shotFinos || 'assets/img/shots/finos.jpg') },
-      { label: 'Design agency', quote: 'An agency sells you a brand and a proposal cycle. We publish the price and start within three working days.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
+      { label: 'Design agency', quote: 'An agency sells you a brand and a proposal cycle. We start with a five-day diagnosis, then fix the scope and price in writing.', person: 'Alternative 02', role: 'Design agency', img: ((window.__resources||{}).shotManagem || 'assets/img/shots/managem-desk.jpg') },
       { label: 'Development shop', quote: 'A dev shop builds what you describe. We first map what actually happens, so you build the right thing once.', person: 'Alternative 03', role: 'Development shop', img: ((window.__resources||{}).shotRentflow || 'assets/img/shots/rentflow.jpg') },
       { label: 'Hiring in-house', quote: 'A senior product designer costs around R600k a year before they start. Embedded Designer gives you the capacity without the hire.', person: 'Alternative 04', role: 'Hiring in-house', img: ((window.__resources||{}).shotNura || 'assets/img/shots/nuracoach.jpg') },
       { label: 'Doing nothing', quote: 'Doing nothing costs the most and shows up last — in support load, churn and a team that quietly avoids the system. A Teardown tells you exactly what, in five days.', person: 'Alternative 05', role: 'Doing nothing', img: ((window.__resources||{}).shotWaste || 'assets/img/shots/wastemart-driver.jpg') }
@@ -1060,7 +1060,7 @@ class Component extends DCLogic {
     };
     const reasons = [
       { n: '1', num: '01', tag: 'One roof', title: 'Designed and built under one roof', body: 'Our developers sit two desks away. What we draw, they ship — so nothing dies in handoff.' },
-      { n: '2', num: '02', tag: 'Published', title: 'Published prices. Fixed after the Teardown.', body: 'Every service has a published price and a defined output. The Teardown fixes your scope and price in writing before any build begins.' },
+      { n: '2', num: '02', tag: 'In writing', title: 'Fixed scope and price, in writing.', body: 'The Teardown comes at a published price. Everything after it is scoped, priced and agreed in writing before any build begins. No open-ended hourly billing.' },
       { n: '3', num: '03', tag: 'Senior', title: 'Senior eyes on every screen', body: 'One practice lead scopes, reviews and signs off each engagement. No junior bait-and-switch.' },
       { n: '4', num: '04', tag: 'Evidence', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
     ];
