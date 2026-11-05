@@ -15,6 +15,7 @@ them. Two flat shapes, so it survives 16px, single-colour print and a favicon.
 | `linkedin-banner.png` · `linkedin-banner.jpg` | the LinkedIn showcase cover at exactly 1128 × 191 px, from the hero facets image (PNG 117 KB, JPEG 37 KB; LinkedIn allows up to 3 MB). Source: `banner.html` |
 | `linkedin-banner@2x.png` | the same cover at 2256 × 382, for anywhere that wants a sharper copy |
 | `linkedin-cover-1584x396.png` · `.jpg` | an alternative cover at the 1584 × 396 Company Page size, with a different, hairline composition. Source: `linkedin-cover-1584.html` |
+| `linkedin-thumbnail-1200x627.png` · `.jpg` · `@2x.png` | the LinkedIn link-share / post image at 1200 × 627 (1.91:1): the hero facets as the field, the statement left, the three works stepped right. Source: `linkedin-thumbnail.html` |
 | `logo-sheet.png` | one image of every variant, for review |
 
 Type in the lock-ups is the site's own: Manrope 700 tracked for GEMIS, JetBrains
