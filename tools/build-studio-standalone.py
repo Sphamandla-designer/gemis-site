@@ -23,17 +23,18 @@ ST = os.path.join(R, 'studio')
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(R, 'gemis-studio-standalone.html')
 LIVE = 'https://sphamandla-designer.github.io/gemis-site/'
 PAGES = ['index.html', 'work.html', 'about.html', 'services.html', 'contact.html']
+PAGES += sorted(f for f in os.listdir(ST) if re.fullmatch(r'work-[a-z0-9-]+\.html', f))   # one page per case study
 
 MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml',
         '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff'}
-ASSET = re.compile(r'assets/[A-Za-z0-9_.-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
+ASSET = re.compile(r'\.\./assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp)|assets/[A-Za-z0-9_.-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
 
 A = {}
 
 
 def asset(path):
     if path not in A:
-        f = os.path.join(ST, path)
+        f = os.path.join(R, path[3:]) if path.startswith('../') else os.path.join(ST, path)
         if not os.path.exists(f):
             raise SystemExit('missing asset ' + path)
         A[path] = 'data:' + MIME[os.path.splitext(f)[1]] + ';base64,' + base64.b64encode(open(f, 'rb').read()).decode()
@@ -148,7 +149,7 @@ noscript a{{color:#fff}}
   function build(page) {{
     return pages[page]
       .replace(/@@(js:[a-z-]+\\.js)@@/g, function (m, k) {{ return assets[k] || ''; }})
-      .replace(/assets\\/[A-Za-z0-9_.-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
+      .replace(/\\.\\.\\/assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)|assets\\/[A-Za-z0-9_.-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
       .replace(/assets\\/[A-Za-z0-9_.-]+?\\.(?:woff2|woff)/g, function (m) {{ return assets[m] || m; }});
   }}
   function frame(page) {{
@@ -169,7 +170,7 @@ noscript a{{color:#fff}}
     else f.addEventListener('load', function () {{ setTimeout(go, 50); }}, {{ once: true }});
   }}
   function fromHash() {{
-    var m = /^#([a-z]+\\.html)(?:#(.*))?$/.exec(location.hash);
+    var m = /^#([a-z0-9-]+\\.html)(?:#(.*))?$/.exec(location.hash);
     show(m ? m[1] : 'index.html', m ? m[2] : '');
   }}
   window.addEventListener('message', function (e) {{

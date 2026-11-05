@@ -157,10 +157,14 @@ Two things to settle:
    The homepage line — "Every case study evidences a named service — never the
    studio in general" — is the page's own standard, so these two do not meet it
    until someone names their service in `studio/src/work.html`.
-2. **No project detail pages exist.** "Explore project" on both the homepage
-   carousel and this page links to the project's own card here
-   (`work.html#managem` and so on). When detail pages exist, point them there —
-   the slug is already the card id.
+2. **Project detail pages exist now** (`studio/work-<slug>.html`, built from
+   `studio/src/cases.json`): every "Read the case study" link on the homepage
+   carousel, the Work grid, the About evidence strip and the Services steps
+   lands on one. WasteMart and ManaGEM are filled from `scripts/cases.py` and
+   `scripts/facts.md`; FINOS, RentFlow, NuraCoach and Lungelo carry only what
+   the repository holds, with the missing sections shown as `?review=1` notes.
+   Each page's NDA level (full · anonymised · results-only) is assumed Full and
+   must be agreed with the client in writing — flip `ndaAgreed` in the JSON.
 
 Settled: FINOS now evidences *Web Experience* everywhere, matching the services
 ladder (RentFlow evidences *Embedded Designer*), and Lungelo's image has moved

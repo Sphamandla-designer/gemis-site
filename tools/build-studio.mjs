@@ -11,6 +11,8 @@
  *         studio/work.html, about.html, services.html, contact.html — the
  *                                   sibling pages, with the homepage's chrome
  *                                   lifted into their slots
+ *         studio/work-<slug>.html   — one case study page per record in
+ *                                   studio/src/cases.json (template: src/case.html)
  *
  * How it works: the source page is served as-is to a headless Chromium, which
  * runs dc-runtime and React exactly as a visitor's browser would. The rendered
@@ -27,6 +29,7 @@ import { readFile, writeFile, unlink } from 'node:fs/promises';
 import { existsSync, createReadStream, statSync } from 'node:fs';
 import { extname, join, resolve, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderCase, caseTitle, caseDescription, cardResult, caseWords } from './build-studio-case.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const SRC = join(ROOT, 'studio/src/index.html');
@@ -40,6 +43,9 @@ const SERVICES_SRC = join(ROOT, 'studio/src/services.html');
 const SERVICES_OUT = join(ROOT, 'studio/services.html');
 const CONTACT_SRC = join(ROOT, 'studio/src/contact.html');
 const CONTACT_OUT = join(ROOT, 'studio/contact.html');
+const CASE_SRC = join(ROOT, 'studio/src/case.html');
+const CASES_SRC = join(ROOT, 'studio/src/cases.json');
+const caseOut = (slug) => join(ROOT, `studio/work-${slug}.html`);
 const TMP_REL = 'studio/.prerender.html';
 const TMP = join(ROOT, TMP_REL);
 
@@ -172,13 +178,15 @@ const shutDrawer = (html) => {
   return out;
 };
 
-/** One card, in the homepage's own markup. `href` is where EXPLORE PROJECT goes. */
+/** One card, in the homepage's own markup: the after screen, the client (or the
+    anonymised description), the service evidenced, the one-line result, and the
+    link to the project's own page. */
 const workCard = (p) => `      <div id="${esc(p.slug)}" style="display:flex;flex-direction:column;gap:20px;scroll-margin-top:120px">
-        <div style="aspect-ratio:16/11;overflow:hidden;border-radius:4px"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
+        <a href="${esc(p.href)}" aria-label="${esc(p.name)}" style="aspect-ratio:16/11;overflow:hidden;border-radius:4px;display:block"><img src="${esc(p.img)}" alt="${esc(p.alt || p.name)}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></a>
         <div style="font-size:28px;letter-spacing:-0.03em;font-weight:600">${esc(p.name)}</div>
 ${p.evidences ? `        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">Evidences: ${esc(p.evidences)}</div>
 ` : ''}        <div style="display:flex;justify-content:space-between;gap:24px;align-items:flex-end">
-          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">${esc(p.desc)}</p>
+          <p style="margin:0;font-size:16px;line-height:1.35;max-width:300px;color:#5a5b63">${esc(p.result)}</p>
           <a href="${esc(p.href)}" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:40px;border-bottom:2px solid #ff7a12;padding-bottom:8px;white-space:nowrap"><span style="text-transform:uppercase">${esc(p.cta)}</span><span>→</span></a>
         </div>
       </div>`;
@@ -349,15 +357,18 @@ const main = async () => {
   });
 
   // ── studio/work.html ───────────────────────────────────────────────────
+  // Every card comes from studio/src/cases.json — the same record that builds
+  // the project's own page — so the grid and the pages cannot drift. The three
+  // homepage carousel projects must be in it (the carousel is the drift guard).
   const workSrc = await readFile(WORK_SRC, 'utf8');
-  const extra = JSON.parse(
-    (/<script type="application\/json" id="extra-projects">([\s\S]*?)<\/script>/.exec(workSrc) || [, '[]'])[1]);
-
-  const projects = [...homeProjects, ...extra].map((p) => ({
-    ...p,
-    // no project detail pages exist yet, so EXPLORE PROJECT goes to the card
-    href: `work.html#${p.slug}`,
-    cta: 'Explore project',
+  const CASES = JSON.parse(await readFile(CASES_SRC, 'utf8')).cases;
+  for (const hp of homeProjects) {
+    if (!CASES.some((c) => c.slug === hp.slug)) throw new Error(`the homepage carousel shows "${hp.name}" but studio/src/cases.json has no record for it`);
+  }
+  const projects = CASES.map((c) => ({
+    slug: c.slug, name: c.nda === 'full' ? c.name : c.anonymised, alt: c.imageAlt, img: c.image,
+    evidences: c.service, result: cardResult(c),
+    href: `work-${c.slug}.html`, cta: 'Read the case study',
   }));
 
   const cards = '  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">\n'
@@ -365,12 +376,22 @@ const main = async () => {
 
   const work = siblingPage('work.html', workSrc, { cards });
 
+  // ── studio/work-<slug>.html — one page per case study ─────────────────
+  const caseSrc = await readFile(CASE_SRC, 'utf8');
+  const casePages = CASES.map((c) => {
+    const page = siblingPage(`work-${c.slug}.html`,
+      caseSrc.replace(/__TITLE__/g, esc(caseTitle(c))).replace(/__DESC__/g, esc(caseDescription(c)))
+        .replace(/__SLUG__/g, c.slug).replace(/__IMAGE__/g, c.image),
+      { case: renderCase(c) });
+    return { slug: c.slug, name: c.name, page, words: caseWords(page.slice(page.indexOf('<main'), page.indexOf('<!-- the closing band'))) };
+  });
+
   // ── studio/about.html ──────────────────────────────────────────────────
   // The evidence strip names the homepage's own three projects and the service
   // each one proves, straight out of the carousel, so it cannot drift either.
   const evidence = '<div data-reveal="1" data-m="head" style="margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #dcdee3;padding-top:32px">\n'
     + '      <div style="display:flex;gap:16px 48px;flex-wrap:wrap">\n'
-    + homeProjects.map((p) => `        <a href="work.html#${esc(p.slug)}" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">${esc(p.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">${p.evidences ? 'Evidences: ' + esc(p.evidences) : 'Case study'}</span></a>`).join('\n')
+    + homeProjects.map((p) => `        <a href="work-${esc(p.slug)}.html" style="display:flex;flex-direction:column;gap:6px;color:#16161a"><span style="font-size:22px;font-weight:600;letter-spacing:-0.02em">${esc(p.name)}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">${p.evidences ? 'Evidences: ' + esc(p.evidences) : 'Case study'}</span></a>`).join('\n')
     + '\n      </div>\n'
     + '      <a href="work.html" style="font-family:\'JetBrains Mono\',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">View all projects</span><span>→</span></a>\n'
     + '    </div>';
@@ -401,7 +422,7 @@ const main = async () => {
           <p style="margin:0;font-size:17px;line-height:1.4;color:#3a3b41;max-width:620px">${esc(s.desc)}</p>
           <div style="margin-top:28px;border-top:1px solid #16161a">
 ${spec('Timeline', `<span style="font-weight:600;text-transform:uppercase">${esc(s.priceNote)}</span>`)}
-${spec('Evidence', `<span style="font-weight:600;text-transform:uppercase"><a href="work.html#${esc(s.projectSlug)}" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">${esc(s.project)}</a></span>`)}
+${spec('Evidence', `<span style="font-weight:600;text-transform:uppercase"><a href="work-${esc(s.projectSlug)}.html" style="border-bottom:2px solid #ff7a12;padding-bottom:2px">${esc(s.project)}</a></span>`)}
 ${spec('Credit', `<span style="color:#3a3b41">${esc(s.credit)}</span>`)}
             <div data-m="spec" style="display:grid;grid-template-columns:140px 1fr;gap:16px;padding:14px 0;font-size:14px;line-height:1.35"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73;letter-spacing:0.04em;text-transform:uppercase">You get</span>
               <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 24px">
@@ -429,12 +450,14 @@ ${s.deliverables.map((d, j) => `                <li style="display:flex;gap:10px
   await writeFile(ABOUT_OUT, about, 'utf8');
   await writeFile(SERVICES_OUT, servicesPage, 'utf8');
   await writeFile(CONTACT_OUT, contact, 'utf8');
+  for (const cp of casePages) await writeFile(caseOut(cp.slug), cp.page, 'utf8');
   console.log(`studio/index.html written — ${(out.length / 1024).toFixed(0)} KB, 0 unresolved bindings`);
   console.log(`studio/assets/dc-template.js written — ${(template.length / 1024).toFixed(0)} KB of template`);
   console.log(`studio/work.html written — ${(work.length / 1024).toFixed(0)} KB, ${projects.length} projects: ${projects.map((p) => p.name).join(', ')}`);
   console.log(`studio/about.html written — ${(about.length / 1024).toFixed(0)} KB, evidence: ${homeProjects.map((p) => p.name).join(', ')}`);
   console.log(`studio/services.html written — ${(servicesPage.length / 1024).toFixed(0)} KB, steps: ${services.map((s) => s.name + ' ' + s.price).join(', ')}`);
   console.log(`studio/contact.html written — ${(contact.length / 1024).toFixed(0)} KB`);
+  for (const cp of casePages) console.log(`studio/work-${cp.slug}.html written — ${(cp.page.length / 1024).toFixed(0)} KB, about ${cp.words} words live`);
 };
 
 main().catch((e) => { console.error('build-studio failed:', e.message); process.exit(1); });
