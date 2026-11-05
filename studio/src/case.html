@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/work-__SLUG__.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:title" content="__TITLE__">
+<meta property="og:description" content="__DESC__">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/__IMAGE__">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work-__SLUG__.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!--#studio-css-->
+<style>
+/* The case study page: one structure for every project (header · problem · found ·
+   changed · build · results · quote · next step). Anything the record cannot fill is
+   a [data-tbc] note: hidden on the live page, shown under ?review=1 with a dashed
+   edge, the same convention as the corporate site. */
+.cs-spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 32px;border-top:1px solid #16161a}
+.cs-spec>div{padding:14px 0;border-bottom:1px solid #dcdee3}
+.cs-spec dt{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase;margin:0 0 6px}
+.cs-spec dd{margin:0;font-size:15px;line-height:1.4;font-weight:600}
+.cs-list{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.cs-list>li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.18);font-size:clamp(18px,1.5vw,22px);line-height:1.35;letter-spacing:-0.01em}
+.cs-list>li>span:first-child{font-family:'JetBrains Mono',monospace;font-size:13px;color:#6a6b73;padding-top:6px}
+.cs-dec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.cs-dec>div{background:#fff;color:#16161a;padding:28px 28px 32px;border-top:4px solid #ff1f7a;display:grid;gap:14px;align-content:start}
+.cs-dec>div:nth-child(even){border-top-color:#ff7a12}
+.cs-dec .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase}
+.cs-dec .d{font-size:clamp(19px,1.5vw,23px);line-height:1.25;letter-spacing:-0.02em;font-weight:600}
+.cs-dec .w{margin:0;font-size:15px;line-height:1.45;color:#3a3b41}
+.cs-screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}
+.cs-screens figure{margin:0;display:grid;gap:12px}
+.cs-screens .frame{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:4px;background:#dcdee3}
+.cs-screens img{width:100%;height:100%;object-fit:cover;display:block}
+.cs-screens .tag{position:absolute;left:12px;top:12px;background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;padding:6px 10px;text-transform:uppercase}
+.cs-screens figcaption{font-size:14px;line-height:1.45;color:#c9cad1}
+.cs-num{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.cs-num>div{border-top:1px solid rgba(255,255,255,.25);padding-top:18px}
+.cs-num .n{font-size:clamp(44px,5vw,88px);line-height:.95;letter-spacing:-0.045em;font-weight:600;color:#ff1f7a}
+.cs-num .l{margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1;max-width:34ch}
+.cs-plain{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.cs-plain li{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.45}
+.cs-plain li::before{content:'+';font-family:'JetBrains Mono',monospace;color:#ff7a12;flex:none}
+.cs-quote{font-size:clamp(24px,2.4vw,38px);line-height:1.2;letter-spacing:-0.03em;font-weight:600;margin:0;max-width:26ch}
+[data-tbc]{display:none}
+.review [data-tbc]{display:block;border:1px dashed #ff7a12;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:#8a4a12;background:rgba(255,122,18,.06)}
+.review [data-tbc]::before{content:'TBC · ';font-weight:700}
+@media (max-width:900px){.cs-dec,.cs-screens{grid-template-columns:1fr}.cs-list>li{grid-template-columns:36px 1fr;gap:10px}}
+</style>
+</head>
+<body>
+
+<a class="dc-skip" href="#case">Skip to content</a>
+
+<!--#header-->
+<!--#drawer-->
+
+<main id="main" data-motion="running">
+<div style="position:relative;overflow:hidden">
+<!--#case-->
+</div>
+
+<!-- the closing band is the last section inside main on the homepage too -->
+<!--#contact-->
+</main>
+
+<!--#sibling-js-->
+<script>if(/[?&]review=1/.test(location.search))document.documentElement.classList.add('review');</script>
+</body></html>

@@ -9,8 +9,10 @@
 | `src/about.html` | The authored About page — its own content plus the same slots. **Edit this.** |
 | `src/services.html` | The authored Services page — its own content plus the same slots; the four steps are filled from the homepage ladder. **Edit this.** |
 | `src/contact.html` | The authored Contact page — the enquiry form, direct details, the same slots. **Edit this.** |
+| `src/case.html` · `src/cases.json` | The case study page template and the six records it is built from — one page per project at `work-<slug>.html`, in the structure header · problem · found · changed · build · results · quote · next step. **Edit the JSON.** |
 | `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |
 | `work.html` | Generated. The listing page. No runtime, no `{{ }}`. |
+| `work-<slug>.html` ×6 | Generated. One case study per record in `src/cases.json` (`tools/build-studio-case.mjs` renders the body). Anything the record cannot fill is a `[data-tbc]` note, hidden live and shown under `?review=1`. |
 | `about.html` | Generated. The About page. No runtime, no `{{ }}`. |
 | `services.html` | Generated. The Services page. No runtime, no `{{ }}`. |
 | `contact.html` | Generated. The Contact page. No runtime, no `{{ }}`. |
@@ -151,7 +153,8 @@ then has slots of its own:
 
 | page | slot | filled with |
 |---|---|---|
-| `work.html` | `<!--#cards-->` | one card per project: the three homepage carousel projects plus the `extra-projects` JSON in its source |
+| `work.html` | `<!--#cards-->` | one card per record in `src/cases.json` — the after screen, the client (or anonymised description), the service evidenced, the one-line result, linking to `work-<slug>.html`; the build fails if a homepage carousel project has no record |
+| `work-<slug>.html` | `<!--#case-->` | the eight sections of the case study, rendered from its record |
 | `about.html` | `<!--#evidence-->` | the three homepage projects and the service each one evidences, linking to their cards on `work.html` |
 | `services.html` | `<!--#ladder-->` | the four steps as a jump list, name · duration · price |
 | `services.html` | `<!--#services-->` | the four steps in full — badge, price, description, timeline, evidence (linking to the project on `work.html`), credit, deliverables, call to action — read out of the homepage's rendered ladder panels, so they cannot drift from it |
@@ -168,7 +171,7 @@ if the homepage ladder renders anything other than four steps.
 | "Book a teardown" — header pill, hero, ladder steps, closing band, About, Services | `contact.html#teardown` (each ladder step: its own anchor, `#refresh`, `#web`, `#embedded`) |
 | "Discuss your project", "Not sure where to start?" | `contact.html#not-sure` |
 | Menu: Work · Services · About · Why us · Contact | `work.html` · `services.html` · `about.html` · `index.html#why` · `contact.html` |
-| "View all projects", "See the work", "Explore project" | `work.html`, `work.html#<project>` |
+| "View all projects", "See the work", "Read the case study" | `work.html`, `work-<project>.html` |
 | "See the services", "See every service", "→ See the ladder" | `services.html`, `index.html#services` |
 | "GEM Information Systems", "The company story" | the corporate site |
 

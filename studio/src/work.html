@@ -136,38 +136,7 @@
 
 <!--#sibling-js-->
 
-<!-- The projects this page shows beyond the three on the homepage carousel.
-     The homepage three are lifted straight out of its rendered carousel by
-     tools/build-studio.mjs, so they cannot drift from it. Everything below is
-     real content already in this repository — see CONTENT-TODO.md for where
-     each field came from and what still needs confirming. -->
-<script type="application/json" id="extra-projects">
-[
-  {
-    "slug": "rentflow",
-    "name": "RentFlow",
-    "desc": "Property and rent management — bills, insights and payments with an AI assistant on call.",
-    "img": "assets/shotRentflow.jpg",
-    "evidences": "Embedded Designer",
-    "source": "named in the services ladder as the evidence for Embedded Designer; description from case-studies.html"
-  },
-  {
-    "slug": "nuracoach",
-    "name": "NuraCoach",
-    "desc": "AI coaching companion — guidance that reads like a conversation, not a report.",
-    "img": "assets/shotNura.jpg",
-    "evidences": null,
-    "source": "named in the studio's own shots data; description from case-studies.html"
-  },
-  {
-    "slug": "lungelo",
-    "name": "Lungelo",
-    "desc": "Multilingual field-work app — forms and sign-in in eight South African languages.",
-    "img": "assets/lungelo.jpg",
-    "evidences": null,
-    "source": "named in the studio's own shots data; description from case-studies.html"
-  }
-]
-</script>
+<!-- Every card on this page comes from studio/src/cases.json, the same record that
+     builds each project's own page (studio/work-<slug>.html). Edit that file. -->
 
 </body></html>
