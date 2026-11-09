@@ -1,4 +1,5 @@
-import { chromium } from '/opt/node22/lib/node_modules/playwright/index.js';
+import pw from '/opt/node22/lib/node_modules/playwright/index.js';
+const { chromium } = pw.default ?? pw;
 (async () => {
   const browser = await chromium.launch({ executablePath: process.env.CHROME || chromium.executablePath() });
   const B = new URL('./', import.meta.url).pathname;

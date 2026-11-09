@@ -136,64 +136,36 @@ The studio's other accents — `#ff7a12` on `#f5f6f8` at 2.41:1, `#9a9ba3` on
 white at 2.76:1 — are small print rather than controls, and have no
 hue-preserving fix either. See `qa/REPORT.md`.
 
-### 10. The studio work page (`studio/work.html`) ⚠️
+### 10. The studio work page (`studio/work.html`) and the case studies
 
-The page lists **six projects**, every one of them already in this repository —
-nothing was invented and the grid was not padded.
+The studio now shows GEMIS's **real projects** — the six client stories the
+corporate site carries (SBS Waterproofing, HomeAssist, WasteMart, Trans Hex
+Group, Sonke Gender Justice, Tore's Foundation) plus ManaGEM, the product —
+each with its own page, `studio/work-<slug>.html`, built from
+`studio/src/cases.json`. FINOS, RentFlow, NuraCoach and Lungelo are gone (the
+owner's instruction, 2026-11-09: they were not GEMIS's own projects).
 
-| project | name from | description from | image | evidences |
-|---|---|---|---|---|
-| ManaGem | studio carousel | studio carousel | `studio/assets/managem.jpg` | Interface Refresh Sprint |
-| WasteMart | studio carousel | studio carousel | `studio/assets/wastemart.jpg` | Product Teardown |
-| FINOS | studio carousel | studio carousel | `studio/assets/finosWide.jpg` | Web Experience |
-| RentFlow | services ladder | `case-studies.html` | `studio/assets/shotRentflow.jpg` | Embedded Designer |
-| NuraCoach | studio `shots` data | `case-studies.html` | `studio/assets/shotNura.jpg` | none named yet |
-| Lungelo | studio `shots` data | `case-studies.html` | `studio/assets/lungelo.jpg` | none named yet |
+Every line on those pages comes from `scripts/cases.py`, `scripts/stories.py`,
+`scripts/facts.md` and `scripts/endorsements.md`. The thumbnails are
+`studio/assets/cases/<slug>.jpg`, rendered by `tools/studio-thumbs.mjs` from the
+app windows and phones cut from the case-study videos (`assets/img/ui/`,
+sample data) mounted in a laptop and a phone — no invented screens.
 
-Two things to settle:
+Still to settle:
 
-1. **NuraCoach and Lungelo evidence nothing yet.** Their cards carry no
-   "Evidences:" line (the old `[PLACEHOLDER]` text is gone from the live page).
-   The homepage line — "Every case study evidences a named service — never the
-   studio in general" — is the page's own standard, so these two do not meet it
-   until someone names their service in `studio/src/work.html`.
-2. **Project detail pages exist now** (`studio/work-<slug>.html`, built from
-   `studio/src/cases.json`): every "Read the case study" link on the homepage
-   carousel, the Work grid, the About evidence strip and the Services steps
-   lands on one. WasteMart and ManaGEM are filled from `scripts/cases.py` and
-   `scripts/facts.md`; FINOS, RentFlow, NuraCoach and Lungelo carry only what
-   the repository holds, with the missing sections shown as `?review=1` notes.
-   Each page's NDA level (full · anonymised · results-only) is assumed Full and
-   must be agreed with the client in writing — flip `ndaAgreed` in the JSON.
-
-Settled: FINOS now evidences *Web Experience* everywhere, matching the services
-ladder (RentFlow evidences *Embedded Designer*), and Lungelo's image has moved
-under `studio/assets/` with the others.
-
-The three **NuraCoach / Lungelo / RentFlow** descriptions come from
-`case-studies.html`, which is corporate copy about the same products. Confirm the
-studio is happy to describe them that way.
-
-### 12. The studio About page (`studio/about.html`) ⚠️
-
-Built from copy already in the repository — nothing new was written. Three
-blocks come from `assets/js/studio-content.js`, where they are marked **DRAFT —
-owner approval pending**, and they stay provisional here:
-
-| block on the page | source |
-|---|---|
-| "Every engagement is led by a senior product designer…" (What we are) | `leadership.statement` |
-| The four disciplines and "Sized to the work — never a bench you're paying for." (The people) | `staffing` |
-| The eight specialism chips (The people) | `leadership.specialisms` |
-| "How we find out" and "What you receive" lists (Instruments) | `instruments.methods`, `instruments.delivery` |
-
-Each is marked in `studio/src/about.html` with a `<!-- CONTENT-TODO -->` comment.
-Everything else is lifted from the live homepage, the services ladder, or the
-corporate site: the mission line and the four values are the corporate homepage's
-own, and the 2014
-timeline and the six-person team are the corporate `about.html`'s. No street
-address is shown anywhere on the studio pages any more. Edit
-`studio/src/about.html`, then run `node tools/build-studio.mjs`.
+1. **Which service each project evidences.** WasteMart → Product Teardown and
+   ManaGEM → Interface Refresh Sprint stand as before. SBS Waterproofing →
+   Web Experience rests on the 2014 website and campaign work; HomeAssist →
+   Embedded Designer rests on the ten-year design-and-support relationship.
+   Both are flagged on their pages under `?review=1` — confirm or change them in
+   `studio/src/index.html` (the ladder's `evidence:` lines) and `cases.json`.
+   Trans Hex, Sonke and Tore's Foundation evidence no named service yet.
+2. **The NDA level per client** (full · anonymised · results-only) is assumed
+   Full, because the names and screens are already public on the corporate
+   site. Agree it in writing and flip `ndaAgreed` in the JSON.
+3. **Quotations**: Ryan Smith (SBS Waterproofing) and Keshan Patel
+   (HomeAssist) appear, copied exactly from `scripts/endorsements.md`. Nazier
+   Mathinus (WasteMart) is still outstanding; the other pages have none.
 
 ### 11. Done — no longer outstanding
 

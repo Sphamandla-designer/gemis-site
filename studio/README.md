@@ -9,10 +9,11 @@
 | `src/about.html` | The authored About page — its own content plus the same slots. **Edit this.** |
 | `src/services.html` | The authored Services page — its own content plus the same slots; the four steps are filled from the homepage ladder. **Edit this.** |
 | `src/contact.html` | The authored Contact page — the enquiry form, direct details, the same slots. **Edit this.** |
-| `src/case.html` · `src/cases.json` | The case study page template and the six records it is built from — one page per project at `work-<slug>.html`, in the structure header · problem · found · changed · build · results · quote · next step. **Edit the JSON.** |
+| `src/thumbs.html` → `assets/cases/<slug>.jpg` | The case thumbnails: the app windows and phones cut from the case-study videos (`../assets/img/ui/`) mounted in a laptop and a phone on a studio backdrop. `node tools/studio-thumbs.mjs` renders them. |
+| `src/case.html` · `src/cases.json` | The case study page template and the seven records it is built from — GEMIS's six client stories and ManaGEM, sourced from `scripts/cases.py`, `scripts/facts.md` and `scripts/endorsements.md` — one page per project at `work-<slug>.html`, in the structure header · problem · found · changed · build · results · quote · next step. **Edit the JSON.** |
 | `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |
 | `work.html` | Generated. The listing page. No runtime, no `{{ }}`. |
-| `work-<slug>.html` ×6 | Generated. One case study per record in `src/cases.json` (`tools/build-studio-case.mjs` renders the body). Anything the record cannot fill is a `[data-tbc]` note, hidden live and shown under `?review=1`. |
+| `work-<slug>.html` ×7 | Generated. One case study per record in `src/cases.json` (`tools/build-studio-case.mjs` renders the body). Anything the record cannot fill is a `[data-tbc]` note, hidden live and shown under `?review=1`. |
 | `about.html` | Generated. The About page. No runtime, no `{{ }}`. |
 | `services.html` | Generated. The Services page. No runtime, no `{{ }}`. |
 | `contact.html` | Generated. The Contact page. No runtime, no `{{ }}`. |

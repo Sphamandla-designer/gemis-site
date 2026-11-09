@@ -28,7 +28,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 
 | Generated | Source | Rebuild with |
 |---|---|---|
-| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/work-<slug>.html` ×6, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html`, `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
+| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/work-<slug>.html` ×7, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html`, `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
 | the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections of the owner's reference design, see **The home page**) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9 | `scripts/solutions.py` (all page copy, evidence, FAQs, section order; every claim sourced in `docs/SOLUTIONS-EVIDENCE.md`) rendered by `scripts/build-solutions.py` | `python3 scripts/build-services.py` (calls it) |
 | `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
@@ -36,7 +36,8 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
 | the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
 | `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
-| `gemis-studio-standalone.html` | the eleven studio pages (the five plus the six case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
+| `gemis-studio-standalone.html` | the twelve studio pages (the five plus the seven case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
+| `studio/assets/cases/<slug>.jpg` ×7 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone) | `node tools/studio-thumbs.mjs` |
 | `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
 Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
