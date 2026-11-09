@@ -5,16 +5,17 @@
 <meta name="robots" content="noindex">
 <!--
   One scene per case study. tools/studio-thumbs.mjs screenshots each .scene into
-  studio/assets/cases/<slug>.jpg (1400 × 963, the Work card's 16:11). The screens are
-  the app windows and phones cut from the GEMIS case-study videos
-  (assets/img/ui/, sample data, marked as such inside each image) — the only real
-  product imagery in the repository — mounted in a laptop and a phone on a studio
-  backdrop. Nothing on a screen is drawn here.
+  studio/assets/cases/<slug>.jpg (1400 × 963, the Work card's 16:11). ManaGEM and
+  WasteMart are their product mockups (assets/img/work/*-mock.jpg), full bleed. The
+  other screens are the app windows and phones cut from the GEMIS case-study videos
+  (assets/img/ui/, sample data, marked as such inside each image), mounted in a
+  laptop and a phone on a studio backdrop. Nothing on a screen is drawn here.
 -->
 <style>
 html,body{margin:0;background:#222}
 .scene{position:relative;width:1400px;height:963px;overflow:hidden;font-family:system-ui,sans-serif}
 .scene .bg{position:absolute;inset:0}
+.scene .mock{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}  /* a product mockup used as the whole scene */
 .scene .facets{position:absolute;inset:-6%;background:url(../assets/heroBg.jpg) center/cover no-repeat;opacity:.18;mix-blend-mode:luminosity}
 .scene .glow{position:absolute;width:900px;height:900px;border-radius:50%;filter:blur(90px);opacity:.55}
 .scene .glow.pink{background:#ff1f7a;left:-260px;bottom:-420px}
@@ -44,10 +45,8 @@ html,body{margin:0;background:#222}
 </head>
 <body>
 
-<section class="scene teal" data-slug="wastemart">
-  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
-  <div class="laptop"><div class="screen"><img src="../../assets/img/ui/wastemart.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
-  <div class="phone"><img src="../../assets/img/ui/wastemart-phone.jpg" alt=""></div>
+<section class="scene" data-slug="wastemart">
+  <img class="mock" src="../../assets/img/work/wastemart-mock.jpg" alt="">
 </section>
 
 <section class="scene navy" data-slug="homeassist">
@@ -77,9 +76,8 @@ html,body{margin:0;background:#222}
   <div class="phone"><img src="../../assets/img/ui/tores-foundation-phone.jpg" alt=""></div>
 </section>
 
-<section class="scene light" data-slug="managem">
-  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
-  <div class="laptop" style="left:200px;width:1000px"><div class="screen"><img src="../../assets/img/ui/managem.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+<section class="scene" data-slug="managem">
+  <img class="mock" src="../../assets/img/work/managem-mock.jpg" alt="">
 </section>
 
 </body></html>
