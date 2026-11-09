@@ -16,7 +16,7 @@
       "result": "Six hours a week back, per depot",
       "resultNote": "Confirmed by the client",
       "image": "assets/cases/wastemart.jpg",
-      "imageAlt": "WasteMart: the operations dashboard on a laptop and the driver app on a phone",
+      "imageAlt": "WasteMart: the driver app on a phone — a collection stop with its workflow and the check-in action",
       "problem": [
         "A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.",
         "Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood."
@@ -34,8 +34,10 @@
         { "decision": "Alert operations the moment payment lands and put the job on the schedule automatically.", "why": "The hand-off that depended on someone remembering to tell operations is removed entirely." },
         { "decision": "One shared order record, confirmed by the driver’s scan, visible to managers and customers.", "why": "The driver’s scan closes the loop at the point of collection, so the view is current without a phone call." }
       ],
-      "screensNote": "Stills from the WasteMart case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screensNote": "The first two are the WasteMart driver app in product mockups; the rest are stills from the case study video. Both carry sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
       "screens": [
+        { "img": "../assets/img/work/wastemart-mock.jpg", "label": "Product", "caption": "The driver app — one stop at a time: the client and site, directions, and the day’s workflow from dispatch to check-out, with one action, Confirm & Check In." },
+        { "img": "../assets/img/portfolio/hero-wastemart.jpg", "label": "Product", "caption": "The same job screen in the driver’s hand — stop 1 of 9 on the truck’s route, two steps done, the next one a tap away." },
         { "img": "../assets/img/cases/wastemart/01-quote.jpg", "label": "After", "caption": "Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically." },
         { "img": "../assets/img/cases/wastemart/02-payment.jpg", "label": "After", "caption": "Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away." },
         { "img": "../assets/img/cases/wastemart/03-schedule.jpg", "label": "After", "caption": "Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule." },
@@ -384,7 +386,7 @@
       "result": "Month-end close: nine days to two",
       "resultNote": "One client’s month-end — confirmed by that client",
       "image": "assets/cases/managem.jpg",
-      "imageAlt": "ManaGEM: the dashboard on a laptop",
+      "imageAlt": "ManaGEM: the dashboard on a laptop — enquiries, quotes, sales and opportunities, the sales summary and current projects",
       "problem": [
         "ManaGEM began as the system GEMIS built for SBS Waterproofing, because the off-the-shelf apps the business tried did not fit how a contractor sells and delivers work: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way. Each step lived in a different tool, so leads were lost between them and nobody could see which jobs made money.",
         "As other companies came onto the platform, it had to serve many businesses without each one bending to it — and keep every enquiry, quote, invoice, project, stock level and staff record in one place."
@@ -402,8 +404,11 @@
         { "decision": "Hold the costs with the sale and show the profit on every project.", "why": "Management decisions should come from live job data rather than a reconstruction at year-end." },
         { "decision": "Design around a real pipeline, but general enough to serve other businesses.", "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite." }
       ],
-      "screensNote": "Stills from the ManaGEM video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one ManaGEM delivers. Before-and-after screens of the 2026 redesign are not yet in the record.",
+      "screensNote": "The first three are ManaGEM in product mockups; the rest are stills from the ManaGEM video. Both carry sample data, not screen recordings of a client’s system; every capability shown is one ManaGEM delivers. Before-and-after screens of the 2026 redesign are not yet in the record.",
       "screens": [
+        { "img": "../assets/img/work/managem-mock.jpg", "label": "Product", "caption": "The dashboard — enquiries, quotes, sales and opportunities at the top, the twelve-month sales summary, and the current projects with their status." },
+        { "img": "../assets/img/shots/managem-desk.jpg", "label": "Product", "caption": "The same dashboard on a desk — the modules down the left: customers, sales, invoices, inspection reports, products and pricing, projects, factory and stock." },
+        { "img": "../assets/img/proto/managem-poster.jpg", "label": "Product", "caption": "Sign in — “Run your business with clarity”: customers, sales and projects; stock, factory and debtors; reports, staff and multi-company." },
         { "img": "../assets/img/cases/managem/01-pipeline.jpg", "label": "After", "caption": "From enquiry to sale — capture every enquiry and follow it to the sale, with SMS and email updates for the customer." },
         { "img": "../assets/img/cases/managem/02-quotes.jpg", "label": "After", "caption": "Quotes that close — quotes go out in a few clicks, customers accept online, and deposit invoices follow automatically." },
         { "img": "../assets/img/cases/managem/03-profit.jpg", "label": "After", "caption": "Know what every job earns — track every project and see the profit on each job." },
