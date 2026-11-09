@@ -1,5 +1,5 @@
 {
-  "_about": "One record per studio case study → studio/work-<slug>.html, built by tools/build-studio.mjs. Every line is sourced: scripts/cases.py and scripts/facts.md for WasteMart and ManaGEM, the studio's own carousel and work page for the rest. Nothing is invented. A field the record cannot fill is null, and the page shows a review-only note (?review=1) in its place. 'nda' is the level to agree with the client in writing before publishing: full | anonymised | results-only; 'ndaAgreed' flips to true once that is in writing.",
+  "_about": "One record per studio case study → studio/work-<slug>.html, built by tools/build-studio.mjs. These are GEMIS's real projects — the six client stories in scripts/cases.py / scripts/stories.py, plus ManaGEM, the product — and every line is sourced from those records, scripts/facts.md (confirmed metrics) and scripts/endorsements.md (approved quotations, copied exactly). Nothing is invented. A field the record cannot fill is null, and the page shows a review-only note (?review=1) in its place. Thumbnails are studio/assets/cases/<slug>.jpg, rendered by tools/studio-thumbs.mjs from the app windows and phones cut from the case-study videos. 'nda' is the level to agree with the client in writing before publishing: full | anonymised | results-only; 'ndaAgreed' flips to true once that is in writing.",
   "cases": [
     {
       "slug": "wastemart",
@@ -15,8 +15,8 @@
       "builtBy": "GEMIS developers",
       "result": "Six hours a week back, per depot",
       "resultNote": "Confirmed by the client",
-      "image": "assets/wastemart.jpg",
-      "imageAlt": "WasteMart: the operations view and the driver app",
+      "image": "assets/cases/wastemart.jpg",
+      "imageAlt": "WasteMart: the operations dashboard on a laptop and the driver app on a phone",
       "problem": [
         "A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.",
         "Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood."
@@ -29,52 +29,21 @@
         "Nobody, including the customer, could see where an order stood."
       ],
       "changes": [
-        {
-          "decision": "Price the quote automatically from the service picked, with standard terms and conditions attached every time.",
-          "why": "A quote that cannot go out without its terms removes a class of errors and most of the time spent building it."
-        },
-        {
-          "decision": "Send a secure payment link with the quote, and let payment itself trigger the next step.",
-          "why": "When payment drives the schedule there is nothing to chase and nothing to remember."
-        },
-        {
-          "decision": "Alert operations the moment payment lands and put the job on the schedule automatically.",
-          "why": "The hand-off that depended on someone remembering to tell operations is removed entirely."
-        },
-        {
-          "decision": "One shared order record, confirmed by the driver’s scan, visible to managers and customers.",
-          "why": "The driver’s scan closes the loop at the point of collection, so the view is current without a phone call."
-        }
+        { "decision": "Price the quote automatically from the service picked, with standard terms and conditions attached every time.", "why": "A quote that cannot go out without its terms removes a class of errors and most of the time spent building it." },
+        { "decision": "Send a secure payment link with the quote, and let payment itself trigger the next step.", "why": "When payment drives the schedule there is nothing to chase and nothing to remember." },
+        { "decision": "Alert operations the moment payment lands and put the job on the schedule automatically.", "why": "The hand-off that depended on someone remembering to tell operations is removed entirely." },
+        { "decision": "One shared order record, confirmed by the driver’s scan, visible to managers and customers.", "why": "The driver’s scan closes the loop at the point of collection, so the view is current without a phone call." }
       ],
-      "screensNote": "Stills from the WasteMart case study video. The interfaces are illustrated for the video, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screensNote": "Stills from the WasteMart case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
       "screens": [
-        {
-          "img": "../assets/img/cases/wastemart/01-quote.jpg",
-          "label": "After",
-          "caption": "Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically."
-        },
-        {
-          "img": "../assets/img/cases/wastemart/02-payment.jpg",
-          "label": "After",
-          "caption": "Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away."
-        },
-        {
-          "img": "../assets/img/cases/wastemart/03-schedule.jpg",
-          "label": "After",
-          "caption": "Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule."
-        },
-        {
-          "img": "../assets/img/cases/wastemart/04-collection.jpg",
-          "label": "After",
-          "caption": "Planned, collected, confirmed — planners assign the truck and driver, and the driver confirms the collection with a scan."
-        }
+        { "img": "../assets/img/cases/wastemart/01-quote.jpg", "label": "After", "caption": "Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically." },
+        { "img": "../assets/img/cases/wastemart/02-payment.jpg", "label": "After", "caption": "Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away." },
+        { "img": "../assets/img/cases/wastemart/03-schedule.jpg", "label": "After", "caption": "Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule." },
+        { "img": "../assets/img/cases/wastemart/04-collection.jpg", "label": "After", "caption": "Planned, collected, confirmed — planners assign the truck and driver, and the driver confirms the collection with a scan." }
       ],
       "build": "Designed and built by GEMIS’s own developers, under one roof, and supported by the same team since: quoting, payment links, scheduling, the driver app and order tracking are one system, not a design file handed to a third party. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
       "resultsNumbers": [
-        {
-          "n": "6 h",
-          "l": "a week back, per depot — confirmed by the client"
-        }
+        { "n": "6 h", "l": "a week back, per depot — confirmed by the client" }
       ],
       "resultsQualitative": [
         "A system that has grown with WasteMart for more than ten years.",
@@ -88,25 +57,323 @@
       "resultsNotRecorded": "Formal usability testing and user-acceptance records are not in the repository, so none are claimed.",
       "quote": null,
       "quoteTbc": "A quotation from Nazier Mathinus, WasteMart, is not yet approved (endorsement-nazier-line).",
-      "cta": {
-        "label": "Evidences the Product Teardown. Book yours",
-        "href": "contact.html#teardown"
-      },
+      "cta": { "label": "Evidences the Product Teardown. Book yours", "href": "contact.html#teardown" },
       "tbc": [
-        "NDA level to agree in writing: the name, screens and metric are already published on the site, so Full is assumed until confirmed.",
+        "NDA level to agree in writing: the name, screens and metric are already published on the corporate site, so Full is assumed until confirmed.",
         "Before screens: not in the record (then-now-screenshots)."
       ],
-      "sources": [
-        "scripts/cases.py — CASES['wastemart'] and DETAIL['wastemart']",
-        "scripts/facts.md — the six-hours metric, confirmed by the client",
-        "assets/img/cases/wastemart — stills from the case study video"
-      ]
+      "sources": ["scripts/cases.py — CASES['wastemart'] and DETAIL['wastemart']", "scripts/facts.md — the six-hours metric, confirmed by the client", "assets/img/cases/wastemart and assets/img/ui — stills and cuts from the case study video"]
+    },
+    {
+      "slug": "sbs-waterproofing",
+      "name": "SBS Waterproofing",
+      "nda": "full",
+      "ndaAgreed": false,
+      "client": "SBS Waterproofing",
+      "anonymised": "A Cape Town waterproofing and roofing contractor",
+      "industry": "Construction services — waterproofing and roofing",
+      "service": "Web Experience",
+      "serviceId": "web",
+      "timeline": "Website and Google campaigns from 2014; the business system from 2015, extended since",
+      "builtBy": "GEMIS developers",
+      "result": "Still running the business on the system GEMIS built, more than ten years on",
+      "resultNote": "As stated in the case study",
+      "image": "assets/cases/sbs-waterproofing.jpg",
+      "imageAlt": "SBS Waterproofing: the enquiry-to-project system on a laptop",
+      "problem": [
+        "SBS Waterproofing keeps Cape Town’s roofs and walls dry. After GEMIS built its website and helped run its Google campaigns in 2014, enquiries started arriving faster than the business could keep track of them.",
+        "The off-the-shelf apps SBS tried did not fit the way a waterproofing contractor works: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way. Each step lived in a different tool, so leads were lost between them and nobody could see which jobs made money."
+      ],
+      "findingsNote": "There is no research report in the record for this project. The system was designed from how SBS already worked, and these are the facts that shaped the brief.",
+      "findings": [
+        "Enquiries were arriving faster than anyone could keep track of them.",
+        "After a quote was accepted, the deposit and the accounting entry depended on someone remembering to raise them.",
+        "Nobody could see which jobs made money.",
+        "A generic package would have forced SBS to work the package’s way."
+      ],
+      "changes": [
+        { "decision": "Make the enquiry the root record, captured once, with an SMS reference sent to the customer immediately.", "why": "A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call." },
+        { "decision": "Online quote acceptance raises the deposit invoice automatically and posts it into the accounting system.", "why": "The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start." },
+        { "decision": "Hold the costs with the sale and show the profit on every project.", "why": "Management decisions should come from live job data rather than a reconstruction at year-end." },
+        { "decision": "Design the system around SBS’s own pipeline, but general enough to serve other businesses.", "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite." }
+      ],
+      "screensNote": "Stills from the SBS Waterproofing case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screens": [
+        { "img": "../assets/img/cases/sbs-waterproofing/01-enquiry.jpg", "label": "After", "caption": "Every enquiry, tracked — captured once, and the customer receives an SMS with a reference number straight away." },
+        { "img": "../assets/img/cases/sbs-waterproofing/02-pipeline.jpg", "label": "After", "caption": "From first call to the sale — new, contacted, site visit, quoted, won: every call, email and appointment on the enquiry." },
+        { "img": "../assets/img/cases/sbs-waterproofing/03-deposit.jpg", "label": "After", "caption": "Quote. Accept. Deposit. — when the customer accepts online, the deposit invoice follows automatically into accounting." },
+        { "img": "../assets/img/cases/sbs-waterproofing/04-profit.jpg", "label": "After", "caption": "Profit, job by job — every project shows whether it made money, because the system holds the costs as well as the sale." }
+      ],
+      "build": "GEMIS built the website and ran the Google campaigns first (2014), then designed and built the business system (2015) with its own developers, and has extended and supported it since — the same team on the website and on the system. The design was general enough that it later became ManaGEM. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
+      "resultsNumbers": [],
+      "resultsQualitative": [
+        "More than ten years on, SBS still runs its business on the system GEMIS built.",
+        "SBS has grown many times over since the system went live (as stated in the case study).",
+        "The system became the foundation of ManaGEM, which about a dozen companies run on today."
+      ],
+      "resultsDesignedFor": [
+        "No enquiry lost between tools; every lead followed through to a decision",
+        "Less office time spent on quotes, deposits and chasing paperwork",
+        "Management decisions made on profit per job rather than on turnover alone"
+      ],
+      "resultsNotRecorded": "No figure is published for this project: formal usability testing or user-acceptance records are not in the repository, so none are claimed.",
+      "quote": { "text": "By launching an online advertising campaign, we effectively doubled our turnover within 1 year. Since GEMIS created our new website, we're barely able to keep up with all the enquiries.", "person": "Ryan Smith", "role": "SBS Waterproofing" },
+      "quoteTbc": null,
+      "cta": { "label": "Evidences the Web Experience. Start with a teardown", "href": "contact.html#web" },
+      "tbc": [
+        "Service evidenced: the Web Experience mapping rests on the 2014 website and campaign work in the record — confirm it.",
+        "NDA level to agree in writing: the name, screens and quotation are already published on the corporate site, so Full is assumed until confirmed.",
+        "Before screens: not in the record (then-now-screenshots)."
+      ],
+      "sources": ["scripts/cases.py — CASES['sbs-waterproofing'] and DETAIL['sbs-waterproofing']", "scripts/stories.py — the story record", "scripts/endorsements.md — Ryan Smith’s quotation, copied exactly", "assets/img/cases/sbs-waterproofing and assets/img/ui — stills and cuts from the case study video"]
+    },
+    {
+      "slug": "homeassist",
+      "name": "HomeAssist",
+      "nda": "full",
+      "ndaAgreed": false,
+      "client": "HomeAssist",
+      "anonymised": "A national plumbing-claims operation",
+      "industry": "Insurance and home services — plumbing repairs",
+      "service": "Embedded Designer",
+      "serviceId": "embedded",
+      "timeline": "Client since 2014; the system in use for more than ten years",
+      "builtBy": "GEMIS developers",
+      "result": "Every job across the country visible in one place, from first report to sign-off",
+      "resultNote": "As stated in the case study",
+      "image": "assets/cases/homeassist.jpg",
+      "imageAlt": "HomeAssist: the national job dashboard on a laptop and the plumber app on a phone",
+      "problem": [
+        "A burst geyser is urgent for the homeowner, a claim for the insurer, and a dispatch problem for HomeAssist, which works with a national panel of plumbers. Each party needed something different: the homeowner wanted to report the problem in minutes and then know what was happening; the insurer needed the claim logged and the warranty position checked; the plumber needed to prove that each step of the repair met SANS standards; and HomeAssist needed to see every job in the country without phoning around.",
+        "Handled by phone and email, those needs pulled in different directions: updates meant calls, evidence meant paperwork, and warranty checks meant waiting on manufacturers."
+      ],
+      "findingsNote": "The record holds no research report for this project. The findings are the four parties a burst geyser involves and what each needed, as the case study states them.",
+      "findings": [
+        "Homeowners and insurers reported the same problem through different channels.",
+        "Assigning a plumber from a national panel meant phoning around.",
+        "SANS compliance had to be proved after the fact, from paperwork.",
+        "Warranty positions and claim updates meant waiting on manufacturers and insurers."
+      ],
+      "changes": [
+        { "decision": "One job record with two ways in: the homeowner reports online, or the insurer logs the claim.", "why": "Every party then works from the same job rather than reconciling two versions of it by phone and email." },
+        { "decision": "Assign the next available plumber near the job automatically.", "why": "Dispatch by proximity and availability is faster than any phone round, and it does not wait on a person." },
+        { "decision": "The plumber’s app captures a photograph at each step of the repair.", "why": "Evidence captured where the work happens is complete and dated; evidence reconstructed afterwards is neither." },
+        { "decision": "Link the system directly to insurers and manufacturers.", "why": "The checks that used to be a phone call become part of the job’s own record, and the claim stays current." }
+      ],
+      "screensNote": "Stills from the HomeAssist case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screens": [
+        { "img": "../assets/img/cases/homeassist/01-intake.jpg", "label": "After", "caption": "Two ways in. One system. — the homeowner reports online in minutes, or the insurer logs the claim; either way the job lands in one place." },
+        { "img": "../assets/img/cases/homeassist/02-dispatch.jpg", "label": "After", "caption": "The nearest available plumber, found automatically — from a national panel, without a phone call." },
+        { "img": "../assets/img/cases/homeassist/04-evidence.jpg", "label": "After", "caption": "Photo proof of SANS compliance — on site, the plumber photographs the work as each step is done." },
+        { "img": "../assets/img/cases/homeassist/06-overview.jpg", "label": "After", "caption": "Every job, nationwide, in one view — from first report to sign-off." }
+      ],
+      "build": "Designed and built by GEMIS’s own developers — the intake, the dispatch, the customer messaging, the plumber app and the insurer and manufacturer links are one system — and supported by the same team for more than ten years. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
+      "resultsNumbers": [],
+      "resultsQualitative": [
+        "GEMIS and HomeAssist have worked side by side for more than ten years, and the system remains in use.",
+        "Every job across the country visible in one place, from first report to sign-off."
+      ],
+      "resultsDesignedFor": [
+        "Fewer phone calls for customers, plumbers and the office",
+        "Faster repairs, because dispatch no longer waits on a person",
+        "Compliance and warranty positions evidenced automatically"
+      ],
+      "resultsNotRecorded": "No figure is published for this project: formal usability testing, user-acceptance records and usage figures are not in the repository, so none are claimed.",
+      "quote": { "text": "The GEMIS team consistently met deadlines and delivered a solution that streamlined our operations, enhancing customer satisfaction and our market position.", "person": "Keshan Patel", "role": "CEO, HomeAssist (Pty) Ltd" },
+      "quoteTbc": null,
+      "cta": { "label": "Evidences the Embedded Designer. Start with a teardown", "href": "contact.html#embedded" },
+      "tbc": [
+        "Service evidenced: the Embedded Designer mapping rests on the ten-year design-and-support relationship in the record — confirm it, or name another service.",
+        "NDA level to agree in writing: the name, screens and quotation are already published on the corporate site, so Full is assumed until confirmed.",
+        "Before screens: not in the record (then-now-screenshots)."
+      ],
+      "sources": ["scripts/cases.py — CASES['homeassist'] and DETAIL['homeassist']", "scripts/facts.md — client since 2014", "scripts/endorsements.md — Keshan Patel’s quotation, copied exactly", "assets/img/cases/homeassist and assets/img/ui — stills and cuts from the case study video"]
+    },
+    {
+      "slug": "trans-hex",
+      "name": "Trans Hex Group",
+      "nda": "full",
+      "ndaAgreed": false,
+      "client": "Trans Hex Group",
+      "anonymised": "A diamond-mining group",
+      "industry": "Mining — diamonds",
+      "service": null,
+      "serviceId": null,
+      "timeline": "Delivered 2017; a second version followed",
+      "builtBy": "GEMIS developers",
+      "result": "A report that took weeks became available on demand",
+      "resultNote": "As stated in the case study",
+      "image": "assets/cases/trans-hex.jpg",
+      "imageAlt": "Trans Hex: the integrated management report on a laptop",
+      "problem": [
+        "Trans Hex has mined diamonds for more than fifty years. At its Baken mine on the Lower Orange River, management needed one clear view across plant, mining, finance, security and people.",
+        "That view was pieced together in Excel from several sources, including SAP. It took weeks to assemble, errors crept in along the way, and by the time it was ready the month had moved on."
+      ],
+      "findingsNote": "The record holds no research report for this project. The brief was management’s own, and these are the facts the work had to answer.",
+      "findings": [
+        "The existing information system was not reliable enough to build on.",
+        "Financial data was re-keyed from SAP into spreadsheets, and errors crept in.",
+        "A silent failure in an automated feed would only be discovered at month-end.",
+        "The management report lived outside the system, assembled by hand."
+      ],
+      "changes": [
+        { "decision": "Stabilise the company’s own system before adding anything to it.", "why": "A report is only as trustworthy as the system that holds its data; fixing the foundation first avoided building errors in." },
+        { "decision": "Automate a daily SAP feed that runs on schedule, skips duplicates and logs every run.", "why": "Loading the data once, automatically, removes the manual copy that introduced the errors." },
+        { "decision": "Email the team if any run fails.", "why": "Automation that fails loudly is safer than automation that fails quietly; a missing day is noticed the same morning." },
+        { "decision": "Build the report into the system, with filters by mine and period and export to Excel and PDF.", "why": "A report generated from the system is repeatable and current; one assembled beside it is neither." }
+      ],
+      "screensNote": "Stills from the Trans Hex case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screens": [
+        { "img": "../assets/img/cases/trans-hex/02-sap-feed.jpg", "label": "After", "caption": "SAP data, in every morning — the daily feed runs on schedule, skips duplicates, logs what it did, and emails the team if anything fails." },
+        { "img": "../assets/img/cases/trans-hex/03-budget.jpg", "label": "After", "caption": "Budget against actual — gravel treated, carats, fleet availability and cost per carat, for the month and the year to date." },
+        { "img": "../assets/img/cases/trans-hex/04-filter.jpg", "label": "After", "caption": "Any mine. Any period. — filter by mine, period or date range, then export to Excel or PDF." },
+        { "img": "../assets/img/cases/trans-hex/05-forecast.jpg", "label": "After", "caption": "Weekly. Forecast. Variance. — version two added weekly figures, forecasts, variances and live exchange rates." }
+      ],
+      "build": "GEMIS’s own developers stabilised the company’s information system, automated the SAP feed and built the reporting into it, then delivered a second version with weekly figures, forecasts, variances, live exchange rates and mine groups. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
+      "resultsNumbers": [],
+      "resultsQualitative": [
+        "A report that took weeks became available whenever it was needed (as stated in the case study).",
+        "A second version followed — evidence that the first was used and extended."
+      ],
+      "resultsDesignedFor": [
+        "Fewer errors, because the data is loaded once and checked automatically",
+        "Management decisions on current figures rather than last month’s",
+        "One view across operations rather than one spreadsheet per source"
+      ],
+      "resultsNotRecorded": "Time-saving figures beyond the case study’s own statement, and user-acceptance records, are not in the repository, so none are claimed.",
+      "quote": null,
+      "quoteTbc": "No client quotation is approved for publication.",
+      "cta": { "label": "Not sure where to start? Book a teardown", "href": "contact.html#teardown" },
+      "tbc": [
+        "The service this project evidences has not been named.",
+        "NDA level to agree in writing: the name and screens are already published on the corporate site, so Full is assumed until confirmed.",
+        "Before screens: not in the record (then-now-screenshots)."
+      ],
+      "sources": ["scripts/cases.py — CASES['trans-hex'] and DETAIL['trans-hex']", "scripts/facts.md — 2017", "assets/img/cases/trans-hex and assets/img/ui — stills and cuts from the case study video"]
+    },
+    {
+      "slug": "sonke",
+      "name": "Sonke Gender Justice",
+      "nda": "full",
+      "ndaAgreed": false,
+      "client": "Sonke Gender Justice",
+      "anonymised": "A non-profit working across forty countries",
+      "industry": "Non-profit — gender-based violence and HIV prevention",
+      "service": null,
+      "serviceId": null,
+      "timeline": "Delivered 2018",
+      "builtBy": "GEMIS developers",
+      "result": "Donor reports built from data that has already been checked",
+      "resultNote": "As stated in the case study",
+      "image": "assets/cases/sonke.jpg",
+      "imageAlt": "Sonke Gender Justice: the monitoring and evaluation dashboard on a laptop",
+      "problem": [
+        "Sonke Gender Justice works to end gender-based violence and reduce the spread of HIV in forty countries across Africa. Every day its teams run workshops, dialogues and outreach, and funders ask a hard question: what difference did it make?",
+        "Answering it meant collecting evidence from sessions held far from any office, often without signal, and then proving that the numbers in a report corresponded to real activities. The problem was both capture and credibility."
+      ],
+      "findingsNote": "The record holds no research report for this project. The findings follow the question funders ask and the conditions under which the answer has to be gathered.",
+      "findings": [
+        "Sessions happen far from any office, often without signal.",
+        "Funders need to trust that reported numbers correspond to real activities.",
+        "Country teams and leadership need different views of the same data."
+      ],
+      "changes": [
+        { "decision": "An offline-first mobile app that syncs when there is signal.", "why": "If capture depends on connectivity, the records that matter most — the remote ones — are the ones lost." },
+        { "decision": "Nothing counts until an M&E officer has checked and approved it.", "why": "An approval step between capture and counting is what makes every figure traceable to a session." },
+        { "decision": "Role-based views: each role sees what it needs, and progress against targets is live by country and programme.", "why": "One system can serve the field, the office and leadership if each sees its own slice rather than everything." }
+      ],
+      "screensNote": "Stills from the Sonke Gender Justice case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screens": [
+        { "img": "../assets/img/cases/sonke/01-capture.jpg", "label": "After", "caption": "Captured in the field. Even offline. — facilitators record each session on the mobile app; it syncs when there is signal." },
+        { "img": "../assets/img/cases/sonke/02-approve.jpg", "label": "After", "caption": "Checked once, trusted everywhere — M&E officers approve what comes in, so every number traces to a real activity." },
+        { "img": "../assets/img/cases/sonke/03-roles.jpg", "label": "After", "caption": "The right view for every role — progress against targets by country and programme." },
+        { "img": "../assets/img/cases/sonke/04-donor.jpg", "label": "After", "caption": "Donor reports, ready when you are — assembled from data that has already been checked." }
+      ],
+      "build": "Designed and built by GEMIS’s own developers: the offline-first mobile app, the approval workflow, the role-based views and the donor reporting are one system. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
+      "resultsNumbers": [],
+      "resultsQualitative": [
+        "Donor reports build from data that has already been checked (as stated in the case study)."
+      ],
+      "resultsDesignedFor": [
+        "Less time on paperwork for field and office teams",
+        "Donor reports built from verified data rather than reconstructed figures",
+        "Programme decisions made on current progress against targets"
+      ],
+      "resultsNotRecorded": "Whether the system remains in use, usage figures, usability testing and user-acceptance records are not in the repository, so none are claimed.",
+      "quote": null,
+      "quoteTbc": "No client quotation is approved for publication.",
+      "cta": { "label": "Not sure where to start? Book a teardown", "href": "contact.html#teardown" },
+      "tbc": [
+        "The service this project evidences has not been named.",
+        "NDA level to agree in writing: the name and screens are already published on the corporate site, so Full is assumed until confirmed.",
+        "Before screens: not in the record (then-now-screenshots)."
+      ],
+      "sources": ["scripts/cases.py — CASES['sonke'] and DETAIL['sonke']", "scripts/facts.md — 2018", "assets/img/cases/sonke and assets/img/ui — stills and cuts from the case study video"]
+    },
+    {
+      "slug": "tores-foundation",
+      "name": "Tore’s Foundation",
+      "nda": "full",
+      "ndaAgreed": false,
+      "client": "Tore’s Foundation, for the University of Stellenbosch Business School",
+      "anonymised": "A schools debating programme across 24 Western Cape schools",
+      "industry": "Education — schools debating programme",
+      "service": null,
+      "serviceId": null,
+      "timeline": "Delivered (the engagement dates from 2014)",
+      "builtBy": "GEMIS developers",
+      "result": "More time for debate, less time on admin",
+      "resultNote": "As stated in the case study",
+      "image": "assets/cases/tores-foundation.jpg",
+      "imageAlt": "Tore’s Foundation: live standings on a laptop and a coach’s expense claim on a phone",
+      "problem": [
+        "Every week, Tore’s Foundation runs debating for more than 430 learners in 24 schools across the Western Cape. Behind every debate is a coach, a competition to run, and expenses and stipends to pay.",
+        "On paper, all of that was slow for everyone: results were compiled after the fact, standings lagged, and coaches’ claims had to be gathered, matched to sessions and paid one by one."
+      ],
+      "findingsNote": "The record holds no research report for this project. The findings follow the programme as it ran — on paper — before the platform.",
+      "findings": [
+        "Fixtures, scores and claims were all on paper, and slow for everyone.",
+        "Standings lagged because results were compiled after the fact.",
+        "Coaches’ claims had to be gathered, matched to sessions and paid one by one."
+      ],
+      "changes": [
+        { "decision": "One web platform for the debates and the admin behind them, rather than separate tools.", "why": "The competition and the money are linked — claims are for sessions — so one system can verify what two cannot." },
+        { "decision": "Capture results as each debate ends and update the standings straight away.", "why": "Results captured at the event are trusted; results compiled later are questioned." },
+        { "decision": "Claims from the phone with the receipt attached, checked against the sessions that ran, paid in one batch.", "why": "Matching a claim to a recorded session makes payment both faster and verifiable." }
+      ],
+      "screensNote": "Stills from the Tore’s Foundation case study video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
+      "screens": [
+        { "img": "../assets/img/cases/tores-foundation/01-competitions.jpg", "label": "After", "caption": "Competitions set up in minutes — schools, rounds, motions and judges." },
+        { "img": "../assets/img/cases/tores-foundation/02-standings.jpg", "label": "After", "caption": "Results in, standings live — captured as each debate ends, through to the year-end final." },
+        { "img": "../assets/img/cases/tores-foundation/03-claims.jpg", "label": "After", "caption": "Coaches claim from their phone — pick the session, snap the receipt, submit." },
+        { "img": "../assets/img/cases/tores-foundation/04-approval.jpg", "label": "After", "caption": "Checked, approved, paid — every claim matched to a session that ran, then one payment batch to finance." }
+      ],
+      "build": "Designed and built by GEMIS’s own developers for the University of Stellenbosch Business School: one web platform for the competition and the money side of the programme. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
+      "resultsNumbers": [],
+      "resultsQualitative": [
+        "More time for debate, less time on admin (as stated in the case study).",
+        "Results and standings captured at the event, for 24 schools and more than 430 learners."
+      ],
+      "resultsDesignedFor": [
+        "Standings and results trusted because they are captured at the event",
+        "Coaches paid faster, against sessions that verifiably ran"
+      ],
+      "resultsNotRecorded": "Whether the platform remains in use, participation changes, payment-time improvements and testing records are not in the repository, so none are claimed.",
+      "quote": null,
+      "quoteTbc": "No client quotation is approved for publication.",
+      "cta": { "label": "Not sure where to start? Book a teardown", "href": "contact.html#teardown" },
+      "tbc": [
+        "The service this project evidences has not been named.",
+        "NDA level to agree in writing: the name and screens are already published on the corporate site, so Full is assumed until confirmed.",
+        "Before screens: not in the record (then-now-screenshots)."
+      ],
+      "sources": ["scripts/cases.py — CASES['tores-foundation'] and DETAIL['tores-foundation']", "scripts/facts.md — 2014, for the University of Stellenbosch Business School", "assets/img/cases/tores-foundation and assets/img/ui — stills and cuts from the case study video"]
     },
     {
       "slug": "managem",
       "name": "ManaGEM",
       "nda": "full",
-      "ndaAgreed": false,
+      "ndaAgreed": true,
       "client": "ManaGEM — GEMIS’s own business management platform",
       "anonymised": "A business management platform used by about a dozen companies",
       "industry": "Business management software — compact ERP",
@@ -116,8 +383,8 @@
       "builtBy": "GEMIS developers",
       "result": "Month-end close: nine days to two",
       "resultNote": "One client’s month-end — confirmed by that client",
-      "image": "assets/managem.jpg",
-      "imageAlt": "ManaGEM: the dashboard",
+      "image": "assets/cases/managem.jpg",
+      "imageAlt": "ManaGEM: the dashboard on a laptop",
       "problem": [
         "ManaGEM began as the system GEMIS built for SBS Waterproofing, because the off-the-shelf apps the business tried did not fit how a contractor sells and delivers work: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way. Each step lived in a different tool, so leads were lost between them and nobody could see which jobs made money.",
         "As other companies came onto the platform, it had to serve many businesses without each one bending to it — and keep every enquiry, quote, invoice, project, stock level and staff record in one place."
@@ -130,56 +397,22 @@
         "A generic package would have forced the business to work the package’s way."
       ],
       "changes": [
-        {
-          "decision": "Make the enquiry the root record, captured once, with SMS and email updates to the customer.",
-          "why": "A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call."
-        },
-        {
-          "decision": "Quotes go out in a few clicks and are accepted online; the deposit invoice follows automatically.",
-          "why": "The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start."
-        },
-        {
-          "decision": "Hold the costs with the sale and show the profit on every project.",
-          "why": "Management decisions should come from live job data rather than a reconstruction at year-end."
-        },
-        {
-          "decision": "Design around a real pipeline, but general enough to serve other businesses.",
-          "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite."
-        }
+        { "decision": "Make the enquiry the root record, captured once, with SMS and email updates to the customer.", "why": "A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call." },
+        { "decision": "Quotes go out in a few clicks and are accepted online; the deposit invoice follows automatically.", "why": "The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start." },
+        { "decision": "Hold the costs with the sale and show the profit on every project.", "why": "Management decisions should come from live job data rather than a reconstruction at year-end." },
+        { "decision": "Design around a real pipeline, but general enough to serve other businesses.", "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite." }
       ],
-      "screensNote": "Stills from the ManaGEM video. The interfaces are illustrated for the video, not screen recordings of the product; every capability shown is one ManaGEM delivers. Before-and-after screens of the 2026 redesign are not yet in the record.",
+      "screensNote": "Stills from the ManaGEM video. The interfaces are illustrated for the video with sample data, not screen recordings of the product; every capability shown is one ManaGEM delivers. Before-and-after screens of the 2026 redesign are not yet in the record.",
       "screens": [
-        {
-          "img": "../assets/img/cases/managem/01-pipeline.jpg",
-          "label": "After",
-          "caption": "From enquiry to sale — capture every enquiry and follow it to the sale, with SMS and email updates for the customer."
-        },
-        {
-          "img": "../assets/img/cases/managem/02-quotes.jpg",
-          "label": "After",
-          "caption": "Quotes that close — quotes go out in a few clicks, customers accept online, and deposit invoices follow automatically."
-        },
-        {
-          "img": "../assets/img/cases/managem/03-profit.jpg",
-          "label": "After",
-          "caption": "Know what every job earns — track every project and see the profit on each job."
-        },
-        {
-          "img": "../assets/img/cases/managem/05-modules.jpg",
-          "label": "After",
-          "caption": "One place for the whole business — enquiries, pipeline, quotes, invoices, products, projects, stock and staff records in the same system."
-        }
+        { "img": "../assets/img/cases/managem/01-pipeline.jpg", "label": "After", "caption": "From enquiry to sale — capture every enquiry and follow it to the sale, with SMS and email updates for the customer." },
+        { "img": "../assets/img/cases/managem/02-quotes.jpg", "label": "After", "caption": "Quotes that close — quotes go out in a few clicks, customers accept online, and deposit invoices follow automatically." },
+        { "img": "../assets/img/cases/managem/03-profit.jpg", "label": "After", "caption": "Know what every job earns — track every project and see the profit on each job." },
+        { "img": "../assets/img/cases/managem/05-modules.jpg", "label": "After", "caption": "One place for the whole business — enquiries, pipeline, quotes, invoices, products, projects, stock and staff records in the same system." }
       ],
       "build": "Built and run by GEMIS’s own developers: the same team that designs it ships it, which is how a system built for one business in 2015 became a product about a dozen companies run on. The 2026 redesign is the studio’s Interface Refresh Sprint applied to the product GEMIS already builds; its component spec and handoff are internal to the one roof.",
       "resultsNumbers": [
-        {
-          "n": "9 → 2",
-          "l": "days to close the month, for one client — confirmed by that client"
-        },
-        {
-          "n": "≈12",
-          "l": "companies run their day-to-day operations on ManaGEM — confirmed"
-        }
+        { "n": "9 → 2", "l": "days to close the month, for one client — confirmed by that client" },
+        { "n": "≈12", "l": "companies run their day-to-day operations on ManaGEM — confirmed" }
       ],
       "resultsQualitative": [
         "Built for one business and designed for many: the SBS Waterproofing system is still in daily use, more than ten years on."
@@ -187,226 +420,12 @@
       "resultsDesignedFor": [],
       "resultsNotRecorded": "No other figure is published: adoption, time saved or revenue effects across the dozen companies have not been measured.",
       "quote": null,
-      "quoteTbc": "No ManaGEM customer quotation is approved for publication yet. (Ryan Smith’s endorsement concerns SBS Waterproofing’s website and campaigns, so it is not used here.)",
-      "cta": {
-        "label": "Evidences the Interface Refresh Sprint. Start with a teardown",
-        "href": "contact.html#refresh"
-      },
+      "quoteTbc": "No ManaGEM customer quotation is approved for publication yet. (Ryan Smith’s endorsement concerns SBS Waterproofing’s website and campaigns, so it appears on that page.)",
+      "cta": { "label": "Evidences the Interface Refresh Sprint. Start with a teardown", "href": "contact.html#refresh" },
       "tbc": [
-        "NDA level: ManaGEM is GEMIS’s own product, so Full applies; the client behind the nine-to-two figure stays unnamed.",
         "The 2026 redesign’s own findings and before-and-after screens are not yet in the record (then-now-screenshots)."
       ],
-      "sources": [
-        "scripts/cases.py — DETAIL['sbs-waterproofing'] (the origin system) and MANAGEM",
-        "scripts/facts.md — launch 2013, redesign 2026, about a dozen companies, the nine-to-two metric",
-        "scripts/build-other.py — the ManaGEM product page’s results wording",
-        "assets/img/cases/managem — stills from the video"
-      ]
-    },
-    {
-      "slug": "finos",
-      "name": "FINOS",
-      "nda": "full",
-      "ndaAgreed": false,
-      "client": "FINOS",
-      "anonymised": "A financial operating system with an AI review workflow",
-      "industry": "Financial operating system · AI review workflow",
-      "service": "Web Experience",
-      "serviceId": "web",
-      "timeline": null,
-      "builtBy": null,
-      "result": null,
-      "resultNote": null,
-      "image": "assets/finosWide.jpg",
-      "imageAlt": "FINOS dashboard screen",
-      "problem": [
-        "FINOS is a financial operating system with an AI review workflow. What was going wrong before it, and what that was costing the business, will be published here once the client has approved the account."
-      ],
-      "findingsNote": null,
-      "findings": [],
-      "changes": [],
-      "screensNote": "The studio’s own shots of the shipped interface. Before screens are not in the record.",
-      "screens": [
-        {
-          "img": "assets/shotFinos.jpg",
-          "label": "After",
-          "caption": "FINOS — dashboard screen (studio shot)."
-        },
-        {
-          "img": "assets/finosWide.jpg",
-          "label": "After",
-          "caption": "FINOS — dashboard screen, wide (studio shot)."
-        }
-      ],
-      "build": null,
-      "resultsNumbers": [],
-      "resultsQualitative": [],
-      "resultsDesignedFor": [],
-      "resultsNotRecorded": "No result has been confirmed for publication yet.",
-      "quote": null,
-      "quoteTbc": "No client quotation is approved for publication.",
-      "cta": {
-        "label": "Evidences the Web Experience. Start with a teardown",
-        "href": "contact.html#web"
-      },
-      "tbc": [
-        "NDA level to agree in writing before this page is public.",
-        "Timeline, who built it, the headline result, the problem, the findings, the design decisions, the build and handoff, and the results are not in the repository."
-      ],
-      "sources": [
-        "studio/src/index.html — the carousel entry and the shots",
-        "CONTENT-TODO.md §10"
-      ]
-    },
-    {
-      "slug": "rentflow",
-      "name": "RentFlow",
-      "nda": "full",
-      "ndaAgreed": false,
-      "client": "RentFlow",
-      "anonymised": "A property and rent management product",
-      "industry": "Property and rent management",
-      "service": "Embedded Designer",
-      "serviceId": "embedded",
-      "timeline": null,
-      "builtBy": null,
-      "result": null,
-      "resultNote": null,
-      "image": "assets/shotRentflow.jpg",
-      "imageAlt": "RentFlow screens",
-      "problem": [
-        "RentFlow is property and rent management — bills, insights and payments with an AI assistant on call. What was going wrong before it, and what that was costing the business, will be published here once the client has approved the account."
-      ],
-      "findingsNote": null,
-      "findings": [],
-      "changes": [],
-      "screensNote": "The studio’s own shot of the shipped interface. Before screens are not in the record.",
-      "screens": [
-        {
-          "img": "assets/shotRentflow.jpg",
-          "label": "After",
-          "caption": "RentFlow — screens (studio shot)."
-        }
-      ],
-      "build": null,
-      "resultsNumbers": [],
-      "resultsQualitative": [],
-      "resultsDesignedFor": [],
-      "resultsNotRecorded": "No result has been confirmed for publication yet.",
-      "quote": null,
-      "quoteTbc": "No client quotation is approved for publication.",
-      "cta": {
-        "label": "Evidences the Embedded Designer. Start with a teardown",
-        "href": "contact.html#embedded"
-      },
-      "tbc": [
-        "NDA level to agree in writing before this page is public.",
-        "Timeline, who built it, the headline result, the problem, the findings, the design decisions, the build and handoff, and the results are not in the repository."
-      ],
-      "sources": [
-        "studio/src/work.html — the project entry (description from the old case-studies page)",
-        "studio/src/index.html — the services ladder names RentFlow as the Embedded Designer evidence"
-      ]
-    },
-    {
-      "slug": "nuracoach",
-      "name": "NuraCoach",
-      "nda": "full",
-      "ndaAgreed": false,
-      "client": "NuraCoach",
-      "anonymised": "An AI coaching companion",
-      "industry": "AI coaching companion",
-      "service": null,
-      "serviceId": null,
-      "timeline": null,
-      "builtBy": null,
-      "result": null,
-      "resultNote": null,
-      "image": "assets/shotNura.jpg",
-      "imageAlt": "NuraCoach interface",
-      "problem": [
-        "NuraCoach is an AI coaching companion — guidance that reads like a conversation, not a report. What was going wrong before it, and what that was costing the business, will be published here once the client has approved the account."
-      ],
-      "findingsNote": null,
-      "findings": [],
-      "changes": [],
-      "screensNote": "The studio’s own shot of the shipped interface. Before screens are not in the record.",
-      "screens": [
-        {
-          "img": "assets/shotNura.jpg",
-          "label": "After",
-          "caption": "NuraCoach — interface (studio shot)."
-        }
-      ],
-      "build": null,
-      "resultsNumbers": [],
-      "resultsQualitative": [],
-      "resultsDesignedFor": [],
-      "resultsNotRecorded": "No result has been confirmed for publication yet.",
-      "quote": null,
-      "quoteTbc": "No client quotation is approved for publication.",
-      "cta": {
-        "label": "Not sure where to start? Book a teardown",
-        "href": "contact.html#teardown"
-      },
-      "tbc": [
-        "The service this project evidences has not been named (CONTENT-TODO §10).",
-        "NDA level to agree in writing before this page is public.",
-        "Timeline, who built it, the headline result, the problem, the findings, the design decisions, the build and handoff, and the results are not in the repository."
-      ],
-      "sources": [
-        "studio/src/work.html — the project entry (description from the old case-studies page)"
-      ]
-    },
-    {
-      "slug": "lungelo",
-      "name": "Lungelo",
-      "nda": "full",
-      "ndaAgreed": false,
-      "client": "Lungelo",
-      "anonymised": "A multilingual field-work app",
-      "industry": "Multilingual field-work app",
-      "service": null,
-      "serviceId": null,
-      "timeline": null,
-      "builtBy": null,
-      "result": null,
-      "resultNote": null,
-      "image": "assets/lungelo.jpg",
-      "imageAlt": "Lungelo screens",
-      "problem": [
-        "Lungelo is a multilingual field-work app — forms and sign-in in eight South African languages. What was going wrong before it, and what that was costing the business, will be published here once the client has approved the account."
-      ],
-      "findingsNote": null,
-      "findings": [],
-      "changes": [],
-      "screensNote": "The studio’s own shot of the shipped interface. Before screens are not in the record.",
-      "screens": [
-        {
-          "img": "assets/lungelo.jpg",
-          "label": "After",
-          "caption": "Lungelo — screens (studio shot)."
-        }
-      ],
-      "build": null,
-      "resultsNumbers": [],
-      "resultsQualitative": [],
-      "resultsDesignedFor": [],
-      "resultsNotRecorded": "No result has been confirmed for publication yet.",
-      "quote": null,
-      "quoteTbc": "No client quotation is approved for publication.",
-      "cta": {
-        "label": "Not sure where to start? Book a teardown",
-        "href": "contact.html#teardown"
-      },
-      "tbc": [
-        "The service this project evidences has not been named (CONTENT-TODO §10).",
-        "NDA level to agree in writing before this page is public.",
-        "Timeline, who built it, the headline result, the problem, the findings, the design decisions, the build and handoff, and the results are not in the repository."
-      ],
-      "sources": [
-        "studio/src/work.html — the project entry (description from the old case-studies page)"
-      ]
+      "sources": ["scripts/cases.py — DETAIL['sbs-waterproofing'] (the origin system) and MANAGEM", "scripts/facts.md — launch 2013, redesign 2026, about a dozen companies, the nine-to-two metric", "scripts/build-other.py — the ManaGEM product page’s results wording", "assets/img/cases/managem and assets/img/ui — stills and cuts from the video"]
     }
   ]
 }

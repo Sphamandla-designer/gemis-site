@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Studio case thumbnails — render source</title>
+<meta name="robots" content="noindex">
+<!--
+  One scene per case study. tools/studio-thumbs.mjs screenshots each .scene into
+  studio/assets/cases/<slug>.jpg (1400 × 963, the Work card's 16:11). The screens are
+  the app windows and phones cut from the GEMIS case-study videos
+  (assets/img/ui/, sample data, marked as such inside each image) — the only real
+  product imagery in the repository — mounted in a laptop and a phone on a studio
+  backdrop. Nothing on a screen is drawn here.
+-->
+<style>
+html,body{margin:0;background:#222}
+.scene{position:relative;width:1400px;height:963px;overflow:hidden;font-family:system-ui,sans-serif}
+.scene .bg{position:absolute;inset:0}
+.scene .facets{position:absolute;inset:-6%;background:url(../assets/heroBg.jpg) center/cover no-repeat;opacity:.18;mix-blend-mode:luminosity}
+.scene .glow{position:absolute;width:900px;height:900px;border-radius:50%;filter:blur(90px);opacity:.55}
+.scene .glow.pink{background:#ff1f7a;left:-260px;bottom:-420px}
+.scene .glow.orange{background:#ff7a12;right:-300px;top:-460px}
+.scene .floor{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.28))}
+/* the laptop: a screen bezel on a slim base, perspective-tilted a few degrees */
+.laptop{position:absolute;left:150px;top:140px;width:1000px;transform:perspective(2400px) rotateX(6deg) rotateY(-8deg);transform-origin:50% 100%;filter:drop-shadow(0 60px 70px rgba(0,0,0,.45)) drop-shadow(0 8px 18px rgba(0,0,0,.25))}
+.laptop .screen{position:relative;background:#0e1016;border-radius:22px 22px 6px 6px;padding:22px 22px 26px;border:1px solid rgba(255,255,255,.14)}
+.laptop .screen::before{content:'';position:absolute;left:50%;top:9px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#1d2028;box-shadow:inset 0 0 0 2px #2a2e38}
+.laptop .screen img{display:block;width:100%;height:auto;border-radius:6px;background:#fff}
+.laptop .base{height:26px;background:linear-gradient(180deg,#2c2f38,#15171d);border-radius:0 0 18px 18px;margin:0 -46px;position:relative}
+.laptop .base::after{content:'';position:absolute;left:50%;top:0;width:180px;height:8px;margin-left:-90px;border-radius:0 0 8px 8px;background:#0a0b0f}
+.laptop .glare{position:absolute;inset:22px 22px 26px;border-radius:6px;background:linear-gradient(112deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.04) 36%,rgba(255,255,255,0) 60%);pointer-events:none}
+/* the phone, when the case has one */
+.phone{position:absolute;right:112px;bottom:92px;width:244px;transform:rotate(-6deg);filter:drop-shadow(0 40px 50px rgba(0,0,0,.5))}
+.phone img{display:block;width:100%;height:auto;border-radius:30px}
+.scene.light .bg{background:linear-gradient(135deg,#eef0f3 0%,#dfe3ea 100%)}
+.scene.light .floor{background:linear-gradient(180deg,rgba(22,22,26,0),rgba(22,22,26,.16))}
+.scene.light .glow{opacity:.28}
+.scene.ink .bg{background:linear-gradient(135deg,#1b1c22 0%,#0f1014 100%)}
+.scene.pink .bg{background:linear-gradient(135deg,#2a1020 0%,#16161a 100%)}
+.scene.teal .bg{background:linear-gradient(135deg,#0f2a2a 0%,#16161a 100%)}
+.scene.navy .bg{background:linear-gradient(135deg,#17233a 0%,#111318 100%)}
+.scene.warm .bg{background:linear-gradient(135deg,#2b1a12 0%,#16161a 100%)}
+.scene.plum .bg{background:linear-gradient(135deg,#22172c 0%,#16161a 100%)}
+</style>
+</head>
+<body>
+
+<section class="scene teal" data-slug="wastemart">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop"><div class="screen"><img src="../../assets/img/ui/wastemart.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+  <div class="phone"><img src="../../assets/img/ui/wastemart-phone.jpg" alt=""></div>
+</section>
+
+<section class="scene navy" data-slug="homeassist">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop"><div class="screen"><img src="../../assets/img/ui/homeassist.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+  <div class="phone"><img src="../../assets/img/ui/homeassist-phone.jpg" alt=""></div>
+</section>
+
+<section class="scene warm" data-slug="sbs-waterproofing">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop" style="left:200px;width:1000px"><div class="screen"><img src="../../assets/img/ui/sbs-waterproofing.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+</section>
+
+<section class="scene ink" data-slug="trans-hex">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop" style="left:200px;width:1000px"><div class="screen"><img src="../../assets/img/ui/trans-hex.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+</section>
+
+<section class="scene plum" data-slug="sonke">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop" style="left:200px;width:1000px"><div class="screen"><img src="../../assets/img/ui/sonke.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+</section>
+
+<section class="scene pink" data-slug="tores-foundation">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop" style="left:120px;width:980px"><div class="screen"><img src="../../assets/img/ui/tores-foundation.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+  <div class="phone"><img src="../../assets/img/ui/tores-foundation-phone.jpg" alt=""></div>
+</section>
+
+<section class="scene light" data-slug="managem">
+  <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
+  <div class="laptop" style="left:200px;width:1000px"><div class="screen"><img src="../../assets/img/ui/managem.jpg" alt=""><div class="glare"></div></div><div class="base"></div></div>
+</section>
+
+</body></html>
