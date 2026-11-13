@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="170" viewBox="0 0 180 170" role="img" aria-label="GEMIS — Vanessa Davis">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="1" height="6" fill="#ffffff" opacity=".085"/></pattern>
+    <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".75" fill="#ffffff" opacity=".38"/></pattern>
+    <linearGradient id="streak" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+    <clipPath id="step"><path d="M0 0H122V22H180V170H0Z"/></clipPath>
+  </defs>
+  <g clip-path="url(#step)">
+    <rect width="180" height="170" fill="#0a1230"/>
+    <rect width="180" height="170" fill="url(#hatch)"/>
+    <rect x="0" y="96" width="78" height="74" fill="url(#dots)"/>
+    <g fill="none" stroke="url(#streak)" stroke-width="1.2"><path d="M-10 186L250-34"/><path d="M-10 162L250-58" opacity=".55"/></g>
+    <text x="106" y="166" fill="#ffffff" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="200" font-size="92" letter-spacing="-5" text-anchor="middle" opacity=".92">VD</text>
+    <text transform="translate(17 160) rotate(-90)" fill="#ffffff" opacity=".58" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="500" font-size="6.6" letter-spacing="1.1">GEM INFORMATION SYSTEMS</text>
+    <g transform="translate(30 18) scale(.5)" fill="#ffffff"><polygon points="10.73,17.10 20.54,17.10 17.17,28.90 5.67,28.90"/><polygon points="22.83,17.10 41.17,17.10 44.54,28.90 19.46,28.90"/><polygon points="43.46,17.10 53.27,17.10 58.33,28.90 46.83,28.90"/><polygon points="6.53,31.10 17.30,31.10 28.07,54.17"/><polygon points="19.73,31.10 44.27,31.10 32.00,57.40"/><polygon points="46.70,31.10 57.47,31.10 35.93,54.17"/></g>
+    <path d="M122 0V22H180" fill="none" stroke="#ffffff" stroke-opacity=".3"/>
+  </g>
+</svg>
