@@ -179,7 +179,7 @@ def pages():
     """Every page that carries the corporate chrome, at any depth."""
     for dirpath, dirnames, filenames in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames
-                       if d not in {'.git', 'node_modules', 'studio', 'assets', 'scripts', 'tools', 'qa', '_project'}]
+                       if d not in {'.git', 'node_modules', 'studio', 'assets', 'scripts', 'tools', 'qa', '_project', 'brand'}]
         for name in sorted(filenames):
             if not name.endswith('.html'):
                 continue
