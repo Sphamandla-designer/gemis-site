@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 
 
@@ -20,23 +21,28 @@
 <meta property="og:site_name" content="GEMIS® Studio">
 <meta property="og:title" content="GEMIS® Studio — Product &amp; Experience Design">
 <meta property="og:description" content="GEMIS® Studio designs the products, interfaces and websites South African companies run on — by the studio that can also build them.">
-<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/heroBg.jpg">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/og-studio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="GEMIS Studio — Designed to be built. Product and experience design by the studio that can also build it.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/consent.js" defer></script>
 
 <script src="assets/react.js"></script>
 <script src="assets/react-dom.js"></script>
 <script>window.__resources = {
   "heroBg": "assets/heroBg.jpg"
 };</script>
+<script src="assets/enquiry.js" defer></script>
 <script src="assets/dc-runtime.js" defer></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <style>/* cyrillic-ext */
 @font-face {
   font-family: 'JetBrains Mono';
@@ -591,7 +597,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
   <div style="position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;pointer-events:none">
     <h1 data-reveal="1" style="margin:0;font-size:clamp(56px,7vw,110px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a"><span data-word=""><span>Designed</span></span> <span data-word=""><span>to</span></span> <span data-word=""><span>be</span></span><br><span class="dc-vh">built.</span>{{ rotator }}</h1>
-    <p data-reveal="2" style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
+    <p style="margin:0;max-width:520px;font-size:17px;line-height:1.4;color:#3a3b41;text-wrap:pretty">GEMIS Studio is the product and interface design practice of GEM Information Systems. We diagnose what users actually do, redesign the screens that matter, and hand your developers something they can build — or build it ourselves, under the same roof.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;pointer-events:auto">
       <a href="contact.html#teardown" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
       <a href="contact.html#not-sure" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Discuss your project</span><span>→</span></a>
@@ -642,19 +648,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/cases/wastemart.jpg" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(22,22,26,.6))"></div></div>
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#c9cad1">Component spec, tokens and a handoff session with your developers.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">1<sup style="font-size:20px;font-weight:500;color:#ff7a12">session</sup></div></div>
     </div>
-    <div data-reveal="2" style="background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#fff;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)">
+    <div data-reveal="2" style="background:linear-gradient(135deg,#ff1f7a,#ff7a12);color:#16161a;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(255,31,122,.7)">
       <div style="position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);background-size:250% 100%;animation:shimmer 5s ease-in-out infinite;pointer-events:none"></div>
       <div style="display:flex;justify-content:space-between;align-items:center;position:relative"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase">Fee credited</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.8">02</div></div>
-      <div style="display:flex;align-items:center;justify-content:center;position:relative"><div style="width:min(186px,70%);aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,3.6vw,56px);letter-spacing:-0.04em;color:#ff1f7a;font-weight:600;box-shadow:0 20px 50px -20px rgba(22,22,26,.5);transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06) rotate(-4deg)">60<sup style="font-size:18px;font-weight:500">days</sup></div></div>
+      <div style="display:flex;align-items:center;justify-content:center;position:relative"><div style="width:min(186px,70%);aspect-ratio:1;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,3.6vw,56px);letter-spacing:-0.04em;color:#ff1f7a;font-weight:600;box-shadow:0 20px 50px -20px rgba(22,22,26,.5);transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06) rotate(-4deg)">60<sup style="font-size:18px;font-weight:500;color:#d70057">days</sup></div></div>
       <div style="font-size:15px;line-height:1.3;position:relative">The Teardown fee is credited in full against any engagement booked within 60 days.</div>
     </div>
     <div data-reveal="3" style="background:#ffffff;color:#16161a;border:1px solid #dcdee3;aspect-ratio:370/455;padding:36px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px;text-align:left;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(22,22,26,.35)">
-      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#ff1f7a;text-transform:uppercase">Aftercare</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9a9ba3">03</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:14px;font-weight:600;letter-spacing:0.04em;color:#d70057;text-transform:uppercase">Aftercare</div><div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6a6b73">03</div></div>
       <div style="min-height:0;overflow:hidden;position:relative"><img src="assets/cases/managem.jpg" alt="ManaGEM, the platform GEMIS designs and builds" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.06)"></div>
-      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Thirty days of aftercare after every engagement.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#ff1f7a">days</sup></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div style="font-size:15px;line-height:1.3;max-width:170px;color:#5a5b63">Thirty days of aftercare after every engagement.</div><div style="font-size:clamp(44px,4vw,60px);letter-spacing:-0.04em;line-height:1;font-weight:600">30<sup style="font-size:20px;font-weight:500;color:#d70057">days</sup></div></div>
     </div>
   </div>
-  <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#ff7a12;text-transform:uppercase">Systems we have designed</div>
+  <div style="margin-top:110px;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#b34e00;text-transform:uppercase">Systems we have designed</div>
   <div data-marquee style="margin-top:40px;overflow:hidden;white-space:nowrap;position:relative;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">{{ partnerMarquee }}
   </div>
 </section>
@@ -762,7 +768,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <h2 data-reveal="1" style="margin:0;font-size:clamp(48px,5vw,88px);letter-spacing:-0.045em;font-weight:600;line-height:1;color:#16161a">Alternatives</h2>
     <p style="margin:0;font-size:16px;line-height:1.3;max-width:200px">Honest comparison, including doing nothing.</p>
   </div>
-  <div style="border-top:1px solid #dcdee3;margin-top:80px;position:relative"><span style="position:absolute;left:50%;top:-12px;font-size:20px;color:#ff7a12">+</span></div>
+  <div style="border-top:1px solid #dcdee3;margin-top:80px;position:relative"><span style="position:absolute;left:50%;top:-12px;font-size:20px;color:#b34e00">+</span></div>
   <div data-m="split" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:80px">
     <div style="display:flex;flex-direction:column;justify-content:space-between;gap:120px">
       <div role="tablist" aria-label="Alternatives to the studio" aria-orientation="vertical" sc-camel-on-key-down="{{ onClientKey }}" style="display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600;letter-spacing:0.02em">
@@ -806,7 +812,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
     <div data-m="cards" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:80px">
       <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4">
         <div data-reveal="{{ r.n }}" style="background:#f5f6f8;color:#16161a;padding:28px 28px 32px;display:grid;grid-template-rows:auto 1fr auto;gap:36px;min-height:340px;border-top:4px solid #ff1f7a;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.6)">
-          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#ff7a12;text-transform:uppercase">{{ r.tag }}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#6a6b73">{{ r.num }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#b34e00;text-transform:uppercase">{{ r.tag }}</span></div>
           <div style="font-size:clamp(22px,1.8vw,28px);line-height:1.1;letter-spacing:-0.03em;font-weight:600;align-self:end">{{ r.title }}</div>
           <p style="margin:0;font-size:15px;line-height:1.4;color:#3a3b41;border-top:1px solid #dcdee3;padding-top:16px">{{ r.body }}</p>
         </div>
@@ -832,7 +838,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   {{ lightBg }}
   <div data-m="split" style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
     <div data-m="rail" style="position:sticky;top:120px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Start here</div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#b34e00;text-transform:uppercase">Start here</div>
       <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,4.6vw,80px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Tell us what<br>isn't <span style="color:#ff1f7a">working.</span></h2>
       <p data-reveal="2" style="margin:28px 0 0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
       <div style="margin-top:48px;border-top:1px solid #16161a">
@@ -850,14 +856,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
     </sc-if>
     <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-      <form sc-camel-on-submit="{{ submitForm }}" data-reveal="2" style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
+      <form sc-camel-on-submit="{{ submitForm }}" novalidate="" data-reveal="2" style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
         <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input name="name" required="" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" placeholder="Your name" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input name="email" type="email" required="" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" placeholder="name@company.co.za" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input name="name" required="" autocomplete="name" value="{{ form.name }}" sc-camel-on-change="{{ setField }}" sc-camel-on-blur="{{ blurField }}" aria-invalid="{{ inv.name }}" aria-describedby="err-name" placeholder="Your name" style="{{ inputStyle.name }}" style-focus="border-bottom-color:#ff1f7a"><span id="err-name" style="{{ errStyle.name }}">{{ errors.name }}</span></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input name="email" type="email" required="" autocomplete="email" value="{{ form.email }}" sc-camel-on-change="{{ setField }}" sc-camel-on-blur="{{ blurField }}" aria-invalid="{{ inv.email }}" aria-describedby="err-email" placeholder="name@company.co.za" style="{{ inputStyle.email }}" style-focus="border-bottom-color:#ff1f7a"><span id="err-email" style="{{ errStyle.email }}">{{ errors.email }}</span></label>
         </div>
         <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Company</span><input name="company" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input name="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" placeholder="https://" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Company</span><input name="company" autocomplete="organization" value="{{ form.company }}" sc-camel-on-change="{{ setField }}" placeholder="Company" style="font-family:'Manrope',sans-serif;font-size:16px;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input name="url" inputmode="url" autocomplete="url" value="{{ form.url }}" sc-camel-on-change="{{ setField }}" sc-camel-on-blur="{{ blurField }}" aria-invalid="{{ inv.url }}" aria-describedby="err-url" placeholder="acme.co.za" style="{{ inputStyle.url }}" style-focus="border-bottom-color:#ff1f7a"><span id="err-url" style="{{ errStyle.url }}">{{ errors.url }}</span></label>
         </div>
         <div style="display:grid;gap:12px">
           <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">What do you need?</div>
@@ -867,10 +873,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
             </sc-for>
           </div>
         </div>
-        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">What's not working?</span><textarea name="message" required="" rows="4" value="{{ form.message }}" sc-camel-on-change="{{ setField }}" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" style="font-family:'Manrope',sans-serif;font-size:16px;line-height:1.4;color:#16161a;background:transparent;border:0;border-bottom:1px solid #16161a;padding:10px 0;outline:none;resize:vertical;transition:border-color .3s" style-focus="border-bottom-color:#ff1f7a"></textarea></label>
+        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">What's not working?</span><textarea name="message" required="" rows="4" value="{{ form.message }}" sc-camel-on-change="{{ setField }}" sc-camel-on-blur="{{ blurField }}" aria-invalid="{{ inv.message }}" aria-describedby="err-message" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" style="{{ inputStyle.message }}" style-focus="border-bottom-color:#ff1f7a"></textarea><span id="err-message" style="{{ errStyle.message }}">{{ errors.message }}</span></label>
+        <div style="display:grid;gap:8px">
+          <label style="display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;font-size:14px;line-height:1.45;color:#3a3b41"><input type="checkbox" name="consent" value="yes" required="" checked="{{ form.consent }}" sc-camel-on-change="{{ setConsent }}" aria-invalid="{{ inv.consent }}" aria-describedby="err-consent" style="width:18px;height:18px;margin:2px 0 0;accent-color:#16161a"><span>I agree that GEMIS may use these details to reply to this enquiry, as set out in the <a href="privacy.html" style="border-bottom:1px solid currentColor">privacy notice</a>.</span></label>
+          <span id="err-consent" style="{{ errStyle.consent }}">{{ errors.consent }}</span>
+        </div>
+        <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:8px">
-          <span style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4">Read by the practice lead, not a sales team. We don't share your details.</span>
-          <button type="submit" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#fff;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s" style-hover="background:#16161a;transform:translateY(-2px)"><span style="text-transform:uppercase">Send enquiry</span><span>→</span></button>
+          <span role="status" aria-live="polite" style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4">{{ formNote }}</span>
+          <button type="submit" style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#16161a;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s" style-hover="background:#16161a;color:#fff;transform:translateY(-2px)"><span style="text-transform:uppercase">Send enquiry</span><span>→</span></button>
         </div>
       </form>
     </sc-if>
@@ -881,9 +892,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
   <div style="position:absolute;inset:-4%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;animation:kenburns 32s ease-in-out infinite reverse;opacity:.16"></div>
   <div data-m="split" style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px">
     <div>
-      <div style="font-size:15px;font-weight:600;color:#ff7a12;text-transform:uppercase">One action. Restated.</div>
+      <div style="font-size:15px;font-weight:600;color:#b34e00;text-transform:uppercase">One action. Restated.</div>
       <h2 data-reveal="1" style="margin:24px 0 0;font-size:clamp(52px,6vw,96px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Ready to find out<br><span style="color:#ff1f7a">what's wrong?</span></h2>
       <div style="margin-top:80px;display:flex;align-items:center;gap:12px"><img src="assets/mark-colour.svg" width="28" height="28" alt="" style="display:block;width:28px;height:28px"><span style="font-size:15px;color:#6a6b73;text-transform:uppercase">©GEMIS® Studio 2026</span></div>
+      <nav aria-label="Legal" style="margin-top:20px;display:flex;gap:12px 24px;flex-wrap:wrap;font-size:14px"><a href="privacy.html" style="color:#3a3b41;border-bottom:1px solid rgba(22,22,26,.35);padding-bottom:2px">Privacy notice</a><a href="terms.html" style="color:#3a3b41;border-bottom:1px solid rgba(22,22,26,.35);padding-bottom:2px">Terms of use</a><a href="privacy.html#cookies" data-cookie-settings="" style="color:#3a3b41;border-bottom:1px solid rgba(22,22,26,.35);padding-bottom:2px">Cookie settings</a></nav>
       <div style="margin-top:48px;font-size:15px;font-weight:600;text-transform:uppercase">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-m="footcol" style="display:flex;flex-direction:column;gap:80px;justify-content:flex-end">
@@ -920,7 +932,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;marqueeSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:24,&quot;min&quot;:8,&quot;max&quot;:60,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;partnerSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:40,&quot;min&quot;:15,&quot;max&quot;:90,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, motionPaused: (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches), form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' }, sent: false };
+  state = { menuOpen: false, client: 4, clock: '', step: 0, mx: 0.5, my: 0.5, hover: false, word: 0, navDark: false, motionPaused: (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches), form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet', consent: false }, sent: false, errors: {}, touched: {}, bad: 0 };
   componentDidMount() {
     // SAST is UTC+2 all year, so the offset is exact and needs no zone name
     const tick = () => {
@@ -1057,7 +1069,26 @@ class Component extends DCLogic {
       { n: '4', num: '04', tag: 'Evidence', title: 'Evidence before opinion', body: 'We map what users actually do before we redesign anything, and every case study names the service it proves.' }
     ];
     const f = this.state.form;
-    const setField = (e) => { const k = e.target.name, v = e.target.value; this.setState(s => ({ form: Object.assign({}, s.form, { [k]: v }) })); };
+    // the enquiry rules live in assets/enquiry.js, shared with the Contact page
+    const V = window.StudioEnquiry || { validate: () => ({}), normaliseUrl: (x) => x, looksLikeBot: () => false, FIELDS: [] };
+    // a field is checked once the visitor has left it, then live while they fix it
+    const recheck = (form, touched, prev) => { const all = V.validate(form); const out = {}; Object.keys(touched).forEach(k => { if (all[k]) out[k] = all[k]; }); return out; };
+    const setField = (e) => { const k = e.target.name, v = e.target.value; this.setState(s => { const form = Object.assign({}, s.form, { [k]: v }); return { form, errors: recheck(form, s.touched) }; }); };
+    const setConsent = (e) => { const v = e.target.checked; this.setState(s => { const form = Object.assign({}, s.form, { consent: v }); const touched = Object.assign({}, s.touched, { consent: true }); return { form, touched, errors: recheck(form, touched) }; }); };
+    const blurField = (e) => { const k = e.target.name; this.setState(s => {
+      const form = k === 'url' && s.form.url.trim() ? Object.assign({}, s.form, { url: V.normaliseUrl(s.form.url) }) : s.form;
+      const touched = (s.form[k] || '').trim() ? Object.assign({}, s.touched, { [k]: true }) : s.touched;
+      return { form, touched, errors: recheck(form, touched) }; }); };
+    const ER = this.state.errors;
+    const errors = {}, inv = {}, errStyle = {}, inputStyle = {};
+    ['name', 'email', 'url', 'message', 'consent'].forEach(k => {
+      errors[k] = ER[k] || ''; inv[k] = ER[k] ? 'true' : 'false';
+      errStyle[k] = { display: ER[k] ? 'block' : 'none', fontFamily: "'Manrope',sans-serif", fontSize: '13px', letterSpacing: 0, lineHeight: 1.35, color: '#b00020', textTransform: 'none' };
+      inputStyle[k] = { fontFamily: "'Manrope',sans-serif", fontSize: '16px', color: '#16161a', background: 'transparent', border: 0, borderBottom: '1px solid ' + (ER[k] ? '#b00020' : '#16161a'), padding: '10px 0', outline: 'none', transition: 'border-color .3s' };
+    });
+    inputStyle.message = Object.assign({}, inputStyle.message, { lineHeight: 1.4, resize: 'vertical' });
+    const nBad = Object.keys(ER).length;
+    const formNote = this.state.bad && nBad ? (nBad === 1 ? 'One field needs attention before this can be sent.' : nBad + ' fields need attention before this can be sent.') : 'Sending opens a pre-filled email to info@gemis.co.za in your email app.';
     // the demoted hero link lands on the same form with the open-ended option already chosen
     const pickNotSure = () => { this.setState(s => ({ form: Object.assign({}, s.form, { service: 'Not sure yet' }) })); };
     const serviceChips = ['Not sure yet', 'Product Teardown', 'Interface Refresh', 'Web Experience', 'Embedded Designer'].map(label => ({
@@ -1069,11 +1100,22 @@ class Component extends DCLogic {
       // the site is static, so there is no endpoint to post to: open a pre-addressed,
       // pre-filled message instead, the way the corporate site's forms do
       const fm = this.state.form;
-      const body = ['Name: ' + fm.name, 'Work email: ' + fm.email, 'Company: ' + (fm.company || '—'), 'Product URL: ' + (fm.url || '—'), 'Service: ' + fm.service, '', "What's not working:", fm.message].join('\n');
-      window.location.href = 'mailto:info@gemis.co.za?subject=' + encodeURIComponent('Studio enquiry from ' + (fm.company || fm.name)) + '&body=' + encodeURIComponent(body);
-      this.setState({ sent: true });
+      const errs = V.validate(fm);
+      const bad = V.FIELDS.filter(k => errs[k]);
+      if (bad.length) {
+        const touched = {}; V.FIELDS.forEach(k => { touched[k] = true; });
+        this.setState({ errors: errs, touched, bad: bad.length });
+        const el = e.target.querySelector('[name="' + bad[0] + '"]'); if (el) el.focus();
+        return;
+      }
+      // a filled honeypot or an instant submit is a script: same thank-you, nothing handed off
+      if (!V.looksLikeBot(e.target)) {
+        const body = ['Name: ' + fm.name.trim(), 'Work email: ' + fm.email.trim(), 'Company: ' + (fm.company.trim() || '—'), 'Product URL: ' + (V.normaliseUrl(fm.url) || '—'), 'Service: ' + fm.service, '', "What's not working:", fm.message.trim(), '', 'Consent: agreed to the privacy notice (' + new Date().toISOString().slice(0, 10) + ')'].join('\n');
+        window.location.href = 'mailto:info@gemis.co.za?subject=' + encodeURIComponent('Studio enquiry from ' + (fm.company.trim() || fm.name.trim())) + '&body=' + encodeURIComponent(body);
+      }
+      this.setState({ sent: true, bad: 0 });
     };
-    const resetForm = () => this.setState({ sent: false, form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet' } });
+    const resetForm = () => this.setState({ sent: false, errors: {}, touched: {}, bad: 0, form: { name: '', email: '', company: '', url: '', message: '', service: 'Not sure yet', consent: false } });
     const lines = Array.from({ length: 8 }, (_, c) => Array.from({ length: 12 }, (_, r) => (30 + ((c * 7 + r * 13) % 70)) + '%'));
     return {
       menuOpen: this.state.menuOpen, menuLabel: this.state.menuOpen ? 'MENU ×' : 'MENU ≡',
@@ -1082,7 +1124,7 @@ class Component extends DCLogic {
       motionLabel: this.state.motionPaused ? 'Play motion' : 'Pause motion',
       toggleMotion: () => this.setState(s => ({ motionPaused: !s.motionPaused })),
       toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: this.state.navDark ? '#16161a' : '#fff', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, ladderPanels, onLadderKey, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
+      ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: '#16161a', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, setConsent, blurField, errors, inv, errStyle, inputStyle, formNote, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, ladderPanels, onLadderKey, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
       // slug matches the record in src/cases.json, so a card links to the project's own page
       projects: [
         { slug: 'managem', name: 'ManaGEM', desc: 'Business management platform · one record from enquiry to invoice · about a dozen companies. Evidences: Interface Refresh Sprint.', img: 'assets/cases/managem.jpg' },

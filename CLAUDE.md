@@ -28,7 +28,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 
 | Generated | Source | Rebuild with |
 |---|---|---|
-| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/work-<slug>.html` ×7, `studio/assets/dc-template.js` | `studio/src/index.html`, `studio/src/work.html`, `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
+| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/privacy.html`, `studio/terms.html`, `studio/404.html`, `studio/work-<slug>.html` ×7, `studio/assets/dc-template.js` | the same names in `studio/src/`, and `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
 | the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections of the owner's reference design, see **The home page**) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9 | `scripts/solutions.py` (all page copy, evidence, FAQs, section order; every claim sourced in `docs/SOLUTIONS-EVIDENCE.md`) rendered by `scripts/build-solutions.py` | `python3 scripts/build-services.py` (calls it) |
 | `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
@@ -57,6 +57,20 @@ Two traps in these builds:
   skips anything carrying a meta refresh, so redirect stubs never enter the
   bundle; a link to one is routed to the live site instead. It carries MP4 only
   (iOS needs it); the WebM sources are dropped at build time.
+
+## Studio launch basics — keep these
+
+- **Consent before analytics.** `studio/assets/consent.js` loads Google Analytics
+  only after the visitor accepts; until `GA_ID` is set there is no banner. Do not
+  add any other tracker, embed or third-party font to the studio without routing
+  it through the same choice and the privacy notice's cookies section.
+- **Both enquiry forms share `studio/assets/enquiry.js`** (validation, consent,
+  honeypot, time trap). Change the rules there, not in one form.
+- **Small accent text on light grounds** uses the deep variants: orange
+  `#b34e00`, pink `#d70057`. Buttons on the pink carry ink `#16161a`. The bright
+  `#ff7a12` / `#ff1f7a` stay for large type, lines and dark grounds.
+- **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
+  `PAGES` in `tools/build-studio-standalone.py`.
 
 ## Redirect stubs
 

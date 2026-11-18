@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page not found | GEM Information Systems (GEMIS®)</title>
   <meta name="description" content="The page you were looking for has moved or never shipped." />
+  <script>
+    /* GitHub Pages serves this one page for every missing address. A missing
+       studio address belongs on the studio's own not-found page. */
+    (function () { var p = location.pathname, i = p.indexOf('/studio/');
+      if (i > -1 && !/\/studio\/404\.html$/.test(p)) location.replace(p.slice(0, i) + '/studio/404.html'); })();
+  </script>
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />

@@ -22,7 +22,7 @@ R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ST = os.path.join(R, 'studio')
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(R, 'gemis-studio-standalone.html')
 LIVE = 'https://sphamandla-designer.github.io/gemis-site/'
-PAGES = ['index.html', 'work.html', 'about.html', 'services.html', 'contact.html']
+PAGES = ['index.html', 'work.html', 'about.html', 'services.html', 'contact.html', 'privacy.html', 'terms.html']
 PAGES += sorted(f for f in os.listdir(ST) if re.fullmatch(r'work-[a-z0-9-]+\.html', f))   # one page per case study
 
 MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml',
@@ -42,7 +42,7 @@ def asset(path):
 
 
 # the scripts, carried once; a page refers to them by token
-for name in ('react.js', 'react-dom.js', 'dc-runtime.js', 'dc-template.js', 'dc-boot.js'):
+for name in ('react.js', 'react-dom.js', 'dc-runtime.js', 'dc-template.js', 'dc-boot.js', 'consent.js', 'enquiry.js'):
     js = open(os.path.join(ST, 'assets', name), encoding='utf8').read()
     assert '</script' not in js, name
     A['js:' + name] = js
@@ -58,6 +58,8 @@ for key in PAGES:
     # no network hints, no canonical: the file is its own address
     h = re.sub(r'\s*<link rel="preconnect"[^>]*>', '', h)
     h = re.sub(r'\s*<link rel="canonical"[^>]*>', '', h)
+    # link-preview tags mean nothing in a local file, and their image would be carried for nothing
+    h = re.sub(r'\s*<meta (?:property="og:|name="twitter:)[^>]*>', '', h)
     # the corporate site and anything outside the studio goes to the live address
     h = re.sub(r'href="\.\./([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}"', h)
     for m in set(ASSET.findall(h)):

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — GEMIS® Studio</title>
 <meta name="description" content="Tell GEMIS® Studio what isn't working. Two working days to a written reply from the practice lead, a Teardown started within three working days of booking.">
@@ -9,11 +10,16 @@
 <meta property="og:site_name" content="GEMIS® Studio">
 <meta property="og:title" content="Contact — GEMIS® Studio">
 <meta property="og:description" content="Tell GEMIS® Studio what isn't working. Two working days to a written reply from the practice lead, a Teardown started within three working days of booking.">
-<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/heroBg.jpg">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/og-studio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="GEMIS Studio — Designed to be built. Product and experience design by the studio that can also build it.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/contact.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/consent.js" defer></script>
 <!--#studio-css-->
 <style>
 /* The form is the homepage's enquiry form, written as plain HTML here because this
@@ -23,10 +29,19 @@
 textarea.cf-input{line-height:1.4;resize:vertical}
 .cf-chip{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;padding:10px 14px;border-radius:999px;cursor:pointer;border:1px solid #dcdee3;background:transparent;color:#16161a;transition:all .3s}
 .cf-chip[aria-pressed="true"]{border-color:#16161a;background:#16161a;color:#f5f6f8}
-.cf-send{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#fff;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s}
-.cf-send:hover{background:#16161a;transform:translateY(-2px)}
+.cf-send{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em;background:#ff1f7a;color:#16161a;border:0;border-radius:999px;padding:16px 28px;cursor:pointer;display:flex;gap:24px;transition:background .3s,transform .3s}
+.cf-send:hover{background:#16161a;color:#fff;transform:translateY(-2px)}
 [data-c="direct"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width:900px){[data-c="direct"]{grid-template-columns:1fr!important}}
+/* the form and the thank-you carry inline display values, which would beat [hidden] */
+#studioEnquiry[hidden],#studioSent[hidden]{display:none!important}
+.cf-input[aria-invalid="true"]{border-bottom-color:#b00020}
+.cf-err{font-family:'Manrope',sans-serif;font-size:13px;letter-spacing:0;line-height:1.35;color:#b00020;text-transform:none;min-height:0}
+.cf-err:empty{display:none}
+.cf-consent{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;font-size:14px;line-height:1.45;color:#3a3b41}
+.cf-consent input{width:18px;height:18px;margin:2px 0 0;accent-color:#16161a}
+.cf-consent a{border-bottom:1px solid currentColor}
+.cf-trap{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
 @media (prefers-reduced-motion:reduce){.cf-send,.cf-chip{transition:none}}
 </style>
 </head>
@@ -47,7 +62,7 @@ textarea.cf-input{line-height:1.4;resize:vertical}
   </div>
   <div data-m="split" style="position:relative;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:start">
     <div data-m="rail" style="position:sticky;top:120px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">Contact</div>
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#b34e00;text-transform:uppercase">Contact</div>
       <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(44px,4.6vw,80px);line-height:0.95;letter-spacing:-0.045em;font-weight:600">Tell us what<br>isn't <span style="color:#ff1f7a">working.</span></h1>
       <p data-reveal="2" style="margin:28px 0 0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41">Two working days to a reply from the practice lead. No sales call — a short written read on whether a Teardown is the right first step.</p>
       <div style="margin-top:48px;border-top:1px solid #16161a">
@@ -62,12 +77,12 @@ textarea.cf-input{line-height:1.4;resize:vertical}
     <div>
       <form id="studioEnquiry" data-reveal="2" novalidate style="background:#ffffff;border:1px solid #dcdee3;padding:clamp(24px,3.5vw,48px);display:grid;gap:28px">
         <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input class="cf-input" name="name" required autocomplete="name" placeholder="Your name"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input class="cf-input" name="email" type="email" required autocomplete="email" placeholder="name@company.co.za"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Name</span><input class="cf-input" name="name" required autocomplete="name" placeholder="Your name" aria-describedby="err-name"><span class="cf-err" id="err-name"></span></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Work email</span><input class="cf-input" name="email" type="email" required autocomplete="email" placeholder="name@company.co.za" aria-describedby="err-email"><span class="cf-err" id="err-email"></span></label>
         </div>
         <div data-m="fields" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
           <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Company</span><input class="cf-input" name="company" autocomplete="organization" placeholder="Company"></label>
-          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input class="cf-input" name="url" type="url" inputmode="url" placeholder="https://"></label>
+          <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">Product URL (optional)</span><input class="cf-input" name="url" inputmode="url" autocomplete="url" placeholder="acme.co.za" aria-describedby="err-url"><span class="cf-err" id="err-url"></span></label>
         </div>
         <div style="display:grid;gap:12px">
           <div id="serviceLabel" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase">What do you need?</div>
@@ -80,9 +95,14 @@ textarea.cf-input{line-height:1.4;resize:vertical}
           </div>
           <input type="hidden" name="service" value="Not sure yet">
         </div>
-        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">What's not working?</span><textarea class="cf-input" name="message" required rows="4" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…"></textarea></label>
+        <label style="display:grid;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73"><span style="text-transform:uppercase">What's not working?</span><textarea class="cf-input" name="message" required rows="4" placeholder="Support tickets rising, the team avoids the internal system, a redesign stalled after Figma…" aria-describedby="err-message"></textarea><span class="cf-err" id="err-message"></span></label>
+        <div style="display:grid;gap:8px">
+          <label class="cf-consent"><input type="checkbox" name="consent" value="yes" required aria-describedby="err-consent"><span>I agree that GEMIS may use these details to reply to this enquiry, as set out in the <a href="privacy.html">privacy notice</a>.</span></label>
+          <span class="cf-err" id="err-consent"></span>
+        </div>
+        <div class="cf-trap" aria-hidden="true"><label>Leave this field empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:8px">
-          <span id="enquiryNote" style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4" aria-live="polite">Sending opens a pre-filled email to info@gemis.co.za in your email app.</span>
+          <span id="enquiryNote" style="font-size:13px;color:#6a6b73;max-width:360px;line-height:1.4" role="status" aria-live="polite">Sending opens a pre-filled email to info@gemis.co.za in your email app.</span>
           <button type="submit" class="cf-send"><span style="text-transform:uppercase">Send enquiry</span><span>→</span></button>
         </div>
       </form>
@@ -142,12 +162,13 @@ textarea.cf-input{line-height:1.4;resize:vertical}
      is static, so there is no endpoint — the corporate forms do the same), and
      the success state. A hash on the URL pre-selects a service, so
      contact.html#teardown arrives with Product Teardown already chosen. -->
+<script src="assets/enquiry.js"></script>
 <script>
 (function () {
   'use strict';
   var form = document.getElementById('studioEnquiry');
   var sent = document.getElementById('studioSent');
-  if (!form || !sent) return;
+  if (!form || !sent || !window.StudioEnquiry) return;
   var chips = [].slice.call(form.querySelectorAll('.cf-chip'));
   var hidden = form.querySelector('input[name="service"]');
   function pick(chip) {
@@ -164,18 +185,59 @@ textarea.cf-input{line-height:1.4;resize:vertical}
   // the single-file copy of the site hands the hash over by message instead
   window.__pickService = pickKey;
 
+  var note = document.getElementById('enquiryNote');
+  var NOTE = note.textContent;
+  var touched = {};
+  var V = window.StudioEnquiry;
+  function values() {
+    var v = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el && el.value ? el.value.trim() : ''; };
+    return { name: v('name'), email: v('email'), company: v('company'), url: v('url'), service: v('service'), message: v('message'), consent: form.querySelector('[name="consent"]').checked };
+  }
+  function show(errors, only) {
+    V.FIELDS.forEach(function (n) {
+      if (only && only !== n) return;
+      var el = form.querySelector('[name="' + n + '"]');
+      var msg = errors[n] || '';
+      document.getElementById('err-' + n).textContent = msg;
+      if (msg) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+    });
+  }
+  // check a field once the visitor has left it, then live while they fix it
+  V.FIELDS.forEach(function (n) {
+    var el = form.querySelector('[name="' + n + '"]');
+    var check = function () { if (touched[n]) show(V.validate(values()), n); };
+    el.addEventListener('blur', function () {
+      if (n === 'url' && el.value.trim()) el.value = V.normaliseUrl(el.value);
+      if (el.value || n === 'consent') touched[n] = true;
+      check();
+    });
+    el.addEventListener(n === 'consent' ? 'change' : 'input', function () { if (n === 'consent') touched[n] = true; check(); });
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var invalid = form.querySelector(':invalid');
-    if (invalid) { invalid.focus(); if (invalid.reportValidity) invalid.reportValidity(); return; }
-    var v = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el && el.value ? el.value.trim() : ''; };
-    var body = ['Name: ' + v('name'), 'Work email: ' + v('email'), 'Company: ' + (v('company') || '—'), 'Product URL: ' + (v('url') || '—'), 'Service: ' + v('service'), '', "What's not working:", v('message')].join('\n');
-    window.location.href = 'mailto:info@gemis.co.za?subject=' + encodeURIComponent('Studio enquiry from ' + (v('company') || v('name'))) + '&body=' + encodeURIComponent(body);
-    sent.querySelector('[data-sent-name]').textContent = v('name') || 'there';
-    form.hidden = true; sent.hidden = false; sent.focus && sent.setAttribute('tabindex', '-1'); sent.focus();
+    var vals = values();
+    var errors = V.validate(vals);
+    var bad = V.FIELDS.filter(function (n) { return errors[n]; });
+    V.FIELDS.forEach(function (n) { touched[n] = true; });
+    show(errors);
+    if (bad.length) {
+      note.textContent = bad.length === 1 ? 'One field needs attention before this can be sent.' : bad.length + ' fields need attention before this can be sent.';
+      form.querySelector('[name="' + bad[0] + '"]').focus();
+      return;
+    }
+    note.textContent = NOTE;
+    // a filled honeypot or an instant submit is a script: show it the same
+    // thank-you, and hand nothing off
+    if (!V.looksLikeBot(form)) {
+      var body = ['Name: ' + vals.name, 'Work email: ' + vals.email, 'Company: ' + (vals.company || '—'), 'Product URL: ' + (V.normaliseUrl(vals.url) || '—'), 'Service: ' + vals.service, '', "What's not working:", vals.message, '', 'Consent: agreed to the privacy notice (' + new Date().toISOString().slice(0, 10) + ')'].join('\n');
+      window.location.href = 'mailto:info@gemis.co.za?subject=' + encodeURIComponent('Studio enquiry from ' + (vals.company || vals.name)) + '&body=' + encodeURIComponent(body);
+    }
+    sent.querySelector('[data-sent-name]').textContent = vals.name || 'there';
+    form.hidden = true; sent.hidden = false; sent.setAttribute('tabindex', '-1'); sent.focus();
   });
   sent.querySelector('[data-again]').addEventListener('click', function () {
-    form.reset(); pick(chips[0]); sent.hidden = true; form.hidden = false; form.querySelector('[name="name"]').focus();
+    form.reset(); touched = {}; show({}); pick(chips[0]); sent.hidden = true; form.hidden = false; form.querySelector('[name="name"]').focus();
   });
 })();
 </script>

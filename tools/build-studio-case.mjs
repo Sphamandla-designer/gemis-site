@@ -41,13 +41,24 @@ const head = (num, kicker, title, lede, dark) =>
       ${lede ? `<p data-reveal="2" style="${dark ? LEDE_DARK : LEDE_LIGHT}">${esc(lede)}</p>` : '<div></div>'}
     </div>`;
 
+/** The <title>: short enough not to be cut off in search results (under ~60 characters). */
 export function caseTitle(c) {
+  return `${c.name} case study — GEMIS® Studio`;
+}
+
+/** The title a link preview shows: room for the headline result. */
+export function caseShareTitle(c) {
   return c.result ? `${c.name} — ${c.result}` : `${c.name} — a GEMIS® Studio case study`;
 }
 
+/** The meta description: the result first, then as much context as fits in the
+    ~160 characters a search result shows. */
 export function caseDescription(c) {
-  const svc = c.service ? ` Evidences the ${c.service}.` : '';
-  return (c.result ? `${c.name}: ${c.result}${c.resultNote ? ' (' + c.resultNote.toLowerCase() + ')' : ''}.` : `${c.name}: a GEMIS® Studio case study.`) + ` ${c.industry}.${svc}`;
+  const parts = [c.result ? `${c.name}: ${c.result}${c.resultNote ? ' (' + c.resultNote.toLowerCase() + ')' : ''}.` : `${c.name}: a GEMIS® Studio case study.`,
+    `${c.industry}.`, c.service ? `Evidences the ${c.service}.` : ''].filter(Boolean);
+  let out = parts[0];
+  for (const p of parts.slice(1)) if ((out + ' ' + p).length <= 160) out += ' ' + p;
+  return out;
 }
 
 /** The one-line result for a Work card: the headline result, or the project's own line when none is confirmed. */
