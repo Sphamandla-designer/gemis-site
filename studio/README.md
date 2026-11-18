@@ -9,6 +9,10 @@
 | `src/about.html` | The authored About page — its own content plus the same slots. **Edit this.** |
 | `src/services.html` | The authored Services page — its own content plus the same slots; the four steps are filled from the homepage ladder. **Edit this.** |
 | `src/contact.html` | The authored Contact page — the enquiry form, direct details, the same slots. **Edit this.** |
+| `src/privacy.html`, `src/terms.html`, `src/404.html` | The privacy notice, the terms of use and the studio's not-found page — authored content plus the shared slots. GitHub Pages serves the root `404.html` for every missing address; a script at its top sends any missing `/studio/` address here. Unconfirmed legal details are `[data-tbc]` notes, shown only under `?review=1`. **Edit these.** |
+| `assets/consent.js` | Hand-written. The cookie banner and the Google Analytics loader, which runs only after the visitor accepts. Off while `GA_ID` at its top is empty. |
+| `assets/enquiry.js` | Hand-written. The enquiry rules both forms share: validation messages, the URL tidy-up and the two spam traps (honeypot, three-second minimum). |
+| `assets/og-studio.jpg` | The share card for link previews (from `brand/linkedin-thumbnail-1200x627.png`). Case pages use their own thumbnail. |
 | `src/thumbs.html` → `assets/cases/<slug>.jpg` | The case thumbnails: the app windows and phones cut from the case-study videos (`../assets/img/ui/`) mounted in a laptop and a phone on a studio backdrop. `node tools/studio-thumbs.mjs` renders them. |
 | `src/case.html` · `src/cases.json` | The case study page template and the seven records it is built from — GEMIS's six client stories and ManaGEM, sourced from `scripts/cases.py`, `scripts/facts.md` and `scripts/endorsements.md` — one page per project at `work-<slug>.html`, in the structure header · problem · found · changed · build · results · quote · next step. **Edit the JSON.** |
 | `index.html` | Generated. The fully rendered homepage, served to visitors. Contains no `{{ }}`. |

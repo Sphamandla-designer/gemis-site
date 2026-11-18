@@ -102,6 +102,12 @@ Remove it only if the privacy notice is changed to match.
 
 ### 8. The studio enquiry form — now a `mailto:` hand-off
 
+Both studio forms now validate on blur and on submit with an inline message per
+field and a counted status line, require a consent tick that links the privacy
+notice, and carry two spam traps (a hidden honeypot field and a three-second
+minimum) from the shared `studio/assets/enquiry.js`. A trapped submit sees the
+thank-you and hands nothing off.
+
 `submitForm` in `studio/src/index.html` used to show a success state and discard
 what the visitor typed. It now does what the corporate Discovery form does on
 static hosting: opens a pre-addressed message to info@gemis.co.za with every
@@ -120,21 +126,32 @@ band at `#enquire` instead and carry the chosen service through as the form's
 preselected "What do you need?" value. The band's secondary link already goes
 there for the teardown, which is the studio's own named offer.
 
-### 9. One contrast failure left on the whole site ⚠️
+### 9. Studio launch checklist (2026-11-18) — what still needs the owner
 
-`/studio/`'s "Book a teardown" pill: **white on `#ff1f7a` is 3.67:1**, and 13px
-text needs 4.5:1. It is the last axe violation anywhere on the site — everything
-else, both sites, is clean.
+The studio was checked against a 19-point launch list (sitemap, privacy, terms,
+cookies, secrets, social image, HTTPS, mobile, meta, 404, alt text, image size,
+speed, contrast, favicon, links, form validation, spam, analytics). Everything
+that could be done from the repository is done; these need a person:
 
-`#ea005f` would clear it at 4.51:1. That is a visibly deeper pink, and the pink
-is a brand accent, so it is a decision rather than a fix. Two other routes:
-apply the darker pink **only to this pill** and leave the accent alone
-everywhere else, or take the label to 18.66px bold, at which size 3:1 is the
-bar and the existing pink already passes.
-
-The studio's other accents — `#ff7a12` on `#f5f6f8` at 2.41:1, `#9a9ba3` on
-white at 2.76:1 — are small print rather than controls, and have no
-hue-preserving fix either. See `qa/REPORT.md`.
+- **Analytics ID.** `studio/assets/consent.js` carries the consent banner and a
+  Google Analytics 4 loader that runs only after the visitor accepts. It is off
+  until `GA_ID` at the top of that file holds the GA4 measurement ID (`G-…`).
+  While it is empty no banner shows — there is nothing to consent to — and
+  "Cookie settings" in the footer opens the privacy notice's cookies section.
+  Rebuild the studio bundle after setting it.
+- **Legal approval.** `studio/privacy.html` and `studio/terms.html` (sources in
+  `studio/src/`) are written to match what the site does and only quote prices
+  the site already publishes, but they need the owner's (and ideally a
+  lawyer's) approval. Under `?review=1` they show what is missing: the
+  Information Officer, the company registration number and directors (ECT Act
+  s43), and the email provider and where it stores mail (POPIA s72).
+- **Contrast decision taken.** The last axe failure (white on the `#ff1f7a`
+  pill, 3.67:1) is fixed without changing the brand pink: the pill and the Send
+  buttons now carry ink text (`#16161a`, 4.92:1). Small orange labels on light
+  grounds use `#b34e00` and small pink text on white uses `#d70057` (same hues,
+  ≥ 4.5:1); the bright accents stay for large type, lines and dark grounds.
+  Every studio page is axe-clean at serious/critical (the header wordmark's
+  report is a false positive: it is drawn with `mix-blend-mode: difference`).
 
 ### 10. The studio work page (`studio/work.html`) and the case studies
 

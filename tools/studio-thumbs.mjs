@@ -32,7 +32,7 @@ const scenes = await page.$$('.scene');
 for (const scene of scenes) {
   const slug = await scene.getAttribute('data-slug');
   await scene.scrollIntoViewIfNeeded();
-  await scene.screenshot({ path: join(OUT, slug + '.jpg'), type: 'jpeg', quality: 86 });
+  await scene.screenshot({ path: join(OUT, slug + '.jpg'), type: 'jpeg', quality: 80 });
   console.log(`studio/assets/cases/${slug}.jpg written`);
 }
 await browser.close();
