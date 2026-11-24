@@ -36,23 +36,57 @@ sv_spec.loader.exec_module(SV)
 CANON = S.CANONICAL
 
 
-def shell(base, title, description, canonical, extra_head=''):
-    """head + header and footer + scripts, taken from the homepage."""
+def short_title(title, canonical=''):
+    """The <title> a search result shows without cutting it off (about 60
+    characters): the part before the first dash or colon, plus the brand. A
+    story page says it is a case study. Link previews keep the full title."""
+    if len(title) <= 60:
+        return title
+    core = re.split(r' — | \| |: ', title, maxsplit=1)[0].strip()
+    if re.search(r'/work/[^/]+/$', canonical):
+        core += ' case study'
+    return f'{core} | GEMIS®'
+
+
+def fit_description(text, limit=160):
+    """Whole sentences up to the limit; a single long sentence is cut at a word."""
+    text = ' '.join(text.split())
+    if len(text) <= limit:
+        return text
+    out = ''
+    for sent in re.split(r'(?<=[.!?])\s+', text):
+        if len(out) + len(sent) + (1 if out else 0) > limit:
+            break
+        out = (out + ' ' + sent).strip()
+    if out:
+        return out
+    return text[:limit - 1].rsplit(' ', 1)[0].rstrip(',;:—– ') + '…'
+
+
+def shell(base, title, description, canonical, extra_head='', image=None):
+    """head + header and footer + scripts, taken from the homepage.
+    image: a share image path from the site root, in place of the default card."""
     src = open(os.path.join(ROOT, 'index.html'), encoding='utf-8').read()
     head_open, rest = src.split('<main>', 1)
     _, tail = rest.split('</main>', 1)
 
     # per-page metadata
-    head_open = re.sub(r'<title>[^<]*</title>', f'<title>{esc(title)}</title>', head_open, count=1)
+    head_open = re.sub(r'<title>[^<]*</title>', f'<title>{esc(short_title(title, canonical))}</title>', head_open, count=1)
     for key in ('name="description"', 'property="og:title"', 'property="og:description"',
                 'name="twitter:title"', 'name="twitter:description"'):
-        value = title if 'title' in key else description
+        value = title if 'title' in key else (fit_description(description) if key == 'name="description"' else description)
         head_open = re.sub(r'(<meta ' + re.escape(key) + r' content=")[^"]*(")',
                            lambda m: m.group(1) + esc(value) + m.group(2), head_open, count=1)
     head_open = re.sub(r'(<link rel="canonical" href=")[^"]*(")',
                        lambda m: m.group(1) + canonical + m.group(2), head_open, count=1)
     head_open = re.sub(r'(<meta property="og:url" content=")[^"]*(")',
                        lambda m: m.group(1) + canonical + m.group(2), head_open, count=1)
+
+    if image:
+        head_open = re.sub(r'(<meta property="og:image" content=")[^"]*(")',
+                           lambda m: m.group(1) + 'https://sphamandla-designer.github.io/gemis-site/' + image + m.group(2), head_open, count=1)
+        # the default card's size and words do not describe this image
+        head_open = re.sub(r'\s*<meta property="og:image:(width|height|alt)"[^>]*>', '', head_open)
 
     # the homepage's Organization block belongs only to the homepage
     head_open = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head_open, flags=re.S)
@@ -242,6 +276,7 @@ def story_page(s):
         c['value'][:180],
         f"{CANON}work/{s['slug']}/",
         extra_head=video_schema(s),
+        image=f"{S.VIDEO_DIR}{s['video']}_thumb.jpg",
     )
 
     body = f'''

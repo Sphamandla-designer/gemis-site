@@ -403,6 +403,7 @@ def enquiry():
 
         <div class="hx-go__panel" data-reveal style="--d:160ms">
           <form class="form" id="discoveryForm" novalidate>
+            <div class="form__sum" id="discoverySummary" role="alert" tabindex="-1" aria-labelledby="discoverySummaryTitle" hidden></div>
             <div class="form__rows">
               <div class="field">
                 <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>

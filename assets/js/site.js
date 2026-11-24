@@ -308,6 +308,25 @@
   if (discovery) {
     var dNote = document.getElementById('discoveryNote');
 
+    /* Spam. Nothing is posted anywhere — the form hands off to the visitor's own
+       email app — so a bot cannot flood an inbox through it. Two traps still stop
+       a script from triggering the hand-off: a field people never see (a bot
+       fills it) and a minimum time on the page. A trapped send gets the normal
+       note and hands nothing off. */
+    var dShownAt = Date.now();
+    var trap = document.createElement('div');
+    trap.setAttribute('aria-hidden', 'true');
+    trap.style.cssText = 'position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden';
+    trap.innerHTML = '<label>Leave this field empty <input name="website" tabindex="-1" autocomplete="off" /></label>';
+    discovery.appendChild(trap);
+    var looksLikeBot = function () {
+      return !!trap.querySelector('input').value || Date.now() - dShownAt < 3000;
+    };
+
+    // the browser accepts "jane@company" as an email; a reply needs a real domain
+    var dEmail = document.getElementById('d-email');
+    if (dEmail) dEmail.setAttribute('pattern', '[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}');
+
     /* Arriving from a service page (contact.html?service=<slug>): pre-select the
        closest topic and start the notes with the service, so the enquiry says
        what it is about. Unknown or missing values change nothing. */
@@ -399,8 +418,16 @@
         'Rough timeline: ' + (val('d-timeline') || '—'),
         '',
         'Anything we should know:',
-        val('d-notes') || '—'
+        val('d-notes') || '—',
+        '',
+        // the privacy notice says consent is recorded with the enquiry
+        'Consent: agreed to GEMIS processing this information to respond, as set out in the privacy notice (' + new Date().toISOString().slice(0, 10) + ').'
       ].join('\n');
+
+      if (looksLikeBot()) {
+        if (dNote) dNote.textContent = 'Opening your email client with your details pre-filled. If nothing happens, email info@gemis.co.za directly.';
+        return;
+      }
 
       window.location.href = 'mailto:info@gemis.co.za'
         + '?subject=' + encodeURIComponent('Discovery Session request — ' + val('d-company'))

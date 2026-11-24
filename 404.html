@@ -10,13 +10,31 @@
        studio address belongs on the studio's own not-found page. */
     (function () { var p = location.pathname, i = p.indexOf('/studio/');
       if (i > -1 && !/\/studio\/404\.html$/.test(p)) location.replace(p.slice(0, i) + '/studio/404.html'); })();
+    /* It is served at the missing address itself, so at /gemis-site/work/old/
+       every relative path below would resolve under /work/old/. Anchor them at
+       the site root before any of them loads. */
+    (function () { if (!/^https?:$/.test(location.protocol)) return;
+      var p = location.pathname, i = p.indexOf('/gemis-site/');
+      var base = document.createElement('base');
+      base.setAttribute('href', i > -1 ? p.slice(0, i) + '/gemis-site/' : '/');
+      document.head.appendChild(base);
+      // with a <base>, "#hero" would mean the homepage's #hero: keep in-page anchors in the page
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (a && a.getAttribute('href').length > 1) { e.preventDefault(); location.hash = a.getAttribute('href'); }
+      }); })();
   </script>
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/site.css?v=20261014" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}
     .acc__panel{grid-template-rows:1fr!important} .filters{display:none}</style></noscript>
+  <!--#head:start-->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <script src="assets/js/consent.js" defer></script>
+  <!--#head:end-->
 </head>
 <body>
 
@@ -213,7 +231,7 @@
       <div class="foot__rule" aria-hidden="true"></div>
       <div class="foot__bar">
         <p>&copy; 2026 GEM Information Systems (PTY) LTD. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a>
+        <nav class="foot__legal" aria-label="Legal"><a href="privacy.html">Privacy notice</a><a href="terms.html">Terms of use</a><a href="privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
       </div>
     </div>
   </footer>
