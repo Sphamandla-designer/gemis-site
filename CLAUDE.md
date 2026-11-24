@@ -382,7 +382,10 @@ decision. The rules that must survive later work:
   LinkedIn link (no call to action: the owner's choice, 2026-11-24).
 - **Letterheads** for GEMIS and for GEMIS Studio (A4 PDF + Word each; the studio's in
   its own language: the coloured stone, Manrope and JetBrains Mono, the pink and
-  orange shards, the E. / W. / A. keys), **LinkedIn company banner** and **business
+  orange shards, the E. / W. / A. keys), **meeting backgrounds** for Zoom and Teams
+  (1920×1080 JPEG: navy, the team standard, and light, plain and per person with the
+  name and role; the centre kept calm for the person, the hatch coarse so video does
+  not shimmer), **LinkedIn company banner** and **business
   cards** (90×50 mm + 3 mm bleed, print PDF per person), all by
   `node tools/make-brand-print.mjs`, which draws them from the site's art (the
   logo, the stone, the hatch, the dotted field, the streaks and `cluster()` from

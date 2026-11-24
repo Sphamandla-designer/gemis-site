@@ -8,6 +8,7 @@ Everything here is generated. Edit the generator, not the output.
 | Email signatures | `email-signatures/` (HTML, PNG, text, preview page) | `python3 tools/make-signatures.py`, then `node tools/render-signatures.mjs` |
 | Letterhead, GEMIS | `letterhead/GEMIS-Letterhead.pdf`, `letterhead/GEMIS-Letterhead.docx` | `node tools/make-brand-print.mjs` |
 | Letterhead, GEMIS Studio | `letterhead/GEMIS-Studio-Letterhead.pdf`, `letterhead/GEMIS-Studio-Letterhead.docx` | `node tools/make-brand-print.mjs` |
+| Meeting backgrounds (Zoom, Teams) | `meeting-backgrounds/GEMIS-Meeting-Background-Navy.jpg` (the team standard), `-Light.jpg`, and `meeting-backgrounds/people/<person>-{navy,light}.jpg` with the name and role | `node tools/make-brand-print.mjs` |
 | LinkedIn banner | `linkedin/GEMIS-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
 | Business cards | `business-cards/<person>.pdf` (print), `<person>-front.png`, `-back.png`, `all.png` | `node tools/make-brand-print.mjs` |
 
@@ -39,6 +40,26 @@ the studio pink and an orange rule, the pink and orange faceted shards and the
 outlined triangles from the studio site's hero, the dot grid, Manrope for words and
 JetBrains Mono for labels, and the footer keyed E. / W. / A. in pink, as on the
 studio's contact page. The Word file embeds Manrope and JetBrains Mono.
+
+## Meeting backgrounds
+
+1920×1080 JPEG, the size Zoom and Teams recommend. **Navy is the team standard**: use it
+for every professional meeting so the whole team looks the same on screen. The light
+version is for a dark room or dark clothes, which disappear into navy. Use the copy with
+your name and role from `people/`, or the plain one.
+
+The person covers the middle of the frame, so the design keeps it calm: the logo (and
+the name and role) top left, the block cluster off the right edge, the slogan bottom
+left, the site bottom right. The hatch is coarse and faint because video compression
+makes fine lines shimmer.
+
+- **Zoom:** Settings, Backgrounds & effects, Virtual backgrounds, the + button, Add image.
+- **Teams:** before joining, Effects and avatars (or Background filters), then Add new;
+  in a meeting, More, Effects and avatars, Background effects, Add new.
+- Your own preview may show the words mirrored; everyone else sees them the right way
+  round. In Zoom, untick *Mirror my video* to see them as others do.
+- Virtual backgrounds work best with even light on your face and a plain
+  wall behind you. Some organisations switch off custom backgrounds in Teams.
 
 ## LinkedIn banner
 

@@ -159,6 +159,39 @@ function banner() {
   </div>`;
 }
 
+// ---- meeting backgrounds (Zoom, Teams: 1920×1080) -----------------------------------------
+// The person sits in the middle third and covers it from the shoulders down, so the brand
+// lives at the edges: the logo top left (with the name and role on a personal copy), the
+// block cluster bleeding off the right, the slogan bottom left, the site bottom right.
+// Video compression shimmers on hairlines, so the hatch here is coarse and faint and every
+// stroke is at least 2px. Navy is the team standard; light is for dark rooms or dark clothes.
+function meeting(p, tone) {
+  const dark = tone === 'navy';
+  const d = defs({ hatch: 16, line: 2, dot: 22, dotR: 2, hatchOp: .045 });
+  const fg = dark ? '#fff' : NAVY, sub = dark ? SOFT : MUTE;
+  // the light version carries a navy stepped block on the right, which holds the cluster
+  const block = 'M1460 0H1920V1080H1330V150H1460Z';
+  const who = p ? `<span style="position:absolute;left:100px;top:224px;width:48px;height:3px;background:${fg}"></span>
+  <p class="t" style="left:99px;top:248px;font-size:40px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:${fg}">${p.name}</p>
+  <p class="t lab" style="left:102px;top:308px;font-size:19px;color:${sub}">${p.role}</p>` : '';
+  return `<div class="pg"><svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">${d.svg}
+    <rect width="1920" height="1080" fill="${dark ? NAVY : '#f4f5f8'}"/>
+    ${dark ? `<rect width="1920" height="1080" fill="url(#${d.hatch})"/>` : `<path d="${block}" fill="${NAVY}"/><clipPath id="mb${uid}"><path d="${block}"/></clipPath>`}
+    <g ${dark ? '' : `clip-path="url(#mb${uid})"`}>
+      ${dark ? '' : `<rect width="1920" height="1080" fill="url(#${d.hatch})"/>`}
+      <g fill="none" stroke="url(#${d.streak})" stroke-width="2.5"><path d="M1060 1180L2040 260"/><path d="M1210 1200L2080 380" opacity=".5"/></g>
+      ${cluster(1380, 250, 700, dark ? .9 : 1)}
+    </g>
+    ${dark ? `<rect x="0" y="640" width="330" height="264" fill="url(#${d.dots})" opacity=".5"/>` : ''}
+    ${dark ? `<path d="M1808 0H1920V60H1808Z" fill="#fff" opacity=".92"/>` : ''}
+    ${logo(100, 92, 440, fg)}
+  </svg>
+  ${who}
+  <p class="t lab" style="left:102px;top:950px;font-size:16px;line-height:1.75;color:${fg};font-weight:600">${CO.slogan[0]}<br><span style="color:${sub};font-weight:400">${CO.slogan[1]}</span></p>
+  <p class="t lab" style="right:96px;top:994px;font-size:16px;color:${dark ? SOFT : '#fff'};font-weight:500">${CO.web}</p>
+  </div>`;
+}
+
 // ---- business cards (90×50 mm trim + 3 mm bleed = 96×56; trim box starts at 3,3) ----
 function cardFront() {
   const d = defs({ hatch: 1.1, line: .14, dot: 1.8, dotR: .15 });
@@ -306,6 +339,12 @@ await shot(page(210, 297, 'mm', studioNext()), SART2, mm(210), mm(297), 300 / 96
 await shot(page(210, 297, 'mm', studioFirst(), 'body{background:#fff}'), out('letterhead', 'studio-letterhead-page-1.png'), mm(210), mm(297), 1.5);
 await shot(page(210, 297, 'mm', studioNext(), 'body{background:#fff}'), out('letterhead', 'studio-letterhead-page-2.png'), mm(210), mm(297), 1.5);
 
+// meeting backgrounds: the team standard, then a personal copy for each person
+for (const tone of ['navy', 'light']) {
+  await shot(page(1920, 1080, 'px', meeting(null, tone)), out('meeting-backgrounds', `GEMIS-Meeting-Background-${tone === 'navy' ? 'Navy' : 'Light'}.jpg`), 1920, 1080, 1, { type: 'jpeg', quality: 92 });
+  for (const p of STAFF) await shot(page(1920, 1080, 'px', meeting(p, tone)), out('meeting-backgrounds', 'people', `${p.slug}-${tone}.jpg`), 1920, 1080, 1, { type: 'jpeg', quality: 92 });
+}
+
 // LinkedIn
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner@2x.png'), 1128, 191, 2);
@@ -424,4 +463,4 @@ await writeWord(out('letterhead', 'GEMIS-Studio-Letterhead.docx'), {
   ],
 });
 fs.rmSync(TMP, { recursive: true, force: true });
-console.log('letterheads (GEMIS, studio), linkedin, business cards:', STAFF.map((p) => p.slug).join(', '));
+console.log('letterheads (GEMIS, studio), meeting backgrounds, linkedin, business cards:', STAFF.map((p) => p.slug).join(', '));
