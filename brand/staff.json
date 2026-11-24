@@ -1,9 +1,9 @@
 [
   {
-    "slug": "sphamandla-xaba",
-    "name": "Sphamandla Xaba",
-    "role": "UI/UX Designer",
-    "email": "sphamandla@gemis.co.za"
+    "slug": "graeme-mehl",
+    "name": "Graeme Mehl",
+    "role": "CEO",
+    "email": "graeme@gemis.co.za"
   },
   {
     "slug": "leon-small",
@@ -12,9 +12,27 @@
     "email": "leon@gemis.co.za"
   },
   {
+    "slug": "byron-thompson",
+    "name": "Byron Thompson",
+    "role": "Developer",
+    "email": "byron@gemis.co.za"
+  },
+  {
+    "slug": "sebastian-vries",
+    "name": "Sebastian Vries",
+    "role": "Senior Developer",
+    "email": "sebastian@gemis.co.za"
+  },
+  {
     "slug": "vanessa-davis",
     "name": "Vanessa Davis",
     "role": "Senior Full Stack Developer",
     "email": "vanessa@gemis.co.za"
+  },
+  {
+    "slug": "sphamandla-xaba",
+    "name": "Sphamandla Xaba",
+    "role": "UI/UX Designer",
+    "email": "sphamandla@gemis.co.za"
   }
 ]

@@ -63,7 +63,7 @@ def art(p):
     <rect width="180" height="170" fill="url(#hatch)"/>
     <rect x="0" y="96" width="78" height="74" fill="url(#dots)"/>
     <g fill="none" stroke="url(#streak)" stroke-width="1.2"><path d="M-10 186L250-34"/><path d="M-10 162L250-58" opacity=".55"/></g>
-    <text x="106" y="166" fill="#ffffff" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="200" font-size="92" letter-spacing="-5" text-anchor="middle" opacity=".92">{initials(p)}</text>
+    <text x="106" y="166" fill="#ffffff" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="200" font-size="{80 if re.search('[MW]', initials(p)) else 92}" letter-spacing="-5" text-anchor="middle" opacity=".92">{initials(p)}</text>
     <text transform="translate(17 160) rotate(-90)" fill="#ffffff" opacity=".58" font-family="Montserrat, Helvetica, Arial, sans-serif" font-weight="500" font-size="6.6" letter-spacing="1.1">GEM INFORMATION SYSTEMS</text>
     <g transform="translate(30 18) scale(.5)" fill="#ffffff">{mark}</g>
     <path d="M122 0V22H180" fill="none" stroke="#ffffff" stroke-opacity=".3"/>

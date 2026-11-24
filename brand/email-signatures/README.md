@@ -6,9 +6,12 @@ https://sphamandla-designer.github.io/gemis-site/brand/email-signatures/
 
 | Person | Role | File |
 |---|---|---|
-| Sphamandla Xaba | UI/UX Designer | `sphamandla-xaba.html` (+ `.png`, `.txt`) |
+| Graeme Mehl | CEO | `graeme-mehl.html` (+ `.png`, `.txt`) |
 | Leon Small | Director | `leon-small.html` (+ `.png`, `.txt`) |
+| Byron Thompson | Developer | `byron-thompson.html` (+ `.png`, `.txt`) |
+| Sebastian Vries | Senior Developer | `sebastian-vries.html` (+ `.png`, `.txt`) |
 | Vanessa Davis | Senior Full Stack Developer | `vanessa-davis.html` (+ `.png`, `.txt`) |
+| Sphamandla Xaba | UI/UX Designer | `sphamandla-xaba.html` (+ `.png`, `.txt`) |
 
 ## How they are built
 

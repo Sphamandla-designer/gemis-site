@@ -6,7 +6,8 @@ Everything here is generated. Edit the generator, not the output.
 |---|---|---|
 | Logos (every variant, SVG + PNG, both brands) | `logos/` (preview sheet `logos/index.html`, `logos/GEMIS-logos.zip`) | `node tools/make-logo-kit.mjs` (after `tools/make-logo.py` if the mark changes) |
 | Email signatures | `email-signatures/` (HTML, PNG, text, preview page) | `python3 tools/make-signatures.py`, then `node tools/render-signatures.mjs` |
-| Letterhead | `letterhead/GEMIS-Letterhead.pdf`, `letterhead/GEMIS-Letterhead.docx` | `node tools/make-brand-print.mjs` |
+| Letterhead, GEMIS | `letterhead/GEMIS-Letterhead.pdf`, `letterhead/GEMIS-Letterhead.docx` | `node tools/make-brand-print.mjs` |
+| Letterhead, GEMIS Studio | `letterhead/GEMIS-Studio-Letterhead.pdf`, `letterhead/GEMIS-Studio-Letterhead.docx` | `node tools/make-brand-print.mjs` |
 | LinkedIn banner | `linkedin/GEMIS-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
 | Business cards | `business-cards/<person>.pdf` (print), `<person>-front.png`, `-back.png`, `all.png` | `node tools/make-brand-print.mjs` |
 
@@ -30,6 +31,15 @@ founded 2014). There is no phone number on any piece.
   without the font. To edit with the font installed, install the files in `fonts/`.
   Replace the bracketed placeholders and save as a new document.
 
+## Studio letterhead
+
+The same two pages and the same Word behaviour, in the studio's own language: white
+paper, the coloured stone and GEMIS STUDIO, "Designed to be built." with *built.* in
+the studio pink and an orange rule, the pink and orange faceted shards and the
+outlined triangles from the studio site's hero, the dot grid, Manrope for words and
+JetBrains Mono for labels, and the footer keyed E. / W. / A. in pink, as on the
+studio's contact page. The Word file embeds Manrope and JetBrains Mono.
+
 ## LinkedIn banner
 
 Upload `GEMIS-LinkedIn-Banner@2x.png` as the company page's cover image (Page admin,
@@ -48,6 +58,9 @@ company logo over its lower left corner, which the design keeps clear.
 
 ## Fonts
 
-`fonts/` holds static cuts of Montserrat (SIL Open Font License, `fonts/OFL.txt`),
-made from the site's variable font. The Word file embeds them, and the print PDFs
-are rendered from them so they embed TrueType rather than Type 3 outlines.
+`fonts/` holds static cuts of Montserrat, Manrope and JetBrains Mono, made from the
+site's variable fonts by `python3 tools/make-static-fonts.py` (each under the SIL Open
+Font License: `fonts/OFL.txt`, `OFL-Manrope.txt`, `OFL-JetBrainsMono.txt`). The Word
+files embed them, and the print PDFs are rendered from them so they embed TrueType
+rather than Type 3 outlines. Install them to edit the Word letters with the real
+fonts on screen.
