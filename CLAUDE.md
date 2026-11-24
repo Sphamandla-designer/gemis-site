@@ -89,7 +89,12 @@ Two traps in these builds:
   instruction, 2026-11-24): the outlined `hx-btn--ghost` and the bar's
   `nav__cta` included, through the "BUTTONS ON NAVY ARE WHITE" block at the
   tail of `site.css`. Hover inverts to the outline. A new navy container goes
-  in that block's list; outlined buttons on white grounds keep their outline.
+  in that block's lists; outlined buttons on white grounds keep their outline.
+  It covers text actions too: an `.arrow-link` or `.cs__more` directly on a
+  navy tile or inside a navy card is a white button, and so is the case card's
+  `cscard__go` (outlined again on the white card). Check with pixels, not
+  class names: an audit that only looked at `btn`-like classes missed all of
+  these, and a white fill can hide a label an older rule keeps white.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.
