@@ -27,15 +27,17 @@ PAGES += sorted(f for f in os.listdir(ST) if re.fullmatch(r'work-[a-z0-9-]+\.htm
 
 MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml',
         '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff'}
-ASSET = re.compile(r'\.\./assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp)|assets/[A-Za-z0-9_.-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
+ASSET = re.compile(r'\.\./assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp)|assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
 
 A = {}
 
 
-def asset(path):
+def asset(path, optional=False):
     if path not in A:
         f = os.path.join(R, path[3:]) if path.startswith('../') else os.path.join(ST, path)
         if not os.path.exists(f):
+            if optional:      # named in the runtime's template data but never rendered
+                return path
             raise SystemExit('missing asset ' + path)
         A[path] = 'data:' + MIME[os.path.splitext(f)[1]] + ';base64,' + base64.b64encode(open(f, 'rb').read()).decode()
     return path
@@ -60,15 +62,20 @@ for key in PAGES:
     h = re.sub(r'\s*<link rel="canonical"[^>]*>', '', h)
     # link-preview tags mean nothing in a local file, and their image would be carried for nothing
     h = re.sub(r'\s*<meta (?:property="og:|name="twitter:)[^>]*>', '', h)
+    # so does structured data, whose absolute image URLs would otherwise read as assets
+    h = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', h, flags=re.S)
     # the corporate site and anything outside the studio goes to the live address
     h = re.sub(r'href="\.\./([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}"', h)
+    # strict for what the markup shows; a path only inside a script (the component's
+    # data) may name an image it never renders
+    shown = set(ASSET.findall(re.sub(r'<script\b.*?</script>', '', h, flags=re.S)))
     for m in set(ASSET.findall(h)):
-        asset(m)
+        asset(m, optional=m not in shown)
     pages[key] = h
 
 for name in ('js:dc-template.js', 'js:dc-runtime.js', 'js:dc-boot.js'):
     for m in set(ASSET.findall(A[name])):
-        asset(m)
+        asset(m, optional=True)
 
 # every internal link lands on one of the five pages, or on the live site
 for key, h in pages.items():
@@ -152,7 +159,7 @@ noscript a{{color:#fff}}
   function build(page) {{
     return pages[page]
       .replace(/@@(js:[a-z-]+\\.js)@@/g, function (m, k) {{ return assets[k] || ''; }})
-      .replace(/\\.\\.\\/assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)|assets\\/[A-Za-z0-9_.-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
+      .replace(/\\.\\.\\/assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)|assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
       .replace(/assets\\/[A-Za-z0-9_.-]+?\\.(?:woff2|woff)/g, function (m) {{ return assets[m] || m; }});
   }}
   function frame(page) {{

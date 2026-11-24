@@ -4,24 +4,24 @@
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<title>WasteMart case study — GEMIS® Studio</title>
-<meta name="description" content="WasteMart: Six hours a week back, per depot (confirmed by the client). Waste management and skip hire. Evidences the Product Teardown.">
+<title>WasteMart Driver App UX Case Study | GEMIS Studio</title>
+<meta name="description" content="How GEMIS designed the WasteMart driver app: start of day, the route, check-in, manifest capture and customer sign-off — one collection at a time, on one phone.">
 <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/work-wastemart.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="GEMIS® Studio">
 <meta property="og:locale" content="en_ZA">
-<meta property="og:title" content="WasteMart — Six hours a week back, per depot">
-<meta property="og:description" content="WasteMart: Six hours a week back, per depot (confirmed by the client). Waste management and skip hire. Evidences the Product Teardown.">
+<meta property="og:title" content="WasteMart Driver App UX Case Study | GEMIS Studio">
+<meta property="og:description" content="How GEMIS designed the WasteMart driver app: start of day, the route, check-in, manifest capture and customer sign-off — one collection at a time, on one phone.">
 <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart.jpg">
 <meta property="og:image:width" content="1400">
 <meta property="og:image:height" content="963">
-<meta property="og:image:alt" content="WasteMart: the driver app on a phone — a collection stop with its workflow and the check-in action">
+<meta property="og:image:alt" content="The WasteMart driver app on three phones: the day’s route, a job’s details and the manifest capture">
 <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work-wastemart.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WasteMart — Six hours a week back, per depot">
-<meta name="twitter:description" content="WasteMart: Six hours a week back, per depot (confirmed by the client). Waste management and skip hire. Evidences the Product Teardown.">
+<meta name="twitter:title" content="WasteMart Driver App UX Case Study | GEMIS Studio">
+<meta name="twitter:description" content="How GEMIS designed the WasteMart driver app: start of day, the route, check-in, manifest capture and customer sign-off — one collection at a time, on one phone.">
 <meta name="twitter:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart.jpg">
-<meta name="twitter:image:alt" content="WasteMart: the driver app on a phone — a collection stop with its workflow and the check-in action">
+<meta name="twitter:image:alt" content="The WasteMart driver app on three phones: the day’s route, a job’s details and the manifest capture">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -609,6 +609,37 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .review [data-tbc]{display:block;border:1px dashed #ff7a12;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:#8a4a12;background:rgba(255,122,18,.06)}
 .review [data-tbc]::before{content:'TBC · ';font-weight:700}
 @media (max-width:900px){.cs-dec,.cs-screens{grid-template-columns:1fr}.cs-list>li{grid-template-columns:36px 1fr;gap:10px}}
+/* the showcase case study (ManaGEM, WasteMart): every section pairs its copy with a
+   mockup of the real prototype screens; chapters alternate copy and screen */
+.sc-fig{margin:0;display:grid;gap:14px}
+.sc-fig .shot{border-radius:6px;overflow:hidden;background:#dcdee3;aspect-ratio:16/10}
+.sc-fig img{display:block;width:100%;height:100%;object-fit:cover}
+.sc-fig figcaption{font-size:14px;line-height:1.5;color:#6a6b73;max-width:72ch}
+.sc-dark .sc-fig figcaption{color:#9a9ba3}
+.sc-dark .sc-fig .shot{background:#26262c}
+.sc-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-copy p{margin:0 0 16px;font-size:17px;line-height:1.55;color:#3a3b41;max-width:60ch}
+.sc-dark .sc-copy p{color:#c9cad1}
+.sc-copy p.lead{font-size:clamp(19px,1.6vw,23px);line-height:1.4;letter-spacing:-0.01em;color:#16161a}
+.sc-dark .sc-copy p.lead{color:#f5f6f8}
+.sc-chapters{display:grid;gap:clamp(72px,9vw,140px)}
+.sc-ch{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-ch:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.sc-ch:nth-child(even) .sc-copy{order:2}
+.sc-ch .n{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#a84a00;text-transform:uppercase}
+.sc-dark .sc-ch .n{color:#ff7a12}
+.sc-ch h3{margin:14px 0 18px;font-size:clamp(26px,2.4vw,38px);line-height:1.05;letter-spacing:-0.035em;font-weight:600}
+.sc-ch ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.sc-ch li,.sc-copy li{display:flex;gap:12px;align-items:baseline;font-size:15px;line-height:1.45;color:inherit}
+.sc-ch li::before,.sc-copy li::before{content:'+';font-family:'JetBrains Mono',monospace;color:#ff7a12;flex:none}
+.sc-copy ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.sc-wide{margin-top:56px}
+/* results on either ground: the figures' labels and the attribution note follow it */
+.sc-copy p.sc-note{margin:24px 0 0;font-size:14px;line-height:1.45;color:#6a6b73;max-width:60ch}
+.sc-dark .sc-copy p.sc-note{color:#9a9ba3}
+.sc-light .cs-num>div{border-top-color:rgba(22,22,26,.25)}
+.sc-light .cs-num .l{color:#3a3b41}
+@media (max-width:900px){.sc-split,.sc-ch,.sc-ch:nth-child(even){grid-template-columns:1fr}.sc-ch:nth-child(even) .sc-copy{order:0}}
 </style>
 </head>
 <body>
@@ -649,116 +680,117 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <main id="main" data-motion="running">
 <div style="position:relative;overflow:hidden">
-<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 100px">
-  <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;opacity:.12"></div>
-  <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
+<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:150px 32px 90px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">WasteMart</span></nav>
-    <div data-m="head" style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-top:40px">
+    <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html" style="color:#6a6b73">Studio</a><span aria-hidden="true">/</span><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">WasteMart</span></nav>
+    <div data-m="head" style="display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;margin-top:40px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">Case study · Product Teardown</div>
-        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,5vw,88px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Six hours a week back, per depot</h1>
-        <p data-reveal="2" style="margin:20px 0 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73">Confirmed by the client</p>
+        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(38px,4.6vw,80px);line-height:0.97;letter-spacing:-0.045em;font-weight:600;color:#16161a">Designing the WasteMart driver app: every collection, from start of day to sign-off</h1>
+        <p data-reveal="2" style="margin:28px 0 0;max-width:58ch;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#3a3b41">WasteMart has been a GEMIS client since 2013, on one system for quotes, payment links, scheduling and drivers. The driver app is where a collection is confirmed. This is its operational prototype: a driver’s whole day, on one phone.</p>
       </div>
-      <div data-reveal="3" style="background:rgba(255,255,255,.75);backdrop-filter:blur(8px);border:1px solid rgba(22,22,26,.25);padding:4px 28px 0">
+      <div data-reveal="3" style="background:rgba(255,255,255,.75);border:1px solid rgba(22,22,26,.25);padding:4px 28px 0">
         <dl class="cs-spec" style="margin:0;border-top:0">
         <div><dt>Client</dt><dd>WasteMart</dd></div>
         <div><dt>Industry</dt><dd>Waste management and skip hire</dd></div>
         <div><dt>Service evidenced</dt><dd>Product Teardown</dd></div>
-        <div><dt>Timeline</dt><dd>Client for more than ten years; the system has grown with the business</dd></div>
+        <div><dt>Scope</dt><dd>The driver app — start of day to check-out</dd></div>
+        <div><dt>Deliverable</dt><dd>An operational phone prototype</dd></div>
         <div><dt>Built by</dt><dd>GEMIS developers</dd></div>
         </dl>
       </div>
     </div>
-    <div style="margin-top:24px;display:grid;gap:8px">
-<p data-tbc="case">NDA level: Full — name, screens and metrics — assumed; agree it with the client in writing before publishing.</p>
-    </div>
-    <div data-reveal="1" style="margin-top:56px;aspect-ratio:16/8;overflow:hidden;border-radius:4px;background:#dcdee3"><img src="assets/cases/wastemart.jpg" alt="WasteMart: the driver app on a phone — a collection stop with its workflow and the check-in action" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    <div class="sc-wide"><figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/hero.jpg" alt="The WasteMart driver app on three phones: the day’s route in front, a job’s details and the manifest capture either side" width="2000" height="1250" fetchpriority="high" decoding="async"></div><figcaption>The driver app: the route, a job, and the manifest.</figcaption></figure></div>
+    <p style="margin:20px 0 0;font-size:13px;line-height:1.5;color:#6a6b73;max-width:80ch">Every screen on this page is from the WasteMart driver app’s operational prototype, with sample data: the jobs, sites, people and vehicles are illustrative, not WasteMart’s records.</p>
   </div>
 </section>
 
-<section id="problem" data-screen-label="The problem" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+<section class="sc-light" id="brief" data-screen-label="The brief" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">02 · The problem</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">What was going<br><span style="color:#ff1f7a">wrong.</span></h2>
-      </div>
-      <div></div>
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">02 · The brief</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:16ch">Close the loop<br><span style="color:#ff1f7a">at the kerb.</span></h2><div style="margin-top:32px"><p class="lead">A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.</p><p>At the end of that chain is the driver. In the WasteMart system, the driver’s confirmation closes the loop, so the app has to make a day of collections quick to work through — in a cab, between stops.</p></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/brief.jpg" alt="Two phones: the driver app’s log-in screen and the start-of-day screen with the date and assigned truck" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Log in, then start the day: the date, the truck, and nothing else until the workday begins.</figcaption></figure>
     </div>
-    <div style="max-width:760px;display:grid;gap:20px"><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8">A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.</p><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8">Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood.</p></div>
   </div>
 </section>
 
-<section id="found" data-screen-label="What we found" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+<section class="sc-dark" id="challenge" data-screen-label="The challenge" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">03 · What we found</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">Evidence before<br><span style="color:#ff1f7a">opinion.</span></h2>
-      </div>
-      <p data-reveal="2" style="margin:0;max-width:380px;font-size:17px;line-height:1.4;color:#3a3b41;justify-self:end">There is no formal research report in the record for this project. The findings are the four manual jobs that sat behind one phone call, as the work was actually done.</p>
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">03 · The challenge</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8;max-width:16ch">Four jobs behind<br><span style="color:#ff1f7a">one phone call.</span></h2><div style="margin-top:32px"><p class="lead">Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood.</p><p>What the system had to answer:</p><ul><li>Quotes were built by hand and the right terms attached from memory.</li><li>Payment was chased, and proof of payment waited for.</li><li>Operations found out about jobs late — only once someone remembered to tell them.</li><li>Nobody, including the customer, could see where an order stood.</li></ul></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/challenge.jpg" alt="Two phones: the day’s route list and the activity log of dumps, fuel and manifests" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The route and the day’s records, kept with the driver.</figcaption></figure>
     </div>
-    <ol class="cs-list" style="border-bottom:1px solid #16161a"><li style="border-top-color:#16161a"><span>01</span><span>Quotes were built by hand and the right terms attached from memory.</span></li><li style="border-top-color:#16161a"><span>02</span><span>Payment was chased, and proof of payment waited for.</span></li><li style="border-top-color:#16161a"><span>03</span><span>Operations found out about jobs late — only once someone remembered to tell them.</span></li><li style="border-top-color:#16161a"><span>04</span><span>Nobody, including the customer, could see where an order stood.</span></li></ol>
-    <p style="margin:24px 0 0;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73">Ranked by impact</p>
   </div>
 </section>
 
-<section id="changed" data-screen-label="What we changed" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+<section class="sc-light" id="designed" data-screen-label="What we designed" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">04 · What we changed</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">The decisions,<br><span style="color:#ff1f7a">and why.</span></h2>
-      </div>
-      <div></div>
-    </div>
-    <div class="cs-dec"><div><span class="k">Decision 01</span><div class="d">Price the quote automatically from the service picked, with standard terms and conditions attached every time.</div><p class="w"><b>Why:</b> A quote that cannot go out without its terms removes a class of errors and most of the time spent building it.</p></div><div><span class="k">Decision 02</span><div class="d">Send a secure payment link with the quote, and let payment itself trigger the next step.</div><p class="w"><b>Why:</b> When payment drives the schedule there is nothing to chase and nothing to remember.</p></div><div><span class="k">Decision 03</span><div class="d">Alert operations the moment payment lands and put the job on the schedule automatically.</div><p class="w"><b>Why:</b> The hand-off that depended on someone remembering to tell operations is removed entirely.</p></div><div><span class="k">Decision 04</span><div class="d">One shared order record, confirmed by the driver’s scan, visible to managers and customers.</div><p class="w"><b>Why:</b> The driver’s scan closes the loop at the point of collection, so the view is current without a phone call.</p></div></div>
-    <div style="margin-top:64px">
-      <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:24px">The screens</div>
-      <div class="cs-screens"><figure><div class="frame"><span class="tag">Product</span><img src="../assets/img/work/wastemart-mock.jpg" alt="The driver app — one stop at a time: the client and site, directions, and the day’s workflow from dispatch to check-out, with one action, Confirm &amp; Check In." loading="lazy" decoding="async"></div><figcaption>The driver app — one stop at a time: the client and site, directions, and the day’s workflow from dispatch to check-out, with one action, Confirm &amp; Check In.</figcaption></figure><figure><div class="frame"><span class="tag">Product</span><img src="../assets/img/portfolio/hero-wastemart.jpg" alt="The same job screen in the driver’s hand — stop 1 of 9 on the truck’s route, two steps done, the next one a tap away." loading="lazy" decoding="async"></div><figcaption>The same job screen in the driver’s hand — stop 1 of 9 on the truck’s route, two steps done, the next one a tap away.</figcaption></figure><figure><div class="frame"><span class="tag">After</span><img src="../assets/img/cases/wastemart/01-quote.jpg" alt="Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically." loading="lazy" decoding="async"></div><figcaption>Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically.</figcaption></figure><figure><div class="frame"><span class="tag">After</span><img src="../assets/img/cases/wastemart/02-payment.jpg" alt="Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away." loading="lazy" decoding="async"></div><figcaption>Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away.</figcaption></figure><figure><div class="frame"><span class="tag">After</span><img src="../assets/img/cases/wastemart/03-schedule.jpg" alt="Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule." loading="lazy" decoding="async"></div><figcaption>Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule.</figcaption></figure><figure><div class="frame"><span class="tag">After</span><img src="../assets/img/cases/wastemart/04-collection.jpg" alt="Planned, collected, confirmed — planners assign the truck and driver, and the driver confirms the collection with a scan." loading="lazy" decoding="async"></div><figcaption>Planned, collected, confirmed — planners assign the truck and driver, and the driver confirms the collection with a scan.</figcaption></figure></div>
-      <p style="margin:20px 0 0;font-size:14px;line-height:1.45;color:#9a9ba3;max-width:70ch">The first two are the WasteMart driver app in product mockups; the rest are stills from the case study video. Both carry sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.</p>
-      <p data-tbc="case">Before screens, side by side with the after screens, are not in the record (then-now-screenshots).</p>
+    <div style="max-width:760px;margin-bottom:clamp(56px,7vw,100px)"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">04 · What we designed</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:16ch">A driver’s day,<br><span style="color:#ff1f7a">one screen at a time.</span></h2><div class="sc-copy" style="margin-top:28px"><p class="lead">The app follows the day in order — start, route, arrive, capture, sign, move on — and each screen asks the driver for one thing.</p></div></div>
+    <div class="sc-chapters">
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">01 / 06</div><h3>Start the day with a truck</h3><p>The driver picks a vehicle from the trucks available at the depot, each with its odometer, last check and status; a truck in service shows as unavailable. Until the workday is started, jobs and manifests stay locked, so every record that follows is tied to a date, a driver and a truck.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/start.jpg" alt="Two phones: the start-of-day screen with the assigned truck, and the vehicle list with odometers and status" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Start of day and vehicle selection: availability, odometer and last check.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">02 / 06</div><h3>The route, in order</h3><p>The day’s stops come as one list: each job with its waste type, containers and scheduled time, the day’s disposal site, and a progress bar that fills as jobs close. Stops can be dragged into a better order.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/route.jpg" alt="The route screen on a phone, with a close-up of the day’s progress and the first stop" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The route: nine stops, the disposal site, and the day’s progress.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">03 / 06</div><h3>Arrive, then check in</h3><p>A job opens on the client, the site address with directions and a call button, and what is to be collected. Checking in is confirmed in a dialog that records the client, address, time and truck.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/on-site.jpg" alt="Two phones: the job details with directions, and the check-in confirmation dialog" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The job, and the check-in that records time and truck.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">04 / 06</div><h3>The manifest, captured once</h3><p>On site the driver captures the manifest: its number, or a photo of the paper one; the waste description, quantity and unit; and where it is going. Bins removed and placed are counted, and recycling bags are scanned by barcode rather than written down.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/manifest.jpg" alt="Two phones: the manifest details form and the bin movements with the barcode scanner" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Manifest capture: the details, the bins, and the bag scan.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">05 / 06</div><h3>Signed off by the customer</h3><p>The customer reviews the details and signs on the screen. A manifest cannot be saved until it is signed, so every collection leaves with the customer’s confirmation attached.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/sign-off.jpg" alt="The customer sign-off screen on a phone, with a close-up of the signature" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Customer sign-off: name, signature and confirmation.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">06 / 06</div><h3>A shift that keeps track of itself</h3><p>Shift controls show whether the driver is operational, whether everything has synced, and whether anything is waiting in the offline queue. The activity log keeps the day’s dump records, fuel entries and the manifests that need attention.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/shift.jpg" alt="Two phones: shift controls with sync status and the offline queue, and the activity log" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Shift controls and activity: sync, offline queue, dumps, fuel and manifests.</figcaption></figure>
+      </article>
     </div>
   </div>
 </section>
 
-<section id="build" data-screen-label="Build and handoff" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+<section class="sc-light" id="details" data-screen-label="The interface" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">05 · Build and handoff</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a">How it reached<br><span style="color:#ff1f7a">production.</span></h2>
-      </div>
-      <div></div>
-    </div>
-    <p style="margin:0;max-width:760px;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#16161a">Designed and built by GEMIS’s own developers, under one roof, and supported by the same team since: quoting, payment links, scheduling, the driver app and order tracking are one system, not a design file handed to a third party. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.</p>
+    <div style="max-width:820px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">05 · The interface</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:16ch">Built for a cab,<br><span style="color:#ff1f7a">not a desk.</span></h2><div class="sc-copy" style="margin-top:28px"><p class="lead">Large touch targets, one primary action per screen, status shown in words as well as colour, and the next step always at the bottom of the screen, in reach of a thumb.</p></div></div>
+    <div class="sc-wide"><figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/details.jpg" alt="Four close-ups of the driver app: a route card, the bin counts and barcode scanner, the check-in summary, and the sync rows" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Close-ups: the route card, the bin and bag capture, the check-in summary, and sync.</figcaption></figure></div>
   </div>
 </section>
 
-<section id="results" data-screen-label="Results" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+<section class="sc-dark" id="build" data-screen-label="Build and handoff" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
-    <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
-      <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">06 · Results</div>
-        <h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8">Numbers first,<br><span style="color:#ff1f7a">then the rest.</span></h2>
-      </div>
-      <div></div>
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">06 · Build and handoff</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8;max-width:16ch">Designed and built<br><span style="color:#ff1f7a">under one roof.</span></h2><div style="margin-top:32px"><p class="lead">Designed and built by GEMIS’s own developers, under one roof, and supported by the same team since: quoting, payment links, scheduling, the driver app and order tracking are one system, not a design file handed to a third party. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.</p></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/build.jpg" alt="Three phones: a checked-in job, the signed customer sign-off and the shift controls" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Checked in, signed off, synced.</figcaption></figure>
     </div>
-    <div class="cs-num"><div><div class="n">6 h</div><p class="l">a week back, per depot — confirmed by the client</p></div></div>
-    <div style="margin-top:48px;max-width:760px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">What changed for the business</div><ul class="cs-plain"><li>A system that has grown with WasteMart for more than ten years.</li><li>Every order visible from quote to collection, for managers and customers alike.</li></ul></div>
-    <div style="margin-top:40px;max-width:760px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">Designed for — not yet measured</div><ul class="cs-plain"><li>Less admin between sale and collection</li><li>Faster payment, with no chasing for proof</li><li>Every job on time and visible to the customer</li></ul></div>
-    <p style="margin:40px 0 0;max-width:70ch;font-size:14px;line-height:1.45;color:#9a9ba3">Formal usability testing and user-acceptance records are not in the repository, so none are claimed.</p>
   </div>
 </section>
 
-<div data-tbc="quote" style="margin:0 32px">07 · Client quote: A quotation from Nazier Mathinus, WasteMart, is not yet approved (endorsement-nazier-line).</div>
+<section class="sc-light" id="results" data-screen-label="Results" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">07 · Results</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:16ch">Six hours a week,<br><span style="color:#ff1f7a">per depot.</span></h2>
+        <div class="cs-num" style="margin-top:40px"><div><div class="n">6 h</div><p class="l">a week back, per depot — confirmed by the client</p></div></div>
+        <div style="margin-top:36px"><ul><li>A system that has grown with WasteMart for more than ten years.</li><li>Every order visible from quote to collection, for managers and customers alike.</li></ul></div>
+        <p class="sc-note">The six hours come from the WasteMart system as a whole. The driver app’s prototype has not been measured on its own, and no usability figures are claimed.</p>
+      </div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/wastemart/results.jpg" alt="Two phones: a job checked in successfully, and the day’s route" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Checked in, and on to the next stop.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div data-tbc="quote" style="margin:0 32px">Client quote: A quotation from Nazier Mathinus, WasteMart, is not yet approved (endorsement-nazier-line).</div>
 
 <section id="next" data-screen-label="Next step" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:72px 32px 100px">
   <div style="position:relative;max-width:1400px;margin:0 auto">
     <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #16161a;padding-top:32px">
       <div>
-        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">08 · Next step</div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">Next step</div>
         <p style="margin:16px 0 0;font-size:clamp(22px,2vw,32px);line-height:1.2;letter-spacing:-0.03em;font-weight:600;max-width:24ch">Evidences the Product Teardown. Book yours.</p>
       </div>
       <div style="display:flex;gap:24px;flex-wrap:wrap">
@@ -770,6 +802,77 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <p data-tbc="case">Before screens: not in the record (then-now-screenshots).</p></div>
   </div>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://sphamandla-designer.github.io/gemis-site/studio/work-wastemart.html#article",
+      "headline": "Designing the WasteMart driver app: every collection, from start of day to sign-off",
+      "description": "How GEMIS designed the WasteMart driver app: start of day, the route, check-in, manifest capture and customer sign-off — one collection at a time, on one phone.",
+      "inLanguage": "en-ZA",
+      "image": [
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/hero.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/brief.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/challenge.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/start.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/route.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/on-site.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/manifest.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/sign-off.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/shift.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/details.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/build.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/wastemart/results.jpg"
+      ],
+      "about": {
+        "@type": "Organization",
+        "name": "WasteMart"
+      },
+      "author": {
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#organization"
+      },
+      "publisher": {
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#organization"
+      },
+      "mainEntityOfPage": "https://sphamandla-designer.github.io/gemis-site/studio/work-wastemart.html",
+      "keywords": "driver app design, waste management app, field service mobile app UX, logistics app design, WasteMart"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "GEMIS Studio",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/work.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "WasteMart",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/work-wastemart.html"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sphamandla-designer.github.io/gemis-site/#organization",
+      "name": "GEM Information Systems",
+      "alternateName": "GEMIS",
+      "url": "https://sphamandla-designer.github.io/gemis-site/"
+    }
+  ]
+}
+</script>
 </div>
 
 <!-- the closing band is the last section inside main on the homepage too -->
@@ -784,7 +887,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div data-dc-tpl="355" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-dc-tpl="356" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
-      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">11:05</span></div>
+      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">12:38</span></div>
       <div data-dc-tpl="358" style="display: flex; gap: 24px; flex-wrap: wrap;">
         <a data-dc-tpl="359" href="contact.html#teardown" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="360" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="361">→</span></a><a data-dc-tpl="362" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="363" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="364">↗</span></a>
       </div>

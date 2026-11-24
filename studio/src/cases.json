@@ -16,7 +16,7 @@
       "result": "Six hours a week back, per depot",
       "resultNote": "Confirmed by the client",
       "image": "assets/cases/wastemart.jpg",
-      "imageAlt": "WasteMart: the driver app on a phone — a collection stop with its workflow and the check-in action",
+      "imageAlt": "The WasteMart driver app on three phones: the day’s route, a job’s details and the manifest capture",
       "problem": [
         "A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.",
         "Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood."
@@ -29,23 +29,31 @@
         "Nobody, including the customer, could see where an order stood."
       ],
       "changes": [
-        { "decision": "Price the quote automatically from the service picked, with standard terms and conditions attached every time.", "why": "A quote that cannot go out without its terms removes a class of errors and most of the time spent building it." },
-        { "decision": "Send a secure payment link with the quote, and let payment itself trigger the next step.", "why": "When payment drives the schedule there is nothing to chase and nothing to remember." },
-        { "decision": "Alert operations the moment payment lands and put the job on the schedule automatically.", "why": "The hand-off that depended on someone remembering to tell operations is removed entirely." },
-        { "decision": "One shared order record, confirmed by the driver’s scan, visible to managers and customers.", "why": "The driver’s scan closes the loop at the point of collection, so the view is current without a phone call." }
+        {
+          "decision": "Price the quote automatically from the service picked, with standard terms and conditions attached every time.",
+          "why": "A quote that cannot go out without its terms removes a class of errors and most of the time spent building it."
+        },
+        {
+          "decision": "Send a secure payment link with the quote, and let payment itself trigger the next step.",
+          "why": "When payment drives the schedule there is nothing to chase and nothing to remember."
+        },
+        {
+          "decision": "Alert operations the moment payment lands and put the job on the schedule automatically.",
+          "why": "The hand-off that depended on someone remembering to tell operations is removed entirely."
+        },
+        {
+          "decision": "One shared order record, confirmed by the driver’s scan, visible to managers and customers.",
+          "why": "The driver’s scan closes the loop at the point of collection, so the view is current without a phone call."
+        }
       ],
       "screensNote": "The first two are the WasteMart driver app in product mockups; the rest are stills from the case study video. Both carry sample data, not screen recordings of the product; every capability shown is one the system delivers. Before screens are not in the record.",
-      "screens": [
-        { "img": "../assets/img/work/wastemart-mock.jpg", "label": "Product", "caption": "The driver app — one stop at a time: the client and site, directions, and the day’s workflow from dispatch to check-out, with one action, Confirm & Check In." },
-        { "img": "../assets/img/portfolio/hero-wastemart.jpg", "label": "Product", "caption": "The same job screen in the driver’s hand — stop 1 of 9 on the truck’s route, two steps done, the next one a tap away." },
-        { "img": "../assets/img/cases/wastemart/01-quote.jpg", "label": "After", "caption": "Quotes in minutes, terms included — the sales team picks the service and the quote is priced, with WasteMart’s standard terms attached automatically." },
-        { "img": "../assets/img/cases/wastemart/02-payment.jpg", "label": "After", "caption": "Accept and pay in one go — the customer receives the quote, accepts it, and gets a secure payment link straight away." },
-        { "img": "../assets/img/cases/wastemart/03-schedule.jpg", "label": "After", "caption": "Operations, alerted instantly — the moment payment comes through, the job goes onto the schedule." },
-        { "img": "../assets/img/cases/wastemart/04-collection.jpg", "label": "After", "caption": "Planned, collected, confirmed — planners assign the truck and driver, and the driver confirms the collection with a scan." }
-      ],
+      "screens": [],
       "build": "Designed and built by GEMIS’s own developers, under one roof, and supported by the same team since: quoting, payment links, scheduling, the driver app and order tracking are one system, not a design file handed to a third party. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it.",
       "resultsNumbers": [
-        { "n": "6 h", "l": "a week back, per depot — confirmed by the client" }
+        {
+          "n": "6 h",
+          "l": "a week back, per depot — confirmed by the client"
+        }
       ],
       "resultsQualitative": [
         "A system that has grown with WasteMart for more than ten years.",
@@ -59,12 +67,232 @@
       "resultsNotRecorded": "Formal usability testing and user-acceptance records are not in the repository, so none are claimed.",
       "quote": null,
       "quoteTbc": "A quotation from Nazier Mathinus, WasteMart, is not yet approved (endorsement-nazier-line).",
-      "cta": { "label": "Evidences the Product Teardown. Book yours", "href": "contact.html#teardown" },
+      "cta": {
+        "label": "Evidences the Product Teardown. Book yours",
+        "href": "contact.html#teardown"
+      },
       "tbc": [
         "NDA level to agree in writing: the name, screens and metric are already published on the corporate site, so Full is assumed until confirmed.",
         "Before screens: not in the record (then-now-screenshots)."
       ],
-      "sources": ["scripts/cases.py — CASES['wastemart'] and DETAIL['wastemart']", "scripts/facts.md — the six-hours metric, confirmed by the client", "assets/img/cases/wastemart and assets/img/ui — stills and cuts from the case study video"]
+      "sources": [
+        "scripts/cases.py — CASES['wastemart'] and DETAIL['wastemart']",
+        "scripts/facts.md — the six-hours metric, confirmed by the client",
+        "wastemart-driver.html — the driver app’s operational prototype (screens captured by tools/studio-case-shots.mjs, sample data neutralised)"
+      ],
+      "layout": "showcase",
+      "seo": {
+        "title": "WasteMart Driver App UX Case Study | GEMIS Studio",
+        "description": "How GEMIS designed the WasteMart driver app: start of day, the route, check-in, manifest capture and customer sign-off — one collection at a time, on one phone.",
+        "keywords": "driver app design, waste management app, field service mobile app UX, logistics app design, WasteMart"
+      },
+      "showcase": {
+        "h1": "Designing the WasteMart driver app: every collection, from start of day to sign-off",
+        "intro": "WasteMart has been a GEMIS client since 2013, on one system for quotes, payment links, scheduling and drivers. The driver app is where a collection is confirmed. This is its operational prototype: a driver’s whole day, on one phone.",
+        "spec": [
+          [
+            "Client",
+            "WasteMart"
+          ],
+          [
+            "Industry",
+            "Waste management and skip hire"
+          ],
+          [
+            "Service evidenced",
+            "Product Teardown"
+          ],
+          [
+            "Scope",
+            "The driver app — start of day to check-out"
+          ],
+          [
+            "Deliverable",
+            "An operational phone prototype"
+          ],
+          [
+            "Built by",
+            "GEMIS developers"
+          ]
+        ],
+        "hero": {
+          "img": "assets/cases/wastemart/hero.jpg",
+          "alt": "The WasteMart driver app on three phones: the day’s route in front, a job’s details and the manifest capture either side",
+          "caption": "The driver app: the route, a job, and the manifest."
+        },
+        "note": "Every screen on this page is from the WasteMart driver app’s operational prototype, with sample data: the jobs, sites, people and vehicles are illustrative, not WasteMart’s records.",
+        "sections": [
+          {
+            "type": "split",
+            "id": "brief",
+            "kicker": "The brief",
+            "h2": "Close the loop",
+            "h2accent": "at the kerb.",
+            "paras": [
+              "A business that needs its waste removed should be able to make one call. Behind that call at WasteMart sat a lot of manual work: building the quote, attaching the right terms, chasing payment, and then remembering to tell operations that a job was on.",
+              "At the end of that chain is the driver. In the WasteMart system, the driver’s confirmation closes the loop, so the app has to make a day of collections quick to work through — in a cab, between stops."
+            ],
+            "mock": {
+              "img": "assets/cases/wastemart/brief.jpg",
+              "alt": "Two phones: the driver app’s log-in screen and the start-of-day screen with the date and assigned truck",
+              "caption": "Log in, then start the day: the date, the truck, and nothing else until the workday begins."
+            }
+          },
+          {
+            "type": "split",
+            "id": "challenge",
+            "dark": true,
+            "kicker": "The challenge",
+            "h2": "Four jobs behind",
+            "h2accent": "one phone call.",
+            "paras": [
+              "Sales, finance and operations each held part of the picture, so proof of payment was chased, jobs were scheduled late, and nobody — including the customer — could see where an order stood.",
+              "What the system had to answer:"
+            ],
+            "list": [
+              "Quotes were built by hand and the right terms attached from memory.",
+              "Payment was chased, and proof of payment waited for.",
+              "Operations found out about jobs late — only once someone remembered to tell them.",
+              "Nobody, including the customer, could see where an order stood."
+            ],
+            "mock": {
+              "img": "assets/cases/wastemart/challenge.jpg",
+              "alt": "Two phones: the day’s route list and the activity log of dumps, fuel and manifests",
+              "caption": "The route and the day’s records, kept with the driver."
+            }
+          },
+          {
+            "type": "chapters",
+            "id": "designed",
+            "kicker": "What we designed",
+            "h2": "A driver’s day,",
+            "h2accent": "one screen at a time.",
+            "lead": "The app follows the day in order — start, route, arrive, capture, sign, move on — and each screen asks the driver for one thing.",
+            "chapters": [
+              {
+                "h3": "Start the day with a truck",
+                "paras": [
+                  "The driver picks a vehicle from the trucks available at the depot, each with its odometer, last check and status; a truck in service shows as unavailable. Until the workday is started, jobs and manifests stay locked, so every record that follows is tied to a date, a driver and a truck."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/start.jpg",
+                  "alt": "Two phones: the start-of-day screen with the assigned truck, and the vehicle list with odometers and status",
+                  "caption": "Start of day and vehicle selection: availability, odometer and last check."
+                }
+              },
+              {
+                "h3": "The route, in order",
+                "paras": [
+                  "The day’s stops come as one list: each job with its waste type, containers and scheduled time, the day’s disposal site, and a progress bar that fills as jobs close. Stops can be dragged into a better order."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/route.jpg",
+                  "alt": "The route screen on a phone, with a close-up of the day’s progress and the first stop",
+                  "caption": "The route: nine stops, the disposal site, and the day’s progress."
+                }
+              },
+              {
+                "h3": "Arrive, then check in",
+                "paras": [
+                  "A job opens on the client, the site address with directions and a call button, and what is to be collected. Checking in is confirmed in a dialog that records the client, address, time and truck."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/on-site.jpg",
+                  "alt": "Two phones: the job details with directions, and the check-in confirmation dialog",
+                  "caption": "The job, and the check-in that records time and truck."
+                }
+              },
+              {
+                "h3": "The manifest, captured once",
+                "paras": [
+                  "On site the driver captures the manifest: its number, or a photo of the paper one; the waste description, quantity and unit; and where it is going. Bins removed and placed are counted, and recycling bags are scanned by barcode rather than written down."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/manifest.jpg",
+                  "alt": "Two phones: the manifest details form and the bin movements with the barcode scanner",
+                  "caption": "Manifest capture: the details, the bins, and the bag scan."
+                }
+              },
+              {
+                "h3": "Signed off by the customer",
+                "paras": [
+                  "The customer reviews the details and signs on the screen. A manifest cannot be saved until it is signed, so every collection leaves with the customer’s confirmation attached."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/sign-off.jpg",
+                  "alt": "The customer sign-off screen on a phone, with a close-up of the signature",
+                  "caption": "Customer sign-off: name, signature and confirmation."
+                }
+              },
+              {
+                "h3": "A shift that keeps track of itself",
+                "paras": [
+                  "Shift controls show whether the driver is operational, whether everything has synced, and whether anything is waiting in the offline queue. The activity log keeps the day’s dump records, fuel entries and the manifests that need attention."
+                ],
+                "mock": {
+                  "img": "assets/cases/wastemart/shift.jpg",
+                  "alt": "Two phones: shift controls with sync status and the offline queue, and the activity log",
+                  "caption": "Shift controls and activity: sync, offline queue, dumps, fuel and manifests."
+                }
+              }
+            ]
+          },
+          {
+            "type": "wide",
+            "id": "details",
+            "kicker": "The interface",
+            "h2": "Built for a cab,",
+            "h2accent": "not a desk.",
+            "paras": [
+              "Large touch targets, one primary action per screen, status shown in words as well as colour, and the next step always at the bottom of the screen, in reach of a thumb."
+            ],
+            "mock": {
+              "img": "assets/cases/wastemart/details.jpg",
+              "alt": "Four close-ups of the driver app: a route card, the bin counts and barcode scanner, the check-in summary, and the sync rows",
+              "caption": "Close-ups: the route card, the bin and bag capture, the check-in summary, and sync."
+            }
+          },
+          {
+            "type": "split",
+            "id": "build",
+            "dark": true,
+            "kicker": "Build and handoff",
+            "h2": "Designed and built",
+            "h2accent": "under one roof.",
+            "paras": [
+              "Designed and built by GEMIS’s own developers, under one roof, and supported by the same team since: quoting, payment links, scheduling, the driver app and order tracking are one system, not a design file handed to a third party. The work predates the studio’s current component-spec and handoff-session format, so none is recorded for it."
+            ],
+            "mock": {
+              "img": "assets/cases/wastemart/build.jpg",
+              "alt": "Three phones: a checked-in job, the signed customer sign-off and the shift controls",
+              "caption": "Checked in, signed off, synced."
+            }
+          },
+          {
+            "type": "results",
+            "id": "results",
+            "kicker": "Results",
+            "h2": "Six hours a week,",
+            "h2accent": "per depot.",
+            "numbers": [
+              {
+                "n": "6 h",
+                "l": "a week back, per depot — confirmed by the client"
+              }
+            ],
+            "list": [
+              "A system that has grown with WasteMart for more than ten years.",
+              "Every order visible from quote to collection, for managers and customers alike."
+            ],
+            "note": "The six hours come from the WasteMart system as a whole. The driver app’s prototype has not been measured on its own, and no usability figures are claimed.",
+            "mock": {
+              "img": "assets/cases/wastemart/results.jpg",
+              "alt": "Two phones: a job checked in successfully, and the day’s route",
+              "caption": "Checked in, and on to the next stop."
+            }
+          }
+        ]
+      }
     },
     {
       "slug": "sbs-waterproofing",
@@ -386,7 +614,7 @@
       "result": "Month-end close: nine days to two",
       "resultNote": "One client’s month-end — confirmed by that client",
       "image": "assets/cases/managem.jpg",
-      "imageAlt": "ManaGEM: the dashboard on a laptop — enquiries, quotes, sales and opportunities, the sales summary and current projects",
+      "imageAlt": "The redesigned ManaGEM in three browser windows: the dashboard, the open-enquiries pipeline and the current-jobs board",
       "problem": [
         "ManaGEM began as the system GEMIS built for SBS Waterproofing, because the off-the-shelf apps the business tried did not fit how a contractor sells and delivers work: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way. Each step lived in a different tool, so leads were lost between them and nobody could see which jobs made money.",
         "As other companies came onto the platform, it had to serve many businesses without each one bending to it — and keep every enquiry, quote, invoice, project, stock level and staff record in one place."
@@ -399,25 +627,35 @@
         "A generic package would have forced the business to work the package’s way."
       ],
       "changes": [
-        { "decision": "Make the enquiry the root record, captured once, with SMS and email updates to the customer.", "why": "A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call." },
-        { "decision": "Quotes go out in a few clicks and are accepted online; the deposit invoice follows automatically.", "why": "The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start." },
-        { "decision": "Hold the costs with the sale and show the profit on every project.", "why": "Management decisions should come from live job data rather than a reconstruction at year-end." },
-        { "decision": "Design around a real pipeline, but general enough to serve other businesses.", "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite." }
+        {
+          "decision": "Make the enquiry the root record, captured once, with SMS and email updates to the customer.",
+          "why": "A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call."
+        },
+        {
+          "decision": "Quotes go out in a few clicks and are accepted online; the deposit invoice follows automatically.",
+          "why": "The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start."
+        },
+        {
+          "decision": "Hold the costs with the sale and show the profit on every project.",
+          "why": "Management decisions should come from live job data rather than a reconstruction at year-end."
+        },
+        {
+          "decision": "Design around a real pipeline, but general enough to serve other businesses.",
+          "why": "A system that fits the real sequence of work is the one the business keeps using; a general core lets it serve others without a rewrite."
+        }
       ],
       "screensNote": "The first three are ManaGEM in product mockups; the rest are stills from the ManaGEM video. Both carry sample data, not screen recordings of a client’s system; every capability shown is one ManaGEM delivers. Before-and-after screens of the 2026 redesign are not yet in the record.",
-      "screens": [
-        { "img": "../assets/img/work/managem-mock.jpg", "label": "Product", "caption": "The dashboard — enquiries, quotes, sales and opportunities at the top, the twelve-month sales summary, and the current projects with their status." },
-        { "img": "../assets/img/shots/managem-desk.jpg", "label": "Product", "caption": "The same dashboard on a desk — the modules down the left: customers, sales, invoices, inspection reports, products and pricing, projects, factory and stock." },
-        { "img": "../assets/img/proto/managem-poster.jpg", "label": "Product", "caption": "Sign in — “Run your business with clarity”: customers, sales and projects; stock, factory and debtors; reports, staff and multi-company." },
-        { "img": "../assets/img/cases/managem/01-pipeline.jpg", "label": "After", "caption": "From enquiry to sale — capture every enquiry and follow it to the sale, with SMS and email updates for the customer." },
-        { "img": "../assets/img/cases/managem/02-quotes.jpg", "label": "After", "caption": "Quotes that close — quotes go out in a few clicks, customers accept online, and deposit invoices follow automatically." },
-        { "img": "../assets/img/cases/managem/03-profit.jpg", "label": "After", "caption": "Know what every job earns — track every project and see the profit on each job." },
-        { "img": "../assets/img/cases/managem/05-modules.jpg", "label": "After", "caption": "One place for the whole business — enquiries, pipeline, quotes, invoices, products, projects, stock and staff records in the same system." }
-      ],
+      "screens": [],
       "build": "Built and run by GEMIS’s own developers: the same team that designs it ships it, which is how a system built for one business in 2015 became a product about a dozen companies run on. The 2026 redesign is the studio’s Interface Refresh Sprint applied to the product GEMIS already builds; its component spec and handoff are internal to the one roof.",
       "resultsNumbers": [
-        { "n": "9 → 2", "l": "days to close the month, for one client — confirmed by that client" },
-        { "n": "≈12", "l": "companies run their day-to-day operations on ManaGEM — confirmed" }
+        {
+          "n": "9 → 2",
+          "l": "days to close the month, for one client — confirmed by that client"
+        },
+        {
+          "n": "≈12",
+          "l": "companies run their day-to-day operations on ManaGEM — confirmed"
+        }
       ],
       "resultsQualitative": [
         "Built for one business and designed for many: the SBS Waterproofing system is still in daily use, more than ten years on."
@@ -426,11 +664,244 @@
       "resultsNotRecorded": "No other figure is published: adoption, time saved or revenue effects across the dozen companies have not been measured.",
       "quote": null,
       "quoteTbc": "No ManaGEM customer quotation is approved for publication yet. (Ryan Smith’s endorsement concerns SBS Waterproofing’s website and campaigns, so it appears on that page.)",
-      "cta": { "label": "Evidences the Interface Refresh Sprint. Start with a teardown", "href": "contact.html#refresh" },
+      "cta": {
+        "label": "Evidences the Interface Refresh Sprint. Start with a teardown",
+        "href": "contact.html#refresh"
+      },
       "tbc": [
         "The 2026 redesign’s own findings and before-and-after screens are not yet in the record (then-now-screenshots)."
       ],
-      "sources": ["scripts/cases.py — DETAIL['sbs-waterproofing'] (the origin system) and MANAGEM", "scripts/facts.md — launch 2013, redesign 2026, about a dozen companies, the nine-to-two metric", "scripts/build-other.py — the ManaGEM product page’s results wording", "assets/img/cases/managem and assets/img/ui — stills and cuts from the video"]
+      "sources": [
+        "scripts/cases.py — DETAIL['sbs-waterproofing'] (the origin system) and MANAGEM",
+        "scripts/facts.md — launch 2013, redesign 2026, about a dozen companies, the nine-to-two metric",
+        "ManaGem.html — the 2026 ManaGEM prototype (screens captured by tools/studio-case-shots.mjs, sample data neutralised)"
+      ],
+      "layout": "showcase",
+      "seo": {
+        "title": "ManaGEM UX/UI Redesign Case Study | GEMIS Studio",
+        "description": "How GEMIS Studio redesigned ManaGEM, the business management software about a dozen companies run on: enquiries, quotes, jobs, stock and invoicing.",
+        "keywords": "business management software UX design, ERP dashboard design, SaaS UI redesign, interface refresh, ManaGEM"
+      },
+      "aboutType": "SoftwareApplication",
+      "showcase": {
+        "h1": "Redesigning ManaGEM, the business management system a dozen companies run on",
+        "intro": "ManaGEM began as the system GEMIS built for SBS Waterproofing and now runs the day-to-day operations of about a dozen companies. In 2026 the studio redesigned its interface end to end — every module, from the first enquiry to the last invoice — as a working, clickable prototype.",
+        "spec": [
+          [
+            "Product",
+            "ManaGEM — GEMIS’s business management platform"
+          ],
+          [
+            "Service evidenced",
+            "Interface Refresh Sprint"
+          ],
+          [
+            "Scope",
+            "Every module of the web app, redesigned in 2026"
+          ],
+          [
+            "Deliverable",
+            "A clickable desktop prototype"
+          ],
+          [
+            "Built by",
+            "GEMIS developers"
+          ]
+        ],
+        "hero": {
+          "img": "assets/cases/managem/hero.jpg",
+          "alt": "The redesigned ManaGEM in three browser windows: the dashboard in front, the open-enquiries pipeline and the current-jobs board behind",
+          "caption": "The redesigned ManaGEM: dashboard, pipeline and jobs."
+        },
+        "note": "Every screen on this page is from the 2026 ManaGEM prototype, with sample data: the company, people, customers and figures are illustrative, not a client’s records.",
+        "sections": [
+          {
+            "type": "split",
+            "id": "brief",
+            "kicker": "The brief",
+            "h2": "One system for",
+            "h2accent": "the whole business.",
+            "paras": [
+              "As other companies came onto the platform, it had to serve many businesses without each one bending to it — and keep every enquiry, quote, invoice, project, stock level and staff record in one place.",
+              "The redesign had to make that breadth feel simple: one way in, one way of finding things, and the same patterns on every screen."
+            ],
+            "mock": {
+              "img": "assets/cases/managem/brief.jpg",
+              "alt": "ManaGEM’s sign-in screen on a laptop: “Run your business with clarity” beside the sign-in form",
+              "caption": "Sign in. The front door names what the system covers: customers, sales and projects; stock, factory and debtors; reports, staff and multi-company."
+            }
+          },
+          {
+            "type": "split",
+            "id": "challenge",
+            "dark": true,
+            "kicker": "The challenge",
+            "h2": "Where the work",
+            "h2accent": "was leaking.",
+            "paras": [
+              "ManaGEM began as the system GEMIS built for SBS Waterproofing, because the off-the-shelf apps the business tried did not fit how a contractor sells and delivers work: an enquiry becomes a site visit, a quote, a deposit, a scheduled job and a final invoice, with stock consumed along the way. Each step lived in a different tool, so leads were lost between them and nobody could see which jobs made money.",
+              "What the origin system had to answer:"
+            ],
+            "list": [
+              "Enquiries were arriving faster than anyone could keep track of them.",
+              "After a quote was accepted, the deposit and the accounting entry depended on someone remembering to raise them.",
+              "Nobody could see which jobs made money.",
+              "A generic package would have forced the business to work the package’s way."
+            ],
+            "mock": {
+              "img": "assets/cases/managem/challenge.jpg",
+              "alt": "Two overlapping ManaGEM windows: open enquiries and invoices",
+              "caption": "Enquiries and invoices in one place, each a click from the other."
+            }
+          },
+          {
+            "type": "chapters",
+            "id": "designed",
+            "kicker": "What we designed",
+            "h2": "The work, in the order",
+            "h2accent": "it happens.",
+            "lead": "Each module follows the sequence a sale actually takes — enquiry, quote, deposit, job, invoice — so the screens read in the same order as the work.",
+            "chapters": [
+              {
+                "h3": "Every sale starts as one enquiry",
+                "paras": [
+                  "Make the enquiry the root record, captured once, with SMS and email updates to the customer. A single record that every call, email and appointment hangs off means nothing is lost between tools, and the customer has confirmation without a phone call.",
+                  "The New Enquiry screen captures it in four steps — customer, site and scope, schedule, review — so nothing is left for later."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/enquiry.jpg",
+                  "alt": "The New Enquiry screen: a four-step form — customer, site and scope, schedule, review",
+                  "caption": "New Enquiry: customer, site and scope, schedule, review."
+                }
+              },
+              {
+                "h3": "A pipeline you can read at a glance",
+                "paras": [
+                  "Open enquiries are grouped by where they stand — new lead, quoted, deposit paid, in progress, invoiced — with the count on each, and filters by sales rep, area and type. Closed enquiries keep the outcome and the win rate."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/pipeline.jpg",
+                  "alt": "The Open Enquiries screen: pipeline stages with counts above a filterable list of enquiries",
+                  "caption": "Open Enquiries: every lead by stage, with its customer, area, type and sales rep."
+                }
+              },
+              {
+                "h3": "Quotes in a few clicks, deposits that follow",
+                "paras": [
+                  "Quotes go out in a few clicks and are accepted online; the deposit invoice follows automatically. The hand-offs that leak time are the ones that rely on memory; automating them removes re-keying and the delay before a job can start.",
+                  "Quote templates carry the terms and headings; invoices show what was billed, what is paid and what is overdue."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/quotes.jpg",
+                  "alt": "Two ManaGEM windows: the invoices list with billed, paid, outstanding and overdue totals, and the quote templates",
+                  "caption": "Invoices and quote templates: totals first, status on every line."
+                }
+              },
+              {
+                "h3": "Accounting that stays in step",
+                "paras": [
+                  "In the record, the deposit invoice follows an accepted quote straight into accounting. The redesign gives that link its own screen: what has synced, what is waiting, what failed, and the VAT for the period."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/accounting.jpg",
+                  "alt": "The accounting sync screen: synced, pending and error counts, VAT for the period, and each invoice’s sync status",
+                  "caption": "Accounting sync: synced, pending and failed, with VAT for the period."
+                }
+              },
+              {
+                "h3": "The profit on every job",
+                "paras": [
+                  "Hold the costs with the sale and show the profit on every project. Management decisions should come from live job data rather than a reconstruction at year-end.",
+                  "Current jobs show their progress, foreman and dates; the dashboard keeps live projects, recent sales and the week’s bookings in view."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/projects.jpg",
+                  "alt": "Two ManaGEM windows: the current-jobs board with progress bars, and the dashboard’s projects and bookings",
+                  "caption": "Current jobs and the dashboard: progress, people and dates."
+                }
+              },
+              {
+                "h3": "Stock and the factory floor",
+                "paras": [
+                  "Stock control brings stock value, low-stock alerts, movements and open purchase orders together; the factory follows each build through a production pipeline to invoicing."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/operations.jpg",
+                  "alt": "Two ManaGEM windows: stock control with stock value and low-stock alerts, and the factory’s production pipeline",
+                  "caption": "Stock control and the factory: alerts before you run out, builds through to invoice."
+                }
+              },
+              {
+                "h3": "Who owes what, and what the numbers say",
+                "paras": [
+                  "Debtors management shows outstanding balances, ageing and statements; reports cover enquiries, quotes, opportunities, sales and product sales from the same live data."
+                ],
+                "mock": {
+                  "img": "assets/cases/managem/debtors.jpg",
+                  "alt": "Two ManaGEM windows: debtors management with outstanding and overdue totals, and the quotes report",
+                  "caption": "Debtors and reports: balances by age, and reports from live data."
+                }
+              }
+            ]
+          },
+          {
+            "type": "wide",
+            "id": "details",
+            "dark": true,
+            "kicker": "The interface",
+            "h2": "One set of",
+            "h2accent": "components.",
+            "paras": [
+              "Every module is built from the same pieces: summary cards with their trend, pipeline stages with their counts, status chips beside every amount, and a toolbar that filters by period and exports to CSV, Excel and PDF.",
+              "A user who has learnt one screen has learnt them all — which is what lets one system carry this many modules and still serve businesses other than the one it was built for."
+            ],
+            "mock": {
+              "img": "assets/cases/managem/details.jpg",
+              "alt": "Four close-ups of the ManaGEM interface: KPI cards, pipeline stage counts, invoice amounts with status chips, and the period and export toolbar",
+              "caption": "Close-ups: KPI cards, pipeline stages, status chips, and the export toolbar."
+            }
+          },
+          {
+            "type": "split",
+            "id": "build",
+            "kicker": "Build and handoff",
+            "h2": "Designed and built",
+            "h2accent": "under one roof.",
+            "paras": [
+              "Built and run by GEMIS’s own developers: the same team that designs it ships it, which is how a system built for one business in 2015 became a product about a dozen companies run on. The 2026 redesign is the studio’s Interface Refresh Sprint applied to the product GEMIS already builds; its component spec and handoff are internal to the one roof."
+            ],
+            "mock": {
+              "img": "assets/cases/managem/build.jpg",
+              "alt": "The redesigned ManaGEM dashboard on a laptop",
+              "caption": "The dashboard: enquiries, quotes, sales and opportunities, the sales summary and current projects."
+            }
+          },
+          {
+            "type": "results",
+            "id": "results",
+            "dark": true,
+            "kicker": "Results",
+            "h2": "ManaGEM,",
+            "h2accent": "in use.",
+            "numbers": [
+              {
+                "n": "9 → 2",
+                "l": "days to close the month, for one client — confirmed by that client"
+              },
+              {
+                "n": "≈12",
+                "l": "companies run their day-to-day operations on ManaGEM — confirmed"
+              }
+            ],
+            "note": "These figures describe ManaGEM in use. The 2026 redesign’s own effect has not been measured yet, so no usage or usability figures are claimed for it.",
+            "mock": {
+              "img": "assets/cases/managem/results.jpg",
+              "alt": "The ManaGEM dashboard’s projects, recent sales and open bookings, tilted in a browser window",
+              "caption": "Live projects, recent sales and the week’s bookings."
+            }
+          }
+        ]
+      }
     }
   ]
 }
