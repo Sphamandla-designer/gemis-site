@@ -6788,3 +6788,12 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#
 @media (prefers-reduced-motion: reduce) {
   .ftr__go svg, .ftr__col a { transition: none; }
 }
+
+/* ── BUTTONS ON NAVY ARE WHITE (2026-11-24, the owner's instruction) ─────
+   On any navy ground a button is a white fill with navy type — the outlined
+   variant included, and the action in the bar. Hover inverts it to the
+   outline. Outlined buttons on white grounds keep their outline. */
+:is(.hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words, .band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built) .hx-btn--ghost:not(#_):not(#_),
+.nav__links > li > a.nav__cta:not(#_):not(#_):not(#_) { background: #fff; border-color: #fff; color: var(--svn); }
+:is(.hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words, .band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built) .hx-btn--ghost:not(#_):not(#_):hover,
+.nav__links > li > a.nav__cta:not(#_):not(#_):not(#_):hover { background: transparent; border-color: #fff; color: #fff; }

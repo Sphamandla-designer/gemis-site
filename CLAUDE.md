@@ -85,6 +85,11 @@ Two traps in these builds:
 - **Small accent text on light grounds** uses the deep variants: orange
   `#b34e00`, pink `#d70057`. Buttons on the pink carry ink `#16161a`. The bright
   `#ff7a12` / `#ff1f7a` stay for large type, lines and dark grounds.
+- **A button on a navy ground is white** (white fill, navy type; the owner's
+  instruction, 2026-11-24): the outlined `hx-btn--ghost` and the bar's
+  `nav__cta` included, through the "BUTTONS ON NAVY ARE WHITE" block at the
+  tail of `site.css`. Hover inverts to the outline. A new navy container goes
+  in that block's list; outlined buttons on white grounds keep their outline.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.
