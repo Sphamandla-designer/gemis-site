@@ -6,7 +6,8 @@
 <!--
   One scene per case study. tools/studio-thumbs.mjs screenshots each .scene into
   studio/assets/cases/<slug>.jpg (1400 × 963, the Work card's 16:11). ManaGEM and
-  WasteMart are their product mockups (assets/img/work/*-mock.jpg), full bleed. The
+  WasteMart are not here: their cards are the prototype mockups that
+  tools/studio-case-mocks.mjs writes, so this page must not overwrite them. The
   other screens are the app windows and phones cut from the GEMIS case-study videos
   (assets/img/ui/, sample data, marked as such inside each image), mounted in a
   laptop and a phone on a studio backdrop. Nothing on a screen is drawn here.
@@ -45,9 +46,6 @@ html,body{margin:0;background:#222}
 </head>
 <body>
 
-<section class="scene" data-slug="wastemart">
-  <img class="mock" src="../../assets/img/work/wastemart-mock.jpg" alt="">
-</section>
 
 <section class="scene navy" data-slug="homeassist">
   <div class="bg"></div><div class="facets"></div><div class="glow pink"></div><div class="glow orange"></div><div class="floor"></div>
@@ -76,8 +74,5 @@ html,body{margin:0;background:#222}
   <div class="phone"><img src="../../assets/img/ui/tores-foundation-phone.jpg" alt=""></div>
 </section>
 
-<section class="scene" data-slug="managem">
-  <img class="mock" src="../../assets/img/work/managem-mock.jpg" alt="">
-</section>
 
 </body></html>

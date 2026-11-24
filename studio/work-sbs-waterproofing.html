@@ -609,6 +609,37 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .review [data-tbc]{display:block;border:1px dashed #ff7a12;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:#8a4a12;background:rgba(255,122,18,.06)}
 .review [data-tbc]::before{content:'TBC · ';font-weight:700}
 @media (max-width:900px){.cs-dec,.cs-screens{grid-template-columns:1fr}.cs-list>li{grid-template-columns:36px 1fr;gap:10px}}
+/* the showcase case study (ManaGEM, WasteMart): every section pairs its copy with a
+   mockup of the real prototype screens; chapters alternate copy and screen */
+.sc-fig{margin:0;display:grid;gap:14px}
+.sc-fig .shot{border-radius:6px;overflow:hidden;background:#dcdee3;aspect-ratio:16/10}
+.sc-fig img{display:block;width:100%;height:100%;object-fit:cover}
+.sc-fig figcaption{font-size:14px;line-height:1.5;color:#6a6b73;max-width:72ch}
+.sc-dark .sc-fig figcaption{color:#9a9ba3}
+.sc-dark .sc-fig .shot{background:#26262c}
+.sc-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-copy p{margin:0 0 16px;font-size:17px;line-height:1.55;color:#3a3b41;max-width:60ch}
+.sc-dark .sc-copy p{color:#c9cad1}
+.sc-copy p.lead{font-size:clamp(19px,1.6vw,23px);line-height:1.4;letter-spacing:-0.01em;color:#16161a}
+.sc-dark .sc-copy p.lead{color:#f5f6f8}
+.sc-chapters{display:grid;gap:clamp(72px,9vw,140px)}
+.sc-ch{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-ch:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.sc-ch:nth-child(even) .sc-copy{order:2}
+.sc-ch .n{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#a84a00;text-transform:uppercase}
+.sc-dark .sc-ch .n{color:#ff7a12}
+.sc-ch h3{margin:14px 0 18px;font-size:clamp(26px,2.4vw,38px);line-height:1.05;letter-spacing:-0.035em;font-weight:600}
+.sc-ch ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.sc-ch li,.sc-copy li{display:flex;gap:12px;align-items:baseline;font-size:15px;line-height:1.45;color:inherit}
+.sc-ch li::before,.sc-copy li::before{content:'+';font-family:'JetBrains Mono',monospace;color:#ff7a12;flex:none}
+.sc-copy ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.sc-wide{margin-top:56px}
+/* results on either ground: the figures' labels and the attribution note follow it */
+.sc-copy p.sc-note{margin:24px 0 0;font-size:14px;line-height:1.45;color:#6a6b73;max-width:60ch}
+.sc-dark .sc-copy p.sc-note{color:#9a9ba3}
+.sc-light .cs-num>div{border-top-color:rgba(22,22,26,.25)}
+.sc-light .cs-num .l{color:#3a3b41}
+@media (max-width:900px){.sc-split,.sc-ch,.sc-ch:nth-child(even){grid-template-columns:1fr}.sc-ch:nth-child(even) .sc-copy{order:0}}
 </style>
 </head>
 <body>
@@ -790,7 +821,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div data-dc-tpl="355" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-dc-tpl="356" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
-      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">11:05</span></div>
+      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">12:38</span></div>
       <div data-dc-tpl="358" style="display: flex; gap: 24px; flex-wrap: wrap;">
         <a data-dc-tpl="359" href="contact.html#teardown" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="360" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="361">→</span></a><a data-dc-tpl="362" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="363" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="364">↗</span></a>
       </div>

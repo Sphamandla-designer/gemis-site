@@ -43,17 +43,20 @@ const head = (num, kicker, title, lede, dark) =>
 
 /** The <title>: short enough not to be cut off in search results (under ~60 characters). */
 export function caseTitle(c) {
+  if (c.seo && c.seo.title) return c.seo.title;
   return `${c.name} case study — GEMIS® Studio`;
 }
 
 /** The title a link preview shows: room for the headline result. */
 export function caseShareTitle(c) {
+  if (c.seo && c.seo.title) return c.seo.title;
   return c.result ? `${c.name} — ${c.result}` : `${c.name} — a GEMIS® Studio case study`;
 }
 
 /** The meta description: the result first, then as much context as fits in the
     ~160 characters a search result shows. */
 export function caseDescription(c) {
+  if (c.seo && c.seo.description) return c.seo.description;
   const parts = [c.result ? `${c.name}: ${c.result}${c.resultNote ? ' (' + c.resultNote.toLowerCase() + ')' : ''}.` : `${c.name}: a GEMIS® Studio case study.`,
     `${c.industry}.`, c.service ? `Evidences the ${c.service}.` : ''].filter(Boolean);
   let out = parts[0];
@@ -67,6 +70,7 @@ export function cardResult(c) {
 }
 
 export function renderCase(c) {
+  if (c.layout === 'showcase') return renderShowcase(c);
   const NDA = { full: 'Full — name, screens and metrics', anonymised: 'Anonymised — description in place of the name', 'results-only': 'Results only — no screens' }[c.nda] || c.nda;
   const client = c.nda === 'full' ? c.client : c.anonymised;
   const headline = c.result || c.name;
@@ -180,6 +184,107 @@ ${headerTbc}
     <div style="margin-top:32px;display:grid;gap:8px">${c.tbc.map(tbc).join('\n')}</div>`, '72px 32px 100px');
 
   return [header, problem, found, changed, build, results, quote, next].join('\n\n');
+}
+
+/* ── the showcase case study ─────────────────────────────────────────────
+   For a project whose real screens are in the repository (ManaGEM, WasteMart):
+   every section pairs its copy with a mockup of those screens, made by
+   tools/studio-case-mocks.mjs. Sections: a split (copy | mockup), chapters
+   (alternating), a wide figure, results — then the shared next step. */
+const fig = (m, eager) => m ? `<figure class="sc-fig" data-reveal="2"><div class="shot"><img src="${esc(m.img)}" alt="${esc(m.alt)}" width="2000" height="1250" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>${m.caption ? `<figcaption>${esc(m.caption)}</figcaption>` : ''}</figure>` : '';
+const paras = (ps, lead) => (ps || []).map((p, i) => `<p${lead && i === 0 ? ' class="lead"' : ''}>${esc(p)}</p>`).join('');
+const plus = (xs) => xs && xs.length ? `<ul>${xs.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+const h2 = (x, dark) => `<h2 data-reveal="1" style="${dark ? H2_DARK : H2_LIGHT};max-width:16ch">${esc(x.h2)}${x.h2accent ? `<br><span style="color:#ff1f7a">${esc(x.h2accent)}</span>` : ''}</h2>`;
+const kick = (x, i, dark) => `<div style="${dark ? KICKER : KICKER_L}">${String(i + 2).padStart(2, '0')} · ${esc(x.kicker)}</div>`;
+
+function renderShowcase(c) {
+  const sc = c.showcase;
+  const spec = sc.spec.map(([k, v]) => `        <div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n');
+  const header = `<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:150px 32px 90px">
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html" style="color:#6a6b73">Studio</a><span aria-hidden="true">/</span><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">${esc(c.name)}</span></nav>
+    <div data-m="head" style="display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;margin-top:40px">
+      <div>
+        <div style="${KICKER_L}">Case study · ${esc(c.service)}</div>
+        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(38px,4.6vw,80px);line-height:0.97;letter-spacing:-0.045em;font-weight:600;color:#16161a">${esc(sc.h1)}</h1>
+        <p data-reveal="2" style="margin:28px 0 0;max-width:58ch;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#3a3b41">${esc(sc.intro)}</p>
+      </div>
+      <div data-reveal="3" style="background:rgba(255,255,255,.75);border:1px solid rgba(22,22,26,.25);padding:4px 28px 0">
+        <dl class="cs-spec" style="margin:0;border-top:0">
+${spec}
+        </dl>
+      </div>
+    </div>
+    <div class="sc-wide">${fig(sc.hero, true)}</div>
+    ${sc.note ? `<p style="margin:20px 0 0;font-size:13px;line-height:1.5;color:#6a6b73;max-width:80ch">${esc(sc.note)}</p>` : ''}
+  </div>
+</section>`;
+
+  const body = sc.sections.map((x, i) => {
+    const dark = !!x.dark;
+    let inner;
+    if (x.type === 'split') {
+      inner = `    <div class="sc-split">
+      <div class="sc-copy">${kick(x, i, dark)}${h2(x, dark)}<div style="margin-top:32px">${paras(x.paras, true)}${plus(x.list)}</div></div>
+      ${fig(x.mock)}
+    </div>`;
+    } else if (x.type === 'chapters') {
+      inner = `    <div style="max-width:760px;margin-bottom:clamp(56px,7vw,100px)">${kick(x, i, dark)}${h2(x, dark)}${x.lead ? `<div class="sc-copy" style="margin-top:28px">${paras([x.lead], true)}</div>` : ''}</div>
+    <div class="sc-chapters">
+${x.chapters.map((ch, j) => `      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">${String(j + 1).padStart(2, '0')} / ${String(x.chapters.length).padStart(2, '0')}</div><h3>${esc(ch.h3)}</h3>${paras(ch.paras)}${plus(ch.list)}</div>
+        ${fig(ch.mock)}
+      </article>`).join('\n')}
+    </div>`;
+    } else if (x.type === 'results') {
+      inner = `    <div class="sc-split">
+      <div class="sc-copy">${kick(x, i, dark)}${h2(x, dark)}
+        <div class="cs-num" style="margin-top:40px">${x.numbers.map((r) => `<div><div class="n">${esc(r.n)}</div><p class="l">${esc(r.l)}</p></div>`).join('')}</div>
+        <div style="margin-top:36px">${paras(x.paras)}${plus(x.list)}</div>
+        ${x.note ? `<p class="sc-note">${esc(x.note)}</p>` : ''}
+      </div>
+      ${fig(x.mock)}
+    </div>`;
+    } else { // wide
+      inner = `    <div style="max-width:820px">${kick(x, i, dark)}${h2(x, dark)}<div class="sc-copy" style="margin-top:28px">${paras(x.paras, true)}${plus(x.list)}</div></div>
+    <div class="sc-wide">${fig(x.mock)}</div>`;
+    }
+    return section(x.id, x.label || x.kicker, dark, inner).replace('<section ', `<section class="${dark ? 'sc-dark' : 'sc-light'}" `);
+  }).join('\n\n');
+
+  const quote = `<div data-tbc="quote" style="margin:0 32px">${esc('Client quote: ' + (c.quoteTbc || 'none approved.'))}</div>`;
+  const next = section('next', 'Next step', false,
+    `    <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #16161a;padding-top:32px">
+      <div>
+        <div style="${KICKER_L}">Next step</div>
+        <p style="margin:16px 0 0;font-size:clamp(22px,2vw,32px);line-height:1.2;letter-spacing:-0.03em;font-weight:600;max-width:24ch">${esc(c.cta.label)}.</p>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="${esc(c.cta.href)}" style="${LINK_LIGHT}"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        <a href="work.html" style="${LINK_LIGHT.replace('#ff7a12', '#6a6b73')}"><span style="text-transform:uppercase">All projects</span><span>→</span></a>
+      </div>
+    </div>
+    <div style="margin-top:32px;display:grid;gap:8px">${c.tbc.map(tbc).join('\n')}</div>`, '72px 32px 100px');
+
+  // structured data: the case study as an Article, its images the mockups shown
+  const BASE = 'https://sphamandla-designer.github.io/gemis-site/';
+  const url = `${BASE}studio/work-${c.slug}.html`;
+  const ld = {
+    '@context': 'https://schema.org', '@graph': [
+      { '@type': 'Article', '@id': url + '#article', headline: sc.h1, description: c.seo.description, inLanguage: 'en-ZA',
+        image: [sc.hero, ...sc.sections.flatMap((x) => [x.mock, ...(x.chapters || []).map((ch) => ch.mock)])].filter(Boolean).map((m) => `${BASE}studio/${m.img}`),
+        about: { '@type': c.aboutType || 'Organization', name: c.name },
+        author: { '@id': BASE + '#organization' }, publisher: { '@id': BASE + '#organization' },
+        mainEntityOfPage: url, keywords: c.seo.keywords },
+      { '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'GEMIS Studio', item: BASE + 'studio/' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: BASE + 'studio/work.html' },
+        { '@type': 'ListItem', position: 3, name: c.name, item: url }] },
+      { '@type': 'Organization', '@id': BASE + '#organization', name: 'GEM Information Systems', alternateName: 'GEMIS', url: BASE },
+    ] };
+  const jsonld = `<script type="application/ld+json">\n${JSON.stringify(ld, null, 2).replace(/</g, '\\u003c')}\n</script>`;
+
+  return [header, body, quote, next, jsonld].join('\n\n');
 }
 
 /** Roughly how many words the live page carries (TBC notes excluded) — for the report. */

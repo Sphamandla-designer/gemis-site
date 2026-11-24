@@ -39,7 +39,8 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `assets/img/og/gemis-share.jpg`, `assets/img/apple-touch-icon.png`, `assets/img/favicon-32.png` | `tools/og-card.html` (the share card) and `assets/img/favicon.svg` | `node tools/render-og.mjs` |
 | `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
 | `gemis-studio-standalone.html` | the twelve studio pages (the five plus the seven case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
-| `studio/assets/cases/<slug>.jpg` ×7 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone; ManaGEM and WasteMart are their `assets/img/work/*-mock.jpg` mockups full bleed) | `node tools/studio-thumbs.mjs` |
+| `studio/assets/cases/<slug>.jpg` ×5 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone) | `node tools/studio-thumbs.mjs` |
+| `studio/assets/cases/managem.jpg`, `wastemart.jpg` and every image in `studio/assets/cases/managem/` (13) and `wastemart/` (12) | the two clickable prototypes at the root — `ManaGem.html` (the 2026 ManaGEM redesign) and `wastemart-driver.html` (the driver app) — captured by `tools/studio-case-shots.mjs`, which first makes their sample data neutral (real retailers, a real person and a phone number in the demo records become generic), then mounted in device mockups by `tools/studio-case-mocks.mjs` | `node tools/studio-case-shots.mjs <dir> && node tools/studio-case-mocks.mjs <dir>` |
 | `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
 Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
@@ -114,6 +115,15 @@ Two traps in these builds:
   `cscard__go` (outlined again on the white card). Check with pixels, not
   class names: an audit that only looked at `btn`-like classes missed all of
   these, and a white fill can hide a label an older rule keeps white.
+- **The ManaGEM and WasteMart studio case studies are showcases** (2026-11-24):
+  `"layout": "showcase"` in `studio/src/cases.json` renders them with
+  `renderShowcase()` in `tools/build-studio-case.mjs` — every section pairs its
+  copy with a mockup of the real prototype screens (a split, alternating
+  chapters, a wide figure, results), with its own SEO title, description, H1
+  and Article JSON-LD. The old mockups and video stills are gone from them.
+  Their copy uses only the case records and what the screens visibly show;
+  the screens are sample data and each page says so. Never publish a capture
+  that has not been through the neutralising in `studio-case-shots.mjs`.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.
