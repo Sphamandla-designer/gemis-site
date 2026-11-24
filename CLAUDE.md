@@ -388,6 +388,13 @@ decision. The rules that must survive later work:
   behind the text and embeds the static Montserrat cuts in `brand/fonts/`; it is
   post-processed so Word keeps the fonts on save and the font keys meet the schema
   (docx-js writes them in lower case, and LibreOffice then ignores the fonts).
+- **The logo kit** in `brand/logos/`, by `node tools/make-logo-kit.mjs`: every
+  variant of both brands (horizontal, stacked, wordmark and stone in navy, white and
+  black; the studio logo in colour, reversed, white and black; the tiles on navy or
+  ink, the avatars and app icons) as SVG with real colours and a tight viewBox, and
+  transparent PNGs at fixed widths, with a preview sheet (`brand/logos/`) and a zip
+  written with fixed dates so a re-run changes no bytes. It reads the masters, so
+  re-run it after `tools/make-logo.py`.
 - The team is `brand/staff.json`, shared by the signatures and the cards.
 
 `brand/` is outside the chrome walk in `apply-chrome.pages()`, so those pages never
