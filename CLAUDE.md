@@ -180,8 +180,14 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   emitted first in `<main>`): the page's name, its chapters, one small pill;
   sticky under the bar, parchment at 80% with blur, navy over a navy hero
   (`:has()`); under 900px only the name and the pill remain. Anchors carry
-  `scroll-margin-top: 112px`. The footer is the efferd `footer-3` port in
-  `FOOTER` in `apply-chrome.py`, on navy, 14px links at 2.2 leading.
+  `scroll-margin-top: 112px`. The footer is **FOOTER v6** (2026-11-24, the
+  owner's reference; `FOOTER` in `apply-chrome.py`, class `.ftr`, its block at
+  the tail of `site.css` — the older `.foot` rules are dead): light ground
+  under a navy rule; the logo and slogan left and the one action right; four
+  plain link columns; the GEMIS wordmark edge to edge in real depth (fourteen
+  layers stepped along Z in a preserve-3d stage, leaning at rest, turned toward
+  the pointer by `[data-tilt]` in `site.js`, static under reduced motion and
+  without JS); then the legal bar. No newsletter field: there is no list.
 - **Surfaces.** Cards (`.cscard`, `.selw__card`, `.post`, `.prod`, `.dec`,
   `.flow__step`, `.sol__card`, `.sd__item`, `.cs__main` …) are white, 1px
   hairline, radius 18, 24px padding, no shadow, no hover lift. Tags are 12px
