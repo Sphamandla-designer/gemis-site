@@ -166,10 +166,21 @@ FOOTER = """<footer class="foot">
       <div class="foot__rule" aria-hidden="true"></div>
       <div class="foot__bar">
         <p>&copy; 2026 GEM Information Systems (PTY) LTD. All rights reserved.</p>
-        <a href="{B}privacy.html">Privacy Policy</a>
+        <nav class="foot__legal" aria-label="Legal"><a href="{B}privacy.html">Privacy notice</a><a href="{B}terms.html">Terms of use</a><a href="{B}privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
       </div>
     </div>
   </footer>"""
+
+# The few <head> lines every page shares, kept here so no page drifts: the
+# icons, the HTTPS upgrade for any stray http:// subresource, and the consent
+# loader (analytics run only after the visitor accepts — assets/js/consent.js).
+HEAD = """<!--#head:start-->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{B}assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="{B}assets/img/apple-touch-icon.png" />
+  <script src="{B}assets/js/consent.js" defer></script>
+  <!--#head:end-->"""
+HEAD_RE = re.compile(r'<!--#head:start-->.*?<!--#head:end-->', re.S)
 
 NAV_RE = re.compile(r'<ul class="nav__links" id="navLinks">.*?\n        </ul>', re.S)
 FOOTER_RE = re.compile(r'<footer class="foot">.*?</footer>', re.S)
@@ -209,6 +220,12 @@ def main():
             out = NAV_RE.sub(lambda m: render(NAV, base), out, count=1)
         if FOOTER_RE.search(out):
             out = FOOTER_RE.sub(lambda m: render(FOOTER, base), out, count=1)
+        # redirect stubs leave before anything loads; they need none of it
+        if 'http-equiv="refresh"' not in out:
+            if HEAD_RE.search(out):
+                out = HEAD_RE.sub(lambda m: render(HEAD, base), out, count=1)
+            elif '</head>' in out:
+                out = out.replace('</head>', '  ' + render(HEAD, base) + '\n</head>', 1)
         rel = os.path.relpath(path, ROOT)
         if out != html:
             (stale if check else changed).append(rel)
@@ -218,7 +235,7 @@ def main():
         if stale:
             print('chrome out of date in:\n  ' + '\n  '.join(stale))
             return 1
-        print('chrome: every page matches the canonical header and footer.')
+        print('chrome: every page matches the canonical head block, header and footer.')
         return 0
     print(f'chrome applied to {len(changed)} page(s):\n  ' + '\n  '.join(changed) if changed
           else 'chrome: nothing to change.')

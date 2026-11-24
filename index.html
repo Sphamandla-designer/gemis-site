@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GEMIS® — Systems your operation can run on, not work around</title>
-  <meta name="description" content="GEMIS builds business systems around how South African organisations actually work — enquiries, jobs, claims, reports — and stays to support them. Case studies from systems in production since 2014." />
+  <title>GEMIS® — Systems your operation can run on</title>
+  <meta name="description" content="GEMIS builds business systems around how South African organisations actually work — enquiries, jobs, claims, reports — and stays to support them." />
   <link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GEM Information Systems" />
   <meta property="og:title" content="GEMIS® — Systems your operation can run on, not work around" />
   <meta property="og:description" content="GEMIS builds business systems around how South African organisations actually work — enquiries, jobs, claims, reports — and stays to support them. Case studies from systems in production since 2014." />
-  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/video/case-studies/ManaGEM_explainer_thumb.jpg" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/assets/img/og/gemis-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="GEMIS — Systems built to last. Partners built to stay. Business systems on the Microsoft Cloud since 2014." />
   <meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/site.css?v=20261021" />
   <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
@@ -37,6 +39,12 @@
   "slogan": "Systems built to last. Partners built to stay."
 }
   </script>
+  <!--#head:start-->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <script src="assets/js/consent.js" defer></script>
+  <!--#head:end-->
 </head>
 <body>
 
@@ -625,6 +633,7 @@
 
         <div class="hx-go__panel" data-reveal style="--d:160ms">
           <form class="form" id="discoveryForm" novalidate>
+            <div class="form__sum" id="discoverySummary" role="alert" tabindex="-1" aria-labelledby="discoverySummaryTitle" hidden></div>
             <div class="form__rows">
               <div class="field">
                 <label for="d-name">Name <em aria-hidden="true">*</em><span class="vh"> (required)</span></label>
@@ -761,7 +770,7 @@
       <div class="foot__rule" aria-hidden="true"></div>
       <div class="foot__bar">
         <p>&copy; 2026 GEM Information Systems (PTY) LTD. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a>
+        <nav class="foot__legal" aria-label="Legal"><a href="privacy.html">Privacy notice</a><a href="terms.html">Terms of use</a><a href="privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
       </div>
     </div>
   </footer>

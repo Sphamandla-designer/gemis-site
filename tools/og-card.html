@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- The link-preview card for the corporate site (1200×630).
+     Rendered to assets/img/og/gemis-share.jpg by `node tools/render-og.mjs`.
+     The headline is the homepage's own; "since 2014" is in scripts/facts.md. -->
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Montserrat;src:url(../assets/fonts/montserrat-latin.woff2) format('woff2');font-weight:100 900}
+html,body{margin:0}
+body{width:1200px;height:630px;overflow:hidden;background:#0a1230;color:#fff;font-family:Montserrat,sans-serif;position:relative}
+.hatch{position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 9px);
+  -webkit-mask-image:linear-gradient(115deg,transparent 35%,#000 75%);mask-image:linear-gradient(115deg,transparent 35%,#000 75%)}
+.streak{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(-24deg);transform-origin:left}
+.s1{left:640px;top:520px;width:620px}.s2{left:760px;top:600px;width:520px;opacity:.6}
+.block{position:absolute;left:64px;top:64px;width:760px;height:400px;background:#fff;color:#0a1230;
+  clip-path:polygon(0 0,calc(100% - 56px) 0,100% 56px,100% 100%,0 100%);padding:52px 56px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between}
+.label{font-size:15px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+h1{margin:0;font-size:46px;line-height:1.12;font-weight:300;letter-spacing:.01em;text-transform:uppercase;white-space:nowrap}
+.logo{width:281px;height:48px;color:#0a1230;display:block;flex:none}
+.foot{position:absolute;left:64px;right:64px;bottom:44px;display:flex;justify-content:space-between;align-items:center}
+.foot .label{color:rgba(255,255,255,.82);font-size:14px}
+.stone{position:absolute;right:96px;top:120px;width:230px;height:230px;color:#fff;opacity:.95}
+</style></head>
+<body>
+  <div class="hatch"></div>
+  <span class="streak s1"></span><span class="streak s2"></span>
+  <svg class="stone" viewBox="8 14 48 40" aria-hidden="true"><g fill="currentColor"><polygon points="15.38,18.36 23.05,18.36 20.41,27.58 11.43,27.58"/><polygon points="24.84,18.36 39.16,18.36 41.80,27.58 22.20,27.58"/><polygon points="40.95,18.36 48.62,18.36 52.57,27.58 43.59,27.58"/><polygon points="12.10,29.30 20.52,29.30 28.93,47.32"/><polygon points="22.41,29.30 41.59,29.30 32.00,49.84"/><polygon points="43.48,29.30 51.90,29.30 35.07,47.32"/></g></svg>
+  <div class="block">
+    <div class="label">Business systems · Microsoft Cloud · Since 2014</div>
+    <h1>Systems built to last.<br>Partners built to stay.</h1>
+    <div id="logo"></div>
+  </div>
+  <div class="foot">
+    <span class="label">GEM Information Systems · Cape Town</span>
+    <span class="label">sphamandla-designer.github.io/gemis-site</span>
+  </div>
+</body></html>

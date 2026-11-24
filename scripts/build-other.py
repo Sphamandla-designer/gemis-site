@@ -73,7 +73,9 @@ def rebase(block, base):
 
 
 def page(path, base, title, desc, body):
-    head, tail = P.shell(base, title, desc, f'{CANON}{path}')
+    # ManaGEM's page previews with a frame of its own video; the rest take the card
+    image = 'assets/video/case-studies/ManaGEM_explainer_thumb.jpg' if 'managem' in path else None
+    head, tail = P.shell(base, title, desc, f'{CANON}{path}', image=image)
     full = head + body + tail
     d = os.path.join(ROOT, os.path.dirname(path))
     os.makedirs(d, exist_ok=True)

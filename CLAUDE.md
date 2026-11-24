@@ -34,7 +34,8 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
 | `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
-| the header nav and footer columns on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
+| the header nav, the footer columns and the `<!--#head:start-->` block (icons, HTTPS upgrade, consent loader) on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
+| `assets/img/og/gemis-share.jpg`, `assets/img/apple-touch-icon.png`, `assets/img/favicon-32.png` | `tools/og-card.html` (the share card) and `assets/img/favicon.svg` | `node tools/render-og.mjs` |
 | `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
 | `gemis-studio-standalone.html` | the twelve studio pages (the five plus the seven case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
 | `studio/assets/cases/<slug>.jpg` ×7 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone; ManaGEM and WasteMart are their `assets/img/work/*-mock.jpg` mockups full bleed) | `node tools/studio-thumbs.mjs` |
@@ -58,19 +59,35 @@ Two traps in these builds:
   bundle; a link to one is routed to the live site instead. It carries MP4 only
   (iOS needs it); the WebM sources are dropped at build time.
 
-## Studio launch basics — keep these
+## Launch basics, both sites — keep these
 
-- **Consent before analytics.** `studio/assets/consent.js` loads Google Analytics
-  only after the visitor accepts; until `GA_ID` is set there is no banner. Do not
-  add any other tracker, embed or third-party font to the studio without routing
-  it through the same choice and the privacy notice's cookies section.
+- **Consent before analytics.** `assets/js/consent.js` (corporate) and
+  `studio/assets/consent.js` load Google Analytics only after the visitor
+  accepts; until `GA_ID` is set in **both** there is no banner. They share one
+  storage key (`gemis-consent`), so one choice covers the whole origin. Do not
+  add any other tracker, embed or third-party font to either site without
+  routing it through the same choice and the privacy notices' cookies sections.
+- **Titles and descriptions** on generated pages go through `short_title()` and
+  `fit_description()` in `build-pages.py` (`<title>` ≤ 60 characters, meta
+  description ≤ 160; link previews keep the full title). Story pages and ManaGEM
+  share a frame of their own video; everything else shares the card.
+- **The Discovery form** (home, Contact, Industries) carries a honeypot and a
+  three-second minimum (added by `site.js`), and the email it prepares records
+  the visitor's consent, as the privacy notice says it does.
+- **The root `404.html`** sets a `<base>` at the site root before anything
+  loads, because Pages serves it at the missing address itself; it also sends
+  missing `/studio/` addresses to the studio's own 404.
+- `scripts/build-other.py` recovers old page sections from git history: in a
+  shallow clone it fails with "could not recover about.html" — run
+  `git fetch --unshallow` first.
 - **Both enquiry forms share `studio/assets/enquiry.js`** (validation, consent,
   honeypot, time trap). Change the rules there, not in one form.
 - **Small accent text on light grounds** uses the deep variants: orange
   `#b34e00`, pink `#d70057`. Buttons on the pink carry ink `#16161a`. The bright
   `#ff7a12` / `#ff1f7a` stay for large type, lines and dark grounds.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
-  `PAGES` in `tools/build-studio-standalone.py`.
+  `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
+  `sitemap.xml`; the chrome walk finds them by itself.
 
 ## Redirect stubs
 
@@ -109,7 +126,7 @@ content starts under it), the navy sub-nav strip, stats as light numerals.
   chip, the duration), the service drawing in a white stepped card
   (`hx-phero--draw`), or a pictogram (`picto(key, 'hx-picto--w hx-picto--xl')`).
   A story passes its status as `aside`. The hand-written pages (`contact.html`,
-  `industries.html`, `privacy.html`, `404.html`) carry the same block by hand and
+  `industries.html`, `privacy.html`, `terms.html`, `404.html`) carry the same block by hand and
   load `home.js` for the parallax and the timeline.
 - **Pictograms** (`PICTO` in `build-stories.py`, 21 silhouettes filled with the
   vertical hatch) replace every photograph and composite outside the case-study

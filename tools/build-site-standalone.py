@@ -57,7 +57,7 @@ css = re.sub(r"url\(\s*['\"]?\.\./(img|fonts)/([^'\")]+)['\"]?\s*\)",
 A['css'] = css
 
 JS = {}
-for name in ('site.js', 'home.js', 'review-mode.js', 'work-filters.js'):
+for name in ('site.js', 'home.js', 'review-mode.js', 'work-filters.js', 'consent.js'):
     js = open(os.path.join(R, 'assets/js', name), encoding='utf8').read()
     assert '</script' not in js, name
     # the bundle carries MP4 only, so the overlay's WebM source becomes a second MP4 one

@@ -2,9 +2,11 @@
 
    Analytics never load before the visitor says yes. Until then the studio sets
    no cookies at all; the only thing kept in the browser is the choice itself
-   (localStorage, key "gemis-studio-consent"), so the banner is not asked twice.
+   (localStorage, key "gemis-consent"), so the banner is not asked twice.
 
-   TO SWITCH ANALYTICS ON: put the Google Analytics 4 measurement ID below
+   TO SWITCH ANALYTICS ON: put the Google Analytics 4 measurement ID below, and
+   the same ID in assets/js/consent.js (the corporate site shares this origin,
+   the storage key and so the visitor's one choice)
    (Google Analytics → Admin → Data streams → the web stream → "G-…"), then
    rebuild the standalone bundle. While it is empty there is nothing to consent
    to, so no banner shows and "Cookie settings" just opens the privacy notice. */
@@ -12,7 +14,7 @@
   'use strict';
   var GA_ID = '';
 
-  var KEY = 'gemis-studio-consent';
+  var KEY = 'gemis-consent'; // shared with assets/js/consent.js: one choice for the whole origin
   var VERSION = '1'; // bump to ask everyone again after the notice changes
   var banner = null;
 

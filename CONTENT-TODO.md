@@ -74,21 +74,15 @@ Edit `studio/src/index.html`, then run `node tools/build-studio.mjs`.
 
 ## ⚠️ Correctness issues, not content
 
-### 6. The privacy notice no longer matches the form (`privacy.html`)
+### 6. The corporate privacy notice and terms (`privacy.html`, `terms.html`)
 
-`privacy.html` states the enquiry form collects:
-
-> your name, work email address, company name, the service you are interested in, your
-> indicative budget band, and your message
-
-The Discovery Session form that replaced it collects **name, work email, company, what
-you're looking to do, rough timeline, and notes**. There is no budget band and no
-service field any more.
-
-The "What we collect" section must be updated to match before launch. It is a POPIA
-notice, so it is not something to reword on a guess — it needs whoever owns that copy
-to approve the new wording. `privacy.html` also still carries its own
-**DRAFT — pending approval** banner.
+Rewritten 2026-11-24 to match the Discovery form as it is (name, work email,
+company, goal, timeline, notes, consent) and the site as it is (no cookies
+unless analytics are accepted, hosted on GitHub Pages, mailto hand-off). The
+draft banner is now a review note: under `?review=1` both pages show what is
+still needed — the Information Officer, the registration number and directors
+(ECT Act s43), and the email provider and where it stores mail (POPIA s72).
+They need the owner's approval, ideally after a lawyer reads them.
 
 ### 7. The consent checkbox goes beyond the brief's field list
 
@@ -133,9 +127,11 @@ cookies, secrets, social image, HTTPS, mobile, meta, 404, alt text, image size,
 speed, contrast, favicon, links, form validation, spam, analytics). Everything
 that could be done from the repository is done; these need a person:
 
-- **Analytics ID.** `studio/assets/consent.js` carries the consent banner and a
-  Google Analytics 4 loader that runs only after the visitor accepts. It is off
-  until `GA_ID` at the top of that file holds the GA4 measurement ID (`G-…`).
+- **Analytics ID.** `studio/assets/consent.js` and `assets/js/consent.js` carry
+  the consent banner and a Google Analytics 4 loader that runs only after the
+  visitor accepts. Both are off until `GA_ID` at the top of each file holds the
+  GA4 measurement ID (`G-…`) — the same ID in both, since the sites share an
+  origin and one consent choice.
   While it is empty no banner shows — there is nothing to consent to — and
   "Cookie settings" in the footer opens the privacy notice's cookies section.
   Rebuild the studio bundle after setting it.
