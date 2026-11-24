@@ -135,18 +135,8 @@ def _col(label, items, delay):
 
 OUT = '<span class="ftr__out" aria-hidden="true">&#8599;</span>'
 
-# The giant wordmark is real depth, not a drop shadow: a stack of copies of the
-# word, each a step further back (--z), inside a preserve-3d stage that
-# site.js tilts with the pointer. Decorative — the logo link above is the name.
-DEPTH = 14
-WORD = ('<div class="ftr__stage" aria-hidden="true" data-reveal><div class="ftr__word" data-tilt>'
-        '<span class="ftr__layer ftr__layer--shadow">GEMIS</span>'
-        + ''.join(f'<span class="ftr__layer" style="--z:{z}">GEMIS</span>' for z in range(DEPTH, 0, -1))
-        + '<span class="ftr__layer ftr__layer--face">GEMIS</span></div></div>')
-
 # FOOTER v6 (2026-11-24) — after the owner's reference: a statement and the one
-# action across the top, four plain link columns, the wordmark edge to edge in
-# depth, and a legal bar. Light ground, so it reads apart from the navy closing
+# action across the top, four plain link columns and a legal bar. Light ground, so it reads apart from the navy closing
 # tile above it on nearly every page.
 FOOTER = """<footer class="ftr">
     """ + SPRITE + """
@@ -173,7 +163,6 @@ FOOTER = """<footer class="ftr">
                         '<a href="mailto:info@gemis.co.za">info@gemis.co.za</a>'], 240) + """
       </div>
     </div>
-    """ + WORD + """
     <div class="shell ftr__bar">
       <nav class="ftr__legal" aria-label="Legal"><a href="{B}privacy.html">Privacy notice</a><a href="{B}terms.html">Terms of use</a><a href="{B}privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
       <address class="ftr__addr">9 Tapiola Way, Edgemead, Cape Town</address>
