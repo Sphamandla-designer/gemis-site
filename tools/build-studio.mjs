@@ -375,7 +375,7 @@ const main = async () => {
     href: `work-${c.slug}.html`, cta: 'Read the case study',
   }));
 
-  const cards = '  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px auto 0;max-width:1400px">\n'
+  const cards = '  <div data-m="cards" style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:72px 0 0">\n'
     + projects.map(workCard).join('\n') + '\n  </div>';
 
   const work = siblingPage('work.html', workSrc, { cards });
