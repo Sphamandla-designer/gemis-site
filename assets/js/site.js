@@ -534,4 +534,43 @@
       if (here.indexOf('/' + k + '/') !== -1) { var t = document.getElementById(sections[k]); if (t) t.setAttribute('data-current', ''); }
     }
   })();
+  /* ── the footer wordmark turns toward the pointer ─────────────────────
+        The word is a stack of layers in a preserve-3d stage (FOOTER v6 in
+        site.css). Moving over the footer sets --rx/--ry (the lean) and --lx
+        (where the light sits on its face), eased each frame; leaving lets it
+        settle back. Mouse and pen only, never under reduced motion; without
+        this it rests at the lean the stylesheet gives it. */
+  (function () {
+    var word = document.querySelector('.ftr [data-tilt]');
+    var foot = word && word.closest('.ftr');
+    if (!word || reduced || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var REST = { rx: 16, ry: -7, lx: 47 };
+    var cur = { rx: REST.rx, ry: REST.ry, lx: REST.lx }, to = { rx: REST.rx, ry: REST.ry, lx: REST.lx };
+    var raf = 0;
+    var frame = function () {
+      var moving = false;
+      for (var k in cur) {
+        var d = to[k] - cur[k];
+        if (Math.abs(d) > .02) { cur[k] += d * .09; moving = true; } else cur[k] = to[k];
+      }
+      word.style.setProperty('--rx', cur.rx.toFixed(2) + 'deg');
+      word.style.setProperty('--ry', cur.ry.toFixed(2) + 'deg');
+      word.style.setProperty('--lx', cur.lx.toFixed(1) + '%');
+      raf = moving ? requestAnimationFrame(frame) : 0;
+    };
+    var kick = function () { if (!raf) raf = requestAnimationFrame(frame); };
+    foot.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      // not until it has stood up: its entrance is a CSS transition
+      if (!word.parentNode.classList.contains('is-in')) return;
+      word.classList.add('is-live');
+      var r = foot.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width * 2 - 1;    // -1 left … 1 right
+      var ny = (e.clientY - r.top) / r.height * 2 - 1;    // -1 top … 1 bottom
+      to.ry = nx * 11; to.rx = 13 - ny * 11;
+      to.lx = 75 - (nx + 1) * 25;                          // the light sits under the pointer
+      kick();
+    });
+    foot.addEventListener('pointerleave', function () { to.rx = REST.rx; to.ry = REST.ry; to.lx = REST.lx; kick(); });
+  })();
 })();

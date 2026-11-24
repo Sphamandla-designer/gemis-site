@@ -124,50 +124,60 @@ NAV = """<ul class="nav__links" id="navLinks">
         <li class="nav__cta-item"><a class="nav__cta" href="{B}contact.html">Book a discovery session</a></li>
         </ul>"""
 
-# ── the footer: ported from the efferd footer-3 block (React/Tailwind) into
-#    the site's own markup — brand column, four link sections (the last carries
-#    icons), a gradient hairline, a centred legal line; a top glow and a
-#    blur-and-rise reveal per section (site.js adds .is-in; static without JS and
-#    under reduced motion). Expanded to the site's shell width on the navy ground.
-LINKEDIN = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
-GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>'
-MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>'
-
 def _col(label, items, delay):
     lis = '\n'.join(f'              <li>{a}</li>' for a in items)
-    return f"""        <div class="foot__col" data-reveal style="--d:{delay}ms">
-            <h2>{label}</h2>
+    return f"""          <div class="ftr__col" data-reveal style="--d:{delay}ms">
+            <h2 class="ftr__label">{label}</h2>
             <ul>
 {lis}
             </ul>
           </div>"""
 
-FOOTER = """<footer class="foot">
+OUT = '<span class="ftr__out" aria-hidden="true">&#8599;</span>'
+
+# The giant wordmark is real depth, not a drop shadow: a stack of copies of the
+# word, each a step further back (--z), inside a preserve-3d stage that
+# site.js tilts with the pointer. Decorative — the logo link above is the name.
+DEPTH = 14
+WORD = ('<div class="ftr__stage" aria-hidden="true" data-reveal><div class="ftr__word" data-tilt>'
+        '<span class="ftr__layer ftr__layer--shadow">GEMIS</span>'
+        + ''.join(f'<span class="ftr__layer" style="--z:{z}">GEMIS</span>' for z in range(DEPTH, 0, -1))
+        + '<span class="ftr__layer ftr__layer--face">GEMIS</span></div></div>')
+
+# FOOTER v6 (2026-11-24) — after the owner's reference: a statement and the one
+# action across the top, four plain link columns, the wordmark edge to edge in
+# depth, and a legal bar. Light ground, so it reads apart from the navy closing
+# tile above it on nearly every page.
+FOOTER = """<footer class="ftr">
     """ + SPRITE + """
-    <span class="foot__glow" aria-hidden="true"></span>
-    <div class="shell foot__in">
-      <div class="foot__grid">
-        <div class="foot__brand" data-reveal>
-          <a class="foot__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 234.6 40" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
-          <p class="foot__blurb">Bringing ideas and innovation to life through technology &mdash; secure, scalable systems built on the Microsoft Cloud.</p>
-          <address class="foot__addr">9 Tapiola Way, Edgemead, Cape Town<br /><a href="mailto:info@gemis.co.za">info@gemis.co.za</a></address>
+    <div class="shell ftr__in">
+      <div class="ftr__top">
+        <div class="ftr__brand" data-reveal>
+          <a class="ftr__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 234.6 40" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
+          <p class="ftr__say">Systems built to last.<br />Partners built to stay.</p>
         </div>
-        <div class="foot__cols">
-  """ + _col('Solutions', [f'<a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a>' for s in SV.SERVICES[:4]] + ['<a href="{B}solutions/">All solutions</a>'], 100) + """
-  """ + _col('Products', ['<a href="{B}products/managem/">ManaGEM</a>', '<a href="{B}studio/">Design Studio</a>',
-                           '<a href="https://gemis.tech/" target="_blank" rel="noopener">Technical Academy</a>', '<a href="{B}products/">All products</a>'], 200) + """
-  """ + _col('Company', ['<a href="{B}our-story/">Our Story</a>', '<a href="{B}work/">Case Studies</a>', '<a href="{B}insights/">Insights</a>',
-                          '<a href="{B}industries.html">Industries</a>', '<a href="{B}contact.html">Contact</a>'], 300) + """
-  """ + _col('Connect', ['<a href="https://www.linkedin.com/company/gem-information-systems-pty-ltd/" target="_blank" rel="noopener">' + LINKEDIN + 'LinkedIn</a>',
-                          '<a href="https://www.gemis.co.za" target="_blank" rel="noopener">' + GLOBE + 'gemis.co.za</a>',
-                          '<a href="mailto:info@gemis.co.za">' + MAIL + 'info@gemis.co.za</a>'], 400) + """
+        <div class="ftr__act" data-reveal style="--d:100ms">
+          <p class="ftr__lede">Tell us what your operation needs to do better. A discovery session is where it starts.</p>
+          <a class="ftr__go" href="{B}contact.html"><span>Book a discovery session</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          <p class="ftr__or">Or write to <a href="mailto:info@gemis.co.za">info@gemis.co.za</a></p>
         </div>
       </div>
-      <div class="foot__rule" aria-hidden="true"></div>
-      <div class="foot__bar">
-        <p>&copy; 2026 GEM Information Systems (PTY) LTD. All rights reserved.</p>
-        <nav class="foot__legal" aria-label="Legal"><a href="{B}privacy.html">Privacy notice</a><a href="{B}terms.html">Terms of use</a><a href="{B}privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
+      <div class="ftr__cols">
+""" + _col('Solutions', [f'<a href="{{B}}solutions/{s["slug"]}/">{s["name"]}</a>' for s in SV.SERVICES[:4]] + ['<a href="{B}solutions/">All solutions</a>'], 0) + """
+""" + _col('Products', ['<a href="{B}products/managem/">ManaGEM</a>', '<a href="{B}studio/">Design Studio</a>',
+                         '<a href="https://gemis.tech/" target="_blank" rel="noopener">Technical Academy' + OUT + '</a>', '<a href="{B}products/">All products</a>'], 80) + """
+""" + _col('Company', ['<a href="{B}our-story/">Our Story</a>', '<a href="{B}work/">Case Studies</a>', '<a href="{B}insights/">Insights</a>',
+                        '<a href="{B}industries.html">Industries</a>', '<a href="{B}contact.html">Contact</a>'], 160) + """
+""" + _col('Connect', ['<a href="https://www.linkedin.com/company/gem-information-systems-pty-ltd/" target="_blank" rel="noopener">LinkedIn' + OUT + '</a>',
+                        '<a href="https://www.gemis.co.za" target="_blank" rel="noopener">gemis.co.za' + OUT + '</a>',
+                        '<a href="mailto:info@gemis.co.za">info@gemis.co.za</a>'], 240) + """
       </div>
+    </div>
+    """ + WORD + """
+    <div class="shell ftr__bar">
+      <nav class="ftr__legal" aria-label="Legal"><a href="{B}privacy.html">Privacy notice</a><a href="{B}terms.html">Terms of use</a><a href="{B}privacy.html#cookies" data-cookie-settings>Cookie settings</a></nav>
+      <address class="ftr__addr">9 Tapiola Way, Edgemead, Cape Town</address>
+      <p class="ftr__copy">&copy; 2026 GEM Information Systems (PTY) LTD</p>
     </div>
   </footer>"""
 
@@ -183,7 +193,7 @@ HEAD = """<!--#head:start-->
 HEAD_RE = re.compile(r'<!--#head:start-->.*?<!--#head:end-->', re.S)
 
 NAV_RE = re.compile(r'<ul class="nav__links" id="navLinks">.*?\n        </ul>', re.S)
-FOOTER_RE = re.compile(r'<footer class="foot">.*?</footer>', re.S)
+FOOTER_RE = re.compile(r'<footer class="(?:foot|ftr)">.*?</footer>', re.S)
 
 
 def pages():
