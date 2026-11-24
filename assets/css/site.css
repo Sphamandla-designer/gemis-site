@@ -6827,3 +6827,18 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq) .cscard .cscard__go:not(#_):n
    paragraph dims by colour rather than opacity, which would grey the button */
 :is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) p:has(> .arrow-link):not(#_):not(#_):not(#_):not(#_) { opacity: 1; color: rgba(255, 255, 255, .84); }
 :is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) p:not(#_):not(#_):not(#_):not(#_) > .arrow-link:not(#_):not(#_):not(#_):not(#_) { display: flex; width: fit-content; margin-top: 16px; }
+
+/* ── SEO HEADINGS (2026-11-24) ──────────────────────────────────────────
+   The H1s now carry each page's search phrase (scripts/seo.py), so some run
+   longer than the slogans they replaced. The homepage title may wrap inside
+   its white block, balanced; on phones the two halves flow together (the
+   break between them, .hx-br, drops) instead of stranding a word. */
+.hx-hero:not(.hx-phero) .hx-rise { white-space: normal; text-wrap: balance; }
+.hx-hero__title { text-wrap: balance; }
+@media (max-width: 760px) { .hx-hero__title .hx-br { display: none; } .hx-hero__title .hx-rise { display: inline; } .hx-hero__title .hx-rise + .hx-br + .hx-rise::before { content: ' '; } }
+/* the homepage's white block takes the full width on phones, as every other
+   page's does (its 64% rule above used to outrank the phone rule) */
+@media (max-width: 760px) { .hx-hero:not(.hx-phero) .hx-hero__block { width: 100%; } }
+/* a section lede that ends in an arrow link after a sentence (the related-
+   solutions lines) puts the link on its own line, as on navy grounds */
+.sec__head .lede:not(#_):not(#_):not(#_) > a:not([class]) ~ .arrow-link:not(#_):not(#_):not(#_):not(#_) { display: flex; width: fit-content; margin-top: 12px; }

@@ -112,6 +112,7 @@ shell = f'''<!DOCTYPE html>
      URLs when the file opens), so this file needs no network. Each page runs in its own frame exactly as on the live site; links between pages switch frames.
      Links to the corporate site and to external sites open the live addresses. -->
 <html lang="en"><head>
+<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{H.escape(titles['index.html'])}</title>

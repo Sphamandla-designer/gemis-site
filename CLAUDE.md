@@ -35,6 +35,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `products/managem/`, `our-story/` | `scripts/stories.py`, old pages in git history | `python3 scripts/build-other.py` |
 | `work/`, `work/<story>/` ×6 | `scripts/stories.py`, `scripts/cases.py` (record + `DETAIL`: basis, flow, walkthrough, decisions, validation) | `python3 scripts/build-pages.py` |
 | the header nav, the footer columns and the `<!--#head:start-->` block (icons, HTTPS upgrade, consent loader) on every page | `scripts/apply-chrome.py` (+ `services.py` for the two drop-downs) | `python3 scripts/apply-chrome.py` (`--check` in CI) |
+| every corporate page's `<!--#seo:head-->` block (title, description, robots, canonical, Open Graph, Twitter/X), its **H1 text**, its `<!--#seo:ld-->` JSON-LD graph, and `sitemap.xml` | `scripts/seo.py` — the one place a title, description, keyword, H1, share image or breadcrumb is set | `python3 scripts/apply-seo.py` (`--check` verifies) |
 | `assets/img/og/gemis-share.jpg`, `assets/img/apple-touch-icon.png`, `assets/img/favicon-32.png` | `tools/og-card.html` (the share card) and `assets/img/favicon.svg` | `node tools/render-og.mjs` |
 | `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
 | `gemis-studio-standalone.html` | the twelve studio pages (the five plus the seven case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
@@ -42,7 +43,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
 Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
-`build-other` → `apply-chrome`. (`build-stories.py` is the shared markup library
+`build-other` → `apply-chrome` → `apply-seo`. (`build-stories.py` is the shared markup library
 the others import; running it alone only prints a summary.)
 
 Rebuild the standalone bundle after **any** change to a root page or to
@@ -67,10 +68,28 @@ Two traps in these builds:
   storage key (`gemis-consent`), so one choice covers the whole origin. Do not
   add any other tracker, embed or third-party font to either site without
   routing it through the same choice and the privacy notices' cookies sections.
-- **Titles and descriptions** on generated pages go through `short_title()` and
-  `fit_description()` in `build-pages.py` (`<title>` ≤ 60 characters, meta
-  description ≤ 160; link previews keep the full title). Story pages and ManaGEM
-  share a frame of their own video; everything else shares the card.
+- **SEO lives in `scripts/seo.py`** (2026-11-24, `docs/SEO-IMPLEMENTATION.md`):
+  every corporate page's title (≤ 60, unique), description (~120–160, unique),
+  primary keyword, H1, share image and breadcrumbs. `apply-seo.py` writes them
+  statically, with one JSON-LD graph per page (Organization and WebSite under
+  the same `@id`s everywhere; WebPage/CollectionPage/AboutPage/ContactPage;
+  BreadcrumbList; Service, Article or SoftwareApplication) and the sitemap. The
+  generators still emit FAQPage, ItemList and VideoObject; they must **not**
+  emit Organization, BreadcrumbList, Service or Article again. Every claim in
+  seo.py is checked against the page's own record — no city but Cape Town, no
+  price, rating or certification. A new corporate page needs an entry there:
+  apply-seo leaves any page it does not list untouched. The hero H1s are
+  the search headings; the homepage keeps the slogan in the label beneath, the
+  studio homepage keeps "Designed to be built" as its display line under an H1
+  kicker. `short_title()`/`fit_description()` in `build-pages.py` remain only
+  as the generators' fallbacks. Validate JSON-LD against the schema.org
+  vocabulary with `schema-dts` + `tsc` (schema.org itself is not reachable from
+  the sandbox).
+- **Root exports and bundles are `noindex`**: `gemis-site-standalone.html`,
+  `gemis-studio-standalone.html` (their build scripts), the old exports at the
+  root (`GEMIS Studio.html`, `GEMIS Work*.html`, `ManaGem.html`,
+  `*-standalone.html`, `wastemart-driver.html`) and `tools/og-card.html`. Pages
+  serves them publicly; they must never compete with the real pages.
 - **The Discovery form** (home, Contact, Industries) carries a honeypot and a
   three-second minimum (added by `site.js`), and the email it prepares records
   the visitor's consent, as the privacy notice says it does.

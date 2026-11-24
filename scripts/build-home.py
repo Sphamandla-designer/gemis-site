@@ -31,6 +31,15 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 
 
+def _logo_w(key):
+    """A client logo's width at 40px high, from its PNG header, so the marquee
+    reserves the space before the image arrives."""
+    import struct
+    with open(os.path.join(ROOT, 'assets/img/logos/clients', f'{key}-grey.png'), 'rb') as fh:
+        w, h = struct.unpack('>II', fh.read(24)[16:24])
+    return round(w * 40 / h)
+
+
 def load(name, path):
     spec = importlib.util.spec_from_file_location(name, os.path.join(HERE, path))
     mod = importlib.util.module_from_spec(spec)
@@ -123,9 +132,9 @@ def hero():
 
 # ── 02 · the proof ────────────────────────────────────────────────────────
 def proof():
-    logos = NL.join(f'            <li class="marquee__item"><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" height="40" loading="lazy" /></li>'
+    logos = NL.join(f'            <li class="marquee__item"><img src="assets/img/logos/clients/{k}-grey.png" alt="{esc(n)}" width="{_logo_w(k)}" height="40" loading="lazy" /></li>'
                     for k, n in LOGOS)
-    logos2 = NL.join(f'            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/{k}-grey.png" alt="" height="40" loading="lazy" /></li>'
+    logos2 = NL.join(f'            <li class="marquee__item"><img aria-hidden="true" src="assets/img/logos/clients/{k}-grey.png" alt="" width="{_logo_w(k)}" height="40" loading="lazy" /></li>'
                      for k, n in LOGOS)
     return f'''
     <!-- ═══════════════════ 02 · THE PROOF ═══════════════════

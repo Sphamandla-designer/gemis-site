@@ -517,10 +517,22 @@ def _evidence_item(e, base, i, shows=None):
           </article>'''
 
 
-def evidence(items, ground, base, heading='Where this has been done', lede='', note='', shows=False, sid='evidence'):
+# a product a discipline's evidence led to, named in the evidence lede (internal
+# linking; each line is a fact from the product's own record in stories.py)
+EVIDENCE_PRODUCT = {
+    'custom-software': ('The system built for SBS Waterproofing was later generalised into ',
+                        'products/managem/', 'ManaGEM', ', the GEMIS business management platform. '),
+}
+
+
+def evidence(items, ground, base, heading='Where this has been done', lede='', note='', shows=False, sid='evidence', slug=''):
     arts = NL.join(_evidence_item(e, base, i, e.get('shows') if shows else None) for i, e in enumerate(items))
     note_html = f'\n        <p class="sev__note" data-reveal>{esc(note)}</p>' if note else ''
-    lede = lede or f'Projects whose recorded scope shows this work. <a class="arrow-link" href="{base}work/">All case studies {ARROW}</a>'
+    extra = ''
+    if slug in EVIDENCE_PRODUCT:
+        a, href, label, b = EVIDENCE_PRODUCT[slug]
+        extra = f'{esc(a)}<a href="{base}{href}">{esc(label)}</a>{esc(b)}'
+    lede = lede or f'Projects whose recorded scope shows this work. {extra}<a class="arrow-link" href="{base}work/">All case studies {ARROW}</a>'
     return f'''
     <section class="{ground} sev{' sev--one' if len(items) == 1 else ''}" id="{sid}" aria-labelledby="sevHeading">
       <div class="shell">
@@ -652,22 +664,15 @@ def service_page(slug):
             n = len(p['evidence'])
             out.append(evidence(p['evidence'], ground, base,
                                 heading='Where this has been done' if n > 1 else 'The closest evidence',
-                                note=p.get('evidence_note', '')))
+                                note=p.get('evidence_note', ''), slug=slug))
         elif key == 'related':
             out.append(related(p, ground, base))
         elif key == 'faq':
             out.append(faq(slug, p, ground))
     out.append(cta(slug, p, base))
     out.append(NL + B.video_modal() + NL)
-    url = f'{CANON}solutions/{slug}/'
+    # the breadcrumb and the Service node are written by scripts/apply-seo.py
     extra = NL.join([
-        jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Solutions", "item": f'{CANON}solutions/'},
-            {"@type": "ListItem", "position": 2, "name": name(slug), "item": url}]}),
-        jsonld({"@context": "https://schema.org", "@type": "Service", "name": name(slug),
-                "serviceType": name(slug), "description": p['copy'], "url": url,
-                "provider": {"@type": "Organization", "name": "GEM Information Systems (GEMIS)", "url": CANON},
-                "areaServed": "ZA"}),
         jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p['faq']]}),
     ])
@@ -764,9 +769,8 @@ def directory():
 
 {B.video_modal()}
 '''
+    # the breadcrumb is written by scripts/apply-seo.py
     extra = NL.join([
-        jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Solutions", "item": f'{CANON}solutions/'}]}),
         jsonld({"@context": "https://schema.org", "@type": "ItemList", "name": "GEMIS solutions",
                 "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": s['name'],
                                      "url": f"{CANON}solutions/{s['slug']}/"} for i, s in enumerate(SV.SERVICES)]}),
