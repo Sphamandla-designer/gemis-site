@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "sphamandla-xaba",
+    "name": "Sphamandla Xaba",
+    "role": "UI/UX Designer",
+    "email": "sphamandla@gemis.co.za"
+  },
+  {
+    "slug": "leon-small",
+    "name": "Leon Small",
+    "role": "Director",
+    "email": "leon@gemis.co.za"
+  },
+  {
+    "slug": "vanessa-davis",
+    "name": "Vanessa Davis",
+    "role": "Senior Full Stack Developer",
+    "email": "vanessa@gemis.co.za"
+  }
+]
