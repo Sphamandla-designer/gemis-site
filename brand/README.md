@@ -10,6 +10,7 @@ Everything here is generated. Edit the generator, not the output.
 | Letterhead, GEMIS Studio | `letterhead/GEMIS-Studio-Letterhead.pdf`, `letterhead/GEMIS-Studio-Letterhead.docx` | `node tools/make-brand-print.mjs` |
 | Meeting backgrounds (Zoom, Teams) | `meeting-backgrounds/GEMIS-Meeting-Background-Navy.jpg` (the team standard), `-Light.jpg`, and `meeting-backgrounds/people/<person>-{navy,light}.jpg` with the name and role | `node tools/make-brand-print.mjs` |
 | LinkedIn banner | `linkedin/GEMIS-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
+| LinkedIn banner, GEMIS Studio | `linkedin/GEMIS-Studio-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
 | Business cards | `business-cards/<person>.pdf` (print), `<person>-front.png`, `-back.png`, `all.png` | `node tools/make-brand-print.mjs` |
 
 The team is in `staff.json`, shared by the signatures and the business cards. Add a
@@ -66,6 +67,15 @@ makes fine lines shimmer.
 Upload `GEMIS-LinkedIn-Banner@2x.png` as the company page's cover image (Page admin,
 Edit page, Header, Cover image). LinkedIn shows the cover at 1128×191 and places the
 company logo over its lower left corner, which the design keeps clear.
+
+## Studio LinkedIn banner
+
+For the studio's showcase page (linkedin.com/showcase/gemis-design-studio), which uses
+the same 1128×191 cover. It is the studio site's hero in a strip: the light ground, the
+label *UX/UI and product design for digital products that work.* in the deep orange,
+*Designed to be built.* with *built.* in pink, the shards, outlined triangles and dot
+grid on the right, and the coloured stone. Upload the `@2x` file the same way as the
+GEMIS banner; the lower left stays quiet for the page logo.
 
 ## Business cards
 
