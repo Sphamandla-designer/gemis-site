@@ -27,7 +27,7 @@ const LINK_LIGHT = "font-family:'JetBrains Mono',monospace;font-size:13px;displa
 
 const section = (id, label, dark, inner, pad = '120px 32px') =>
   `<section id="${id}" data-screen-label="${esc(label)}" style="position:relative;overflow:hidden;background:${dark ? '#16161a' : '#eef0f3'};color:${dark ? '#f5f6f8' : '#16161a'};padding:${pad}">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
 ${inner}
   </div>
 </section>`;
@@ -93,7 +93,7 @@ export function renderCase(c) {
   const header = `<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 100px">
   <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;opacity:.12"></div>
   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">${esc(c.name)}</span></nav>
     <div data-m="head" style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-top:40px">
       <div>
@@ -117,7 +117,7 @@ ${headerTbc}
   // 2 · the problem ──────────────────────────────────────────────────────
   const problem = section('problem', 'The problem', true,
     head('02', 'The problem', 'What was going<br><span style="color:#ff1f7a">wrong.</span>', null, true)
-    + `\n    <div style="max-width:760px;display:grid;gap:20px">${c.problem.map((p) => `<p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8">${esc(p)}</p>`).join('')}</div>`
+    + `\n    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px clamp(32px,5vw,88px)">${c.problem.map((p) => `<p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8;max-width:46ch">${esc(p)}</p>`).join('')}</div>`
     + (c.findings.length ? '' : '\n    ' + tbc('The problem in the client’s own words, and what it was costing them, is not yet in the record.')));
 
   // 3 · what we found ────────────────────────────────────────────────────
@@ -155,12 +155,12 @@ ${headerTbc}
 
   // 6 · results ──────────────────────────────────────────────────────────
   const numbers = c.resultsNumbers.length ? `\n    <div class="cs-num">${c.resultsNumbers.map((r) => `<div><div class="n">${esc(r.n)}</div><p class="l">${esc(r.l)}</p></div>`).join('')}</div>` : '';
-  const qual = c.resultsQualitative.length ? `\n    <div style="margin-top:48px;max-width:760px"><div style="${KICKER};margin-bottom:16px">What changed for the business</div><ul class="cs-plain">${c.resultsQualitative.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>` : '';
-  const designed = c.resultsDesignedFor.length ? `\n    <div style="margin-top:40px;max-width:760px"><div style="${KICKER};margin-bottom:16px">Designed for — not yet measured</div><ul class="cs-plain">${c.resultsDesignedFor.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>` : '';
+  const qual = c.resultsQualitative.length ? `\n    <div style="margin-top:48px"><div style="${KICKER};margin-bottom:16px">What changed for the business</div><ul class="cs-plain">${c.resultsQualitative.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>` : '';
+  const designed = c.resultsDesignedFor.length ? `\n    <div style="margin-top:48px"><div style="${KICKER};margin-bottom:16px">Designed for — not yet measured</div><ul class="cs-plain">${c.resultsDesignedFor.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></div>` : '';
   const notRecorded = c.resultsNotRecorded ? `\n    <p style="margin:40px 0 0;max-width:70ch;font-size:14px;line-height:1.45;color:#9a9ba3">${esc(c.resultsNotRecorded)}</p>` : '';
   const results = section('results', 'Results', true,
     head('06', 'Results', c.resultsNumbers.length ? 'Numbers first,<br><span style="color:#ff1f7a">then the rest.</span>' : 'Results are<br><span style="color:#ff1f7a">still coming in.</span>', null, true)
-    + numbers + qual + designed + notRecorded
+    + numbers + (qual || designed ? `\n    <div class="cs-two">${qual}${designed}\n    </div>` : '') + notRecorded
     + (c.resultsNumbers.length ? '' : '\n    ' + tbc('Results: numbers first, then qualitative outcomes; or what is being measured. Not in the record.')));
 
   // 7 · client quote ─────────────────────────────────────────────────────
@@ -194,14 +194,14 @@ ${headerTbc}
 const fig = (m, eager) => m ? `<figure class="sc-fig" data-reveal="2"><div class="shot"><img src="${esc(m.img)}" alt="${esc(m.alt)}" width="2000" height="1250" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></div>${m.caption ? `<figcaption>${esc(m.caption)}</figcaption>` : ''}</figure>` : '';
 const paras = (ps, lead) => (ps || []).map((p, i) => `<p${lead && i === 0 ? ' class="lead"' : ''}>${esc(p)}</p>`).join('');
 const plus = (xs) => xs && xs.length ? `<ul>${xs.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
-const h2 = (x, dark) => `<h2 data-reveal="1" style="${dark ? H2_DARK : H2_LIGHT};max-width:16ch">${esc(x.h2)}${x.h2accent ? `<br><span style="color:#ff1f7a">${esc(x.h2accent)}</span>` : ''}</h2>`;
+const h2 = (x, dark) => `<h2 data-reveal="1" style="${dark ? H2_DARK : H2_LIGHT};max-width:18ch">${esc(x.h2)}${x.h2accent ? `<br><span style="color:#ff1f7a">${esc(x.h2accent)}</span>` : ''}</h2>`;
 const kick = (x, i, dark) => `<div style="${dark ? KICKER : KICKER_L}">${String(i + 2).padStart(2, '0')} · ${esc(x.kicker)}</div>`;
 
 function renderShowcase(c) {
   const sc = c.showcase;
   const spec = sc.spec.map(([k, v]) => `        <div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n');
   const header = `<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:150px 32px 90px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html" style="color:#6a6b73">Studio</a><span aria-hidden="true">/</span><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">${esc(c.name)}</span></nav>
     <div data-m="head" style="display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;margin-top:40px">
       <div>
@@ -229,7 +229,7 @@ ${spec}
       ${fig(x.mock)}
     </div>`;
     } else if (x.type === 'chapters') {
-      inner = `    <div style="max-width:760px;margin-bottom:clamp(56px,7vw,100px)">${kick(x, i, dark)}${h2(x, dark)}${x.lead ? `<div class="sc-copy" style="margin-top:28px">${paras([x.lead], true)}</div>` : ''}</div>
+      inner = `    <div class="sc-head" style="margin-bottom:clamp(56px,7vw,100px)"><div>${kick(x, i, dark)}${h2(x, dark)}</div>${x.lead ? `<div class="sc-copy">${paras([x.lead], true)}</div>` : ''}</div>
     <div class="sc-chapters">
 ${x.chapters.map((ch, j) => `      <article class="sc-ch">
         <div class="sc-copy"><div class="n">${String(j + 1).padStart(2, '0')} / ${String(x.chapters.length).padStart(2, '0')}</div><h3>${esc(ch.h3)}</h3>${paras(ch.paras)}${plus(ch.list)}</div>
@@ -246,7 +246,7 @@ ${x.chapters.map((ch, j) => `      <article class="sc-ch">
       ${fig(x.mock)}
     </div>`;
     } else { // wide
-      inner = `    <div style="max-width:820px">${kick(x, i, dark)}${h2(x, dark)}<div class="sc-copy" style="margin-top:28px">${paras(x.paras, true)}${plus(x.list)}</div></div>
+      inner = `    <div class="sc-head"><div>${kick(x, i, dark)}${h2(x, dark)}</div><div class="sc-copy">${paras(x.paras, true)}${plus(x.list)}</div></div>
     <div class="sc-wide">${fig(x.mock)}</div>`;
     }
     return section(x.id, x.label || x.kicker, dark, inner).replace('<section ', `<section class="${dark ? 'sc-dark' : 'sc-light'}" `);

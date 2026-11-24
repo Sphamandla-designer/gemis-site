@@ -93,6 +93,12 @@
 .sc-dark .sc-copy p.sc-note{color:#9a9ba3}
 .sc-light .cs-num>div{border-top-color:rgba(22,22,26,.25)}
 .sc-light .cs-num .l{color:#3a3b41}
+/* full width (2026-11-24): content runs from the logo to the menu; section heads
+   put the title left and the copy right instead of one centred column */
+.sc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:end}
+.sc-head .sc-copy p:last-child,.sc-head .sc-copy ul:last-child{margin-bottom:0}
+.cs-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 clamp(32px,5vw,88px)}
+@media (max-width:900px){.sc-head{grid-template-columns:1fr;gap:28px}}
 @media (max-width:900px){.sc-split,.sc-ch,.sc-ch:nth-child(even){grid-template-columns:1fr}.sc-ch:nth-child(even) .sc-copy{order:0}}
 </style>
 </head>

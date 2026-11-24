@@ -6842,3 +6842,10 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq) .cscard .cscard__go:not(#_):n
 /* a section lede that ends in an arrow link after a sentence (the related-
    solutions lines) puts the link on its own line, as on navy grounds */
 .sec__head .lede:not(#_):not(#_):not(#_) > a:not([class]) ~ .arrow-link:not(#_):not(#_):not(#_):not(#_) { display: flex; width: fit-content; margin-top: 12px; }
+
+/* ═══ HERO ON THE PAGE EDGES (2026-11-24) ═══════════════════════════════════
+   The hero block, its status tag and its foot position from --gutter, which is
+   44px at most here, while the bar and every shell pad by clamp(20px, 3.2vw,
+   64px). Give the hero the shell's gutter so its title starts where the logo
+   starts and its tag ends where the menu ends, at every width. */
+.hx-hero:not(#_) { --gutter: clamp(20px, 3.2vw, 64px); }
