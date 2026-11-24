@@ -380,13 +380,16 @@ decision. The rules that must survive later work:
   giant light numeral, the notch), the white panel with the name in the uppercase
   light heading and the "+" contact list, and the navy strip with the slogan and a
   LinkedIn link (no call to action: the owner's choice, 2026-11-24).
-- **Letterhead** (A4 PDF + Word), **LinkedIn company banner** and **business cards**
-  (90×50 mm + 3 mm bleed, print PDF per person), all by
+- **Letterheads** for GEMIS and for GEMIS Studio (A4 PDF + Word each; the studio's in
+  its own language: the coloured stone, Manrope and JetBrains Mono, the pink and
+  orange shards, the E. / W. / A. keys), **LinkedIn company banner** and **business
+  cards** (90×50 mm + 3 mm bleed, print PDF per person), all by
   `node tools/make-brand-print.mjs`, which draws them from the site's art (the
   logo, the stone, the hatch, the dotted field, the streaks and `cluster()` from
   `build-stories.py`). The Word file carries the letterhead as a full-page image
-  behind the text and embeds the static Montserrat cuts in `brand/fonts/`; it is
-  post-processed so Word keeps the fonts on save and the font keys meet the schema
+  behind the text and embeds the static font cuts in `brand/fonts/` (made by
+  `python3 tools/make-static-fonts.py`, byte-stable on a re-run); `writeWord()`
+  post-processes every Word file so Word keeps the fonts on save and the font keys meet the schema
   (docx-js writes them in lower case, and LibreOffice then ignores the fonts).
 - **The logo kit** in `brand/logos/`, by `node tools/make-logo-kit.mjs`: every
   variant of both brands (horizontal, stacked, wordmark and stone in navy, white and
@@ -395,7 +398,9 @@ decision. The rules that must survive later work:
   transparent PNGs at fixed widths, with a preview sheet (`brand/logos/`) and a zip
   written with fixed dates so a re-run changes no bytes. It reads the masters, so
   re-run it after `tools/make-logo.py`.
-- The team is `brand/staff.json`, shared by the signatures and the cards.
+- The team is `brand/staff.json`, shared by the signatures and the cards, in the
+  Our Story order. The addresses follow the team's pattern, first name @gemis.co.za;
+  Graeme's, Byron's and Sebastian's were given as names and roles only (2026-11-24).
 
 `brand/` is outside the chrome walk in `apply-chrome.pages()`, so those pages never
 get the header and footer and never enter the standalone bundle. No phone numbers

@@ -49,8 +49,10 @@ import importlib.util
 s = importlib.util.spec_from_file_location('B', 'scripts/build-stories.py'); B = importlib.util.module_from_spec(s); s.loader.exec_module(B)
 print(B.cluster())`], { cwd: R, encoding: 'utf8' }).replace(/<svg[^>]*>/, '').replace('</svg>', '').replace(/ class="[^"]*"/g, '').trim();
 // the static cuts in brand/fonts, so the print PDFs embed TrueType rather than Type 3 outlines
-const FACES = [[200, 'ExtraLight'], [300, 'Light'], [400, 'Regular'], [500, 'Medium'], [600, 'SemiBold']]
-  .map(([w, n]) => `@font-face{font-family:Montserrat;src:url(${pathToFileURL(path.join(R, 'brand/fonts', `Montserrat-${n}.ttf`)).href}) format("truetype");font-weight:${w}}`).join('');
+const face = (fam, file, w) => `@font-face{font-family:'${fam}';src:url(${pathToFileURL(path.join(R, 'brand/fonts', `${file}.ttf`)).href}) format("truetype");font-weight:${w}}`;
+const FACES = [[200, 'ExtraLight'], [300, 'Light'], [400, 'Regular'], [500, 'Medium'], [600, 'SemiBold']].map(([w, n]) => face('Montserrat', `Montserrat-${n}`, w)).join('')
+  + [[300, 'Light'], [400, 'Regular'], [500, 'Medium'], [600, 'SemiBold']].map(([w, n]) => face('Manrope', `Manrope-${n}`, w)).join('')
+  + [[400, 'Regular'], [500, 'Medium']].map(([w, n]) => face('JetBrains Mono', `JetBrainsMono-${n}`, w)).join('');
 
 let uid = 0;
 /** The pattern defs, sized for the unit the drawing uses (mm for print, px for screen). */
@@ -194,6 +196,76 @@ function cardBack(p) {
   </div>`;
 }
 
+// ---- the studio letterhead (A4, millimetres) ---------------------------------------------
+// The studio's own language: white paper, the coloured stone and GEMIS STUDIO, Manrope
+// for words and JetBrains Mono for labels, the pink and orange faceted shards and the
+// outlined triangle from its hero, the dot grid, and the "E." / "W." / "A." contact keys.
+const ST = { ink: '#16161a', ink2: '#6a6b73', line: '#dcdee3', ground: '#eef0f3', pink: '#ff1f7a', orange: '#ff7a12', deepPink: '#d70057' };
+const STUDIO_LOGO = inner('studio/assets/gemis-studio-logo.svg');   // viewBox 0 0 240.1 72
+const STUDIO_MARK = inner('studio/assets/mark-colour.svg');         // viewBox 0 0 64 64
+const studioLogo = (x, y, w) => `<svg x="${x}" y="${y}" width="${w}" height="${w * 72 / 240.1}" viewBox="0 0 240.1 72">${STUDIO_LOGO}</svg>`;
+const studioMark = (x, y, w) => `<svg x="${x}" y="${y}" width="${w}" height="${w}" viewBox="0 0 64 64">${STUDIO_MARK}</svg>`;
+function shardDefs(k) {
+  return `<defs>
+    <linearGradient id="so${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb27a"/><stop offset="1" stop-color="${ST.orange}"/></linearGradient>
+    <linearGradient id="sp${k}" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${ST.pink}"/><stop offset="1" stop-color="#ff8fbb"/></linearGradient>
+    <linearGradient id="sw${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9dbe1"/></linearGradient>
+    <linearGradient id="sg${k}" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${ST.ground}"/><stop offset="1" stop-color="${ST.ground}" stop-opacity="0"/></linearGradient>
+    <pattern id="sd${k}" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".42" fill="#c9cad1"/></pattern>
+  </defs>`;
+}
+const studioFoot = (y) => {
+  const key = (k, v) => `<span style="font-family:'JetBrains Mono';color:${ST.pink};margin-right:1.8mm">${k}</span>${v}`;
+  return `<p class="t" style="left:20mm;top:${y}mm;font-family:Manrope;font-size:7.6pt;color:${ST.ink}">${key('E.', CO.email)}<span style="display:inline-block;width:7mm"></span>${key('W.', CO.web)}<span style="display:inline-block;width:7mm"></span>${key('A.', `${CO.street}, ${CO.city}`)}</p>`;
+};
+function studioFirst() {
+  const k = ++uid;
+  return `<div class="pg"><svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">${shardDefs(k)}
+    <path d="M104 0H210V92Z" fill="url(#sg${k})"/>
+    <rect x="186" y="62" width="20" height="44" fill="url(#sd${k})"/>
+    <g>
+      <polygon points="132,14 194,40 166,52" fill="url(#so${k})"/>
+      <polygon points="166,52 194,40 186,66" fill="url(#sw${k})"/>
+      <polygon points="176,0 210,0 210,44 194,40" fill="url(#sp${k})"/>
+      <polygon points="194,40 210,44 210,70" fill="#ffc2da"/>
+      <polygon points="146,0 176,0 160,12" fill="url(#sw${k})"/>
+      <polygon points="138,44 156,70 128,64" fill="none" stroke="${ST.pink}" stroke-opacity=".55" stroke-width=".3"/>
+      <polygon points="112,6 124,24 104,20" fill="none" stroke="${ST.orange}" stroke-opacity=".45" stroke-width=".25"/>
+      <circle cx="122" cy="40" r="1.7" fill="${ST.orange}"/>
+    </g>
+    ${studioLogo(20, 16, 52)}
+    <rect x="20" y="51" width="12" height=".7" fill="${ST.orange}"/>
+    <g stroke="${ST.ink}" stroke-opacity=".3" stroke-width=".25"><path d="M0 99H5"/><path d="M0 148.5H3"/><path d="M0 198H5"/></g>
+    <g>
+      <polygon points="0,264 15,297 0,297" fill="url(#sp${k})"/>
+      <polygon points="0,284 6,297 0,297" fill="#ffc2da"/>
+      <polygon points="7,244 14,256 3,255" fill="none" stroke="${ST.orange}" stroke-opacity=".5" stroke-width=".25"/>
+    </g>
+    <path d="M20 274H190" stroke="${ST.line}" stroke-width=".25"/>
+    ${studioMark(183, 278.2, 7)}
+  </svg>
+  <p class="t" style="left:20mm;top:37.4mm;font-family:Manrope;font-weight:600;font-size:11.5pt;letter-spacing:-.02em;color:${ST.ink}">Designed to be <span style="color:${ST.pink}">built.</span></p>
+  <p class="t" style="left:20mm;top:44.2mm;font-family:'JetBrains Mono';font-size:6pt;letter-spacing:.08em;text-transform:uppercase;color:${ST.ink2}">The design practice of GEM Information Systems</p>
+  ${studioFoot(278.4)}
+  <p class="t" style="left:20mm;top:285.6mm;font-family:'JetBrains Mono';font-size:5.6pt;letter-spacing:.08em;text-transform:uppercase;color:${ST.ink2}">GEMIS Studio&nbsp;&nbsp;·&nbsp;&nbsp;${CO.legal}</p>
+  </div>`;
+}
+function studioNext() {
+  const k = ++uid;
+  return `<div class="pg"><svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">${shardDefs(k)}
+    <polygon points="182,0 210,0 210,24" fill="url(#sp${k})"/>
+    <polygon points="170,0 182,0 176,8" fill="url(#so${k})"/>
+    <polygon points="196,12 210,24 210,36" fill="#ffc2da"/>
+    ${studioLogo(20, 12, 34)}
+    <path d="M20 27H190" stroke="${ST.line}" stroke-width=".25"/>
+    <g stroke="${ST.ink}" stroke-opacity=".3" stroke-width=".25"><path d="M0 99H5"/><path d="M0 148.5H3"/><path d="M0 198H5"/></g>
+    <path d="M20 282H190" stroke="${ST.line}" stroke-width=".25"/>
+    ${studioMark(184, 285.4, 6)}
+  </svg>
+  ${studioFoot(285.8)}
+  </div>`;
+}
+
 // ---- render -----------------------------------------------------------------------------
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'brand-'));
 const b = await chromium.launch();
@@ -224,6 +296,16 @@ await shot(page(210, 297, 'mm', letterNext()), ART2, mm(210), mm(297), 300 / 96,
 await shot(page(210, 297, 'mm', letterFirst(), 'body{background:#fff}'), out('letterhead', 'letterhead-page-1.png'), mm(210), mm(297), 1.5);
 await shot(page(210, 297, 'mm', letterNext(), 'body{background:#fff}'), out('letterhead', 'letterhead-page-2.png'), mm(210), mm(297), 1.5);
 
+// the studio letterhead
+const SL = page(210, 297, 'mm', studioFirst() + studioNext());
+await load(tab, SL);
+await tab.pdf({ path: out('letterhead', 'GEMIS-Studio-Letterhead.pdf'), width: '210mm', height: '297mm', printBackground: true, preferCSSPageSize: true });
+const SART1 = path.join(TMP, 'sl1.png'), SART2 = path.join(TMP, 'sl2.png');
+await shot(page(210, 297, 'mm', studioFirst()), SART1, mm(210), mm(297), 300 / 96, { omitBackground: true });
+await shot(page(210, 297, 'mm', studioNext()), SART2, mm(210), mm(297), 300 / 96, { omitBackground: true });
+await shot(page(210, 297, 'mm', studioFirst(), 'body{background:#fff}'), out('letterhead', 'studio-letterhead-page-1.png'), mm(210), mm(297), 1.5);
+await shot(page(210, 297, 'mm', studioNext(), 'body{background:#fff}'), out('letterhead', 'studio-letterhead-page-2.png'), mm(210), mm(297), 1.5);
+
 // LinkedIn
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner@2x.png'), 1128, 191, 2);
@@ -253,57 +335,93 @@ await b.close();
 const D = require('docx');
 const { Document, Packer, Paragraph, TextRun, ImageRun, Header, Footer, AlignmentType, CharacterSet,
   HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, TextWrappingType } = D;
-const font = (n) => fs.readFileSync(path.join(R, 'brand/fonts', `Montserrat-${n}.ttf`));
-const art = (f) => new ImageRun({
+const fontFile = (f) => fs.readFileSync(path.join(R, 'brand/fonts', `${f}.ttf`));
+const art = (f, name) => new ImageRun({
   type: 'png', data: fs.readFileSync(f), transformation: { width: 794, height: 1123 },
   floating: {
     horizontalPosition: { relative: HorizontalPositionRelativeFrom.PAGE, offset: 0 },
     verticalPosition: { relative: VerticalPositionRelativeFrom.PAGE, offset: 0 },
     behindDocument: true, allowOverlap: true, lockAnchor: true, wrap: { type: TextWrappingType.NONE },
   },
-  altText: { name: 'GEMIS letterhead', description: 'GEMIS letterhead artwork', title: 'GEMIS letterhead' },
+  altText: { name, description: `${name} artwork`, title: name },
 });
 const tw = (v) => Math.round(v * 1440 / 25.4);
-const P = (text, o = {}) => new Paragraph({ spacing: { after: o.after ?? 0, before: o.before ?? 0, line: o.line ?? 300 }, children: [new TextRun({ text, font: o.font ?? 'Montserrat', size: o.size ?? 19, color: o.color ?? INK.slice(1), characterSpacing: o.cs, allCaps: o.caps })] });
-const doc = new Document({
-  creator: 'GEM Information Systems', title: 'GEMIS letterhead', description: 'GEMIS letterhead template',
-  fonts: ['Regular', 'Light', 'SemiBold', 'Medium'].map((n) => ({ name: n === 'Regular' ? 'Montserrat' : `Montserrat ${n}`, data: font(n), characterSet: CharacterSet.ANSI })),
-  styles: { default: { document: { run: { font: 'Montserrat', size: 19, color: INK.slice(1) }, paragraph: { spacing: { line: 300, after: 160 } } } } },
-  sections: [{
-    properties: {
-      titlePage: true,
-      page: { size: { width: tw(210), height: tw(297) }, margin: { top: tw(36), bottom: tw(42), left: tw(20.8), right: tw(20), header: 0, footer: 0 } },
-    },
-    // page 1 opens lower, under the corner block: a spacer in its header pushes the text down to 62 mm;
-    // continuation pages keep the 36 mm margin under their slim header
-    headers: { first: new Header({ children: [new Paragraph({ children: [art(ART1)] }), new Paragraph({ spacing: { before: tw(57), after: 0, line: 240 }, children: [] })] }), default: new Header({ children: [new Paragraph({ children: [art(ART2)] })] }) },
-    footers: { first: new Footer({ children: [new Paragraph('')] }), default: new Footer({ children: [new Paragraph('')] }) },
-    children: [
-      P('[Date]', { after: 360, size: 17, color: MUTE.slice(1), font: 'Montserrat Medium', cs: 30, caps: true }),
-      P('[Recipient name]', { font: 'Montserrat SemiBold' }),
-      P('[Position]'), P('[Company]'), P('[Street address]'), P('[City, postal code]', { after: 440 }),
-      P('Re: [Subject of the letter]', { after: 360, size: 17, font: 'Montserrat SemiBold', color: NAVY.slice(1), cs: 40, caps: true }),
-      P('Dear [Name],', { after: 200 }),
-      P('[Write the letter here. The body is Montserrat at 9.5 pt on generous leading, set flush with the logo, so a page reads cleanly and prints sharply.]', { after: 200, line: 320 }),
-      P('[A second paragraph. Keep to one subject per paragraph, and let the white space do the work.]', { after: 440, line: 320 }),
-      P('Kind regards,', { after: 720 }),
-      P('[Your name]', { font: 'Montserrat SemiBold', size: 21, color: NAVY.slice(1) }),
-      P('[Your role]  ·  GEMIS', { size: 15, font: 'Montserrat Medium', color: MUTE.slice(1), cs: 30, caps: true, after: 60 }),
-      P('[you]@gemis.co.za', { size: 17, color: NAVY.slice(1) }),
-    ],
-  }],
-});
-// keep the fonts embedded when someone saves an edited letter (embedTrueTypeFonts sits right after
-// displayBackgroundShape in the settings schema), and write the archive without folder entries
 const JSZip = createRequire(require.resolve('docx'))('jszip');
-const zip = await JSZip.loadAsync(await Packer.toBuffer(doc));
-const settings = (await zip.file('word/settings.xml').async('string')).replace('<w:displayBackgroundShape/>', '<w:displayBackgroundShape/><w:embedTrueTypeFonts/>');
-zip.file('word/settings.xml', settings);
-// the schema's ST_Guid is upper-case hex; docx-js writes lower case (the key bytes are the same)
-const fonts = (await zip.file('word/fontTable.xml').async('string')).replace(/w:fontKey="(\{[^}]+\})"/g, (m, k) => `w:fontKey="${k.toUpperCase()}"`);
-zip.file('word/fontTable.xml', fonts);
-const flat = new JSZip();
-for (const [n, f] of Object.entries(zip.files)) if (!f.dir) flat.file(n, await f.async('uint8array'), { createFolders: false });
-fs.writeFileSync(out('letterhead', 'GEMIS-Letterhead.docx'), await flat.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' }));
+
+/** A Word letter template on full-page artwork: page 1 opens at `first` mm (a spacer in its header pushes
+ *  the text down), continuation pages at `next` mm under their slim head; the fonts are embedded. */
+async function writeWord(file, { title, art1, art2, fonts, run, first, next, bottom, children }) {
+  const doc = new Document({
+    creator: 'GEM Information Systems', title, description: `${title} template`,
+    fonts: fonts.map(([name, f]) => ({ name, data: fontFile(f), characterSet: CharacterSet.ANSI })),
+    styles: { default: { document: { run, paragraph: { spacing: { line: 300, after: 160 } } } } },
+    sections: [{
+      properties: {
+        titlePage: true,
+        page: { size: { width: tw(210), height: tw(297) }, margin: { top: tw(next), bottom: tw(bottom), left: tw(20.8), right: tw(20), header: 0, footer: 0 } },
+      },
+      headers: {
+        first: new Header({ children: [new Paragraph({ children: [art(art1, title)] }), new Paragraph({ spacing: { before: tw(first - 5), after: 0, line: 240 }, children: [] })] }),
+        default: new Header({ children: [new Paragraph({ children: [art(art2, title)] })] }),
+      },
+      footers: { first: new Footer({ children: [new Paragraph('')] }), default: new Footer({ children: [new Paragraph('')] }) },
+      children,
+    }],
+  });
+  // keep the fonts embedded when someone saves an edited letter (embedTrueTypeFonts sits right after
+  // displayBackgroundShape in the settings schema), and write the archive without folder entries
+  const zip = await JSZip.loadAsync(await Packer.toBuffer(doc));
+  zip.file('word/settings.xml', (await zip.file('word/settings.xml').async('string')).replace('<w:displayBackgroundShape/>', '<w:displayBackgroundShape/><w:embedTrueTypeFonts/>'));
+  // the schema's ST_Guid is upper-case hex; docx-js writes lower case (the key bytes are the same),
+  // and with lower case LibreOffice ignores the embedded fonts
+  zip.file('word/fontTable.xml', (await zip.file('word/fontTable.xml').async('string')).replace(/w:fontKey="(\{[^}]+\})"/g, (m, k) => `w:fontKey="${k.toUpperCase()}"`));
+  const flat = new JSZip();
+  for (const [n, f] of Object.entries(zip.files)) if (!f.dir) flat.file(n, await f.async('uint8array'), { createFolders: false });
+  fs.writeFileSync(file, await flat.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' }));
+}
+
+// the GEMIS letter
+const P = (text, o = {}) => new Paragraph({ spacing: { after: o.after ?? 0, before: o.before ?? 0, line: o.line ?? 300 }, children: [new TextRun({ text, font: o.font ?? 'Montserrat', size: o.size ?? 19, color: o.color ?? INK.slice(1), characterSpacing: o.cs, allCaps: o.caps })] });
+await writeWord(out('letterhead', 'GEMIS-Letterhead.docx'), {
+  title: 'GEMIS letterhead', art1: ART1, art2: ART2, first: 62, next: 36, bottom: 42,
+  fonts: [['Montserrat', 'Montserrat-Regular'], ['Montserrat Light', 'Montserrat-Light'], ['Montserrat SemiBold', 'Montserrat-SemiBold'], ['Montserrat Medium', 'Montserrat-Medium']],
+  run: { font: 'Montserrat', size: 19, color: INK.slice(1) },
+  children: [
+    P('[Date]', { after: 360, size: 17, color: MUTE.slice(1), font: 'Montserrat Medium', cs: 30, caps: true }),
+    P('[Recipient name]', { font: 'Montserrat SemiBold' }),
+    P('[Position]'), P('[Company]'), P('[Street address]'), P('[City, postal code]', { after: 440 }),
+    P('Re: [Subject of the letter]', { after: 360, size: 17, font: 'Montserrat SemiBold', color: NAVY.slice(1), cs: 40, caps: true }),
+    P('Dear [Name],', { after: 200 }),
+    P('[Write the letter here. The body is Montserrat at 9.5 pt on generous leading, set flush with the logo, so a page reads cleanly and prints sharply.]', { after: 200, line: 320 }),
+    P('[A second paragraph. Keep to one subject per paragraph, and let the white space do the work.]', { after: 440, line: 320 }),
+    P('Kind regards,', { after: 720 }),
+    P('[Your name]', { font: 'Montserrat SemiBold', size: 21, color: NAVY.slice(1) }),
+    P('[Your role]  ·  GEMIS', { size: 15, font: 'Montserrat Medium', color: MUTE.slice(1), cs: 30, caps: true, after: 60 }),
+    P('[you]@gemis.co.za', { size: 17, color: NAVY.slice(1) }),
+  ],
+});
+
+// the studio letter: Manrope for words, JetBrains Mono for the labels, the pink for the one accent
+const S = (text, o = {}) => new Paragraph({ spacing: { after: o.after ?? 0, before: o.before ?? 0, line: o.line ?? 300 }, children: [].concat(o.runs ?? [new TextRun({ text, font: o.font ?? 'Manrope', size: o.size ?? 19, color: o.color ?? ST.ink.slice(1), characterSpacing: o.cs, allCaps: o.caps })]) });
+const mono = (text, color = ST.ink2.slice(1)) => new TextRun({ text, font: 'JetBrains Mono', size: 15, color, characterSpacing: 12, allCaps: true });
+await writeWord(out('letterhead', 'GEMIS-Studio-Letterhead.docx'), {
+  title: 'GEMIS Studio letterhead', art1: SART1, art2: SART2, first: 64, next: 36, bottom: 30,
+  fonts: [['Manrope', 'Manrope-Regular'], ['Manrope SemiBold', 'Manrope-SemiBold'], ['Manrope Medium', 'Manrope-Medium'], ['JetBrains Mono', 'JetBrainsMono-Regular']],
+  run: { font: 'Manrope', size: 19, color: ST.ink.slice(1) },
+  children: [
+    S('', { after: 360, runs: [mono('[Date]')] }),
+    S('[Recipient name]', { font: 'Manrope SemiBold' }),
+    S('[Position]'), S('[Company]'), S('[Street address]'), S('[City, postal code]', { after: 440 }),
+    S('', { after: 80, runs: [mono('Re.', ST.deepPink.slice(1))] }),
+    S('[Subject of the letter]', { after: 360, size: 24, font: 'Manrope SemiBold', cs: -6 }),
+    S('Dear [Name],', { after: 200 }),
+    S('[Write the letter here. The body is Manrope at 9.5 pt on generous leading, set flush with the logo, the same voice as the studio site.]', { after: 200, line: 320 }),
+    S('[A second paragraph. Keep to one subject per paragraph, and let the white space do the work.]', { after: 440, line: 320 }),
+    S('Kind regards,', { after: 720 }),
+    S('[Your name]', { font: 'Manrope SemiBold', size: 21 }),
+    S('', { after: 60, runs: [mono('[Your role]  ·  GEMIS Studio')] }),
+    S('[you]@gemis.co.za', { size: 17 }),
+  ],
+});
 fs.rmSync(TMP, { recursive: true, force: true });
-console.log('letterhead, linkedin, business cards:', STAFF.map((p) => p.slug).join(', '));
+console.log('letterheads (GEMIS, studio), linkedin, business cards:', STAFF.map((p) => p.slug).join(', '));
