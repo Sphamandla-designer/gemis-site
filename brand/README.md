@@ -4,6 +4,7 @@ Everything here is generated. Edit the generator, not the output.
 
 | Piece | Files | Generator |
 |---|---|---|
+| Logos (every variant, SVG + PNG, both brands) | `logos/` (preview sheet `logos/index.html`, `logos/GEMIS-logos.zip`) | `node tools/make-logo-kit.mjs` (after `tools/make-logo.py` if the mark changes) |
 | Email signatures | `email-signatures/` (HTML, PNG, text, preview page) | `python3 tools/make-signatures.py`, then `node tools/render-signatures.mjs` |
 | Letterhead | `letterhead/GEMIS-Letterhead.pdf`, `letterhead/GEMIS-Letterhead.docx` | `node tools/make-brand-print.mjs` |
 | LinkedIn banner | `linkedin/GEMIS-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
