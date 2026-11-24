@@ -639,6 +639,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .sc-dark .sc-copy p.sc-note{color:#9a9ba3}
 .sc-light .cs-num>div{border-top-color:rgba(22,22,26,.25)}
 .sc-light .cs-num .l{color:#3a3b41}
+/* full width (2026-11-24): content runs from the logo to the menu; section heads
+   put the title left and the copy right instead of one centred column */
+.sc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:end}
+.sc-head .sc-copy p:last-child,.sc-head .sc-copy ul:last-child{margin-bottom:0}
+.cs-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 clamp(32px,5vw,88px)}
+@media (max-width:900px){.sc-head{grid-template-columns:1fr;gap:28px}}
 @media (max-width:900px){.sc-split,.sc-ch,.sc-ch:nth-child(even){grid-template-columns:1fr}.sc-ch:nth-child(even) .sc-copy{order:0}}
 </style>
 </head>
@@ -683,7 +689,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:160px 32px 100px">
   <div style="position:absolute;inset:-6%;pointer-events:none;background:url(&quot;assets/heroBg.jpg&quot;) center/cover no-repeat;opacity:.12"></div>
   <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(238,240,243,.96) 0%,rgba(238,240,243,.9) 50%,rgba(238,240,243,.3) 78%,rgba(238,240,243,0) 100%)"></div>
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">Tore’s Foundation</span></nav>
     <div data-m="head" style="display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;margin-top:40px">
       <div>
@@ -709,7 +715,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </section>
 
 <section id="problem" data-screen-label="The problem" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">02 · The problem</div>
@@ -717,12 +723,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
       <div></div>
     </div>
-    <div style="max-width:760px;display:grid;gap:20px"><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8">Every week, Tore’s Foundation runs debating for more than 430 learners in 24 schools across the Western Cape. Behind every debate is a coach, a competition to run, and expenses and stipends to pay.</p><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8">On paper, all of that was slow for everyone: results were compiled after the fact, standings lagged, and coaches’ claims had to be gathered, matched to sessions and paid one by one.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px clamp(32px,5vw,88px)"><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8;max-width:46ch">Every week, Tore’s Foundation runs debating for more than 430 learners in 24 schools across the Western Cape. Behind every debate is a coach, a competition to run, and expenses and stipends to pay.</p><p style="margin:0;font-size:clamp(18px,1.5vw,22px);line-height:1.4;letter-spacing:-0.01em;color:#f5f6f8;max-width:46ch">On paper, all of that was slow for everyone: results were compiled after the fact, standings lagged, and coaches’ claims had to be gathered, matched to sessions and paid one by one.</p></div>
   </div>
 </section>
 
 <section id="found" data-screen-label="What we found" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">03 · What we found</div>
@@ -736,7 +742,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </section>
 
 <section id="changed" data-screen-label="What we changed" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">04 · What we changed</div>
@@ -755,7 +761,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </section>
 
 <section id="build" data-screen-label="Build and handoff" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">05 · Build and handoff</div>
@@ -768,7 +774,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 </section>
 
 <section id="results" data-screen-label="Results" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:56px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">06 · Results</div>
@@ -776,8 +782,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
       <div></div>
     </div>
-    <div style="margin-top:48px;max-width:760px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">What changed for the business</div><ul class="cs-plain"><li>More time for debate, less time on admin (as stated in the case study).</li><li>Results and standings captured at the event, for 24 schools and more than 430 learners.</li></ul></div>
-    <div style="margin-top:40px;max-width:760px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">Designed for — not yet measured</div><ul class="cs-plain"><li>Standings and results trusted because they are captured at the event</li><li>Coaches paid faster, against sessions that verifiably ran</li></ul></div>
+    <div class="cs-two">
+    <div style="margin-top:48px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">What changed for the business</div><ul class="cs-plain"><li>More time for debate, less time on admin (as stated in the case study).</li><li>Results and standings captured at the event, for 24 schools and more than 430 learners.</li></ul></div>
+    <div style="margin-top:48px"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase;margin-bottom:16px">Designed for — not yet measured</div><ul class="cs-plain"><li>Standings and results trusted because they are captured at the event</li><li>Coaches paid faster, against sessions that verifiably ran</li></ul></div>
+    </div>
     <p style="margin:40px 0 0;max-width:70ch;font-size:14px;line-height:1.45;color:#9a9ba3">Whether the platform remains in use, participation changes, payment-time improvements and testing records are not in the repository, so none are claimed.</p>
     <p data-tbc="case">Results: numbers first, then qualitative outcomes; or what is being measured. Not in the record.</p>
   </div>
@@ -786,7 +794,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 <div data-tbc="quote" style="margin:0 32px">07 · Client quote: No client quotation is approved for publication.</div>
 
 <section id="next" data-screen-label="Next step" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:72px 32px 100px">
-  <div style="position:relative;max-width:1400px;margin:0 auto">
+  <div style="position:relative">
     <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #16161a;padding-top:32px">
       <div>
         <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">08 · Next step</div>
@@ -816,7 +824,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
       <div data-dc-tpl="355" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
     </div>
     <div data-dc-tpl="356" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
-      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">12:38</span></div>
+      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">21:50</span></div>
       <div data-dc-tpl="358" style="display: flex; gap: 24px; flex-wrap: wrap;">
         <a data-dc-tpl="359" href="contact.html#teardown" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="360" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="361">→</span></a><a data-dc-tpl="362" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="363" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="364">↗</span></a>
       </div>

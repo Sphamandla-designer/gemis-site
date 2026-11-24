@@ -124,6 +124,13 @@ Two traps in these builds:
   Their copy uses only the case records and what the screens visibly show;
   the screens are sample data and each page says so. Never publish a capture
   that has not been through the neutralising in `studio-case-shots.mjs`.
+- **Case studies run edge to edge** (the owner's instruction, 2026-11-24): content
+  starts where the logo starts and ends where the menu ends. On the studio the
+  case sections carry no `max-width` container — only the 32px side padding the
+  header uses; showcase sections open on `.sc-head` (title left, copy right). On
+  the corporate site the hero takes the shell gutter (`clamp(20px, 3.2vw, 64px)`,
+  the "HERO ON THE PAGE EDGES" block at the tail of `site.css`). Never centre a
+  case study in a capped column again.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.
