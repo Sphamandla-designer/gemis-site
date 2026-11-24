@@ -299,6 +299,39 @@ function studioNext() {
   </div>`;
 }
 
+// ---- the studio LinkedIn banner (its showcase page, 1128×191 px) --------------------------
+// The studio site's hero in a strip: the light ground, the mono label in the deep orange,
+// "Designed to be built." with *built.* in pink, the shards and outlined triangles on the
+// right with the dot grid, the coloured stone. The lower left stays quiet for the page logo.
+function studioBanner() {
+  const k = ++uid;
+  return `<div class="pg"><svg viewBox="0 0 1128 191" xmlns="http://www.w3.org/2000/svg">${shardDefs(k)}
+    <pattern id="bd${k}" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="1.6" fill="#ffffff"/></pattern>
+    <linearGradient id="bg${k}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${ST.ground}"/><stop offset="1" stop-color="#e2e4ea"/></linearGradient>
+    <rect width="1128" height="191" fill="url(#bg${k})"/>
+    <rect x="1048" y="14" width="64" height="150" fill="url(#bd${k})"/>
+    <g>
+      <polygon points="760,191 862,58 948,191" fill="url(#so${k})"/>
+      <polygon points="862,58 948,191 980,108" fill="url(#sw${k})"/>
+      <polygon points="940,0 1040,0 1004,96" fill="url(#sp${k})"/>
+      <polygon points="1004,96 1040,0 1128,0 1128,70" fill="url(#sw${k})"/>
+      <polygon points="1000,191 1088,120 1128,191" fill="url(#sp${k})"/>
+      <polygon points="1088,120 1128,100 1128,191" fill="#ffc2da"/>
+      <polygon points="792,22 838,60 776,72" fill="none" stroke="${ST.pink}" stroke-opacity=".55" stroke-width="1.5"/>
+      <polygon points="880,14 920,40 872,46" fill="none" stroke="${ST.orange}" stroke-opacity=".5" stroke-width="1.5"/>
+      <circle cx="748" cy="150" r="5" fill="${ST.orange}"/>
+      <circle cx="986" cy="30" r="3.5" fill="${ST.pink}" opacity=".8"/>
+    </g>
+    ${studioMark(36, 30, 40)}
+  </svg>
+  <p class="t" style="left:84px;top:34px;font-family:Manrope;font-weight:600;font-size:15px;letter-spacing:.02em;color:${ST.ink};line-height:1.1">GEMIS<br><span style="font-family:'JetBrains Mono';font-weight:400;font-size:9px;letter-spacing:.28em;color:${ST.ink2}">STUDIO</span></p>
+  <p class="t" style="left:240px;top:38px;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#b34e00">UX/UI and product design for digital products that work.</p>
+  <p class="t" style="left:237px;top:58px;font-family:Manrope;font-weight:600;font-size:56px;letter-spacing:-.045em;line-height:1;color:${ST.ink}">Designed to be <span style="color:${ST.pink}">built.</span></p>
+  <p class="t" style="left:240px;top:136px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:${ST.ink2}">The design practice of GEM Information Systems&nbsp;&nbsp;·&nbsp;&nbsp;Cape Town</p>
+  <p class="t" style="left:240px;top:156px;font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:${ST.ink}">${CO.web.replace('www.', '')}&nbsp;&#8599;</p>
+  </div>`;
+}
+
 // ---- render -----------------------------------------------------------------------------
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'brand-'));
 const b = await chromium.launch();
@@ -346,6 +379,8 @@ for (const tone of ['navy', 'light']) {
 }
 
 // LinkedIn
+await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner.png'), 1128, 191, 1);
+await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner@2x.png'), 1128, 191, 2);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner@2x.png'), 1128, 191, 2);
 

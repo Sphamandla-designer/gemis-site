@@ -385,7 +385,8 @@ decision. The rules that must survive later work:
   orange shards, the E. / W. / A. keys), **meeting backgrounds** for Zoom and Teams
   (1920×1080 JPEG: navy, the team standard, and light, plain and per person with the
   name and role; the centre kept calm for the person, the hatch coarse so video does
-  not shimmer), **LinkedIn company banner** and **business
+  not shimmer), **LinkedIn banners** (the GEMIS company page; the studio's showcase
+  page in the studio's language) and **business
   cards** (90×50 mm + 3 mm bleed, print PDF per person), all by
   `node tools/make-brand-print.mjs`, which draws them from the site's art (the
   logo, the stone, the hatch, the dotted field, the streaks and `cluster()` from
