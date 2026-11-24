@@ -126,7 +126,8 @@ Two traps in these builds:
   that has not been through the neutralising in `studio-case-shots.mjs`.
 - **Case studies run edge to edge** (the owner's instruction, 2026-11-24): content
   starts where the logo starts and ends where the menu ends. On the studio the
-  case sections carry no `max-width` container — only the 32px side padding the
+  case sections and the work index (`studio/src/work.html`, and the card grid
+  `build-studio.mjs` writes into it) carry no `max-width` container — only the 32px side padding the
   header uses; showcase sections open on `.sc-head` (title left, copy right). On
   the corporate site the hero takes the shell gutter (`clamp(20px, 3.2vw, 64px)`,
   the "HERO ON THE PAGE EDGES" block at the tail of `site.css`). Never centre a
