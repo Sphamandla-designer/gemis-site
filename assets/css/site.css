@@ -6797,3 +6797,33 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#
 .nav__links > li > a.nav__cta:not(#_):not(#_):not(#_) { background: #fff; border-color: #fff; color: var(--svn); }
 :is(.hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words, .band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built) .hx-btn--ghost:not(#_):not(#_):hover,
 .nav__links > li > a.nav__cta:not(#_):not(#_):not(#_):hover { background: transparent; border-color: #fff; color: #fff; }
+
+/* Text actions too. An arrow link ("Book a discovery session", "Read the case
+   study", "See the case studies") or a story link is a white button wherever
+   its ground is navy: directly on a navy tile, or inside a navy card (cards
+   are navy on white tiles and white on navy ones, so a link in a white card
+   on a navy tile keeps its plain form). */
+:is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) :is(.arrow-link, .cs__more):not(:is(.cscard, .post, .dec, .flow__step, .sd__item, .sol__card, .frm__step, .rec, .endo, .tog__step, .path__row, .skd__list li, .prod, .mate, .srel__item, .kind, .tline__plate) *):not(#_):not(#_):not(#_):not(#_),
+.band:not(.band-wash):not(.band-tint):not(.band-ink) :is(.cscard, .post, .dec, .flow__step, .sd__item, .sol__card, .frm__step, .rec, .endo, .tog__step, .path__row, .skd__list li, .prod, .mate, .srel__item, .kind, .tline__plate) :is(.arrow-link, .cs__more):not(#_):not(#_):not(#_):not(#_) {
+  display: inline-flex; align-items: center; gap: 10px; width: auto; min-height: 44px; padding: 0 20px;
+  background: #fff; border: 1px solid #fff; border-radius: 0; color: var(--svn);
+  font-size: 11px; font-weight: 600; letter-spacing: .14em; line-height: 1.2; text-transform: uppercase; text-decoration: none; opacity: 1;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+:is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) :is(.arrow-link, .cs__more):not(:is(.cscard, .post, .dec, .flow__step, .sd__item, .sol__card, .frm__step, .rec, .endo, .tog__step, .path__row, .skd__list li, .prod, .mate, .srel__item, .kind, .tline__plate) *):not(#_):not(#_):not(#_):not(#_):hover,
+.band:not(.band-wash):not(.band-tint):not(.band-ink) :is(.cscard, .post, .dec, .flow__step, .sd__item, .sol__card, .frm__step, .rec, .endo, .tog__step, .path__row, .skd__list li, .prod, .mate, .srel__item, .kind, .tline__plate) :is(.arrow-link, .cs__more):not(#_):not(#_):not(#_):not(#_):hover { background: transparent; color: #fff; opacity: 1; text-decoration: none; }
+:is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words, .band) .cs__more:not(#_):not(#_):not(#_):not(#_) span { margin-left: 0; }
+
+/* the case card's action: white on the navy card, outlined on the white one */
+.cscard__go:not(#_):not(#_):not(#_):not(#_) { background: var(--cfg); border-color: var(--cfg); color: var(--cbg); font-weight: 600; }
+/* the label and the arrow take the button's colour, whatever the card says about its links */
+.cscard__go:not(#_):not(#_):not(#_):not(#_) :is(span, svg) { color: inherit; }
+.cscard__go:not(#_):not(#_):not(#_):not(#_) svg { border-left-color: color-mix(in srgb, currentColor 22%, transparent); }
+.cscard__go:not(#_):not(#_):not(#_):not(#_):hover { background: transparent; border-color: var(--cfg); color: var(--cfg); }
+main > :is(.band-wash, .band-tint, .band-ink, .sq) .cscard .cscard__go:not(#_):not(#_):not(#_):not(#_) { background: transparent; border-color: var(--cline); color: var(--cfg); }
+main > :is(.band-wash, .band-tint, .band-ink, .sq) .cscard .cscard__go:not(#_):not(#_):not(#_):not(#_):hover { background: var(--cfg); border-color: var(--cfg); color: var(--cbg); }
+
+/* a button that closes a paragraph on navy sits on its own line, and the
+   paragraph dims by colour rather than opacity, which would grey the button */
+:is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) p:has(> .arrow-link):not(#_):not(#_):not(#_):not(#_) { opacity: 1; color: rgba(255, 255, 255, .84); }
+:is(main > :is(.band-wash, .band-tint, .band-ink, .sq, .convert, .endnote, .prin, .go, .words, .built), .hx-hero, .hx-state, .hx-svc, .hx-go, .hx-prin, .hx-words) p:not(#_):not(#_):not(#_):not(#_) > .arrow-link:not(#_):not(#_):not(#_):not(#_) { display: flex; width: fit-content; margin-top: 16px; }
