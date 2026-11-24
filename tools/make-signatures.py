@@ -145,7 +145,7 @@ for p in STAFF:
     sig = signature(p)
     open(os.path.join(SRC, p['slug'] + '.svg'), 'w', encoding='utf-8').write(art(p))
     open(os.path.join(OUT, p['slug'] + '.html'), 'w', encoding='utf-8').write(
-        '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8"><title>' + p['name'] + ' — GEMIS email signature</title></head>\n<body style="margin:0;padding:24px;background:#ffffff;">\n' + sig + '\n</body></html>\n')
+        '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>' + p['name'] + ' — GEMIS email signature</title></head>\n<body style="margin:0;padding:24px;background:#ffffff;">\n' + sig + '\n</body></html>\n')
     open(os.path.join(OUT, p['slug'] + '.txt'), 'w', encoding='utf-8').write(plain(p))
     cards.append(f'''<section class="card" id="c-{p['slug']}">
   <h2>{p['name']} &nbsp;·&nbsp; {p['role']}</h2>

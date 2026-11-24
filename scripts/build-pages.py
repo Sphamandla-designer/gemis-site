@@ -34,6 +34,24 @@ sv_spec = importlib.util.spec_from_file_location('services', os.path.join(HERE, 
 SV = importlib.util.module_from_spec(sv_spec)
 sv_spec.loader.exec_module(SV)
 CANON = S.CANONICAL
+sol_spec = importlib.util.spec_from_file_location('solutions', os.path.join(HERE, 'solutions.py'))
+SOLS = importlib.util.module_from_spec(sol_spec)
+sol_spec.loader.exec_module(SOLS)
+# each case study links back to the disciplines whose pages cite it as evidence
+SOLUTIONS_FOR = {}
+for _slug in SV.BY_SLUG:
+    for _e in SOLS.PAGES.get(_slug, {}).get('evidence', []):
+        SOLUTIONS_FOR.setdefault(_e['slug'], []).append(_slug)
+
+
+def solutions_sentence(slug, base):
+    """'The solutions behind this project: A, B and C.' — or nothing, when no
+    solution page cites the project."""
+    names = [f'<a href="{base}solutions/{k}/">{esc(SV.BY_SLUG[k]["name"])}</a>' for k in SOLUTIONS_FOR.get(slug, [])]
+    if not names:
+        return ''
+    joined = names[0] if len(names) == 1 else ', '.join(names[:-1]) + ' and ' + names[-1]
+    return f'The solutions behind this project: {joined}. '
 
 
 def short_title(title, canonical=''):
@@ -374,7 +392,7 @@ def story_page(s):
             <p class="eyebrow" data-reveal>Related work</p>
             <h2 class="display" id="relatedHeading" data-reveal style="--d:80ms">Two projects that share the pattern</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms"><a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
+          <p class="lede" data-reveal style="--d:140ms">{solutions_sentence(s['slug'], base)}<a class="arrow-link" href="{base}work/">All case studies {ARROW}</a></p>
         </div>
         <div class="cscards cscards--2">
 {related}

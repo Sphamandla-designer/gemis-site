@@ -63,6 +63,15 @@ def endnote(base, title='Tell us what your business needs to do better.'):
 
 
 # the case study each article's argument comes from
+# the disciplines each article discusses (internal linking; checked against the text:
+# POPIA — custom systems and where data is hosted; load-shedding — cloud hosting
+# and offline-capable mobile apps; spreadsheets — moving to a system and its reporting)
+ARTICLE_SOLUTIONS = {
+    'popia-business-systems-checklist': ['custom-software', 'microsoft-cloud'],
+    'load-shedding-operations-resilience': ['microsoft-cloud', 'mobile-apps'],
+    'spreadsheets-to-a-system': ['custom-software', 'business-intelligence'],
+}
+
 ARTICLE_STORY = {
     'spreadsheets-to-a-system': ('sbs-waterproofing', 'SBS Waterproofing moved from a spreadsheet and three apps to one system in 2015, and still runs on it.'),
     'load-shedding-operations-resilience': ('sonke', 'Sonke’s field app was designed for no signal at all: it captures offline and syncs when it can.'),
@@ -178,12 +187,7 @@ def article_body(a):
 def article_page(a):
     base = '../../'
     others = [o for o in SV.ARTICLES if o['slug'] != a['slug']]
-    schema = f'''  <script type="application/ld+json">
-  {{"@context": "https://schema.org", "@type": "Article", "headline": {esc(a['title'])!r},
-   "datePublished": "{a['date']}", "author": {{"@type": "Organization", "name": "GEM Information Systems (GEMIS)"}},
-   "publisher": {{"@type": "Organization", "name": "GEM Information Systems (GEMIS)", "url": "{CANON}"}},
-   "mainEntityOfPage": "{CANON}insights/{a['slug']}/"}}
-  </script>'''.replace("'", '"')
+    schema = ''   # the Article node is written by scripts/apply-seo.py
     practice = ''
     if a['slug'] in ARTICLE_STORY:
         k, line = ARTICLE_STORY[a['slug']]
@@ -195,7 +199,7 @@ def article_page(a):
             <p class="eyebrow" data-reveal>In practice</p>
             <h2 class="display" id="practiceHeading" data-reveal style="--d:80ms">The case study behind this article</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">{esc(line)}</p>
+          <p class="lede" data-reveal style="--d:140ms">{esc(line)} Related solutions: {' and '.join(f'<a href="{base}solutions/{k}/">{esc(SV.BY_SLUG[k]["name"])}</a>' for k in ARTICLE_SOLUTIONS.get(a['slug'], []))}.</p>
         </div>
         <div class="cscards cscards--2">
 {B.cscard(S.BY_SLUG[k], base, 0)}
