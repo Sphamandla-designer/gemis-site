@@ -6733,15 +6733,10 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#
 
 /* ── FOOTER v6 (2026-11-24) ─────────────────────────────────────────────
    After the owner's reference: a statement and the one action across the
-   top, four plain link columns, the wordmark edge to edge, a legal bar.
+   top, four plain link columns, a legal bar.
    Light ground under a navy rule, so it reads apart from the navy closing
    tile above it. Its own class (.ftr), so none of the .foot layers reach it.
-
-   The wordmark is real depth: fourteen copies of the word stepped back along
-   Z (--z) inside a preserve-3d stage. At rest it leans; site.js turns it
-   toward the pointer ([data-tilt] → --rx/--ry) and slides the light across
-   its face (--lx). Without JavaScript and under reduced motion it simply
-   rests at the lean. */
+ */
 .ftr {
   --ft-ink: #0a1230; --ft-2: #4a5170; --ft-3: #5d6480; --ft-line: rgba(10,18,48,.16);
   position: relative; overflow: clip;
@@ -6777,43 +6772,7 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#
 .ftr__col a:hover { background-size: 100% 1px; }
 .ftr__out { display: inline-block; margin-left: 5px; font-size: .8em; color: var(--ft-3); }
 
-/* the wordmark */
-.ftr__stage {
-  container-type: inline-size;
-  width: 100%; max-width: 1440px; margin: clamp(40px, 6vw, 96px) auto 0;
-  padding: 0 clamp(16px, 2.2vw, 32px) clamp(10px, 1.6vw, 24px);
-  perspective: 1500px; perspective-origin: 50% 20%;
-  /* decorative, and its layers reach over the legal bar: never in the way of a click */
-  pointer-events: none;
-}
-.ftr__word {
-  position: relative; display: block; width: max-content; margin: 0 auto;
-  font-size: 26vw; font-size: min(27cqw, 389px);
-  font-weight: 600; line-height: .78; letter-spacing: -.01em; text-transform: uppercase; white-space: nowrap;
-  transform-style: preserve-3d;
-  transform: rotateX(var(--rx, 16deg)) rotateY(var(--ry, -7deg));
-  transform-origin: 50% 60%;
-  user-select: none;
-}
-.ftr__layer { position: absolute; inset: 0; display: block; padding: .04em 0 .02em;
-  transform: translateZ(calc(var(--z) * -.0125em));
-  color: color-mix(in srgb, #22306c, #7f8dc4 calc(var(--z) * 6%)); }
-.ftr__layer--face { position: relative; --z: 0; color: var(--ft-ink); transform: none; }
-@supports ((-webkit-background-clip: text) or (background-clip: text)) {
-  .ftr__layer--face {
-    background: linear-gradient(100deg, #0a1230 0 43%, #2c3b7c 50%, #0a1230 57% 100%) var(--lx, 47%) 0 / 300% 100% no-repeat;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-}
-/* the shadow it casts on the ground behind it */
-.ftr__layer--shadow { --z: 15; color: rgba(10,18,48,.3); filter: blur(.035em); transform: translateZ(-.2em) translate(.02em, .07em); }
-
-/* it stands up as it comes into view; then the pointer has it */
-.has-js .ftr__stage:not(.is-in) .ftr__word { transform: rotateX(68deg) rotateY(0deg) translateY(18%); }
-.ftr__word { transition: transform 1.3s cubic-bezier(.2,.7,.2,1); }
-.ftr__word.is-live { transition: none; }
-
-.ftr__bar { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; padding-top: clamp(20px, 3vw, 36px); padding-bottom: 24px; font-size: 12px; color: var(--ft-3); }
+.ftr__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px; margin-top: clamp(40px, 5vw, 72px); border-top: 1px solid var(--ft-line); padding-top: 20px; padding-bottom: 24px; font-size: 12px; color: var(--ft-3); }
 .ftr__legal { display: flex; flex-wrap: wrap; gap: 8px 28px; }
 .ftr__legal a { color: var(--ft-ink); }
 .ftr__legal a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -6825,9 +6784,7 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) .cscard:not(#_):not(#
   .ftr__brand, .ftr__act { grid-column: 1 / -1; }
   .ftr__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ftr__addr { margin-left: 0; }
-  .ftr__stage { perspective: 900px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ftr__word, .has-js .ftr__stage:not(.is-in) .ftr__word { transform: rotateX(16deg) rotateY(-7deg); transition: none; }
   .ftr__go svg, .ftr__col a { transition: none; }
 }

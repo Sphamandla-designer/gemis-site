@@ -184,10 +184,9 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   owner's reference; `FOOTER` in `apply-chrome.py`, class `.ftr`, its block at
   the tail of `site.css` — the older `.foot` rules are dead): light ground
   under a navy rule; the logo and slogan left and the one action right; four
-  plain link columns; the GEMIS wordmark edge to edge in real depth (fourteen
-  layers stepped along Z in a preserve-3d stage, leaning at rest, turned toward
-  the pointer by `[data-tilt]` in `site.js`, static under reduced motion and
-  without JS); then the legal bar. No newsletter field: there is no list.
+  plain link columns; then the legal bar over a hairline. No newsletter field:
+  there is no list. The giant 3D GEMIS wordmark was removed at the owner's
+  request (2026-11-24) — do not bring it back.
 - **Surfaces.** Cards (`.cscard`, `.selw__card`, `.post`, `.prod`, `.dec`,
   `.flow__step`, `.sol__card`, `.sd__item`, `.cs__main` …) are white, 1px
   hairline, radius 18, 24px padding, no shadow, no hover lift. Tags are 12px
