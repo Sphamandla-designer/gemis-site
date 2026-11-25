@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>GEMIS Website Redesign Case Study | GEMIS Studio</title>
+<meta name="description" content="How GEMIS Studio rebuilt the GEMIS website around real evidence: case-study-led pages, one design system, accessible markup and SEO from one source.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/gemis-site/studio/work-gemis-website.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GEMIS® Studio">
+<meta property="og:locale" content="en_ZA">
+<meta property="og:title" content="GEMIS Website Redesign Case Study | GEMIS Studio">
+<meta property="og:description" content="How GEMIS Studio rebuilt the GEMIS website around real evidence: case-study-led pages, one design system, accessible markup and SEO from one source.">
+<meta property="og:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website.jpg">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="963">
+<meta property="og:image:alt" content="The GEMIS website in three browser windows: the home page in front, a case study and the Solutions directory behind">
+<meta property="og:url" content="https://sphamandla-designer.github.io/gemis-site/studio/work-gemis-website.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GEMIS Website Redesign Case Study | GEMIS Studio">
+<meta name="twitter:description" content="How GEMIS Studio rebuilt the GEMIS website around real evidence: case-study-led pages, one design system, accessible markup and SEO from one source.">
+<meta name="twitter:image" content="https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website.jpg">
+<meta name="twitter:image:alt" content="The GEMIS website in three browser windows: the home page in front, a case study and the Solutions directory behind">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script src="assets/consent.js" defer></script>
+<style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  
+x-dc{display:none!important}
+
+html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-07.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-12.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-08.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-11.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-14.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-16.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-07.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-12.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-08.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-11.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-14.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-16.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-17.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-13.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-15.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-10.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-06.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/font-02.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+body{margin:0;background:#eef0f3;color:#16161a;font-family:'Manrope',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:#ff1f7a}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes driftA{0%{transform:translate(-10%,-5%) scale(1)}50%{transform:translate(25%,20%) scale(1.25)}100%{transform:translate(-10%,-5%) scale(1)}}
+@keyframes driftB{0%{transform:translate(20%,30%) scale(1.1)}50%{transform:translate(-15%,-10%) scale(0.9)}100%{transform:translate(20%,30%) scale(1.1)}}
+@keyframes driftC{0%{transform:translate(0,40%) scale(1)}50%{transform:translate(10%,-20%) scale(1.3)}100%{transform:translate(0,40%) scale(1)}}
+@keyframes sweep{from{background-position:0 0}to{background-position:1400px 800px}}
+@keyframes grain{0%,100%{opacity:.35}50%{opacity:.55}}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(-1.5%,1%)}100%{transform:scale(1) translate(0,0)}}
+@keyframes hueShift{0%,100%{filter:hue-rotate(0deg) saturate(1)}50%{filter:hue-rotate(-14deg) saturate(1.15)}}
+@keyframes railPulse{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(18px,-26px,0) rotate(6deg)}}
+@keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-22px,18px,0) rotate(-5deg)}}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes wordIn{0%{opacity:0;transform:translateY(60%) rotateX(-40deg)}100%{opacity:1;transform:none}}
+@keyframes wordOut{0%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-60%) rotateX(40deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+[data-reveal].in{opacity:1;transform:none}
+[data-reveal="2"]{transition-delay:.12s}[data-reveal="3"]{transition-delay:.24s}[data-reveal="4"]{transition-delay:.36s}
+[data-word]{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}[data-word]>span{display:inline-block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.in [data-word]>span{transform:none}.in [data-word]{overflow:visible}
+@media (prefers-reduced-motion:reduce){[data-reveal],[data-word]>span{opacity:1;transform:none;transition:none}}
+
+/* ── accessibility ────────────────────────────────────────────────────────
+   Added for WCAG 2.2 AA. Nothing here changes a colour, a size or a position
+   of anything that was already on the page. */
+
+/* visually hidden, still announced */
+.dc-vh{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* skip link — off-screen until it takes focus, then in the studio's own style */
+.dc-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#16161a;color:#f5f6f8;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.02em}
+.dc-skip:focus{left:12px;top:12px}
+
+/* the header is fixed, so a fragment jump would land its target underneath it */
+html{scroll-padding-top:110px}
+
+/* visible keyboard focus, in the studio's existing accent */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #ff1f7a;outline-offset:3px}
+
+/* marquees stop on hover, on focus, on the motion toggle and under reduced motion */
+/* the marquee elements set the animation shorthand inline, which resets
+   play-state, so these have to win */
+[data-marquee]:hover>div,[data-marquee]:focus-within>div{animation-play-state:paused!important}
+[data-motion="paused"] [data-marquee]>div{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){[data-marquee]>div{animation:none!important}[data-rotator] span{animation:none!important}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT
+
+   This page came out of Design Canvas with every rule inline and no
+   breakpoints, so below about 900px its two-, three- and four-column grids
+   kept their desktop track sizes and the content ran off the right edge,
+   clipped by the sections' own overflow:hidden. Whole sections could not be
+   read on a phone.
+
+   The layout hooks are data-m attributes in the markup, not substring
+   matches on the style attribute — the browser rewrites an inline style
+   ("repeat(3,minmax(0,1fr))" becomes "repeat(3, minmax(0px, 1fr))"), so
+   attribute selectors on it look like they work and silently do not.
+   tools/build-studio.mjs checks every hook still appears in the rendered
+   page and fails the build if one goes missing.
+
+   Nothing here touches the desktop layout: every rule is inside a
+   max-width query, and every one needs !important because it overrides an
+   inline style.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── grids ───────────────────────────────────────────────────────────── */
+  [data-m="head"],
+  [data-m="split"],
+  [data-m="cards"],
+  [data-m="fields"],
+  [data-m="about2"] { grid-template-columns: 1fr !important; }
+
+  [data-m="head"] { gap: 20px !important; align-items: start !important; }
+  [data-m="split"] { gap: 36px !important; }
+  [data-m="cards"] { gap: 20px !important; }
+  [data-m="fields"] { gap: 24px !important; }
+  [data-m="about2"] { margin-left: 0 !important; margin-right: 0 !important; gap: 24px !important; }
+  [data-m="rules8"] { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* the spec rows read as label above value */
+  [data-m="spec"] { grid-template-columns: 1fr !important; gap: 4px !important; }
+
+  /* the ladder tab keeps its number and name; the duration drops under them */
+  [data-m="tab"] { grid-template-columns: 30px 1fr !important; gap: 10px !important; }
+  [data-m="tab"] > :last-child { grid-column: 2 !important; }
+
+  /* a rail only sticks when it is beside the panel, not above it */
+  [data-m="rail"] { position: static !important; }
+
+  /* things that were pushed to the right of a column that is now full width */
+  [data-m="rightrow"] { justify-content: flex-start !important; }
+  [data-m="footcol"] { gap: 40px !important; justify-content: flex-start !important; }
+
+  /* the pricing note was placed by absolute coordinates */
+  [data-m="note"] { position: static !important; margin: 0 0 32px !important; }
+
+  /* percentage side padding is far too much at this width */
+  [data-m="wide"] { padding-left: 18px !important; padding-right: 18px !important; }
+  section { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* the hero is a grid too, and its columns have to become rows */
+  #top {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    min-height: 0 !important;
+    padding: 104px 18px 44px !important;
+    gap: 40px !important;
+  }
+
+  /* the wide CTA links held their arrow 48px away from their label */
+  [data-m] a[style*="border-bottom"],
+  a[style*="min-width: 230px"],
+  a[style*="min-width: 200px"],
+  a[style*="width: 190px"] {
+    gap: 16px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  h1, h2, p { overflow-wrap: break-word; }
+}
+
+/* ── header, phones only ───────────────────────────────────────────────
+      Below this the logo, the corporate link, the pill's 150px slot and the
+      menu button no longer fit on one line. The desktop arrangement still
+      fits at tablet width, so it is left alone there. */
+@media (max-width: 700px) {
+  [data-desk] { display: none !important; }   /* the drawer already has both */
+  [data-nav] { padding: 16px 16px !important; }
+  [data-mark] { height: 70px !important; padding-left: 16px !important; }
+
+  /* the single primary action becomes a bar within thumb reach, rather than
+     a pill fighting the menu button for the same corner */
+  [data-cta] {
+    top: auto !important;
+    bottom: 14px !important;
+    left: 14px !important;
+    right: 14px !important;
+    text-align: center !important;
+    padding: 15px 18px !important;
+    box-shadow: 0 14px 34px -12px rgba(0,0,0,.5) !important;
+  }
+  #contact { padding-bottom: 104px !important; }   /* clear of that bar */
+
+  /* the drawer sizes itself with width:min(420px, 100vw - 24px) but keeps the
+     default content-box, so its 32px of side padding pushed it off the left
+     edge of a phone and clipped the first letter of every link. It also
+     reserved 220px at the top for a header that is much shorter here. */
+  [data-m="drawer"] {
+    box-sizing: border-box !important;
+    padding: 84px 22px 26px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+}
+
+@media (max-width: 560px) {
+  /* the rule cards are a fixed 370:455 at desktop; let them be as tall as
+     their content needs once they are full width */
+  [data-m="cards"] > div { aspect-ratio: auto !important; min-height: 340px !important; }
+  /* the contact footer does not need a whole screen to itself here */
+  #contact { min-height: 0 !important; }
+}
+
+</style>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+<style>
+/* The case study page: one structure for every project (header · problem · found ·
+   changed · build · results · quote · next step). Anything the record cannot fill is
+   a [data-tbc] note: hidden on the live page, shown under ?review=1 with a dashed
+   edge, the same convention as the corporate site. */
+.cs-spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 32px;border-top:1px solid #16161a}
+.cs-spec>div{padding:14px 0;border-bottom:1px solid #dcdee3}
+.cs-spec dt{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;color:#6a6b73;text-transform:uppercase;margin:0 0 6px}
+.cs-spec dd{margin:0;font-size:15px;line-height:1.4;font-weight:600}
+.cs-list{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.cs-list>li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:22px 0;border-top:1px solid rgba(255,255,255,.18);font-size:clamp(18px,1.5vw,22px);line-height:1.35;letter-spacing:-0.01em}
+.cs-list>li>span:first-child{font-family:'JetBrains Mono',monospace;font-size:13px;color:#6a6b73;padding-top:6px}
+.cs-dec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.cs-dec>div{background:#fff;color:#16161a;padding:28px 28px 32px;border-top:4px solid #ff1f7a;display:grid;gap:14px;align-content:start}
+.cs-dec>div:nth-child(even){border-top-color:#ff7a12}
+.cs-dec .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#6a6b73;text-transform:uppercase}
+.cs-dec .d{font-size:clamp(19px,1.5vw,23px);line-height:1.25;letter-spacing:-0.02em;font-weight:600}
+.cs-dec .w{margin:0;font-size:15px;line-height:1.45;color:#3a3b41}
+.cs-screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 24px}
+.cs-screens figure{margin:0;display:grid;gap:12px}
+.cs-screens .frame{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:4px;background:#dcdee3}
+.cs-screens img{width:100%;height:100%;object-fit:cover;display:block}
+.cs-screens .tag{position:absolute;left:12px;top:12px;background:#16161a;color:#f5f6f8;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em;padding:6px 10px;text-transform:uppercase}
+.cs-screens figcaption{font-size:14px;line-height:1.45;color:#c9cad1}
+.cs-num{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.cs-num>div{border-top:1px solid rgba(255,255,255,.25);padding-top:18px}
+.cs-num .n{font-size:clamp(44px,5vw,88px);line-height:.95;letter-spacing:-0.045em;font-weight:600;color:#ff1f7a}
+.cs-num .l{margin:12px 0 0;font-size:15px;line-height:1.4;color:#c9cad1;max-width:34ch}
+.cs-plain{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.cs-plain li{display:flex;gap:12px;align-items:baseline;font-size:16px;line-height:1.45}
+.cs-plain li::before{content:'+';font-family:'JetBrains Mono',monospace;color:#ff7a12;flex:none}
+.cs-quote{font-size:clamp(24px,2.4vw,38px);line-height:1.2;letter-spacing:-0.03em;font-weight:600;margin:0;max-width:26ch}
+[data-tbc]{display:none}
+.review [data-tbc]{display:block;border:1px dashed #ff7a12;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.5;color:#8a4a12;background:rgba(255,122,18,.06)}
+.review [data-tbc]::before{content:'TBC · ';font-weight:700}
+@media (max-width:900px){.cs-dec,.cs-screens{grid-template-columns:1fr}.cs-list>li{grid-template-columns:36px 1fr;gap:10px}}
+/* the showcase case study (ManaGEM, WasteMart): every section pairs its copy with a
+   mockup of the real prototype screens; chapters alternate copy and screen */
+.sc-fig{margin:0;display:grid;gap:14px}
+.sc-fig .shot{border-radius:6px;overflow:hidden;background:#dcdee3;aspect-ratio:16/10}
+.sc-fig img{display:block;width:100%;height:100%;object-fit:cover}
+.sc-fig figcaption{font-size:14px;line-height:1.5;color:#6a6b73;max-width:72ch}
+.sc-dark .sc-fig figcaption{color:#9a9ba3}
+.sc-dark .sc-fig .shot{background:#26262c}
+.sc-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-copy p{margin:0 0 16px;font-size:17px;line-height:1.55;color:#3a3b41;max-width:60ch}
+.sc-dark .sc-copy p{color:#c9cad1}
+.sc-copy p.lead{font-size:clamp(19px,1.6vw,23px);line-height:1.4;letter-spacing:-0.01em;color:#16161a}
+.sc-dark .sc-copy p.lead{color:#f5f6f8}
+.sc-chapters{display:grid;gap:clamp(72px,9vw,140px)}
+.sc-ch{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,88px);align-items:center}
+.sc-ch:nth-child(even){grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.sc-ch:nth-child(even) .sc-copy{order:2}
+.sc-ch .n{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#a84a00;text-transform:uppercase}
+.sc-dark .sc-ch .n{color:#ff7a12}
+.sc-ch h3{margin:14px 0 18px;font-size:clamp(26px,2.4vw,38px);line-height:1.05;letter-spacing:-0.035em;font-weight:600}
+.sc-ch ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.sc-ch li,.sc-copy li{display:flex;gap:12px;align-items:baseline;font-size:15px;line-height:1.45;color:inherit}
+.sc-ch li::before,.sc-copy li::before{content:'+';font-family:'JetBrains Mono',monospace;color:#ff7a12;flex:none}
+.sc-copy ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.sc-wide{margin-top:56px}
+/* results on either ground: the figures' labels and the attribution note follow it */
+.sc-copy p.sc-note{margin:24px 0 0;font-size:14px;line-height:1.45;color:#6a6b73;max-width:60ch}
+.sc-dark .sc-copy p.sc-note{color:#9a9ba3}
+.sc-light .cs-num>div{border-top-color:rgba(22,22,26,.25)}
+.sc-light .cs-num .l{color:#3a3b41}
+/* full width (2026-11-24): content runs from the logo to the menu; section heads
+   put the title left and the copy right instead of one centred column */
+.sc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,88px);align-items:end}
+.sc-head .sc-copy p:last-child,.sc-head .sc-copy ul:last-child{margin-bottom:0}
+.cs-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 clamp(32px,5vw,88px)}
+@media (max-width:900px){.sc-head{grid-template-columns:1fr;gap:28px}}
+@media (max-width:900px){.sc-split,.sc-ch,.sc-ch:nth-child(even){grid-template-columns:1fr}.sc-ch:nth-child(even) .sc-copy{order:0}}
+</style>
+</head>
+<body>
+
+<a class="dc-skip" href="#case">Skip to content</a>
+
+<header data-dc-tpl="4"><div data-dc-tpl="5" data-nav="" style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; color: rgb(255, 255, 255); mix-blend-mode: difference;">
+  <a data-dc-tpl="6" href="index.html#top" aria-label="GEMIS Studio" style="display: flex; align-items: center; gap: 12px; color: rgb(255, 255, 255);">
+    <span data-dc-tpl="7" aria-hidden="true" style="display: block; width: 26px; height: 26px;"></span>
+    <span data-dc-tpl="8" style="display: flex; flex-direction: column; line-height: 1;">
+      <span data-dc-tpl="9" style="font-weight: 700; letter-spacing: 0.08em; font-size: 14px;">GEMIS</span>
+      <span data-dc-tpl="10" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-weight: 400; letter-spacing: 0.16em; font-size: 9px; margin-top: 3px; opacity: 0.85;">STUDIO</span>
+    </span>
+  </a>
+  <div data-dc-tpl="11" style="display: flex; align-items: center; gap: 10px;">
+    <a data-dc-tpl="12" href="../index.html" data-desk="" style="display: flex; align-items: center; gap: 7px; height: 38px; padding: 0px 4px; margin-right: 4px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.12em; color: rgb(255, 255, 255); opacity: 0.72; text-decoration: none; white-space: nowrap;">GEMIS.CO.ZA<span data-dc-tpl="13" aria-hidden="true">↗</span></a><span data-dc-tpl="14" data-desk="" style="width: 150px; height: 38px; visibility: hidden;"></span>
+    <button id="studioMenuBtn" data-dc-tpl="15" aria-expanded="false" aria-controls="studioMenu" style="background: transparent; color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); border-radius: 999px; padding: 9px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; font-family: inherit; cursor: pointer; text-transform: uppercase;">Menu <span data-dc-tpl="16" aria-hidden="true"><span class="sc-interp">≡</span></span></button>
+  </div></div><a data-dc-tpl="17" href="contact.html#teardown" data-cta="" style="position: fixed; top: 28px; right: calc(128px); z-index: 51; background: rgb(255, 31, 122); color: rgb(22, 22, 26); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; transition: background 0.4s, color 0.4s; line-height: 1.4;"><span data-dc-tpl="18" style="text-transform: uppercase;">Book a teardown</span></a><a data-dc-tpl="19" href="index.html#top" data-mark="" aria-label="GEMIS Studio" style="position: fixed; top: 0px; left: 0px; z-index: 52; height: 94px; padding-left: 32px; display: flex; align-items: center;"><img data-dc-tpl="20" src="assets/mark-colour.svg" width="26" height="26" alt="" style="display: block; width: 26px; height: 26px;"></a></header>
+<div hidden data-dc-tpl="22" id="studioMenu" data-m="drawer" style="position: fixed; top: 12px; right: 12px; bottom: 12px; width: min(420px, -24px + 100vw); background: rgb(22, 22, 26); color: rgb(245, 246, 248); z-index: 40; padding: 220px 32px 40px; display: none; flex-direction: column; justify-content: space-between; box-shadow: rgba(0, 0, 0, 0.4) 0px 20px 60px;">
+  <div data-dc-tpl="23" style="display: flex; flex-direction: column; gap: 10px;">
+    <a data-dc-tpl="24" href="work.html" style="font-size: 34px; font-weight: 500;">Work</a>
+    <a data-dc-tpl="25" href="services.html" style="font-size: 34px; font-weight: 500;">Services</a>
+    <a data-dc-tpl="26" href="about.html" style="font-size: 34px; font-weight: 500;">About</a>
+    <a data-dc-tpl="27" href="index.html#why" style="font-size: 34px; font-weight: 500;">Why us</a>
+    <a data-dc-tpl="28" href="contact.html" style="font-size: 34px; font-weight: 500;">Contact</a><a data-dc-tpl="29" href="../index.html" style="font-size: 34px; font-weight: 500; opacity: 0.6;">GEM Information Systems<span data-dc-tpl="30" aria-hidden="true"> ↗</span></a>
+  </div>
+  <div data-dc-tpl="31" style="display: flex; flex-direction: column; gap: 28px;">
+    <div data-dc-tpl="32">
+      <div data-dc-tpl="33" style="font-size: 13px; color: rgb(138, 136, 134); letter-spacing: 0.04em; margin-bottom: 12px; text-transform: uppercase;">Business enquiry</div>
+      <div data-dc-tpl="34" style="display: grid; grid-template-columns: 24px 1fr; row-gap: 6px; font-size: 17px;"><span data-dc-tpl="35" style="color: rgb(138, 136, 134);">E.</span><span data-dc-tpl="36">info@gemis.co.za</span></div>
+    </div>
+    <div data-dc-tpl="37">
+      <div data-dc-tpl="38" style="font-size: 13px; color: rgb(138, 136, 134); letter-spacing: 0.04em; margin-bottom: 12px; text-transform: uppercase;">Social</div>
+      
+      <div data-dc-tpl="39" style="display: grid; grid-template-columns: 1fr 1fr; row-gap: 6px; font-size: 17px;"><a data-dc-tpl="40" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
+    </div>
+  </div></div>
+
+<main id="main" data-motion="running">
+<div style="position:relative;overflow:hidden">
+<section id="case" data-screen-label="Case study" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:150px 32px 90px">
+  <div style="position:relative">
+    <nav aria-label="Breadcrumb" style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:#6a6b73;display:flex;gap:12px;flex-wrap:wrap"><a href="index.html" style="color:#6a6b73">Studio</a><span aria-hidden="true">/</span><a href="work.html" style="color:#6a6b73">Work</a><span aria-hidden="true">/</span><span style="color:#16161a">GEMIS website</span></nav>
+    <div data-m="head" style="display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:end;margin-top:40px">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">Case study · Web Experience</div>
+        <h1 data-reveal="1" style="margin:20px 0 0;font-size:clamp(38px,4.6vw,80px);line-height:0.97;letter-spacing:-0.045em;font-weight:600;color:#16161a">Rebuilding the GEMIS website so every claim shows its proof</h1>
+        <p data-reveal="2" style="margin:28px 0 0;max-width:58ch;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:#3a3b41">GEM Information Systems has built business systems in South Africa since 2014 — more than fifty of them, across five or more sectors. In 2026 the studio rebuilt the company’s own website to show that work rather than describe it: every page leads with a real project, and every claim traces to a record.</p>
+      </div>
+      <div data-reveal="3" style="background:rgba(255,255,255,.75);border:1px solid rgba(22,22,26,.25);padding:4px 28px 0">
+        <dl class="cs-spec" style="margin:0;border-top:0">
+        <div><dt>Client</dt><dd>GEM Information Systems — the studio’s own company</dd></div>
+        <div><dt>Service evidenced</dt><dd>Web Experience</dd></div>
+        <div><dt>Scope</dt><dd>30 pages: home, case studies, nine solutions, products, insights, our story, contact</dd></div>
+        <div><dt>Deliverable</dt><dd>A static site generated from data files</dd></div>
+        <div><dt>Built by</dt><dd>GEMIS Studio</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="sc-wide"><figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/hero.jpg" alt="The GEMIS website in three browser windows: the home page in front, the Sonke Gender Justice case study and the Solutions directory behind" width="2000" height="1250" fetchpriority="high" decoding="async"></div><figcaption>The rebuilt GEMIS website: home, a case study and the Solutions directory.</figcaption></figure></div>
+    <p style="margin:20px 0 0;font-size:13px;line-height:1.5;color:#6a6b73;max-width:80ch">Every screen on this page is the GEMIS website as published. The projects it shows are GEMIS’s real case studies; the interfaces inside them are stills from each project’s case-study video, illustrated for the video.</p>
+  </div>
+</section>
+
+<section class="sc-light" id="brief" data-screen-label="The brief" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">02 · The brief</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:18ch">A company that builds systems<br><span style="color:#ff1f7a">should show them.</span></h2><div style="margin-top:32px"><p class="lead">GEMIS designs, builds and supports the business systems South African companies run on — enquiries, jobs, claims, stock, reporting — on the Microsoft Cloud, and stays with them for years. The website had to say that in its first lines, and then prove it.</p><p>The brief: lead with the work, name the service, the market and the proof, and give every visitor one clear next step.</p></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/brief.jpg" alt="The GEMIS home page on a laptop: “Custom business software built around how your business works” in a white stepped block on midnight navy, with the three confirmed figures beneath" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The home page: what GEMIS builds, for whom, and the three confirmed figures — 12+ years, 50+ systems, 5+ sectors.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sc-dark" id="challenge" data-screen-label="The challenge" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">03 · The challenge</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8;max-width:18ch">A site that described<br><span style="color:#ff1f7a">instead of showing.</span></h2><div style="margin-top:32px"><p class="lead">The site had grown page by page, and the audit that opened the redesign read every page and every asset before anything changed. What it found:</p><ul><li>The home page said what GEMIS believes, not what it builds, for whom, or the proof.</li><li>Its client section was made of placeholder quotations, and no project was featured.</li><li>Case study cards named the industry, but not GEMIS’s role, the project’s status or what was built.</li><li>The one action had four names, none of them in the bar, and body copy was set at 14px.</li><li>The stylesheet had been written page by page, and its layers contradicted each other.</li></ul></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/challenge.jpg" alt="Two GEMIS windows: the Case Studies index with its numbered cards, and a case study’s project snapshot" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>What replaced it: cards that name the context, GEMIS’s role and the status, and a snapshot at the top of every case study.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sc-light" id="designed" data-screen-label="What we designed" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-head" style="margin-bottom:clamp(56px,7vw,100px)"><div><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">04 · What we designed</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:18ch">Proof first,<br><span style="color:#ff1f7a">then the pitch.</span></h2></div><div class="sc-copy"><p class="lead">Every page was rebuilt around the evidence GEMIS already had — seven case-study videos, the project records and a short list of confirmed figures — and nothing was written that those records do not support.</p></div></div>
+    <div class="sc-chapters">
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">01 / 07</div><h3>A home page that leads with proof</h3><p>The hero names the service, the market and the proof; the three confirmed figures sit under the actions, and the client marks follow straight after. Then the nine disciplines, how GEMIS works, and seven systems in production, each with its story on video.</p><p>The order alternates navy and white, so no two dark sections meet.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/home.jpg" alt="Two GEMIS windows: the home page hero, and the home page’s carousel of case studies, each tile with its industry, a still from its video and its play control" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The home page: the hero, then seven systems in production, each with its story on video.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">02 / 07</div><h3>One case card, on every page</h3><p>Every project is shown by the same card: a numeral and the industry, a still from the project’s video with its duration and a play control, the name, one line on what it does, the status and one action.</p><p>The Case Studies index, the home page, the related rows, the service pages and the articles all use it — and the index filters it by industry and by what the system had to do.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/cards.jpg" alt="The Case Studies index: three numbered navy cards for SBS Waterproofing, HomeAssist and WasteMart, each with a still, a play control and a one-line summary" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The portfolio: one card, filterable by industry and capability.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">03 / 07</div><h3>Case studies that show their working</h3><p>Each case study runs the same way: a project snapshot, the business challenge, what the design was based on, the workflow as a diagram, the system step by step in stills from its video, the key decisions with their reasons, and the outcomes split into delivered, verified and intended.</p><p>Where the record is silent — no research report, no measured result — the page says so rather than guessing.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/case.jpg" alt="Two windows from the Sonke Gender Justice case study: the project snapshot, and the step-by-step walkthrough with a still from the case-study video" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>A case study: the snapshot, then the system step by step.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">04 / 07</div><h3>Nine disciplines, each with its evidence</h3><p>Solutions opens on one drawing — nine disciplines into one accountable team — then a numbered index of what each is for and when to choose it.</p><p>Each of the nine service pages has its own drawing and its own order of sections, and its evidence names only the projects whose record shows that work, with a line on why each is relevant there.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/solutions.jpg" alt="Two GEMIS windows: the System Integration service page with its before-and-after drawing, and the Solutions index of disciplines with their pictograms" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The Solutions index and a service page, each discipline with its own drawing.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">05 / 07</div><h3>Evidence on the page that makes the offer</h3><p>A visitor reading about system integration sees the integration GEMIS has run — the Trans Hex financial import, scheduled, de-duplicated and logged — with GEMIS’s role, the status and a link to the full story, without leaving the page.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/evidence.jpg" alt="The “Where this has been done” section of the System Integration page: the Trans Hex case, its role and status, and a link to the case study" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Where this has been done: the proof beside the offer.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">06 / 07</div><h3>One action, named the same everywhere</h3><p>Four names for the same step became one: Book a discovery session — the last item in the bar on every page, and the end of every route.</p><p>The form checks each field as the visitor leaves it, lists every problem in one summary that takes focus, asks for consent in plain words, and says what will happen when it is sent.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/action.jpg" alt="The Contact page: “Book a discovery session”, the enquiry form with its consent line, and the send button" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The discovery form: validation, consent and one action.</figcaption></figure>
+      </article>
+      <article class="sc-ch">
+        <div class="sc-copy"><div class="n">07 / 07</div><h3>The same site on a phone</h3><p>Every page was checked from 360px to 1920px wide with no sideways scroll. On a phone the sub-navigation keeps only the page’s name and the action, and the case cards stack in one column.</p></div>
+        <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/phones.jpg" alt="Three phones showing the GEMIS website: the home page in front, a case study and the Case Studies index either side" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>The home page, a case study and the portfolio on a phone.</figcaption></figure>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sc-dark" id="details" data-screen-label="The interface" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-head"><div><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">05 · The interface</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8;max-width:18ch">One design<br><span style="color:#ff1f7a">language.</span></h2></div><div class="sc-copy"><p class="lead">Midnight navy and white, one typeface, uppercase light headings, small tracked labels, square buttons, and blocks cut with a stepped notch. Where a stock photograph would have gone there is a pictogram — a silhouette filled with fine vertical lines — so every image on the site is either a drawing or the real work.</p><p>Every button on a navy ground is white. Every number read as a number is a light numeral. The decisions live in one place at the end of one stylesheet, so a change reaches every page.</p></div></div>
+    <div class="sc-wide"><figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/details.jpg" alt="Four close-ups of the GEMIS website: an uppercase heading in a white stepped block, a numbered case card, numbered rows with hatch pictograms, and the form’s consent line with its send button" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Close-ups: the stepped block, the case card, the numbered rows and the form.</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="sc-light" id="build" data-screen-label="Build and handoff" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">06 · Build and handoff</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#16161a;max-width:18ch">Built so the facts<br><span style="color:#ff1f7a">live in one place.</span></h2><div style="margin-top:32px"><p class="lead">The site is static HTML generated from data files: the project records, the solutions, the confirmed figures and one SEO record. A fact is changed once, and every page that carries it follows.</p><p>Each page has a unique title and description and one structured-data graph, written from that SEO record along with the sitemap. Analytics load only after a visitor accepts. There is no phone number anywhere on the site. It is served by GitHub Pages.</p></div></div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/build.jpg" alt="The System Integration service page on a laptop: “Connect your business systems and eliminate manual data transfers”, with its before-and-after drawing" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>A service page, generated from its record.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sc-dark" id="results" data-screen-label="Results" style="position:relative;overflow:hidden;background:#16161a;color:#f5f6f8;padding:120px 32px">
+  <div style="position:relative">
+    <div class="sc-split">
+      <div class="sc-copy"><div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#ff7a12;text-transform:uppercase">07 · Results</div><h2 data-reveal="1" style="margin:20px 0 0;font-size:clamp(40px,4.5vw,76px);line-height:0.95;letter-spacing:-0.045em;font-weight:600;color:#f5f6f8;max-width:18ch">Checked on<br><span style="color:#ff1f7a">every change.</span></h2>
+        <div class="cs-num" style="margin-top:40px"><div><div class="n">30</div><p class="l">pages, each with its own title, description and structured data</p></div><div><div class="n">0</div><p class="l">serious or critical accessibility issues, on any page (axe)</p></div><div><div class="n">0</div><p class="l">broken internal links across the site</p></div></div>
+        <div style="margin-top:36px"><p>These are the checks the site is held to before any change ships: accessibility, no sideways scroll from 360px to 1920px wide, the internal links, the shared header and footer, and the SEO record.</p></div>
+        <p class="sc-note">These are build checks, not business results. Visits, enquiries and search rankings since the rebuild have not been measured yet, so none are claimed.</p>
+      </div>
+      <figure class="sc-fig" data-reveal="2"><div class="shot"><img src="assets/cases/gemis-website/results.jpg" alt="The Solutions directory in a browser window: nine disciplines drawn into one accountable team" width="2000" height="1250" loading="lazy" decoding="async"></div><figcaption>Nine disciplines, one accountable team.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div data-tbc="quote" style="margin:0 32px">Client quote: No quotation about the website itself is approved for publication.</div>
+
+<section id="next" data-screen-label="Next step" style="position:relative;overflow:hidden;background:#eef0f3;color:#16161a;padding:72px 32px 100px">
+  <div style="position:relative">
+    <div data-m="head" style="display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border-top:1px solid #16161a;padding-top:32px">
+      <div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.04em;color:#a84a00;text-transform:uppercase">Next step</div>
+        <p style="margin:16px 0 0;font-size:clamp(22px,2vw,32px);line-height:1.2;letter-spacing:-0.03em;font-weight:600;max-width:24ch">Evidences the Web Experience. Start with a teardown.</p>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="contact.html#web" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #ff7a12;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">Book a teardown</span><span>→</span></a>
+        <a href="work.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;display:flex;justify-content:space-between;gap:48px;border-bottom:2px solid #6a6b73;padding-bottom:10px;min-width:230px;color:#16161a"><span style="text-transform:uppercase">All projects</span><span>→</span></a>
+      </div>
+    </div>
+    <div style="margin-top:32px;display:grid;gap:8px"><p data-tbc="case">Visits, enquiries and search rankings since the rebuild are not yet measured.</p></div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://sphamandla-designer.github.io/gemis-site/studio/work-gemis-website.html#article",
+      "headline": "Rebuilding the GEMIS website so every claim shows its proof",
+      "description": "How GEMIS Studio rebuilt the GEMIS website around real evidence: case-study-led pages, one design system, accessible markup and SEO from one source.",
+      "inLanguage": "en-ZA",
+      "image": [
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/hero.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/brief.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/challenge.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/home.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/cards.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/case.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/solutions.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/evidence.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/action.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/phones.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/details.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/build.jpg",
+        "https://sphamandla-designer.github.io/gemis-site/studio/assets/cases/gemis-website/results.jpg"
+      ],
+      "about": {
+        "@type": "WebSite",
+        "name": "GEMIS website"
+      },
+      "author": {
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#organization"
+      },
+      "publisher": {
+        "@id": "https://sphamandla-designer.github.io/gemis-site/#organization"
+      },
+      "mainEntityOfPage": "https://sphamandla-designer.github.io/gemis-site/studio/work-gemis-website.html",
+      "keywords": "B2B website redesign, corporate website UX, case study website, design system, technical SEO, accessibility, GEMIS"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "GEMIS Studio",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Work",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/work.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GEMIS website",
+          "item": "https://sphamandla-designer.github.io/gemis-site/studio/work-gemis-website.html"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://sphamandla-designer.github.io/gemis-site/#organization",
+      "name": "GEM Information Systems",
+      "alternateName": "GEMIS",
+      "url": "https://sphamandla-designer.github.io/gemis-site/"
+    }
+  ]
+}
+</script>
+</div>
+
+<!-- the closing band is the last section inside main on the homepage too -->
+<section data-dc-tpl="340" id="contact" data-screen-label="Contact footer" style="background: rgb(238, 240, 243); color: rgb(22, 22, 26); padding: 100px 32px 60px; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; gap: 100px; position: relative; overflow: hidden;">
+  <div data-dc-tpl="341" style="position: absolute; inset: -4%; pointer-events: none; background: url(&quot;assets/heroBg.jpg&quot;) center center / cover no-repeat; animation: 32s ease-in-out 0s infinite reverse none running kenburns; opacity: 0.16;"></div>
+  <div data-dc-tpl="342" data-m="split" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px;">
+    <div data-dc-tpl="343">
+      <div data-dc-tpl="344" style="font-size: 15px; font-weight: 600; color: rgb(179, 78, 0); text-transform: uppercase;">One action. Restated.</div>
+      <h2 data-dc-tpl="345" data-reveal="1" style="margin: 24px 0px 0px; font-size: clamp(52px, 6vw, 96px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 600; color: rgb(22, 22, 26);">Ready to find out<br data-dc-tpl="346"><span data-dc-tpl="347" style="color: rgb(255, 31, 122);">what's wrong?</span></h2>
+      <div data-dc-tpl="348" style="margin-top: 80px; display: flex; align-items: center; gap: 12px;"><img data-dc-tpl="349" src="assets/mark-colour.svg" width="28" height="28" alt="" style="display: block; width: 28px; height: 28px;"><span data-dc-tpl="350" style="font-size: 15px; color: rgb(106, 107, 115); text-transform: uppercase;">©GEMIS® Studio 2026</span></div>
+      <nav data-dc-tpl="351" aria-label="Legal" style="margin-top: 20px; display: flex; gap: 12px 24px; flex-wrap: wrap; font-size: 14px;"><a data-dc-tpl="352" href="privacy.html" style="color: rgb(58, 59, 65); border-bottom: 1px solid rgba(22, 22, 26, 0.35); padding-bottom: 2px;">Privacy notice</a><a data-dc-tpl="353" href="terms.html" style="color: rgb(58, 59, 65); border-bottom: 1px solid rgba(22, 22, 26, 0.35); padding-bottom: 2px;">Terms of use</a><a data-dc-tpl="354" href="privacy.html#cookies" data-cookie-settings="" style="color: rgb(58, 59, 65); border-bottom: 1px solid rgba(22, 22, 26, 0.35); padding-bottom: 2px;">Cookie settings</a></nav>
+      <div data-dc-tpl="355" style="margin-top: 48px; font-size: 15px; font-weight: 600; text-transform: uppercase;">5 days · R6,500 excl. VAT · fee credited within 60 days.</div>
+    </div>
+    <div data-dc-tpl="356" data-m="footcol" style="display: flex; flex-direction: column; gap: 80px; justify-content: flex-end;">
+      <div data-dc-tpl="357" aria-hidden="true" data-m="rightrow" style="display: flex; justify-content: flex-end; font-size: 15px; color: rgb(106, 107, 115);">SAST → <span class="sc-interp">13:36</span></div>
+      <div data-dc-tpl="358" style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <a data-dc-tpl="359" href="contact.html#teardown" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(255, 122, 18); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="360" style="text-transform: uppercase;">Book a teardown</span><span data-dc-tpl="361">→</span></a><a data-dc-tpl="362" href="../index.html" style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; display: flex; justify-content: space-between; gap: 48px; border-bottom: 2px solid rgb(106, 107, 115); padding-bottom: 10px; min-width: 230px; color: rgb(22, 22, 26);"><span data-dc-tpl="363" style="text-transform: uppercase;">GEM Information Systems</span><span data-dc-tpl="364">↗</span></a>
+      </div>
+      <div data-dc-tpl="365" data-m="head" style="display: grid; grid-template-columns: 1fr auto; gap: 64px;">
+        <div data-dc-tpl="366">
+          <div data-dc-tpl="367" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Business enquiry</div>
+          <div data-dc-tpl="368" style="display: grid; grid-template-columns: 24px 1fr; row-gap: 8px; font-size: 17px;"><span data-dc-tpl="369" style="color: rgb(255, 31, 122);">E.</span><span data-dc-tpl="370">info@gemis.co.za</span></div>
+        </div>
+        <div data-dc-tpl="371">
+          <div data-dc-tpl="372" style="font-size: 15px; color: rgb(106, 107, 115); margin-bottom: 16px; text-transform: uppercase;">Social</div>
+          
+          <div data-dc-tpl="373" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px 48px; font-size: 17px;"><a data-dc-tpl="374" href="https://www.linkedin.com/showcase/gemis-design-studio" target="_blank" rel="noopener">LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-dc-tpl="375" data-m="rules8" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 24px; align-items: start; opacity: 0.25;">
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 95%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 38%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 37%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 50%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 63%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 76%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 89%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 32%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 45%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 44%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 57%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 70%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 83%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 96%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 39%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 52%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 51%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 64%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 77%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 90%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 33%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 46%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 59%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 58%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 71%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 84%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 97%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 40%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 53%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 66%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 65%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 78%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 91%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 34%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 47%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 60%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 73%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 86%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 99%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 42%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 55%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 68%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 72%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 85%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 98%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 41%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 54%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 67%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 80%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 93%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 36%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 49%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 62%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 75%;"></div>
+      </div>
+    
+      <div data-dc-tpl="377" style="display: flex; flex-direction: column; gap: 14px;">
+        <div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 79%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 92%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 35%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 48%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 61%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 74%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 87%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 30%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 43%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 56%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 69%;"></div><div data-dc-tpl="379" style="height: 1px; background: rgb(22, 22, 26); width: 82%;"></div>
+      </div>
+    
+  </div></section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var btn = document.getElementById('studioMenuBtn');
+  var drawer = document.getElementById('studioMenu');
+  if (btn && drawer) {
+    // the runtime wraps the ≡ in markup of its own, so find it by what it says
+    var glyph = [].slice.call(btn.querySelectorAll('span'))
+      .filter(function (s) { return !s.children.length && /^[\u2261\u00d7]$/.test(s.textContent.trim()); })[0];
+    var isOpen = false;
+    var set = function (open) {
+      isOpen = open;
+      // the drawer carries an inline display:flex, which outranks [hidden]
+      drawer.style.display = open ? 'flex' : 'none';
+      drawer.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (glyph) glyph.textContent = open ? '×' : '≡';
+    };
+    set(false);
+    btn.addEventListener('click', function () { set(!isOpen); });
+    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen) { set(false); btn.focus(); } });
+  }
+  var els = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  if (!els.length) return;
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+  setTimeout(function () {
+    els.forEach(function (el) { if (!el.classList.contains('in') && el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  }, 1500);
+})();
+</script>
+<script>if(/[?&]review=1/.test(location.search))document.documentElement.classList.add('review');</script>
+</body></html>

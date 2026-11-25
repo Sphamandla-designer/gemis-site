@@ -1,11 +1,11 @@
 // Mounts the prototype screens (tools/studio-case-shots.mjs) in device mockups,
 // in the studio's language — the #eef0f3 / #16161a grounds, the pink and orange
-// glow — for the ManaGEM and WasteMart case studies.
+// glow — for the ManaGEM, WasteMart and GEMIS website case studies.
 //
 //   studio/assets/cases/<slug>/<scene>.jpg   one image per case-study section
 //   studio/assets/cases/<slug>.jpg           the card image (Work grid, homepage)
 //
-// usage: node tools/studio-case-mocks.mjs <shots-dir>
+// usage: node tools/studio-case-mocks.mjs <shots-dir> [slug …]   (all of them when none is named)
 import { mkdirSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -16,6 +16,7 @@ const SHOTS = process.argv[2];
 if (!SHOTS) { console.error('usage: node tools/studio-case-mocks.mjs <shots-dir>'); process.exit(1); }
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/opt/node22/lib/node_modules/playwright');
+const ONLY = process.argv.slice(3);
 const src = (slug, name) => pathToFileURL(join(SHOTS, slug, name + '.png')).href;
 
 // ── the pieces ────────────────────────────────────────────────────────────
@@ -155,6 +156,26 @@ const SCENES = {
     ['build', 'phones3', ['job-on-site', 'sign-off-signed', 'shift'], true],
     ['results', 'phones2', ['job-on-site', 'route'], false],
   ],
+  'gemis-website': [
+    ['hero', 'fan', ['home', 'case', 'solutions'], false],
+    ['brief', 'laptop', ['home'], false],
+    ['challenge', 'stack', ['work', 'case-overview'], true],
+    ['home', 'stack', ['home-cases', 'home'], false],
+    ['cards', 'tilt', ['work'], true],
+    ['case', 'stack', ['case-walk', 'case-overview'], false],
+    ['solutions', 'stack', ['solutions-index', 'service'], true],
+    ['evidence', 'tilt', ['service-evidence'], false],
+    ['action', 'tilt', ['contact'], true],
+    ['phones', 'phones3', ['m-home', 'm-case', 'm-work'], false],
+    ['details', 'details', ['home', 'work', 'solutions-index', 'contact'], true, { crops: [
+      [0, [0, .1, .5, .3], 'Stepped block · uppercase light heading'],
+      [1, [.025, .46, .34, .28], 'One case card, on every page'],
+      [2, [0, .33, .42, .32], 'Numbered rows · hatch pictograms'],
+      [3, [.47, .63, .4, .3], 'Validation · consent · one action'],
+    ] }],
+    ['build', 'laptop', ['service'], false],
+    ['results', 'tilt', ['solutions'], true],
+  ],
 };
 
 // a page set from a string cannot read file:// images, so each scene is written beside the shots
@@ -169,6 +190,7 @@ const show = async (page, html) => {
 const browserApp = await chromium.launch();
 const page = await browserApp.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
 for (const [slug, scenes] of Object.entries(SCENES)) {
+  if (ONLY.length && !ONLY.includes(slug)) continue;
   const dir = join(ROOT, 'studio/assets/cases', slug); mkdirSync(dir, { recursive: true });
   for (const [name, layout, shots, dark, opt] of scenes) {
     await page.setViewportSize({ width: W, height: H });

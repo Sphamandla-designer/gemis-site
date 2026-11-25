@@ -28,7 +28,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 
 | Generated | Source | Rebuild with |
 |---|---|---|
-| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/privacy.html`, `studio/terms.html`, `studio/404.html`, `studio/work-<slug>.html` ×7, `studio/assets/dc-template.js` | the same names in `studio/src/`, and `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
+| `studio/index.html`, `studio/work.html`, `studio/about.html`, `studio/services.html`, `studio/contact.html`, `studio/privacy.html`, `studio/terms.html`, `studio/404.html`, `studio/work-<slug>.html` ×8, `studio/assets/dc-template.js` | the same names in `studio/src/`, and `studio/src/case.html` + `studio/src/cases.json` (rendered by `tools/build-studio-case.mjs`) | `node tools/build-studio.mjs` |
 | the whole `<main>` of `index.html` (between the `<!--#home:start-->` / `<!--#home:end-->` sentinels) | `scripts/build-home.py` (the nine sections of the owner's reference design, see **The home page**) from `stories.py`, `cases.py`, `services.py` | `python3 scripts/build-home.py` |
 | `solutions/`, `solutions/<service>/` ×9 | `scripts/solutions.py` (all page copy, evidence, FAQs, section order; every claim sourced in `docs/SOLUTIONS-EVIDENCE.md`) rendered by `scripts/build-solutions.py` | `python3 scripts/build-services.py` (calls it) |
 | `products/`, `insights/`, `insights/<article>/` ×3 | `scripts/services.py` | `python3 scripts/build-services.py` |
@@ -38,9 +38,9 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | every corporate page's `<!--#seo:head-->` block (title, description, robots, canonical, Open Graph, Twitter/X), its **H1 text**, its `<!--#seo:ld-->` JSON-LD graph, and `sitemap.xml` | `scripts/seo.py` — the one place a title, description, keyword, H1, share image or breadcrumb is set | `python3 scripts/apply-seo.py` (`--check` verifies) |
 | `assets/img/og/gemis-share.jpg`, `assets/img/apple-touch-icon.png`, `assets/img/favicon-32.png` | `tools/og-card.html` (the share card) and `assets/img/favicon.svg` | `node tools/render-og.mjs` |
 | `gemis-site-standalone.html` | every chrome page at any depth, `site.css`, the scripts, the font, images (the walkthrough stills included) and the MP4 videos | `python3 tools/build-site-standalone.py` — one 19 MB file; pages run in frames, videos reach them as blob URLs |
-| `gemis-studio-standalone.html` | the twelve studio pages (the five plus the seven case studies), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
+| `gemis-studio-standalone.html` | the studio pages (the seven plus one per case study, found by name), their runtime (`react.js`, `react-dom.js`, `dc-runtime.js`, `dc-template.js`, `dc-boot.js`), the twelve font files, every image and the mark | `python3 tools/build-studio-standalone.py` — one 3.3 MB file; pages run in frames, fonts as data URIs, **images as blob URLs** (the Design Canvas runtime splits inline style strings on `;`, so a `data:` image URI in a hero layer would be cut at `data:image/jpeg`); links to the corporate site open the live addresses |
 | `studio/assets/cases/<slug>.jpg` ×5 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone) | `node tools/studio-thumbs.mjs` |
-| `studio/assets/cases/managem.jpg`, `wastemart.jpg` and every image in `studio/assets/cases/managem/` (13) and `wastemart/` (12) | the two clickable prototypes at the root — `ManaGem.html` (the 2026 ManaGEM redesign) and `wastemart-driver.html` (the driver app) — captured by `tools/studio-case-shots.mjs`, which first makes their sample data neutral (real retailers, a real person and a phone number in the demo records become generic), then mounted in device mockups by `tools/studio-case-mocks.mjs` | `node tools/studio-case-shots.mjs <dir> && node tools/studio-case-mocks.mjs <dir>` |
+| `studio/assets/cases/managem.jpg`, `wastemart.jpg`, `gemis-website.jpg` and every image in `studio/assets/cases/managem/` (13), `wastemart/` (12) and `gemis-website/` (13) | the two clickable prototypes at the root — `ManaGem.html` (the 2026 ManaGEM redesign) and `wastemart-driver.html` (the driver app) — and the corporate site itself, captured by `tools/studio-case-shots.mjs` (which first makes the prototypes' sample data neutral: real retailers, a real person and a phone number in the demo records become generic; the corporate pages are captured as published), then mounted in device mockups by `tools/studio-case-mocks.mjs` | `node tools/studio-case-shots.mjs <dir> [slug …] && node tools/studio-case-mocks.mjs <dir> [slug …]` — name the slugs to re-render only those; recapture `gemis-website` after a visible change to the corporate site |
 | `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
 
 Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
@@ -115,7 +115,7 @@ Two traps in these builds:
   `cscard__go` (outlined again on the white card). Check with pixels, not
   class names: an audit that only looked at `btn`-like classes missed all of
   these, and a white fill can hide a label an older rule keeps white.
-- **The ManaGEM and WasteMart studio case studies are showcases** (2026-11-24):
+- **The ManaGEM, WasteMart and GEMIS website studio case studies are showcases** (2026-11-24; the GEMIS website, 2026-11-25):
   `"layout": "showcase"` in `studio/src/cases.json` renders them with
   `renderShowcase()` in `tools/build-studio-case.mjs` — every section pairs its
   copy with a mockup of the real prototype screens (a split, alternating
@@ -124,6 +124,14 @@ Two traps in these builds:
   Their copy uses only the case records and what the screens visibly show;
   the screens are sample data and each page says so. Never publish a capture
   that has not been through the neutralising in `studio-case-shots.mjs`.
+  The GEMIS website case (`gemis-website`, the owner's request) is the corporate
+  site itself, evidencing the Web Experience: its copy is sourced from
+  `docs/REDESIGN-AUDIT.md`, `REDESIGN-REPORT.md`, `UX-REVIEW.md`,
+  `SEO-IMPLEMENTATION.md` and `facts.md`; its results are build checks (pages,
+  axe, links), and it says visits, enquiries and rankings are not measured.
+  The studio home's **Selected work** shows WasteMart, ManaGEM and the GEMIS
+  website, in that order (`projects` in `studio/src/index.html`; the about
+  page's evidence strip follows it).
 - **Case studies run edge to edge** (the owner's instruction, 2026-11-24): content
   starts where the logo starts and ends where the menu ends. On the studio the
   case sections and the work index (`studio/src/work.html`, and the card grid

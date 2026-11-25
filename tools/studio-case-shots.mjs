@@ -1,16 +1,17 @@
-// Captures the real screens of the two prototypes in the repository, for the
-// studio's ManaGEM and WasteMart case studies.
+// Captures the real screens behind the studio's showcase case studies.
 //
 //   ManaGem.html          — the 2026 ManaGEM redesign, a clickable desktop prototype
 //   wastemart-driver.html — the WasteMart driver app, a clickable phone prototype
+//   the corporate site    — the GEMIS website itself (index.html, work/, solutions/ …),
+//                           captured as published, desktop and phone
 //
 // Both carry sample data. Before each capture the sample data is made neutral:
 // real company names in the prototypes' demo records become generic ones, real
 // people become sample names, and the one phone number goes (the site carries
 // none). Nothing else on a screen is altered.
 //
-// usage: node tools/studio-case-shots.mjs <out-dir>
-// then:  node tools/studio-case-mocks.mjs <out-dir>   (mounts them in device mockups)
+// usage: node tools/studio-case-shots.mjs <out-dir> [managem|wastemart|gemis-website …]
+// then:  node tools/studio-case-mocks.mjs <out-dir> [the same slugs]   (mounts them in device mockups)
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -18,7 +19,9 @@ import { createRequire } from 'node:module';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = process.argv[2];
-if (!OUT) { console.error('usage: node tools/studio-case-shots.mjs <out-dir>'); process.exit(1); }
+if (!OUT) { console.error('usage: node tools/studio-case-shots.mjs <out-dir> [slug …]'); process.exit(1); }
+const ONLY = process.argv.slice(3);
+const want = (slug) => !ONLY.length || ONLY.includes(slug);
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/opt/node22/lib/node_modules/playwright');
 
@@ -47,7 +50,7 @@ const neutralise = (page) => page.evaluate((pairs) => {
 const browser = await chromium.launch();
 
 // ── ManaGEM ──────────────────────────────────────────────────────────────
-{
+if (want('managem')) {
   const out = join(OUT, 'managem'); mkdirSync(out, { recursive: true });
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
   await page.goto(pathToFileURL(join(ROOT, 'ManaGem.html')).href);
@@ -84,7 +87,7 @@ const browser = await chromium.launch();
 }
 
 // ── the WasteMart driver app ─────────────────────────────────────────────
-{
+if (want('wastemart')) {
   const out = join(OUT, 'wastemart'); mkdirSync(out, { recursive: true });
   const page = await browser.newPage({ viewport: { width: 1440, height: 960 }, deviceScaleFactor: 3 });
   // the app re-renders its own data, so neutralise the prototype's source, not just the screen
@@ -144,5 +147,36 @@ const browser = await chromium.launch();
   await tap('Activity'); await shot('activity');
   await tap('Shift Controls'); await shot('shift');
   await page.close();
+}
+// ── the GEMIS website (the corporate site at the repository root) ─────────
+// Its own published pages, as they stand: no sample data to neutralise, and no
+// phone number anywhere on it. Every reveal is forced in before a capture.
+if (want('gemis-website')) {
+  const out = join(OUT, 'gemis-website'); mkdirSync(out, { recursive: true });
+  const go = async (page, file, sel) => {
+    await page.goto(pathToFileURL(join(ROOT, file)).href, { waitUntil: 'load' });
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += 600) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 40)); }
+      scrollTo(0, 0); document.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in'));
+    });
+    await page.waitForTimeout(400);
+    if (sel) await page.evaluate((q) => { const e = document.querySelector(q); scrollTo(0, e.getBoundingClientRect().top + scrollY - 48); }, sel);
+    await page.waitForTimeout(2600);   // the hero's words rise in turn
+  };
+  const desk = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+  for (const [name, file, sel] of [
+    ['home', 'index.html'], ['home-cases', 'index.html', '#selected'],
+    ['work', 'work/index.html', '#all'],
+    ['case', 'work/sonke/index.html'], ['case-overview', 'work/sonke/index.html', '#overview'], ['case-walk', 'work/sonke/index.html', '#walkthrough'],
+    ['solutions', 'solutions/index.html'], ['solutions-index', 'solutions/index.html', '#services'],
+    ['service', 'solutions/system-integration/index.html'], ['service-evidence', 'solutions/system-integration/index.html', '#evidence'],
+    ['contact', 'contact.html', '#enquire'], ['story-numbers', 'our-story/index.html', '#numbers'],
+  ]) { await go(desk, file, sel); await desk.screenshot({ path: join(out, name + '.png') }); console.log('gemis-website/' + name); }
+  await desk.close();
+  const mob = await browser.newPage({ viewport: { width: 392, height: 872 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+  for (const [name, file, sel] of [
+    ['m-home', 'index.html'], ['m-case', 'work/sonke/index.html'], ['m-work', 'work/index.html', '#all'], ['m-contact', 'contact.html', '#enquire'],
+  ]) { await go(mob, file, sel); await mob.screenshot({ path: join(out, name + '.png') }); console.log('gemis-website/' + name); }
+  await mob.close();
 }
 await browser.close();

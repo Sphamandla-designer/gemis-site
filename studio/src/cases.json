@@ -902,6 +902,328 @@
           }
         ]
       }
+    },
+    {
+      "slug": "gemis-website",
+      "name": "GEMIS website",
+      "nda": "full",
+      "ndaAgreed": true,
+      "client": "GEM Information Systems — the studio’s own company",
+      "anonymised": "The website of a business software company",
+      "industry": "Business software and Microsoft Cloud services",
+      "service": "Web Experience",
+      "serviceId": "web",
+      "timeline": "Rebuilt in 2026: the case-study-led redesign (October), the UX pass and the SEO implementation (November)",
+      "builtBy": "GEMIS Studio",
+      "result": "30 pages, and every claim traces to a record",
+      "resultNote": "As built — checked on every change",
+      "image": "assets/cases/gemis-website.jpg",
+      "imageAlt": "The GEMIS website in three browser windows: the home page in front, a case study and the Solutions directory behind",
+      "problem": [
+        "GEM Information Systems has built business systems in South Africa since 2014 — more than fifty of them, across five or more sectors. Its website did not show that work. The home page said what the company believes rather than what it builds, for whom, and with what proof; the client section was made of placeholder quotations; and a visitor had to dig to find a single real project.",
+        "The site had also grown page by page. Its stylesheet carried layers that contradicted each other, the same action had four different names, and nothing tied a claim on a page to the record behind it."
+      ],
+      "findingsNote": "From the audit that opened the redesign (October 2026) and the UX review that followed it (November 2026), both kept with the site’s source.",
+      "findings": [
+        "The home page said what GEMIS believes, not what it builds, for whom, or the proof.",
+        "Its client section was made of placeholder quotations, and no project was featured.",
+        "Case study cards named the industry, but not GEMIS’s role, the project’s status or what was built.",
+        "The one action had four names, none of them in the bar, and body copy was set at 14px.",
+        "The stylesheet had been written page by page, and its layers contradicted each other."
+      ],
+      "changes": [
+        {
+          "decision": "Lead with the work: every page opens on a real project or the evidence for it.",
+          "why": "A company that builds systems is judged by the systems; the proof belongs before the pitch, not after a long scroll."
+        },
+        {
+          "decision": "Trace every claim to a record — and say so when the record is silent.",
+          "why": "Nothing on the site can be invented: the copy is generated from the project records, the figures come from a confirmed list, and unconfirmed items stay hidden until they are approved."
+        },
+        {
+          "decision": "One design language and one case card, used on every page.",
+          "why": "A visitor who has read one card can read them all, and a change made once reaches the whole site."
+        },
+        {
+          "decision": "One primary action, named the same everywhere: Book a discovery session.",
+          "why": "Four names for the same step made visitors choose between options that were the same option."
+        }
+      ],
+      "screensNote": "Every screen is the GEMIS website as published.",
+      "screens": [],
+      "build": "Designed and built by GEMIS Studio. The site is static HTML generated from data files — the project records, the solutions, the confirmed facts and one SEO record — so a fact changes in one place and every page that carries it follows. It is served by GitHub Pages.",
+      "resultsNumbers": [
+        {
+          "n": "30",
+          "l": "pages, each with its own title, description and structured data, written from one SEO record"
+        },
+        {
+          "n": "0",
+          "l": "serious or critical accessibility issues on any page, checked with axe at every change"
+        },
+        {
+          "n": "0",
+          "l": "broken internal links across the site, checked at every change"
+        }
+      ],
+      "resultsQualitative": [],
+      "resultsDesignedFor": [
+        "Visitors who find the evidence for a capability on the page that offers it.",
+        "Enquiries that name the problem, because every route leads to the same discovery form."
+      ],
+      "resultsNotRecorded": "Visits, enquiries and search rankings since the rebuild have not been measured yet, so none are claimed.",
+      "quote": null,
+      "quoteTbc": "No quotation about the website itself is approved for publication.",
+      "cta": {
+        "label": "Evidences the Web Experience. Start with a teardown",
+        "href": "contact.html#web"
+      },
+      "tbc": [
+        "Visits, enquiries and search rankings since the rebuild are not yet measured."
+      ],
+      "sources": [
+        "docs/REDESIGN-AUDIT.md and docs/REDESIGN-REPORT.md — the audit and the case-study-led redesign (October 2026)",
+        "docs/UX-REVIEW.md — the UX pass and its checks (November 2026)",
+        "docs/SEO-IMPLEMENTATION.md and scripts/seo.py — titles, descriptions, structured data and the sitemap (November 2026)",
+        "scripts/facts.md — since 2014, 50+ systems, 5+ sectors",
+        "The corporate site at the repository root (screens captured by tools/studio-case-shots.mjs)"
+      ],
+      "layout": "showcase",
+      "seo": {
+        "title": "GEMIS Website Redesign Case Study | GEMIS Studio",
+        "description": "How GEMIS Studio rebuilt the GEMIS website around real evidence: case-study-led pages, one design system, accessible markup and SEO from one source.",
+        "keywords": "B2B website redesign, corporate website UX, case study website, design system, technical SEO, accessibility, GEMIS"
+      },
+      "aboutType": "WebSite",
+      "showcase": {
+        "h1": "Rebuilding the GEMIS website so every claim shows its proof",
+        "intro": "GEM Information Systems has built business systems in South Africa since 2014 — more than fifty of them, across five or more sectors. In 2026 the studio rebuilt the company’s own website to show that work rather than describe it: every page leads with a real project, and every claim traces to a record.",
+        "spec": [
+          [
+            "Client",
+            "GEM Information Systems — the studio’s own company"
+          ],
+          [
+            "Service evidenced",
+            "Web Experience"
+          ],
+          [
+            "Scope",
+            "30 pages: home, case studies, nine solutions, products, insights, our story, contact"
+          ],
+          [
+            "Deliverable",
+            "A static site generated from data files"
+          ],
+          [
+            "Built by",
+            "GEMIS Studio"
+          ]
+        ],
+        "hero": {
+          "img": "assets/cases/gemis-website/hero.jpg",
+          "alt": "The GEMIS website in three browser windows: the home page in front, the Sonke Gender Justice case study and the Solutions directory behind",
+          "caption": "The rebuilt GEMIS website: home, a case study and the Solutions directory."
+        },
+        "note": "Every screen on this page is the GEMIS website as published. The projects it shows are GEMIS’s real case studies; the interfaces inside them are stills from each project’s case-study video, illustrated for the video.",
+        "sections": [
+          {
+            "type": "split",
+            "id": "brief",
+            "kicker": "The brief",
+            "h2": "A company that builds systems",
+            "h2accent": "should show them.",
+            "paras": [
+              "GEMIS designs, builds and supports the business systems South African companies run on — enquiries, jobs, claims, stock, reporting — on the Microsoft Cloud, and stays with them for years. The website had to say that in its first lines, and then prove it.",
+              "The brief: lead with the work, name the service, the market and the proof, and give every visitor one clear next step."
+            ],
+            "mock": {
+              "img": "assets/cases/gemis-website/brief.jpg",
+              "alt": "The GEMIS home page on a laptop: “Custom business software built around how your business works” in a white stepped block on midnight navy, with the three confirmed figures beneath",
+              "caption": "The home page: what GEMIS builds, for whom, and the three confirmed figures — 12+ years, 50+ systems, 5+ sectors."
+            }
+          },
+          {
+            "type": "split",
+            "id": "challenge",
+            "dark": true,
+            "kicker": "The challenge",
+            "h2": "A site that described",
+            "h2accent": "instead of showing.",
+            "paras": [
+              "The site had grown page by page, and the audit that opened the redesign read every page and every asset before anything changed. What it found:"
+            ],
+            "list": [
+              "The home page said what GEMIS believes, not what it builds, for whom, or the proof.",
+              "Its client section was made of placeholder quotations, and no project was featured.",
+              "Case study cards named the industry, but not GEMIS’s role, the project’s status or what was built.",
+              "The one action had four names, none of them in the bar, and body copy was set at 14px.",
+              "The stylesheet had been written page by page, and its layers contradicted each other."
+            ],
+            "mock": {
+              "img": "assets/cases/gemis-website/challenge.jpg",
+              "alt": "Two GEMIS windows: the Case Studies index with its numbered cards, and a case study’s project snapshot",
+              "caption": "What replaced it: cards that name the context, GEMIS’s role and the status, and a snapshot at the top of every case study."
+            }
+          },
+          {
+            "type": "chapters",
+            "id": "designed",
+            "kicker": "What we designed",
+            "h2": "Proof first,",
+            "h2accent": "then the pitch.",
+            "lead": "Every page was rebuilt around the evidence GEMIS already had — seven case-study videos, the project records and a short list of confirmed figures — and nothing was written that those records do not support.",
+            "chapters": [
+              {
+                "h3": "A home page that leads with proof",
+                "paras": [
+                  "The hero names the service, the market and the proof; the three confirmed figures sit under the actions, and the client marks follow straight after. Then the nine disciplines, how GEMIS works, and seven systems in production, each with its story on video.",
+                  "The order alternates navy and white, so no two dark sections meet."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/home.jpg",
+                  "alt": "Two GEMIS windows: the home page hero, and the home page’s carousel of case studies, each tile with its industry, a still from its video and its play control",
+                  "caption": "The home page: the hero, then seven systems in production, each with its story on video."
+                }
+              },
+              {
+                "h3": "One case card, on every page",
+                "paras": [
+                  "Every project is shown by the same card: a numeral and the industry, a still from the project’s video with its duration and a play control, the name, one line on what it does, the status and one action.",
+                  "The Case Studies index, the home page, the related rows, the service pages and the articles all use it — and the index filters it by industry and by what the system had to do."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/cards.jpg",
+                  "alt": "The Case Studies index: three numbered navy cards for SBS Waterproofing, HomeAssist and WasteMart, each with a still, a play control and a one-line summary",
+                  "caption": "The portfolio: one card, filterable by industry and capability."
+                }
+              },
+              {
+                "h3": "Case studies that show their working",
+                "paras": [
+                  "Each case study runs the same way: a project snapshot, the business challenge, what the design was based on, the workflow as a diagram, the system step by step in stills from its video, the key decisions with their reasons, and the outcomes split into delivered, verified and intended.",
+                  "Where the record is silent — no research report, no measured result — the page says so rather than guessing."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/case.jpg",
+                  "alt": "Two windows from the Sonke Gender Justice case study: the project snapshot, and the step-by-step walkthrough with a still from the case-study video",
+                  "caption": "A case study: the snapshot, then the system step by step."
+                }
+              },
+              {
+                "h3": "Nine disciplines, each with its evidence",
+                "paras": [
+                  "Solutions opens on one drawing — nine disciplines into one accountable team — then a numbered index of what each is for and when to choose it.",
+                  "Each of the nine service pages has its own drawing and its own order of sections, and its evidence names only the projects whose record shows that work, with a line on why each is relevant there."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/solutions.jpg",
+                  "alt": "Two GEMIS windows: the System Integration service page with its before-and-after drawing, and the Solutions index of disciplines with their pictograms",
+                  "caption": "The Solutions index and a service page, each discipline with its own drawing."
+                }
+              },
+              {
+                "h3": "Evidence on the page that makes the offer",
+                "paras": [
+                  "A visitor reading about system integration sees the integration GEMIS has run — the Trans Hex financial import, scheduled, de-duplicated and logged — with GEMIS’s role, the status and a link to the full story, without leaving the page."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/evidence.jpg",
+                  "alt": "The “Where this has been done” section of the System Integration page: the Trans Hex case, its role and status, and a link to the case study",
+                  "caption": "Where this has been done: the proof beside the offer."
+                }
+              },
+              {
+                "h3": "One action, named the same everywhere",
+                "paras": [
+                  "Four names for the same step became one: Book a discovery session — the last item in the bar on every page, and the end of every route.",
+                  "The form checks each field as the visitor leaves it, lists every problem in one summary that takes focus, asks for consent in plain words, and says what will happen when it is sent."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/action.jpg",
+                  "alt": "The Contact page: “Book a discovery session”, the enquiry form with its consent line, and the send button",
+                  "caption": "The discovery form: validation, consent and one action."
+                }
+              },
+              {
+                "h3": "The same site on a phone",
+                "paras": [
+                  "Every page was checked from 360px to 1920px wide with no sideways scroll. On a phone the sub-navigation keeps only the page’s name and the action, and the case cards stack in one column."
+                ],
+                "mock": {
+                  "img": "assets/cases/gemis-website/phones.jpg",
+                  "alt": "Three phones showing the GEMIS website: the home page in front, a case study and the Case Studies index either side",
+                  "caption": "The home page, a case study and the portfolio on a phone."
+                }
+              }
+            ]
+          },
+          {
+            "type": "wide",
+            "id": "details",
+            "dark": true,
+            "kicker": "The interface",
+            "h2": "One design",
+            "h2accent": "language.",
+            "paras": [
+              "Midnight navy and white, one typeface, uppercase light headings, small tracked labels, square buttons, and blocks cut with a stepped notch. Where a stock photograph would have gone there is a pictogram — a silhouette filled with fine vertical lines — so every image on the site is either a drawing or the real work.",
+              "Every button on a navy ground is white. Every number read as a number is a light numeral. The decisions live in one place at the end of one stylesheet, so a change reaches every page."
+            ],
+            "mock": {
+              "img": "assets/cases/gemis-website/details.jpg",
+              "alt": "Four close-ups of the GEMIS website: an uppercase heading in a white stepped block, a numbered case card, numbered rows with hatch pictograms, and the form’s consent line with its send button",
+              "caption": "Close-ups: the stepped block, the case card, the numbered rows and the form."
+            }
+          },
+          {
+            "type": "split",
+            "id": "build",
+            "kicker": "Build and handoff",
+            "h2": "Built so the facts",
+            "h2accent": "live in one place.",
+            "paras": [
+              "The site is static HTML generated from data files: the project records, the solutions, the confirmed figures and one SEO record. A fact is changed once, and every page that carries it follows.",
+              "Each page has a unique title and description and one structured-data graph, written from that SEO record along with the sitemap. Analytics load only after a visitor accepts. There is no phone number anywhere on the site. It is served by GitHub Pages."
+            ],
+            "mock": {
+              "img": "assets/cases/gemis-website/build.jpg",
+              "alt": "The System Integration service page on a laptop: “Connect your business systems and eliminate manual data transfers”, with its before-and-after drawing",
+              "caption": "A service page, generated from its record."
+            }
+          },
+          {
+            "type": "results",
+            "id": "results",
+            "dark": true,
+            "kicker": "Results",
+            "h2": "Checked on",
+            "h2accent": "every change.",
+            "numbers": [
+              {
+                "n": "30",
+                "l": "pages, each with its own title, description and structured data"
+              },
+              {
+                "n": "0",
+                "l": "serious or critical accessibility issues, on any page (axe)"
+              },
+              {
+                "n": "0",
+                "l": "broken internal links across the site"
+              }
+            ],
+            "paras": [
+              "These are the checks the site is held to before any change ships: accessibility, no sideways scroll from 360px to 1920px wide, the internal links, the shared header and footer, and the SEO record."
+            ],
+            "note": "These are build checks, not business results. Visits, enquiries and search rankings since the rebuild have not been measured yet, so none are claimed.",
+            "mock": {
+              "img": "assets/cases/gemis-website/results.jpg",
+              "alt": "The Solutions directory in a browser window: nine disciplines drawn into one accountable team",
+              "caption": "Nine disciplines, one accountable team."
+            }
+          }
+        ]
+      }
     }
   ]
 }
