@@ -386,7 +386,7 @@ decision. The rules that must survive later work:
   (1920×1080 JPEG: navy, the team standard, and light, plain and per person with the
   name and role; the centre kept calm for the person, the hatch coarse so video does
   not shimmer), **LinkedIn banners** (the GEMIS company page; the studio's showcase
-  page in the studio's language; a 1584×396 profile cover per person, to the researched
+  page in the studio's language; 1584×396 profile covers per person, navy and light, to the researched
   rules in `docs/LINKEDIN-BANNERS.md`: one message, the person's `focus` from
   `staff.json`, never the name, title or email; everything that matters between
   x 620 and 1270; their pictogram in the white block) and **business
