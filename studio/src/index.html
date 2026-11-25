@@ -1217,9 +1217,9 @@ class Component extends DCLogic {
       ctaStyle: { position: 'fixed', top: '28px', right: 'calc(42px + 86px)', zIndex: 51, background: this.state.navDark ? '#fff' : '#ff1f7a', color: '#16161a', borderRadius: '999px', padding: '10px 18px', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em', transition: 'background .4s, color .4s', lineHeight: '1.4' }, marquee, heroScene, heroMove, heroLeave, rotator, reasons, form: f, setField, setConsent, blurField, errors, inv, errStyle, inputStyle, formNote, pickNotSure, serviceChips, submitForm, resetForm, formSent: this.state.sent, formOpen: !this.state.sent, formName: f.name || 'there', partnerMarquee, clock: this.state.clock, darkBg, darkBg2, darkBg3, lightBg, lightBg2, lightBg3, ladder, ladderPanels, onLadderKey, activeStep: ladderData[si], prevStep: () => this.setState({ step: (si + sn - 1) % sn }), nextStep: () => this.setState({ step: (si + 1) % sn }),
       // slug matches the record in src/cases.json, so a card links to the project's own page
       projects: [
-        { slug: 'managem', name: 'ManaGEM', desc: 'Business management platform · one record from enquiry to invoice · about a dozen companies. Evidences: Interface Refresh Sprint.', img: 'assets/cases/managem.jpg' },
         { slug: 'wastemart', name: 'WasteMart', desc: 'Quote to collection in one system · driver app · six hours a week back, per depot. Evidences: Product Teardown.', img: 'assets/cases/wastemart.jpg' },
-        { slug: 'sbs-waterproofing', name: 'SBS Waterproofing', desc: 'Website and campaigns, then the business system · enquiry to project · in daily use since 2015. Evidences: Web Experience.', img: 'assets/cases/sbs-waterproofing.jpg' }
+        { slug: 'managem', name: 'ManaGEM', desc: 'Business management platform · one record from enquiry to invoice · about a dozen companies. Evidences: Interface Refresh Sprint.', img: 'assets/cases/managem.jpg' },
+        { slug: 'gemis-website', name: 'GEMIS website', desc: 'The company’s own site, rebuilt around its evidence · 30 pages · every claim traced to a record. Evidences: Web Experience.', img: 'assets/cases/gemis-website.jpg' }
       ],
       clients, clientPanels, onClientKey, activeClient: clientsData[ci],
       prevClient: () => this.setState({ client: (ci + n - 1) % n }),
