@@ -3,36 +3,66 @@
     "slug": "graeme-mehl",
     "name": "Graeme Mehl",
     "role": "CEO",
-    "email": "graeme@gemis.co.za"
+    "email": "graeme@gemis.co.za",
+    "focus": [
+      "Strategic leadership.",
+      "Quality assurance."
+    ],
+    "picto": "compass"
   },
   {
     "slug": "leon-small",
     "name": "Leon Small",
     "role": "Director",
-    "email": "leon@gemis.co.za"
+    "email": "leon@gemis.co.za",
+    "focus": [
+      "Client liaison.",
+      "System scoping."
+    ],
+    "picto": "handoff"
   },
   {
     "slug": "byron-thompson",
     "name": "Byron Thompson",
     "role": "Developer",
-    "email": "byron@gemis.co.za"
+    "email": "byron@gemis.co.za",
+    "focus": [
+      "Architecture.",
+      "Coding standards."
+    ],
+    "picto": "blocks"
   },
   {
     "slug": "sebastian-vries",
     "name": "Sebastian Vries",
     "role": "Senior Developer",
-    "email": "sebastian@gemis.co.za"
+    "email": "sebastian@gemis.co.za",
+    "focus": [
+      "C# & Azure SQL.",
+      "SaaS systems."
+    ],
+    "picto": "enterprise-saas"
   },
   {
     "slug": "vanessa-davis",
     "name": "Vanessa Davis",
     "role": "Senior Full Stack Developer",
-    "email": "vanessa@gemis.co.za"
+    "email": "vanessa@gemis.co.za",
+    "focus": [
+      "Testing & data validation.",
+      "User support."
+    ],
+    "picto": "shield-check"
   },
   {
     "slug": "sphamandla-xaba",
     "name": "Sphamandla Xaba",
     "role": "UI/UX Designer",
-    "email": "sphamandla@gemis.co.za"
+    "email": "sphamandla@gemis.co.za",
+    "focus": [
+      "UI/UX design.",
+      "Head of GEMIS Studio."
+    ],
+    "picto": "ux-design"
   }
 ]

@@ -300,34 +300,42 @@ function studioNext() {
 }
 
 // ---- personal LinkedIn banners (a profile cover is 1584×396 px) ---------------------------
-// Each one is the person's business card laid out wide, so the cover, the card and the
-// signature read as one set: the white stepped panel with the name in the uppercase light
-// heading, the navy rule, the role and the "+" list (their email, the site, the company),
-// and the navy column with the stone and their initials as a giant light numeral. LinkedIn
-// lays the profile photo over the lower left (a circle about 300 px across, from about
-// 190 px down), so that corner carries only the pattern, with the logo above it.
+// Built to the published guidance for profile covers (docs/LINKEDIN-BANNERS.md):
+//  · one message, not a business card. LinkedIn prints the name and the headline under the
+//    cover, so the cover does not repeat them and carries no contact details. The message is
+//    what this person does at GEMIS (their confirmed line on Our Story, `focus` in
+//    brand/staff.json), set in the slogan's two-line rhythm, with the slogan beneath.
+//  · the safe zone. The profile photo covers the lower left (about 568×264 px of it, more on
+//    a phone) and narrow screens trim the ends, so the logo, the message and the slogan sit
+//    between x 620 and 1270, in the upper three quarters. The left carries only the pattern;
+//    the white stepped block on the right holds the person's pictogram and the site, and
+//    nothing is lost if it is trimmed.
+//  · legible small. A phone shows the cover about 400 px wide, so the message is set large
+//    (up to 46 px here) and shrinks only to fit the column.
+const PICTOS = JSON.parse(execFileSync('python3', ['-c', `
+import importlib.util, json
+s = importlib.util.spec_from_file_location('B', 'scripts/build-stories.py'); B = importlib.util.module_from_spec(s); s.loader.exec_module(B)
+print(json.dumps(B.PICTO))`], { cwd: R, encoding: 'utf8' }));
 function personalBanner(p) {
   const d = defs({ hatch: 7, line: 1.2, dot: 11, dotR: 1.1 });
-  const ini = initials(p);
-  // the white panel sits inside a navy frame and is notched top right, as the site's cards are
-  const panel = 'M600 40H1196V96H1252V356H600Z';
-  const row = (top, txt) => `<p class="t" style="left:648px;top:${top}px;width:556px;font-size:21px;color:${NAVY};border-top:1px solid ${LINE};padding-top:12px"><span style="font-weight:300;display:inline-block;width:28px">+</span>${txt}</p>`;
+  const k = ++uid;
+  const block = 'M1340 36H1548V360H1296V88H1340Z';   // the white stepped block, inside a navy frame
   return `<div class="pg"><svg viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">${d.svg}
+    <pattern id="ph${k}" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="${NAVY}"/></pattern>
     <rect width="1584" height="396" fill="${NAVY}"/><rect width="1584" height="396" fill="url(#${d.hatch})"/>
-    <rect x="0" y="170" width="560" height="226" fill="url(#${d.dots})" opacity=".45"/>
-    <rect x="1262" y="250" width="140" height="146" fill="url(#${d.dots})" opacity=".45"/>
-    <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M120 470L700 -60"/><path d="M1240 430L1640 40" opacity=".6"/></g>
-    ${logo(56, 52, 330, '#fff')}
-    <path d="${panel}" fill="#fff"/>
-    ${mark(1488, 44, 52, '#fff')}
-    <text transform="translate(1556 352) rotate(-90)" fill="#fff" opacity=".5" font-family="Montserrat" font-weight="500" font-size="10.5" letter-spacing="3">GEM INFORMATION SYSTEMS</text>
-    <text x="1404" y="352" text-anchor="middle" fill="#fff" font-family="Montserrat" font-weight="200" font-size="${/[MW]/.test(ini) ? 138 : 172}" letter-spacing="-8">${ini}</text>
+    <rect x="0" y="0" width="550" height="396" fill="url(#${d.dots})" opacity=".45"/>
+    <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M60 470L640 -60"/><path d="M170 480L750 -50" opacity=".5"/></g>
+    ${logo(620, 44, 250, '#fff')}
+    <path d="${block}" fill="#fff"/>
+    <path d="M1340 36V88H1296" fill="none" stroke="#fff" stroke-opacity=".35"/>
+    <svg x="1346" y="96" width="152" height="152" viewBox="0 0 120 120"><path d="${PICTOS[p.picto]}" fill="url(#ph${k})" fill-rule="evenodd"/></svg>
+    <path d="M1326 286H1518" stroke="${LINE}"/>
   </svg>
-  <p class="t lab" style="left:58px;top:128px;font-size:11.5px;color:${SOFT}">${CO.slogan[0]}&nbsp; ${CO.slogan[1]}</p>
-  <p class="t" style="left:646px;top:74px;font-size:44px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:${NAVY};line-height:1">${p.name}</p>
-  <span style="position:absolute;left:648px;top:138px;width:46px;height:3px;background:${NAVY}"></span>
-  <p class="t lab" style="left:649px;top:154px;font-size:14px;color:${MUTE}">${p.role}</p>
-  ${row(194, p.email)}${row(245, CO.web)}${row(296, `${CO.legal.replace(' (Pty) Ltd', '')}&nbsp;&nbsp;·&nbsp;&nbsp;${CO.city}`)}
+  <p class="t fit" data-max="650" style="left:618px;top:116px;font-size:46px;line-height:1.2;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:#fff">${p.focus[0]}<br><span style="color:${SOFT};font-weight:200">${p.focus[1]}</span></p>
+  <span style="position:absolute;left:620px;top:252px;width:44px;height:2px;background:#fff"></span>
+  <p class="t lab" style="left:620px;top:272px;font-size:16px;letter-spacing:.15em;color:#fff;font-weight:600">${CO.slogan[0]}&nbsp; <span style="color:${SOFT};font-weight:400">${CO.slogan[1]}</span></p>
+  <p class="t lab" style="left:1326px;top:304px;width:192px;text-align:center;font-size:13.5px;letter-spacing:.13em;color:${NAVY};font-weight:600">${CO.web}</p>
+  <script>document.fonts.ready.then(() => document.querySelectorAll('.fit').forEach((el) => { let s = parseFloat(el.style.fontSize); while (el.offsetWidth > +el.dataset.max && s > 28) el.style.fontSize = (s -= 1) + 'px'; }));</script>
   </div>`;
 }
 
