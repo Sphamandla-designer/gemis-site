@@ -11,7 +11,7 @@ Everything here is generated. Edit the generator, not the output.
 | Meeting backgrounds (Zoom, Teams) | `meeting-backgrounds/GEMIS-Meeting-Background-Navy.jpg` (the team standard), `-Light.jpg`, and `meeting-backgrounds/people/<person>-{navy,light}.jpg` with the name and role | `node tools/make-brand-print.mjs` |
 | LinkedIn banner | `linkedin/GEMIS-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
 | LinkedIn banner, GEMIS Studio | `linkedin/GEMIS-Studio-LinkedIn-Banner.png` (1128×191), `@2x` (2256×382) | `node tools/make-brand-print.mjs` |
-| LinkedIn banners, personal | `linkedin/people/<person>.png` (1584×396, LinkedIn's profile cover size) | `node tools/make-brand-print.mjs` |
+| LinkedIn banners, personal | `linkedin/people/<person>-navy.png` and `<person>-light.png` (1584×396, LinkedIn's profile cover size) | `node tools/make-brand-print.mjs` |
 | Business cards | `business-cards/<person>.pdf` (print), `<person>-front.png`, `-back.png`, `all.png` | `node tools/make-brand-print.mjs` |
 
 The team is in `staff.json`, shared by the signatures and the business cards. Add a
@@ -80,8 +80,8 @@ GEMIS banner; the lower left stays quiet for the page logo.
 
 ## Personal LinkedIn banners
 
-One per person in `staff.json`, at exactly 1584×396, the size LinkedIn asks for on a
-profile cover, designed to the guidance in `docs/LINKEDIN-BANNERS.md`:
+Two per person in `staff.json`, navy and light, at exactly 1584×396, the size LinkedIn
+asks for on a profile cover, designed to the guidance in `docs/LINKEDIN-BANNERS.md`:
 
 - **One message, not a business card.** LinkedIn prints the name and the headline under
   the cover, so the cover does not repeat them and carries no contact details. The

@@ -60,9 +60,9 @@ function defs(u) {
   const id = ++uid;
   const ids = { hatch: `h${id}`, dots: `d${id}`, streak: `s${id}` };
   const svg = `<defs>
-    <pattern id="${ids.hatch}" width="${u.hatch}" height="${u.hatch}" patternUnits="userSpaceOnUse"><rect width="${u.line}" height="${u.hatch}" fill="#fff" opacity="${u.hatchOp ?? .085}"/></pattern>
-    <pattern id="${ids.dots}" width="${u.dot}" height="${u.dot}" patternUnits="userSpaceOnUse"><circle cx="${u.dot / 6}" cy="${u.dot / 6}" r="${u.dotR}" fill="#fff" opacity=".34"/></pattern>
-    <linearGradient id="${ids.streak}" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <pattern id="${ids.hatch}" width="${u.hatch}" height="${u.hatch}" patternUnits="userSpaceOnUse"><rect width="${u.line}" height="${u.hatch}" fill="${u.ink ?? '#fff'}" opacity="${u.hatchOp ?? .085}"/></pattern>
+    <pattern id="${ids.dots}" width="${u.dot}" height="${u.dot}" patternUnits="userSpaceOnUse"><circle cx="${u.dot / 6}" cy="${u.dot / 6}" r="${u.dotR}" fill="${u.ink ?? '#fff'}" opacity=".34"/></pattern>
+    <linearGradient id="${ids.streak}" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="${u.ink ?? '#fff'}" stop-opacity="0"/><stop offset=".5" stop-color="${u.ink ?? '#fff'}" stop-opacity=".5"/><stop offset="1" stop-color="${u.ink ?? '#fff'}" stop-opacity="0"/></linearGradient>
   </defs>`;
   return { svg, ...ids };
 }
@@ -316,25 +316,32 @@ const PICTOS = JSON.parse(execFileSync('python3', ['-c', `
 import importlib.util, json
 s = importlib.util.spec_from_file_location('B', 'scripts/build-stories.py'); B = importlib.util.module_from_spec(s); s.loader.exec_module(B)
 print(json.dumps(B.PICTO))`], { cwd: R, encoding: 'utf8' }));
-function personalBanner(p) {
-  const d = defs({ hatch: 7, line: 1.2, dot: 11, dotR: 1.1 });
+function personalBanner(p, tone = 'navy') {
+  // navy: the midnight ground with a white block. light: the page's off-white with a navy block,
+  // for a profile whose photo is dark or that wants a brighter page.
+  const dark = tone === 'navy';
+  const bg = dark ? NAVY : '#eef0f5', fg = dark ? '#fff' : NAVY, sub = dark ? SOFT : '#6a7088';
+  const blockBg = dark ? '#fff' : NAVY, blockFg = dark ? NAVY : '#fff';
+  const d = defs({ hatch: 7, line: 1.2, dot: 11, dotR: 1.1, ink: fg, hatchOp: dark ? .085 : .06 });
   const k = ++uid;
-  const block = 'M1340 36H1548V360H1296V88H1340Z';   // the white stepped block, inside a navy frame
+  const block = 'M1340 36H1548V360H1296V88H1340Z';   // the stepped block, inside a frame of the ground
   return `<div class="pg"><svg viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">${d.svg}
-    <pattern id="ph${k}" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="${NAVY}"/></pattern>
-    <rect width="1584" height="396" fill="${NAVY}"/><rect width="1584" height="396" fill="url(#${d.hatch})"/>
-    <rect x="0" y="0" width="550" height="396" fill="url(#${d.dots})" opacity=".45"/>
+    <pattern id="ph${k}" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="1.3" height="4" fill="${blockFg}"/></pattern>
+    <pattern id="bh${k}" width="7" height="7" patternUnits="userSpaceOnUse"><rect width="1.2" height="7" fill="#fff" opacity=".085"/></pattern>
+    <rect width="1584" height="396" fill="${bg}"/><rect width="1584" height="396" fill="url(#${d.hatch})"/>
+    <rect x="0" y="0" width="550" height="396" fill="url(#${d.dots})" opacity="${dark ? .45 : .5}"/>
     <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M60 470L640 -60"/><path d="M170 480L750 -50" opacity=".5"/></g>
-    ${logo(620, 44, 250, '#fff')}
-    <path d="${block}" fill="#fff"/>
-    <path d="M1340 36V88H1296" fill="none" stroke="#fff" stroke-opacity=".35"/>
+    ${logo(620, 44, 250, fg)}
+    <path d="${block}" fill="${blockBg}"/>
+    ${dark ? `<path d="M1340 36V88H1296" fill="none" stroke="#fff" stroke-opacity=".35"/>` : `<path d="${block}" fill="url(#bh${k})"/>`}
     <svg x="1346" y="96" width="152" height="152" viewBox="0 0 120 120"><path d="${PICTOS[p.picto]}" fill="url(#ph${k})" fill-rule="evenodd"/></svg>
-    <path d="M1326 286H1518" stroke="${LINE}"/>
+    <path d="M1326 286H1518" stroke="${dark ? LINE : '#fff'}" stroke-opacity="${dark ? 1 : .3}"/>
+    ${dark ? '' : `<rect x="0" y="392" width="1584" height="4" fill="${NAVY}"/>`}
   </svg>
-  <p class="t fit" data-max="650" style="left:618px;top:116px;font-size:46px;line-height:1.2;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:#fff">${p.focus[0]}<br><span style="color:${SOFT};font-weight:200">${p.focus[1]}</span></p>
-  <span style="position:absolute;left:620px;top:252px;width:44px;height:2px;background:#fff"></span>
-  <p class="t lab" style="left:620px;top:272px;font-size:16px;letter-spacing:.15em;color:#fff;font-weight:600">${CO.slogan[0]}&nbsp; <span style="color:${SOFT};font-weight:400">${CO.slogan[1]}</span></p>
-  <p class="t lab" style="left:1326px;top:304px;width:192px;text-align:center;font-size:13.5px;letter-spacing:.13em;color:${NAVY};font-weight:600">${CO.web}</p>
+  <p class="t fit" data-max="650" style="left:618px;top:116px;font-size:46px;line-height:1.2;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:${fg}">${p.focus[0]}<br><span style="color:${sub};font-weight:${dark ? 200 : 300}">${p.focus[1]}</span></p>
+  <span style="position:absolute;left:620px;top:252px;width:44px;height:2px;background:${fg}"></span>
+  <p class="t lab" style="left:620px;top:272px;font-size:16px;letter-spacing:.15em;color:${fg};font-weight:600">${CO.slogan[0]}&nbsp; <span style="color:${sub};font-weight:${dark ? 400 : 500}">${CO.slogan[1]}</span></p>
+  <p class="t lab" style="left:1326px;top:304px;width:192px;text-align:center;font-size:13.5px;letter-spacing:.13em;color:${blockFg};font-weight:600">${CO.web}</p>
   <script>document.fonts.ready.then(() => document.querySelectorAll('.fit').forEach((el) => { let s = parseFloat(el.style.fontSize); while (el.offsetWidth > +el.dataset.max && s > 28) el.style.fontSize = (s -= 1) + 'px'; }));</script>
   </div>`;
 }
@@ -422,7 +429,7 @@ for (const tone of ['navy', 'light']) {
 await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner@2x.png'), 1128, 191, 2);
 // personal banners: exactly 1584×396, the size LinkedIn asks for on a profile
-for (const p of STAFF) await shot(page(1584, 396, 'px', personalBanner(p)), out('linkedin', 'people', `${p.slug}.png`), 1584, 396, 1);
+for (const p of STAFF) for (const tone of ['navy', 'light']) await shot(page(1584, 396, 'px', personalBanner(p, tone)), out('linkedin', 'people', `${p.slug}-${tone}.png`), 1584, 396, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner@2x.png'), 1128, 191, 2);
 

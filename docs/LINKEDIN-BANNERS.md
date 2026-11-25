@@ -22,7 +22,10 @@ most cautious reading of each.
 
 `focus` (the two lines) and `picto` (a key of `PICTO` in `scripts/build-stories.py`) in
 `brand/staff.json`. The focus lines are the Our Story lines, which the owner confirmed
-(`scripts/facts.md`, 2026-10-28). Change a line there and run
+(`scripts/facts.md`, 2026-10-28), except Vanessa's and Sphamandla's, which the owner
+supplied on 2026-11-25. Every cover comes in two tones, `<person>-navy.png` and
+`<person>-light.png` (the off-white ground with a navy block and a navy foot rule, so the
+cover keeps its edge on LinkedIn's white page). Change a line there and run
 `node tools/make-brand-print.mjs`.
 
 ## Sources
