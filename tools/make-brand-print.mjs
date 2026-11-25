@@ -299,6 +299,37 @@ function studioNext() {
   </div>`;
 }
 
+// ---- personal LinkedIn banners (a profile cover is 1584×396 px) ---------------------------
+// LinkedIn lays the profile photo over the lower left (a circle reaching about 560 px in and
+// up from the bottom edge), so that corner carries only the dotted field and the streaks. The
+// person's role sits over the slogan in the centre; the white stepped block on the right holds
+// the logo, the confirmed figures and the site, as on the company banner.
+function personalBanner(p) {
+  const d = defs({ hatch: 7, line: 1.2, dot: 11, dotR: 1.1 });
+  // the white block sits inside a navy frame, so on LinkedIn's white page the cover keeps its edge
+  const block = 'M1240 28H1556V368H1192V84H1240Z';
+  const fig = (x, n, l1, l2) => `<p class="t" style="left:${x}px;top:194px;font-size:36px;font-weight:200;color:${NAVY};letter-spacing:-.02em;line-height:1">${n}</p>
+    <p class="t lab" style="left:${x + 1}px;top:242px;font-size:9.5px;line-height:1.6;color:${MUTE}">${l1}<br>${l2}</p>`;
+  return `<div class="pg"><svg viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">${d.svg}
+    <rect width="1584" height="396" fill="${NAVY}"/><rect width="1584" height="396" fill="url(#${d.hatch})"/>
+    <rect x="0" y="0" width="520" height="396" fill="url(#${d.dots})" opacity=".45"/>
+    <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M150 470L760 -60"/><path d="M250 480L860 -50" opacity=".5"/></g>
+    ${cluster(930, 150, 320, .9)}
+    <path d="${block}" fill="#fff"/>
+    <path d="M1240 28V84H1192" fill="none" stroke="#fff" stroke-opacity=".35"/>
+    ${logo(1232, 112, 280, NAVY)}
+    <path d="M1232 176H1520" stroke="${LINE}"/>
+    <path d="M1232 296H1520" stroke="${LINE}"/>
+  </svg>
+  <p class="t lab" style="left:572px;top:104px;font-size:13px;color:${SOFT}"><span style="color:#fff;font-weight:600">${p.role}</span>&nbsp;&nbsp;·&nbsp;&nbsp;GEM Information Systems</p>
+  <p class="t" style="left:570px;top:134px;font-size:34px;line-height:1.22;font-weight:300;letter-spacing:.07em;text-transform:uppercase;color:#fff">${CO.slogan[0]}<br><span style="color:${SOFT};font-weight:200">${CO.slogan[1]}</span></p>
+  <span style="position:absolute;left:572px;top:252px;width:40px;height:2px;background:#fff"></span>
+  <p class="t lab" style="left:572px;top:270px;font-size:12px;color:${SOFT}">Cape Town&nbsp;&nbsp;·&nbsp;&nbsp;Since 2014</p>
+  ${fig(1232, '50+', 'Systems', 'delivered')}${fig(1328, '5+', 'Sectors', 'served')}${fig(1412, '2014', 'Founded', 'Cape Town')}
+  <p class="t lab" style="left:1232px;top:316px;font-size:11px;color:${NAVY};font-weight:600">${CO.web}</p>
+  </div>`;
+}
+
 // ---- the studio LinkedIn banner (its showcase page, 1128×191 px) --------------------------
 // The studio site's hero in a strip: the light ground, the mono label in the deep orange,
 // "Designed to be built." with *built.* in pink, the shards and outlined triangles on the
@@ -381,6 +412,8 @@ for (const tone of ['navy', 'light']) {
 // LinkedIn
 await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', studioBanner()), out('linkedin', 'GEMIS-Studio-LinkedIn-Banner@2x.png'), 1128, 191, 2);
+// personal banners: exactly 1584×396, the size LinkedIn asks for on a profile
+for (const p of STAFF) await shot(page(1584, 396, 'px', personalBanner(p)), out('linkedin', 'people', `${p.slug}.png`), 1584, 396, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner.png'), 1128, 191, 1);
 await shot(page(1128, 191, 'px', banner()), out('linkedin', 'GEMIS-LinkedIn-Banner@2x.png'), 1128, 191, 2);
 
