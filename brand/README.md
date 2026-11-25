@@ -81,13 +81,19 @@ GEMIS banner; the lower left stays quiet for the page logo.
 ## Personal LinkedIn banners
 
 One per person in `staff.json`, at exactly 1584×396, the size LinkedIn asks for on a
-profile cover. Each is the person's business card laid out wide, so the cover, the card
-and the signature read as one set: the white stepped panel with the name in the uppercase
-light heading, the navy rule, the role and the "+" list (their email, the site, the
-company), and the navy column with the stone and their initials as a giant light numeral.
-LinkedIn lays the profile photo over the lower left, so that corner carries only the
-pattern, with the white logo and the slogan above it. Upload it from your profile: the
-pencil on the cover, Change photo (or Add cover image), Upload photo.
+profile cover, designed to the guidance in `docs/LINKEDIN-BANNERS.md`:
+
+- **One message, not a business card.** LinkedIn prints the name and the headline under
+  the cover, so the cover does not repeat them and carries no contact details. The
+  message is what the person does at GEMIS (`focus` in `staff.json`, their line on
+  Our Story), with the slogan beneath and the logo above.
+- **The safe zone.** The profile photo covers the lower left and phones may trim the
+  ends, so everything that matters sits right of centre, in the upper three quarters.
+- **Personal art.** The white stepped block holds the person's pictogram (`picto` in
+  `staff.json`) and the site address.
+
+Upload it from your profile: the pencil on the cover, Change photo (or Add cover
+image), Upload photo. Then look at the profile on a phone as well.
 
 ## Business cards
 
