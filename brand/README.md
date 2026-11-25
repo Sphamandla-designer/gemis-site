@@ -81,12 +81,13 @@ GEMIS banner; the lower left stays quiet for the page logo.
 ## Personal LinkedIn banners
 
 One per person in `staff.json`, at exactly 1584×396, the size LinkedIn asks for on a
-profile cover: the GEMIS navy with the hatch, the dotted field and the streaks; the
-person's role and the slogan in the centre; the block cluster; and a white stepped
-block inside a navy frame (so the cover keeps its edge on LinkedIn's white page) with
-the logo, the confirmed figures and the site. LinkedIn lays the profile photo over
-the lower left, so that corner carries only the pattern. Upload it from your profile:
-the pencil on the cover, Change photo (or Add cover image), Upload photo.
+profile cover. Each is the person's business card laid out wide, so the cover, the card
+and the signature read as one set: the white stepped panel with the name in the uppercase
+light heading, the navy rule, the role and the "+" list (their email, the site, the
+company), and the navy column with the stone and their initials as a giant light numeral.
+LinkedIn lays the profile photo over the lower left, so that corner carries only the
+pattern, with the white logo and the slogan above it. Upload it from your profile: the
+pencil on the cover, Change photo (or Add cover image), Upload photo.
 
 ## Business cards
 

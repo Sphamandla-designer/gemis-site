@@ -300,33 +300,34 @@ function studioNext() {
 }
 
 // ---- personal LinkedIn banners (a profile cover is 1584×396 px) ---------------------------
-// LinkedIn lays the profile photo over the lower left (a circle reaching about 560 px in and
-// up from the bottom edge), so that corner carries only the dotted field and the streaks. The
-// person's role sits over the slogan in the centre; the white stepped block on the right holds
-// the logo, the confirmed figures and the site, as on the company banner.
+// Each one is the person's business card laid out wide, so the cover, the card and the
+// signature read as one set: the white stepped panel with the name in the uppercase light
+// heading, the navy rule, the role and the "+" list (their email, the site, the company),
+// and the navy column with the stone and their initials as a giant light numeral. LinkedIn
+// lays the profile photo over the lower left (a circle about 300 px across, from about
+// 190 px down), so that corner carries only the pattern, with the logo above it.
 function personalBanner(p) {
   const d = defs({ hatch: 7, line: 1.2, dot: 11, dotR: 1.1 });
-  // the white block sits inside a navy frame, so on LinkedIn's white page the cover keeps its edge
-  const block = 'M1240 28H1556V368H1192V84H1240Z';
-  const fig = (x, n, l1, l2) => `<p class="t" style="left:${x}px;top:194px;font-size:36px;font-weight:200;color:${NAVY};letter-spacing:-.02em;line-height:1">${n}</p>
-    <p class="t lab" style="left:${x + 1}px;top:242px;font-size:9.5px;line-height:1.6;color:${MUTE}">${l1}<br>${l2}</p>`;
+  const ini = initials(p);
+  // the white panel sits inside a navy frame and is notched top right, as the site's cards are
+  const panel = 'M600 40H1196V96H1252V356H600Z';
+  const row = (top, txt) => `<p class="t" style="left:648px;top:${top}px;width:556px;font-size:21px;color:${NAVY};border-top:1px solid ${LINE};padding-top:12px"><span style="font-weight:300;display:inline-block;width:28px">+</span>${txt}</p>`;
   return `<div class="pg"><svg viewBox="0 0 1584 396" xmlns="http://www.w3.org/2000/svg">${d.svg}
     <rect width="1584" height="396" fill="${NAVY}"/><rect width="1584" height="396" fill="url(#${d.hatch})"/>
-    <rect x="0" y="0" width="520" height="396" fill="url(#${d.dots})" opacity=".45"/>
-    <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M150 470L760 -60"/><path d="M250 480L860 -50" opacity=".5"/></g>
-    ${cluster(930, 150, 320, .9)}
-    <path d="${block}" fill="#fff"/>
-    <path d="M1240 28V84H1192" fill="none" stroke="#fff" stroke-opacity=".35"/>
-    ${logo(1232, 112, 280, NAVY)}
-    <path d="M1232 176H1520" stroke="${LINE}"/>
-    <path d="M1232 296H1520" stroke="${LINE}"/>
+    <rect x="0" y="170" width="560" height="226" fill="url(#${d.dots})" opacity=".45"/>
+    <rect x="1262" y="250" width="140" height="146" fill="url(#${d.dots})" opacity=".45"/>
+    <g fill="none" stroke="url(#${d.streak})" stroke-width="1.6"><path d="M120 470L700 -60"/><path d="M1240 430L1640 40" opacity=".6"/></g>
+    ${logo(56, 52, 330, '#fff')}
+    <path d="${panel}" fill="#fff"/>
+    ${mark(1488, 44, 52, '#fff')}
+    <text transform="translate(1556 352) rotate(-90)" fill="#fff" opacity=".5" font-family="Montserrat" font-weight="500" font-size="10.5" letter-spacing="3">GEM INFORMATION SYSTEMS</text>
+    <text x="1404" y="352" text-anchor="middle" fill="#fff" font-family="Montserrat" font-weight="200" font-size="${/[MW]/.test(ini) ? 138 : 172}" letter-spacing="-8">${ini}</text>
   </svg>
-  <p class="t lab" style="left:572px;top:104px;font-size:13px;color:${SOFT}"><span style="color:#fff;font-weight:600">${p.role}</span>&nbsp;&nbsp;·&nbsp;&nbsp;GEM Information Systems</p>
-  <p class="t" style="left:570px;top:134px;font-size:34px;line-height:1.22;font-weight:300;letter-spacing:.07em;text-transform:uppercase;color:#fff">${CO.slogan[0]}<br><span style="color:${SOFT};font-weight:200">${CO.slogan[1]}</span></p>
-  <span style="position:absolute;left:572px;top:252px;width:40px;height:2px;background:#fff"></span>
-  <p class="t lab" style="left:572px;top:270px;font-size:12px;color:${SOFT}">Cape Town&nbsp;&nbsp;·&nbsp;&nbsp;Since 2014</p>
-  ${fig(1232, '50+', 'Systems', 'delivered')}${fig(1328, '5+', 'Sectors', 'served')}${fig(1412, '2014', 'Founded', 'Cape Town')}
-  <p class="t lab" style="left:1232px;top:316px;font-size:11px;color:${NAVY};font-weight:600">${CO.web}</p>
+  <p class="t lab" style="left:58px;top:128px;font-size:11.5px;color:${SOFT}">${CO.slogan[0]}&nbsp; ${CO.slogan[1]}</p>
+  <p class="t" style="left:646px;top:74px;font-size:44px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:${NAVY};line-height:1">${p.name}</p>
+  <span style="position:absolute;left:648px;top:138px;width:46px;height:3px;background:${NAVY}"></span>
+  <p class="t lab" style="left:649px;top:154px;font-size:14px;color:${MUTE}">${p.role}</p>
+  ${row(194, p.email)}${row(245, CO.web)}${row(296, `${CO.legal.replace(' (Pty) Ltd', '')}&nbsp;&nbsp;·&nbsp;&nbsp;${CO.city}`)}
   </div>`;
 }
 
