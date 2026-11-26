@@ -78,6 +78,15 @@ ARTICLE_STORY = {
     'popia-business-systems-checklist': ('homeassist', 'HomeAssist’s system holds homeowner, insurer and plumber data on one job record, with each party seeing only its side.'),
 }
 
+# The visual that heads each article's card (2026-11-26, the owner's instruction:
+# the top of the card is all image, not a pictogram): a still from the case study
+# behind the article (ARTICLE_STORY), from that project's own video.
+ARTICLE_STILL = {
+    'spreadsheets-to-a-system': 'assets/img/cases/sbs-waterproofing/01-enquiry.jpg',
+    'load-shedding-operations-resilience': 'assets/img/cases/sonke/01-capture.jpg',
+    'popia-business-systems-checklist': 'assets/img/cases/homeassist/01-intake.jpg',
+}
+
 
 # ── Products ─────────────────────────────────────────────────────────────
 def products_index():
@@ -120,17 +129,18 @@ def products_index():
 
 # ── News & Insights ──────────────────────────────────────────────────────
 def post_cards(base='', articles=None):
+    # image on top, then the meta, the title and the standfirst (clamped to two
+    # lines). The tag chips are off the card: they made it read as text, not a picture
     cards = []
     for i, a in enumerate(articles or SV.ARTICLES):
-        chips = '\n'.join(f'              <li>{esc(c)}</li>' for c in a.get('chips', [a['tag']]))
-        cards.append(f'''          <article class="post" data-reveal style="--d:{i * 80}ms">
-            <h3 class="post__t"><a href="{base}insights/{a['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(a['title'])}</span></a></h3>
-            <a class="post__media post__media--picto" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">{B.picto(B.PICTO_FOR_TAG.get(a['tag'], 'letter'), 'hx-picto--w')}</a>
+        still = ARTICLE_STILL.get(a['slug'])
+        media = (f'<img src="{base}{still}" alt="" loading="lazy" decoding="async" width="1200" height="675">' if still
+                 else B.picto(B.PICTO_FOR_TAG.get(a['tag'], 'letter'), 'hx-picto--w'))
+        cards.append(f'''          <article class="post post--img" data-reveal style="--d:{i * 80}ms">
+            <a class="post__media post__media--img" href="{base}insights/{a['slug']}/" tabindex="-1" aria-hidden="true">{media}</a>
             <p class="post__meta"><span class="post__tag">{esc(a['tag'])}</span> · <time datetime="{a['date']}">{pretty_date(a['date'])}</time> · {a['read']}</p>
+            <h3 class="post__t"><a href="{base}insights/{a['slug']}/"><span class="post__plus" aria-hidden="true">+</span><span>{esc(a['title'])}</span></a></h3>
             <p class="post__x">{esc(a['standfirst'])}</p>
-            <ul class="post__chips">
-{chips}
-            </ul>
           </article>''')
     return '\n'.join(cards)
 

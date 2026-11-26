@@ -106,6 +106,19 @@ symbol = (f'<symbol id="gemisLogo" viewBox="0 0 {W} {H}" fill="currentColor"><g>
 open(f'{OUT}/symbol.txt', 'w').write(symbol)
 open(f'{OUT}/viewbox.txt', 'w').write(f'0 0 {W} {H}')
 
+# the website's lockup (2026-11-26, the owner's instruction): the stone and the
+#    full name on one line, no GEMIS wordmark — set large enough to read in the bar.
+#    A tight 30-unit box: the stone fills its height, the capitals 13 units, centred on it.
+NH = 30
+n_sy = -8.5
+name_size = 13 / CAP
+name_d, name_end = text_path(F600, 'GEM INFORMATION SYSTEMS', name_size, 46, 15 + 13 / 2, .1)
+NW = round(name_end + 1.5, 1)
+open(f'{OUT}/gemis-logo-name.svg', 'w').write(
+    f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {NW} {NH}" role="img" aria-label="GEM Information Systems" fill="currentColor">'
+    f'<g>{stone(0, n_sy, mark_s)}</g><path d="{name_d}"/></svg>')
+print('NW', NW)
+
 # the stone alone
 open(f'{OUT}/gemis-mark.svg', 'w').write(
     f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GEMIS" fill="currentColor">{stone(0, 0, 1)}</svg>')

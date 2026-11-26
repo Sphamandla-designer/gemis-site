@@ -185,8 +185,13 @@ content starts under it), the navy sub-nav strip, stats as light numerals.
   load `home.js` for the parallax and the timeline.
 - **Pictograms** (`PICTO` in `build-stories.py`, 21 silhouettes filled with the
   vertical hatch) replace every photograph and composite outside the case-study
-  stills: products (`PICTO_FOR_PRODUCT`), insight cards (`PICTO_FOR_TAG`), the
-  page openers. The sprite with the symbols and the two hatch patterns is part
+  stills: products (`PICTO_FOR_PRODUCT`), the article heroes (`PICTO_FOR_TAG`), the
+  page openers. **The insight cards** (`post_cards()` in `build-services.py`,
+  `.post--img`, the owner's instruction 2026-11-26) open on an image instead: a
+  still from the case study behind the article (`ARTICLE_STILL`, beside
+  `ARTICLE_STORY`), edge to edge under the notch, cropped 9:4 from the top so the
+  still's burned-in caption stays out; then the meta, the title and two lines of
+  standfirst — no chips on the card. The sprite with the symbols and the two hatch patterns is part
   of the footer chrome (`SPRITE` in `apply-chrome.py`), so it is on every page.
 - **Navy tiles** are `.band-wash`, `.band-tint`, `.band-ink`, `.sq`, `.convert`,
   `.endnote`, `.prin`, `.go`, `.words`, `.built`; everything else is white. Text
@@ -266,6 +271,18 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   `studio/assets/mark-colour.svg`, `mark-white.svg`, `favicon.svg` (on the
   studio's ink) and the `gemis-studio-logo.svg` lockup; the touch icon and
   `assets/img/logos/gemis-studio.png` are rendered from those.
+  **On the website the logo is the name only** (the owner's instruction,
+  2026-11-26): the stone and GEM INFORMATION SYSTEMS on one line, no GEMIS
+  wordmark — `assets/img/logos/gemis-logo-name.svg` (380.3 × 30, drawn by
+  `make-logo.py`). `apply-chrome.py` writes it into every page as the
+  `#gemisLogo` symbol and sets every `<svg class="logo">` viewBox to match
+  (`--check` covers both), so redraw the file, then re-run apply-chrome. It
+  stands 28px tall in the bar (22px under 620px, 19px under 380px) and 32px in
+  the footer. To make room for it, the bar becomes the drawer below **1360px**,
+  not 900px (the bar's rules in the `max-width: 1359px` blocks; the sub-nav
+  still collapses at 900px). The brand pieces (letterheads, signatures, cards,
+  the logo kit) and the Organization logo in the JSON-LD keep the two-line
+  lockup with the GEMIS wordmark.
 - **Rhythm** is `--sec-y` (56–80px) on both edges of every tile. Shell 1440px.
 - **Case study pages** are built from `scripts/cases.py` (navy hero with
   status, composite and Play story, overview, business challenge, strategy and
