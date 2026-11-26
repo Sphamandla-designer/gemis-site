@@ -41,5 +41,14 @@ WebM (`libvpx-vp9`), the poster (`_thumb.jpg`, one frame) and the stills in
 `assets/img/cases/<slug>/` (frames at the times in the commit that added this),
 and the durations in `scripts/stories.py`.
 
-The other five films (SBS, HomeAssist, Trans Hex, Sonke, Tore's) are the earlier
-cut: they wait for real screenshots of those systems.
+## The second batch (2026-11-26)
+
+| Film | Look | Device | Screens |
+|---|---|---|---|
+| `sbs.htm` (1:07, voice offset 600 ms, crf 26) | SBS red on white, Space Grotesk, a red roofline | rain that becomes enquiries; the roofer; windows | ManaGEM prototype screens, labelled "the product this system became" |
+| `homeassist.htm` (1:05, crf 24) | HomeAssist blue and navy, Manrope | a pipe system: two inlets, one job; the plumber cut from the crew | none exist, so none shown |
+| `transhex.htm` (1:18, crf 23) | black and the emblem's blue, Inter Tight | five sources converging on one hexagon; lines that draw themselves | none exist, so none shown; no figure invented |
+
+Sonke and Tore's are still the earlier cut: their voiceovers could not be
+generated (ElevenLabs' free tier was busy). `music.py` already carries a bed
+for each (`sonke`, `tores`).

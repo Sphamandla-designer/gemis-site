@@ -27,15 +27,25 @@ def hat(d=.05):
 def bell(f, d=2.2):
     t = np.arange(int(d * sr)) / sr; return sum(a*np.sin(2*np.pi*f*r*t)*np.exp(-t*dd) for r, a, dd in ((1,1,2.4),(2,.4,4),(3.01,.2,6))) * np.minimum(1, t/.002)
 
-if film == 'managem':                    # D major, 100 bpm: warm marimba arpeggios; the beat arrives with the product
-    bpm, prog, lift, close = 100, [(62,66,69,73),(59,62,66,69),(55,59,62,66),(57,61,64,69)], 18.6, 52.2
-else:                                    # A minor to C, 92 bpm: muted strings and a shaker, a working rhythm
-    bpm, prog, lift, close = 92, [(57,60,64,67),(53,57,60,64),(48,52,55,60),(55,59,62,67)], 15.0, 51.4
+# film: (bpm, chords, where the beat arrives, where it thins out, voice)
+FILMS = {
+    'managem':    (100, [(62,66,69,73),(59,62,66,69),(55,59,62,66),(57,61,64,69)], 18.6, 52.2, 'marimba'),   # D major: warm arpeggios
+    'wastemart':  (92,  [(57,60,64,67),(53,57,60,64),(48,52,55,60),(55,59,62,67)], 15.0, 51.4, 'mute'),      # A minor: muted strings, shaker
+    'sbs':        (108, [(57,61,64,69),(54,57,61,66),(50,54,57,62),(52,56,59,64)], 21.0, 54.2, 'marimba'),   # A major, quicker and brighter
+    'homeassist': (96,  [(53,57,60,65),(50,53,57,62),(58,62,65,70),(48,52,55,60)], 9.0, 54.6, 'mute'),       # F major: a working rhythm
+    'transhex':   (78,  [(50,53,57,62),(46,50,53,58),(53,57,60,65),(48,52,55,60)], 25.4, 68.4, 'glass'),     # D minor, slow: bells over a pad
+    'sonke':      (104, [(60,64,67,72),(57,60,64,69),(53,57,60,65),(55,59,62,67)], 17.0, 60.0, 'marimba'),
+    'tores':      (112, [(55,59,62,67),(52,55,59,64),(48,52,55,60),(50,54,57,62)], 14.0, 55.0, 'mute'),
+}
+bpm, prog, lift, close, voice = FILMS[film]
 b = 60 / bpm; bar = 4 * b; t = 0.0; i = 0
 while t < DUR - 3.5:
     ch = prog[(i // 8) % 4]; step = i % 8; on = t >= lift; end = t >= close
     if step == 0: add(pad([hz(c - 12) for c in ch], bar + .4), t, .05 if not on else .035)
-    if film == 'managem':
+    if voice == 'glass':
+        if step in (0, 3, 6): add(bell(hz(ch[[0, 2, 3][step // 3]] + 12), 1.8), t, .07 if on else .05, (step - 3) * .15)
+        if on and step == 0: add(pluck(hz(ch[0] - 24), 1.6, .1), t, .24)
+    elif voice == 'marimba':
         note = ch[[0, 2, 1, 3, 2, 1, 3, 2][step]] + (12 if step in (3, 6) else 0)
         add(pluck(hz(note), .7), t, .16 if on else .10, (step % 3 - 1) * .4)
         if on and step in (0, 5): add(pluck(hz(ch[0] - 24), .9, .1), t, .22)
@@ -45,7 +55,7 @@ while t < DUR - 3.5:
         if step in (2, 6): add(pluck(hz(ch[2] + 12), .5, .25), t, .09 if on else .05, .4)
         if on and step in (0, 3, 6): add(pluck(hz(ch[0] - 24), .7, .1), t, .22)
         add(hat(.03), t + b / 4, .035 if on else .02, .5)
-    if on and not end:
+    if on and not end and voice != 'glass':
         if step in (0, 4): add(kick(), t, .30)
         if step % 2 == 1: add(hat(), t, .05, .3)
     t += b / 2; i += 1
