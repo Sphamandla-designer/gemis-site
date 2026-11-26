@@ -42,6 +42,7 @@ a PR, and re-run the checks on the rebased base — not just before the rebase.
 | `studio/assets/cases/<slug>.jpg` ×5 | `studio/src/thumbs.html` (the `assets/img/ui/` cuts in a laptop and a phone) | `node tools/studio-thumbs.mjs` |
 | `studio/assets/cases/managem.jpg`, `wastemart.jpg`, `gemis-website.jpg` and every image in `studio/assets/cases/managem/` (13), `wastemart/` (12) and `gemis-website/` (13) | the two clickable prototypes at the root — `ManaGem.html` (the 2026 ManaGEM redesign) and `wastemart-driver.html` (the driver app) — and the corporate site itself, captured by `tools/studio-case-shots.mjs` (which first makes the prototypes' sample data neutral: real retailers, a real person and a phone number in the demo records become generic; the corporate pages are captured as published), then mounted in device mockups by `tools/studio-case-mocks.mjs` | `node tools/studio-case-shots.mjs <dir> [slug …] && node tools/studio-case-mocks.mjs <dir> [slug …]` — name the slugs to re-render only those; recapture `gemis-website` after a visible change to the corporate site |
 | `assets/img/cases/<slug>/*.jpg` (37 stills) | frames of the case study videos, picked by scene | the ffmpeg commands in `docs/REDESIGN-REPORT.md` |
+| `assets/video/case-studies/ManaGEM_explainer_*` and `WasteMart_explainer_*` (MP4, WebM, poster), and their stills in `assets/img/cases/managem/` and `wastemart/` | `tools/films/managem.htm` and `wastemart.htm`: each frame is `seek(t)` (`engine.js`), rendered by Playwright; the narration is `scripts/video-text.json` word for word in the ElevenLabs voice "ZanB October 2026" (South African English; `a/*-vo.mp3`); music synthesised by `music.py`; the screens are the neutralised prototype captures | the steps in `tools/films/README.md` |
 
 Full rebuild, in order: `build-home` → `build-services` → `build-pages` →
 `build-other` → `apply-chrome` → `apply-seo`. (`build-stories.py` is the shared markup library
@@ -140,6 +141,17 @@ Two traps in these builds:
   the corporate site the hero takes the shell gutter (`clamp(20px, 3.2vw, 64px)`,
   the "HERO ON THE PAGE EDGES" block at the tail of `site.css`). Never centre a
   case study in a capped column again.
+- **The case-study films** (the owner's instruction, 2026-11-26): ManaGEM and
+  WasteMart are reworked — a South African voice, each film in its own brand
+  (ManaGEM: indigo and gold, Outfit, the gem, the roofer and the crew from the
+  owner's marketing repository; WasteMart: the app's teal on paper, Archivo,
+  a collection route), and only **real** screens: the prototype captures with
+  neutral sample data. Where no real screen exists (WasteMart's quoting,
+  payment and scheduling) the film draws the process, never an invented
+  interface. The other five films (SBS, HomeAssist, Trans Hex, Sonke, Tore's)
+  are the earlier cut and wait for real screenshots from the owner. The voice
+  was generated on ElevenLabs' free plan: the licence is the owner's to confirm.
+  The film sources are `.htm` so the link check and the chrome walk skip them.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.

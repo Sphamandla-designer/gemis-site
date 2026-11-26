@@ -288,7 +288,7 @@ def managem():
             <p class="eyebrow" data-reveal>The product, step by step</p>
             <h2 class="display" id="walkHeading" data-reveal style="--d:80ms">What the user needs to do, and how ManaGEM supports it</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Stills from the ManaGEM video. The interfaces are illustrated for the video, not screen recordings of the product; every capability shown is one ManaGEM delivers.</p>
+          <p class="lede" data-reveal style="--d:140ms">Stills from the ManaGEM video. The screens are the 2026 ManaGEM prototype with sample data, not a client’s records; every capability shown is one ManaGEM delivers.</p>
         </div>
 {B.walk(C.MANAGEM['walk'], base, 'managem')}
       </div>

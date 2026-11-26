@@ -1,0 +1,182 @@
+<!doctype html>
+<!-- ManaGEM case-study film (1280×720, 30 fps). Every frame is seek(t); see render.mjs.
+     The screens are the 2026 ManaGEM prototype with neutral sample data; the
+     characters are the ManaGEM crew and the gem. Narration: scripts/video-text.json. -->
+<html><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><style>
+@font-face{font-family:Outfit;font-weight:400;src:url(a/outfit-latin-400-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:600;src:url(a/outfit-latin-600-normal.woff2)}
+@font-face{font-family:Outfit;font-weight:800;src:url(a/outfit-latin-800-normal.woff2)}
+@font-face{font-family:JBM;font-weight:500;src:url(a/jetbrains-mono-latin-500-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:#0d0a2c;font-family:Outfit,sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(900px 600px at 78% 18%,#3a2a8f 0%,rgba(58,42,143,0) 60%),radial-gradient(800px 600px at 8% 100%,#1c2f7a 0%,rgba(28,47,122,0) 60%),#0d0a2c}
+.scene{position:absolute;inset:0;display:none}
+.abs{position:absolute}
+/* drifting facets: the gem's own geometry, behind everything */
+.facet{position:absolute;opacity:.07;background:linear-gradient(140deg,#a78bfa,#5b3fd6);clip-path:polygon(50% 0,100% 38%,50% 100%,0 38%)}
+#cap{position:absolute;left:140px;right:140px;bottom:34px;text-align:center;z-index:90;display:none}
+#cap span{display:inline-block;font-weight:600;font-size:25px;line-height:1.22;padding:9px 20px 11px;border-radius:12px;background:rgba(9,6,32,.78);box-shadow:0 0 0 1px rgba(167,139,250,.35)}
+#tag{position:absolute;left:44px;top:34px;font:500 12px JBM,monospace;letter-spacing:.18em;text-transform:uppercase;color:#c4b5fd;z-index:80}
+#tag b{color:#f5b83d;font-weight:500}
+h1{font-weight:800;font-size:60px;line-height:1.02;letter-spacing:-.02em}
+h2{font-weight:800;font-size:40px;line-height:1.05;letter-spacing:-.02em}
+.gold{color:#f5b83d}.lav{color:#c4b5fd}
+.kick{font:500 13px JBM,monospace;letter-spacing:.2em;text-transform:uppercase;color:#f5b83d;margin-bottom:14px}
+/* scene A: the wall */
+.chip{position:absolute;padding:14px 22px;border-radius:14px;background:#fff;color:#1b1446;font-weight:800;font-size:26px;box-shadow:0 18px 40px rgba(0,0,0,.45);white-space:nowrap}
+.chip small{display:block;font:500 11px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:#7c6bd6;margin-bottom:4px}
+#wall{position:absolute;right:120px;top:90px;bottom:120px;width:26px;border-radius:6px;background:repeating-linear-gradient(0deg,#f5b83d 0 44px,#b9820f 44px 48px)}
+/* windows: the real screens */
+.win{position:absolute;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(4,2,22,.7),0 0 0 1px rgba(255,255,255,.14)}
+.win .bar{height:22px;background:#e7e9f0;display:flex;align-items:center;gap:6px;padding:0 10px}
+.win .bar i{width:8px;height:8px;border-radius:50%;background:#ff5f57}.win .bar i:nth-child(2){background:#febc2e}.win .bar i:nth-child(3){background:#28c840}
+.win img{display:block;width:100%}
+.ring{position:absolute;border:3px solid #f5b83d;border-radius:12px;box-shadow:0 0 0 6px rgba(245,184,61,.25),0 0 40px rgba(245,184,61,.6)}
+.side{position:absolute;left:52px;top:150px;width:330px}
+.side p{margin-top:16px;font-size:21px;line-height:1.35;color:#d9d3ff}
+.note{position:absolute;right:44px;top:34px;font:500 11px JBM,monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:80}
+.pill{display:inline-block;margin-top:18px;padding:8px 14px;border-radius:99px;background:rgba(245,184,61,.14);box-shadow:0 0 0 1px rgba(245,184,61,.5);color:#f5b83d;font:500 13px JBM,monospace;letter-spacing:.1em;text-transform:uppercase}
+</style></head><body><div id="stage">
+<div class="facet" id="f1" style="left:-80px;top:380px;width:380px;height:460px"></div>
+<div class="facet" id="f2" style="left:980px;top:-140px;width:460px;height:560px"></div>
+<div class="facet" id="f3" style="left:560px;top:520px;width:240px;height:300px;opacity:.05"></div>
+<div id="tag"></div><div class="note" id="note">ManaGEM prototype · sample data</div>
+
+<!-- A · the wall -->
+<div class="scene" id="A">
+  <div class="abs" id="a-t" style="left:70px;top:150px;width:560px"><div class="kick">The problem</div><h1>Most growing businesses hit <span class="gold">the same wall.</span></h1></div>
+  <div id="wall"></div>
+  <div class="chip" id="c1" style="left:660px;top:130px"><small>inbox · phone · WhatsApp</small>Enquiries</div>
+  <div class="chip" id="c2" style="left:760px;top:260px"><small>Word · PDF · email</small>Quotes</div>
+  <div class="chip" id="c3" style="left:640px;top:390px"><small>whiteboard · diary</small>Jobs</div>
+  <div class="chip" id="c4" style="left:780px;top:500px"><small>spreadsheet · memory</small>Stock</div>
+</div>
+
+<!-- B · SBS Waterproofing -->
+<div class="scene" id="B">
+  <img class="abs" id="b-av" src="a/roofer.png" style="left:110px;top:70px;height:640px">
+  <div class="abs" style="left:520px;top:150px;width:660px">
+    <div class="kick" id="b-k">Where it began · 2015</div>
+    <h2 id="b1">SBS Waterproofing hit that wall too.</h2>
+    <h2 id="b2" style="margin-top:22px" class="lav">So GEMIS built them a system,</h2>
+    <h2 id="b3" style="margin-top:22px"><span class="gold">designed from day one</span> to work for other businesses as well.</h2>
+  </div>
+</div>
+
+<!-- C · the name -->
+<div class="scene" id="C">
+  <img class="abs" id="c-gem" src="a/gem.png" style="left:250px;top:100px;height:540px">
+  <div class="abs" id="c-t" style="left:600px;top:230px;width:620px"><div class="kick" style="margin-bottom:26px;font-size:16px">That system became</div><img src="a/logo.png" style="width:520px;display:block"></div>
+</div>
+
+<!-- D–H · the product, on the real screens -->
+<div class="scene" id="D">
+  <div class="side"><div class="kick">01 · Enquiries</div><h2 id="d-h">Capture every enquiry.</h2><p id="d-p">Follow it all the way to the sale.</p><div class="pill" id="d-pill">SMS + email updates</div></div>
+  <div class="win" id="d1" style="left:490px;top:96px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/enquiry-new.png"></div>
+  <div class="win" id="d2" style="left:520px;top:120px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/enquiries-open.png"></div>
+</div>
+<div class="scene" id="F">
+  <div class="side"><div class="kick">02 · Quotes &amp; invoices</div><h2 id="f-h">Quotes out in a few clicks.</h2><p id="f-p">Customers accept online. Deposit invoices follow automatically.</p></div>
+  <div class="win" id="e1" style="left:490px;top:96px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/quote-templates.png"></div>
+  <div class="win" id="e2" style="left:520px;top:120px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/invoices.png"></div>
+</div>
+<div class="scene" id="G">
+  <div class="side"><div class="kick">03 · Projects</div><h2 id="g-h">See the profit on <span class="gold">each job.</span></h2><p id="g-p">Every project tracked, start to invoice.</p></div>
+  <div class="win" id="g1" style="left:490px;top:104px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/projects.png"></div>
+</div>
+<div class="scene" id="H">
+  <div class="side"><div class="kick">04 · Stock</div><h2 id="h-h">An alert <span class="gold">before</span> you run out.</h2><p id="h-p">Stock value, movements and low-stock items in one view.</p></div>
+  <div class="win" id="h1" style="left:490px;top:104px;width:880px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/stock.png"><div class="ring" id="h-ring" style="left:53.5%;top:15.5%;width:22%;height:16%"></div></div>
+</div>
+<div class="scene" id="I">
+  <div class="side"><div class="kick">05 · One system</div><h2 id="i-h">Products, prices and staff, <span class="gold">in the same place.</span></h2></div>
+  <div class="win" id="i1" style="left:480px;top:84px;width:700px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/users.png"></div>
+  <div class="win" id="i2" style="left:640px;top:250px;width:700px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/quote-templates.png"></div>
+</div>
+
+<!-- J · a dozen companies -->
+<div class="scene" id="J">
+  <div class="win" id="j1" style="left:600px;top:130px;width:780px"><div class="bar"><i></i><i></i><i></i></div><img src="shots/managem/dashboard.png"></div>
+  <div class="abs" style="left:60px;top:150px;width:430px"><div class="kick">Today</div><h1 id="j-h" style="font-size:52px"><span class="gold">About a dozen</span> companies</h1><h2 id="j-p" class="lav" style="margin-top:14px;font-size:28px">run their day-to-day operations on ManaGEM.</h2></div>
+</div>
+
+<!-- K · close -->
+<div class="scene" id="K">
+  <img class="abs" id="k-crew" src="a/crew.png" style="left:230px;top:262px;width:820px">
+  <div class="abs" style="left:0;right:0;top:70px;text-align:center">
+    <h1 id="k1" style="font-size:54px">Less time on admin.</h1>
+    <h1 id="k2" style="font-size:54px" class="gold">More time growing the business.</h1>
+  </div>
+  <div class="abs" id="k3" style="left:0;right:0;top:92px;text-align:center"><div class="kick" style="margin-bottom:10px">ManaGEM</div><h1 style="font-size:64px">Built by GEMIS.</h1></div>
+</div>
+<div id="cap"><span></span></div>
+</div>
+<script src="engine.js"></script>
+<script>
+const O = 0.7;                       // the narration starts here
+const T = (x) => x + O;
+window.DURATION = 59.6;
+// facets drift for the whole film
+tw('#f1', 0, 60, { y: [0, -90], r: [0, 14] }, 'lin'); tw('#f2', 0, 60, { y: [0, 70], r: [0, -10] }, 'lin'); tw('#f3', 0, 60, { x: [0, 120], r: [0, 30] }, 'lin');
+hook((t) => { document.getElementById('note').style.opacity = (t > 21 && t < 51.6) ? 1 : 0; });
+
+scene('A', 0, 8.6);
+tw('#a-t', 0.1, .8, { o: [0, 1], y: [30, 0] });
+[['#c1', 3.9, -260, -40, -9], ['#c2', 4.7, 120, -90, 7], ['#c3', 5.4, -300, 60, 5], ['#c4', 6.0, 60, 120, -8]].forEach(([s, t0, dx, dy, r], i) => {
+  tw(s, 0, .01, { o: [0, 0] }); tw(s, T(t0 - .7) , .5, { o: [0, 1], x: [-700, 0], r: [-20, 0] }, 'back');
+  tw(s, T(t0 - .2) + .0, .25, { x: [0, 26] }, 'out'); tw(s, T(t0) + .1, .3, { x: [26, 0] }, 'inout');   // it hits the wall
+  tw(s, T(6.5), 1.6, { x: [0, dx], y: [0, dy], r: [0, r] }, 'inout');                                       // scattered everywhere
+});
+tw('#wall', T(3.2), .12, { x: [0, 8] }); tw('#wall', T(3.35), .2, { x: [8, 0] });
+
+scene('B', 8.6, 18.55);
+tw('#b-av', 8.6, .9, { x: [-200, 0], o: [0, 1] }); tw('#b-av', 9.5, 9, { y: [0, -10], s: [1, 1.03] }, 'lin');
+tw('#b-k', 8.8, .5, { o: [0, 1] });
+tw('#b1', T(7.98), .6, { o: [0, 1], y: [24, 0] }); tw('#b2', 0, .01, { o: [0, 0] }); tw('#b2', T(10.8), .6, { o: [0, 1], y: [24, 0] });
+tw('#b3', 0, .01, { o: [0, 0] }); tw('#b3', T(14.0), .6, { o: [0, 1], y: [24, 0] });
+
+scene('C', 18.55, 21.2);
+tw('#c-gem', 18.55, .7, { s: [.2, 1], r: [-25, 0], o: [0, 1] }, 'back'); tw('#c-gem', 19.3, 2, { y: [0, -12] }, 'inout');
+tw('#c-t', 18.9, .6, { o: [0, 1], x: [60, 0] });
+
+const winIn = (s, t0, from = 80) => { tw(s, 0, .01, { o: [0, 0] }); tw(s, t0, .8, { o: [0, 1], x: [from, 0], ry: [-18, -7], rx: [6, 2] }); };
+const drift = (s, t0, d, origin = '60% 30%', z = 1.18) => { document.querySelector(s).style.transformOrigin = origin; tw(s, t0 + .8, d, { s: [1, z], ry: [-7, -2], rx: [2, 0] }, 'inout'); };
+const txt = (s, t0) => { tw(s, 0, .01, { o: [0, 0] }); tw(s, t0, .55, { o: [0, 1], y: [22, 0] }); };
+
+scene('D', 21.2, 27.7);
+txt('#d-h', 21.3); txt('#d-p', T(21.9)); txt('#d-pill', T(23.8));
+winIn('#d1', 21.3); drift('#d1', 21.3, 6, '70% 45%'); winIn('#d2', T(22.2), 140); drift('#d2', T(22.2), 5, '70% 30%');
+
+scene('F', 27.7, 34.6);
+txt('#f-h', 27.8); txt('#f-p', T(29.2));
+winIn('#e1', 27.8); drift('#e1', 27.8, 6, '70% 30%'); winIn('#e2', T(30.6), 140); drift('#e2', T(30.6), 4, '75% 25%');
+
+scene('G', 34.6, 38.4);
+txt('#g-h', 34.7); txt('#g-p', 35.6); winIn('#g1', 34.7); drift('#g1', 34.7, 3.5, '75% 28%', 1.22);
+
+scene('H', 38.4, 42.2);
+txt('#h-h', T(38.9)); txt('#h-p', 38.6); winIn('#h1', 38.5); drift('#h1', 38.5, 3.5, '80% 20%', 1.22);
+tw('#h-ring', 0, .01, { o: [0, 0] }); tw('#h-ring', T(39.0), .5, { o: [0, 1], s: [1.5, 1] }, 'back');
+
+scene('I', 42.2, 46.55);
+txt('#i-h', 42.3); winIn('#i1', 42.3); winIn('#i2', 43.0, 160); drift('#i1', 42.3, 4, '70% 30%', 1.08); drift('#i2', 43, 3.5, '70% 30%', 1.08);
+
+scene('J', 46.55, 51.6);
+txt('#j-h', T(46.2)); txt('#j-p', T(47.6)); winIn('#j1', 46.6, 120); drift('#j1', 46.6, 4.5, '70% 30%', 1.1);
+
+scene('K', 51.6, 59.6, .45);
+txt('#k1', T(51.0)); txt('#k2', T(52.5));
+tw('#k1', T(54.3), .4, { o: [1, 0] }); tw('#k2', T(54.3), .4, { o: [1, 0] });
+tw('#k-crew', 51.6, 1.2, { y: [140, 0], o: [0, 1] }); tw('#k-crew', 52.8, 7, { s: [1, 1.04] }, 'lin');
+tw('#k3', 0, .01, { o: [0, 0] }); tw('#k3', T(54.6), .6, { o: [0, 1], s: [.9, 1] }, 'back');
+
+// burned-in captions, on the narration's own pauses
+[[0, 2.9, 'Most growing businesses hit the same wall:'], [3.0, 7.7, 'enquiries, quotes, jobs and stock scattered everywhere.'],
+ [7.9, 10.6, 'SBS Waterproofing hit that wall too,'], [10.8, 13.9, 'so GEMIS built them a system,'], [14.0, 17.7, 'designed from day one to work for other businesses as well.'],
+ [17.9, 20.2, 'That system became ManaGEM.'], [20.5, 23.7, 'Capture every enquiry and follow it to the sale,'], [23.8, 26.8, 'with SMS and email updates for the customer.'],
+ [27.0, 29.1, 'Quotes go out in a few clicks,'], [29.2, 33.7, 'customers accept online, and deposit invoices follow automatically.'],
+ [33.9, 37.5, 'Track every project and see the profit on each job.'], [37.7, 41.3, 'Keep track of stock, and get an alert before you run out.'],
+ [41.5, 45.7, 'Products, prices and staff records sit in the same system.'],
+ [45.9, 50.7, 'Today, about a dozen companies run their day-to-day operations on ManaGEM.'],
+ [50.9, 52.3, 'Less time on admin.'], [52.4, 54.3, 'More time growing the business.'], [54.5, 56.2, 'Built by GEMIS.']].forEach(([a, b, s]) => cap(T(a), T(b), s));
+</script></body></html>
