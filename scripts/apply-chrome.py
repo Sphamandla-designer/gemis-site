@@ -143,7 +143,7 @@ FOOTER = """<footer class="ftr">
     <div class="shell ftr__in">
       <div class="ftr__top">
         <div class="ftr__brand" data-reveal>
-          <a class="ftr__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="0 0 234.6 40" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
+          <a class="ftr__logo" href="{B}index.html" aria-label="GEMIS home"><svg class="logo" viewBox="{LOGO_VB}" aria-hidden="true" focusable="false"><use href="#gemisLogo"/></svg></a>
           <p class="ftr__say">Systems built to last.<br />Partners built to stay.</p>
         </div>
         <div class="ftr__act" data-reveal style="--d:100ms">
@@ -182,6 +182,18 @@ HEAD = """<!--#head:start-->
 HEAD_RE = re.compile(r'<!--#head:start-->.*?<!--#head:end-->', re.S)
 
 NAV_RE = re.compile(r'<ul class="nav__links" id="navLinks">.*?\n        </ul>', re.S)
+
+# The logo (2026-11-26): the stone and GEM INFORMATION SYSTEMS on one line, no
+# GEMIS wordmark — assets/img/logos/gemis-logo-name.svg, drawn by
+# tools/make-logo.py. Every page carries it as the #gemisLogo symbol, used by
+# the bar and the footer; both the symbol and every <svg class="logo"> viewBox
+# follow that file.
+_LOGO = open(os.path.join(ROOT, 'assets/img/logos/gemis-logo-name.svg'), encoding='utf-8').read()
+LOGO_VB = re.search(r'viewBox="([^"]+)"', _LOGO).group(1)
+LOGO_SYMBOL = (f'<symbol id="gemisLogo" viewBox="{LOGO_VB}" fill="currentColor">'
+               + re.search(r'<svg[^>]*>(.*)</svg>', _LOGO, re.S).group(1) + '</symbol>')
+LOGO_SYMBOL_RE = re.compile(r'<symbol id="gemisLogo".*?</symbol>', re.S)
+LOGO_VB_RE = re.compile(r'(<svg class="logo" viewBox=")[^"]*(")')
 FOOTER_RE = re.compile(r'<footer class="(?:foot|ftr)">.*?</footer>', re.S)
 
 
@@ -205,7 +217,7 @@ def base_for(path):
 
 
 def render(template, base):
-    return template.replace('{ARROW}', ARROW).replace('{B}', base)
+    return template.replace('{ARROW}', ARROW).replace('{LOGO_VB}', LOGO_VB).replace('{B}', base)
 
 
 def main():
@@ -219,6 +231,8 @@ def main():
             out = NAV_RE.sub(lambda m: render(NAV, base), out, count=1)
         if FOOTER_RE.search(out):
             out = FOOTER_RE.sub(lambda m: render(FOOTER, base), out, count=1)
+        out = LOGO_SYMBOL_RE.sub(lambda m: LOGO_SYMBOL, out)
+        out = LOGO_VB_RE.sub(lambda m: m.group(1) + LOGO_VB + m.group(2), out)
         # redirect stubs leave before anything loads; they need none of it
         if 'http-equiv="refresh"' not in out:
             if HEAD_RE.search(out):
@@ -234,7 +248,7 @@ def main():
         if stale:
             print('chrome out of date in:\n  ' + '\n  '.join(stale))
             return 1
-        print('chrome: every page matches the canonical head block, header and footer.')
+        print('chrome: every page matches the canonical head block, header, logo and footer.')
         return 0
     print(f'chrome applied to {len(changed)} page(s):\n  ' + '\n  '.join(changed) if changed
           else 'chrome: nothing to change.')
