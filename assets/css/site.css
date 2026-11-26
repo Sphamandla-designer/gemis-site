@@ -2065,9 +2065,9 @@ h1, h2, h3, h4 {
   .cta .dotgrid { display: none; }
 }
 
-/* the bar becomes the drawer below 1360px (2026-11-26): the full name in the
-   logo needs the room the menu took between 900 and 1360 */
-@media (max-width: 1359px) {
+/* the bar becomes the drawer below 1200px (2026-11-26): the full name in the
+   logo needs the room the menu took between 900 and 1200 */
+@media (max-width: 1199px) {
   .nav__burger { display: block; }
   .nav__drawer {
     display: block;
@@ -3365,7 +3365,7 @@ main p > a:not([class]):hover { color: var(--blue); }
 .msvc__body { display: flex; flex-direction: column; gap: 2px; }
 .msvc__name { font-size: var(--fs-copy); font-weight: 500; color: var(--ink); letter-spacing: -.01em; }
 .msvc__line { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.4; }
-@media (max-width: 1359px) {
+@media (max-width: 1199px) {
   .mega__svcs { grid-template-columns: 1fr; gap: 0; }
   .msvc { padding-inline: 0; }
   .msvc:hover { background: none; }
@@ -3603,7 +3603,7 @@ main p > a:not([class]):hover { color: var(--blue); }
 /* the drop-down head: label, lede and the "all" link on one line */
 .mega__head { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; }
 .mega__head .arrow-link { justify-self: end; }
-@media (max-width: 1359px) { .mega__head { display: none; } }
+@media (max-width: 1199px) { .mega__head { display: none; } }
 /* quiet links still clear 4.5:1 on every ground; dots have a 24px target */
 a.arrow-link--quiet { color: var(--ink-2); opacity: 1; }
 a.arrow-link--quiet:hover { color: var(--ink); opacity: 1; }
@@ -4823,7 +4823,7 @@ main > section.selw { padding-bottom: 0; }
 .nav.is-mega .mega { border-top-color: transparent; }
 /* small screens: the drawer is paper and slides under the bar, so an open
    bar goes clear and its wordmark and burger read navy on the drawer */
-@media (max-width: 1359px) {
+@media (max-width: 1199px) {
   .nav.is-open, .nav.is-stuck.is-open, .nav--photo.is-stuck.is-open, .nav--solid.is-stuck.is-open { background: none; box-shadow: none; }
   .nav.is-open .nav__logo, .nav.is-stuck.is-open .nav__logo, .nav--photo.is-stuck.is-open .nav__logo { color: var(--navy); }
   .nav.is-open .nav__burger span, .nav.is-stuck.is-open .nav__burger span, .nav--photo.is-stuck.is-open .nav__burger span { background: var(--ink); }
@@ -5467,7 +5467,7 @@ main p > a:not([class]):hover { text-decoration-color: var(--primary); }
 .mega:not(#_) .prod__desc { color: rgba(255, 255, 255, .6); font-size: 14px; }
 .mega:not(#_) .prod__cta { color: var(--primary-on-dark); font-size: 14px; }
 .mega:not(#_) a:focus-visible { outline-color: var(--primary-on-dark); }
-@media (max-width: 1359px) {
+@media (max-width: 1199px) {
   .nav:not(#_) .nav__drawer { padding-top: 64px; background: var(--nav-bar); box-shadow: none; }
   .nav.is-open:not(#_) .nav__logo { color: #fff; }
   .nav.is-open:not(#_) .nav__burger span { background: #fff; }
@@ -6593,7 +6593,7 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq):not(#_) :is(.stl__since, .stl
 .mega:not(#_):not(#_) .prod__media { display: block; position: relative; margin: 0 0 16px; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid rgba(255, 255, 255, .18); border-radius: 0; background: #0d1636; clip-path: polygon(0 0, 70% 0, 70% 9%, 100% 9%, 100% 100%, 0 100%); }
 .mega:not(#_):not(#_) .prod__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
 .mega:not(#_):not(#_) .prod:hover .prod__media img { transform: scale(1.04); }
-@media (max-width: 1359px) {
+@media (max-width: 1199px) {
   .nav:not(#_) .msvc__icon { width: 36px; height: 36px; }
   .nav:not(#_) .msvc__icon .hx-picto { width: 22px; height: 22px; }
   .nav:not(#_) .prod__media { flex: 0 0 112px; aspect-ratio: 16 / 10; margin: 0 14px 0 0; }
@@ -6633,7 +6633,7 @@ main p:not(#_) { line-height: 1.65; }
 .nav__links > li > a.nav__cta:not(#_):not(#_):hover { background: #fff; color: var(--svn); }
 .nav__links > li > a[aria-current="page"]:not(#_)::after, .nav__trigger[data-current]:not(#_)::after { transform: scaleX(1); transform-origin: left; }
 .nav__links > li > a[aria-current="page"]:not(#_) { color: #fff; }
-@media (max-width: 1359px) {
+@media (max-width: 1199px) {
   .nav:not(#_) .nav__cta-item { margin: 18px 0 0; }
   .nav:not(#_) .nav__links > li > a.nav__cta { display: inline-flex; min-height: 46px; padding: 0 22px; font-size: 12px; }
 }
@@ -6857,19 +6857,26 @@ main > :is(.band-wash, .band-tint, .band-ink, .sq) .cscard .cscard__go:not(#_):n
    starts and its tag ends where the menu ends, at every width. */
 .hx-hero:not(#_) { --gutter: clamp(20px, 3.2vw, 64px); }
 
-/* ═══ THE LOGO, NAME ONLY (2026-11-26) ═══════════════════════════════════════
+/* ═══ THE LOGO, NAME ONLY (2026-11-26, resized 2026-11-26) ══════════════════
    The owner's instruction: the bar and the footer carry the stone and GEM
-   INFORMATION SYSTEMS on one line, no GEMIS wordmark, large enough to read.
-   The symbol is a tight 380.3 × 30 box (tools/make-logo.py), so its height is
-   all mark: at 28px the capitals are 12px tall. */
-.nav:not(#_):not(#_) .nav__logo { height: 28px; flex: none; }
+   INFORMATION SYSTEMS on one line, no GEMIS wordmark — visible, but never
+   crowding the menu. The symbol is a tight 380.3 × 30 box (tools/make-logo.py),
+   so its height is all mark: at 22px its capitals are 9.5px, the same as the
+   13px menu labels' capitals. It steps down with the screen, and the menu
+   labels never wrap: below the width where the whole menu fits on one line
+   beside it, the bar is the logo and the drawer. */
+.nav:not(#_):not(#_) .nav__logo { height: 22px; flex: none; }
 .nav:not(#_):not(#_) .nav__logo .logo { height: 100%; width: auto; display: block; }
-.ftr__logo:not(#_) { height: 32px; }
+.nav:not(#_):not(#_) .nav__links > li > :is(a, button) { white-space: nowrap; }
+.ftr__logo:not(#_) { height: 26px; }
 @media (max-width: 620px) {
-  .nav:not(#_):not(#_) .nav__logo { height: 22px; }
-  .ftr__logo:not(#_) { height: 24px; }
+  .nav:not(#_):not(#_) .nav__logo { height: 19px; }
+  .ftr__logo:not(#_) { height: 20px; }
 }
-@media (max-width: 380px) { .nav:not(#_):not(#_) .nav__logo { height: 19px; } }
+@media (max-width: 380px) { .nav:not(#_):not(#_) .nav__logo { height: 16px; } }
+/* between 1200 and 1440 the menu items draw closer, so the whole menu keeps to
+   one line beside the name */
+@media (min-width: 1200px) and (max-width: 1439px) { .nav:not(#_):not(#_) .nav__links { gap: clamp(16px, 1.6vw, 34px); } }
 
 /* ═══ INSIGHT CARDS: THE IMAGE ON TOP (2026-11-26) ═══════════════════════════
    The owner's instruction: the upper part of each card is all visual, an image,

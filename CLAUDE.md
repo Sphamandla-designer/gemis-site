@@ -277,10 +277,13 @@ The Brand v3 notes that follow are kept for the markup they describe. Its select
   `make-logo.py`). `apply-chrome.py` writes it into every page as the
   `#gemisLogo` symbol and sets every `<svg class="logo">` viewBox to match
   (`--check` covers both), so redraw the file, then re-run apply-chrome. It
-  stands 28px tall in the bar (22px under 620px, 19px under 380px) and 32px in
-  the footer. To make room for it, the bar becomes the drawer below **1360px**,
-  not 900px (the bar's rules in the `max-width: 1359px` blocks; the sub-nav
-  still collapses at 900px). The brand pieces (letterheads, signatures, cards,
+  stands 22px tall in the bar — its capitals the size of the 13px menu
+  labels' (the owner found 28px too big, 2026-11-26) — 19px under 620px and
+  16px under 380px, and 26px in the footer (20px under 620px). The menu
+  labels never wrap (`white-space: nowrap`). The bar is the logo and the
+  drawer below **1200px** (the bar's rules in the `max-width: 1199px` blocks;
+  the sub-nav still collapses at 900px); from 1200 to 1439px the menu gap
+  tightens to `clamp(16px, 1.6vw, 34px)` so the whole menu stays on one line. The brand pieces (letterheads, signatures, cards,
   the logo kit) and the Organization logo in the JSON-LD keep the two-line
   lockup with the GEMIS wordmark.
 - **Rhythm** is `--sec-y` (56–80px) on both edges of every tile. Shell 1440px.
