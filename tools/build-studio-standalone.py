@@ -66,6 +66,8 @@ for key in PAGES:
     h = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', h, flags=re.S)
     # the corporate site and anything outside the studio goes to the live address
     h = re.sub(r'href="\.\./([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}"', h)
+    # the case-study films are far too large to carry: they play from the live site
+    h = re.sub(r'src="\.\./(assets/video/[^"]*)"', lambda m: f'src="{LIVE}{m.group(1)}"', h)
     # strict for what the markup shows; a path only inside a script (the component's
     # data) may name an image it never renders
     shown = set(ASSET.findall(re.sub(r'<script\b.*?</script>', '', h, flags=re.S)))

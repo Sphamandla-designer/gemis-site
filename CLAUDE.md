@@ -158,6 +158,13 @@ Two traps in these builds:
   cut: their voiceovers were not generated (ElevenLabs' free tier was busy). The voice
   was generated on ElevenLabs' free plan: the licence is the owner's to confirm.
   The film sources are `.htm` so the link check and the chrome walk skip them.
+  **GEMIS is said like the word "gem"** (the owner's correction, same day): in
+  any text sent to the voice, spell it Jemmis; captions and transcripts keep
+  GEMIS. The five films had the twelve sentences that say the name re-voiced
+  and spliced in (`tools/films/splice.py`). The Studio's five matching case
+  studies play the same films (`"video"` in `studio/src/cases.json`, the
+  `film()` section in `build-studio-case.mjs`); the studio bundle plays them
+  from the live site rather than carrying them.
 - **New studio pages** go in `sitemap.xml` (unless `noindex`) and in
   `PAGES` in `tools/build-studio-standalone.py`. New corporate pages go in
   `sitemap.xml`; the chrome walk finds them by itself.
