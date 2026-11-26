@@ -3,6 +3,7 @@
   "cases": [
     {
       "slug": "wastemart",
+      "video": { "stem": "WasteMart_explainer", "length": "1:04", "page": "../work/wastemart/" },
       "name": "WasteMart",
       "nda": "full",
       "ndaAgreed": false,
@@ -296,6 +297,7 @@
     },
     {
       "slug": "sbs-waterproofing",
+      "video": { "stem": "SBS_explainer", "length": "1:07", "page": "../work/sbs-waterproofing/" },
       "name": "SBS Waterproofing",
       "nda": "full",
       "ndaAgreed": false,
@@ -359,6 +361,7 @@
     },
     {
       "slug": "homeassist",
+      "video": { "stem": "HomeAssist_explainer", "length": "1:05", "page": "../work/homeassist/" },
       "name": "HomeAssist",
       "nda": "full",
       "ndaAgreed": false,
@@ -421,6 +424,7 @@
     },
     {
       "slug": "trans-hex",
+      "video": { "stem": "TransHex_explainer", "length": "1:18", "page": "../work/trans-hex/" },
       "name": "Trans Hex Group",
       "nda": "full",
       "ndaAgreed": false,
@@ -601,6 +605,7 @@
     },
     {
       "slug": "managem",
+      "video": { "stem": "ManaGEM_explainer", "length": "1:00", "page": "../products/managem/" },
       "name": "ManaGEM",
       "nda": "full",
       "ndaAgreed": true,

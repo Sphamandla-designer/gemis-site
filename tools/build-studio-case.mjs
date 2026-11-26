@@ -41,6 +41,19 @@ const head = (num, kicker, title, lede, dark) =>
       ${lede ? `<p data-reveal="2" style="${dark ? LEDE_DARK : LEDE_LIGHT}">${esc(lede)}</p>` : '<div></div>'}
     </div>`;
 
+/** The case-study film (2026-11-26): the same film the corporate site plays, from
+    assets/video/case-studies/. Captions are burned in; the transcript is on the
+    corporate page the note links. */
+const film = (c) => !c.video ? '' : section('film', 'The film', true,
+  `    <div class="sc-head" style="margin-bottom:40px">
+      <div><div style="${KICKER}">Watch · ${esc(c.video.length)}</div><h2 data-reveal="1" style="${H2_DARK}">The story,<br><span style="color:#ff1f7a">in a minute.</span></h2></div>
+      <p data-reveal="2" style="margin:0;max-width:44ch;font-size:17px;line-height:1.5;color:#c9cad1;justify-self:end">A short film of the project, narrated and captioned. <a href="${esc(c.video.page)}" style="color:#f5f6f8;border-bottom:2px solid #ff7a12">Read the transcript on the GEMIS case study</a>.</p>
+    </div>
+    <video controls playsinline preload="none" poster="../assets/video/case-studies/${esc(c.video.stem)}_thumb.jpg" aria-label="${esc(c.name)}: the case-study film" style="display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:6px">
+      <source src="../assets/video/case-studies/${esc(c.video.stem)}_web.webm" type="video/webm">
+      <source src="../assets/video/case-studies/${esc(c.video.stem)}_web.mp4" type="video/mp4">
+    </video>`).replace('<section ', '<section class="sc-dark" ');
+
 /** The <title>: short enough not to be cut off in search results (under ~60 characters). */
 export function caseTitle(c) {
   if (c.seo && c.seo.title) return c.seo.title;
@@ -183,7 +196,7 @@ ${headerTbc}
     </div>
     <div style="margin-top:32px;display:grid;gap:8px">${c.tbc.map(tbc).join('\n')}</div>`, '72px 32px 100px');
 
-  return [header, problem, found, changed, build, results, quote, next].join('\n\n');
+  return [header, film(c), problem, found, changed, build, results, quote, next].filter(Boolean).join('\n\n');
 }
 
 /* ── the showcase case study ─────────────────────────────────────────────
@@ -284,7 +297,7 @@ ${x.chapters.map((ch, j) => `      <article class="sc-ch">
     ] };
   const jsonld = `<script type="application/ld+json">\n${JSON.stringify(ld, null, 2).replace(/</g, '\\u003c')}\n</script>`;
 
-  return [header, body, quote, next, jsonld].join('\n\n');
+  return [header, film(c), body, quote, next, jsonld].filter(Boolean).join('\n\n');
 }
 
 /** Roughly how many words the live page carries (TBC notes excluded) — for the report. */

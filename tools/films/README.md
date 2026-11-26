@@ -52,3 +52,13 @@ and the durations in `scripts/stories.py`.
 Sonke and Tore's are still the earlier cut: their voiceovers could not be
 generated (ElevenLabs' free tier was busy). `music.py` already carries a bed
 for each (`sonke`, `tores`).
+
+## Saying "GEMIS" (2026-11-26)
+
+The owner's correction: GEMIS is said like the word *gem* ("JEM-iss"). The voice
+read the capitals wrongly, so in every prompt sent to the voice the name is
+spelled **Jemmis**; the captions and transcripts keep GEMIS. The five films were
+fixed by re-voicing only the twelve sentences that say the name
+(`a/gemis-patch.mp3`) and splicing each into its slot (`splice.py`, tempo-fitted,
+level-matched; the untouched takes belong in `orig-vo/`). The committed
+`a/*-vo.mp3` are the spliced voiceovers. Any new narration: write Jemmis.
