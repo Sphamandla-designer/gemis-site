@@ -44,6 +44,22 @@ for _slug in SV.BY_SLUG:
         SOLUTIONS_FOR.setdefault(_e['slug'], []).append(_slug)
 
 
+# What the stills under "The system, step by step" are, said plainly per film
+# (2026-11-26): a reworked film shows real prototype screens or draws the
+# process; it never shows an invented interface.
+WALK_NOTE_DEFAULT = ('Stills from the case study video. The interfaces are illustrated for the video, not screen '
+                     'recordings of the production system; every capability shown is one the system delivers.')
+_DRAWN = ('Stills from the case study video. The video draws the process rather than showing the system’s screens; '
+          'every capability shown is one the system delivers.')
+WALK_NOTE = {
+    'sbs-waterproofing': ('Stills from the case study video. The screens are ManaGEM, the product this system grew into, '
+                          'with sample data, not SBS’s own records; every capability shown is one the system delivers.'),
+    'homeassist': _DRAWN,
+    'trans-hex': _DRAWN,
+    'wastemart': ('Stills from the case study video. The video draws the process; the phone screens are the driver-app '
+                  'prototype with sample data. Every capability shown is one the system delivers.'),
+}
+
 def solutions_sentence(slug, base):
     """'The solutions behind this project: A, B and C.' — or nothing, when no
     solution page cites the project."""
@@ -233,7 +249,7 @@ def story_page(s):
             <p class="eyebrow" data-reveal>The system, step by step</p>
             <h2 class="display" id="walkHeading" data-reveal style="--d:80ms">What the user needs to do, and how the system supports it</h2>
           </div>
-          <p class="lede" data-reveal style="--d:140ms">Stills from the case study video. The interfaces are illustrated for the video, not screen recordings of the production system; every capability shown is one the system delivers.</p>
+          <p class="lede" data-reveal style="--d:140ms">{WALK_NOTE.get(s['slug'], WALK_NOTE_DEFAULT)}</p>
         </div>
 {B.walk(c['walk'], base, s['slug'])}
       </div>
