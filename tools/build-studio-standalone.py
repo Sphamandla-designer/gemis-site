@@ -26,8 +26,8 @@ PAGES = ['index.html', 'work.html', 'about.html', 'services.html', 'contact.html
 PAGES += sorted(f for f in os.listdir(ST) if re.fullmatch(r'work-[a-z0-9-]+\.html', f))   # one page per case study
 
 MIME = {'.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml',
-        '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff'}
-ASSET = re.compile(r'\.\./assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp)|assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
+        '.webp': 'image/webp', '.woff2': 'font/woff2', '.woff': 'font/woff', '.mp4': 'video/mp4'}
+ASSET = re.compile(r'\.\./assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|mp4)|assets/[A-Za-z0-9_./-]+?\.(?:jpg|jpeg|png|svg|webp|woff2|woff)')
 
 A = {}
 
@@ -66,8 +66,9 @@ for key in PAGES:
     h = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', h, flags=re.S)
     # the corporate site and anything outside the studio goes to the live address
     h = re.sub(r'href="\.\./([^"]*)"', lambda m: f'href="{LIVE}{m.group(1)}"', h)
-    # the case-study films are far too large to carry: they play from the live site
-    h = re.sub(r'src="\.\./(assets/video/[^"]*)"', lambda m: f'src="{LIVE}{m.group(1)}"', h)
+    # the case-study films travel inside the file (MP4 only: every device plays it),
+    # so the copy works with no network at all
+    h = re.sub(r'\s*<source src="[^"]*\.webm"[^>]*>', '', h)
     # strict for what the markup shows; a path only inside a script (the component's
     # data) may name an image it never renders
     shown = set(ASSET.findall(re.sub(r'<script\b.*?</script>', '', h, flags=re.S)))
@@ -161,7 +162,7 @@ noscript a{{color:#fff}}
   function build(page) {{
     return pages[page]
       .replace(/@@(js:[a-z-]+\\.js)@@/g, function (m, k) {{ return assets[k] || ''; }})
-      .replace(/\\.\\.\\/assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)|assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
+      .replace(/\\.\\.\\/assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp|mp4)|assets\\/[A-Za-z0-9_.\\/-]+?\\.(?:jpg|jpeg|png|svg|webp)/g, function (m) {{ return blobUrl(m); }})
       .replace(/assets\\/[A-Za-z0-9_.-]+?\\.(?:woff2|woff)/g, function (m) {{ return assets[m] || m; }});
   }}
   function frame(page) {{
